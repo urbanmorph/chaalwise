@@ -1,0 +1,11 @@
+{
+  "name": "Chaalwise",
+  "short_name": "Chaalwise",
+  "description": "A free, offline strategy gym: learn to think ahead through chess and poker, against the computer.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ea",
+  "theme_color": "#164a39",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

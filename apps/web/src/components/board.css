@@ -1,0 +1,50 @@
+/* Chessground, themed with the Chaalwise board colours (tokens.css). */
+.board {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+cg-board {
+  /* 8 by 8 squares, a8 light, from one repeating gradient: no image to download. */
+  background: repeating-conic-gradient(var(--sq-dark) 0 25%, var(--sq-light) 0 50%) 0 0 / 25% 25%;
+}
+cg-board square.move-dest {
+  background: radial-gradient(rgb(22 74 57 / 0.55) 22%, transparent 0);
+}
+cg-board square.oc.move-dest {
+  background: radial-gradient(transparent 80%, rgb(22 74 57 / 0.45) 80%);
+}
+cg-board square.move-dest:hover {
+  background: rgb(22 74 57 / 0.3);
+}
+cg-board square.last-move {
+  background-color: rgb(232 161 60 / 0.45);
+}
+cg-board square.selected {
+  background-color: rgb(22 74 57 / 0.5);
+}
+cg-board square.check {
+  background: radial-gradient(ellipse at center, rgb(163 58 42) 0%, rgb(163 58 42 / 0) 89%);
+}
+.cg-wrap coords {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(9px, 2.2vw, 12px);
+}
+/* Coordinates: felt green on light squares, white on dark ones (the square greens are
+   too close to use each other). Ranks run up the left edge, files along the bottom. */
+.orientation-white .ranks :nth-child(even),
+.orientation-white .files :nth-child(even),
+.orientation-black .ranks :nth-child(odd),
+.orientation-black .files :nth-child(odd) {
+  color: var(--felt);
+}
+.orientation-white .ranks :nth-child(odd),
+.orientation-white .files :nth-child(odd),
+.orientation-black .ranks :nth-child(even),
+.orientation-black .files :nth-child(even) {
+  color: #fff;
+}

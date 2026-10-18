@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+  - sharp
+
+# @napi-rs/wasm-runtime (used by astro check) declares @emnapi/* as peers, which pnpm
+# does not link for it, so astro check fails to load. Make them real dependencies.
+packageExtensions:
+  '@napi-rs/wasm-runtime':
+    dependencies:
+      '@emnapi/core': '^1.11.3'
+      '@emnapi/runtime': '^1.11.3'

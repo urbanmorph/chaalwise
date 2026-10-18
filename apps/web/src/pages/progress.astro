@@ -1,0 +1,14 @@
+---
+import ProgressPanel from '../components/ProgressPanel.svelte';
+import Base from '../layouts/Base.astro';
+import { reviewSteps } from '../lib/lessons';
+
+const cardIds = Object.keys(await reviewSteps());
+---
+
+<Base title="Progress" description="Your progress, kept on this device.">
+  <div class="wrap">
+    <h1>Your progress</h1>
+    <ProgressPanel client:load {cardIds} />
+  </div>
+</Base>

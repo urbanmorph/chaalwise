@@ -1,0 +1,158 @@
+---
+import plexMono400 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
+import plexMono600 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2?url';
+import plexSans from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
+import newsreader from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'A free, offline strategy gym: learn to think ahead through chess and poker, against the computer. No money, no ratings.',
+} = Astro.props;
+const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
+const latin =
+  'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
+const fontFaces = [
+  ['Newsreader', newsreader, '200 800'],
+  ['IBM Plex Sans', plexSans, '100 700'],
+  ['IBM Plex Mono', plexMono400, '400'],
+  ['IBM Plex Mono', plexMono600, '600'],
+]
+  .map(
+    ([family, src, weight]) =>
+      `@font-face{font-family:'${family}';font-style:normal;font-display:swap;font-weight:${weight};src:url(${src}) format('woff2');unicode-range:${latin}}`,
+  )
+  .join('');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#164a39" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f3d2e" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href={plexSans} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={newsreader} as="font" type="font/woff2" crossorigin />
+    <style set:html={fontFaces}></style>
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <header class="masthead">
+      <div class="wrap bar">
+        <a class="logo" href="/">
+          chaal<span>wise</span>
+        </a>
+        <nav aria-label="Main">
+          <a href="/chess/">Chess</a>
+          <a href="/review/">Review</a>
+          <a href="/progress/">Progress</a>
+        </nav>
+      </div>
+    </header>
+    <div id="update" class="update" role="status" hidden>
+      <span>A new version of Chaalwise is ready.</span>
+      <button class="button" type="button">
+        Reload
+      </button>
+    </div>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Free, offline, and against the computer only. No money, no ratings. Your progress stays on
+          this device.
+        </p>
+        <p>
+          Built by <a href="https://www.urbanmorph.com/">urbanmorph</a>, led by Sathya Sankaran.{' '}
+          <a href="https://github.com/urbanmorph/chaalwise">Source on GitHub, drop a star</a>.
+          AGPL-3.0. <a href="/credits/">Credits</a>.
+        </p>
+      </div>
+    </footer>
+    <script src="../scripts/register-sw.ts"></script>
+  </body>
+</html>
+
+<style>
+  .masthead {
+    background: var(--felt);
+    color: var(--on-felt);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    padding-block: 8px;
+    flex-wrap: wrap;
+  }
+  .logo {
+    font: 700 1.75rem var(--serif);
+    color: var(--on-felt);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo span {
+    color: var(--accent);
+    font-style: italic;
+  }
+  nav {
+    display: flex;
+    gap: 4px;
+  }
+  nav a {
+    color: var(--on-felt-2);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  nav a:hover {
+    color: var(--on-felt);
+    background: var(--felt-2);
+  }
+  .masthead :focus-visible {
+    outline-color: var(--accent);
+  }
+  .update {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: var(--tint);
+    border-bottom: 1px solid var(--rule);
+  }
+  .update[hidden] {
+    display: none;
+  }
+  main {
+    display: block;
+    min-height: 60vh;
+    padding-block: 32px 64px;
+  }
+  main:focus {
+    outline: none;
+  }
+  .foot {
+    border-top: 1px solid var(--rule);
+    padding-block: 24px;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+  }
+</style>

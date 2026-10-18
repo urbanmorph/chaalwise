@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Credits" description="The open-source work Chaalwise is built on.">
+  <div class="wrap prose">
+    <h1>Credits</h1>
+    <p>
+      Chaalwise is free software under the{' '}
+      <a href="https://github.com/urbanmorph/chaalwise/blob/main/LICENSE">GNU AGPL-3.0</a>. It is
+      built on the work of others, with thanks.
+    </p>
+    <h2>Chess</h2>
+    <ul>
+      <li>
+        The board is <a href="https://github.com/lichess-org/chessground">chessground</a>, and the
+        rules are <a href="https://github.com/niklasf/chessops">chessops</a>, both open-source
+        projects from the <a href="https://lichess.org/">Lichess</a> community, under GPL-3.0.
+        Chaalwise is an independent project, not part of or endorsed by Lichess.
+      </li>
+      <li>
+        The pieces are Colin M.L. Burnett's set, under GPL-2.0-or-later, as distributed with
+        chessground.
+      </li>
+    </ul>
+    <h2>Learning</h2>
+    <ul>
+      <li>
+        Spaced repetition uses{' '}
+        <a href="https://github.com/open-spaced-repetition/ts-fsrs">ts-fsrs</a> (MIT), the Free
+        Spaced Repetition Scheduler.
+      </li>
+    </ul>
+    <h2>Type</h2>
+    <ul>
+      <li>
+        Newsreader, by Production Type, and IBM Plex Sans and Mono, by IBM, under the SIL Open Font
+        Licence.
+      </li>
+    </ul>
+    <h2>Built with</h2>
+    <ul>
+      <li>Astro, Svelte and idb (MIT).</li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .prose ul {
+    max-width: var(--measure);
+    padding-left: 1.2em;
+  }
+  .prose li {
+    margin-bottom: 0.6em;
+  }
+</style>

@@ -1,0 +1,33 @@
+node_modules
+
+# Output
+dist/
+.astro/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+worker-configuration.d.ts
+
+# Puzzle pipeline working files (checkpoints, downloads)
+tools/puzzles/.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# Editor
+.idea/
+*.swp
+*.swo
+
+# Plans, research, mockups and handover notes — never committed
+supporting-docs/
+apps/web/e2e/.builds/
+.lighthouseci/

@@ -1,0 +1,32 @@
+import { execSync } from 'node:child_process';
+import svelte from '@astrojs/svelte';
+import { defineConfig } from 'astro/config';
+import serviceWorker from './src/integrations/service-worker';
+
+/** Identifies the build in the page, so a stale copy is easy to spot. */
+const buildId =
+  process.env.BUILD_ID ??
+  (() => {
+    try {
+      return execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] })
+        .toString()
+        .trim();
+    } catch {
+      return 'dev';
+    }
+  })();
+
+export default defineConfig({
+  site: 'https://chaalwise.urbanmorph.com',
+  trailingSlash: 'ignore',
+  // Inline styles: no render-blocking stylesheet request on a slow connection.
+  build: { format: 'directory', inlineStylesheets: 'always' },
+  integrations: [svelte(), serviceWorker()],
+  vite: {
+    define: {
+      __BUILD_ID__: JSON.stringify(buildId),
+      // A tombstone build must not register a worker, or the tombstone's reload re-installs it forever.
+      __TOMBSTONE__: JSON.stringify(process.env.SW_TOMBSTONE === '1'),
+    },
+  },
+});

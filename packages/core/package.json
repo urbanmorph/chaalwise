@@ -1,0 +1,21 @@
+{
+  "name": "@chaalwise/core",
+  "version": "0.0.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "check": "tsc -p ."
+  },
+  "dependencies": {
+    "idb": "8.0.4",
+    "ts-fsrs": "5.4.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "6.2.6"
+  }
+}

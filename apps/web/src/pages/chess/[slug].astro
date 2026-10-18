@@ -1,0 +1,48 @@
+---
+import { render } from 'astro:content';
+import LessonPage from '../../components/LessonPage.svelte';
+import Base from '../../layouts/Base.astro';
+import { chessLessons, lessonHref, STAGES, type LessonEntry } from '../../lib/lessons';
+
+export async function getStaticPaths() {
+  const lessons = await chessLessons();
+  return lessons.map((lesson, i) => ({
+    params: { slug: lesson.id.replace(/^chess\//, '') },
+    props: { lesson, next: lessons[i + 1] },
+  }));
+}
+
+interface Props {
+  lesson: LessonEntry;
+  next?: LessonEntry | undefined;
+}
+
+const { lesson, next } = Astro.props;
+const { Content } = await render(lesson);
+---
+
+<Base title={lesson.data.title} description={lesson.data.summary}>
+  <article class="wrap">
+    <p class="label">
+      <a href="/chess/">Chess</a> · Stage {lesson.data.stage}: {STAGES[lesson.data.stage]}
+    </p>
+    <h1>{lesson.data.title}</h1>
+    <div class="intro">
+      <Content />
+    </div>
+    <LessonPage
+      client:load
+      lesson={{ steps: lesson.data.steps }}
+      lessonId={lesson.id}
+      next={next && { href: lessonHref(next), title: next.data.title }}
+    />
+  </article>
+</Base>
+
+<style>
+  .intro {
+    font-size: 1.1rem;
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+</style>
