@@ -36,6 +36,20 @@ describe('lessonSchema', () => {
     expect(lessonSchema.parse({ ...lesson, steps }).steps).toHaveLength(2);
   });
 
+  it('lets a choice step highlight squares once the answer is shown', () => {
+    const step = {
+      kind: 'choice',
+      id: 'c',
+      prompt: 'p',
+      options: ['a', 'b'],
+      answer: 0,
+      explanation: 'e',
+      highlight: ['h1'],
+    };
+    expect(lessonSchema.parse({ ...lesson, steps: [step] }).steps[0]).toMatchObject({ highlight: ['h1'] });
+    expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, highlight: ['h9'] }] })).toThrow();
+  });
+
   it('rejects a square answer that is not a square', () => {
     const steps = [{ kind: 'square', id: 's', prompt: 'p', answers: ['e9'], explanation: 'e' }];
     expect(() => lessonSchema.parse({ ...lesson, steps })).toThrow();

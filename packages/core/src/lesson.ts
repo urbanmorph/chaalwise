@@ -9,6 +9,8 @@ import { SKILL_IDS } from './skills';
 
 const stepId = z.string().regex(/^[a-z0-9-]+$/, 'step ids are lowercase words joined by hyphens');
 
+const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
+
 const readStep = z.object({ kind: z.literal('read'), id: stepId, text: z.string().min(1) });
 
 const choiceStep = z
@@ -21,6 +23,10 @@ const choiceStep = z
     answer: z.number().int().nonnegative(),
     hint: z.string().optional(),
     explanation: z.string().min(1),
+    /** Squares to highlight on the board once the answer is shown, e.g. the square the question is about. */
+    highlight: z.array(squareName).optional(),
+    /** Arrows to draw once the answer is shown, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
+    arrows: z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional(),
   })
   .refine((s) => s.answer < s.options.length, {
     message: 'answer must be the index of one of the options',
@@ -45,7 +51,7 @@ const squareStep = z.object({
   id: stepId,
   prompt: z.string().min(1),
   position: z.string().optional(),
-  answers: z.array(z.string().regex(/^[a-h][1-8]$/, 'a square such as e4')).min(1),
+  answers: z.array(squareName).min(1),
   orientation: z.enum(['white', 'black']).optional(),
   hint: z.string().optional(),
   explanation: z.string().min(1),

@@ -19,6 +19,7 @@ steps:
       - Nothing
     answer: 0
     explanation: The knight on c3 attacks d1, where your queen stands. Spotting that is half the blunder check.
+    arrows: [c3d1]
   - kind: move
     id: take-the-attacker
     prompt: The knight attacks your queen. Deal with it in the best way.

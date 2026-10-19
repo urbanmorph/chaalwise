@@ -137,7 +137,10 @@
               lastMove={after?.move}
               orientation={step.kind === 'move' || step.kind === 'square' ? step.orientation : undefined}
               interactive={step.kind === 'move' && !state.revealed}
-              {marks}
+              marks={state.revealed && step.kind === 'choice' && step.arrows
+                ? [...marks, ...step.arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush: 'yellow' as const }))]
+                : marks}
+              highlight={state.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
               coordinates={step.kind !== 'square'}
               label={step.kind === 'move' && !state.revealed
                 ? 'Chess board: make your move'
