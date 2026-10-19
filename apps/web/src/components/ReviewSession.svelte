@@ -1,14 +1,12 @@
 <script lang="ts">
   import type { GradedStep } from '@chaalwise/core/lesson';
-  import type { Outcome } from '@chaalwise/core/player';
-  import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
+  import { openProgress } from '@chaalwise/core/progress';
+  import { onMount } from 'svelte';
   // Loaded with the page, not on demand: see LessonPage.svelte.
   import '@chaalwise/core/srs';
-  import { onMount } from 'svelte';
+  import { isPracticeKind } from '../lib/practice-kinds';
   import { shuffle } from '../lib/random';
-  import LessonPlayer from './LessonPlayer.svelte';
-  import SaveStatus, { type SaveState } from './SaveStatus.svelte';
-  import { summarise } from './outcomes';
+  import PracticeRound from './PracticeRound.svelte';
 
   interface Props {
     /** Every graded step, keyed by card id (`<lessonId>/<stepId>`). */
@@ -16,10 +14,8 @@
   }
 
   let { steps }: Props = $props();
-  /** The session's steps, and the card each one reviews (step ids are unique per session). */
-  let session = $state<{ steps: GradedStep[]; cardFor: Record<string, string> } | undefined>();
+  let items = $state<{ cardId: string; step: GradedStep }[] | undefined>();
   let failed = $state(false);
-  let saved = $state<SaveState>('saving');
 
   onMount(async () => {
     try {
@@ -28,75 +24,36 @@
       progress.close();
       // Mixed order: interleaving beats reviewing one lesson's questions in a block.
       const ids = shuffle(due.map((c) => c.id).filter((id) => id in steps));
-      session = {
-        steps: ids.map((id, i) => ({ ...steps[id]!, id: `card-${i}` })),
-        cardFor: Object.fromEntries(ids.map((id, i) => [`card-${i}`, id])),
-      };
+      // A card that names a practice comes back as a fresh position of the same idea.
+      const needsPractice = ids.some((id) => steps[id]!.practice);
+      const { practiceStep } = needsPractice ? await import('../lib/practice') : { practiceStep: undefined };
+      items = ids.map((cardId) => {
+        const step = steps[cardId]!;
+        const kind = step.practice;
+        return { cardId, step: kind && isPracticeKind(kind) && practiceStep ? practiceStep(kind, Math.random) : step };
+      });
     } catch (error) {
       console.error(error);
       failed = true;
     }
   });
-
-  /** Grades not yet saved, and the saves in flight, in order. */
-  let unsaved: [string, Outcome][] = [];
-  let saving = Promise.resolve();
-
-  async function save(grades: [string, Outcome][]) {
-    const progress = await openProgress();
-    try {
-      for (const [stepId, outcome] of grades) {
-        await progress.recordReview(session!.cardFor[stepId]!, outcome, new Date());
-      }
-    } finally {
-      progress.close();
-    }
-  }
-
-  // Each grade is saved as it is given, so leaving halfway keeps what was done.
-  function onstep(stepId: string, outcome: Outcome) {
-    saving = saving.then(() =>
-      save([[stepId, outcome]]).catch((error) => {
-        console.error(error);
-        unsaved.push([stepId, outcome]);
-      }),
-    );
-  }
-
-  async function onfinish() {
-    saved = 'saving';
-    await saving;
-    try {
-      await save(unsaved);
-      unsaved = [];
-      saved = 'saved';
-    } catch (error) {
-      console.error(error);
-      saved = isNewerVersionOpen(error) ? 'newer' : 'failed';
-    }
-  }
 </script>
 
 {#if failed}
   <p>Your progress could not be read on this device.</p>
-{:else if !session}
+{:else if !items}
   <p>Loading your reviews…</p>
-{:else if session.steps.length === 0}
+{:else if items.length === 0}
   <div class="card" data-testid="review-empty">
     <h2>Nothing to review today</h2>
-    <p>Questions from finished lessons come back here on later days, just before you would forget them.</p>
+    <p>Questions from finished lessons come back here on later days, just before you would forget them, often in a new position.</p>
     <a class="button primary" href="/chess/">Go to the lessons</a>
   </div>
 {:else}
-  <p class="label">{session.steps.length} to review</p>
-  <LessonPlayer lesson={session} {onfinish} {onstep}>
-    {#snippet finished(outcomes)}
-      <div class="card">
-        <h2>Review done</h2>
-        <p>{summarise(outcomes)}. The ones you missed come back sooner.</p>
-        <SaveStatus status={saved} saved="Saved on this device." onretry={onfinish} />
-        <a class="button primary" href="/chess/">Back to the lessons</a>
-      </div>
+  <p class="label">{items.length} to review</p>
+  <PracticeRound {items}>
+    {#snippet after()}
+      <a class="button primary" href="/chess/">Back to the lessons</a>
     {/snippet}
-  </LessonPlayer>
+  </PracticeRound>
 {/if}

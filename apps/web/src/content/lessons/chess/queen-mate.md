@@ -11,6 +11,7 @@ steps:
     text: "The plan has three parts. Use the queen to box the king in, a knight's move away from it, and shrink the box. Once the king is on the edge, bring your own king up. Then mate. After every queen move, check the king still has a square, or it is stalemate."
   - kind: play
     id: mate-from-centre
+    practice: mate-kq
     prompt: Mate the lone king.
     position: 8/8/8/4k3/8/8/8/4KQ2 w - - 0 1
     goal: checkmate
@@ -20,6 +21,7 @@ steps:
     explanation: Box, shrink, bring the king, mate. With practice it takes ten moves or fewer.
   - kind: play
     id: mate-again
+    practice: mate-kq
     prompt: Again, from here. Make the box first.
     position: 8/8/3k4/8/8/2K5/8/7Q w - - 0 1
     goal: checkmate

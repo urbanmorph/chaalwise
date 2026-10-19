@@ -5,7 +5,11 @@
   // Loaded with the page, not on demand: if a deploy lands mid-lesson, the
   // on-demand chunk is gone from the server by the time the lesson is saved.
   import '@chaalwise/core/srs';
+  import type { GradedStep } from '@chaalwise/core/lesson';
+  import { tick } from 'svelte';
+  import { isPracticeKind } from '../lib/practice-kinds';
   import LessonPlayer from './LessonPlayer.svelte';
+  import PracticeRound from './PracticeRound.svelte';
   import SaveStatus, { type SaveState } from './SaveStatus.svelte';
   import { summarise } from './outcomes';
 
@@ -18,6 +22,25 @@
   let { lesson, lessonId, next }: Props = $props();
   let saved = $state<SaveState>('saving');
   let outcomes: Record<string, Outcome> = {};
+
+  /** Steps whose idea can be practised in fresh positions. */
+  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => s.kind !== 'read' && !!s.practice && isPracticeKind(s.practice)));
+  const ROUND = 5;
+  let practice = $state<{ cardId: string; step: GradedStep }[] | undefined>();
+  let rounds = $state(0);
+  let practiceStart = $state<HTMLElement>();
+
+  /** Five fresh positions of this lesson's ideas, in turn. The generators load only when asked for. */
+  async function practiseAgain() {
+    const { practiceStep } = await import('../lib/practice');
+    practice = Array.from({ length: ROUND }, (_, i) => {
+      const source = practicable[i % practicable.length]!;
+      return { cardId: `${lessonId}/${source.id}`, step: practiceStep(source.practice as Parameters<typeof practiceStep>[0], Math.random) };
+    });
+    rounds++;
+    await tick();
+    practiceStart?.focus();
+  }
 
   async function onfinish(result: Record<string, Outcome>) {
     outcomes = result;
@@ -45,13 +68,40 @@
         {#if next}
           <a class="button primary" href={next.href}>Next: {next.title}</a>
         {/if}
+        {#if practicable.length}
+          <button class="button" type="button" onclick={practiseAgain}>Practise again in new positions</button>
+        {/if}
         <a class="button" href="/chess/">All chess lessons</a>
       </div>
     </div>
   {/snippet}
 </LessonPlayer>
 
+{#if practice}
+  <section class="practice" aria-label="Practice in new positions">
+    <h2 tabindex="-1" bind:this={practiceStart}>Practice: {ROUND} new positions</h2>
+    {#key rounds}
+      <PracticeRound items={practice}>
+        {#snippet after()}
+          <div class="actions">
+            <button class="button" type="button" onclick={practiseAgain}>Another round</button>
+            {#if next}<a class="button primary" href={next.href}>Next: {next.title}</a>{/if}
+          </div>
+        {/snippet}
+      </PracticeRound>
+    {/key}
+  </section>
+{/if}
+
 <style>
+  .practice {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .practice h2:focus {
+    outline: none;
+  }
   .actions {
     display: flex;
     flex-wrap: wrap;

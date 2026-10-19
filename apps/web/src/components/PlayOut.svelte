@@ -10,7 +10,8 @@
     step: Extract<Step, { kind: 'play' }>;
     /** The step is finished (won, or the answer shown): the board stops taking moves. */
     finished: boolean;
-    onresult: (won: boolean) => void;
+    /** Called when a game ends: whether it was won, and how many moves it took. */
+    onresult: (won: boolean, used: number) => void;
   }
 
   let { step, finished, onresult }: Props = $props();
@@ -52,7 +53,7 @@
         if (turn.status === 'playing') return;
         over = true;
         result = turn.status === 'won' ? 'Checkmate!' : REASONS[turn.reason!];
-        onresult(turn.status === 'won');
+        onresult(turn.status === 'won', game.used);
         await tick();
         againButton?.focus();
       })
