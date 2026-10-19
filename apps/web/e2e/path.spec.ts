@@ -65,13 +65,25 @@ test('every lesson page has the whole path in a rail on the right, with this les
   const rail = page.getByRole('navigation', { name: 'All lessons' });
   await expect(rail).toBeVisible();
   await expect(rail.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
-  await expect(rail.getByRole('link', { name: 'The blunder check' })).toHaveAttribute('href', '/skills/blunder-check/');
   await expect(rail.getByRole('link', { name: 'The knight' })).toHaveAttribute('aria-current', 'page');
+  // Other stages are folded; opening one shows its lessons, strategy lessons in place.
+  await rail.getByText("Stage 1 · Don't hang pieces").click();
+  await expect(rail.getByRole('link', { name: 'The blunder check' })).toHaveAttribute('href', '/skills/blunder-check/');
   // To the right of the board, not below it.
   const board = (await page.locator('.board').boundingBox())!;
   const box = (await rail.boundingBox())!;
   expect(box.x).toBeGreaterThan(board.x + board.width);
   expect(box.y).toBeLessThan(board.y + board.height);
+});
+
+test('the rail opens at the stage you are in, with no scroll box of its own', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/chess/opening-map/');
+  const rail = page.getByRole('navigation', { name: 'All lessons' });
+  await expect(rail.getByRole('link', { name: 'A map of the openings' })).toBeInViewport();
+  await expect(rail.getByRole('link', { name: 'Name the squares' })).toBeHidden();
+  const scrolls = await page.locator('aside').evaluate((el) => el.scrollHeight > el.clientHeight);
+  expect(scrolls).toBe(false);
 });
 
 test('the rail ticks lessons already finished on this device', async ({ page }) => {
