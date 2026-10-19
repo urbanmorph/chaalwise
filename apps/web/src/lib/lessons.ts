@@ -47,10 +47,21 @@ export const STAGES: Record<number, string> = {
   7: 'Full game',
 };
 
-/** A lesson's steps, each knowing the profile skill its answers count towards (its own, or the lesson's). */
+/**
+ * A lesson's steps, each knowing the skill its answers count towards: its own,
+ * the lesson's, or for a strategy lesson its strategy track.
+ */
 export const stepsWithSkills = (lesson: LessonEntry) =>
   lesson.data.steps.map((step) =>
-    step.kind === 'read' ? step : { ...step, measures: step.measures ?? lesson.data.measures },
+    step.kind === 'read'
+      ? step
+      : {
+          ...step,
+          measures:
+            step.measures ??
+            lesson.data.measures ??
+            (lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined),
+        },
   );
 
 /** Every review question the site has, keyed by card id (`<lessonId>/<stepId>`). */

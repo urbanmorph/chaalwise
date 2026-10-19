@@ -9,7 +9,7 @@ import { materialSignature } from '@chaalwise/teach/endgame';
 // Parsing and checking a lesson's move (castling written e1g1) is shared with the teaching helpers.
 import { legal, standardUci } from '@chaalwise/teach/position';
 import { isPracticeKind } from './practice-kinds';
-import { isProfileSkill } from './profile-skills';
+import { isChessSkill } from './profile-skills';
 
 /** Lessons may write `start`, a FEN, or `moves: e4 e5 Nf3` (standard notation from the start). */
 export const START = INITIAL_FEN;
@@ -67,10 +67,10 @@ function playIssues(pos: Chess, within: number): string[] {
 
 export function chessLessonIssues(lesson: Lesson): Issue[] {
   const issues: Issue[] = [];
-  if (lesson.measures && !isProfileSkill(lesson.measures))
+  if (lesson.measures && !isChessSkill(lesson.measures))
     issues.push({ path: ['measures'], message: `there is no skill called ${lesson.measures}` });
   lesson.steps.forEach((step, i) => {
-    if ('measures' in step && step.measures && !isProfileSkill(step.measures)) {
+    if ('measures' in step && step.measures && !isChessSkill(step.measures)) {
       issues.push({ path: ['steps', i, 'measures'], message: `there is no skill called ${step.measures}` });
     }
     if ('practice' in step && step.practice && !isPracticeKind(step.practice)) {

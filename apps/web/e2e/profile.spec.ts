@@ -13,30 +13,32 @@ test('a new learner starts on the home page with a strategy lesson, and every sk
   await page.goto('/progress/');
   await hydrated(page);
   await expect(page.locator('[data-skill] .label').first()).toHaveText('Not started');
-  await expect(page.getByTestId('next-focus')).toContainText('Board sense');
+  await expect(page.getByTestId('next-focus')).toContainText('Think ahead');
 });
 
 test('finishing a lesson builds the profile from your own answers, and sets the next focus', async ({ page }) => {
   await completeLesson(page, 'hanging');
   await page.goto('/progress/');
   await hydrated(page);
-  const safety = page.locator('[data-skill="safety"]');
-  await expect(safety.locator('.label')).toHaveText('Noticing');
-  await expect(safety).toContainText('You got 3 of your last 3 first time, over 1 day.');
-  await expect(safety).toContainText('For Applying: at least 5 tries, and 6 in 10 first time.');
-  await expect(page.getByTestId('next-focus')).toContainText('Safety (the blunder check)');
+  // The chess safety answers are evidence for the strategy track they train.
+  const ahead = page.locator('[data-skill="think-ahead"]');
+  await expect(ahead.locator('.label')).toHaveText('Noticing');
+  await expect(ahead).toContainText('You got 3 of your last 3 first time, over 1 day.');
+  await expect(ahead).toContainText('For Applying: at least 5 tries, and 6 in 10 first time.');
+  await expect(page.getByTestId('next-focus')).toContainText('Think ahead');
+  await expect(page.locator('[data-game-skill="safety"]')).toContainText('Noticing');
 
   await page.goto('/');
   const card = page.getByTestId('home-next-focus');
   await expect(card).toBeVisible();
-  await expect(card).toContainText('Safety (the blunder check)');
-  await expect(card.getByRole('link')).toHaveAttribute('href', '/chess/drills/');
+  await expect(card).toContainText('Think ahead');
+  await expect(card.getByRole('link')).toHaveAttribute('href', '/skills/#think-ahead');
 });
 
-test('skills that need practice games say so instead of showing a level they cannot earn yet', async ({ page }) => {
+test('strategy skills not measured yet say where they will come from instead of showing a level', async ({ page }) => {
   await page.goto('/progress/');
   await hydrated(page);
-  await expect(page.locator('[data-skill="time"]')).toContainText('Measured in practice games, which come next.');
+  await expect(page.locator('[data-skill="weigh-odds"]')).toContainText('Comes with poker.');
 });
 
 /** Sum the page's layout shifts (CLS); under 0.1 is good. */
@@ -60,7 +62,7 @@ test('the progress page does not jump about as the profile loads', async ({ page
   const shifts = await watchShifts(page);
   await page.goto('/progress/');
   await hydrated(page);
-  await expect(page.locator('[data-skill="safety"] .label')).toHaveText('Noticing');
+  await expect(page.locator('[data-skill="think-ahead"] .label')).toHaveText('Noticing');
   expect(await shifts()).toBeLessThan(0.1);
 });
 
@@ -68,7 +70,7 @@ test("the home page does not jump when a returning learner's next focus loads", 
   await completeLesson(page, 'hanging');
   const shifts = await watchShifts(page);
   await page.goto('/');
-  await expect(page.getByTestId('home-next-focus')).toContainText('Safety (the blunder check)');
+  await expect(page.getByTestId('home-next-focus')).toContainText('Think ahead');
   expect(await shifts()).toBeLessThan(0.1);
 });
 
@@ -82,13 +84,13 @@ test('the dashboard: tiles and radar for a period, a tooltip by keyboard, and th
   await expect(page.getByTestId('tile-tries')).toHaveText('3');
   await expect(page.getByTestId('tile-rate')).toHaveText('100%');
 
-  // The safety point carries its figures for keyboard and screen-reader users, and shows the tooltip on focus.
-  const point = page.getByRole('img', { name: 'Safety (the blunder check): 100% first time, 3 of 3' });
+  // The think-ahead point carries its figures for keyboard and screen-reader users, and shows the tooltip on focus.
+  const point = page.getByRole('img', { name: 'Think ahead: 100% first time, 3 of 3' });
   await point.focus();
   await expect(page.locator('.tooltip')).toContainText('100% first time');
 
   await page.getByText('Show as a table').click();
-  await expect(page.getByRole('row', { name: 'Safety (the blunder check) 3 100%' })).toBeVisible();
+  await expect(page.getByRole('row', { name: 'Think ahead 3 100%' })).toBeVisible();
 
   // A month later the 7-day view is empty; all time still counts them.
   await page.clock.setSystemTime(new Date('2026-11-19T09:00:00'));
@@ -102,5 +104,5 @@ test('the dashboard: tiles and radar for a period, a tooltip by keyboard, and th
 
   // Improvement areas start with the next focus.
   await expect(page.locator('.improve > li')).toHaveCount(3);
-  await expect(page.locator('.improve > li').first()).toContainText('Safety (the blunder check)');
+  await expect(page.locator('.improve > li').first()).toContainText('Think ahead');
 });
