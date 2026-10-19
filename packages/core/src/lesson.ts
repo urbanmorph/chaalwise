@@ -11,7 +11,15 @@ const stepId = z.string().regex(/^[a-z0-9-]+$/, 'step ids are lowercase words jo
 
 const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
 
-const readStep = z.object({ kind: z.literal('read'), id: stepId, text: z.string().min(1) });
+/** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank). */
+const readStep = z.object({
+  kind: z.literal('read'),
+  id: stepId,
+  text: z.string().min(1),
+  position: z.string().optional(),
+  orientation: z.enum(['white', 'black']).optional(),
+  highlight: z.array(squareName).optional(),
+});
 
 const choiceStep = z
   .object({
@@ -53,6 +61,8 @@ const squareStep = z.object({
   position: z.string().optional(),
   answers: z.array(squareName).min(1),
   orientation: z.enum(['white', 'black']).optional(),
+  /** Show the letters and numbers on the edges (off by default, since they give the answer away). */
+  coordinates: z.boolean().optional(),
   hint: z.string().optional(),
   explanation: z.string().min(1),
 });
@@ -78,13 +88,26 @@ export const lessonSchema = z
   .object({
     title: z.string().min(1),
     summary: z.string().min(1),
-    game: z.enum(['chess']),
+    /** `strategy` lessons teach a skill off the board, between the game lessons that ground it. */
+    game: z.enum(['chess', 'strategy']),
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),
+    /** For a strategy lesson: the lesson it follows on the path, e.g. `chess/blunder-check`. */
+    after: z.string().optional(),
     steps: z.array(stepSchema).min(1),
   })
   .superRefine((lesson, ctx) => {
+    if (lesson.game === 'strategy') {
+      if (!lesson.after)
+        ctx.addIssue({
+          code: 'custom',
+          message: 'a strategy lesson must say which lesson it comes after',
+          path: ['after'],
+        });
+      if (!lesson.skills.length)
+        ctx.addIssue({ code: 'custom', message: 'a strategy lesson must name the skill it trains', path: ['skills'] });
+    }
     const seen = new Set<string>();
     lesson.steps.forEach((step, i) => {
       if (seen.has(step.id)) {

@@ -1,0 +1,61 @@
+---
+import { render } from 'astro:content';
+import { lessonHref, pathContext, type LessonEntry } from '../lib/lessons';
+import LessonPage from './LessonPage.svelte';
+
+/** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
+interface Props {
+  lesson: LessonEntry;
+}
+
+const { lesson } = Astro.props;
+const { Content } = await render(lesson);
+const { next, buildsOn } = await pathContext(lesson);
+const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
+---
+
+<p class="builds-on" data-earlier={JSON.stringify(earlier)} hidden></p>
+<h1>{lesson.data.title}</h1>
+<div class="intro">
+  <Content />
+</div>
+<LessonPage client:load lesson={{ steps: lesson.data.steps }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
+
+<script>
+  import { openProgress } from '@chaalwise/core/progress';
+
+  // Everything is open, but say so if this builds on earlier lessons not yet done, and offer the first of them.
+  const note = document.querySelector<HTMLElement>('.builds-on');
+  const earlier: { id: string; href: string; title: string }[] = JSON.parse(note?.dataset.earlier ?? '[]');
+  if (note && earlier.length) {
+    openProgress()
+      .then(async (progress) => {
+        const done = await progress.completedLessons();
+        progress.close();
+        const first = earlier.find((l) => !done.has(l.id));
+        if (!first) return;
+        note.append('This builds on earlier lessons you have not done yet. You can carry on, or start with ');
+        note.append(Object.assign(document.createElement('a'), { href: first.href, textContent: first.title }));
+        note.append('.');
+        note.hidden = false;
+      })
+      .catch(console.error);
+  }
+</script>
+
+<style>
+  .builds-on {
+    padding: 10px 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--tint);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .builds-on[hidden] {
+    display: none;
+  }
+  .intro {
+    font-size: 1.05rem;
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+</style>

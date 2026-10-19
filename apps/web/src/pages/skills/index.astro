@@ -1,0 +1,54 @@
+---
+import { SKILLS, type SkillId } from '@chaalwise/core/skills';
+import Base from '../../layouts/Base.astro';
+import { lessonHref, lessonPath } from '../../lib/lessons';
+
+const strategy = (await lessonPath()).filter((l) => l.data.game === 'strategy');
+const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({ id, name: SKILLS[id], lessons: strategy.filter((l) => l.data.skills.includes(id)) }));
+---
+
+<Base title="Skills" description="The strategy skills Chaalwise trains, each learned in a game and then shown off the board.">
+  <div class="wrap">
+    <h1>Skills</h1>
+    <p>Each skill is learned in a game, then shown off the board: where it turns up in ordinary life, and one way to try it this week.</p>
+    {tracks.map((track) => (
+      <section>
+        <h2>{track.name}</h2>
+        {track.lessons.length ? (
+          <ul class="lessons">
+            {track.lessons.map((l) => (
+              <li class="card">
+                <a href={lessonHref(l)}>{l.data.title}</a>
+                <p>{l.data.summary}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="soon">Lessons for this skill come later.</p>
+        )}
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  section {
+    margin-top: 28px;
+  }
+  .lessons {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+  .lessons a {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .lessons p,
+  .soon {
+    margin: 6px 0 0;
+    color: var(--ink-2);
+  }
+</style>

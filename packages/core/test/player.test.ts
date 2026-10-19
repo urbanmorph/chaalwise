@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { advance, answer, createPlayer, currentStep, giveUp, showHint } from '../src/player';
+import { advance, answer, createPlayer, currentStep, giveUp, jumpTo, showHint } from '../src/player';
 import { lesson } from './fixtures';
 
 const atStep = (index: number) => ({ ...createPlayer(), index });
@@ -113,5 +113,39 @@ describe('square and play steps', () => {
     const lost = answer(steps, atPlay, { kind: 'play', won: false });
     expect(lost.state).toMatchObject({ attempts: 1, revealed: false });
     expect(answer(steps, lost.state, { kind: 'play', won: true }).state.outcomes).toEqual({ mate: 'with-help' });
+  });
+});
+
+describe('moving between steps', () => {
+  it('jumps to any step, fresh: no attempts, no hint, nothing revealed', () => {
+    const started = showHint({ ...createPlayer(), index: 1, attempts: 1 });
+    expect(jumpTo(lesson, started, 2)).toMatchObject({
+      index: 2,
+      attempts: 0,
+      hintShown: false,
+      revealed: false,
+      done: false,
+    });
+  });
+
+  it('ignores a jump outside the lesson', () => {
+    const state = createPlayer();
+    expect(jumpTo(lesson, state, 7)).toBe(state);
+    expect(jumpTo(lesson, state, -1)).toBe(state);
+  });
+
+  it('grades a step only the first time: coming back and answering again does not change it', () => {
+    let { state } = answer(lesson, { ...createPlayer(), index: 1 }, { kind: 'choice', index: 0 });
+    state = giveUp(lesson, state);
+    expect(state.outcomes).toEqual({ corner: 'missed' });
+    const again = answer(lesson, jumpTo(lesson, state, 1), { kind: 'choice', index: 1 });
+    expect(again.correct).toBe(true);
+    expect(again.state.revealed).toBe(true);
+    expect(again.state.outcomes).toEqual({ corner: 'missed' });
+  });
+
+  it('keeps earlier outcomes when jumping', () => {
+    const { state } = answer(lesson, { ...createPlayer(), index: 1 }, { kind: 'choice', index: 1 });
+    expect(jumpTo(lesson, state, 0).outcomes).toEqual({ corner: 'first-try' });
   });
 });

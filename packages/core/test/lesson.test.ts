@@ -50,9 +50,34 @@ describe('lessonSchema', () => {
     expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, highlight: ['h9'] }] })).toThrow();
   });
 
+  it('lets a read step show a board with squares picked out, and a square step show coordinates', () => {
+    const steps = [
+      { kind: 'read', id: 'files', text: 'This is the e-file.', position: 'empty', highlight: ['e1', 'e2'] },
+      {
+        kind: 'square',
+        id: 'pick',
+        prompt: 'Click the e-file.',
+        answers: ['e1', 'e2'],
+        coordinates: true,
+        explanation: 'e',
+      },
+    ];
+    expect(lessonSchema.parse({ ...lesson, steps }).steps).toMatchObject(steps);
+  });
+
   it('rejects a square answer that is not a square', () => {
     const steps = [{ kind: 'square', id: 's', prompt: 'p', answers: ['e9'], explanation: 'e' }];
     expect(() => lessonSchema.parse({ ...lesson, steps })).toThrow();
+  });
+
+  it('accepts a strategy lesson that names its skill and the lesson it follows', () => {
+    const strategy = { ...lesson, game: 'strategy', skills: ['think-ahead'], after: 'chess/blunder-check' };
+    expect(lessonSchema.parse(strategy)).toMatchObject({ game: 'strategy', after: 'chess/blunder-check' });
+  });
+
+  it('requires a strategy lesson to say which lesson it follows, and which skill it trains', () => {
+    expect(() => lessonSchema.parse({ ...lesson, game: 'strategy', skills: ['think-ahead'] })).toThrow(/after/);
+    expect(() => lessonSchema.parse({ ...lesson, game: 'strategy', skills: [], after: 'chess/x' })).toThrow(/skill/);
   });
 
   it('rejects an unknown skill', () => {

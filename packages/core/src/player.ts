@@ -48,10 +48,11 @@ const isCorrect = (step: Step, response: Response): boolean | undefined => {
   return undefined;
 };
 
+/** Show the answer. A step is graded the first time only: coming back to it later changes nothing. */
 const reveal = (state: PlayerState, stepId: string, outcome: Outcome): PlayerState => ({
   ...state,
   revealed: true,
-  outcomes: { ...state.outcomes, [stepId]: outcome },
+  outcomes: stepId in state.outcomes ? state.outcomes : { ...state.outcomes, [stepId]: outcome },
 });
 
 export function answer(
@@ -92,4 +93,10 @@ export function advance(lesson: Playable, state: PlayerState): PlayerState {
     revealed: false,
     done: index >= lesson.steps.length,
   };
+}
+
+/** Go straight to any step (the step dots), starting it fresh. Earlier grades are kept. */
+export function jumpTo(lesson: Playable, state: PlayerState, index: number): PlayerState {
+  if (!Number.isInteger(index) || index < 0 || index >= lesson.steps.length) return state;
+  return { ...state, index, attempts: 0, hintShown: false, revealed: false, done: false };
 }

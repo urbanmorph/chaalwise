@@ -106,6 +106,19 @@ describe('chess checks for square and play steps', () => {
     );
   });
 
+  it('lets read and square steps use an empty board, which is not a legal game', () => {
+    const l = lesson([
+      { kind: 'read', id: 'r', text: 't', position: 'empty', highlight: ['e4'] },
+      { kind: 'square', id: 's', prompt: 'p', explanation: 'e', answers: ['e4'], position: 'empty' },
+    ]);
+    expect(chessLessonIssues(l)).toEqual([]);
+    expect(toFen('empty')).toBe(EMPTY_BOARD);
+  });
+
+  it('still requires a legal game for move steps', () => {
+    expect(chessLessonIssues(move('empty', ['e2e4']))[0]?.message).toMatch(/not a legal position/);
+  });
+
   it('checks the position of a square step', () => {
     const l = lesson([
       { kind: 'square', id: 's', prompt: 'p', explanation: 'e', answers: ['e4'], position: 'nonsense' },

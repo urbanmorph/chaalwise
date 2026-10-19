@@ -3,7 +3,7 @@ title: Is this move safe?
 summary: Before you let go of a piece, check that they cannot win something or mate you straight after.
 game: chess
 stage: 1
-order: 3
+order: 6
 skills: [think-ahead, calculate]
 steps:
   - kind: read

@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { chessLessons, lessonHref, STAGES } from '../../lib/lessons';
+import { SKILLS } from '@chaalwise/core/skills';
+import { lessonHref, lessonPath, STAGES } from '../../lib/lessons';
 
-const lessons = await chessLessons();
+// The whole path: chess lessons, with strategy lessons where they fall.
+const lessons = (await lessonPath()).filter((l) => l.data.game === 'chess' || l.data.game === 'strategy');
 const stages = [...new Set(lessons.map((l) => l.data.stage))];
 ---
 
@@ -22,7 +24,8 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
           {lessons
             .filter((l) => l.data.stage === stage)
             .map((l) => (
-              <li class="card" data-lesson={l.id}>
+              <li class="card" class:list={{ strategy: l.data.game === 'strategy' }} data-lesson={l.id}>
+                {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
                 <a href={lessonHref(l)}>{l.data.title}</a>
                 <p>{l.data.summary}</p>
                 <span class="done label" hidden>
@@ -74,6 +77,16 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
   .lessons p {
     margin: 6px 0 0;
     color: var(--ink-2);
+  }
+  .strategy {
+    background: var(--paper);
+    border-style: dashed;
+    border-color: var(--rule-strong);
+  }
+  .kind {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent-text);
   }
   .done {
     display: inline-block;
