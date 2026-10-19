@@ -8,8 +8,11 @@ import { gzipSync } from 'node:zlib';
 /** Pages with a chess board: chess and strategy lessons, and the review. Everything else is a reading page. */
 const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|review)\/$/;
 
+/** The progress dashboard: a period filter and an interactive radar, but no board. */
+const DASHBOARD_PAGES = /^\/progress\/$/;
+
 /** @param {string} page */
-export const budgetFor = (page) => (BOARD_PAGES.test(page) ? 80_000 : 30_000);
+export const budgetFor = (page) => (BOARD_PAGES.test(page) ? 80_000 : DASHBOARD_PAGES.test(page) ? 40_000 : 30_000);
 
 const gzip = (/** @type {string | Buffer} */ text) => gzipSync(text, { level: 9 }).length;
 

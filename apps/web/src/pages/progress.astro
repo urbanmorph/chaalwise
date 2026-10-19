@@ -10,7 +10,7 @@ const cardIds = Object.keys(await reviewSteps());
 <Base title="Progress" description="Your skill profile and progress, kept on this device.">
   <div class="wrap">
     <h1>Your progress</h1>
-    <SkillProfile client:load />
+    <SkillProfile client:load {cardIds} />
     <h2 class="device">Your progress on this device</h2>
     <ProgressPanel client:load {cardIds} />
   </div>

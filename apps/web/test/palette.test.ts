@@ -57,6 +57,9 @@ const REQUIRED: [string, string, number][] = [
   ['--focus', '--paper', 3],
   ['--focus', '--card', 3],
   ['--rule-strong', '--card', 3],
+  // Chart marks are non-text: 3:1 on the card and the page.
+  ['--chart-1', '--card', 3],
+  ['--chart-1', '--paper', 3],
 ];
 
 const themes = {

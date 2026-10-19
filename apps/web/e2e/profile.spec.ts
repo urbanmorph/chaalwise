@@ -67,3 +67,36 @@ test("the home page does not jump when a returning learner's next focus loads", 
   await expect(page.getByTestId('home-next-focus')).toContainText('Safety (the blunder check)');
   expect(await shifts()).toBeLessThan(0.1);
 });
+
+test('the dashboard: tiles and radar for a period, a tooltip by keyboard, and the same figures as a table', async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date('2026-10-19T09:00:00') });
+  await completeLesson(page, 'hanging');
+  await page.goto('/progress/');
+  await hydrated(page);
+  await expect(page.getByTestId('tile-tries')).toHaveText('3');
+  await expect(page.getByTestId('tile-rate')).toHaveText('100%');
+
+  // The safety point carries its figures for keyboard and screen-reader users, and shows the tooltip on focus.
+  const point = page.getByRole('img', { name: 'Safety (the blunder check): 100% first time, 3 of 3' });
+  await point.focus();
+  await expect(page.locator('.tooltip')).toContainText('100% first time');
+
+  await page.getByText('Show as a table').click();
+  await expect(page.getByRole('row', { name: 'Safety (the blunder check) 3 100%' })).toBeVisible();
+
+  // A month later the 7-day view is empty; all time still counts them.
+  await page.clock.setSystemTime(new Date('2026-11-19T09:00:00'));
+  await page.reload();
+  await hydrated(page);
+  await page.getByText('7 days').click();
+  await expect(page.getByTestId('tile-tries')).toHaveText('0');
+  await expect(page.getByTestId('tile-rate')).toHaveText('–');
+  await page.getByText('All time').click();
+  await expect(page.getByTestId('tile-tries')).toHaveText('3');
+
+  // Improvement areas start with the next focus.
+  await expect(page.locator('.improve > li')).toHaveCount(3);
+  await expect(page.locator('.improve > li').first()).toContainText('Safety (the blunder check)');
+});

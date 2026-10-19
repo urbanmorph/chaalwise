@@ -10,13 +10,15 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
     expect(pages.length).toBeGreaterThanOrEqual(8);
   });
 
-  it('gives board pages 80 KB and every other page 30 KB, compressed', () => {
+  it('gives board pages 80 KB, the progress dashboard 40 KB and every other page 30 KB, compressed', () => {
     expect(budgetFor('/chess/board/')).toBe(80_000);
     expect(budgetFor('/review/')).toBe(80_000);
     expect(budgetFor('/skills/blunder-check/')).toBe(80_000);
     expect(budgetFor('/skills/')).toBe(30_000);
     expect(budgetFor('/chess/')).toBe(30_000);
     expect(budgetFor('/')).toBe(30_000);
+    // The progress dashboard is interactive (period filter, radar), so it sits between the two.
+    expect(budgetFor('/progress/')).toBe(40_000);
   });
 
   it('follows imports, so a lesson page counts the board it loads', () => {
