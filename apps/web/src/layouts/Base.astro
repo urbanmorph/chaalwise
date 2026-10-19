@@ -15,10 +15,10 @@ const {
   description = 'A free, offline strategy gym: learn to think ahead through chess and poker, against the computer. No money, no ratings.',
 } = Astro.props;
 const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
+// Strategy first; the games, with their lessons and drills, are found through the reference.
 const NAV = [
-  ['/chess/', 'chess'],
-  ['/chess/drills/', 'drills'],
-  ['/skills/', 'skills'],
+  ['/skills/', 'strategy'],
+  ['/reference/', 'reference'],
   ['/review/', 'review'],
   ['/progress/', 'progress'],
 ];
@@ -115,7 +115,8 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
   }
   nav {
     display: flex;
-    gap: 4px;
+    flex-wrap: wrap;
+    gap: 0 4px;
   }
   nav a {
     display: inline-flex;

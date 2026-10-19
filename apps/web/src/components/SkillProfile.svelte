@@ -66,9 +66,9 @@
   <p>Your skill profile could not be read on this device.</p>
 {/if}
 
-<div class="filters" role="radiogroup" aria-label="Period">
+<div class="choices" role="radiogroup" aria-label="Period">
   {#each PERIODS as p (p.label)}
-    <label class:on={period === p.days}>
+    <label>
       <input type="radio" name="period" checked={period === p.days} onchange={() => (period = p.days)} />
       {p.label}
     </label>
@@ -206,32 +206,8 @@
 </ul>
 
 <style>
-  .filters {
-    display: flex;
-    gap: 6px;
+  .choices {
     margin-bottom: 12px;
-  }
-  .filters label {
-    padding: 6px 14px;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    cursor: pointer;
-    color: var(--ink-2);
-    font-size: 0.9rem;
-  }
-  .filters label.on {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--paper);
-  }
-  .filters label:has(input:focus-visible) {
-    outline: 3px solid var(--focus);
-    outline-offset: 2px;
-  }
-  .filters input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
   }
   .board {
     margin-bottom: 32px;

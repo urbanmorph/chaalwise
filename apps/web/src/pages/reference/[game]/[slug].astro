@@ -1,0 +1,168 @@
+---
+import { FAMILY_NAMES, GAME_NAMES, KIND_NAMES } from '@chaalwise/core/reference';
+import { SKILLS } from '@chaalwise/core/skills';
+import { render } from 'astro:content';
+import Diagram from '../../../components/Diagram.astro';
+import Base from '../../../layouts/Base.astro';
+import { toFen } from '../../../lib/chess';
+import { lessonHref, lessonPath } from '../../../lib/lessons';
+import { entryHref, numberedMoves } from '../../../lib/reference';
+import { referenceEntries, type ReferenceItem } from '../../../lib/reference-entries';
+
+export async function getStaticPaths() {
+  return (await referenceEntries()).map((entry) => {
+    const [game, slug] = entry.id.split('/');
+    return { params: { game, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props as { entry: ReferenceItem };
+const { data } = entry;
+const { Content } = await render(entry);
+const all = await referenceEntries();
+const related = data.related.map((id) => all.find((e) => e.id === id)!);
+const lesson = data.lesson ? (await lessonPath()).find((l) => l.id === data.lesson) : undefined;
+const opening = data.position?.startsWith('moves:') ? numberedMoves(data.position.slice(6)) : undefined;
+---
+
+<Base title={data.term} description={data.summary}>
+  <article class="wrap entry">
+    <p class="crumb">
+      <a href="/reference/">Reference</a> / <a href={`/reference/?game=${data.game}`}>{GAME_NAMES[data.game]}</a>
+    </p>
+    <h1>{data.term}</h1>
+    <p class="meta">
+      {KIND_NAMES[data.kind]}, {data.level}
+      {data.family && `, ${FAMILY_NAMES[data.family]}`}
+    </p>
+    {data.aliases.length > 0 && <p class="aliases">Also called {data.aliases.join(', ')}.</p>}
+
+    <div class:list={['body', { 'has-board': data.position }]}>
+      <div class="text">
+        <p class="summary">{data.summary}</p>
+        <Content />
+        {data.why && (
+          <section>
+            <h2>Why it matters</h2>
+            <p>{data.why}</p>
+          </section>
+        )}
+        {data.inLife && (
+          <section>
+            <h2>Away from the game</h2>
+            <p>{data.inLife}</p>
+          </section>
+        )}
+      </div>
+      {data.position && (
+        <figure class="board">
+          <Diagram
+            fen={toFen(data.position)}
+            move={data.move}
+            highlight={data.highlight}
+            orientation={data.orientation}
+            label={`${data.term}: a chess diagram${opening ? ` after ${opening}` : ''}.`}
+          />
+          {opening && <figcaption>{opening}</figcaption>}
+        </figure>
+      )}
+    </div>
+
+    {(lesson || data.skill) && (
+      <section class="learn">
+        <h2>Learn and practise it</h2>
+        <ul>
+          {lesson && (
+            <li>
+              Lesson: <a href={lessonHref(lesson)}>{lesson.data.title}</a>
+            </li>
+          )}
+          {data.skill && (
+            <li>
+              Skill: <a href={`/skills/#${data.skill}`}>{SKILLS[data.skill]}</a>
+            </li>
+          )}
+        </ul>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="related">
+        <h2>Related</h2>
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={entryHref(r.id)}>{r.data.term}</a>
+              <span>{r.data.summary}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</Base>
+
+<style>
+  .crumb {
+    color: var(--ink-2);
+    margin-bottom: 12px;
+  }
+  .meta {
+    color: var(--ink-2);
+    margin: -4px 0 4px;
+  }
+  .aliases {
+    color: var(--ink-2);
+    font-style: italic;
+  }
+  .body {
+    display: grid;
+    gap: 24px 40px;
+    margin-top: 24px;
+  }
+  @media (min-width: 760px) {
+    .has-board {
+      grid-template-columns: minmax(0, 1fr) 320px;
+      align-items: start;
+    }
+  }
+  .summary {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  .board {
+    margin: 0;
+    max-width: 360px;
+  }
+  figcaption {
+    margin-top: 10px;
+    font-family: var(--mono);
+    color: var(--ink-2);
+  }
+  section {
+    margin-top: 28px;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .learn ul,
+  .related ul {
+    padding: 0;
+    list-style: none;
+  }
+  .learn li {
+    margin-bottom: 6px;
+  }
+  .related li {
+    display: grid;
+    gap: 2px;
+    padding: 10px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .related a {
+    font-weight: 600;
+  }
+  .related span {
+    color: var(--ink-2);
+  }
+</style>

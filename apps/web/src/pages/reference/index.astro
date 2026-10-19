@@ -1,0 +1,197 @@
+---
+import { GAME_NAMES, REFERENCE_GAMES } from '@chaalwise/core/reference';
+import Base from '../../layouts/Base.astro';
+import { DRILLS } from '../../lib/drill-list';
+import { lessonPath } from '../../lib/lessons';
+import { libraryItems } from '../../lib/library';
+import { referenceEntries } from '../../lib/reference-entries';
+
+const items = libraryItems(await referenceEntries(), await lessonPath(), DRILLS);
+const groups = REFERENCE_GAMES.map((game) => ({ game, items: items.filter((i) => i.game === game) }));
+/** Where a game's lessons are listed in order, for working through them rather than looking one up. */
+const IN_ORDER: Partial<Record<string, { href: string; label: string }>> = {
+  strategy: { href: '/skills/', label: 'The strategy skills, track by track' },
+  chess: { href: '/chess/', label: 'All chess lessons, in order' },
+};
+const TYPES = [
+  ['', 'Everything'],
+  ['entry', 'Ideas and terms'],
+  ['lesson', 'Lessons'],
+  ['practice', 'Practice'],
+] as const;
+---
+
+<Base title="Reference" description="Strategy ideas, and the lessons, drills, openings, moves and rules of chess, poker and game theory, searchable offline.">
+  <div class="wrap">
+    <h1>Reference</h1>
+    <p class="lede">
+      Strategy ideas, and everything you need to get good at each game: interactive lessons, practice drills, and short explanations of openings, moves and
+      rules. Search by name, by another name, or by what you remember.
+    </p>
+
+    <form class="find" role="search" hidden data-find>
+      <label for="q">Search the reference</label>
+      <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="fork, Italian, pot odds" />
+      <div class="choices" role="radiogroup" aria-label="Game">
+        <label>
+          <input type="radio" name="game" value="" checked /> All
+        </label>
+        {REFERENCE_GAMES.map((game) => (
+          <label>
+            <input type="radio" name="game" value={game} /> {GAME_NAMES[game]}
+          </label>
+        ))}
+      </div>
+      <div class="choices" role="radiogroup" aria-label="Type">
+        {TYPES.map(([value, label]) => (
+          <label>
+            <input type="radio" name="type" value={value} checked={value === ''} /> {label}
+          </label>
+        ))}
+      </div>
+    </form>
+    <p class="count" aria-live="polite" data-count>
+      {items.length} results
+    </p>
+
+    {groups.map(({ game, items }) => (
+      <section data-game={game} aria-labelledby={`g-${game}`}>
+        <h2 id={`g-${game}`}>{GAME_NAMES[game]}</h2>
+        {IN_ORDER[game] && (
+          <p class="in-order">
+            <a href={IN_ORDER[game].href}>{IN_ORDER[game].label}</a>
+          </p>
+        )}
+        <ul>
+          {items.map((item) => (
+            <li data-search={item.search} data-type={item.type}>
+              <a href={item.href}>{item.title}</a>
+              <span class="kind">{item.meta}</span>
+              <p>{item.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+    <p class="empty" hidden data-empty>
+      Nothing matches that. Try another word, another game, or everything.
+    </p>
+  </div>
+</Base>
+
+<script>
+  import { matchesQuery } from '../../lib/search';
+
+  const form = document.querySelector<HTMLFormElement>('[data-find]')!;
+  const input = form.querySelector<HTMLInputElement>('input[type=search]')!;
+  const count = document.querySelector<HTMLElement>('[data-count]')!;
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  const sections = [...document.querySelectorAll<HTMLElement>('section[data-game]')];
+
+  /** Show what matches the words, the game and the type, and keep all three in the address so a search can be shared. */
+  function update() {
+    const data = new FormData(form);
+    const game = data.get('game') as string;
+    const type = data.get('type') as string;
+    let shown = 0;
+    for (const section of sections) {
+      let inSection = 0;
+      for (const item of section.querySelectorAll<HTMLElement>('li')) {
+        const show = (!game || section.dataset.game === game) && (!type || item.dataset.type === type) && matchesQuery(item.dataset.search!, input.value);
+        item.hidden = !show;
+        if (show) inSection++;
+      }
+      section.hidden = inSection === 0;
+      shown += inSection;
+    }
+    count.textContent = `${shown} ${shown === 1 ? 'result' : 'results'}`;
+    empty.hidden = shown > 0;
+    const params = new URLSearchParams();
+    if (input.value.trim()) params.set('q', input.value.trim());
+    if (game) params.set('game', game);
+    if (type) params.set('type', type);
+    history.replaceState(null, '', params.size ? `?${params}` : location.pathname);
+  }
+
+  const params = new URLSearchParams(location.search);
+  input.value = params.get('q') ?? '';
+  for (const name of ['game', 'type']) {
+    const chosen = form.querySelector<HTMLInputElement>(`input[name=${name}][value="${CSS.escape(params.get(name) ?? '')}"]`);
+    if (chosen) chosen.checked = true;
+  }
+  form.hidden = false;
+  form.addEventListener('input', update);
+  form.addEventListener('submit', (event) => event.preventDefault());
+  update();
+</script>
+
+<style>
+  .lede {
+    color: var(--ink-2);
+    font-size: 1.1rem;
+  }
+  .find {
+    display: grid;
+    gap: 10px;
+    margin: 24px 0 8px;
+  }
+  .find > label {
+    font-weight: 600;
+  }
+  input[type='search'] {
+    font: inherit;
+    font-size: 1.15rem;
+    min-height: 48px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--ink);
+  }
+  .count {
+    color: var(--ink-2);
+    margin: 8px 0 0;
+  }
+  section {
+    margin-top: 32px;
+  }
+  .in-order {
+    margin: -4px 0 12px;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 2px solid var(--ink);
+  }
+  li {
+    display: grid;
+    gap: 2px 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (min-width: 720px) {
+    li {
+      grid-template-columns: 240px minmax(0, 1fr);
+    }
+    li p {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+  }
+  li a {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .kind {
+    color: var(--ink-2);
+    font-size: 0.85rem;
+  }
+  li p {
+    margin: 0;
+    color: var(--ink-2);
+  }
+  [hidden] {
+    display: none !important;
+  }
+</style>

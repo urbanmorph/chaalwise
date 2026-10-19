@@ -18,7 +18,9 @@ export const HERO = {
 const ROLES: Record<string, string> = { p: 'pawn', n: 'knight', b: 'bishop', r: 'rook', q: 'queen', k: 'king' };
 
 /** The piece set's images as data URIs, keyed like `white-knight`. Read at build time, so pages carry no script for them. */
+let cached: Record<string, string> | undefined;
 export function pieceImages(): Record<string, string> {
+  if (cached) return cached;
   const css = readFileSync(
     createRequire(import.meta.url).resolve('chessground/assets/chessground.cburnett.css'),
     'utf8',
@@ -29,7 +31,7 @@ export function pieceImages(): Record<string, string> {
   )) {
     images[`${color}-${role}`] = url!;
   }
-  return images;
+  return (cached = images);
 }
 
 /** The pieces on a FEN's board, with White at the bottom: x and y in squares from the top left. */

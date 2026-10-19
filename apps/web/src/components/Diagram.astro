@@ -1,0 +1,84 @@
+---
+import { arrowPoints, squareCenter } from '../lib/arrows';
+import { diagramPieces, pieceImages } from '../lib/diagram';
+
+/**
+ * A chess position drawn at build time with the board's own pieces: no script.
+ * The key move is an arrow (a knight's turns the corner); highlighted squares
+ * are ringed. Each piece image is written once and reused.
+ */
+interface Props {
+  fen: string;
+  /** What the diagram shows, for screen readers. */
+  label: string;
+  move?: string | undefined;
+  highlight?: string[] | undefined;
+  orientation?: 'white' | 'black' | undefined;
+}
+const { fen, label, move, highlight = [], orientation = 'white' } = Astro.props;
+
+// Ids must be unique on the page and the same on every build, so they come from the position.
+const uid = `d${[...`${fen}${move}`].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(36)}`;
+const flip = orientation === 'black';
+const images = pieceImages();
+const pieces = diagramPieces(fen).map((p) => (flip ? { ...p, x: 7 - p.x, y: 7 - p.y } : p));
+const used = [...new Set(pieces.map((p) => p.key))];
+const squares = Array.from({ length: 64 }, (_, i) => ({ x: i % 8, y: Math.floor(i / 8) }));
+const arrow =
+  move &&
+  arrowPoints(move.slice(0, 2), move.slice(2, 4), orientation)
+    .map(([x, y]) => `${x},${y}`)
+    .join(' ');
+---
+
+<svg class="diagram" viewBox="0 0 8 8" role="img" aria-label={label}>
+  <defs>
+    {used.map((key) => (
+      <image id={`${uid}-${key}`} href={images[key]} width="1" height="1" />
+    ))}
+    <marker id={`${uid}-head`} viewBox="0 0 4 4" refX="2" refY="2" markerWidth="2.4" markerHeight="2.4" orient="auto">
+      <path d="M0,0 L4,2 L0,4 z" class="head" />
+    </marker>
+  </defs>
+  {squares.map(({ x, y }) => (
+    <rect x={x} y={y} width="1" height="1" class={(x + y) % 2 ? 'dark' : 'light'} />
+  ))}
+  {pieces.map(({ x, y, key }) => (
+    <use href={`#${uid}-${key}`} x={x} y={y} />
+  ))}
+  {arrow && <polyline points={arrow} class="arrow" marker-end={`url(#${uid}-head)`} />}
+  {highlight.map((square) => {
+    const [x, y] = squareCenter(square, orientation);
+    return <circle cx={x} cy={y} r="0.46" class="ring" />;
+  })}
+</svg>
+
+<style>
+  .diagram {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  .light {
+    fill: var(--sq-light);
+  }
+  .dark {
+    fill: var(--sq-dark);
+  }
+  .arrow {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 0.15;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .head {
+    fill: var(--primary);
+  }
+  .ring {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 0.08;
+  }
+</style>

@@ -22,15 +22,24 @@ export function toFen(position: string): string {
   return position.startsWith('moves:') ? positionFromMoves(position.slice(6)) : position;
 }
 
-const setup = (fen: string): Chess | undefined => {
+/** A legal position from a FEN, `start`, `empty` or `moves: …`, or undefined if it is not one. */
+export const setup = (fen: string): Chess | undefined => {
   const parsed = parseFen(toFen(fen));
   if (!parsed.isOk) return undefined;
   const pos = Chess.fromSetup(parsed.value);
   return pos.isOk ? pos.value : undefined;
 };
 
-/** Problems with a lesson's chess content, as Zod-style issues, so a broken lesson fails the build. */
-type Issue = { path: (string | number)[]; message: string };
+/** Problems with chess content, as Zod-style issues, so broken content fails the build. */
+export type Issue = { path: (string | number)[]; message: string };
+
+/** Why a move cannot be used as written: illegal here, or legal but not in the board's standard form. */
+export function moveIssue(pos: Chess, uci: string): string | undefined {
+  const move = legal(pos, uci);
+  if (!move) return `${uci} is not a legal move here`;
+  // The player compares strings, and the board always produces the standard form.
+  if (standardUci(pos, move) !== uci) return `${uci} is legal, but write it as ${standardUci(pos, move)}`;
+}
 
 /** Why a board cannot be drawn, if it cannot. */
 function boardIssue(position: string): string | undefined {
@@ -89,13 +98,8 @@ export function chessLessonIssues(lesson: Lesson): Issue[] {
       issues.push(...playIssues(pos, step.within).map((message) => ({ path: ['steps', i], message })));
     if (step.kind !== 'move') return;
     step.answers.forEach((uci, j) => {
-      const move = legal(pos, uci);
-      const path = ['steps', i, 'answers', j];
-      if (!move) issues.push({ path, message: `${uci} is not a legal move here` });
-      // The player compares strings, and the board always produces the standard form.
-      else if (standardUci(pos, move) !== uci) {
-        issues.push({ path, message: `${uci} is legal, but write it as ${standardUci(pos, move)}` });
-      }
+      const message = moveIssue(pos, uci);
+      if (message) issues.push({ path: ['steps', i, 'answers', j], message });
     });
   });
   return issues;
