@@ -113,6 +113,19 @@
     cg?.setAutoShapes(shapes);
   });
 
+  // chessground remembers where the board is on the page and re-measures only on scroll or resize.
+  // Content appearing above the board (the update banner, a longer question) moves it without either,
+  // and in Safari a tap then lands a rank off. Re-measure just before chessground handles each press.
+  const remeasure = () => cg?.state.dom.bounds.clear();
+  $effect(() => {
+    el.addEventListener('mousedown', remeasure, { capture: true });
+    el.addEventListener('touchstart', remeasure, { capture: true, passive: true });
+    return () => {
+      el.removeEventListener('mousedown', remeasure, { capture: true });
+      el.removeEventListener('touchstart', remeasure, { capture: true });
+    };
+  });
+
   onDestroy(() => cg?.destroy());
 
   function submitTyped(event: SubmitEvent) {

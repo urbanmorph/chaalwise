@@ -134,3 +134,49 @@ test("an answer can show arrows, and a knight's arrow turns the corner", async (
   // c3 to d1: start, corner, end.
   expect((await arrow.getAttribute('points'))!.split(' ')).toHaveLength(3);
 });
+
+test('every coordinate label sits wholly inside the board, so none is cut off', async ({ page }) => {
+  await page.goto('/chess/board/');
+  await hydrated(page);
+  const board = (await page.locator('.board').boundingBox())!;
+  const labels = page.locator('coords coord');
+  await expect(labels).toHaveCount(16);
+  for (const box of await labels.evaluateAll((els) => els.map((el) => el.getBoundingClientRect().toJSON()))) {
+    expect(box.top).toBeGreaterThanOrEqual(board.y);
+    expect(box.bottom).toBeLessThanOrEqual(board.y + board.height);
+    expect(box.left).toBeGreaterThanOrEqual(board.x);
+    expect(box.right).toBeLessThanOrEqual(board.x + board.width);
+  }
+  await expect(page.locator('coords.files coord').first()).toHaveText('a');
+});
+
+test('clicking a piece picks that piece, even after something above the board pushes it down', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 700 });
+  await page.goto('/chess/board/');
+  await hydrated(page);
+  for (const name of ['h1, a light square', 'Continue', 'd1', 'Continue'])
+    await page.getByRole('button', { name, exact: true }).click();
+  // Safari has no scroll anchoring, so content appearing above the board moves it without any scroll event.
+  await page.evaluate(() => {
+    document.documentElement.style.overflowAnchor = 'none';
+    window.scrollTo(0, 250);
+  });
+  const tap = async (square: string) => {
+    const box = (await page.locator('cg-board').boundingBox())!;
+    await page.mouse.click(
+      box.x + ((square.charCodeAt(0) - 96.5) * box.width) / 8,
+      box.y + ((8.5 - Number(square[1])) * box.height) / 8,
+    );
+  };
+  await tap('e2');
+  await tap('e2'); // the board has now worked out where it is
+  // Something appears above the board, as the "update ready" banner does.
+  await page.evaluate(() =>
+    document
+      .querySelector('main')!
+      .insertAdjacentHTML('afterbegin', '<div style="height:60px">A new version is ready.</div>'),
+  );
+  await tap('e2');
+  await tap('e4');
+  await expect(page.getByText('You found it!')).toBeVisible();
+});
