@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import favicon from '../../public/favicon.svg?raw';
 
 interface Props {
   title: string;
@@ -22,6 +23,8 @@ const NAV = [
   ['/progress/', 'progress'],
 ];
 const path = Astro.url.pathname;
+// The mark (a knight's move on a small board), the same artwork as the favicon, drawn inline beside the wordmark.
+const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focusable="false" ');
 ---
 
 <!doctype html>
@@ -34,6 +37,7 @@ const path = Astro.url.pathname;
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
   </head>
   <body>
@@ -43,7 +47,10 @@ const path = Astro.url.pathname;
     <header class="site-header">
       <div class:list={['wrap bar', { wide }]}>
         <a class="brand" href="/">
-          chaal<span>wise</span>
+          <Fragment set:html={mark} />
+          <span class="word">
+            chaal<span>wise</span>
+          </span>
         </a>
         <nav aria-label="Main">
           {NAV.map(([href, label]) => (
@@ -90,13 +97,21 @@ const path = Astro.url.pathname;
     flex-wrap: wrap;
   }
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font: 700 1.25rem/1 var(--sans);
     letter-spacing: -0.02em;
     color: var(--ink);
     text-decoration: none;
   }
-  .brand span {
+  .word span {
     color: var(--accent-text);
+  }
+  .brand :global(.mark) {
+    width: 26px;
+    height: 26px;
+    flex: none;
   }
   nav {
     display: flex;

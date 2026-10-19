@@ -101,7 +101,7 @@ const playStep = z.object({
   explanation: z.string().min(1),
 });
 
-export const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep]);
+const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep]);
 
 export const lessonSchema = z
   .object({

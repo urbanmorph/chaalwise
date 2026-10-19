@@ -21,7 +21,7 @@ const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({
       ahead, calculating, planning, sizing the risk and keeping a cool head; poker and the game-theory labs build the rest.
     </p>
     {tracks.map((track) => (
-      <section>
+      <section id={track.id}>
         <h2>{track.name}</h2>
         {track.lessons.length > 0 && (
           <ul class="lessons">
