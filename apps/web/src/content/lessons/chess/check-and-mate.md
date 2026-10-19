@@ -23,6 +23,7 @@ steps:
       - Neither
     answer: 0
     explanation: The king on a8 is in check from the queen. It cannot take her because your king guards her, and every square it could go to is covered. That is checkmate.
+    highlight: [a8]
   - kind: choice
     id: is-it-stalemate
     prompt: It is Black to move. What is this?
@@ -33,6 +34,7 @@ steps:
       - Neither
     answer: 1
     explanation: The king is not in check, but it has no legal move. That is stalemate, and stalemate is a draw, however much material you have.
+    highlight: [a8]
   - kind: move
     id: mate-in-one
     prompt: Give checkmate in one move.

@@ -108,3 +108,29 @@ test('starting the coordinates drill puts the keyboard in the typed-square field
   await page.locator('section', { hasText: 'Find the square' }).getByRole('button', { name: 'Start' }).click();
   await expect(page.getByLabel('Or type the square')).toBeFocused();
 });
+
+test('once a choice is answered, the board highlights the square it was about', async ({ page }) => {
+  await page.goto('/chess/board/');
+  await hydrated(page);
+  await expect(page.locator('cg-board square.highlight')).toHaveCount(0);
+  await page.getByRole('button', { name: 'h1, a light square' }).click();
+  // On a board seen from White, h1 is the bottom-right square.
+  const square = page.locator('cg-board square.highlight');
+  await expect(square).toHaveCount(1);
+  const board = (await page.locator('cg-board').boundingBox())!;
+  const box = (await square.boundingBox())!;
+  expect(Math.round(box.x - board.x)).toBe(Math.round((board.width * 7) / 8));
+  expect(Math.round(box.y - board.y)).toBe(Math.round((board.height * 7) / 8));
+});
+
+test("an answer can show arrows, and a knight's arrow turns the corner", async ({ page }) => {
+  await page.goto('/chess/blunder-check/');
+  await hydrated(page);
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.locator('svg.arrows polyline')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Your queen' }).click();
+  const arrow = page.locator('svg.arrows polyline');
+  await expect(arrow).toHaveCount(1);
+  // c3 to d1: start, corner, end.
+  expect((await arrow.getAttribute('points'))!.split(' ')).toHaveLength(3);
+});

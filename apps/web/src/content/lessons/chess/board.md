@@ -17,6 +17,7 @@ steps:
     answer: 0
     hint: Look at the board. Your right-hand corner is the h-file and the first rank.
     explanation: 'Light on right: the corner square on your right is always light. If it is dark, the board is turned the wrong way.'
+    highlight: [h1]
   - kind: choice
     id: queen-on-colour
     prompt: Where does the white queen start?
@@ -27,6 +28,7 @@ steps:
     answer: 0
     hint: The white queen stands on a light square.
     explanation: 'Queen on her colour: the white queen starts on the light square d1, and the black queen on the dark square d8. Each king stands next to its queen.'
+    highlight: [d1, d8]
   - kind: move
     id: first-move
     prompt: Move the pawn in front of your king forward two squares.
