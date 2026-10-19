@@ -9,6 +9,12 @@ import { SKILL_IDS } from './skills';
 
 const stepId = z.string().regex(/^[a-z0-9-]+$/, 'step ids are lowercase words joined by hyphens');
 
+/** A generator that makes fresh positions of this step's idea for review and practice (see the web app's practice kinds). */
+const practice = z
+  .string()
+  .regex(/^[a-z-]+$/)
+  .optional();
+
 const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
 
 /** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank). */
@@ -46,6 +52,7 @@ const moveStep = z.object({
   id: stepId,
   prompt: z.string().min(1),
   position: z.string().min(1),
+  practice,
   /** Every move accepted as correct; the first is the one shown when revealed. */
   answers: z.array(z.string().min(1)).min(1),
   orientation: z.enum(['white', 'black']).optional(),
@@ -61,6 +68,7 @@ const squareStep = z.object({
   position: z.string().optional(),
   answers: z.array(squareName).min(1),
   orientation: z.enum(['white', 'black']).optional(),
+  practice,
   /** Show the letters and numbers on the edges (off by default, since they give the answer away). */
   coordinates: z.boolean().optional(),
   hint: z.string().optional(),
@@ -74,6 +82,7 @@ const playStep = z.object({
   prompt: z.string().min(1),
   position: z.string().min(1),
   goal: z.literal('checkmate'),
+  practice,
   /** The most moves the learner may take. */
   within: z.number().int().positive(),
   opponent: z.literal('lone-king'),

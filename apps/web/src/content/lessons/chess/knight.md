@@ -13,6 +13,7 @@ steps:
     highlight: [b3, b5, c2, c6, e2, e6, f3, f5]
   - kind: square
     id: where-can-it-go
+    practice: piece-squares
     prompt: Click any square the knight on d4 can jump to.
     position: 4k3/8/8/8/3N4/8/8/4K3 w - - 0 1
     coordinates: true

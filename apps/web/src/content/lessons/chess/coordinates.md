@@ -39,24 +39,28 @@ steps:
     highlight: [e4]
   - kind: square
     id: find-e4
+    practice: find-square
     prompt: Now without the letters and numbers. Find e4.
     answers: [e4]
     hint: The e-file is the fifth from the left. Count four rows up from your side.
     explanation: e4 is in the centre, on the king's file. It is where the most common first move goes.
   - kind: square
     id: find-d5
+    practice: find-square
     prompt: Find d5.
     answers: [d5]
     hint: d is next to e, towards the a-file. Rank 5 is just over halfway up.
     explanation: d5 is one of the four centre squares, with d4, e4 and e5.
   - kind: square
     id: find-h1
+    practice: find-square
     prompt: Find h1.
     answers: [h1]
     hint: The last file, on your own back rank.
     explanation: h1 is the corner square on your right when you sit behind the white pieces. The next lesson shows why that corner matters.
   - kind: square
     id: find-c6-black
+    practice: find-square-black
     prompt: Now you are Black, looking from the other side. Find c6.
     orientation: black
     answers: [c6]

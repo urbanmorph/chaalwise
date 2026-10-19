@@ -31,7 +31,7 @@ test('a finished lesson comes back for review on a later day', async ({ page }) 
     await expect(page.getByText('You found it!')).toBeVisible();
     await page.getByRole('button', { name: /^(Continue|Finish)$/ }).click();
   }
-  await expect(page.getByText('Review done')).toBeVisible();
+  await expect(page.getByText('Round done')).toBeVisible();
   await expect(page.getByText('Saved on this device.')).toBeVisible();
 
   // Remembered first time, so not due again the same day.

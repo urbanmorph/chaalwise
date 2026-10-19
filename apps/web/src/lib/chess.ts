@@ -8,6 +8,7 @@ import type { Move, NormalMove } from 'chessops/types';
 import { materialSignature } from '@chaalwise/teach/endgame';
 // Parsing and checking a lesson's move (castling written e1g1) is shared with the teaching helpers.
 import { legal, standardUci } from '@chaalwise/teach/position';
+import { isPracticeKind } from './practice-kinds';
 
 /** Lessons may write `start`, a FEN, or `moves: e4 e5 Nf3` (standard notation from the start). */
 export const START = INITIAL_FEN;
@@ -57,6 +58,9 @@ function playIssues(pos: Chess, within: number): string[] {
 export function chessLessonIssues(lesson: Lesson): Issue[] {
   const issues: Issue[] = [];
   lesson.steps.forEach((step, i) => {
+    if ('practice' in step && step.practice && !isPracticeKind(step.practice)) {
+      issues.push({ path: ['steps', i, 'practice'], message: `there is no practice called ${step.practice}` });
+    }
     if (step.position === undefined) return;
     // Read and square steps only show a board, so any readable board will do, even one with no kings.
     if (step.kind === 'read' || step.kind === 'square') {

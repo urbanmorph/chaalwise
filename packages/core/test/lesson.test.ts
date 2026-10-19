@@ -65,6 +65,18 @@ describe('lessonSchema', () => {
     expect(lessonSchema.parse({ ...lesson, steps }).steps).toMatchObject(steps);
   });
 
+  it('lets a move, square or play step name a practice generator for fresh positions', () => {
+    const step = {
+      kind: 'square',
+      id: 'find',
+      prompt: 'Find e4.',
+      answers: ['e4'],
+      explanation: 'e',
+      practice: 'find-square',
+    };
+    expect(lessonSchema.parse({ ...lesson, steps: [step] }).steps[0]).toMatchObject({ practice: 'find-square' });
+  });
+
   it('rejects a square answer that is not a square', () => {
     const steps = [{ kind: 'square', id: 's', prompt: 'p', answers: ['e9'], explanation: 'e' }];
     expect(() => lessonSchema.parse({ ...lesson, steps })).toThrow();

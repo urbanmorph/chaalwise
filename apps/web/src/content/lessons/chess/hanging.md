@@ -11,6 +11,7 @@ steps:
     text: A piece is hanging when you can take it and nothing takes back, or when you can take it with something worth less.
   - kind: move
     id: free-knight
+    practice: win-hanging
     prompt: Black's knight on d5 has no defender. Win it.
     position: 4k3/8/8/3n4/8/8/8/3QK3 w - - 0 1
     answers: [d1d5]
@@ -18,6 +19,7 @@ steps:
     explanation: Nothing defends d5, so your queen wins a knight for free.
   - kind: move
     id: cheaper-attacker
+    practice: win-hanging
     prompt: Black's rook on e5 is giving check, and the pawn on f6 defends it. Get out of check and win material.
     position: 4k3/8/5p2/4r3/3P4/8/8/4K3 w - - 0 1
     answers: [d4e5]
