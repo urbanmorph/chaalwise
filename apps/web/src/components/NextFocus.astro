@@ -1,12 +1,21 @@
 ---
-/** "Next focus" on the home page, filled in from this device's profile. Plain script, so the home page stays light. */
+import { buildProfile } from '../lib/profile';
+
+/**
+ * "Next focus" on the home page. It is drawn at build time for a new learner
+ * (board sense), and the script swaps in this device's focus in place, so the
+ * page never jumps. Plain script, so the home page stays light.
+ */
+const { focus } = buildProfile({});
 ---
 
-<section class="card next-focus" data-testid="home-next-focus" hidden>
+<section class="card next-focus" data-testid="home-next-focus">
   <p class="label">Your next focus</p>
-  <h2></h2>
-  <p class="means"></p>
-  <a class="button primary" href="/progress/"></a>
+  <h2>{focus?.skill.name}</h2>
+  <p class="means">{focus?.skill.means}</p>
+  <a class="button primary" href={focus?.skill.practise.href}>
+    Practise: {focus?.skill.practise.label}
+  </a>
 </section>
 
 <script>
@@ -18,7 +27,7 @@
     .then(async (progress) => {
       const attempts = await progress.attemptsBySkill();
       progress.close();
-      // Only once the learner has started: a new visitor sees the first lesson instead.
+      // A new learner keeps the board-sense card drawn at build time.
       if (!card || !Object.keys(attempts).length) return;
       const { focus } = buildProfile(attempts);
       if (!focus) return;
@@ -27,7 +36,6 @@
       const link = card.querySelector('a')!;
       link.href = focus.skill.practise.href;
       link.textContent = `Practise: ${focus.skill.practise.label}`;
-      card.hidden = false;
     })
     .catch(console.error);
 </script>
@@ -36,9 +44,6 @@
   .next-focus {
     border-left: 4px solid var(--accent);
     margin-top: 28px;
-  }
-  .next-focus[hidden] {
-    display: none;
   }
   .next-focus h2 {
     margin-bottom: 6px;
