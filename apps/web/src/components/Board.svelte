@@ -26,8 +26,9 @@
     typing?: boolean;
     lastMove?: string | undefined;
     marks?: Mark[];
-    /** Squares to shade, e.g. the square a question was about. */
+    /** Squares to pick out: an outline (the square an answer is about) or a filled area (a file or rank being explained). */
     highlight?: string[];
+    highlightStyle?: 'outline' | 'area';
     /** Letters and numbers along the edges; off in the coordinates drill. */
     coordinates?: boolean;
     label: string;
@@ -45,6 +46,7 @@
     lastMove,
     marks = [],
     highlight = [],
+    highlightStyle = 'outline',
     coordinates = true,
     label,
     onmove,
@@ -92,7 +94,7 @@
       orientation,
       turnColor: turn,
       lastMove: lastMove ? ([lastMove.slice(0, 2), lastMove.slice(2, 4)] as Key[]) : undefined,
-      highlight: { lastMove: true, check: true, custom: new Map(highlight.map((square) => [square as Key, 'highlight'])) },
+      highlight: { lastMove: true, check: true, custom: new Map(highlight.map((square) => [square as Key, highlightStyle === 'area' ? 'area' : 'highlight'])) },
       movable: {
         free: false,
         color: moving ? turn : undefined,

@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Lesson } from '@chaalwise/core/lesson';
-  import { advance, answer, createPlayer, currentStep, giveUp, showHint, type Outcome, type Response } from '@chaalwise/core/player';
+  import { advance, answer, createPlayer, currentStep, giveUp, jumpTo, showHint, type Outcome, type Response } from '@chaalwise/core/player';
   import { tick, type Snippet } from 'svelte';
+  import { SvelteSet } from 'svelte/reactivity';
   import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
-  import { coordinateHint } from '../lib/drills';
+  import { squareHint } from '../lib/drills';
   import Board, { type Mark } from './Board.svelte';
   import PlayOut from './PlayOut.svelte';
 
@@ -26,29 +27,36 @@
   let heading = $state<HTMLElement>();
   let continueButton = $state<HTMLButtonElement>();
   let hintText = $state<HTMLElement>();
+  /** Steps the learner has been through, for the step dots (read steps have no grade to show it). */
+  const seen = new SvelteSet<number>();
 
   const step = $derived(currentStep(lesson, state));
   const total = $derived(lesson.steps.length);
+  // Square steps hide the coordinates unless asked, or the answer is written on the edge.
+  const showCoordinates = $derived(step?.kind !== 'square' || !!step.coordinates);
+
   const fen = $derived.by(() => {
-    if (!step || step.kind === 'read') return undefined;
+    if (!step || (step.kind === 'read' && !step.position)) return undefined;
     if (step.position) return toFen(step.position);
     return step.kind === 'square' ? EMPTY_BOARD : undefined;
   });
 
   function respond(response: Response) {
     if (!step || step.kind === 'read') return false;
+    const isNew = !(step.id in state.outcomes);
     const result = answer(lesson, state, response);
     state = result.state;
     if (result.correct) feedback = { tone: 'pass', text: step.kind === 'play' ? 'Checkmate. Well played!' : 'You found it!' };
     else if (state.revealed) reveal();
     else feedback = { tone: 'warn', text: retryText(response) };
-    if (state.revealed) graded(step.id);
+    if (state.revealed) graded(step.id, isNew);
     return result.correct;
   }
 
   /** The control the learner used has gone or is disabled: move focus to Continue. */
-  async function graded(stepId: string) {
-    onstep?.(stepId, state.outcomes[stepId]!);
+  async function graded(stepId: string, isNew: boolean) {
+    // Saved once: a step is graded the first time it is answered.
+    if (isNew) onstep?.(stepId, state.outcomes[stepId]!);
     await tick();
     continueButton?.focus();
   }
@@ -60,14 +68,16 @@
   }
 
   function showAnswer() {
+    const isNew = !!step && !(step.id in state.outcomes);
     state = giveUp(lesson, state);
     reveal();
-    if (step) graded(step.id);
+    if (step) graded(step.id, isNew);
   }
 
   function retryText(response: Response) {
-    if (step?.kind === 'square' && response.kind === 'square' && step.answers.length === 1) {
-      return `${coordinateHint(step.answers[0]!, response.square, step.orientation ?? 'white')} Try again.`;
+    if (step?.kind === 'square' && response.kind === 'square') {
+      const hint = squareHint(step.answers, response.square, step.orientation ?? 'white');
+      if (hint) return `${hint} Try again.`;
     }
     return step?.kind === 'play' ? 'Not this time. Try again.' : 'Not that one. Try again.';
   }
@@ -104,10 +114,24 @@
     respond({ kind: 'choice', index });
   }
 
-  async function next() {
-    state = advance(lesson, state);
+  function clearStep() {
     feedback = picked = after = undefined;
     marks = [];
+  }
+
+  /** The step dots: go straight to any step. */
+  async function goTo(index: number) {
+    seen.add(state.index);
+    state = jumpTo(lesson, state, index);
+    clearStep();
+    await tick();
+    heading?.focus();
+  }
+
+  async function next() {
+    seen.add(state.index);
+    state = advance(lesson, state);
+    clearStep();
     // A plain copy: IndexedDB cannot store the reactive proxy.
     if (state.done) onfinish($state.snapshot(state.outcomes));
     await tick();
@@ -117,9 +141,25 @@
 
 <section class="player" aria-label="Lesson" data-build={__BUILD_ID__}>
   {#if step}
-    <p class="label">Step {state.index + 1} of {total}</p>
+    <nav class="steps" aria-label="Steps in this lesson">
+      <ol>
+        {#each lesson.steps as s, i (s.id)}
+          <li>
+            <button
+              type="button"
+              class:done={s.id in state.outcomes || seen.has(i)}
+              class:missed={state.outcomes[s.id] === 'missed'}
+              aria-current={i === state.index ? 'step' : undefined}
+              aria-label="Step {i + 1}{s.id in state.outcomes ? ', done' : ''}"
+              onclick={() => goTo(i)}>{i + 1}</button
+            >
+          </li>
+        {/each}
+      </ol>
+      <p class="label">Step {state.index + 1} of {total}</p>
+    </nav>
     <div class="layout" class:has-board={fen || step.kind === 'play'}>
-      <h2 tabindex="-1" bind:this={heading}>
+      <h2 tabindex="-1" bind:this={heading} class:reading={step.kind === 'read'}>
         {step.kind === 'read' ? step.text : step.prompt}
       </h2>
       {#if step.kind === 'play'}
@@ -130,18 +170,19 @@
         </div>
       {:else if fen}
         <div class="board-col">
-          <!-- Square steps hide the coordinates, or the answer is written on the edge; chessground reads that only once, so rebuild. -->
-          {#key step.kind === 'square'}
+          <!-- chessground reads the coordinates setting only once, so rebuild the board when it changes. -->
+          {#key showCoordinates}
             <Board
               fen={after?.fen ?? fen}
               lastMove={after?.move}
-              orientation={step.kind === 'move' || step.kind === 'square' ? step.orientation : undefined}
+              orientation={step.kind === 'choice' ? undefined : step.orientation}
               interactive={step.kind === 'move' && !state.revealed}
               marks={state.revealed && step.kind === 'choice' && step.arrows
                 ? [...marks, ...step.arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush: 'yellow' as const }))]
                 : marks}
-              highlight={state.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
-              coordinates={step.kind !== 'square'}
+              highlight={step.kind === 'read' ? (step.highlight ?? []) : state.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
+              highlightStyle={step.kind === 'read' ? 'area' : 'outline'}
+              coordinates={showCoordinates}
               label={step.kind === 'move' && !state.revealed
                 ? 'Chess board: make your move'
                 : step.kind === 'square' && !state.revealed
@@ -205,6 +246,47 @@
     gap: 12px;
   }
   /* Phone: question, board, then answers. Wide: the board beside the text. */
+  .steps {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+  }
+  .steps ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .steps button {
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 999px;
+    border: 1px solid var(--rule-strong);
+    background: var(--paper);
+    color: var(--ink-2);
+    font: 600 0.8rem var(--mono);
+    cursor: pointer;
+  }
+  .steps button.done {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--on-primary);
+  }
+  .steps button.missed {
+    background: var(--paper);
+    border-color: var(--fail);
+    color: var(--fail);
+  }
+  .steps button[aria-current='step'] {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .steps .label {
+    margin: 0;
+  }
   .layout {
     display: grid;
     gap: 16px 32px;
@@ -229,6 +311,13 @@
   h2 {
     font-size: clamp(1.4rem, 2.6vw, 1.8rem);
     margin: 0;
+  }
+  /* A read step is a paragraph to read, not a question: body text, not a headline. */
+  h2.reading {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0;
   }
   h2:focus {
     outline: none;

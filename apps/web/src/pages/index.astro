@@ -1,9 +1,9 @@
 ---
 import { SKILLS } from '@chaalwise/core/skills';
 import Base from '../layouts/Base.astro';
-import { chessLessons, lessonHref } from '../lib/lessons';
+import { lessonHref, lessonPath } from '../lib/lessons';
 
-const [first] = await chessLessons();
+const [first] = await lessonPath();
 ---
 
 <Base title="Chaalwise">

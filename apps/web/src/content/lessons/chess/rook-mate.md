@@ -3,7 +3,7 @@ title: Mate with king and rook
 summary: Cut the king off with the rook, walk your king up, and mate on the edge.
 game: chess
 stage: 2
-order: 3
+order: 6
 skills: [plan-long]
 steps:
   - kind: read

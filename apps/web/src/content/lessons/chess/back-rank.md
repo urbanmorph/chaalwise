@@ -3,7 +3,7 @@ title: Back-rank mate
 summary: A king hemmed in by its own pawns, mated along the back rank, and how to stop it.
 game: chess
 stage: 2
-order: 1
+order: 2
 skills: [think-ahead]
 steps:
   - kind: move

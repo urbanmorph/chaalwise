@@ -1,0 +1,23 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import LessonArticle from '../../components/LessonArticle.astro';
+import Base from '../../layouts/Base.astro';
+import { lessonPath, type LessonEntry } from '../../lib/lessons';
+
+export async function getStaticPaths() {
+  return (await lessonPath())
+    .filter((l) => l.data.game === 'strategy')
+    .map((lesson) => ({ params: { slug: lesson.id.replace(/^strategy\//, '') }, props: { lesson } }));
+}
+
+const { lesson } = Astro.props as { lesson: LessonEntry };
+---
+
+<Base title={lesson.data.title} description={lesson.data.summary} wide>
+  <article class="wrap wide">
+    <p class="label">
+      <a href="/skills/">Skills</a> · {lesson.data.skills.map((s) => SKILLS[s]).join(' · ')}
+    </p>
+    <LessonArticle {lesson} />
+  </article>
+</Base>

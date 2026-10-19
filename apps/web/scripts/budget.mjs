@@ -5,8 +5,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
-/** Pages with a chess board: lessons and the review. Everything else is a reading page. */
-const BOARD_PAGES = /^\/(chess\/[^/]+|review)\/$/;
+/** Pages with a chess board: chess and strategy lessons, and the review. Everything else is a reading page. */
+const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|review)\/$/;
 
 /** @param {string} page */
 export const budgetFor = (page) => (BOARD_PAGES.test(page) ? 80_000 : 30_000);

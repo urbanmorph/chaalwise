@@ -3,7 +3,7 @@ title: Checks, captures and threats
 summary: The blunder check, for both sides, before every move.
 game: chess
 stage: 1
-order: 2
+order: 4
 skills: [think-ahead]
 steps:
   - kind: read

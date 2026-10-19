@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { coordinateHint, randomSquare, safetyVerdict } from '../src/lib/drills';
+import { coordinateHint, randomSquare, safetyVerdict, squareHint } from '../src/lib/drills';
 
 describe('coordinates drill', () => {
   it('picks a square, never the same one twice in a row', () => {
@@ -19,6 +19,27 @@ describe('coordinates drill', () => {
     expect(coordinateHint('e4', 'e2', 'white')).toBe('e4 is 2 ranks up from e2.');
     expect(coordinateHint('e4', 'd4', 'black')).toBe('e4 is 1 file to the left of d4.');
     expect(coordinateHint('a1', 'c3', 'white')).toBe('a1 is 2 files to the left and 2 ranks down from c3.');
+  });
+});
+
+describe('hints for a wrong square', () => {
+  const eFile = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8'];
+  const fourth = ['a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4'];
+
+  it('names the file picked when the answer is a whole file', () => {
+    expect(squareHint(eFile, 'd3', 'white')).toBe('d3 is on the d-file. Look for the e-file.');
+  });
+
+  it('names the rank picked when the answer is a whole rank', () => {
+    expect(squareHint(fourth, 'c6', 'white')).toBe('c6 is on the 6th rank. Look for the 4th rank.');
+  });
+
+  it('gives directions when the answer is one square', () => {
+    expect(squareHint(['e4'], 'd4', 'white')).toBe('e4 is 1 file to the right of d4.');
+  });
+
+  it('says nothing specific for other sets of answers', () => {
+    expect(squareHint(['a1', 'h8'], 'd4', 'white')).toBeUndefined();
   });
 });
 

@@ -3,7 +3,7 @@ title: Mate with king and queen
 summary: Box the lone king in, drive it to the edge, then mate. Without stalemating it.
 game: chess
 stage: 2
-order: 2
+order: 4
 skills: [plan-long]
 steps:
   - kind: read

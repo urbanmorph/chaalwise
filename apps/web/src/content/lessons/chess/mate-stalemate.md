@@ -1,18 +1,11 @@
 ---
-title: Check, checkmate and stalemate
-summary: How games are won, and the draw that catches beginners out.
+title: Checkmate, stalemate and other draws
+summary: How games are won, and the draws that catch beginners out.
 game: chess
 stage: 0
-order: 5
+order: 11
 skills: [think-ahead]
 steps:
-  - kind: move
-    id: escape-check
-    prompt: Your king is in check from the rook. Get out of check by taking it.
-    position: 4k3/8/8/8/8/8/4r3/4K3 w - - 0 1
-    answers: [e1e2]
-    hint: Nothing protects the rook, so your king can take it.
-    explanation: There are three ways out of check. Move the king, block the line, or capture the checking piece. Here capturing wins a rook.
   - kind: choice
     id: is-it-mate
     prompt: It is Black to move. What is this?
@@ -35,6 +28,15 @@ steps:
     answer: 1
     explanation: The king is not in check, but it has no legal move. That is stalemate, and stalemate is a draw, however much material you have.
     highlight: [a8]
+  - kind: choice
+    id: too-little
+    prompt: Only the two kings are left. What happens?
+    options:
+      - It is a draw, because neither side can ever give mate
+      - The side to move wins
+      - The game goes on until someone resigns
+    answer: 0
+    explanation: Without enough material to mate, the game is drawn. A draw also comes from the same position three times, or from agreeing one.
   - kind: move
     id: mate-in-one
     prompt: Give checkmate in one move.

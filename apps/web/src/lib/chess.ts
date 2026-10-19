@@ -16,6 +16,7 @@ export const EMPTY_BOARD = '8/8/8/8/8/8/8/8 w - - 0 1';
 export const turnOf = (fen: string): 'white' | 'black' => (fen.split(' ')[1] === 'b' ? 'black' : 'white');
 export function toFen(position: string): string {
   if (position === 'start') return START;
+  if (position === 'empty') return EMPTY_BOARD;
   return position.startsWith('moves:') ? positionFromMoves(position.slice(6)) : position;
 }
 
@@ -28,6 +29,15 @@ const setup = (fen: string): Chess | undefined => {
 
 /** Problems with a lesson's chess content, as Zod-style issues, so a broken lesson fails the build. */
 type Issue = { path: (string | number)[]; message: string };
+
+/** Why a board cannot be drawn, if it cannot. */
+function boardIssue(position: string): string | undefined {
+  try {
+    return parseFen(toFen(position)).isOk ? undefined : `not a readable board: ${position}`;
+  } catch (error) {
+    return (error as Error).message;
+  }
+}
 
 /** The most moves each basic mate needs from any position, so a move limit is always fair. */
 const WORST_CASE: Record<string, number> = { KQvK: 10, KRvK: 16 };
@@ -47,7 +57,13 @@ function playIssues(pos: Chess, within: number): string[] {
 export function chessLessonIssues(lesson: Lesson): Issue[] {
   const issues: Issue[] = [];
   lesson.steps.forEach((step, i) => {
-    if (step.kind === 'read' || step.position === undefined) return;
+    if (step.position === undefined) return;
+    // Read and square steps only show a board, so any readable board will do, even one with no kings.
+    if (step.kind === 'read' || step.kind === 'square') {
+      if (!boardIssue(step.position)) return;
+      issues.push({ path: ['steps', i, 'position'], message: boardIssue(step.position)! });
+      return;
+    }
     let pos: Chess | undefined;
     try {
       pos = setup(step.position);

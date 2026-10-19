@@ -29,6 +29,19 @@ export function coordinateHint(target: string, picked: string, orientation: 'whi
   return `${target} is ${first} ${files ? 'of' : 'from'} ${picked}.`;
 }
 
+const ordinal = (n: number) => `${n}${n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th'}`;
+
+/** A hint after a wrong square: which file or rank it was on, or which way to look for a single square. */
+export function squareHint(answers: string[], picked: string, orientation: 'white' | 'black'): string | undefined {
+  if (answers.length === 1) return coordinateHint(answers[0]!, picked, orientation);
+  const files = new Set(answers.map((a) => a[0]));
+  const ranks = new Set(answers.map((a) => a[1]));
+  if (files.size === 1) return `${picked} is on the ${picked[0]}-file. Look for the ${answers[0]![0]}-file.`;
+  if (ranks.size === 1)
+    return `${picked} is on the ${ordinal(Number(picked[1]))} rank. Look for the ${ordinal(Number(answers[0]![1]))} rank.`;
+  return undefined;
+}
+
 const san = (pos: Chess, uci: string) => makeSan(pos, legal(pos, uci)!);
 
 /** The answer to "is this move safe?", worded from the teaching helpers' count, with an optional note from the drill. */

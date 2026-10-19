@@ -12,16 +12,20 @@ async function clickSquare(page: Page, square: string) {
   await board.click({ position: { x: ((file + 0.5) * width) / 8, y: ((7.5 - rank) * height) / 8 } });
 }
 
-test('a square step takes a click on the board or a typed square', async ({ page }) => {
+test('the coordinates lesson walks through files and ranks, with a hint for a wrong square', async ({ page }) => {
   await page.goto('/chess/coordinates/');
   await hydrated(page);
+  // A file is shown, then the learner picks a square on it.
+  await expect(page.locator('cg-board square.area')).toHaveCount(8);
   await page.getByRole('button', { name: 'Continue' }).click();
-  await clickSquare(page, 'd4');
-  await expect(page.getByText('e4 is 1 file to the right of d4. Try again.')).toBeVisible();
-  await clickSquare(page, 'e4');
+  await clickSquare(page, 'd3');
+  await expect(page.getByText('d3 is on the d-file. Look for the e-file. Try again.')).toBeVisible();
+  await clickSquare(page, 'e6');
   await expect(page.getByText('You found it!')).toBeVisible();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByLabel('Or type the square').fill('d5');
+  // Then a rank, picked by typing this time.
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByLabel('Or type the square').fill('c4');
   await page.getByRole('button', { name: 'Pick' }).click();
   await expect(page.getByText('You found it!')).toBeVisible();
 });
@@ -94,11 +98,22 @@ test('a play-out can be played from the keyboard: focus stays put and the reply 
   await expect(input).toBeFocused();
 });
 
-test('square steps hide the coordinates, which would give the answer away', async ({ page }) => {
+test('coordinates show while names are taught, and hide once the learner finds squares alone', async ({ page }) => {
   await page.goto('/chess/coordinates/');
   await hydrated(page);
   await page.getByRole('button', { name: 'Continue' }).click();
-  await expect(page.getByText('Find e4.')).toBeVisible();
+  await expect(page.getByText('Click any square on the e-file.')).toBeVisible();
+  await expect(page.locator('coords')).toHaveCount(2);
+  const answer = async (square: string) => {
+    await page.getByLabel('Or type the square').fill(square);
+    await page.getByRole('button', { name: 'Pick' }).click();
+    await page.getByRole('button', { name: 'Continue' }).click();
+  };
+  await answer('e2');
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await answer('a4');
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByText('Now without the letters and numbers. Find e4.')).toBeVisible();
   await expect(page.locator('coords')).toHaveCount(0);
 });
 

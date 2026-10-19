@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { backRankWeak } from '@chaalwise/teach/endgame';
+import { moveSafety } from '@chaalwise/teach/safety';
 import { fromFen, play } from '@chaalwise/teach/position';
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
@@ -13,14 +14,30 @@ import { safetyVerdict } from '../src/lib/drills';
  * teaching helpers. Lesson text is written by people; the board decides.
  */
 const DIR = new URL('../src/content/lessons/chess/', import.meta.url);
-const lessons = readdirSync(DIR).map((file) => ({
-  file,
-  data: parse(readFileSync(new URL(file, DIR), 'utf8').split(/^---$/m)[1]!) as Lesson,
-}));
+const STRATEGY = new URL('../src/content/lessons/strategy/', import.meta.url);
+const read = (dir: URL) =>
+  readdirSync(dir).map((file) => ({
+    file,
+    data: parse(readFileSync(new URL(file, dir), 'utf8').split(/^---$/m)[1]!) as Lesson,
+  }));
+const lessons = read(DIR);
+const strategy = read(STRATEGY);
 const steps = lessons.flatMap(({ file, data }) => data.steps.map((step) => ({ file, step })));
-const step = (file: string, id: string) => steps.find((s) => s.file === file && s.step.id === id)!.step;
+const step = (file: string, id: string) =>
+  [
+    ...steps,
+    ...strategy.flatMap(({ file, data }) => data.steps.map((step) => ({ file: `strategy/${file}`, step }))),
+  ].find((s) => s.file === file && s.step.id === id)!.step;
 
 describe('lesson order', () => {
+  it('places every strategy lesson after a lesson that exists', () => {
+    const ids = new Set([
+      ...lessons.map((l) => `chess/${l.file.replace('.md', '')}`),
+      ...strategy.map((l) => `strategy/${l.file.replace('.md', '')}`),
+    ]);
+    for (const { file, data } of strategy) expect(ids.has(data.after!), `${file} comes after ${data.after}`).toBe(true);
+  });
+
   it('explains square names before any lesson uses them', () => {
     const order = [...lessons]
       .sort((a, b) => a.data.stage - b.data.stage || a.data.order - b.data.order)
@@ -36,7 +53,7 @@ describe('lesson order', () => {
 
 describe('lesson claims', () => {
   it.each([
-    ['check-and-mate.md', 'mate-in-one'],
+    ['mate-stalemate.md', 'mate-in-one'],
     ['blunder-check.md', 'checks-first'],
     ['back-rank.md', 'rook-mates'],
     ['back-rank.md', 'black-mates'],
@@ -53,8 +70,8 @@ describe('lesson claims', () => {
   });
 
   it('labels the mate and stalemate positions correctly', () => {
-    const mate = step('check-and-mate.md', 'is-it-mate');
-    const stalemate = step('check-and-mate.md', 'is-it-stalemate');
+    const mate = step('mate-stalemate.md', 'is-it-mate');
+    const stalemate = step('mate-stalemate.md', 'is-it-stalemate');
     expect(mate.kind === 'choice' && fromFen(toFen(mate.position!)).isCheckmate()).toBe(true);
     expect(stalemate.kind === 'choice' && fromFen(toFen(stalemate.position!)).isStalemate()).toBe(true);
   });
@@ -69,6 +86,27 @@ describe('lesson claims', () => {
     const fen = toFen(s.position!);
     expect(safetyVerdict(fen, parseMoveText(fen, san)!).safe).toBe(safe);
     expect(s.options[s.answer]).toMatch(safe ? /^(Safe|Yes)/ : /^(Not safe|No)/);
+  });
+
+  it('piece values: taking the undefended rook is safe, taking the defended knight is not', () => {
+    const s = step('piece-values.md', 'take-the-most');
+    if (s.kind !== 'move') throw new Error('expected a move');
+    const fen = toFen(s.position);
+    expect(safetyVerdict(fen, 'd4a4').safe).toBe(true);
+    expect(safetyVerdict(fen, 'd4d7').safe).toBe(false);
+  });
+
+  it('castling: the king really cannot castle through the attacked f1', () => {
+    const s = step('castling.md', 'through-check');
+    if (s.kind !== 'choice') throw new Error('expected a choice');
+    expect(parseMoveText(toFen(s.position!), 'O-O')).toBeUndefined();
+    expect(parseMoveText(toFen(s.position!), 'O-O-O')).toBe('e1c1');
+  });
+
+  it('count it through: exd5 exd5 leaves White two points up', () => {
+    const s = step('strategy/count-it-through.md', 'on-the-board');
+    if (s.kind !== 'read') throw new Error('expected a read step');
+    expect(moveSafety(fromFen(toFen(s.position!)), 'e4d5').net).toBe(2);
   });
 
   it('only teaches a safe defence', () => {

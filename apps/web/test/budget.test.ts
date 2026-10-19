@@ -13,6 +13,8 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
   it('gives board pages 80 KB and every other page 30 KB, compressed', () => {
     expect(budgetFor('/chess/board/')).toBe(80_000);
     expect(budgetFor('/review/')).toBe(80_000);
+    expect(budgetFor('/skills/blunder-check/')).toBe(80_000);
+    expect(budgetFor('/skills/')).toBe(30_000);
     expect(budgetFor('/chess/')).toBe(30_000);
     expect(budgetFor('/')).toBe(30_000);
   });
