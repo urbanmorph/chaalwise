@@ -4,8 +4,11 @@
   import { onMount } from 'svelte';
   import { buildProfile } from '../lib/profile';
 
-  /** The skill profile: a level per skill from this device's own record, with the evidence and what comes next. */
-  let profile = $state<ReturnType<typeof buildProfile>>();
+  /**
+   * The skill profile: a level per skill from this device's own record, with the evidence and what comes next.
+   * It starts as the empty profile, so the page is laid out in full from the first paint and nothing jumps when the record loads.
+   */
+  let profile = $state(buildProfile({}));
   let failed = $state(false);
 
   onMount(async () => {
@@ -26,13 +29,13 @@
 
 {#if failed}
   <p>Your skill profile could not be read on this device.</p>
-{:else if profile}
+{:else}
   {#if profile.focus}
     <section class="card focus" aria-labelledby="focus-title" data-testid="next-focus">
       <p class="label">Next focus</p>
       <h2 id="focus-title">{profile.focus.skill.name}</h2>
       <p>{profile.focus.skill.means}</p>
-      {#if profile.focus.assessment.level !== 'not-started'}<p class="evidence">{profile.focus.assessment.reason}</p>{/if}
+      <p class="evidence">{profile.focus.assessment.reason}</p>
       <a class="button primary" href={profile.focus.skill.practise.href}>Practise: {profile.focus.skill.practise.label}</a>
     </section>
   {/if}
@@ -53,18 +56,13 @@
           </span>
         </p>
         <p class="means">{skill.means}</p>
-        {#if assessment.level !== 'not-started'}
-          <p class="evidence">{assessment.reason}</p>
-          {#if assessment.next}<p class="next">{assessment.next}</p>{/if}
-        {:else if skill.later}
-          <p class="next">{skill.later}</p>
-        {/if}
+        <!-- Always both lines, so a card keeps its size when the record loads. -->
+        <p class="evidence">{assessment.reason}</p>
+        <p class="next">{skill.later && assessment.level === 'not-started' ? skill.later : (assessment.next ?? 'The top level. Keep it there.')}</p>
         <a href={skill.practise.href}>{skill.practise.label}</a>
       </li>
     {/each}
   </ul>
-{:else}
-  <p>Reading your skill profile…</p>
 {/if}
 
 <style>
