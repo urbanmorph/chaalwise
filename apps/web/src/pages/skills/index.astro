@@ -1,31 +1,40 @@
 ---
 import { SKILLS, type SkillId } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, lessonPath } from '../../lib/lessons';
+import { lessonHref, lessonPath, STAGES } from '../../lib/lessons';
+import { COMES_WITH, PLANNED } from '../../lib/planned-skills';
 
-const strategy = (await lessonPath()).filter((l) => l.data.game === 'strategy');
-const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({ id, name: SKILLS[id], lessons: strategy.filter((l) => l.data.skills.includes(id)) }));
+const built = (await lessonPath()).filter((l) => l.data.game === 'strategy');
+const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({
+  id,
+  name: SKILLS[id],
+  lessons: PLANNED.filter((p) => p.skill === id).map((p) => ({ ...p, lesson: built.find((l) => l.data.title === p.title) })),
+  comesWith: COMES_WITH[id],
+}));
 ---
 
 <Base title="Skills" description="The strategy skills Chaalwise trains, each learned in a game and then shown off the board.">
   <div class="wrap">
     <h1>Skills</h1>
-    <p>Each skill is learned in a game, then shown off the board: where it turns up in ordinary life, and one way to try it this week.</p>
+    <p>
+      Each skill is learned in a game, then shown off the board: where it turns up in ordinary life, and one way to try it this week. Chess builds thinking
+      ahead, calculating, planning, sizing the risk and keeping a cool head; poker and the game-theory labs build the rest.
+    </p>
     {tracks.map((track) => (
       <section>
         <h2>{track.name}</h2>
-        {track.lessons.length ? (
+        {track.lessons.length > 0 && (
           <ul class="lessons">
-            {track.lessons.map((l) => (
-              <li class="card">
-                <a href={lessonHref(l)}>{l.data.title}</a>
-                <p>{l.data.summary}</p>
+            {track.lessons.map(({ title, stage, lesson }) => (
+              <li class:list={['card', { planned: !lesson }]}>
+                {lesson ? <a href={lessonHref(lesson)}>{title}</a> : <span class="title">{title}</span>}
+                <p class="label">{lesson ? `Chess · stage ${stage}` : `Coming in chess stage ${stage}: ${STAGES[stage]}`}</p>
+                {lesson && <p>{lesson.data.summary}</p>}
               </li>
             ))}
           </ul>
-        ) : (
-          <p class="soon">Lessons for this skill come later.</p>
         )}
+        {track.comesWith && <p class="soon">Comes with {track.comesWith}.</p>}
       </section>
     ))}
   </div>
@@ -40,15 +49,26 @@ const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({ id, name: SKILL
     gap: 12px;
     padding: 0;
     list-style: none;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   }
-  .lessons a {
+  .lessons a,
+  .title {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
-  .lessons p,
-  .soon {
+  .planned {
+    background: var(--paper);
+    border-style: dashed;
+  }
+  .planned .title {
+    color: var(--ink-2);
+  }
+  .lessons p {
     margin: 6px 0 0;
+    color: var(--ink-2);
+  }
+  .soon {
+    margin: 10px 0 0;
     color: var(--ink-2);
   }
 </style>

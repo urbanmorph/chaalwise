@@ -43,7 +43,6 @@
   --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 
-  --measure: 66ch;
   --page: 880px;
   --page-wide: 1240px;
   --radius: 12px;
