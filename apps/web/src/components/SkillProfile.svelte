@@ -7,8 +7,9 @@
 
   /**
    * The skill dashboard: a period filter, three stat tiles, a radar of
-   * first-time rates by skill, what is due for review, improvement areas, and
-   * a card per skill. All from this device's own record. It starts from the
+   * first-time rates by strategy track, what is due for review, improvement
+   * areas, a card per track, and chess proficiency. All from this device's own
+   * record. It starts from the
    * empty record, so the page is laid out in full from the first paint.
    */
   let { cardIds }: { cardIds: string[] } = $props();
@@ -94,7 +95,8 @@
 
   <figure class="radar">
     <figcaption>
-      <span class="label">First time, by skill</span> <span class="lede">Further out is better. A skill not tried yet sits at the centre.</span>
+      <span class="label">First time, by skill</span>
+      <span class="lede">Further out is better. A skill not tried yet sits at the centre; a faded one is not measured yet.</span>
     </figcaption>
     <div class="plot">
       <svg
@@ -105,14 +107,14 @@
         {#each [0.25, 0.5, 0.75, 1] as r (r)}<polygon class="grid" points={ring(r)} />{/each}
         {#each CHART_SKILLS as skill, i (skill.id)}
           {@const end = radarPoint(i, n, 1, R)}
-          <line class="grid" x1="0" y1="0" x2={end.x} y2={end.y} />
+          <line class="grid" class:later={skill.later} x1="0" y1="0" x2={end.x} y2={end.y} />
         {/each}
         <text class="scale" x="-6" y={-R * 0.5 + 4} text-anchor="end">50%</text>
         <text class="scale" x="-6" y={-R + 4} text-anchor="end">100%</text>
         <polygon class="area" points={shape.map((p) => `${p.x},${p.y}`).join(' ')} />
         {#each stats.skills as s, i (s.id)}
           {@const label = radarPoint(i, n, 1.14, R)}
-          <text class="axis" x={label.x} y={label.y + 4} text-anchor={anchor(label.x)}>{s.short}</text>
+          <text class="axis" class:later={CHART_SKILLS[i]!.later} x={label.x} y={label.y + 4} text-anchor={anchor(label.x)}>{s.short}</text>
           {#if s.rate !== undefined}
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
             <g
@@ -181,13 +183,13 @@
   {/each}
 </ul>
 
-<h2 class="heading">Your skills</h2>
+<h2 class="heading">Your strategy skills</h2>
 <p class="lede">
-  Each level comes from your own last 20 answers in that skill: Noticing, Applying, Reliable, Instinctive. Levels go down as well as up, and never compare you
-  with anyone else.
+  Each level comes from your own last 20 answers that train it, in the strategy lessons and in the games: Noticing, Applying, Reliable, Instinctive. Levels go
+  down as well as up, and never compare you with anyone else.
 </p>
 <ul class="skills">
-  {#each profile.skills as { skill, assessment } (skill.id)}
+  {#each profile.skills.filter((s) => !s.skill.later) as { skill, assessment } (skill.id)}
     <li class="card" data-skill={skill.id}>
       <h3>{skill.name}</h3>
       <p class="level">
@@ -199,11 +201,33 @@
       <p class="means">{skill.means}</p>
       <!-- Always both lines, so a card keeps its size when the record loads. -->
       <p class="evidence">{assessment.reason}</p>
-      <p class="next">{skill.later && assessment.level === 'not-started' ? skill.later : (assessment.next ?? 'The top level. Keep it there.')}</p>
+      <p class="next">{assessment.next ?? 'The top level. Keep it there.'}</p>
       <a href={skill.practise.href}>{skill.practise.label}</a>
     </li>
   {/each}
 </ul>
+
+<h3 class="soon-title">Not measured yet</h3>
+<ul class="soon">
+  {#each profile.skills.filter((s) => s.skill.later) as { skill } (skill.id)}
+    <li data-skill={skill.id}><strong>{skill.name}.</strong> {skill.later}</li>
+  {/each}
+</ul>
+
+<h2 class="heading">In chess</h2>
+<p class="lede">How well you know the game itself. Its answers are the evidence for the strategy skills above; board sense is the game alone.</p>
+<table class="games">
+  <thead><tr><th scope="col">Chess skill</th><th scope="col">Level</th><th scope="col"><span class="sr-only">Where to practise it</span></th></tr></thead>
+  <tbody>
+    {#each profile.games as { skill, assessment } (skill.id)}
+      <tr data-game-skill={skill.id}>
+        <th scope="row">{skill.name}</th>
+        <td class="lvl">{levelName(assessment.level)}</td>
+        <td><a href={skill.practise.href}>{skill.practise.label}</a></td>
+      </tr>
+    {/each}
+  </tbody>
+</table>
 
 <style>
   .choices {
@@ -263,6 +287,12 @@
   .axis {
     fill: var(--ink);
     font-size: 14px;
+  }
+  .grid.later {
+    stroke-dasharray: 3 4;
+  }
+  .axis.later {
+    fill: var(--ink-2);
   }
   .area {
     fill: color-mix(in srgb, var(--chart-1) 12%, transparent);
@@ -395,5 +425,35 @@
   }
   .evidence {
     margin-bottom: 8px;
+  }
+  .soon-title {
+    margin-top: 24px;
+  }
+  .soon {
+    display: grid;
+    gap: 4px 24px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    padding: 0;
+    list-style: none;
+    color: var(--ink-2);
+  }
+  .soon strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .games th,
+  .games td {
+    padding: 8px 8px 8px 0;
+  }
+  .games thead th {
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .games .lvl {
+    white-space: nowrap;
+  }
+  .games tbody th {
+    font-weight: 400;
   }
 </style>

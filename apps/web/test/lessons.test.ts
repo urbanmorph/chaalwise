@@ -115,3 +115,16 @@ describe('lesson claims', () => {
     for (const uci of s.answers) expect(safetyVerdict(toFen(s.position), uci).safe).toBe(true);
   });
 });
+
+describe('what a lesson answer is evidence for', () => {
+  const built = (path: string) => readFileSync(new URL(`../dist/${path}/index.html`, import.meta.url), 'utf8');
+  const measured = (html: string) => [...html.matchAll(/measures&quot;:\[0,&quot;([a-z-]+)/g)].map((m) => m[1]);
+
+  it('counts a strategy lesson answer towards its own strategy track', () => {
+    for (const { file, data } of strategy) {
+      const skills = measured(built(`skills/${file.replace('.md', '')}`));
+      expect(skills.length, file).toBeGreaterThan(0);
+      expect(new Set(skills), file).toEqual(new Set([data.skills[0]]));
+    }
+  });
+});

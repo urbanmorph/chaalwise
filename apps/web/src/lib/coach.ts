@@ -1,6 +1,6 @@
 import type { Turn } from '@chaalwise/teach/play';
 
-// Post-game analysis (teach/analyse) joins here with practice games in phase 3.
+// The coach plays the computer's reply in a lesson's play-it-out steps, off the main thread.
 export type CoachRequest = { id: number; type: 'turn'; fen: string; uci: string; movesLeft: number };
 
 type Pending = { resolve: (value: never) => void; reject: (error: Error) => void };

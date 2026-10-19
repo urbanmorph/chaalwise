@@ -1,8 +1,10 @@
 import type { AttemptRecord } from '@chaalwise/core/progress';
+import { trackAttempts } from './profile';
 import { PROFILE_SKILLS } from './profile-skills';
+import { TRACKS } from './skill-tracks';
 
-/** The skills drawn on the dashboard: those the app can measure now (not the ones waiting for practice games). */
-export const CHART_SKILLS = PROFILE_SKILLS.filter((s) => !s.later);
+/** The tracks drawn on the dashboard: those chess trains. One not measured yet is drawn faded until it is. */
+export const CHART_SKILLS = PROFILE_SKILLS.filter((s) => TRACKS.find((t) => t.id === s.id)!.chess > 0);
 
 export interface SkillStats {
   id: string;
@@ -18,8 +20,9 @@ export interface SkillStats {
 export function dashboard(attempts: Record<string, AttemptRecord[]>, days: number | undefined, now = new Date()) {
   const since = days === undefined ? -Infinity : now.getTime() - days * 86_400_000;
   const inPeriod = (list: AttemptRecord[] = []) => list.filter((a) => a.at.getTime() >= since);
+  const byTrack = trackAttempts(attempts);
   const skills: SkillStats[] = CHART_SKILLS.map(({ id, name, short }) => {
-    const list = inPeriod(attempts[id]);
+    const list = inPeriod(byTrack[id]);
     const firstTry = list.filter((a) => a.outcome === 'first-try').length;
     return { id, name, short, tries: list.length, firstTry, rate: list.length ? firstTry / list.length : undefined };
   });

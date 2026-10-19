@@ -27,13 +27,12 @@ describe('the dashboard numbers for a period', () => {
     expect(dashboard(attempts, undefined, now).tries).toBe(5);
   });
 
-  it('gives each measured skill its own rate, with no rate where there were no tries', () => {
+  it('gives each strategy track its rate from the chess answers that train it, with no rate where there were no tries', () => {
     const d = dashboard(attempts, 30, now);
-    expect(d.skills.find((s) => s.id === 'safety')).toMatchObject({ tries: 2, firstTry: 1, rate: 0.5 });
-    expect(d.skills.find((s) => s.id === 'board')).toMatchObject({ tries: 2, firstTry: 1, rate: 0.5 });
-    expect(d.skills.find((s) => s.id === 'endgame')).toMatchObject({ tries: 0, rate: undefined });
-    // Skills that need practice games are not on the chart yet.
-    expect(d.skills.map((s) => s.id)).not.toContain('time');
+    expect(d.skills.find((s) => s.id === 'think-ahead')).toMatchObject({ tries: 2, firstTry: 1, rate: 0.5 });
+    expect(d.skills.find((s) => s.id === 'plan-long')).toMatchObject({ tries: 0, rate: undefined });
+    // The chart shows the tracks chess trains; board sense is the game, not a track.
+    expect(d.skills.map((s) => s.id)).toEqual(['think-ahead', 'calculate', 'plan-long', 'size-risk', 'composure']);
   });
 
   it('is all zeros for a new learner', () => {
