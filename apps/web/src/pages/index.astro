@@ -4,14 +4,17 @@ import NextFocus from '../components/NextFocus.astro';
 import Base from '../layouts/Base.astro';
 import { HERO } from '../lib/diagram';
 import { lessonHref, lessonPath } from '../lib/lessons';
+import { PROFILE_SKILLS } from '../lib/profile-skills';
 import { TRACKS, type Track } from '../lib/skill-tracks';
 
 // A newcomer starts with the first strategy lesson: the idea first, the game as its example.
 const first = (await lessonPath()).find((l) => l.data.game === 'strategy');
 
+// A skill is trained now once the site measures it: its lessons, practice and review are there.
+const now = (t: Track) => !PROFILE_SKILLS.find((s) => s.id === t.id)!.later;
 const groups: { title: string; tracks: Track[] }[] = [
-  { title: 'Train now', tracks: TRACKS.filter((t) => t.chess > 0) },
-  { title: 'Coming with poker and the game-theory labs', tracks: TRACKS.filter((t) => t.chess === 0) },
+  { title: 'Train now', tracks: TRACKS.filter(now) },
+  { title: 'Coming with later lessons, poker and the game-theory labs', tracks: TRACKS.filter((t) => !now(t)) },
 ];
 const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
 ---
@@ -101,26 +104,28 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
           {group.tracks.map((track) => (
             <tr data-track={track.id}>
               <th scope="row">
-                <span class="name">{track.name}</span>
+                <a class="name" href={`/skills/${track.id}/`}>
+                  {track.name}
+                </a>
                 <span class="life">{track.inLife}</span>
               </th>
               {(['chess', 'poker'] as const).map((game) => (
                 <td class="dots" data-game={game === 'chess' ? 'Chess' : 'Poker'}>
-                  <span class:list={['meter', game === 'chess' ? 'now' : 'soon']} aria-hidden="true">
+                  <span class:list={['meter', game === 'chess' && now(track) ? 'now' : 'soon']} aria-hidden="true">
                     {[1, 2, 3].map((n) => (
                       <span class:list={{ on: track[game] >= n }} />
                     ))}
                   </span>
                   <span class="sr-only">
                     {strength[track[game]]}
-                    {track[game] > 0 && (game === 'chess' ? ', available now' : ', coming next')}
+                    {track[game] > 0 && (game === 'chess' && now(track) ? ', available now' : ', coming next')}
                   </span>
                 </td>
               ))}
               <td class="also" data-game="Also in">
                 {track.also || '–'}
               </td>
-              <td class="go">{track.chess > 0 ? <a href={`/skills/#${track.id}`}>Train it</a> : <span>With {track.comesWith}</span>}</td>
+              <td class="go">{now(track) ? <a href={`/skills/${track.id}/`}>Train it</a> : <span>With {track.comesWith}</span>}</td>
             </tr>
           ))}
         </tbody>

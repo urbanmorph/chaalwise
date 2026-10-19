@@ -1,5 +1,6 @@
 import { lessonSchema } from '@chaalwise/core/lesson';
 import { referenceSchema } from '@chaalwise/core/reference';
+import { trackSchema } from '@chaalwise/core/track';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
@@ -42,4 +43,10 @@ const reference = defineCollection({
   }),
 });
 
-export const collections = { lessons, safetyDrills, reference };
+/** Each strategy track as a course: one Markdown file per track, named by its id. */
+const tracks = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/tracks' }),
+  schema: trackSchema,
+});
+
+export const collections = { lessons, safetyDrills, reference, tracks };

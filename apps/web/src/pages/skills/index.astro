@@ -1,16 +1,10 @@
 ---
-import { SKILLS, type SkillId } from '@chaalwise/core/skills';
+import { SKILL_IDS, SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, lessonPath, STAGES } from '../../lib/lessons';
-import { COMES_WITH, PLANNED } from '../../lib/planned-skills';
+import { lessonHref, STAGES, trackLessons } from '../../lib/lessons';
+import { COMES_WITH } from '../../lib/planned-skills';
 
-const built = (await lessonPath()).filter((l) => l.data.game === 'strategy');
-const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({
-  id,
-  name: SKILLS[id],
-  lessons: PLANNED.filter((p) => p.skill === id).map((p) => ({ ...p, lesson: built.find((l) => l.data.title === p.title) })),
-  comesWith: COMES_WITH[id],
-}));
+const tracks = await Promise.all(SKILL_IDS.map(async (id) => ({ id, name: SKILLS[id], lessons: await trackLessons(id), comesWith: COMES_WITH[id] })));
 ---
 
 <Base title="Strategy" description="The strategy skills Chaalwise trains, for work, study and life, each shown in a game and practised in minutes.">
@@ -22,7 +16,9 @@ const tracks = (Object.keys(SKILLS) as SkillId[]).map((id) => ({
     </p>
     {tracks.map((track) => (
       <section id={track.id}>
-        <h2>{track.name}</h2>
+        <h2>
+          <a href={`/skills/${track.id}/`}>{track.name}</a>
+        </h2>
         {track.lessons.length > 0 && (
           <ul class="lessons">
             {track.lessons.map(({ title, stage, lesson }) => (

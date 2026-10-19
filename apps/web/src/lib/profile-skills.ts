@@ -1,4 +1,4 @@
-import type { SkillId } from '@chaalwise/core/skills';
+import { SKILL_IDS, type SkillId } from '@chaalwise/core/skills';
 import { TRACKS } from './skill-tracks';
 
 /**
@@ -85,6 +85,12 @@ export const CHESS_SKILLS: ChessSkill[] = [
 const CHESS_SKILL_IDS = CHESS_SKILLS.map((s) => s.id);
 export const isChessSkill = (id: string) => CHESS_SKILL_IDS.includes(id);
 
+/** The strategy track an answer counts towards: a track's own id, or the track its chess skill trains. */
+export const trackOf = (measures: string | undefined): SkillId | undefined =>
+  (SKILL_IDS as string[]).includes(measures ?? '')
+    ? (measures as SkillId)
+    : CHESS_SKILLS.find((s) => s.id === measures)?.track;
+
 const SHORT: Record<SkillId, string> = {
   'think-ahead': 'Ahead',
   calculate: 'Calculate',
@@ -107,7 +113,7 @@ export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
     name: track.name,
     short: SHORT[track.id],
     means: track.inLife,
-    practise: { href: `/skills/#${track.id}`, label: `${track.name} lessons` },
+    practise: { href: `/skills/${track.id}/`, label: `${track.name} course` },
     later: measured ? undefined : `Comes with ${track.comesWith ?? 'later lessons'}.`,
   };
 });
