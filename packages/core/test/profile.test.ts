@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Outcome } from '../src/player';
-import { assess, nextFocus, type Attempt } from '../src/profile';
+import { assess, focusOrder, type Attempt } from '../src/profile';
 
 const day = (n: number) => new Date(Date.UTC(2026, 9, 1 + n, 9));
 /** `pattern` is one letter per attempt: f first try, h with help, m missed. Attempts spread over `days`. */
@@ -57,20 +57,26 @@ describe('next focus', () => {
       safety: assess(attempts('fmm')),
       patterns: assess([]),
     };
-    expect(nextFocus(profile, order)).toBe('safety');
+    expect(focusOrder(profile, order)[0]).toBe('safety');
   });
 
   it('breaks a tie by the lower first-time rate', () => {
     const profile = { board: assess(attempts('fmf')), safety: assess(attempts('fmm')), patterns: assess([]) };
-    expect(nextFocus(profile, order)).toBe('safety');
+    expect(focusOrder(profile, order)[0]).toBe('safety');
   });
 
   it('starts the first skill in the order when nothing has been started', () => {
-    expect(nextFocus({ board: assess([]), safety: assess([]), patterns: assess([]) }, order)).toBe('board');
+    expect(focusOrder({ board: assess([]), safety: assess([]), patterns: assess([]) }, order)[0]).toBe('board');
   });
 
   it('moves on to a new skill once every started one is reliable', () => {
     const solid = assess(attempts('ffffffffffhf', 2));
-    expect(nextFocus({ board: solid, safety: solid, patterns: assess([]) }, order)).toBe('patterns');
+    expect(focusOrder({ board: solid, safety: solid, patterns: assess([]) }, order)[0]).toBe('patterns');
+  });
+
+  it('ranks every skill: weak ones started, then new ones in order, then the solid ones', () => {
+    const solid = assess(attempts('ffffffffffhf', 2));
+    const profile = { board: solid, safety: assess(attempts('fmm')), patterns: assess([]) };
+    expect(focusOrder(profile, order)).toEqual(['safety', 'patterns', 'board']);
   });
 });

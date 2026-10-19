@@ -39,6 +39,8 @@
   --fail: #a33a2a;
   --sq-light: #e7ecde;
   --sq-dark: #7e9c86;
+  /* Chart marks: felt green with enough colour for a data mark (checked with the dataviz palette validator). */
+  --chart-1: #1f7a52;
 
   --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
@@ -77,6 +79,7 @@
     --fail: #f08a78;
     --sq-light: #c9d3c0;
     --sq-dark: #5f7f68;
+    --chart-1: #199e70;
     --shadow: 0 12px 32px rgb(0 0 0 / 0.5);
   }
 }
@@ -105,5 +108,6 @@
   --fail: #f08a78;
   --sq-light: #c9d3c0;
   --sq-dark: #5f7f68;
+  --chart-1: #199e70;
   --shadow: 0 12px 32px rgb(0 0 0 / 0.5);
 }

@@ -87,22 +87,19 @@ export function assess(attempts: readonly Attempt[]): Assessment {
 const rank = (a: Assessment) => LEVELS.indexOf(a.level);
 
 /**
- * What to work on next: the weakest skill already started (ties go to the
- * lower first-time rate). Once every started skill is Reliable, the next skill
- * in the curriculum's order.
+ * Every skill in the order to work on it: the weak ones already started,
+ * weakest first (ties go to the lower first-time rate); then the ones not
+ * started, in the curriculum's order; then the Reliable and Instinctive ones,
+ * lowest first.
  */
-export function nextFocus(profile: Readonly<Record<string, Assessment>>, order: readonly string[]): string | undefined {
-  const started = order.filter((skill) => profile[skill] && profile[skill].level !== 'not-started');
-  const weak = started
-    .filter((skill) => rank(profile[skill]!) < LEVELS.indexOf('reliable'))
-    .sort(
-      (a, b) =>
-        rank(profile[a]!) - rank(profile[b]!) ||
-        profile[a]!.firstTry / profile[a]!.total - profile[b]!.firstTry / profile[b]!.total,
-    );
-  return (
-    weak[0] ??
-    order.find((skill) => !started.includes(skill)) ??
-    started.sort((a, b) => rank(profile[a]!) - rank(profile[b]!))[0]
-  );
+export function focusOrder(profile: Readonly<Record<string, Assessment>>, order: readonly string[]): string[] {
+  const level = (skill: string) => (profile[skill] ? rank(profile[skill]) : 0);
+  const rate = (skill: string) => profile[skill]!.firstTry / profile[skill]!.total;
+  const started = order.filter((skill) => level(skill) > 0);
+  const weak = started.filter((skill) => level(skill) < LEVELS.indexOf('reliable'));
+  return [
+    ...weak.sort((a, b) => level(a) - level(b) || rate(a) - rate(b)),
+    ...order.filter((skill) => level(skill) === 0),
+    ...started.filter((skill) => !weak.includes(skill)).sort((a, b) => level(a) - level(b)),
+  ];
 }

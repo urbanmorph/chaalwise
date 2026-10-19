@@ -33,4 +33,11 @@ describe('the skill profile on this device', () => {
     const all = Object.fromEntries(PROFILE_SKILLS.filter((s) => !s.later).map((s) => [s.id, solid(s.id)]));
     expect(['planning', 'time']).not.toContain(buildProfile(all).focus?.skill.id);
   });
+
+  it('ranks what to improve, starting with the focus, and leaves out skills that need practice games', () => {
+    const { focus, ranked } = buildProfile({ safety: tries('safety', ['first-try', 'missed', 'missed']) });
+    expect(ranked[0]).toBe(focus);
+    expect(ranked.map((s) => s.skill.id).slice(0, 2)).toEqual(['safety', 'board']);
+    expect(ranked.map((s) => s.skill.id)).not.toContain('time');
+  });
 });
