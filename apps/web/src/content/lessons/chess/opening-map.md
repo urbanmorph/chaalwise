@@ -5,6 +5,7 @@ game: chess
 stage: 3
 order: 5
 skills: [plan-long]
+measures: opening
 steps:
   - kind: read
     id: open-games

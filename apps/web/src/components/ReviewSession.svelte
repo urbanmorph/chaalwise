@@ -30,7 +30,8 @@
       items = ids.map((cardId) => {
         const step = steps[cardId]!;
         const kind = step.practice;
-        return { cardId, step: kind && isPracticeKind(kind) && practiceStep ? practiceStep(kind, Math.random) : step };
+        const fresh = kind && isPracticeKind(kind) && practiceStep ? { ...practiceStep(kind, Math.random), measures: step.measures } : step;
+        return { cardId, step: fresh };
       });
     } catch (error) {
       console.error(error);
@@ -51,7 +52,7 @@
   </div>
 {:else}
   <p class="label">{items.length} to review</p>
-  <PracticeRound {items}>
+  <PracticeRound {items} source="review">
     {#snippet after()}
       <a class="button primary" href="/chess/">Back to the lessons</a>
     {/snippet}

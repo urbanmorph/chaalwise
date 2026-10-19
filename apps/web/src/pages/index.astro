@@ -1,5 +1,6 @@
 ---
 import { SKILLS } from '@chaalwise/core/skills';
+import NextFocus from '../components/NextFocus.astro';
 import Base from '../layouts/Base.astro';
 import { lessonHref, lessonPath } from '../lib/lessons';
 
@@ -30,6 +31,10 @@ const [first] = await lessonPath();
       </div>
     </div>
   </section>
+
+  <div class="wrap">
+    <NextFocus />
+  </div>
 
   <section class="wrap two">
     <div class="card">

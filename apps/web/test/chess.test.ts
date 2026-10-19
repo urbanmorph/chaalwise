@@ -119,6 +119,20 @@ describe('chess checks for square and play steps', () => {
     expect(chessLessonIssues(move('empty', ['e2e4']))[0]?.message).toMatch(/not a legal position/);
   });
 
+  it('rejects a skill name the profile does not know, on the lesson or on a step', () => {
+    expect(
+      chessLessonIssues({ ...lesson([]), steps: [{ kind: 'read', id: 'r', text: 't' }], measures: 'juggling' })[0]
+        ?.message,
+    ).toMatch(/no skill called juggling/);
+    const l = lesson([
+      { kind: 'choice', id: 'c', prompt: 'p', explanation: 'e', options: ['a', 'b'], answer: 0, measures: 'juggling' },
+    ]);
+    expect(chessLessonIssues(l)[0]?.message).toMatch(/no skill called juggling/);
+    expect(
+      chessLessonIssues({ ...l, steps: [{ ...l.steps[0]!, measures: 'safety' } as Lesson['steps'][number]] }),
+    ).toEqual([]);
+  });
+
   it('checks the position of a square step', () => {
     const l = lesson([
       { kind: 'square', id: 's', prompt: 'p', explanation: 'e', answers: ['e4'], position: 'nonsense' },

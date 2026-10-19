@@ -5,6 +5,7 @@ game: chess
 stage: 2
 order: 4
 skills: [plan-long]
+measures: endgame
 steps:
   - kind: read
     id: plan

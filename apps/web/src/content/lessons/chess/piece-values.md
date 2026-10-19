@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 7
 skills: [calculate]
+measures: calculation
 steps:
   - kind: choice
     id: values

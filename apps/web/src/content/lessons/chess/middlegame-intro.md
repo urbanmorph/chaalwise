@@ -5,6 +5,7 @@ game: chess
 stage: 5
 order: 0
 skills: [plan-long]
+measures: planning
 steps:
   - kind: read
     id: the-question

@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 9
 skills: []
+measures: board
 steps:
   - kind: move
     id: promote

@@ -77,6 +77,22 @@ describe('lessonSchema', () => {
     expect(lessonSchema.parse({ ...lesson, steps: [step] }).steps[0]).toMatchObject({ practice: 'find-square' });
   });
 
+  it('lets a lesson, or one of its steps, say which skill its answers give evidence for', () => {
+    const step = {
+      kind: 'choice',
+      id: 'c',
+      prompt: 'p',
+      options: ['a', 'b'],
+      answer: 0,
+      explanation: 'e',
+      measures: 'anticipation',
+    };
+    expect(lessonSchema.parse({ ...lesson, measures: 'safety', steps: [step] })).toMatchObject({
+      measures: 'safety',
+      steps: [{ measures: 'anticipation' }],
+    });
+  });
+
   it('rejects a square answer that is not a square', () => {
     const steps = [{ kind: 'square', id: 's', prompt: 'p', answers: ['e9'], explanation: 'e' }];
     expect(() => lessonSchema.parse({ ...lesson, steps })).toThrow();

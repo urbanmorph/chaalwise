@@ -118,3 +118,44 @@ describe('more than one version open at once', () => {
     newer.close();
   });
 });
+
+describe('attempts for the skill profile', () => {
+  it('logs each attempt with its skill, and reads them back by skill', async () => {
+    await fresh();
+    await store.recordAttempt({ skill: 'safety', outcome: 'first-try', at: now, source: 'lesson' });
+    await store.recordAttempt({ skill: 'safety', outcome: 'missed', at: later, source: 'drill' });
+    await store.recordAttempt({ skill: 'board', outcome: 'first-try', at: now, source: 'drill' });
+    const bySkill = await store.attemptsBySkill();
+    expect(bySkill.safety?.map((a) => a.outcome)).toEqual(['first-try', 'missed']);
+    expect(bySkill.board).toHaveLength(1);
+  });
+
+  it('carries attempts through an export, and reads an export from before they existed', async () => {
+    await fresh();
+    await store.recordAttempt({ skill: 'safety', outcome: 'first-try', at: now, source: 'lesson' });
+    const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
+    const other = await openProgress(`test-${++n}`);
+    await other.importData(exported);
+    expect((await other.attemptsBySkill()).safety?.[0]?.at).toEqual(now);
+    await other.importData({ app: 'chaalwise', version: 1, exportedAt: now.toISOString(), lessons: [], cards: [] });
+    expect(await other.attemptsBySkill()).toEqual({});
+    other.close();
+  });
+
+  it('upgrades a version 2 device without losing anything', async () => {
+    const name = `test-${++n}`;
+    const v2 = await openDB(name, 2, {
+      upgrade(db) {
+        db.createObjectStore('lessons', { keyPath: 'lessonId' });
+        db.createObjectStore('cards', { keyPath: 'id' });
+        db.createObjectStore('drills', { keyPath: 'drillId' });
+      },
+    });
+    await v2.put('drills', { drillId: 'safety', best: 7, last: 7, times: 1, lastAt: now });
+    v2.close();
+    store = await openProgress(name);
+    expect((await store.drills()).safety?.best).toBe(7);
+    await store.recordAttempt({ skill: 'safety', outcome: 'first-try', at: now, source: 'drill' });
+    expect((await store.attemptsBySkill()).safety).toHaveLength(1);
+  });
+});

@@ -15,6 +15,12 @@ const practice = z
   .regex(/^[a-z-]+$/)
   .optional();
 
+/** The profile skill this step's answers give evidence for (overrides the lesson's). Checked against the game's skill list. */
+const measures = z
+  .string()
+  .regex(/^[a-z-]+$/)
+  .optional();
+
 const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
 
 /** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank). */
@@ -37,6 +43,7 @@ const choiceStep = z
     answer: z.number().int().nonnegative(),
     hint: z.string().optional(),
     explanation: z.string().min(1),
+    measures,
     /** Squares to highlight on the board once the answer is shown, e.g. the square the question is about. */
     highlight: z.array(squareName).optional(),
     /** Arrows to draw once the answer is shown, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
@@ -53,6 +60,7 @@ const moveStep = z.object({
   prompt: z.string().min(1),
   position: z.string().min(1),
   practice,
+  measures,
   /** Every move accepted as correct; the first is the one shown when revealed. */
   answers: z.array(z.string().min(1)).min(1),
   orientation: z.enum(['white', 'black']).optional(),
@@ -69,6 +77,7 @@ const squareStep = z.object({
   answers: z.array(squareName).min(1),
   orientation: z.enum(['white', 'black']).optional(),
   practice,
+  measures,
   /** Show the letters and numbers on the edges (off by default, since they give the answer away). */
   coordinates: z.boolean().optional(),
   hint: z.string().optional(),
@@ -83,6 +92,7 @@ const playStep = z.object({
   position: z.string().min(1),
   goal: z.literal('checkmate'),
   practice,
+  measures,
   /** The most moves the learner may take. */
   within: z.number().int().positive(),
   opponent: z.literal('lone-king'),
@@ -102,6 +112,8 @@ export const lessonSchema = z
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),
+    /** The profile skill this lesson's answers give evidence for, unless a step says otherwise. */
+    measures,
     /** For a strategy lesson: the lesson it follows on the path, e.g. `chess/blunder-check`. */
     after: z.string().optional(),
     steps: z.array(stepSchema).min(1),

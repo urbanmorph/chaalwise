@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 8
 skills: []
+measures: board
 steps:
   - kind: move
     id: castle

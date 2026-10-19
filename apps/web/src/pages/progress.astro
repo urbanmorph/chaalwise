@@ -1,14 +1,23 @@
 ---
 import ProgressPanel from '../components/ProgressPanel.svelte';
+import SkillProfile from '../components/SkillProfile.svelte';
 import Base from '../layouts/Base.astro';
 import { reviewSteps } from '../lib/lessons';
 
 const cardIds = Object.keys(await reviewSteps());
 ---
 
-<Base title="Progress" description="Your progress, kept on this device.">
+<Base title="Progress" description="Your skill profile and progress, kept on this device.">
   <div class="wrap">
     <h1>Your progress</h1>
+    <SkillProfile client:load />
+    <h2 class="device">Your progress on this device</h2>
     <ProgressPanel client:load {cardIds} />
   </div>
 </Base>
+
+<style>
+  .device {
+    margin-top: 40px;
+  }
+</style>

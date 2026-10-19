@@ -7,6 +7,7 @@
   import '@chaalwise/core/srs';
   import type { GradedStep } from '@chaalwise/core/lesson';
   import { tick } from 'svelte';
+  import { logAttempt } from '../lib/attempts';
   import { isPracticeKind } from '../lib/practice-kinds';
   import LessonPlayer from './LessonPlayer.svelte';
   import PracticeRound from './PracticeRound.svelte';
@@ -23,6 +24,11 @@
   let saved = $state<SaveState>('saving');
   let outcomes: Record<string, Outcome> = {};
 
+  const skillOf = (stepId: string) => {
+    const step = lesson.steps.find((s) => s.id === stepId);
+    return step && step.kind !== 'read' ? step.measures : undefined;
+  };
+
   /** Steps whose idea can be practised in fresh positions. */
   const practicable = $derived(lesson.steps.filter((s): s is GradedStep => s.kind !== 'read' && !!s.practice && isPracticeKind(s.practice)));
   const ROUND = 5;
@@ -35,7 +41,8 @@
     const { practiceStep } = await import('../lib/practice');
     practice = Array.from({ length: ROUND }, (_, i) => {
       const source = practicable[i % practicable.length]!;
-      return { cardId: `${lessonId}/${source.id}`, step: practiceStep(source.practice as Parameters<typeof practiceStep>[0], Math.random) };
+      const step = practiceStep(source.practice as Parameters<typeof practiceStep>[0], Math.random);
+      return { cardId: `${lessonId}/${source.id}`, step: { ...step, measures: source.measures } };
     });
     rounds++;
     await tick();
@@ -58,7 +65,7 @@
   }
 </script>
 
-<LessonPlayer {lesson} {onfinish}>
+<LessonPlayer {lesson} {onfinish} onstep={(stepId, outcome) => logAttempt(skillOf(stepId), outcome, 'lesson')}>
   {#snippet finished(outcomes)}
     <div class="card done" data-testid="lesson-done">
       <h2>Lesson complete</h2>
@@ -81,7 +88,7 @@
   <section class="practice" aria-label="Practice in new positions">
     <h2 tabindex="-1" bind:this={practiceStart}>Practice: {ROUND} new positions</h2>
     {#key rounds}
-      <PracticeRound items={practice}>
+      <PracticeRound items={practice} source="practice">
         {#snippet after()}
           <div class="actions">
             <button class="button" type="button" onclick={practiseAgain}>Another round</button>

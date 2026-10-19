@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 1
 skills: []
+measures: board
 steps:
   - kind: read
     id: files
