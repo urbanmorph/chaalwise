@@ -1,0 +1,47 @@
+---
+import type { LessonEntry } from '../lib/lessons';
+import LessonArticle from './LessonArticle.astro';
+import LessonRail from './LessonRail.astro';
+
+/** A lesson page: the lesson, and the whole path in a rail beside it (below it on narrow screens). */
+interface Props {
+  lesson: LessonEntry;
+}
+
+const { lesson } = Astro.props;
+---
+
+<div class="wrap wide shell">
+  <article>
+    <slot name="crumb" />
+    <LessonArticle {lesson} />
+  </article>
+  <aside>
+    <LessonRail current={lesson.id} />
+  </aside>
+</div>
+
+<style>
+  .shell {
+    display: grid;
+    gap: 40px;
+  }
+  @media (min-width: 1180px) {
+    .shell {
+      grid-template-columns: minmax(0, 1fr) 250px;
+      align-items: start;
+    }
+    aside {
+      position: sticky;
+      top: 16px;
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
+    }
+  }
+  @media (max-width: 1179px) {
+    aside {
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+    }
+  }
+</style>

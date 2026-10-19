@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { deploy, hydrated } from './helpers';
+import { completeLesson, deploy, hydrated } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
@@ -54,7 +54,38 @@ test('a lesson that builds on unfinished stages says so, and offers the first on
   await hydrated(page);
   const note = page.getByText('This builds on earlier lessons you have not done yet.');
   await expect(note).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
+  await expect(note.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
   // Still open: the first step can be played.
   await expect(page.getByRole('navigation', { name: 'Steps in this lesson' })).toBeVisible();
+});
+
+test('every lesson page has the whole path in a rail on the right, with this lesson marked', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/chess/knight/');
+  const rail = page.getByRole('navigation', { name: 'All lessons' });
+  await expect(rail).toBeVisible();
+  await expect(rail.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
+  await expect(rail.getByRole('link', { name: 'The blunder check' })).toHaveAttribute('href', '/skills/blunder-check/');
+  await expect(rail.getByRole('link', { name: 'The knight' })).toHaveAttribute('aria-current', 'page');
+  // To the right of the board, not below it.
+  const board = (await page.locator('.board').boundingBox())!;
+  const box = (await rail.boundingBox())!;
+  expect(box.x).toBeGreaterThan(board.x + board.width);
+  expect(box.y).toBeLessThan(board.y + board.height);
+});
+
+test('the rail ticks lessons already finished on this device', async ({ page }) => {
+  await completeLesson(page, 'board');
+  await page.goto('/chess/knight/');
+  await expect(
+    page.getByRole('navigation', { name: 'All lessons' }).locator('[data-lesson="chess/board"]'),
+  ).toHaveClass(/done/);
+});
+
+test('on a phone the rail comes after the lesson, not squeezed beside the board', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/chess/knight/');
+  const board = (await page.locator('.board').boundingBox())!;
+  const rail = (await page.getByRole('navigation', { name: 'All lessons' }).boundingBox())!;
+  expect(rail.y).toBeGreaterThan(board.y + board.height);
 });

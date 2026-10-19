@@ -28,9 +28,7 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
                 {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
                 <a href={lessonHref(l)}>{l.data.title}</a>
                 <p>{l.data.summary}</p>
-                <span class="done label" hidden>
-                  Done
-                </span>
+                <span class="done-badge label">Done</span>
               </li>
             ))}
         </ol>
@@ -40,19 +38,10 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
 </Base>
 
 <script>
-  import { openProgress } from '@chaalwise/core/progress';
+  import { markDone } from '../../scripts/mark-done';
 
   // Mark finished lessons; progress lives only on this device.
-  openProgress()
-    .then(async (progress) => {
-      const done = await progress.completedLessons();
-      progress.close();
-      for (const item of document.querySelectorAll<HTMLElement>('[data-lesson]')) {
-        const badge = item.querySelector<HTMLElement>('.done');
-        if (badge) badge.hidden = !done.has(item.dataset.lesson!);
-      }
-    })
-    .catch(console.error);
+  markDone().catch(console.error);
 </script>
 
 <style>
@@ -88,12 +77,12 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
     margin-bottom: 4px;
     color: var(--accent-text);
   }
-  .done {
-    display: inline-block;
+  .done-badge {
+    display: none;
     margin-top: 10px;
     color: var(--pass);
   }
-  .done[hidden] {
-    display: none;
+  :global(li.done) .done-badge {
+    display: inline-block;
   }
 </style>
