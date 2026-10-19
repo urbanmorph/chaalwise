@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { completeLesson, deploy, hydrated } from './helpers';
+import { completeLesson, deploy, hydrated, watchShifts } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
@@ -57,6 +57,39 @@ test('a lesson that builds on unfinished stages says so, and offers the first on
   await expect(note.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
   // Still open: the first step can be played.
   await expect(page.getByRole('navigation', { name: 'Steps in this lesson' })).toBeVisible();
+});
+
+test('the note about earlier lessons is there from the first paint, so the lesson does not jump', async ({ page }) => {
+  const shifts = await watchShifts(page);
+  await page.goto('/chess/opening-map/');
+  await expect(page.getByText('This builds on earlier lessons you have not done yet.')).toBeVisible();
+  expect(await shifts()).toBeLessThan(0.01);
+});
+
+test('a learner who has done every earlier lesson sees no note, and the lesson does not jump', async ({ page }) => {
+  await page.goto('/chess/opening-map/');
+  await hydrated(page);
+  // Mark every lesson in the rail done in this device's record.
+  await page.evaluate(async () => {
+    const ids = [...document.querySelectorAll<HTMLElement>('[data-lesson]')].map((el) => el.dataset.lesson!);
+    const db = await new Promise<IDBDatabase>((resolve) => {
+      const req = indexedDB.open('chaalwise');
+      req.onsuccess = () => resolve(req.result);
+    });
+    const tx = db.transaction('lessons', 'readwrite');
+    for (const id of ids)
+      tx.objectStore('lessons').put({ lessonId: id, completedAt: new Date(), times: 1, outcomes: {} });
+    await new Promise((resolve) => (tx.oncomplete = resolve));
+    db.close();
+  });
+  // Any lesson page brings the quick record up to date.
+  await page.goto('/chess/knight/');
+  await hydrated(page);
+  const shifts = await watchShifts(page);
+  await page.goto('/chess/opening-map/');
+  await hydrated(page);
+  await expect(page.getByText('This builds on earlier lessons you have not done yet.')).toBeHidden();
+  expect(await shifts()).toBeLessThan(0.01);
 });
 
 test('every lesson page has the whole path in a rail on the right, with this lesson marked', async ({ page }) => {

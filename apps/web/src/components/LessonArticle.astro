@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import { DONE_KEY } from '../lib/done-lessons';
 import { lessonHref, pathContext, stepsWithSkills, type LessonEntry } from '../lib/lessons';
 import LessonPage from './LessonPage.svelte';
 
@@ -14,34 +15,29 @@ const { next, buildsOn } = await pathContext(lesson);
 const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
 ---
 
-<p class="builds-on" data-earlier={JSON.stringify(earlier)} hidden></p>
+<p class="builds-on" hidden></p>
+{/* Inline, so it runs before the first paint and the lesson never jumps: it reads the quick copy of finished lessons. */}
+<script is:inline define:vars={{ earlier, key: DONE_KEY }}>
+  (() => {
+    let done = [];
+    try {
+      done = JSON.parse(localStorage.getItem(key) ?? '[]');
+    } catch {
+      // Storage can be blocked: treat it as a new learner.
+    }
+    const first = earlier.find((l) => !done.includes(l.id));
+    const note = document.currentScript.previousElementSibling;
+    if (!first) return;
+    const link = Object.assign(document.createElement('a'), { href: first.href, textContent: first.title });
+    note.append('This builds on earlier lessons you have not done yet. You can carry on, or start with ', link, '.');
+    note.hidden = false;
+  })();
+</script>
 <h1>{lesson.data.title}</h1>
 <div class="intro">
   <Content />
 </div>
 <LessonPage client:load lesson={{ steps: stepsWithSkills(lesson) }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
-
-<script>
-  import { openProgress } from '@chaalwise/core/progress';
-
-  // Everything is open, but say so if this builds on earlier lessons not yet done, and offer the first of them.
-  const note = document.querySelector<HTMLElement>('.builds-on');
-  const earlier: { id: string; href: string; title: string }[] = JSON.parse(note?.dataset.earlier ?? '[]');
-  if (note && earlier.length) {
-    openProgress()
-      .then(async (progress) => {
-        const done = await progress.completedLessons();
-        progress.close();
-        const first = earlier.find((l) => !done.has(l.id));
-        if (!first) return;
-        note.append('This builds on earlier lessons you have not done yet. You can carry on, or start with ');
-        note.append(Object.assign(document.createElement('a'), { href: first.href, textContent: first.title }));
-        note.append('.');
-        note.hidden = false;
-      })
-      .catch(console.error);
-  }
-</script>
 
 <style>
   .builds-on {

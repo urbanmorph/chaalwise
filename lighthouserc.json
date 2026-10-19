@@ -7,6 +7,7 @@
         "http://localhost/chess/",
         "http://localhost/chess/board/",
         "http://localhost/chess/drills/",
+        "http://localhost/chess/opening-map/",
         "http://localhost/progress/",
         "http://localhost/reference/",
         "http://localhost/reference/chess/kings-indian-defence/"

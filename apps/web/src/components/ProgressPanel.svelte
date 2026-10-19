@@ -1,6 +1,7 @@
 <script lang="ts">
   import { openProgress, requestPersistence } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
+  import { saveDone } from '../lib/done-lessons';
 
   interface Props {
     /** Review questions the site still has; any others (from changed lessons) are not counted. */
@@ -74,6 +75,7 @@
       const progress = await openProgress();
       try {
         await progress.importData(data);
+        saveDone(await progress.completedLessons());
       } finally {
         progress.close();
       }

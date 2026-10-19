@@ -62,3 +62,19 @@ export const lessonsFinished = async (page: Page) => {
   await page.goto('/progress/');
   return page.getByTestId('lessons-finished');
 };
+
+/** Sum the page's layout shifts (CLS); under 0.1 is good. */
+export async function watchShifts(page: Page) {
+  await page.addInitScript(() => {
+    (window as unknown as { shift: number }).shift = 0;
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries() as (PerformanceEntry & { value: number; hadRecentInput: boolean })[]) {
+        if (!entry.hadRecentInput) (window as unknown as { shift: number }).shift += entry.value;
+      }
+    }).observe({ type: 'layout-shift', buffered: true });
+  });
+  return async () => {
+    await page.waitForTimeout(500);
+    return page.evaluate(() => (window as unknown as { shift: number }).shift);
+  };
+}
