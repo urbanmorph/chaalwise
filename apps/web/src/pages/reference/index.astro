@@ -29,7 +29,7 @@ const TYPES = [
       rules. Search by name, by another name, or by what you remember.
     </p>
 
-    <form class="find" role="search" hidden data-find>
+    <form class="find" role="search" data-find>
       <label for="q">Search the reference</label>
       <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="fork, Italian, pot odds" />
       <div class="choices" role="radiogroup" aria-label="Game">
@@ -119,7 +119,6 @@ const TYPES = [
     const chosen = form.querySelector<HTMLInputElement>(`input[name=${name}][value="${CSS.escape(params.get(name) ?? '')}"]`);
     if (chosen) chosen.checked = true;
   }
-  form.hidden = false;
   form.addEventListener('input', update);
   form.addEventListener('submit', (event) => event.preventDefault());
   update();

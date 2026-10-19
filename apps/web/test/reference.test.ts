@@ -1,4 +1,5 @@
 import { referenceSchema, type ReferenceEntry } from '@chaalwise/core/reference';
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { entryHref, numberedMoves, referenceIssues } from '../src/lib/reference';
 import { matchesQuery, searchText } from '../src/lib/search';
@@ -61,5 +62,15 @@ describe('search', () => {
   it('needs every word to match, and matches everything when the query is empty', () => {
     expect(matchesQuery(text, 'indian fork')).toBe(false);
     expect(matchesQuery(text, '  ')).toBe(true);
+  });
+});
+
+describe('the reference page as built', () => {
+  const html = readFileSync(new URL('../dist/reference/index.html', import.meta.url), 'utf8');
+
+  // A form shown only once the script runs pushes the list down on slow phones (Lighthouse saw a 0.17 shift).
+  it('lays out the search form at build time, so the list does not jump when the script starts', () => {
+    const form = html.match(/<form[^>]*data-find[^>]*>/)![0];
+    expect(form).not.toMatch(/\bhidden\b/);
   });
 });
