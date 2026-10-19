@@ -3,7 +3,7 @@ title: Name the squares
 summary: Every square has a name, file letter first, then rank number. Learn to find them without looking at the edges.
 game: chess
 stage: 0
-order: 2
+order: 1
 skills: []
 steps:
   - kind: read
@@ -26,7 +26,7 @@ steps:
     prompt: Find h1.
     answers: [h1]
     hint: The last file, on your own back rank.
-    explanation: h1 is the corner on your right. Light on right, so h1 is always light.
+    explanation: h1 is the corner square on your right when you sit behind the white pieces. The next lesson shows why that corner matters.
   - kind: square
     id: find-c6-black
     prompt: Now you are Black, looking from the other side. Find c6.

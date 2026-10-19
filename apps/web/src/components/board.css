@@ -40,6 +40,29 @@ cg-board square.check {
   font-weight: 600;
   font-size: clamp(9px, 2.2vw, 12px);
 }
+/* Files sit inside the bottom row, at each square's right, in lowercase as they are written (a to h).
+   chessground puts them just below the edge, where the board's rounded frame cuts them off. */
+.cg-wrap coords.files {
+  bottom: 2px;
+  left: 0;
+  height: auto;
+  text-transform: none;
+}
+.cg-wrap coords.files coord {
+  text-align: right;
+  padding-right: 4px;
+  line-height: 1;
+}
+/* Ranks sit at the top left of each square in the first file, not shifted down past the board's edge. */
+.cg-wrap coords.ranks {
+  top: 0;
+  left: 3px;
+}
+.cg-wrap coords.ranks coord {
+  transform: none;
+  padding-top: 3px;
+  line-height: 1;
+}
 /* Coordinates: felt green on light squares, white on dark ones (the square greens are
    too close to use each other). Ranks run up the left edge, files along the bottom. */
 .orientation-white .ranks :nth-child(even),

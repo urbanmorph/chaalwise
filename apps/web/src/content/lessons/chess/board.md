@@ -3,7 +3,7 @@ title: Set up the board
 summary: Two memory tricks so the board is never the wrong way round, and your first move.
 game: chess
 stage: 0
-order: 1
+order: 2
 skills: []
 steps:
   - kind: choice
@@ -35,7 +35,7 @@ steps:
     position: start
     answers: [e2e4]
     hint: Your king is on e1, so its pawn is on e2.
-    explanation: 1. e4 takes space in the centre and opens lines for your queen and the bishop on f1.
+    explanation: Moving this pawn to e4 takes space in the centre and opens lines for your queen and the bishop on f1.
 ---
 
 Every game starts from the same position. Two short tricks make sure you always set it up right.

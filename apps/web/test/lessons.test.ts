@@ -20,6 +20,20 @@ const lessons = readdirSync(DIR).map((file) => ({
 const steps = lessons.flatMap(({ file, data }) => data.steps.map((step) => ({ file, step })));
 const step = (file: string, id: string) => steps.find((s) => s.file === file && s.step.id === id)!.step;
 
+describe('lesson order', () => {
+  it('explains square names before any lesson uses them', () => {
+    const order = [...lessons]
+      .sort((a, b) => a.data.stage - b.data.stage || a.data.order - b.data.order)
+      .map((l) => l.file);
+    expect(order[0]).toBe('coordinates.md');
+  });
+
+  it('does not use move-number notation (1. e4) in stage 0, where it has not been explained', () => {
+    const stage0 = lessons.filter((l) => l.data.stage === 0).map((l) => readFileSync(new URL(l.file, DIR), 'utf8'));
+    for (const text of stage0) expect(text).not.toMatch(/\b\d+\.\s?[a-hKQRBNO]/);
+  });
+});
+
 describe('lesson claims', () => {
   it.each([
     ['check-and-mate.md', 'mate-in-one'],
