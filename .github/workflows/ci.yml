@@ -58,6 +58,14 @@ jobs:
         with:
           node-version: 22
       - run: npx -y @lhci/cli@0.15.1 autorun
+      # Keep the reports when a page falls short, to see which measure dropped.
+      - if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse
+          path: .lighthouseci/
+          include-hidden-files: true
+          retention-days: 7
 
   deploy:
     name: Deploy to chaalwise.urbanmorph.com
