@@ -1,7 +1,11 @@
 ---
 import { lessonHref, lessonPath, STAGES } from '../lib/lessons';
 
-/** The whole path beside a lesson, for quick access: every stage, strategy lessons in place, this lesson marked. */
+/**
+ * The whole path beside a lesson: every stage folded except the one you are in,
+ * so the rail needs no scroll box of its own. Strategy lessons sit in place; this
+ * lesson is marked.
+ */
 interface Props {
   current: string;
 }
@@ -12,24 +16,28 @@ const stages = [...new Set(path.map((l) => l.data.stage))];
 ---
 
 <nav class="rail" aria-label="All lessons">
-  {stages.map((stage) => (
-    <section>
-      <p class="label">
-        Stage {stage} · {STAGES[stage]}
-      </p>
-      <ol>
-        {path
-          .filter((l) => l.data.stage === stage)
-          .map((l) => (
+  {stages.map((stage) => {
+    const lessons = path.filter((l) => l.data.stage === stage);
+    return (
+      <details open={lessons.some((l) => l.id === current)}>
+        <summary>
+          <span class="label">
+            Stage {stage} · {STAGES[stage]}
+          </span>
+          <span class="count">{lessons.length}</span>
+        </summary>
+        <ol>
+          {lessons.map((l) => (
             <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
               <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
                 {l.data.title}
               </a>
             </li>
           ))}
-      </ol>
-    </section>
-  ))}
+        </ol>
+      </details>
+    );
+  })}
 </nav>
 
 <script>
@@ -39,11 +47,43 @@ const stages = [...new Set(path.map((l) => l.data.stage))];
 </script>
 
 <style>
-  .rail section + section {
-    margin-top: 16px;
+  details + details {
+    margin-top: 4px;
   }
-  .label {
-    margin: 0 0 6px;
+  summary {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 6px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::before {
+    content: '▸';
+    color: var(--ink-2);
+    transition: transform 0.15s;
+  }
+  details[open] > summary::before {
+    transform: rotate(90deg);
+  }
+  summary:hover .label {
+    color: var(--ink);
+  }
+  .count {
+    margin-left: auto;
+    color: var(--ink-2);
+    font-size: 0.85rem;
+  }
+  details[open] > ol {
+    margin-bottom: 12px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    summary::before {
+      transition: none;
+    }
   }
   ol {
     margin: 0;

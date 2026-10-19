@@ -7,7 +7,9 @@
         "http://localhost/chess/",
         "http://localhost/chess/board/",
         "http://localhost/chess/drills/",
-        "http://localhost/progress/"
+        "http://localhost/progress/",
+        "http://localhost/reference/",
+        "http://localhost/reference/chess/kings-indian-defence/"
       ],
       "numberOfRuns": 1,
       "settings": {

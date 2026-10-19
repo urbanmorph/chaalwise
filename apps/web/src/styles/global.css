@@ -132,3 +132,32 @@ a {
     animation: none !important;
   }
 }
+
+/* A row of choices drawn as pills: radio buttons, the checked one filled. */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.choices label {
+  padding: 6px 14px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+.choices label:has(input:checked) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.choices label:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.choices input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}

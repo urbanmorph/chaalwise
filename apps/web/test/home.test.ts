@@ -47,7 +47,9 @@ describe('the built home page', () => {
   it('draws the chess diagram with no script', () => {
     const figure = html.match(/<figure class="hero-board[\s\S]*?<\/figure>/)![0];
     expect(figure).not.toContain('<script');
-    expect(figure.match(/<image /g)).toHaveLength(HERO.pieces);
+    expect(figure.match(/<use /g)).toHaveLength(HERO.pieces);
+    // Each piece image once, however many times it is used: here a king, rook and pawns of each side, and a knight.
+    expect(figure.match(/<image /g)).toHaveLength(6);
   });
 });
 
@@ -70,5 +72,31 @@ describe('the mark', () => {
     }
     expect(png('apple-touch-icon.png')).toEqual({ isPng: true, width: 180, height: 180 });
     expect(dist('index.html')).toContain('<link rel="apple-touch-icon" href="/apple-touch-icon.png"');
+  });
+});
+
+describe('strategy first', () => {
+  const html = dist('index.html');
+  const nav = (page: string) =>
+    [
+      ...dist(page)
+        .match(/<nav aria-label="Main"[\s\S]*?<\/nav>/)![0]
+        .matchAll(/>([a-z]+)<\/a>/g),
+    ].map((m) => m[1]);
+
+  it('leads every page with strategy: the games are found through the reference', () => {
+    for (const page of ['index.html', 'chess/index.html', 'reference/index.html'])
+      expect(nav(page)).toEqual(['strategy', 'reference', 'review', 'progress']);
+  });
+
+  it('starts a newcomer on a strategy lesson, not a chess one', () => {
+    const primary = html.match(/<a class="button primary" href="([^"]+)"/)![1];
+    expect(primary).toMatch(/^\/skills\/[a-z-]+\/$/);
+  });
+
+  it('speaks to people who run things and to students, and keeps games off the front page', () => {
+    expect(html).toMatch(/run (teams|things|organisations)/);
+    expect(html).toMatch(/students/i);
+    expect(html).not.toContain('Pick a game');
   });
 });

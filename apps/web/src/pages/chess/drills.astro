@@ -4,43 +4,45 @@ import MateDrill from '../../components/MateDrill.svelte';
 import TapAllDrill from '../../components/TapAllDrill.svelte';
 import SafetyDrill from '../../components/SafetyDrill.svelte';
 import Base from '../../layouts/Base.astro';
+import { DRILLS } from '../../lib/drill-list';
 import { safetyDrill } from '../../lib/lessons';
 
 const items = await safetyDrill();
+const [find, name, where, safe, loose, mates] = DRILLS;
 ---
 
 <Base title="Daily drills" description="Two short chess drills to do every day: find the square, and is this move safe?">
   <div class="wrap wide">
     <h1>Daily drills</h1>
     <p>Short drills, a few minutes each, for the things that should become automatic. Your best scores stay on this device.</p>
-    <section>
-      <h2>Coordinates: find the square</h2>
-      <p>Thirty seconds: find as many squares as you can, with no letters or numbers on the board.</p>
+    <section id={find.id}>
+      <h2>{find.title}</h2>
+      <p>{find.summary}</p>
       <CoordinatesDrill client:load />
     </section>
-    <section>
-      <h2>Coordinates: name the square</h2>
-      <p>The reverse: a square lights up, and you type its name. Thirty seconds.</p>
+    <section id={name.id}>
+      <h2>{name.title}</h2>
+      <p>{name.summary}</p>
       <CoordinatesDrill client:load mode="name" />
     </section>
-    <section>
-      <h2>Pieces: where can it go?</h2>
-      <p>A piece on a random square. Tap every square it can move to, then the next one. Five positions.</p>
+    <section id={where.id}>
+      <h2>{where.title}</h2>
+      <p>{where.summary}</p>
       <TapAllDrill client:load kind="piece-squares" />
     </section>
-    <section>
-      <h2>Safety: is this move safe?</h2>
-      <p>Before every move, ask: can they win something, or mate me, straight after it? Judge ten moves.</p>
+    <section id={safe.id}>
+      <h2>{safe.title}</h2>
+      <p>{safe.summary}</p>
       <SafetyDrill client:load {items} />
     </section>
-    <section>
-      <h2>Safety: spot the loose piece</h2>
-      <p>Loose pieces drop off: a piece nothing defends is the first target for a fork. Tap every one, on both sides. Five positions.</p>
+    <section id={loose.id}>
+      <h2>{loose.title}</h2>
+      <p>{loose.summary}</p>
       <TapAllDrill client:load kind="loose-pieces" />
     </section>
-    <section>
-      <h2>Basic mates against the clock</h2>
-      <p>Mate the lone king from a random start. Your score is the moves you have left over.</p>
+    <section id={mates.id}>
+      <h2>{mates.title}</h2>
+      <p>{mates.summary}</p>
       <MateDrill client:load />
     </section>
   </div>

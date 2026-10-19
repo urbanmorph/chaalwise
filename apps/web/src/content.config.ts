@@ -1,8 +1,10 @@
 import { lessonSchema } from '@chaalwise/core/lesson';
+import { referenceSchema } from '@chaalwise/core/reference';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
 import { chessLessonIssues, parseMoveText, positionFromMoves } from './lib/chess';
+import { referenceIssues } from './lib/reference';
 
 /** Lessons are Markdown with their steps as data. A broken lesson fails the build. */
 const lessons = defineCollection({
@@ -32,4 +34,12 @@ const safetyDrills = defineCollection({
     }),
 });
 
-export const collections = { lessons, safetyDrills };
+/** The reference: one Markdown file per entry, by game. A wrong diagram fails the build. */
+const reference = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/reference' }),
+  schema: referenceSchema.superRefine((entry, ctx) => {
+    for (const issue of referenceIssues(entry)) ctx.addIssue({ code: 'custom', ...issue });
+  }),
+});
+
+export const collections = { lessons, safetyDrills, reference };

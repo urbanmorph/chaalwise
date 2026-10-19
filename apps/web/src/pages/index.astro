@@ -1,25 +1,16 @@
 ---
+import Diagram from '../components/Diagram.astro';
 import NextFocus from '../components/NextFocus.astro';
 import Base from '../layouts/Base.astro';
-import { arrowPoints, squareCenter } from '../lib/arrows';
-import { diagramPieces, HERO, pieceImages } from '../lib/diagram';
+import { HERO } from '../lib/diagram';
 import { lessonHref, lessonPath } from '../lib/lessons';
 import { TRACKS, type Track } from '../lib/skill-tracks';
 
-const path = await lessonPath();
-const [first] = path;
-const blunderCheck = path.find((l) => l.id === 'chess/blunder-check');
-
-const images = pieceImages();
-const pieces = diagramPieces(HERO.fen);
-const squares = Array.from({ length: 64 }, (_, i) => ({ x: i % 8, y: Math.floor(i / 8) }));
-const line = (from: string, to: string) =>
-  arrowPoints(from, to, 'white')
-    .map(([x, y]) => `${x},${y}`)
-    .join(' ');
+// A newcomer starts with the first strategy lesson: the idea first, the game as its example.
+const first = (await lessonPath()).find((l) => l.data.game === 'strategy');
 
 const groups: { title: string; tracks: Track[] }[] = [
-  { title: 'Train now, in chess', tracks: TRACKS.filter((t) => t.chess > 0) },
+  { title: 'Train now', tracks: TRACKS.filter((t) => t.chess > 0) },
   { title: 'Coming with poker and the game-theory labs', tracks: TRACKS.filter((t) => t.chess === 0) },
 ];
 const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
@@ -28,50 +19,34 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
 <Base title="Chaalwise">
   <section class="hero wrap">
     <div class="pitch">
-      <h1>Strategy you can use away from the board.</h1>
+      <h1>Strategy for people who run things, or are learning to.</h1>
       <p class="lead">
-        Chaalwise teaches the thinking behind games: looking ahead, working a line through, weighing odds, deciding how much to risk. You learn each idea in a
-        game against the computer, then see where it turns up in ordinary life.
+        A strategy school that is always open. Learn to look ahead, weigh the odds, size a risk and keep a cool head, for work, for study and for life. Each
+        idea is shown in a game, practised in a few minutes, and brought back until it sticks.
       </p>
       <div class="actions">
         {first && (
           <a class="button primary" href={lessonHref(first)}>
-            Start the first lesson
+            Start with {first.data.title.toLowerCase()}
           </a>
         )}
         <a class="button" href="#skills">
-          See what you will learn
+          See the skills
         </a>
       </div>
       <p class="terms">Free and offline. No account, no ads, and no money, ever.</p>
     </div>
 
     <figure class="hero-board">
-      <svg viewBox="0 0 8 8" role="img" aria-label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once.">
-        <defs>
-          <marker id="head-move" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="2.4" markerHeight="2.4" orient="auto">
-            <path d="M0,0 L4,2 L0,4 z" class="head-move" />
-          </marker>
-        </defs>
-        {squares.map(({ x, y }) => (
-          <rect x={x} y={y} width="1" height="1" class={(x + y) % 2 ? 'dark' : 'light'} />
-        ))}
-        {pieces.map(({ x, y, key }) => (
-          <image href={images[key]} x={x} y={y} width="1" height="1" />
-        ))}
-        <polyline points={line(HERO.move.slice(0, 2), HERO.move.slice(2))} class="arrow move" marker-end="url(#head-move)" />
-        {HERO.attacked.map((square) => {
-          const [x, y] = squareCenter(square, 'white');
-          return <circle cx={x} cy={y} r="0.46" class="attacked" />;
-        })}
-      </svg>
+      <Diagram
+        fen={HERO.fen}
+        move={HERO.move}
+        highlight={HERO.attacked}
+        label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once."
+      />
       <figcaption>
-        <p>One knight move attacks the king and the rook together. Before every move, you will learn to look for moves like this, for both sides.</p>
-        {blunderCheck && (
-          <p>
-            <a href={lessonHref(blunderCheck)}>Try the blunder check</a>
-          </p>
-        )}
+        The blunder check, shown in chess: one knight move attacks the king and the rook together. At work it is the question before you send, sign or commit:
+        what does this let the other side do?
       </figcaption>
     </figure>
   </section>
@@ -80,12 +55,29 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     <NextFocus />
   </div>
 
+  <section class="wrap who" aria-labelledby="who-title">
+    <h2 id="who-title">Who it is for</h2>
+    <ul>
+      <li>
+        <strong>People who run teams and organisations.</strong> Plans, budgets, negotiations and hiring are strategy problems: what will the other side do,
+        what can go wrong, how much to commit.
+      </li>
+      <li>
+        <strong>People who want to succeed in one.</strong> Thinking a step ahead, and staying calm when a plan goes wrong, are what others notice.
+      </li>
+      <li>
+        <strong>Students.</strong> Exams, group projects and choices about what to study reward the same habits: check before you commit, and judge decisions,
+        not results.
+      </li>
+    </ul>
+  </section>
+
   <section class="wrap map" id="skills" aria-labelledby="skills-title">
     <h2 id="skills-title">What you will get better at</h2>
     <p class="intro">
-      Playing games alone does little for general thinking. Skills carry over when they are named, practised and tried outside the game, so every lesson ends
-      with where its idea turns up in ordinary life. The dots show how much each game trains a skill: filled where you can train it today, open where it is
-      coming.
+      Playing games alone does little for general thinking. Skills carry over when they are named, practised and tried outside the game, so each strategy lesson
+      ends with where its idea turns up in ordinary life. The games are the practice ground. The dots show how much each one trains a skill: filled where you
+      can train it today, open where it is coming.
     </p>
     <table>
       <thead>
@@ -141,21 +133,21 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     <ol>
       <li>
         <h3>
-          <a href="/chess/">Learn the idea</a>
+          <a href="/skills/">Learn the idea</a>
         </h3>
-        <p>One idea per lesson, tried on a real board, with hints when you are stuck.</p>
+        <p>A short lesson names the idea, shows why it matters, and where it turns up at work and in study.</p>
       </li>
       <li>
         <h3>
-          <a href="/chess/drills/">Practise it in new positions</a>
+          <a href="/reference/">See it in a game</a>
         </h3>
-        <p>Drills and fresh positions, so you recognise the idea, not one answer.</p>
+        <p>Chess now, poker next. Learn each game well enough to play it anywhere: its lessons, drills and terms are in the reference.</p>
       </li>
       <li>
         <h3>
           <a href="/review/">Bring it back</a>
         </h3>
-        <p>Each idea returns for review just before you would forget it.</p>
+        <p>Each idea returns in new positions just before you would forget it.</p>
       </li>
       <li>
         <h3>
@@ -164,31 +156,6 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
         <p>Your skill profile, measured from your own answers and kept on this device.</p>
       </li>
     </ol>
-  </section>
-
-  <section class="wrap games" aria-labelledby="games-title">
-    <h2 id="games-title">Pick a game</h2>
-    <div class="game chess">
-      <h3>Chess</h3>
-      <p class="line">Think when you can see everything.</p>
-      <p>
-        From setting up the board to confident full games, with strategy lessons between the chess ones. Thinking ahead, calculating and planning, against the
-        computer.
-      </p>
-      <a class="button primary" href="/chess/">
-        Open the chess lessons
-      </a>
-    </div>
-    <div class="game poker">
-      <h3>Poker, next</h3>
-      <p class="line">Decide when you can't.</p>
-      <p>Odds, risk and reading what you cannot see, from zero. Practice points are free and can never be bought or cashed out.</p>
-    </div>
-    <div class="game labs">
-      <h3>Game-theory labs, later</h3>
-      <p class="line">Five-minute games with one big idea each.</p>
-      <p>When to trust, why being predictable costs you, and how winners of auctions overpay.</p>
-    </div>
   </section>
 </Base>
 
@@ -232,35 +199,6 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     margin: 0;
     justify-self: center;
     width: min(100%, 420px);
-  }
-  .hero-board svg {
-    display: block;
-    width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 0 0 1px var(--rule);
-  }
-  .light {
-    fill: var(--sq-light);
-  }
-  .dark {
-    fill: var(--sq-dark);
-  }
-  .arrow {
-    fill: none;
-    stroke-width: 0.15;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-  }
-  .move {
-    stroke: var(--primary);
-  }
-  .attacked {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 0.08;
-  }
-  .head-move {
-    fill: var(--primary);
   }
   figcaption {
     margin-top: 14px;
@@ -416,54 +354,21 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     margin: 0;
   }
 
-  .games {
+  .who {
+    margin-top: 48px;
+  }
+  .who ul {
     display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    margin-bottom: 24px;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
-  .games h2 {
-    grid-column: 1 / -1;
-    margin-bottom: 0;
+  .who li {
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
   }
-  .game {
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-  .game h3 {
-    font-size: 1.5rem;
-    margin-bottom: 4px;
-  }
-  .game .line {
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .chess {
-    grid-column: 1 / -1;
-    background: var(--card);
-    border: 1px solid var(--rule);
-  }
-  @media (min-width: 780px) {
-    .chess {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-  }
-  .chess p:not(.line) {
-    color: var(--ink-2);
-    margin-bottom: 20px;
-  }
-  .poker {
-    background: var(--felt);
-    color: var(--on-felt);
-  }
-  .poker p:not(.line) {
-    color: var(--on-felt-2);
-  }
-  .labs {
-    border: 1px dashed var(--rule-strong);
-  }
-  .labs p:not(.line) {
-    color: var(--ink-2);
+  .who strong {
+    display: block;
   }
 </style>

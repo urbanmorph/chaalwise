@@ -3,9 +3,13 @@ import { completeLesson, deploy, hydrated } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
-test('a new learner is pointed at board sense, and every skill is not started', async ({ page }) => {
+test('a new learner starts on the home page with a strategy lesson, and every skill is not started', async ({
+  page,
+}) => {
   await page.goto('/');
-  await expect(page.getByTestId('home-next-focus')).toContainText('Board sense');
+  const card = page.getByTestId('home-next-focus');
+  await expect(card).toContainText('Start here');
+  await expect(card.getByRole('link', { name: 'Start the lesson' })).toHaveAttribute('href', /^\/skills\/[a-z-]+\/$/);
   await page.goto('/progress/');
   await hydrated(page);
   await expect(page.locator('[data-skill] .label').first()).toHaveText('Not started');

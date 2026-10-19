@@ -25,9 +25,7 @@ export async function chessLessons(): Promise<LessonEntry[]> {
   return (await lessonPath()).filter((l) => l.data.game === 'chess');
 }
 
-/** Chess lessons live under /chess/, strategy lessons under /skills/. */
-export const lessonHref = (lesson: LessonEntry) =>
-  lesson.data.game === 'strategy' ? `/skills/${lesson.id.replace(/^strategy\//, '')}/` : `/${lesson.id}/`;
+export { lessonHref } from './lesson-href';
 
 /** The lesson after this one on the path, and the earlier-stage lessons it builds on. */
 export async function pathContext(
