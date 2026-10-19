@@ -1,20 +1,37 @@
 ---
-import { SKILLS } from '@chaalwise/core/skills';
 import NextFocus from '../components/NextFocus.astro';
 import Base from '../layouts/Base.astro';
+import { arrowPoints, squareCenter } from '../lib/arrows';
+import { diagramPieces, HERO, pieceImages } from '../lib/diagram';
 import { lessonHref, lessonPath } from '../lib/lessons';
+import { TRACKS, type Track } from '../lib/skill-tracks';
 
-const [first] = await lessonPath();
+const path = await lessonPath();
+const [first] = path;
+const blunderCheck = path.find((l) => l.id === 'chess/blunder-check');
+
+const images = pieceImages();
+const pieces = diagramPieces(HERO.fen);
+const squares = Array.from({ length: 64 }, (_, i) => ({ x: i % 8, y: Math.floor(i / 8) }));
+const line = (from: string, to: string) =>
+  arrowPoints(from, to, 'white')
+    .map(([x, y]) => `${x},${y}`)
+    .join(' ');
+
+const groups: { title: string; tracks: Track[] }[] = [
+  { title: 'Train now, in chess', tracks: TRACKS.filter((t) => t.chess > 0) },
+  { title: 'Coming with poker and the game-theory labs', tracks: TRACKS.filter((t) => t.chess === 0) },
+];
+const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
 ---
 
 <Base title="Chaalwise">
-  <section class="hero">
-    <div class="wrap">
-      <p class="label kicker">Strategy, learned through games</p>
-      <h1>Think a move ahead.</h1>
+  <section class="hero wrap">
+    <div class="pitch">
+      <h1>Strategy you can use away from the board.</h1>
       <p class="lead">
-        A strategy gym where games are the equipment. Learn to think ahead, calculate, weigh odds and plan, through chess now and poker next, against the
-        computer. Free, offline, no ratings.
+        Chaalwise teaches the thinking behind games: looking ahead, working a line through, weighing odds, deciding how much to risk. You learn each idea in a
+        game against the computer, then see where it turns up in ordinary life.
       </p>
       <div class="actions">
         {first && (
@@ -22,91 +39,438 @@ const [first] = await lessonPath();
             Start the first lesson
           </a>
         )}
-        <a class="button" href="/review/">
-          Today's review
-        </a>
-        <a class="button" href="/chess/drills/">
-          Daily drills
+        <a class="button" href="#skills">
+          See what you will learn
         </a>
       </div>
+      <p class="terms">Free and offline. No account, no ads, and no money, ever.</p>
     </div>
+
+    <figure class="hero-board">
+      <svg viewBox="0 0 8 8" role="img" aria-label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once.">
+        <defs>
+          <marker id="head-move" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="2.4" markerHeight="2.4" orient="auto">
+            <path d="M0,0 L4,2 L0,4 z" class="head-move" />
+          </marker>
+        </defs>
+        {squares.map(({ x, y }) => (
+          <rect x={x} y={y} width="1" height="1" class={(x + y) % 2 ? 'dark' : 'light'} />
+        ))}
+        {pieces.map(({ x, y, key }) => (
+          <image href={images[key]} x={x} y={y} width="1" height="1" />
+        ))}
+        <polyline points={line(HERO.move.slice(0, 2), HERO.move.slice(2))} class="arrow move" marker-end="url(#head-move)" />
+        {HERO.attacked.map((square) => {
+          const [x, y] = squareCenter(square, 'white');
+          return <circle cx={x} cy={y} r="0.46" class="attacked" />;
+        })}
+      </svg>
+      <figcaption>
+        <p>One knight move attacks the king and the rook together. Before every move, you will learn to look for moves like this, for both sides.</p>
+        {blunderCheck && (
+          <p>
+            <a href={lessonHref(blunderCheck)}>Try the blunder check</a>
+          </p>
+        )}
+      </figcaption>
+    </figure>
   </section>
 
   <div class="wrap">
     <NextFocus />
   </div>
 
-  <section class="wrap two">
-    <div class="card">
-      <p class="label">Chess · now</p>
-      <h2>Think when you can see everything.</h2>
-      <p>From setting up the board to confident full games, one idea per lesson.</p>
-      <a href="/chess/">Chess lessons</a>
-    </div>
-    <div class="card felt">
-      <p class="label">Poker · next</p>
-      <h2>Decide when you can't.</h2>
-      <p>The maths and the choices, from zero, with practice points that are free and never for sale.</p>
-    </div>
+  <section class="wrap map" id="skills" aria-labelledby="skills-title">
+    <h2 id="skills-title">What you will get better at</h2>
+    <p class="intro">
+      Playing games alone does little for general thinking. Skills carry over when they are named, practised and tried outside the game, so every lesson ends
+      with where its idea turns up in ordinary life. The dots show how much each game trains a skill: filled where you can train it today, open where it is
+      coming.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Skill, and where it pays off</th>
+          <th scope="col">Chess</th>
+          <th scope="col">Poker</th>
+          <th scope="col">Also in</th>
+          <th scope="col">
+            <span class="sr-only">Where to train it</span>
+          </th>
+        </tr>
+      </thead>
+      {groups.map((group) => (
+        <tbody>
+          <tr class="group">
+            <th scope="colgroup" colspan="5">
+              {group.title}
+            </th>
+          </tr>
+          {group.tracks.map((track) => (
+            <tr data-track={track.id}>
+              <th scope="row">
+                <span class="name">{track.name}</span>
+                <span class="life">{track.inLife}</span>
+              </th>
+              {(['chess', 'poker'] as const).map((game) => (
+                <td class="dots" data-game={game === 'chess' ? 'Chess' : 'Poker'}>
+                  <span class:list={['meter', game === 'chess' ? 'now' : 'soon']} aria-hidden="true">
+                    {[1, 2, 3].map((n) => (
+                      <span class:list={{ on: track[game] >= n }} />
+                    ))}
+                  </span>
+                  <span class="sr-only">
+                    {strength[track[game]]}
+                    {track[game] > 0 && (game === 'chess' ? ', available now' : ', coming next')}
+                  </span>
+                </td>
+              ))}
+              <td class="also" data-game="Also in">
+                {track.also || '–'}
+              </td>
+              <td class="go">{track.chess > 0 ? <a href={`/skills/#${track.id}`}>Train it</a> : <span>With {track.comesWith}</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      ))}
+    </table>
   </section>
 
-  <section class="wrap">
-    <h2>The skills you train</h2>
-    <ul class="skills">
-      {Object.values(SKILLS).map((name) => (
-        <li>{name}</li>
-      ))}
-    </ul>
+  <section class="wrap steps" aria-labelledby="steps-title">
+    <h2 id="steps-title">How a skill is trained</h2>
+    <ol>
+      <li>
+        <h3>
+          <a href="/chess/">Learn the idea</a>
+        </h3>
+        <p>One idea per lesson, tried on a real board, with hints when you are stuck.</p>
+      </li>
+      <li>
+        <h3>
+          <a href="/chess/drills/">Practise it in new positions</a>
+        </h3>
+        <p>Drills and fresh positions, so you recognise the idea, not one answer.</p>
+      </li>
+      <li>
+        <h3>
+          <a href="/review/">Bring it back</a>
+        </h3>
+        <p>Each idea returns for review just before you would forget it.</p>
+      </li>
+      <li>
+        <h3>
+          <a href="/progress/">Watch it settle</a>
+        </h3>
+        <p>Your skill profile, measured from your own answers and kept on this device.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap games" aria-labelledby="games-title">
+    <h2 id="games-title">Pick a game</h2>
+    <div class="game chess">
+      <h3>Chess</h3>
+      <p class="line">Think when you can see everything.</p>
+      <p>
+        From setting up the board to confident full games, with strategy lessons between the chess ones. Thinking ahead, calculating and planning, against the
+        computer.
+      </p>
+      <a class="button primary" href="/chess/">
+        Open the chess lessons
+      </a>
+    </div>
+    <div class="game poker">
+      <h3>Poker, next</h3>
+      <p class="line">Decide when you can't.</p>
+      <p>Odds, risk and reading what you cannot see, from zero. Practice points are free and can never be bought or cashed out.</p>
+    </div>
+    <div class="game labs">
+      <h3>Game-theory labs, later</h3>
+      <p class="line">Five-minute games with one big idea each.</p>
+      <p>When to trust, why being predictable costs you, and how winners of auctions overpay.</p>
+    </div>
   </section>
 </Base>
 
 <style>
   .hero {
-    padding-block: 24px 40px;
+    display: grid;
+    gap: 32px 56px;
+    align-items: center;
+    padding-block: 32px 48px;
   }
-  .kicker {
-    color: var(--accent-text);
+  @media (min-width: 780px) {
+    .hero {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      padding-block: 56px 72px;
+    }
   }
   h1 {
-    font-size: clamp(2.4rem, 6vw, 3.5rem);
-    line-height: 1.05;
+    font-size: clamp(2.4rem, 5.6vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
   }
   .lead {
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.55;
     color: var(--ink-2);
   }
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 24px;
+    margin-top: 28px;
   }
-  .two {
+  .terms {
+    margin-top: 16px;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+
+  .hero-board {
+    margin: 0;
+    justify-self: center;
+    width: min(100%, 420px);
+  }
+  .hero-board svg {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  .light {
+    fill: var(--sq-light);
+  }
+  .dark {
+    fill: var(--sq-dark);
+  }
+  .arrow {
+    fill: none;
+    stroke-width: 0.15;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .move {
+    stroke: var(--primary);
+  }
+  .attacked {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 0.08;
+  }
+  .head-move {
+    fill: var(--primary);
+  }
+  figcaption {
+    margin-top: 14px;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  figcaption p {
+    margin: 0 0 4px;
+  }
+  figcaption a {
+    font-weight: 600;
+  }
+
+  section + section,
+  .map {
+    margin-top: 56px;
+  }
+  .intro {
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    padding: 0 12px 10px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .group th {
+    text-align: left;
+    padding: 28px 0 8px;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  tbody tr[data-track] > * {
+    padding: 14px 12px 14px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+    text-align: left;
+    font-weight: 400;
+  }
+  .name {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+  }
+  .life {
+    display: block;
+    margin-top: 2px;
+    color: var(--ink-2);
+  }
+  .meter {
+    display: inline-flex;
+    gap: 5px;
+  }
+  .meter span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+  .now .on {
+    background: var(--felt-2);
+  }
+  .soon .on {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--ink-2);
+  }
+  .also {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .go {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .go span {
+    color: var(--ink-2);
+    font-weight: 400;
+    white-space: normal;
+  }
+  @media (max-width: 720px) {
+    thead {
+      display: none;
+    }
+    table,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+    tbody tr[data-track] {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 6px 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    tbody tr[data-track] > * {
+      padding: 0;
+      border: 0;
+    }
+    tbody tr[data-track] > th,
+    .also,
+    .go {
+      grid-column: 1 / -1;
+    }
+    td[data-game]::before {
+      content: attr(data-game) ' ';
+      color: var(--ink-2);
+      font-size: 0.85rem;
+      margin-right: 6px;
+    }
+  }
+
+  .steps ol {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    margin-bottom: 48px;
+    gap: 24px 32px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    counter-reset: step;
   }
-  .felt {
+  .steps li {
+    counter-increment: step;
+    border-top: 2px solid var(--ink);
+    padding-top: 14px;
+  }
+  .steps li::before {
+    content: counter(step);
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--felt-2);
+  }
+  .steps h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  .steps p {
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  .games {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    margin-bottom: 24px;
+  }
+  .games h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+  .game {
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .game h3 {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  .game .line {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .chess {
+    grid-column: 1 / -1;
+    background: var(--card);
+    border: 1px solid var(--rule);
+  }
+  @media (min-width: 780px) {
+    .chess {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+  .chess p:not(.line) {
+    color: var(--ink-2);
+    margin-bottom: 20px;
+  }
+  .poker {
     background: var(--felt);
-    border-color: var(--felt);
     color: var(--on-felt);
   }
-  .felt .label,
-  .felt p {
+  .poker p:not(.line) {
     color: var(--on-felt-2);
   }
-  .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0;
-    list-style: none;
+  .labs {
+    border: 1px dashed var(--rule-strong);
   }
-  .skills li {
-    padding: 6px 14px;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: var(--card);
+  .labs p:not(.line) {
+    color: var(--ink-2);
   }
 </style>
