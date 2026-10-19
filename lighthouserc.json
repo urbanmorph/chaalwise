@@ -12,7 +12,7 @@
         "http://localhost/reference/",
         "http://localhost/reference/chess/kings-indian-defence/"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": {
         "formFactor": "mobile",
         "throttlingMethod": "simulate"
@@ -23,19 +23,22 @@
         "categories:performance": [
           "error",
           {
-            "minScore": 0.95
+            "minScore": 0.95,
+            "aggregationMethod": "median"
           }
         ],
         "categories:accessibility": [
           "error",
           {
-            "minScore": 0.95
+            "minScore": 0.95,
+            "aggregationMethod": "median"
           }
         ],
         "categories:best-practices": [
           "warn",
           {
-            "minScore": 0.9
+            "minScore": 0.9,
+            "aggregationMethod": "median"
           }
         ]
       }
