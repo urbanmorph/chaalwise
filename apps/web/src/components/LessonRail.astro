@@ -1,0 +1,87 @@
+---
+import { lessonHref, lessonPath, STAGES } from '../lib/lessons';
+
+/** The whole path beside a lesson, for quick access: every stage, strategy lessons in place, this lesson marked. */
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+const path = await lessonPath();
+const stages = [...new Set(path.map((l) => l.data.stage))];
+---
+
+<nav class="rail" aria-label="All lessons">
+  {stages.map((stage) => (
+    <section>
+      <p class="label">
+        Stage {stage} · {STAGES[stage]}
+      </p>
+      <ol>
+        {path
+          .filter((l) => l.data.stage === stage)
+          .map((l) => (
+            <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
+              <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
+                {l.data.title}
+              </a>
+            </li>
+          ))}
+      </ol>
+    </section>
+  ))}
+</nav>
+
+<script>
+  import { markDone } from '../scripts/mark-done';
+
+  markDone().catch(console.error);
+</script>
+
+<style>
+  .rail section + section {
+    margin-top: 16px;
+  }
+  .label {
+    margin: 0 0 6px;
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 2px;
+  }
+  li a {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 6px 8px 6px 10px;
+    border-left: 2px solid var(--rule);
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+  li a:hover {
+    color: var(--ink);
+    background: var(--tint);
+  }
+  li.strategy a {
+    padding-left: 22px;
+    font-style: italic;
+  }
+  /* A finished lesson gets a tick; drawn in CSS so screen readers hear only the title and "done". */
+  li.done a::after {
+    content: '✓';
+    margin-left: auto;
+    color: var(--pass);
+    font-style: normal;
+  }
+  li a[aria-current='page'] {
+    border-left-color: var(--accent);
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--tint);
+  }
+</style>
