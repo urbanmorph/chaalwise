@@ -2,7 +2,9 @@
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
   import { onDestroy, onMount, tick } from 'svelte';
   import { EMPTY_BOARD } from '../lib/chess';
+  import { logAttempt } from '../lib/attempts';
   import { coordinateHint, randomSquare } from '../lib/drills';
+  import { DRILL_SKILL } from '../lib/profile-skills';
   import Board, { type Mark } from './Board.svelte';
   import DrillScore from './DrillScore.svelte';
 
@@ -12,6 +14,8 @@
   let { mode = 'find' }: { mode?: 'find' | 'name' } = $props();
 
   let typed = $state('');
+  /** Whether the current target has had a wrong answer, for the skill profile. */
+  let missedThis = false;
   let orientation = $state<'white' | 'black'>('white');
   let target = $state<string>();
   let score = $state(0);
@@ -34,6 +38,7 @@
   onDestroy(() => clearInterval(timer));
 
   async function start() {
+    missedThis = false;
     score = 0;
     left = SECONDS;
     finished = false;
@@ -86,16 +91,21 @@
   function answer(square: string) {
     if (!target) return;
     if (square === target) {
+      logAttempt(DRILL_SKILL.coordinates, missedThis ? 'with-help' : 'first-try', 'drill');
+      missedThis = false;
       score++;
       hint = '';
       marks = [{ orig: square, brush: 'green' }];
       target = randomSquare(Math.random, target);
-    } else if (mode === 'name') {
-      // Directions from the wrong name, without saying the right one.
-      hint = coordinateHint(target, square, orientation).replace(target, 'The highlighted square');
     } else {
-      hint = coordinateHint(target, square, orientation);
-      marks = [{ orig: square, brush: 'red' }];
+      missedThis = true;
+      if (mode === 'name') {
+        // Directions from the wrong name, without saying the right one.
+        hint = coordinateHint(target, square, orientation).replace(target, 'The highlighted square');
+      } else {
+        hint = coordinateHint(target, square, orientation);
+        marks = [{ orig: square, brush: 'red' }];
+      }
     }
   }
 </script>

@@ -49,11 +49,17 @@ export const STAGES: Record<number, string> = {
   7: 'Full game',
 };
 
+/** A lesson's steps, each knowing the profile skill its answers count towards (its own, or the lesson's). */
+export const stepsWithSkills = (lesson: LessonEntry) =>
+  lesson.data.steps.map((step) =>
+    step.kind === 'read' ? step : { ...step, measures: step.measures ?? lesson.data.measures },
+  );
+
 /** Every review question the site has, keyed by card id (`<lessonId>/<stepId>`). */
 export async function reviewSteps(): Promise<Record<string, GradedStep>> {
   const steps: Record<string, GradedStep> = {};
   for (const lesson of await lessonPath()) {
-    for (const step of lesson.data.steps) {
+    for (const step of stepsWithSkills(lesson)) {
       if (step.kind !== 'read') steps[`${lesson.id}/${step.id}`] = step;
     }
   }

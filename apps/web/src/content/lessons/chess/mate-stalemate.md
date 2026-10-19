@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 11
 skills: [think-ahead]
+measures: board
 steps:
   - kind: choice
     id: is-it-mate
@@ -39,6 +40,7 @@ steps:
     explanation: Without enough material to mate, the game is drawn. A draw also comes from the same position three times, or from agreeing one.
   - kind: move
     id: mate-in-one
+    measures: patterns
     prompt: Give checkmate in one move.
     position: k7/8/1K6/8/8/8/7Q/8 w - - 0 1
     answers: [h2h8]

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
   import { onMount, tick } from 'svelte';
+  import { logAttempt } from '../lib/attempts';
   import { turnOf } from '../lib/chess';
+  import { DRILL_SKILL } from '../lib/profile-skills';
   import Board, { type Mark } from './Board.svelte';
   import DrillScore from './DrillScore.svelte';
 
@@ -76,6 +78,7 @@
 
   async function next() {
     if (!wrong.length && !revealed) clean++;
+    logAttempt(DRILL_SKILL[kind], revealed ? 'missed' : wrong.length ? 'with-help' : 'first-try', 'drill');
     index++;
     if (index < ROUND) return nextPosition();
     item = undefined;

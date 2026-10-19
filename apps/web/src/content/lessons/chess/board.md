@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 2
 skills: []
+measures: board
 steps:
   - kind: choice
     id: light-on-right

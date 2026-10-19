@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 10
 skills: [think-ahead]
+measures: board
 steps:
   - kind: read
     id: three-ways

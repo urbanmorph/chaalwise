@@ -5,6 +5,7 @@ game: chess
 stage: 1
 order: 6
 skills: [think-ahead, calculate]
+measures: safety
 steps:
   - kind: read
     id: the-question

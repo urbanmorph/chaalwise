@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 4
 skills: []
+measures: board
 steps:
   - kind: read
     id: queen-lines

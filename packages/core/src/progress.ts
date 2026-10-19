@@ -31,13 +31,22 @@ export interface DrillRecord {
   lastAt: Date;
 }
 
+/** A graded answer: which skill it shows, how it went, when, and where (a lesson, review, practice or drill). */
+export interface AttemptRecord {
+  skill: string;
+  outcome: Outcome;
+  at: Date;
+  source: 'lesson' | 'review' | 'practice' | 'drill';
+}
+
 interface ProgressDB extends DBSchema {
   lessons: { key: string; value: LessonRecord };
   cards: { key: string; value: CardRecord };
   drills: { key: string; value: DrillRecord };
+  attempts: { key: number; value: AttemptRecord };
 }
 
-const STORES = ['lessons', 'cards', 'drills'] as const;
+const STORES = ['lessons', 'cards', 'drills', 'attempts'] as const;
 
 export type { ProgressExport };
 
@@ -51,13 +60,14 @@ export type ProgressStore = Awaited<ReturnType<typeof openProgress>>;
 
 export async function openProgress(name = 'chaalwise') {
   // Each version only adds stores, so a device on any older version upgrades without losing anything.
-  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 2, {
+  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 3, {
     upgrade(db, oldVersion) {
       if (oldVersion < 1) {
         db.createObjectStore('lessons', { keyPath: 'lessonId' });
         db.createObjectStore('cards', { keyPath: 'id' });
       }
       if (oldVersion < 2) db.createObjectStore('drills', { keyPath: 'drillId' });
+      if (oldVersion < 3) db.createObjectStore('attempts', { autoIncrement: true });
     },
     // A newer version of the app, open in another tab, needs to upgrade: get out of its way.
     blocking() {
@@ -117,6 +127,17 @@ export async function openProgress(name = 'chaalwise') {
       await tx.done;
     },
 
+    /** One graded answer, for the skill profile. */
+    async recordAttempt(attempt: AttemptRecord) {
+      await db.add('attempts', attempt);
+    },
+
+    async attemptsBySkill(): Promise<Record<string, AttemptRecord[]>> {
+      const bySkill: Record<string, AttemptRecord[]> = {};
+      for (const attempt of await db.getAll('attempts')) (bySkill[attempt.skill] ??= []).push(attempt);
+      return bySkill;
+    },
+
     async drills(): Promise<Record<string, Omit<DrillRecord, 'drillId'>>> {
       return Object.fromEntries((await db.getAll('drills')).map(({ drillId, ...rest }) => [drillId, rest]));
     },
@@ -129,6 +150,7 @@ export async function openProgress(name = 'chaalwise') {
         lessons: await db.getAll('lessons'),
         cards: await db.getAll('cards'),
         drills: await db.getAll('drills'),
+        attempts: await db.getAll('attempts'),
       };
     },
 
@@ -145,6 +167,7 @@ export async function openProgress(name = 'chaalwise') {
         ...parsed.lessons.map((l) => tx.objectStore('lessons').put(l)),
         ...parsed.cards.map((c) => tx.objectStore('cards').put(c)),
         ...parsed.drills.map((d) => tx.objectStore('drills').put(d)),
+        ...parsed.attempts.map((a) => tx.objectStore('attempts').add(a)),
         tx.done,
       ]);
     },

@@ -5,6 +5,7 @@ game: chess
 stage: 2
 order: 2
 skills: [think-ahead]
+measures: patterns
 steps:
   - kind: move
     id: rook-mates

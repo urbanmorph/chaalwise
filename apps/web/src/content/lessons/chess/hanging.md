@@ -5,6 +5,7 @@ game: chess
 stage: 1
 order: 1
 skills: [think-ahead]
+measures: safety
 steps:
   - kind: read
     id: what-hanging-means

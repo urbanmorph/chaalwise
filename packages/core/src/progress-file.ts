@@ -18,6 +18,11 @@ export const exportSchema = z.object({
     }),
   ),
   // Added in October 2026; files exported before then have none.
+  attempts: z
+    .array(
+      z.object({ skill: z.string(), outcome, at: date, source: z.enum(['lesson', 'review', 'practice', 'drill']) }),
+    )
+    .default([]),
   drills: z
     .array(
       z.object({

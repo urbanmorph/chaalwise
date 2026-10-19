@@ -1,6 +1,6 @@
 ---
 import { render } from 'astro:content';
-import { lessonHref, pathContext, type LessonEntry } from '../lib/lessons';
+import { lessonHref, pathContext, stepsWithSkills, type LessonEntry } from '../lib/lessons';
 import LessonPage from './LessonPage.svelte';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
@@ -19,7 +19,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
 <div class="intro">
   <Content />
 </div>
-<LessonPage client:load lesson={{ steps: lesson.data.steps }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
+<LessonPage client:load lesson={{ steps: stepsWithSkills(lesson) }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
 
 <script>
   import { openProgress } from '@chaalwise/core/progress';

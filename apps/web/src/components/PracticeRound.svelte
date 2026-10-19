@@ -3,6 +3,7 @@
   import type { Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
   import type { Snippet } from 'svelte';
+  import { logAttempt } from '../lib/attempts';
   import LessonPlayer from './LessonPlayer.svelte';
   import SaveStatus, { type SaveState } from './SaveStatus.svelte';
   import { summarise } from './outcomes';
@@ -14,14 +15,16 @@
    */
   interface Props {
     items: { cardId: string; step: GradedStep }[];
+    /** Where the answers come from, for the skill profile. */
+    source: 'review' | 'practice';
     after: Snippet;
   }
 
-  let { items, after }: Props = $props();
+  let { items, source, after }: Props = $props();
 
   // Step ids must be unique within a round; the card id is kept alongside.
   const round = $derived({ steps: items.map((item, i) => ({ ...item.step, id: `item-${i}` })) });
-  const cardFor = (stepId: string) => items[Number(stepId.slice(5))]!.cardId;
+  const itemFor = (stepId: string) => items[Number(stepId.slice(5))]!;
 
   let saved = $state<SaveState>('saving');
   let unsaved: [string, Outcome][] = [];
@@ -30,13 +33,14 @@
   async function save(grades: [string, Outcome][]) {
     const progress = await openProgress();
     try {
-      for (const [stepId, outcome] of grades) await progress.recordReview(cardFor(stepId), outcome, new Date());
+      for (const [stepId, outcome] of grades) await progress.recordReview(itemFor(stepId).cardId, outcome, new Date());
     } finally {
       progress.close();
     }
   }
 
   function onstep(stepId: string, outcome: Outcome) {
+    logAttempt(itemFor(stepId).step.measures, outcome, source);
     saving = saving.then(() =>
       save([[stepId, outcome]]).catch((error) => {
         console.error(error);

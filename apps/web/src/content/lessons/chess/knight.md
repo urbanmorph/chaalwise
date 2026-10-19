@@ -5,6 +5,7 @@ game: chess
 stage: 0
 order: 5
 skills: []
+measures: board
 steps:
   - kind: read
     id: knight-squares

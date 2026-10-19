@@ -3,6 +3,8 @@
   import { onMount, tick } from 'svelte';
   import { turnOf } from '../lib/chess';
   import type { SafetyItem } from '../lib/lessons';
+  import { logAttempt } from '../lib/attempts';
+  import { DRILL_SKILL } from '../lib/profile-skills';
   import { shuffle } from '../lib/random';
   import Board from './Board.svelte';
   import DrillScore from './DrillScore.svelte';
@@ -36,6 +38,7 @@
   async function answer(safe: boolean) {
     answered = safe === item!.safe;
     if (answered) score++;
+    logAttempt(DRILL_SKILL.safety, answered ? 'first-try' : 'missed', 'drill');
     await tick();
     nextButton?.focus();
   }

@@ -2,6 +2,8 @@
   import type { GradedStep } from '@chaalwise/core/lesson';
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
+  import { logAttempt } from '../lib/attempts';
+  import { DRILL_SKILL } from '../lib/profile-skills';
   import DrillScore from './DrillScore.svelte';
   import PlayOut from './PlayOut.svelte';
 
@@ -30,6 +32,7 @@
   async function onresult(won: boolean, used: number) {
     if (!step) return;
     const spare = won ? step.within - used : 0;
+    logAttempt(DRILL_SKILL.mate, won ? 'first-try' : 'missed', 'drill');
     result = won ? `Mate in ${used} moves, with ${spare} to spare.` : 'No mate this time.';
     const progress = await openProgress();
     await progress.recordDrill(drillId, spare, new Date());

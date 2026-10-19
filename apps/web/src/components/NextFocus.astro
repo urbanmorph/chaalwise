@@ -1,0 +1,49 @@
+---
+/** "Next focus" on the home page, filled in from this device's profile. Plain script, so the home page stays light. */
+---
+
+<section class="card next-focus" data-testid="home-next-focus" hidden>
+  <p class="label">Your next focus</p>
+  <h2></h2>
+  <p class="means"></p>
+  <a class="button primary" href="/progress/"></a>
+</section>
+
+<script>
+  import { openProgress } from '@chaalwise/core/progress';
+  import { buildProfile } from '../lib/profile';
+
+  const card = document.querySelector<HTMLElement>('.next-focus');
+  openProgress()
+    .then(async (progress) => {
+      const attempts = await progress.attemptsBySkill();
+      progress.close();
+      // Only once the learner has started: a new visitor sees the first lesson instead.
+      if (!card || !Object.keys(attempts).length) return;
+      const { focus } = buildProfile(attempts);
+      if (!focus) return;
+      card.querySelector('h2')!.textContent = focus.skill.name;
+      card.querySelector('.means')!.textContent = `${focus.skill.means} ${focus.assessment.level === 'not-started' ? '' : focus.assessment.reason}`.trim();
+      const link = card.querySelector('a')!;
+      link.href = focus.skill.practise.href;
+      link.textContent = `Practise: ${focus.skill.practise.label}`;
+      card.hidden = false;
+    })
+    .catch(console.error);
+</script>
+
+<style>
+  .next-focus {
+    border-left: 4px solid var(--accent);
+    margin-top: 28px;
+  }
+  .next-focus[hidden] {
+    display: none;
+  }
+  .next-focus h2 {
+    margin-bottom: 6px;
+  }
+  .means {
+    color: var(--ink-2);
+  }
+</style>

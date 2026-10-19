@@ -5,12 +5,14 @@ game: chess
 stage: 1
 order: 4
 skills: [think-ahead]
+measures: safety
 steps:
   - kind: read
     id: the-habit
     text: Before every move, look at checks, captures and threats. First theirs, asking what their last move does, then yours.
   - kind: choice
     id: last-move
+    measures: anticipation
     prompt: Black's knight has just landed on c3. What does it attack?
     position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
     options:
@@ -29,6 +31,7 @@ steps:
     explanation: Your pawn takes the knight for free. When something attacks you, look for a way to take it before you run.
   - kind: move
     id: checks-first
+    measures: patterns
     prompt: Look at your checks first. Find the move that wins.
     position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
     answers: [d1d8]
