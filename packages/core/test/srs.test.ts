@@ -17,8 +17,7 @@ describe('spaced repetition', () => {
   });
 
   it('brings a missed card back sooner than one that needed help, and that sooner than a first try', () => {
-    const due = (outcome: Parameters<typeof schedule>[1]) =>
-      schedule(newCard(now), outcome, now).due.getTime();
+    const due = (outcome: Parameters<typeof schedule>[1]) => schedule(newCard(now), outcome, now).due.getTime();
     expect(due('missed')).toBeLessThan(due('with-help'));
     expect(due('with-help')).toBeLessThan(due('first-try'));
   });

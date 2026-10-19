@@ -1,6 +1,7 @@
 import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it } from 'vitest';
-import { openProgress, type ProgressStore } from '../src/progress';
+import { openDB } from 'idb';
+import { isNewerVersionOpen, openProgress, type ProgressStore } from '../src/progress';
 
 const now = new Date('2026-10-18T09:00:00Z');
 const later = new Date('2026-11-30T09:00:00Z');
@@ -53,5 +54,67 @@ describe('on-device progress', () => {
     await store.recordLesson('chess/board', { corner: 'first-try' }, now);
     await expect(store.importData({ app: 'something-else' })).rejects.toThrow();
     expect(await store.completedLessons()).toEqual(new Set(['chess/board']));
+  });
+});
+
+describe('drill scores', () => {
+  it('keeps the best and latest score of each drill, and when it was last done', async () => {
+    await fresh();
+    await store.recordDrill('coordinates', 12, now);
+    await store.recordDrill('coordinates', 9, later);
+    expect(await store.drills()).toEqual({
+      coordinates: { best: 12, last: 9, times: 2, lastAt: later },
+    });
+  });
+
+  it('carries drill scores through an export', async () => {
+    await fresh();
+    await store.recordDrill('safety', 7, now);
+    const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
+    const other = await openProgress(`test-${++n}`);
+    await other.importData(exported);
+    expect((await other.drills()).safety?.best).toBe(7);
+    other.close();
+  });
+
+  it('still reads an export made before drills existed', async () => {
+    await fresh();
+    const old = { app: 'chaalwise', version: 1, exportedAt: now.toISOString(), lessons: [], cards: [] };
+    await store.importData(old);
+    expect(await store.drills()).toEqual({});
+  });
+
+  it('upgrades a device that has version 1 progress without losing it', async () => {
+    const name = `test-${++n}`;
+    const v1 = await openDB(name, 1, {
+      upgrade(db) {
+        db.createObjectStore('lessons', { keyPath: 'lessonId' });
+        db.createObjectStore('cards', { keyPath: 'id' });
+      },
+    });
+    await v1.put('lessons', { lessonId: 'chess/board', completedAt: now, times: 1, outcomes: {} });
+    v1.close();
+    store = await openProgress(name);
+    expect(await store.completedLessons()).toEqual(new Set(['chess/board']));
+    await store.recordDrill('coordinates', 5, now);
+    expect((await store.drills()).coordinates?.best).toBe(5);
+  });
+});
+
+describe('more than one version open at once', () => {
+  it('says plainly when a newer version of the app has upgraded the database', async () => {
+    const name = `test-${++n}`;
+    (await openDB(name, 99)).close();
+    const error = await openProgress(name).catch((e: unknown) => e);
+    expect(isNewerVersionOpen(error)).toBe(true);
+    expect(isNewerVersionOpen(new Error('disk full'))).toBe(false);
+  });
+
+  it('steps aside when a newer version needs to upgrade, instead of blocking it', async () => {
+    const name = `test-${++n}`;
+    store = await openProgress(name);
+    const newer = await openDB(name, 99);
+    expect(newer.version).toBe(99);
+    newer.close();
   });
 });

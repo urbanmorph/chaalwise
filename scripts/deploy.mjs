@@ -10,9 +10,7 @@ const KEYS = ['CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN'];
 const file = existsSync('.env') ? parseEnv(readFileSync('.env', 'utf8')) : {};
 const missing = KEYS.filter((k) => !file[k]?.trim());
 if (missing.length) {
-  console.error(
-    `Not deploying: ${missing.join(' and ')} must be set in .env (UrbanMorph account).`,
-  );
+  console.error(`Not deploying: ${missing.join(' and ')} must be set in .env (UrbanMorph account).`);
   process.exit(1);
 }
 
@@ -27,13 +25,9 @@ if (!worker.startsWith('self.__PRECACHE__=') && !args.includes('--tombstone')) {
 
 const env = { ...process.env };
 for (const k of KEYS) env[k] = file[k].trim();
-const result = spawnSync(
-  'pnpm',
-  ['exec', 'wrangler', 'deploy', ...args.filter((a) => a !== '--tombstone')],
-  {
-    cwd: 'apps/web',
-    env,
-    stdio: 'inherit',
-  },
-);
+const result = spawnSync('pnpm', ['exec', 'wrangler', 'deploy', ...args.filter((a) => a !== '--tombstone')], {
+  cwd: 'apps/web',
+  env,
+  stdio: 'inherit',
+});
 process.exit(result.status ?? 1);

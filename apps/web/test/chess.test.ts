@@ -2,12 +2,16 @@ import { describe, expect, it } from 'vitest';
 import type { Lesson } from '@chaalwise/core/lesson';
 import {
   chessLessonIssues,
+  EMPTY_BOARD,
   legalDests,
   parseMoveText,
+  positionFromMoves,
   playUci,
   START,
+  toFen,
   toSan,
   toUci,
+  turnOf,
 } from '../src/lib/chess';
 
 const lesson = (steps: Lesson['steps']): Lesson => ({
@@ -63,6 +67,80 @@ describe('chess lesson checks', () => {
   });
 });
 
+describe('chess checks for square and play steps', () => {
+  const play = (position: string, within = 10) =>
+    lesson([
+      {
+        kind: 'play',
+        id: 'p',
+        prompt: 'p',
+        explanation: 'e',
+        position,
+        goal: 'checkmate',
+        within,
+        opponent: 'lone-king',
+      },
+    ]);
+
+  it('accepts a basic mate against a lone king', () => {
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/4KQ2 w - - 0 1'))).toEqual([]);
+  });
+
+  it('rejects a play step where the computer has more than its king', () => {
+    expect(chessLessonIssues(play('8/8/8/4k3/4p3/8/8/4KQ2 w - - 0 1'))[0]?.message).toMatch(/lone king/);
+  });
+
+  it('rejects a play step where it is the lone king to move', () => {
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/4KQ2 b - - 0 1'))[0]?.message).toMatch(/learner to move/);
+  });
+
+  it('rejects a move limit below the known worst case (10 moves with a queen, 16 with a rook)', () => {
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/4KQ2 w - - 0 1', 9))[0]?.message).toMatch(/at least 10/);
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/4KR2 w - - 0 1', 16))).toEqual([]);
+  });
+
+  it('rejects material that cannot mate, and endings with no known move limit', () => {
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/4KN2 w - - 0 1'))[0]?.message).toMatch(/cannot mate/);
+    expect(chessLessonIssues(play('8/8/8/4k3/8/8/8/2B1KB2 w - - 0 1', 30))[0]?.message).toMatch(
+      /no known move limit for KBBvK/,
+    );
+  });
+
+  it('checks the position of a square step', () => {
+    const l = lesson([
+      { kind: 'square', id: 's', prompt: 'p', explanation: 'e', answers: ['e4'], position: 'nonsense' },
+    ]);
+    expect(chessLessonIssues(l)).toHaveLength(1);
+  });
+});
+
+describe('positions written as moves', () => {
+  it('plays standard notation from the start to a position', () => {
+    expect(positionFromMoves('e4 e5 Nf3')).toBe('rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+  });
+
+  it('lets a lesson write its position as moves from the start', () => {
+    expect(toFen('moves: e4 e5 Nf3')).toBe(positionFromMoves('e4 e5 Nf3'));
+    expect(chessLessonIssues(move('moves: e4 e5', ['g1f3']))).toEqual([]);
+    expect(chessLessonIssues(move('moves: e4 e5 e5', ['g1f3']))[0]?.message).toMatch(/move 3/);
+  });
+
+  it('names the move that is not legal', () => {
+    expect(() => positionFromMoves('e4 e5 Ke3')).toThrow(/move 3, Ke3/);
+  });
+});
+
+describe('small board helpers', () => {
+  it('reads the side to move from a position', () => {
+    expect(turnOf(START)).toBe('white');
+    expect(turnOf('4k3/8/8/8/8/8/8/4K3 b - - 0 1')).toBe('black');
+  });
+
+  it('has an empty board for square steps', () => {
+    expect(EMPTY_BOARD.split(' ')[0]).toBe('8/8/8/8/8/8/8/8');
+  });
+});
+
 describe('board helpers', () => {
   it('lists legal destinations for the side to move', () => {
     const dests = legalDests(START);
@@ -71,9 +149,7 @@ describe('board helpers', () => {
   });
 
   it('plays a move and returns the new position', () => {
-    expect(playUci(START, 'e2e4')).toBe(
-      'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
-    );
+    expect(playUci(START, 'e2e4')).toBe('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1');
   });
 
   it('turns a board drag into a move, standard castling and auto-queen included', () => {

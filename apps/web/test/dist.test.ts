@@ -5,8 +5,7 @@ import { isHashedAsset } from '../src/sw/rules';
 
 /** These tests read the built site, not the source. Run `pnpm build` first. */
 const DIST = new URL('../dist/', import.meta.url).pathname;
-if (!existsSync(join(DIST, 'index.html')))
-  throw new Error('No build found: run `pnpm build` first.');
+if (!existsSync(join(DIST, 'index.html'))) throw new Error('No build found: run `pnpm build` first.');
 
 const files = (dir: string): string[] =>
   readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -24,9 +23,7 @@ const precache = (): { version: string; pages: string[]; assets: string[] } => {
 
 describe('the offline worker', () => {
   it('precaches every page, by the URL a learner visits', () => {
-    const urls = htmlFiles
-      .filter((f) => f.endsWith('index.html'))
-      .map((f) => f.replace(/index\.html$/, ''));
+    const urls = htmlFiles.filter((f) => f.endsWith('index.html')).map((f) => f.replace(/index\.html$/, ''));
     expect(precache().pages.sort()).toEqual(urls.sort());
   });
 
@@ -56,18 +53,16 @@ describe('response headers', () => {
     expect(headers).toMatch(/^\/sw\.js\n\s+Cache-Control: no-cache$/m);
   });
   it('lets browsers keep hashed build files forever', () => {
-    expect(headers).toMatch(
-      /^\/_astro\/\*\n\s+Cache-Control: public, max-age=31536000, immutable$/m,
-    );
+    expect(headers).toMatch(/^\/_astro\/\*\n\s+Cache-Control: public, max-age=31536000, immutable$/m);
   });
 });
 
 describe.each(htmlFiles)('%s', (page) => {
   const html = read(page);
-  it('loads nothing from other sites (fonts are self-hosted)', () => {
+  it('loads nothing from other sites, and links only to known ones', () => {
     const external = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)]
       .map((m) => m[1]!)
-      .filter((url) => !/^https:\/\/(github\.com|lichess\.org|www\.urbanmorph\.com)\//.test(url));
+      .filter((url) => !/^https:\/\/(github\.com|lichess\.org|www\.urbanmorph\.com|pdgi\.org)\//.test(url));
     expect(external).toEqual([]);
     expect(html).not.toMatch(/<link[^>]+href="https?:/);
   });
@@ -76,18 +71,17 @@ describe.each(htmlFiles)('%s', (page) => {
     expect(text.match(/[\w.,;:]<a\s[^>]*>[^<]*/g) ?? []).toEqual([]);
     expect(text.match(/<\/a>[\w(]/g) ?? []).toEqual([]);
   });
+  it('downloads no fonts: the family uses the system sans and mono', () => {
+    expect(html).not.toMatch(/\.woff2/);
+  });
   it('says "points", never "chips"', () => {
     expect(html).not.toMatch(/\bchips?\b/i);
   });
   it('has a language, a skip link and the theme colours for both themes', () => {
     expect(html).toMatch(/<html lang="en"/);
     expect(html).toMatch(/<a [^>]*href="#main"[^>]*>Skip to content/);
-    expect(html).toMatch(
-      /<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: light\)"/i,
-    );
-    expect(html).toMatch(
-      /<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: dark\)"/i,
-    );
+    expect(html).toMatch(/<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: light\)"/i);
+    expect(html).toMatch(/<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: dark\)"/i);
   });
 });
 

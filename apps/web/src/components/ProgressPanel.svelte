@@ -43,9 +43,7 @@
     const progress = await openProgress();
     const data = await progress.exportData(new Date());
     progress.close();
-    const url = URL.createObjectURL(
-      new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }),
-    );
+    const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
     const link = Object.assign(document.createElement('a'), {
       href: url,
       download: `chaalwise-progress-${new Date().toISOString().slice(0, 10)}.json`,
@@ -112,8 +110,8 @@
     </dl>
     {#if !persisted}
       <p>
-        Your browser may clear this progress if you do not visit for a while (Safari does after
-        seven days). Installing Chaalwise to your home screen, or allowing storage, keeps it.
+        Your browser may clear this progress if you do not visit for a while (Safari does after seven days). Installing Chaalwise to your home screen, or
+        allowing storage, keeps it.
       </p>
       <button class="button" onclick={keep}>Keep my progress</button>
     {:else}
@@ -123,19 +121,11 @@
 
   <section class="card">
     <h2>Move it to another device</h2>
-    <p>
-      Your progress never leaves this device on its own. Save it as a file, and load that file on
-      another device.
-    </p>
+    <p>Your progress never leaves this device on its own. Save it as a file, and load that file on another device.</p>
     <button class="button primary" onclick={exportFile}>Save progress to a file</button>
     <label class="file">
       <span>Load a progress file</span>
-      <input
-        type="file"
-        accept="application/json,.json"
-        onchange={chooseFile}
-        bind:this={fileInput}
-      />
+      <input type="file" accept="application/json,.json" onchange={chooseFile} bind:this={fileInput} />
     </label>
     {#if pending}
       <p>Loading <strong>{pending.name}</strong> replaces the progress on this device.</p>

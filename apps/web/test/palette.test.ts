@@ -8,10 +8,7 @@ import { describe, expect, it } from 'vitest';
  * for a forced theme), so the test also fails if the two copies drift.
  */
 
-const CSS = readFileSync(new URL('../src/styles/tokens.css', import.meta.url), 'utf8').replace(
-  /\/\*[\s\S]*?\*\//g,
-  '',
-);
+const CSS = readFileSync(new URL('../src/styles/tokens.css', import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 
 /** The hex tokens declared directly inside the block opened by `selector`. */
 function block(selector: string): Record<string, string> {
@@ -20,10 +17,7 @@ function block(selector: string): Record<string, string> {
   const open = CSS.indexOf('{', start);
   const body = CSS.slice(open + 1, CSS.indexOf('}', open));
   return Object.fromEntries(
-    [...body.matchAll(/(--[a-z0-9-]+):\s*(#[0-9a-f]{6})\s*;/gi)].map((m) => [
-      m[1],
-      m[2]!.toLowerCase(),
-    ]),
+    [...body.matchAll(/(--[a-z0-9-]+):\s*(#[0-9a-f]{6})\s*;/gi)].map((m) => [m[1], m[2]!.toLowerCase()]),
   );
 }
 
@@ -52,6 +46,9 @@ const REQUIRED: [string, string, number][] = [
   ['--accent-text', '--paper', 4.5],
   ['--accent-text', '--card', 4.5],
   ['--on-felt', '--felt', 4.5],
+  ['--on-primary', '--primary', 4.5],
+  // A filled button must stand out from the page as a shape, not only by its text.
+  ['--primary', '--paper', 3],
   ['--on-felt-2', '--felt', 4.5],
   ['--accent', '--felt', 3],
   ['--pass', '--card', 4.5],

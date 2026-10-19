@@ -1,0 +1,31 @@
+---
+import CoordinatesDrill from '../../components/CoordinatesDrill.svelte';
+import SafetyDrill from '../../components/SafetyDrill.svelte';
+import Base from '../../layouts/Base.astro';
+import { safetyDrill } from '../../lib/lessons';
+
+const items = await safetyDrill();
+---
+
+<Base title="Daily drills" description="Two short chess drills to do every day: find the square, and is this move safe?">
+  <div class="wrap wide">
+    <h1>Daily drills</h1>
+    <p>Two short drills, a few minutes each. Your best scores stay on this device.</p>
+    <section>
+      <h2>Find the square</h2>
+      <p>Thirty seconds: find as many squares as you can, with no letters or numbers on the board.</p>
+      <CoordinatesDrill client:load />
+    </section>
+    <section>
+      <h2>Is this move safe?</h2>
+      <p>Before every move, ask: can they win something, or mate me, straight after it? Judge ten moves.</p>
+      <SafetyDrill client:load {items} />
+    </section>
+  </div>
+</Base>
+
+<style>
+  section {
+    margin-top: 40px;
+  }
+</style>

@@ -1,18 +1,11 @@
 <script lang="ts">
   import type { Lesson } from '@chaalwise/core/lesson';
-  import {
-    advance,
-    answer,
-    createPlayer,
-    currentStep,
-    giveUp,
-    showHint,
-    type Outcome,
-    type Response,
-  } from '@chaalwise/core/player';
+  import { advance, answer, createPlayer, currentStep, giveUp, showHint, type Outcome, type Response } from '@chaalwise/core/player';
   import { tick, type Snippet } from 'svelte';
-  import { playUci, toFen, toSan } from '../lib/chess';
-  import Board from './Board.svelte';
+  import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
+  import { coordinateHint } from '../lib/drills';
+  import Board, { type Mark } from './Board.svelte';
+  import PlayOut from './PlayOut.svelte';
 
   interface Props {
     lesson: Pick<Lesson, 'steps'>;
@@ -27,6 +20,7 @@
   let state = $state(createPlayer());
   let feedback = $state<{ tone: 'pass' | 'warn' | 'fail'; text: string } | undefined>();
   let picked = $state<number | undefined>();
+  let marks = $state<Mark[]>([]);
   /** The position after the answer is played, once revealed. */
   let after = $state<{ fen: string; move: string } | undefined>();
   let heading = $state<HTMLElement>();
@@ -35,17 +29,19 @@
 
   const step = $derived(currentStep(lesson, state));
   const total = $derived(lesson.steps.length);
-  const fen = $derived(
-    step && step.kind !== 'read' && step.position ? toFen(step.position) : undefined,
-  );
+  const fen = $derived.by(() => {
+    if (!step || step.kind === 'read') return undefined;
+    if (step.position) return toFen(step.position);
+    return step.kind === 'square' ? EMPTY_BOARD : undefined;
+  });
 
   function respond(response: Response) {
     if (!step || step.kind === 'read') return false;
     const result = answer(lesson, state, response);
     state = result.state;
-    if (result.correct) feedback = { tone: 'pass', text: 'You found it!' };
+    if (result.correct) feedback = { tone: 'pass', text: step.kind === 'play' ? 'Checkmate. Well played!' : 'You found it!' };
     else if (state.revealed) reveal();
-    else feedback = { tone: 'warn', text: 'Not that one. Try again.' };
+    else feedback = { tone: 'warn', text: retryText(response) };
     if (state.revealed) graded(step.id);
     return result.correct;
   }
@@ -69,6 +65,13 @@
     if (step) graded(step.id);
   }
 
+  function retryText(response: Response) {
+    if (step?.kind === 'square' && response.kind === 'square' && step.answers.length === 1) {
+      return `${coordinateHint(step.answers[0]!, response.square, step.orientation ?? 'white')} Try again.`;
+    }
+    return step?.kind === 'play' ? 'Not this time. Try again.' : 'Not that one. Try again.';
+  }
+
   function reveal() {
     if (step?.kind === 'move' && fen) {
       const move = step.answers[0]!;
@@ -76,6 +79,11 @@
       feedback = { tone: 'fail', text: `The move was ${toSan(fen, move)}.` };
     } else if (step?.kind === 'choice') {
       feedback = { tone: 'fail', text: `The answer was “${step.options[step.answer]}”.` };
+    } else if (step?.kind === 'square') {
+      feedback = { tone: 'fail', text: `The square was ${step.answers[0]}.` };
+      marks = [{ orig: step.answers[0]!, brush: 'green' }];
+    } else if (step?.kind === 'play') {
+      feedback = { tone: 'fail', text: 'Here is the idea for next time.' };
     }
   }
 
@@ -83,6 +91,12 @@
     const correct = respond({ kind: 'move', move: uci });
     if (correct && fen) after = { fen: playUci(fen, uci), move: uci };
     return correct;
+  }
+
+  function pick(square: string) {
+    const correct = respond({ kind: 'square', square });
+    if (!state.revealed) marks = [{ orig: square, brush: 'red' }];
+    else if (correct) marks = [{ orig: square, brush: 'green' }];
   }
 
   function choose(index: number) {
@@ -93,6 +107,7 @@
   async function next() {
     state = advance(lesson, state);
     feedback = picked = after = undefined;
+    marks = [];
     // A plain copy: IndexedDB cannot store the reactive proxy.
     if (state.done) onfinish($state.snapshot(state.outcomes));
     await tick();
@@ -103,22 +118,36 @@
 <section class="player" aria-label="Lesson" data-build={__BUILD_ID__}>
   {#if step}
     <p class="label">Step {state.index + 1} of {total}</p>
-    <div class="layout" class:has-board={fen}>
+    <div class="layout" class:has-board={fen || step.kind === 'play'}>
       <h2 tabindex="-1" bind:this={heading}>
         {step.kind === 'read' ? step.text : step.prompt}
       </h2>
-      {#if fen}
+      {#if step.kind === 'play'}
         <div class="board-col">
-          <Board
-            fen={after?.fen ?? fen}
-            lastMove={after?.move}
-            orientation={step.kind === 'move' ? step.orientation : undefined}
-            interactive={step.kind === 'move' && !state.revealed}
-            label={step.kind === 'move' && !state.revealed
-              ? 'Chess board: make your move'
-              : 'Chess board'}
-            {onmove}
-          />
+          {#key state.index}
+            <PlayOut {step} finished={state.revealed} onresult={(won) => respond({ kind: 'play', won })} />
+          {/key}
+        </div>
+      {:else if fen}
+        <div class="board-col">
+          <!-- Square steps hide the coordinates, or the answer is written on the edge; chessground reads that only once, so rebuild. -->
+          {#key step.kind === 'square'}
+            <Board
+              fen={after?.fen ?? fen}
+              lastMove={after?.move}
+              orientation={step.kind === 'move' || step.kind === 'square' ? step.orientation : undefined}
+              interactive={step.kind === 'move' && !state.revealed}
+              {marks}
+              coordinates={step.kind !== 'square'}
+              label={step.kind === 'move' && !state.revealed
+                ? 'Chess board: make your move'
+                : step.kind === 'square' && !state.revealed
+                  ? 'Chess board: pick a square'
+                  : 'Chess board'}
+              {onmove}
+              onpick={step.kind === 'square' && !state.revealed ? pick : undefined}
+            />
+          {/key}
         </div>
       {/if}
       <div class="rest">

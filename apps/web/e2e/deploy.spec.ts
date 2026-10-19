@@ -12,10 +12,7 @@ function trackAssets(page: Page) {
   return seen;
 }
 
-test('after a deploy, a learner on version A gets version B with no stale files', async ({
-  page,
-  context,
-}) => {
+test('after a deploy, a learner on version A gets version B with no stale files', async ({ page, context }) => {
   await deploy(page, 'A');
   await page.goto('/chess/board/');
   await waitForOffline(page);
@@ -43,9 +40,7 @@ test('after a deploy, a learner on version A gets version B with no stale files'
   expect(cacheNames.filter((k) => k.startsWith('pages-'))).toHaveLength(1);
 });
 
-test('the tombstone removes the worker and its caches, and keeps learner progress', async ({
-  page,
-}) => {
+test('the tombstone removes the worker and its caches, and keeps learner progress', async ({ page }) => {
   await deploy(page, 'A');
   await page.goto('/');
   await waitForOffline(page);

@@ -28,9 +28,7 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
       const files = pages.find((p) => p.page === page)!.files;
       expect(files.some((f) => /\/srs\.[\w-]+\.js$/.test(f))).toBe(true);
     }
-    expect(pages.find((p) => p.page === '/chess/')!.files.some((f) => f.includes('/srs.'))).toBe(
-      false,
-    );
+    expect(pages.find((p) => p.page === '/chess/')!.files.some((f) => f.includes('/srs.'))).toBe(false);
   });
 
   it('does not count code loaded only on demand (the import-file validator)', () => {

@@ -56,8 +56,7 @@ async function page(event: FetchEvent): Promise<Response> {
   const { request } = event;
   const key = pageKey(request.url);
   try {
-    const response =
-      ((await event.preloadResponse) as Response | undefined) ?? (await fetch(request));
+    const response = ((await event.preloadResponse) as Response | undefined) ?? (await fetch(request));
     if (response.ok && response.headers.get('content-type')?.startsWith('text/html')) {
       const copy = response.clone();
       // Kept alive by the event; a full disk only means this copy is not saved.

@@ -1,9 +1,22 @@
 {
   "singleQuote": true,
-  "printWidth": 100,
+  "printWidth": 120,
   "plugins": ["prettier-plugin-astro", "prettier-plugin-svelte"],
   "overrides": [
-    { "files": "*.astro", "options": { "parser": "astro" } },
-    { "files": "*.svelte", "options": { "parser": "svelte" } }
-  ]
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro",
+        "printWidth": 160
+      }
+    },
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte",
+        "printWidth": 160
+      }
+    }
+  ],
+  "proseWrap": "never"
 }
