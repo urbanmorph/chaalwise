@@ -82,7 +82,7 @@ export const PROFILE_SKILLS: ProfileSkill[] = [
   },
 ];
 
-export const PROFILE_SKILL_IDS = PROFILE_SKILLS.map((s) => s.id);
+const PROFILE_SKILL_IDS = PROFILE_SKILLS.map((s) => s.id);
 export const isProfileSkill = (id: string) => PROFILE_SKILL_IDS.includes(id);
 
 /** Drills and practice kinds give evidence too. */

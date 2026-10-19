@@ -26,7 +26,7 @@ export interface PlayerState {
 }
 
 /** Wrong tries allowed before the answer is shown. */
-export const MAX_ATTEMPTS = 2;
+const MAX_ATTEMPTS = 2;
 
 export const createPlayer = (): PlayerState => ({
   index: 0,

@@ -1,9 +1,7 @@
-import type { PlyReport } from '@chaalwise/teach/analyse';
 import type { Turn } from '@chaalwise/teach/play';
 
-export type CoachRequest = { id: number } & (
-  { type: 'turn'; fen: string; uci: string; movesLeft: number } | { type: 'analyse'; fen: string; moves: string[] }
-);
+// Post-game analysis (teach/analyse) joins here with practice games in phase 3.
+export type CoachRequest = { id: number; type: 'turn'; fen: string; uci: string; movesLeft: number };
 
 type Pending = { resolve: (value: never) => void; reject: (error: Error) => void };
 
@@ -39,9 +37,7 @@ function coachWorker(): Worker {
 /** Long enough for a slow phone, short enough that a stuck worker is noticed. */
 const TIMEOUT = 15_000;
 
-type Distribute<T> = T extends unknown ? Omit<T, 'id'> : never;
-
-function ask<T>(request: Distribute<CoachRequest>): Promise<T> {
+function ask<T>(request: Omit<CoachRequest, 'id'>): Promise<T> {
   const id = nextId++;
   return new Promise<T>((resolve, reject) => {
     const timer = setTimeout(() => fail('The coach took too long to answer.'), TIMEOUT);
@@ -59,6 +55,3 @@ function ask<T>(request: Distribute<CoachRequest>): Promise<T> {
 /** The learner's move in a play-out, the computer's reply and any nudge, worked out in the background. */
 export const playTurnInBackground = (fen: string, uci: string, movesLeft: number) =>
   ask<Turn>({ type: 'turn', fen, uci, movesLeft });
-
-/** The teaching helpers over a whole game, in the background (for post-game review). */
-export const analyseInBackground = (fen: string, moves: string[]) => ask<PlyReport[]>({ type: 'analyse', fen, moves });
