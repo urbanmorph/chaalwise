@@ -8,6 +8,7 @@
   import type { GradedStep } from '@chaalwise/core/lesson';
   import { tick } from 'svelte';
   import { logAttempt } from '../lib/attempts';
+  import { addDone } from '../lib/done-lessons';
   import { isPracticeKind } from '../lib/practice-kinds';
   import LessonPlayer from './LessonPlayer.svelte';
   import PracticeRound from './PracticeRound.svelte';
@@ -56,6 +57,7 @@
       const progress = await openProgress();
       await progress.recordLesson(lessonId, outcomes, new Date());
       progress.close();
+      addDone(lessonId);
       saved = 'saved';
       await requestPersistence();
     } catch (error) {

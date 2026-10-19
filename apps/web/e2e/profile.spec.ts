@@ -1,5 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
-import { completeLesson, deploy, hydrated } from './helpers';
+import { expect, test } from '@playwright/test';
+import { completeLesson, deploy, hydrated, watchShifts } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
@@ -40,22 +40,6 @@ test('strategy skills not measured yet say where they will come from instead of 
   await hydrated(page);
   await expect(page.locator('[data-skill="weigh-odds"]')).toContainText('Comes with poker.');
 });
-
-/** Sum the page's layout shifts (CLS); under 0.1 is good. */
-async function watchShifts(page: Page) {
-  await page.addInitScript(() => {
-    (window as unknown as { shift: number }).shift = 0;
-    new PerformanceObserver((list) => {
-      for (const entry of list.getEntries() as (PerformanceEntry & { value: number; hadRecentInput: boolean })[]) {
-        if (!entry.hadRecentInput) (window as unknown as { shift: number }).shift += entry.value;
-      }
-    }).observe({ type: 'layout-shift', buffered: true });
-  });
-  return async () => {
-    await page.waitForTimeout(500);
-    return page.evaluate(() => (window as unknown as { shift: number }).shift);
-  };
-}
 
 test('the progress page does not jump about as the profile loads', async ({ page }) => {
   await completeLesson(page, 'hanging');
