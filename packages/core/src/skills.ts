@@ -10,6 +10,7 @@ export const SKILLS = {
   cooperate: 'Cooperate or defend',
   unpredictable: 'Be unpredictable',
   value: 'Value and bid',
+  composure: 'Keep a cool head',
 } as const;
 
 export type SkillId = keyof typeof SKILLS;

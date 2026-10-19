@@ -36,9 +36,9 @@ h3 {
   font-size: 1.2rem;
 }
 
+/* Text spans its container; the column widths (--page, --page-wide) already keep lines readable. */
 p {
   margin: 0 0 1em;
-  max-width: var(--measure);
 }
 
 a {
