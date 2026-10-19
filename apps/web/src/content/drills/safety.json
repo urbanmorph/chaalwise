@@ -1,0 +1,79 @@
+[
+  {
+    "id": "scholar-nf6",
+    "moves": "e4 e5 Qh5 Nc6 Bc4",
+    "move": "Nf6"
+  },
+  {
+    "id": "scholar-g6",
+    "moves": "e4 e5 Qh5 Nc6 Bc4",
+    "move": "g6"
+  },
+  {
+    "id": "early-g6",
+    "moves": "e4 e5 Qh5",
+    "move": "g6",
+    "note": "Qxe5+ comes with check, and the queen then attacks the rook on h8 too."
+  },
+  {
+    "id": "scandi-qc4",
+    "moves": "e4 d5 exd5 Qxd5 Nc3",
+    "move": "Qc4"
+  },
+  {
+    "id": "scandi-qa5",
+    "moves": "e4 d5 exd5 Qxd5 Nc3",
+    "move": "Qa5"
+  },
+  {
+    "id": "ruy-bxc6",
+    "moves": "e4 e5 Nf3 Nc6 Bb5 a6",
+    "move": "Bxc6"
+  },
+  {
+    "id": "italian-ng5",
+    "moves": "e4 e5 Nf3 Nc6 Bc4 Nf6",
+    "move": "Ng5"
+  },
+  {
+    "id": "two-knights-bc5",
+    "moves": "e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5",
+    "move": "Bc5"
+  },
+  {
+    "id": "two-knights-d5",
+    "moves": "e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5",
+    "move": "d5"
+  },
+  {
+    "id": "early-nxe5",
+    "moves": "e4 e5 Nf3 Nc6",
+    "move": "Nxe5"
+  },
+  {
+    "id": "italian-bc4",
+    "moves": "e4 e5 Nf3 Nc6",
+    "move": "Bc4"
+  },
+  {
+    "id": "elephant-trap",
+    "moves": "d4 d5 c4 e6 Nc3 Nf6 Bg5 Nbd7 cxd5 exd5",
+    "move": "Nxd5",
+    "note": "This is the Elephant Trap: if Nxd5 Nxd5, Bxd8 is met by Bb4+, and Black wins the queen back and ends a piece up."
+  },
+  {
+    "id": "sicilian-nxd4",
+    "moves": "e4 c5 Nf3 Nc6 d4 cxd4 Nxd4",
+    "move": "Nxd4"
+  },
+  {
+    "id": "back-rank-rd5",
+    "fen": "4r1k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "move": "Rd5"
+  },
+  {
+    "id": "back-rank-h3",
+    "fen": "4r1k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "move": "h3"
+  }
+]

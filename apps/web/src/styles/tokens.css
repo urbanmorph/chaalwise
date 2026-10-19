@@ -1,30 +1,36 @@
 /*
  * Chaalwise design tokens.
  *
- * The UrbanMorph family look (warm paper, near-black ink, beige rules,
- * Newsreader and IBM Plex), with Chaalwise's own felt green and saffron.
- * Colours come from the landing mockup. test/palette.test.ts checks every
- * text and ground pair in both themes, and that the two dark copies match.
+ * The UrbanMorph family look, as in mdshare, twelveswaras and bharatlas
+ * (bharatlas keeps the shared values in geodata/web/scripts/shared-chrome.mjs):
+ * plain white and near-black grounds, neutral greys, one sans for everything
+ * from the system (no font downloads), and one app accent. Chaalwise's accents
+ * are felt green (the board, links, primary buttons) and saffron.
  *
- * Theme: the system setting by default; `data-theme` on <html> forces one.
+ * test/palette.test.ts checks every text and ground pair in both themes, and
+ * that the two dark copies match. Theme: the system setting by default;
+ * `data-theme` on <html> forces one.
  */
 
 :root {
   color-scheme: light dark;
-  --paper: #f7f3ea;
-  --card: #fffdf8;
-  --tint: #ece6d8;
-  --ink: #15161a;
-  --ink-2: #4a4944;
-  --rule: #ddd3c3;
-  --rule-strong: #857d70;
+  --paper: #ffffff;
+  --card: #f5f5f5;
+  --tint: #fafafa;
+  --ink: #0a0a0a;
+  --ink-2: #525965;
+  --rule: #e5e7eb;
+  --rule-strong: #6b7280;
   --link: #1d5a46;
   --focus: #8a4b00;
   --felt: #164a39;
   --felt-2: #1d5a46;
-  --on-felt: #f7f3ea;
+  --on-felt: #ffffff;
   --on-felt-2: #d3e0d8;
-  /* Saffron. Decorative and on felt only; on paper, text uses --accent-text. */
+  /* Filled buttons: felt green in light; lighter in dark, so the shape shows on near-black. */
+  --primary: #164a39;
+  --on-primary: #ffffff;
+  /* Saffron. Decorative and on felt only; on the page, text uses --accent-text. */
   --accent: #e8a13c;
   --accent-text: #8a4b00;
   /* "You found it!", "one move late", "missed" */
@@ -34,14 +40,14 @@
   --sq-light: #e7ecde;
   --sq-dark: #7e9c86;
 
-  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 
   --measure: 66ch;
-  --page: 1080px;
-  --radius: 10px;
-  --shadow: 0 12px 32px rgb(21 22 26 / 0.1);
+  --page: 880px;
+  --page-wide: 1100px;
+  --radius: 12px;
+  --shadow: 0 12px 32px rgb(10 10 10 / 0.08);
 }
 
 :root[data-theme='light'] {
@@ -50,19 +56,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --paper: #121315;
-    --card: #1b1c1f;
-    --tint: #202226;
-    --ink: #ececea;
-    --ink-2: #b5b5ae;
-    --rule: #2e2f33;
+    --paper: #0a0a0a;
+    --card: #1a1a1f;
+    --tint: #15151a;
+    --ink: #ededed;
+    --ink-2: #9ca3af;
+    --rule: #262626;
     --rule-strong: #7a7c80;
     --link: #7fd3a8;
     --focus: #f2a93b;
     --felt: #0f3d2e;
     --felt-2: #164a39;
-    --on-felt: #f7f3ea;
+    --on-felt: #ffffff;
     --on-felt-2: #d3e0d8;
+    --primary: #2a7a5e;
+    --on-primary: #ffffff;
     --accent: #f2a93b;
     --accent-text: #f2b45a;
     --pass: #6cc79a;
@@ -70,25 +78,27 @@
     --fail: #f08a78;
     --sq-light: #c9d3c0;
     --sq-dark: #5f7f68;
-    --shadow: 0 12px 32px rgb(0 0 0 / 0.4);
+    --shadow: 0 12px 32px rgb(0 0 0 / 0.5);
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --paper: #121315;
-  --card: #1b1c1f;
-  --tint: #202226;
-  --ink: #ececea;
-  --ink-2: #b5b5ae;
-  --rule: #2e2f33;
+  --paper: #0a0a0a;
+  --card: #1a1a1f;
+  --tint: #15151a;
+  --ink: #ededed;
+  --ink-2: #9ca3af;
+  --rule: #262626;
   --rule-strong: #7a7c80;
   --link: #7fd3a8;
   --focus: #f2a93b;
   --felt: #0f3d2e;
   --felt-2: #164a39;
-  --on-felt: #f7f3ea;
+  --on-felt: #ffffff;
   --on-felt-2: #d3e0d8;
+  --primary: #2a7a5e;
+  --on-primary: #ffffff;
   --accent: #f2a93b;
   --accent-text: #f2b45a;
   --pass: #6cc79a;
@@ -96,5 +106,5 @@
   --fail: #f08a78;
   --sq-light: #c9d3c0;
   --sq-dark: #5f7f68;
-  --shadow: 0 12px 32px rgb(0 0 0 / 0.4);
+  --shadow: 0 12px 32px rgb(0 0 0 / 0.5);
 }

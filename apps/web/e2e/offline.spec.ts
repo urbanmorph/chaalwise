@@ -3,10 +3,7 @@ import { completeLesson, deploy, lessonsFinished, waitForOffline } from './helpe
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
-test('a learner finishes a lesson, goes offline, reloads, and finishes another', async ({
-  page,
-  context,
-}) => {
+test('a learner finishes a lesson, goes offline, reloads, and finishes another', async ({ page, context }) => {
   await page.goto('/');
   await waitForOffline(page);
   await completeLesson(page, 'board');
@@ -19,10 +16,7 @@ test('a learner finishes a lesson, goes offline, reloads, and finishes another',
   await expect(await lessonsFinished(page)).toHaveText('2');
 });
 
-test('a page that is not saved shows an offline message, not an error', async ({
-  page,
-  context,
-}) => {
+test('a page that is not saved shows an offline message, not an error', async ({ page, context }) => {
   await page.goto('/');
   await waitForOffline(page);
   await context.setOffline(true);

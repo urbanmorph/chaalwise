@@ -17,6 +17,18 @@ export const exportSchema = z.object({
       outcomes: z.record(z.string(), outcome),
     }),
   ),
+  // Added in October 2026; files exported before then have none.
+  drills: z
+    .array(
+      z.object({
+        drillId: z.string(),
+        best: z.number(),
+        last: z.number(),
+        times: z.number().int().positive(),
+        lastAt: date,
+      }),
+    )
+    .default([]),
   cards: z.array(
     z.object({
       id: z.string(),

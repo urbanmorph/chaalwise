@@ -21,8 +21,8 @@ const { lesson, next } = Astro.props;
 const { Content } = await render(lesson);
 ---
 
-<Base title={lesson.data.title} description={lesson.data.summary}>
-  <article class="wrap">
+<Base title={lesson.data.title} description={lesson.data.summary} wide>
+  <article class="wrap wide">
     <p class="label">
       <a href="/chess/">Chess</a> · Stage {lesson.data.stage}: {STAGES[lesson.data.stage]}
     </p>
@@ -30,12 +30,7 @@ const { Content } = await render(lesson);
     <div class="intro">
       <Content />
     </div>
-    <LessonPage
-      client:load
-      lesson={{ steps: lesson.data.steps }}
-      lessonId={lesson.id}
-      next={next && { href: lessonHref(next), title: next.data.title }}
-    />
+    <LessonPage client:load lesson={{ steps: lesson.data.steps }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
   </article>
 </Base>
 

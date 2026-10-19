@@ -39,7 +39,34 @@ const moveStep = z.object({
   explanation: z.string().min(1),
 });
 
-export const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep]);
+/** Pick a square on the board, e.g. coordinates drills. Answers are square names. */
+const squareStep = z.object({
+  kind: z.literal('square'),
+  id: stepId,
+  prompt: z.string().min(1),
+  position: z.string().optional(),
+  answers: z.array(z.string().regex(/^[a-h][1-8]$/, 'a square such as e4')).min(1),
+  orientation: z.enum(['white', 'black']).optional(),
+  hint: z.string().optional(),
+  explanation: z.string().min(1),
+});
+
+/** Play the position out against the computer until the goal is reached, e.g. a basic mate. */
+const playStep = z.object({
+  kind: z.literal('play'),
+  id: stepId,
+  prompt: z.string().min(1),
+  position: z.string().min(1),
+  goal: z.literal('checkmate'),
+  /** The most moves the learner may take. */
+  within: z.number().int().positive(),
+  opponent: z.literal('lone-king'),
+  orientation: z.enum(['white', 'black']).optional(),
+  hint: z.string().optional(),
+  explanation: z.string().min(1),
+});
+
+export const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep]);
 
 export const lessonSchema = z
   .object({

@@ -44,11 +44,8 @@ export function measure(dist) {
       ...source.matchAll(/(?:component|renderer)-url="(\/[^"]+\.js)"/g),
     ].map((m) => m[1]);
     for (const url of urls) closure(dist, url, seen);
-    const inline = [...source.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)]
-      .map((m) => m[1])
-      .join('');
-    const bytes =
-      gzip(inline) + [...seen].reduce((n, f) => n + gzip(readFileSync(join(dist, f))), 0);
+    const inline = [...source.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('');
+    const bytes = gzip(inline) + [...seen].reduce((n, f) => n + gzip(readFileSync(join(dist, f))), 0);
     return { page, bytes, budget: budgetFor(page), files: [...seen] };
   });
 }
@@ -59,9 +56,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   for (const { page, bytes, budget } of pages.sort((a, b) => b.bytes - a.bytes)) {
     const flag = bytes > budget ? 'OVER' : 'ok';
     if (bytes > budget) over++;
-    console.log(
-      `${flag.padEnd(4)} ${(bytes / 1000).toFixed(1).padStart(6)} / ${budget / 1000} KB  ${page}`,
-    );
+    console.log(`${flag.padEnd(4)} ${(bytes / 1000).toFixed(1).padStart(6)} / ${budget / 1000} KB  ${page}`);
   }
   process.exit(over ? 1 : 0);
 }

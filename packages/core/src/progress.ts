@@ -22,10 +22,22 @@ export interface CardRecord {
   card: Card;
 }
 
+/** A drill's scores: the best ever, the latest, how often, and when it was last done. */
+export interface DrillRecord {
+  drillId: string;
+  best: number;
+  last: number;
+  times: number;
+  lastAt: Date;
+}
+
 interface ProgressDB extends DBSchema {
   lessons: { key: string; value: LessonRecord };
   cards: { key: string; value: CardRecord };
+  drills: { key: string; value: DrillRecord };
 }
+
+const STORES = ['lessons', 'cards', 'drills'] as const;
 
 export type { ProgressExport };
 
@@ -38,10 +50,18 @@ const scheduler = () => import('./srs');
 export type ProgressStore = Awaited<ReturnType<typeof openProgress>>;
 
 export async function openProgress(name = 'chaalwise') {
-  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 1, {
-    upgrade(db) {
-      db.createObjectStore('lessons', { keyPath: 'lessonId' });
-      db.createObjectStore('cards', { keyPath: 'id' });
+  // Each version only adds stores, so a device on any older version upgrades without losing anything.
+  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 2, {
+    upgrade(db, oldVersion) {
+      if (oldVersion < 1) {
+        db.createObjectStore('lessons', { keyPath: 'lessonId' });
+        db.createObjectStore('cards', { keyPath: 'id' });
+      }
+      if (oldVersion < 2) db.createObjectStore('drills', { keyPath: 'drillId' });
+    },
+    // A newer version of the app, open in another tab, needs to upgrade: get out of its way.
+    blocking() {
+      db.close();
     },
   });
 
@@ -84,6 +104,23 @@ export async function openProgress(name = 'chaalwise') {
       await tx.done;
     },
 
+    async recordDrill(drillId: string, score: number, now: Date) {
+      const tx = db.transaction('drills', 'readwrite');
+      const previous = await tx.store.get(drillId);
+      await tx.store.put({
+        drillId,
+        best: Math.max(score, previous?.best ?? score),
+        last: score,
+        times: (previous?.times ?? 0) + 1,
+        lastAt: now,
+      });
+      await tx.done;
+    },
+
+    async drills(): Promise<Record<string, Omit<DrillRecord, 'drillId'>>> {
+      return Object.fromEntries((await db.getAll('drills')).map(({ drillId, ...rest }) => [drillId, rest]));
+    },
+
     async exportData(now: Date): Promise<ProgressExport> {
       return {
         app: 'chaalwise',
@@ -91,6 +128,7 @@ export async function openProgress(name = 'chaalwise') {
         exportedAt: now,
         lessons: await db.getAll('lessons'),
         cards: await db.getAll('cards'),
+        drills: await db.getAll('drills'),
       };
     },
 
@@ -99,19 +137,25 @@ export async function openProgress(name = 'chaalwise') {
       // The validator loads only when needed, keeping zod out of every page's bundle.
       const { exportSchema } = await import('./progress-file');
       const parsed = exportSchema.parse(data);
-      const tx = db.transaction(['lessons', 'cards'], 'readwrite');
+      const tx = db.transaction(STORES, 'readwrite');
       // One wait for every request and the commit, so a failed write cannot go unhandled;
       // requests in one transaction run in order, so the clears happen before the puts.
       await Promise.all([
-        tx.objectStore('lessons').clear(),
-        tx.objectStore('cards').clear(),
+        ...STORES.map((store) => tx.objectStore(store).clear()),
         ...parsed.lessons.map((l) => tx.objectStore('lessons').put(l)),
         ...parsed.cards.map((c) => tx.objectStore('cards').put(c)),
+        ...parsed.drills.map((d) => tx.objectStore('drills').put(d)),
         tx.done,
       ]);
     },
   };
 }
+
+/**
+ * True when a newer version of the app, open in another tab, has already
+ * upgraded the database: this tab must reload before it can save.
+ */
+export const isNewerVersionOpen = (error: unknown): boolean => error instanceof Error && error.name === 'VersionError';
 
 /** Ask the browser not to evict progress (Safari clears unused sites after 7 days). */
 export async function requestPersistence(): Promise<boolean> {

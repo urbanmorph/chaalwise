@@ -5,6 +5,9 @@ export const deploy = async (page: Page, build: 'A' | 'B' | 'T') => {
   expect(res.ok()).toBe(true);
 };
 
+/** Wait until every interactive island on the page has loaded its code (Astro drops `ssr` then). */
+export const hydrated = (page: Page) => expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+
 /** Wait until the offline worker controls the page and has finished precaching. */
 export async function waitForOffline(page: Page) {
   await page.evaluate(async () => {
@@ -41,6 +44,7 @@ const typeMove = async (page: Page, move: string) => {
 /** Plays a lesson through, answering every step correctly first time. */
 export async function completeLesson(page: Page, slug: 'board' | 'hanging') {
   await page.goto(`/chess/${slug}/`);
+  await hydrated(page);
   if (slug === 'board') {
     await choose(page, 'h1, a light square');
     await choose(page, 'd1');

@@ -1,12 +1,13 @@
 <script lang="ts">
   import type { GradedStep } from '@chaalwise/core/lesson';
   import type { Outcome } from '@chaalwise/core/player';
-  import { openProgress } from '@chaalwise/core/progress';
+  import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
   // Loaded with the page, not on demand: see LessonPage.svelte.
   import '@chaalwise/core/srs';
   import { onMount } from 'svelte';
+  import { shuffle } from '../lib/random';
   import LessonPlayer from './LessonPlayer.svelte';
-  import SaveStatus from './SaveStatus.svelte';
+  import SaveStatus, { type SaveState } from './SaveStatus.svelte';
   import { summarise } from './outcomes';
 
   interface Props {
@@ -18,22 +19,14 @@
   /** The session's steps, and the card each one reviews (step ids are unique per session). */
   let session = $state<{ steps: GradedStep[]; cardFor: Record<string, string> } | undefined>();
   let failed = $state(false);
-  let saved = $state<'saving' | 'saved' | 'failed'>('saving');
-
-  /** Mixed order: interleaving beats reviewing one lesson's questions in a block. */
-  const shuffle = <T,>(items: T[]) => {
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [items[i], items[j]] = [items[j]!, items[i]!];
-    }
-    return items;
-  };
+  let saved = $state<SaveState>('saving');
 
   onMount(async () => {
     try {
       const progress = await openProgress();
       const due = await progress.dueCards(new Date());
       progress.close();
+      // Mixed order: interleaving beats reviewing one lesson's questions in a block.
       const ids = shuffle(due.map((c) => c.id).filter((id) => id in steps));
       session = {
         steps: ids.map((id, i) => ({ ...steps[id]!, id: `card-${i}` })),
@@ -79,7 +72,7 @@
       saved = 'saved';
     } catch (error) {
       console.error(error);
-      saved = 'failed';
+      saved = isNewerVersionOpen(error) ? 'newer' : 'failed';
     }
   }
 </script>
@@ -91,10 +84,7 @@
 {:else if session.steps.length === 0}
   <div class="card" data-testid="review-empty">
     <h2>Nothing to review today</h2>
-    <p>
-      Questions from finished lessons come back here on later days, just before you would forget
-      them.
-    </p>
+    <p>Questions from finished lessons come back here on later days, just before you would forget them.</p>
     <a class="button primary" href="/chess/">Go to the lessons</a>
   </div>
 {:else}

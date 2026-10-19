@@ -9,9 +9,9 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
 <Base title="Chess" description="Chess lessons, from setting up the board to confident full games.">
   <div class="wrap">
     <h1>Chess</h1>
+    <p>From first moves to confident full games. Each lesson is one idea, and its questions come back for review on later days.</p>
     <p>
-      From first moves to confident full games. Each lesson is one idea, and its questions come back
-      for review on later days.
+      <a href="/chess/drills/">Daily drills</a>: find the square, and is this move safe? A few minutes a day.
     </p>
     {stages.map((stage) => (
       <section>
@@ -68,7 +68,8 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   }
   .lessons a {
-    font: 600 1.25rem var(--serif);
+    font-weight: 700;
+    font-size: 1.1rem;
   }
   .lessons p {
     margin: 6px 0 0;

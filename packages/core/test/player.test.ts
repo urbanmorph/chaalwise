@@ -83,3 +83,35 @@ describe('lesson player', () => {
     expect(next).toMatchObject({ index: 2, attempts: 0, hintShown: false, revealed: false });
   });
 });
+
+describe('square and play steps', () => {
+  const steps = {
+    steps: [
+      { kind: 'square' as const, id: 'find', prompt: 'Find e4.', answers: ['e4'], explanation: 'e' },
+      {
+        kind: 'play' as const,
+        id: 'mate',
+        prompt: 'Mate.',
+        position: 'p',
+        goal: 'checkmate' as const,
+        within: 10,
+        opponent: 'lone-king' as const,
+        explanation: 'e',
+      },
+    ],
+  };
+
+  it('grades a picked square', () => {
+    expect(answer(steps, createPlayer(), { kind: 'square', square: 'e4' }).state.outcomes).toEqual({
+      find: 'first-try',
+    });
+    expect(answer(steps, createPlayer(), { kind: 'square', square: 'd4' }).correct).toBe(false);
+  });
+
+  it('grades a played-out position by its result, and lets the learner try again', () => {
+    const atPlay = { ...createPlayer(), index: 1 };
+    const lost = answer(steps, atPlay, { kind: 'play', won: false });
+    expect(lost.state).toMatchObject({ attempts: 1, revealed: false });
+    expect(answer(steps, lost.state, { kind: 'play', won: true }).state.outcomes).toEqual({ mate: 'with-help' });
+  });
+});

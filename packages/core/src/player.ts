@@ -9,7 +9,11 @@ type Playable = Pick<Lesson, 'steps'>;
  */
 
 export type Outcome = 'first-try' | 'with-help' | 'missed';
-export type Response = { kind: 'choice'; index: number } | { kind: 'move'; move: string };
+export type Response =
+  | { kind: 'choice'; index: number }
+  | { kind: 'move'; move: string }
+  | { kind: 'square'; square: string }
+  | { kind: 'play'; won: boolean };
 
 export interface PlayerState {
   index: number;
@@ -39,6 +43,8 @@ export const currentStep = (lesson: Playable, state: PlayerState): Step | undefi
 const isCorrect = (step: Step, response: Response): boolean | undefined => {
   if (step.kind === 'choice' && response.kind === 'choice') return response.index === step.answer;
   if (step.kind === 'move' && response.kind === 'move') return step.answers.includes(response.move);
+  if (step.kind === 'square' && response.kind === 'square') return step.answers.includes(response.square);
+  if (step.kind === 'play' && response.kind === 'play') return response.won;
   return undefined;
 };
 
@@ -66,8 +72,7 @@ export function answer(
   return { state: attempts >= MAX_ATTEMPTS ? reveal(next, step.id, 'missed') : next, correct };
 }
 
-export const showHint = (state: PlayerState): PlayerState =>
-  state.revealed ? state : { ...state, hintShown: true };
+export const showHint = (state: PlayerState): PlayerState => (state.revealed ? state : { ...state, hintShown: true });
 
 export function giveUp(lesson: Playable, state: PlayerState): PlayerState {
   const step = currentStep(lesson, state);

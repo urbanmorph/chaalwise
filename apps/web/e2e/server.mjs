@@ -33,8 +33,7 @@ function headerRules() {
   return rules;
 }
 
-const matches = (pattern, path) =>
-  pattern.endsWith('*') ? path.startsWith(pattern.slice(0, -1)) : pattern === path;
+const matches = (pattern, path) => (pattern.endsWith('*') ? path.startsWith(pattern.slice(0, -1)) : pattern === path);
 
 createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');

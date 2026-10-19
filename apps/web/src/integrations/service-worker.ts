@@ -37,17 +37,13 @@ export default function serviceWorker(): AstroIntegration {
 
         if (process.env.SW_TOMBSTONE === '1') {
           await bundle('tombstone.ts');
-          logger.warn(
-            'Wrote the TOMBSTONE worker: it removes the offline cache for every learner.',
-          );
+          logger.warn('Wrote the TOMBSTONE worker: it removes the offline cache for every learner.');
           return;
         }
 
         const paths = (await files(dist)).map((f) => `/${relative(dist, f)}`).sort();
         // Directory pages only: Cloudflare redirects /404.html, so it cannot be precached by that URL.
-        const pages = paths
-          .filter((p) => p.endsWith('/index.html'))
-          .map((p) => p.replace(/index\.html$/, ''));
+        const pages = paths.filter((p) => p.endsWith('/index.html')).map((p) => p.replace(/index\.html$/, ''));
         const assets = paths.filter((p) => p.startsWith('/_astro/'));
         const hash = createHash('sha256');
         for (const p of [...paths.filter((p) => p.endsWith('.html')), ...assets]) {

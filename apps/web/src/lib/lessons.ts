@@ -1,5 +1,7 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { parseMoveText, positionFromMoves, toSan } from './chess';
+import { safetyVerdict } from './drills';
 
 export type LessonEntry = CollectionEntry<'lessons'>;
 
@@ -32,4 +34,22 @@ export async function reviewSteps(): Promise<Record<string, GradedStep>> {
     }
   }
   return steps;
+}
+
+export interface SafetyItem {
+  id: string;
+  fen: string;
+  uci: string;
+  san: string;
+  safe: boolean;
+  text: string;
+}
+
+/** The safety drill with its answers worked out by the teaching helpers. */
+export async function safetyDrill(): Promise<SafetyItem[]> {
+  return (await getCollection('safetyDrills')).map(({ id, data }) => {
+    const fen = data.fen ?? positionFromMoves(data.moves!);
+    const uci = parseMoveText(fen, data.move)!;
+    return { id, fen, uci, san: toSan(fen, uci), ...safetyVerdict(fen, uci, data.note) };
+  });
 }

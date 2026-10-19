@@ -6,8 +6,8 @@ import { reviewSteps } from '../lib/lessons';
 const steps = await reviewSteps();
 ---
 
-<Base title="Review" description="Today's spaced-repetition review.">
-  <div class="wrap">
+<Base title="Review" description="Today's spaced-repetition review." wide>
+  <div class="wrap wide">
     <h1>Today's review</h1>
     <ReviewSession client:load {steps} />
   </div>

@@ -23,6 +23,8 @@ export default defineConfig({
   build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [svelte(), serviceWorker()],
   vite: {
+    // Name workers like every other build file (name.hash.js), so the offline worker caches them.
+    worker: { rollupOptions: { output: { entryFileNames: '_astro/[name].[hash].js' } } },
     define: {
       __BUILD_ID__: JSON.stringify(buildId),
       // A tombstone build must not register a worker, or the tombstone's reload re-installs it forever.
