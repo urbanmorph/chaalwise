@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { tick } from 'svelte';
   import {
     BAGS,
@@ -105,6 +106,8 @@
 
   async function showDebrief() {
     debrief = true;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/which-bag');
     await focus(() => debriefEl);
   }
 </script>

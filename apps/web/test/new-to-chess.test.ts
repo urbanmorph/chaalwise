@@ -14,9 +14,15 @@ describe('pages that explain an idea through chess', () => {
     expect(first).toMatch(/^order: 1$/m);
   });
 
-  it('offer chess from the beginning on every strategy lesson', () => {
-    for (const id of names('../src/content/lessons/strategy/'))
-      expect(offersStart(dist(`skills/${id}/index.html`)), id).toBe(true);
+  it("offer every strategy lesson's newcomer the first moves and chess from the beginning, in one note", () => {
+    for (const id of names('../src/content/lessons/strategy/')) {
+      const html = dist(`skills/${id}/index.html`);
+      const note = html.match(/<p class="meet-chess"[\s\S]*?<\/p>/)?.[0] ?? '';
+      expect(note, id).toContain('href="/chess/first-moves/"');
+      expect(note, id).toContain(`href="${START}"`);
+      // One note, not two saying the same thing.
+      expect(html, id).not.toContain('class="new-to-chess"');
+    }
   });
 
   it('offer it on every course that shows or practises chess, and only those', () => {

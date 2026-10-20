@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { tick } from 'svelte';
   import { botTurn, dealZone, drawRound, MAX_OFFERS, payout, PIE, ROUNDS, STYLES, type Offer, type Round } from '../../lib/labs/split';
 
@@ -96,6 +97,8 @@
 
   async function showDebrief() {
     debrief = true;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/split-the-pie');
     await tick();
     debriefEl?.focus();
   }

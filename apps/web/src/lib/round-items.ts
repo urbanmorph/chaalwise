@@ -1,5 +1,5 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
-import { LABS } from './labs/labs';
+import { sourceOf } from './games';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
 import { shuffle } from './random';
@@ -48,20 +48,13 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
   return ids;
 }
 
-const GAMES: Record<string, string> = { chess: 'In chess', poker: 'In poker' };
-
 /**
  * Where a question comes from, for rounds that mix questions from many lessons:
  * the game for game questions, the lab for its debrief, chess for a strategy
  * question set on a board, and nothing for one about life off the board.
  */
 export function contextOf(cardId: string, step: GradedStep): string | undefined {
-  // Cards saved before the corpus began are `reference/<game>/<entry>/<name>`; corpus ids are `<game>/<idea>/<name>`.
-  const parts = cardId.split('/');
-  const [game, idea] = parts[0] === 'reference' ? parts.slice(1) : parts;
-  if (GAMES[game!]) return GAMES[game!];
-  const lab = LABS.find((l) => l.entry === `${game}/${idea}` || (game === 'labs' && l.slug === idea));
+  const { game, lab } = sourceOf(cardId, step);
   if (lab) return `In the ${lab.title} lab`;
-  if (game === 'labs') return 'In game theory';
-  return step.position || step.kind === 'move' ? 'In chess' : undefined;
+  return game === 'chess' ? 'In chess' : game === 'poker' ? 'In poker' : game === 'labs' ? 'In game theory' : undefined;
 }

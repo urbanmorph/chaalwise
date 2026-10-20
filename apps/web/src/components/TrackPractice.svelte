@@ -5,6 +5,8 @@
   import { onMount, tick } from 'svelte';
   // Loaded with the page, not on demand: see LessonPage.svelte.
   import '@chaalwise/core/srs';
+  import { readDone } from '../lib/done-lessons';
+  import { askable, gamesMet } from '../lib/games';
   import { buildProfile } from '../lib/profile';
   import { shuffle } from '../lib/random';
   import { roundItems, type RoundItem } from '../lib/round-items';
@@ -23,8 +25,11 @@
   }
 
   let { track, steps }: Props = $props();
+  // Meet the game first: practise only questions about games played on this device, and about life. On the server, all.
+  const met = typeof localStorage === 'undefined' ? undefined : gamesMet(readDone());
+  const open = $derived(met ? Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met))) : steps);
   /** A short round: enough to practise, short enough to fit in a break. */
-  const ROUND = $derived(Math.min(8, Object.keys(steps).length));
+  const ROUND = $derived(Math.min(8, Object.keys(open).length));
   let level = $state('Not started');
   let board = $state('Not started');
   let reason = $state('No tries yet.');
@@ -48,7 +53,7 @@
   });
 
   async function practise() {
-    items = await roundItems(shuffle(Object.keys(steps)).slice(0, ROUND), steps);
+    items = await roundItems(shuffle(Object.keys(open)).slice(0, ROUND), open);
     rounds++;
     await tick();
     heading?.focus();
@@ -72,7 +77,12 @@
   </dl>
   <p class="reason">{reason}</p>
   <div class="actions">
-    <button class="button primary" onclick={practise}>Practise {ROUND} questions</button>
+    {#if ROUND}
+      <button class="button primary" onclick={practise}>Practise {ROUND} questions</button>
+    {:else}
+      <!-- Every question here is about a game not met yet: meet it first. -->
+      <a class="button primary" href="/chess/first-moves/">Play your first moves first</a>
+    {/if}
     <a class="button" href="/review/?track={track.id}">Review {track.name} questions</a>
   </div>
 </div>

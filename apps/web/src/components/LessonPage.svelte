@@ -7,7 +7,8 @@
   import '@chaalwise/core/srs';
   import { tick } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
-  import { addDone } from '../lib/done-lessons';
+  import { addDone, readDone } from '../lib/done-lessons';
+  import { gamesMet, needs, workedExample } from '../lib/games';
   import { isPracticeKind } from '../lib/practice-kinds';
   import { practiceOf, roundItems } from '../lib/round-items';
   import LessonPlayer from './LessonPlayer.svelte';
@@ -23,9 +24,17 @@
     track?: string | undefined;
     /** Offer "already know this?": a check of the questions only, for learners who know the game. */
     checkable?: boolean;
+    /** A strategy lesson: until chess is met, its board questions are worked examples to read. */
+    workedUntilMet?: boolean;
   }
 
-  let { lesson, lessonId, next, track, checkable = false }: Props = $props();
+  let { lesson, lessonId, next, track, checkable = false, workedUntilMet = false }: Props = $props();
+
+  // Meet the game first. Read from the quick copy, so the lesson is right from the start; on the server, every question shows.
+  const chessMet = typeof localStorage === 'undefined' || gamesMet(readDone()).has('chess');
+  const played = $derived(
+    workedUntilMet && !chessMet ? { steps: lesson.steps.map((s) => (isGraded(s) && needs(s.id, s) === 'chess' ? workedExample(s) : s)) } : lesson,
+  );
 
   /**
    * The check: the lesson's questions without the reading, in fresh positions
@@ -37,7 +46,7 @@
   let check = $state<GradedStep[]>([]);
 
   async function takeCheck() {
-    const graded = lesson.steps.filter(isGraded);
+    const graded = played.steps.filter(isGraded);
     const items = await roundItems(
       graded.map((s) => s.id),
       Object.fromEntries(graded.map((s) => [s.id, s])),
@@ -64,12 +73,12 @@
   let outcomes: Record<string, Outcome> = {};
 
   function logStep(stepId: string, outcome: Outcome) {
-    const step = lesson.steps.find((s) => s.id === stepId);
+    const step = played.steps.find((s) => s.id === stepId);
     if (step && isGraded(step)) logAttempt(step.measures, outcome, 'lesson', { item: stepId, chance: guessChance(step) });
   }
 
   /** Steps whose idea can be practised in fresh positions. */
-  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => isGraded(s) && isPracticeKind(practiceOf(s) ?? '')));
+  const practicable = $derived(played.steps.filter((s): s is GradedStep => isGraded(s) && isPracticeKind(practiceOf(s) ?? '')));
   const ROUND = 5;
   let practice = $state<{ cardId: string; step: GradedStep }[] | undefined>();
   let rounds = $state(0);
@@ -129,7 +138,7 @@
   {#if mode === 'not-yet'}
     <p class="card not-yet" role="status">Not quite. Here is the lesson: the questions you missed are in it.</p>
   {/if}
-  <LessonPlayer {lesson} {onfinish} onstep={logStep} onplan={savePlan}>
+  <LessonPlayer lesson={played} {onfinish} onstep={logStep} onplan={savePlan}>
     {#snippet finished(outcomes)}
       <div class="card done" data-testid="lesson-done">
         <h2>Lesson complete</h2>

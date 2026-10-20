@@ -24,7 +24,8 @@
       const now = new Date();
       const data = await progress.exportData(now);
       const due = (await progress.dueCards(now)).filter((c) => known.has(c.id));
-      stats = { lessons: data.lessons.length, cards: data.cards.length, due: due.length };
+      // Playing a lab is kept as a finished record, to remember the game is met; it is not a lesson.
+      stats = { lessons: data.lessons.filter((l) => !l.lessonId.startsWith('labs/')).length, cards: data.cards.length, due: due.length };
     } finally {
       progress.close();
     }

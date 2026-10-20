@@ -1,0 +1,28 @@
+---
+import FirstMoves from '../../components/FirstMoves.svelte';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Play your first moves" description="Five minutes of chess against a gentle bot, each rule explained as it comes up." wide>
+  <div class="wrap wide">
+    <p class="crumb">
+      <a href="/chess/">Chess</a>
+    </p>
+    <h1>Play your first moves</h1>
+    <p class="lead">
+      Never played? Play twelve moves against a gentle bot. Each rule is explained the moment it comes up, and no move is wrong. After that, chess questions
+      open up across the site.
+    </p>
+    <FirstMoves client:load />
+  </div>
+</Base>
+
+<style>
+  .crumb {
+    margin-bottom: 8px;
+  }
+  .lead {
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+</style>

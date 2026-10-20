@@ -6,6 +6,15 @@
  */
 export const DONE_KEY = 'chaalwise-done';
 
+/** The quick copy, read: empty on the server, or when storage is blocked. */
+export function readDone(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(DONE_KEY) ?? '[]'));
+  } catch {
+    return new Set();
+  }
+}
+
 export function saveDone(ids: Iterable<string>): void {
   try {
     localStorage.setItem(DONE_KEY, JSON.stringify([...ids]));
