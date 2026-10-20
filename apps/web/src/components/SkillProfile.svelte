@@ -187,9 +187,9 @@
 
 <h2 class="heading">Your strategy skills</h2>
 <p class="lede">
-  Each level shows how reliably you use the idea in these exercises, from your own last 20 answers off the board: Noticing, Applying, Reliable, Fluent. Chess
-  answers show beside it as on the board, because being good at a game is not proof of the skill elsewhere. Levels go down as well as up, and never compare you
-  with anyone else.
+  Each level shows how reliably you use the idea in these exercises, from your own last 20 answers off the board: Noticing, Applying, Reliable, Fluent. Answers
+  in chess and poker show beside it as in the games, because being good at a game is not proof of the skill elsewhere. Levels go down as well as up, and never
+  compare you with anyone else.
 </p>
 <ul class="skills">
   {#each profile.skills.filter((s) => !s.skill.later) as { skill, assessment } (skill.id)}
@@ -205,7 +205,7 @@
       <!-- Always both lines, so a card keeps its size when the record loads. -->
       <p class="evidence">{assessment.reason}</p>
       <p class="next">{assessment.next ?? 'The top level. Keep it there.'}</p>
-      <p class="on-board" data-testid="on-board">On the board: {levelName(profile.onBoard[skill.id]!.level)}</p>
+      <p class="on-board" data-testid="on-board">In the games: {levelName(profile.onBoard[skill.id]!.level)}</p>
       <a href={skill.practise.href}>{skill.practise.label}</a>
     </li>
   {/each}
@@ -218,10 +218,13 @@
   {/each}
 </ul>
 
-<h2 class="heading">In chess</h2>
-<p class="lede">How well you know the game itself. Its answers are the evidence for the strategy skills above; board sense is the game alone.</p>
+<h2 class="heading">In the games</h2>
+<p class="lede">
+  How well you know the games themselves. These answers show beside each strategy skill as in the games; board sense and reading poker hands are the games
+  alone.
+</p>
 <table class="games">
-  <thead><tr><th scope="col">Chess skill</th><th scope="col">Level</th><th scope="col"><span class="sr-only">Where to practise it</span></th></tr></thead>
+  <thead><tr><th scope="col">Game skill</th><th scope="col">Level</th><th scope="col"><span class="sr-only">Where to practise it</span></th></tr></thead>
   <tbody>
     {#each profile.games as { skill, assessment } (skill.id)}
       <tr data-game-skill={skill.id}>

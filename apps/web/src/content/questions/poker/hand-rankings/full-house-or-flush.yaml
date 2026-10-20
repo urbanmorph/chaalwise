@@ -1,0 +1,21 @@
+kind: choice
+prompt: You hold two sevens; the computer shows the ace and three of hearts. Who wins?
+cards:
+  hole: [7c, 7d]
+  board: [7h, Kh, Ks, 9h, 2c]
+  others:
+    - name: Computer
+      cards: [Ah, 3h]
+options:
+  - You, with a full house, sevens full of kings
+  - The computer, with a flush, ace high
+  - 'Neither: the pot is split'
+  - The computer, with a pair of kings and an ace
+answer: 0
+feedback:
+  - ''
+  - The computer does have a flush, but a full house beats a flush.
+  - 'The hands are different: a full house against a flush.'
+  - 'The computer has more than a pair: five hearts make its flush. Even so, your hand is better.'
+explanation: Your two sevens and the seven on the board make three sevens; the two kings on the board complete a full house. A full house beats a flush.
+measures: hand-reading

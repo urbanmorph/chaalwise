@@ -26,3 +26,38 @@
   background: repeating-linear-gradient(45deg, var(--felt-2) 0 5px, var(--felt) 5px 10px);
   border-color: var(--felt-2);
 }
+
+/* A row of a poker table: a seat's cards, or the shared cards and the pot (FirstHands, TableCards). */
+.poker-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.poker-row .who,
+.poker-row .pot {
+  color: var(--ink-2);
+  min-width: 9rem;
+}
+.poker-row .pot {
+  margin-left: 8px;
+}
+.poker-row .slot {
+  width: 3.2rem;
+  height: 4.4rem;
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+}
+
+/* A lesson step's cards (TableCards): each row's name above its cards, so the cards line up at any width. */
+.table-cards .poker-row {
+  margin: 0 0 16px;
+}
+.table-cards .poker-row .who {
+  flex-basis: 100%;
+  min-width: 0;
+}
+.table-cards .poker-row .pot {
+  margin-left: 0;
+}

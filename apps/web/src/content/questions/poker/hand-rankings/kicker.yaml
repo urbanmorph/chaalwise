@@ -1,0 +1,21 @@
+kind: choice
+prompt: You and the computer both pair the king on the board. Who wins?
+cards:
+  hole: [Ks, Qc]
+  board: [Kd, 8s, 4c, 2h, 9d]
+  others:
+    - name: Computer
+      cards: [Kh, Jd]
+options:
+  - 'You: your queen beats its jack as the next card'
+  - 'The computer: its jack of diamonds matches a diamond on the board'
+  - 'Neither: a pair of kings each, so the pot is split'
+  - Neither hand counts until a second pair comes
+answer: 0
+feedback:
+  - ''
+  - Suits never rank in poker. Only the ranks of the five cards count.
+  - 'Both have a pair of kings, so the next-highest cards decide: your queen against its jack.'
+  - One pair is a hand in itself.
+explanation: "Both of you have a pair of kings. The next card, the kicker, decides: your queen beats the computer's jack. Many hands are won or lost on the kicker."
+measures: hand-reading

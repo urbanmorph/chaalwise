@@ -3,10 +3,10 @@ import { SKILLS, type SkillId } from '@chaalwise/core/skills';
 import type { CollectionEntry } from 'astro:content';
 import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
-import { chessLessonsFor, lessonHref, STAGES, trackLessons, trackSteps } from '../lib/lessons';
+import { chessLessonsFor, lessonHref, pokerLessonsFor, STAGES, trackLessons, trackSteps } from '../lib/lessons';
 import { labHref, LABS } from '../lib/labs/labs';
-import { COMES_WITH } from '../lib/planned-skills';
 import NewToChess from './NewToChess.astro';
+import NewToPoker from './NewToPoker.astro';
 import TrackPractice from './TrackPractice.svelte';
 
 /**
@@ -23,6 +23,11 @@ const id = course.id as SkillId;
 const name = SKILLS[id];
 const lessons = await trackLessons(id);
 const chess = await chessLessonsFor(id);
+const poker = await pokerLessonsFor(id);
+const games = [
+  { name: 'chess', lessons: chess },
+  { name: 'poker', lessons: poker },
+].filter((g) => g.lessons.length > 0);
 const steps = await trackSteps(id);
 const measured = Object.keys(steps).length > 0;
 const lab = LABS.find((l) => l.track === id);
@@ -71,29 +76,25 @@ const { idea, why, atWork, inStudy, habit } = course.data;
         ))}
       </ol>
     )}
-    {chess.length > 0 && (
+    {games.map(({ name, lessons }) => (
       <p class="also">
-        Shown and practised in chess:{' '}
-        {chess.map((l, i) => (
+        Shown and practised in {name}:{' '}
+        {lessons.map((l, i) => (
           <>
             <a href={lessonHref(l)}>{l.data.title}</a>
-            {i < chess.length - 1 && ', '}
+            {i < lessons.length - 1 && ', '}
           </>
         ))}
         .
       </p>
-    )}
+    ))}
     {lab && (
       <p class="also">
         Practise it in a game: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against bots.
       </p>
     )}
     {(chess.length > 0 || Object.values(steps).some((s) => s.position)) && <NewToChess />}
-    {COMES_WITH[id] && (
-      <p class="also">
-        {measured ? 'More comes with' : 'Comes with'} {COMES_WITH[id]}.
-      </p>
-    )}
+    {(poker.length > 0 || Object.values(steps).some((s) => 'cards' in s && s.cards)) && <NewToPoker />}
   </section>
 
   {measured && (

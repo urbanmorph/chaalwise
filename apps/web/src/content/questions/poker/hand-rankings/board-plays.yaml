@@ -1,0 +1,21 @@
+kind: choice
+prompt: The five shared cards make a straight, ace high. You hold a two and a three; the computer holds a four and a five. Who wins?
+cards:
+  hole: [2c, 3d]
+  board: [Ac, Kc, Qd, Js, Th]
+  others:
+    - name: Computer
+      cards: [4h, 5s]
+options:
+  - 'Neither: both play the straight on the board, and split the pot'
+  - You, because your cards are of the same suits as the board
+  - The computer, because its cards are higher than yours
+  - Whoever bet last
+answer: 0
+feedback:
+  - ''
+  - Suits never rank, and your cards add nothing to an ace-high straight.
+  - Neither player's own cards improve on the board's straight, so they do not count.
+  - Betting decides who is still in the hand, not who wins it.
+explanation: Your best five cards can all be shared cards. Here the board's ace-high straight is the best hand for both players, so the pot is split.
+measures: hand-reading

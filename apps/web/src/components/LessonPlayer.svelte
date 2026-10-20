@@ -10,6 +10,7 @@
   import Board, { type Mark } from './Board.svelte';
   import PlanStep from './PlanStep.svelte';
   import PlayOut from './PlayOut.svelte';
+  import TableCards from './poker/TableCards.svelte';
 
   interface Props {
     lesson: { steps: Step[] };
@@ -49,6 +50,9 @@
   const total = $derived(lesson.steps.length);
   // Square steps hide the coordinates unless asked, or the answer is written on the edge.
   const showCoordinates = $derived(step?.kind !== 'square' || !!step.coordinates);
+
+  /** A poker step's cards, shown where a chess step shows its board. */
+  const cards = $derived(step && (step.kind === 'read' || step.kind === 'choice') ? step.cards : undefined);
 
   const fen = $derived.by(() => {
     if (!step || step.kind === 'plan' || (step.kind === 'read' && !step.position)) return undefined;
@@ -175,7 +179,7 @@
       </ol>
       <p class="label">Step {player.index + 1} of {total}</p>
     </nav>
-    <div class="layout" class:has-board={fen || step.kind === 'play'}>
+    <div class="layout" class:has-board={fen || step.kind === 'play' || cards}>
       <h2 tabindex="-1" bind:this={heading} class:reading={step.kind === 'read'}>
         {#if contexts[player.index]}<span class="label context" data-testid="question-context">{contexts[player.index]}:</span>{/if}
         {step.kind === 'read' ? step.text : step.prompt}
@@ -185,6 +189,10 @@
           {#key player.index}
             <PlayOut {step} finished={player.revealed} onresult={(won) => respond({ kind: 'play', won })} />
           {/key}
+        </div>
+      {:else if cards}
+        <div class="board-col">
+          <TableCards {cards} />
         </div>
       {:else if fen}
         <div class="board-col">
@@ -232,7 +240,7 @@
         {/if}
         {#if step.kind === 'choice' && step.alongside}
           <div class="alongside">
-            <p class="label">Off the board</p>
+            <p class="label">{cards ? 'Away from the table' : 'Off the board'}</p>
             <p>{step.alongside}</p>
           </div>
         {/if}

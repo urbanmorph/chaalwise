@@ -1,0 +1,15 @@
+kind: choice
+prompt: Your firm is pricing a bid for a building contract. Three firms were invited, and one of them built the client's last office. What should you weigh before setting your price?
+options:
+  - What the other firms could offer, above all the one the client knows
+  - Only your own costs
+  - Only the lowest price you have heard of
+  - 'Nothing: the best bid wins whatever the others do'
+answer: 0
+feedback:
+  - ''
+  - Your costs set your floor, not your chances against the others.
+  - A price you heard of elsewhere says little about these three firms.
+  - Which bid is best depends on what the others bring, such as a client who already trusts them.
+explanation: As with reading the shared cards in poker, ask what the facts everyone can see allow the others to hold, before you value your own position.
+measures: read-hidden

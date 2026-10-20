@@ -10,8 +10,8 @@ import { TRACKS, type Track } from '../lib/skill-tracks';
 const now = (t: Track) => !PROFILE_SKILLS.find((s) => s.id === t.id)!.later;
 const groups: { title: string; tracks: Track[] }[] = [
   { title: 'Train now', tracks: TRACKS.filter(now) },
-  { title: 'Coming with poker and later lessons', tracks: TRACKS.filter((t) => !now(t)) },
-];
+  { title: 'Coming with later lessons', tracks: TRACKS.filter((t) => !now(t)) },
+].filter((g) => g.tracks.length > 0);
 const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
 ---
 
@@ -96,7 +96,7 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
               <td class="also" data-game="Also in">
                 {track.also || '–'}
               </td>
-              <td class="go">{now(track) ? <a href={`/skills/${track.id}/`}>Train it</a> : <span>With {track.comesWith}</span>}</td>
+              <td class="go">{now(track) ? <a href={`/skills/${track.id}/`}>Train it</a> : <span>Later</span>}</td>
             </tr>
           ))}
         </tbody>
@@ -130,8 +130,8 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
           <a href="/reference/">See it in a game</a>
         </h3>
         <p>
-          Chess and the <a href="/labs/">game-theory labs</a> now, poker next. Learn each game well enough to play it anywhere: its lessons, drills and terms
-          are in the reference, and then <a href="/play-elsewhere/">play it elsewhere</a>.
+          Chess, <a href="/poker/">poker</a> and the <a href="/labs/">game-theory labs</a>. Learn each game well enough to play it anywhere: its lessons, drills
+          and terms are in the reference, and then <a href="/play-elsewhere/">play it elsewhere</a>.
         </p>
       </li>
       <li>

@@ -1,0 +1,15 @@
+kind: choice
+prompt: A small firm is offered twenty possible projects a year and can do four well. Most are only fair. How should it choose?
+options:
+  - Turn down most, and take the few with the best odds
+  - Take every project, since any one could pay off
+  - Take the first four that come
+  - Take the largest four, whatever their odds
+answer: 0
+feedback:
+  - ''
+  - Every weak project takes time and money that a good one could have had.
+  - The first four are not likely to be the best four.
+  - Size is not the same as a good chance of success.
+explanation: Like folding most starting hands in poker, saying no to fair chances keeps your points, time or money for the good ones.
+measures: size-risk

@@ -8,7 +8,7 @@ import NewToPoker from '../../../components/NewToPoker.astro';
 import TryIt from '../../../components/TryIt.astro';
 import Base from '../../../layouts/Base.astro';
 import { toFen } from '../../../lib/chess';
-import { lessonHref, lessonPath } from '../../../lib/lessons';
+import { allLessons, lessonHref } from '../../../lib/lessons';
 import { labHref, LABS } from '../../../lib/labs/labs';
 import { referenceMeasures } from '../../../lib/profile-skills';
 import { ask } from '../../../lib/questions';
@@ -27,7 +27,7 @@ const { data } = entry;
 const { Content } = await render(entry);
 const all = await referenceEntries();
 const related = data.related.map((id) => all.find((e) => e.id === id)!);
-const lesson = data.lesson ? (await lessonPath()).find((l) => l.id === data.lesson) : undefined;
+const lesson = data.lesson ? (await allLessons()).find((l) => l.id === data.lesson) : undefined;
 // A track the profile measures: its course has practice, and answers here count towards it.
 const measures = referenceMeasures(data.game, data.skill);
 // A lab that plays this idea out against bots.

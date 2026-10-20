@@ -1,0 +1,19 @@
+kind: choice
+prompt: On the last round you hold a middling pair. A bet would be called only by better hands, and would make only worse hands fold. What should you do?
+cards:
+  hole: [8c, 8d]
+  board: [Kh, 6s, 3c, Jd, 2h]
+  pot: 14
+options:
+  - 'Check: the bet gains nothing either way'
+  - 'Bet: betting shows strength'
+  - 'Bet: a bluff might work'
+  - Fold now
+answer: 0
+feedback:
+  - ''
+  - A bet that only better hands call loses points when called, and wins nothing more when worse hands fold.
+  - A bluff works when better hands fold, and here they will not.
+  - You cannot be made to fold when nobody has bet. Check, and you may win at the showdown.
+explanation: A bet should be called by worse or fold better. This one does neither, so check, and let the showdown decide.
+measures: betting

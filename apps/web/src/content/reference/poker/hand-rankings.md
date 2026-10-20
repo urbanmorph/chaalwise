@@ -5,6 +5,10 @@ kind: 'rule'
 level: 'beginner'
 aliases: ['Poker hands', 'Which hand wins']
 summary: 'From best to worst: straight flush, four of a kind, full house, flush, straight, three of a kind, two pair, one pair, high card.'
+lesson: 'poker/hand-rankings'
+try:
+  - 'poker/hand-rankings/flush-or-straight'
+  - 'poker/hand-rankings/kicker'
 related: ['poker/outs']
 ---
 

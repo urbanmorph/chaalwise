@@ -1,11 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SKILLS } from '@chaalwise/core/skills';
-import { lessonHref, lessonPath, STAGES } from '../../lib/lessons';
+import LessonList from '../../components/LessonList.astro';
+import { lessonPath, STAGES } from '../../lib/lessons';
 
 // The whole path: chess lessons, with strategy lessons where they fall.
-const lessons = (await lessonPath()).filter((l) => l.data.game === 'chess' || l.data.game === 'strategy');
-const stages = [...new Set(lessons.map((l) => l.data.stage))];
+const lessons = await lessonPath();
 ---
 
 <Base title="Chess" description="Chess lessons, from setting up the board to confident full games.">
@@ -18,74 +17,6 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
     <p>
       <a href="/chess/drills/">Daily drills</a>: find the square, and is this move safe? A few minutes a day.
     </p>
-    {stages.map((stage) => (
-      <section>
-        <h2>
-          <span class="label">Stage {stage}</span> {STAGES[stage]}
-        </h2>
-        <ol class="lessons">
-          {lessons
-            .filter((l) => l.data.stage === stage)
-            .map((l) => (
-              <li class="card" class:list={{ strategy: l.data.game === 'strategy' }} data-lesson={l.id}>
-                {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
-                <a href={lessonHref(l)}>{l.data.title}</a>
-                <p>{l.data.summary}</p>
-                <span class="done-badge label">Done</span>
-              </li>
-            ))}
-        </ol>
-      </section>
-    ))}
+    <LessonList {lessons} stageNames={STAGES} />
   </div>
 </Base>
-
-<script>
-  import { markDone } from '../../scripts/mark-done';
-
-  // Mark finished lessons; progress lives only on this device.
-  markDone().catch(console.error);
-</script>
-
-<style>
-  section {
-    margin-top: 32px;
-  }
-  h2 .label {
-    display: block;
-    margin-bottom: 4px;
-  }
-  .lessons {
-    display: grid;
-    gap: 12px;
-    padding: 0;
-    list-style: none;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  }
-  .lessons a {
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-  .lessons p {
-    margin: 6px 0 0;
-    color: var(--ink-2);
-  }
-  .strategy {
-    background: var(--paper);
-    border-style: dashed;
-    border-color: var(--rule-strong);
-  }
-  .kind {
-    display: block;
-    margin-bottom: 4px;
-    color: var(--accent-text);
-  }
-  .done-badge {
-    display: none;
-    margin-top: 10px;
-    color: var(--pass);
-  }
-  :global(li.done) .done-badge {
-    display: inline-block;
-  }
-</style>

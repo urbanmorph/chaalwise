@@ -25,17 +25,36 @@ const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
 /** Arrows on a board, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
 const arrows = z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional();
 
-/** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank). */
-const readStep = z.object({
-  kind: z.literal('read'),
-  id: stepId,
-  text: z.string().min(1),
-  position: z.string().optional(),
-  orientation: z.enum(['white', 'black']).optional(),
-  highlight: z.array(squareName).optional(),
-  /** Arrows shown with the text, such as the attack it describes. */
-  arrows,
-});
+/** A playing card, rank then suit: As is the ace of spades, Td the ten of diamonds. */
+const card = z.string().regex(/^[2-9TJQKA][shdc]$/, 'a card such as As or Td');
+
+/** Poker steps show cards instead of a board: your two cards, the shared cards, others' cards, the pot and what a call costs. */
+const cards = z
+  .object({
+    hole: z.array(card).max(2).optional(),
+    board: z.array(card).max(5).optional(),
+    others: z.array(z.object({ name: z.string().min(1), cards: z.array(card).max(2) })).optional(),
+    pot: z.number().int().nonnegative().optional(),
+    toCall: z.number().int().nonnegative().optional(),
+  })
+  .optional();
+
+const boardOrCards = { message: 'a step shows a board or cards, never both', path: ['cards'] };
+
+/** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank), or beside cards. */
+const readStep = z
+  .object({
+    kind: z.literal('read'),
+    id: stepId,
+    text: z.string().min(1),
+    position: z.string().optional(),
+    orientation: z.enum(['white', 'black']).optional(),
+    highlight: z.array(squareName).optional(),
+    /** Arrows shown with the text, such as the attack it describes. */
+    arrows,
+    cards,
+  })
+  .refine((s) => !(s.position && s.cards), boardOrCards);
 
 const choiceStep = z
   .object({
@@ -56,13 +75,15 @@ const choiceStep = z
     feedback: z.array(z.string()).optional(),
     /** A case off the board shown beside the board, to compare the two: what do they share? */
     alongside: z.string().min(1).optional(),
+    cards,
   })
   .refine((s) => s.answer < s.options.length, {
     message: 'answer must be the index of one of the options',
     path: ['answer'],
   })
-  .refine((s) => !s.alongside || s.position, {
-    message: 'a step with a case alongside needs a board to compare it with',
+  .refine((s) => !(s.position && s.cards), boardOrCards)
+  .refine((s) => !s.alongside || s.position || s.cards, {
+    message: 'a step with a case alongside needs a board or cards to compare it with',
     path: ['alongside'],
   })
   .refine(
@@ -175,7 +196,7 @@ export const lessonSchema = z
     title: z.string().min(1),
     summary: z.string().min(1),
     /** `strategy` lessons teach a skill off the board, between the game lessons that ground it. */
-    game: z.enum(['chess', 'strategy']),
+    game: z.enum(['chess', 'strategy', 'poker']),
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),

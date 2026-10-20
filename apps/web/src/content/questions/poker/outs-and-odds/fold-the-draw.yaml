@@ -1,0 +1,20 @@
+kind: choice
+prompt: You have a flush draw with one card to come. The pot holds 10 points and a call costs 8. Call or fold?
+cards:
+  hole: [Ah, 5h]
+  board: [Kh, 9h, 2c, 7s]
+  pot: 10
+  toCall: 8
+options:
+  - 'Fold: you need 44%, and the flush comes about 20%'
+  - 'Call: nine outs is plenty to chase a flush'
+  - 'Call: the ace makes the hand worth seeing out'
+  - 'Fold: flush draws are never worth a call'
+answer: 0
+feedback:
+  - ''
+  - Nine outs with one card to come is about 18% by the rule of two, far short of the price.
+  - If the flush misses, ace high rarely wins at the showdown.
+  - They pay when the price is low enough, as the next question shows.
+explanation: 'A call of 8 plays for 18, so you need to win 8 times in 18, about 44%. Nine hearts among 46 unseen cards come about 20% of the time. The price is too high: fold.'
+measures: odds

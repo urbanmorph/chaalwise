@@ -1,0 +1,18 @@
+kind: choice
+prompt: 'You hold the ace and jack of diamonds: an ace-high flush. The river pairs the board. What has changed?'
+cards:
+  hole: [Ad, Jd]
+  board: [9d, Kd, 4d, 7c, Ks]
+options:
+  - A full house is now possible, and it beats your flush
+  - 'Nothing: a flush still beats everything possible here'
+  - Your flush has become a straight flush
+  - You now have a full house, kings full of nines
+answer: 0
+feedback:
+  - ''
+  - A pair on the board makes full houses possible, and they beat a flush.
+  - Your five diamonds are not in a row.
+  - You hold no king and no nine, so the pair of kings on the board does not give you a full house.
+explanation: Your flush was the best possible hand until the king paired the board. Now a king with a nine, seven or four, or a pair of nines, sevens or fours, makes a full house, and two kings make four of a kind. Read the board again on every card.
+measures: hand-reading

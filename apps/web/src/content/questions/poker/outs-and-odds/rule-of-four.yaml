@@ -1,0 +1,15 @@
+kind: choice
+prompt: You have nine outs on the flop, with two cards to come. Roughly what is your chance of hitting one?
+options:
+  - About 36%
+  - About 18%
+  - About 9%
+  - About 50%
+answer: 0
+feedback:
+  - ''
+  - '18% is the chance with one card to come: two times the outs.'
+  - 'Nine outs is not nine per cent: each out is about 2% per card, and two cards are coming.'
+  - Nine outs among 47 unseen cards, twice, is well short of half.
+explanation: Four times nine is 36. Worked out exactly it is 35%, so the rule is close enough to decide at the table.
+measures: odds

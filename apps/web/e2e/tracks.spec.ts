@@ -40,8 +40,8 @@ test("a track's review has only its own questions", async ({ page }) => {
   await expect(page.getByTestId('review-empty')).toBeVisible();
 });
 
-test('a track not trained yet says where it will come from', async ({ page }) => {
+test('a track poker trains links to its poker lessons and has practice', async ({ page }) => {
   await page.goto('/skills/bluff/');
-  await expect(page.getByText('Comes with poker.')).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Practise/ })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Why you bet' }).first()).toBeVisible();
+  await expect(page.getByRole('button', { name: /^Practise/ })).toBeVisible();
 });

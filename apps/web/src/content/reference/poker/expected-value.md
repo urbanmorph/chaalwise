@@ -5,6 +5,10 @@ kind: 'odds'
 level: 'intermediate'
 aliases: ['EV']
 summary: 'What a decision is worth on average, weighing each outcome by how likely it is.'
+lesson: 'poker/expected-value'
+try:
+  - 'poker/expected-value/positive'
+  - 'poker/expected-value/good-call-lost'
 related: ['poker/pot-odds', 'strategy/decisions-not-results', 'strategy/winners-curse']
 ---
 

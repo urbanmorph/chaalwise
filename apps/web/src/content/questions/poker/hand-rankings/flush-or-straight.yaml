@@ -1,0 +1,18 @@
+kind: choice
+prompt: Your nine and eight of spades, with these shared cards. What is your best hand?
+cards:
+  hole: [9s, 8s]
+  board: [7s, 6d, 5c, Ks, 2s]
+options:
+  - A flush, king high
+  - A straight, nine high
+  - A pair of nines
+  - High card, king
+answer: 0
+feedback:
+  - ''
+  - You do have a straight, five to nine, but you also have five spades, and a flush beats a straight.
+  - 'There is no second nine. Look at the suits: five spades.'
+  - 'You have far more than high card: count the spades.'
+explanation: 'Five spades make a flush: the king, nine, eight, seven and two of spades. A flush beats a straight, because five of one suit is rarer than five in a row.'
+measures: hand-reading

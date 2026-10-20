@@ -29,12 +29,3 @@ export const PLANNED: { title: string; skill: SkillId; stage: number }[] = [
   { title: 'Make it hard', skill: 'composure', stage: 7 },
   { title: 'Review calmly: decisions, not results', skill: 'composure', stage: 7 },
 ];
-
-/** Tracks that the later games train, beyond what chess teaches. */
-export const COMES_WITH: Partial<Record<SkillId, string>> = {
-  'weigh-odds': 'poker',
-  'size-risk': 'poker',
-  'read-hidden': 'poker',
-  bluff: 'poker',
-  composure: 'poker',
-};

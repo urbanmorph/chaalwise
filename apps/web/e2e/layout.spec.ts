@@ -22,7 +22,7 @@ test('body text and the footer span the width of their container', async ({ page
   }
 });
 
-test('the skills page shows every track with its lessons, what is planned, or the game that brings it', async ({
+test('the skills page shows every track with its lessons, what is planned, and the games that train it', async ({
   page,
 }) => {
   await page.goto('/skills/');
@@ -32,7 +32,7 @@ test('the skills page shows every track with its lessons, what is planned, or th
   await expect(page.getByRole('link', { name: 'The blunder check' })).toBeVisible();
   await expect(page.getByText('Two birds, one stone')).toBeVisible();
   await expect(page.getByText('Stage 4', { exact: false }).first()).toBeVisible();
-  await expect(page.getByText('Comes with poker', { exact: false }).first()).toBeVisible();
+  await expect(page.locator('#weigh-odds').getByRole('link', { name: 'Outs and odds' })).toBeVisible();
 });
 
 test('the drills page names the coordinates drill as such', async ({ page }) => {

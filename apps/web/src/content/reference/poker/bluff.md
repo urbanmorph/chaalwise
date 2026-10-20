@@ -5,6 +5,9 @@ kind: 'concept'
 level: 'intermediate'
 aliases: ['Semi-bluff']
 summary: 'Betting with a weak hand to make a stronger hand give up.'
+lesson: 'poker/why-you-bet'
+try:
+  - 'poker/why-you-bet/bluff'
 related: ['poker/position', 'poker/range', 'strategy/be-unpredictable']
 ---
 
