@@ -1,0 +1,14 @@
+card: strategy/not-so-fast/best-engineer
+kind: choice
+prompt: Your café's best supplier mentions that a hotel chain wants to buy their whole harvest next season at a higher price. Your contract renews in six months. Finding an equally good supplier would take months and cost you customers. What do you do now?
+options:
+  - Wait for the renewal, and match the hotel's price if it comes to that
+  - Talk with the supplier now about a longer contract, before any deal is made
+  - Start looking quietly for another supplier, in case they go
+answer: 1
+feedback:
+  - Matching at renewal means acting after the hotel has made its offer, often too late. It answers the threat once it is running.
+  - ''
+  - Looking elsewhere prepares for the loss instead of preventing it, and if the supplier hears of it, it may push them to the hotel.
+explanation: A longer contract now, perhaps at a slightly better price, costs far less than months without good stock. Acting before the rival's offer arrives is the quiet move that stops the threat.
+measures: think-ahead

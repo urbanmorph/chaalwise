@@ -17,7 +17,7 @@ steps:
   - kind: read
     id: off-the-board
     text: Off the board, before you push on with your own plan, ask what the other side most wants to do next. If it would hurt, spend a quiet step stopping it now. Preventing a problem is usually cheaper than fighting it once it has started.
-  - ask: life/not-so-fast/best-engineer
+  - ask: life/not-so-fast/supplier
   - ask: life/not-so-fast/lab-sessions
   - ask: chess/not-so-fast/compare
   - kind: plan
