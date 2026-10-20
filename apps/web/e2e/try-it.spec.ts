@@ -93,7 +93,8 @@ test('saying how sure you are is optional, and the progress page shows how often
             const open = indexedDB.open('chaalwise');
             open.onsuccess = () => {
               const all = open.result.transaction('attempts').objectStore('attempts').getAll();
-              all.onsuccess = () => resolve(all.result.filter((a: { confidence?: number }) => a.confidence === 0.9).length);
+              all.onsuccess = () =>
+                resolve(all.result.filter((a: { confidence?: number }) => a.confidence === 0.9).length);
             };
           }),
       ),
