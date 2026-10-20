@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { tick } from 'svelte';
   import { BOTS, botMove, botName, lastRound, payoff, type BotId, type Move, type StyleRow } from '../../lib/labs/dilemma';
 
@@ -79,6 +80,8 @@
 
   async function showDebrief() {
     debrief = true;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/prisoners-dilemma');
     await tick();
     debriefEl?.focus();
   }

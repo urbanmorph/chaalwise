@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { GradedStep } from '@chaalwise/core/lesson';
   import { tick } from 'svelte';
+  import { readDone } from '../lib/done-lessons';
+  import { askable, gamesMet } from '../lib/games';
   import { mixedIds, roundItems, type RoundItem } from '../lib/round-items';
   import PracticeRound from './PracticeRound.svelte';
 
@@ -12,7 +14,10 @@
   let heading = $state<HTMLElement>();
 
   async function practise() {
-    items = await roundItems(mixedIds(steps, ROUND, Math.random), steps);
+    // Meet the game first: only questions about games played on this device, and about life.
+    const met = gamesMet(readDone());
+    const open = Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met)));
+    items = await roundItems(mixedIds(open, ROUND, Math.random), open);
     rounds++;
     await tick();
     heading?.focus();

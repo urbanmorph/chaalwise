@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { onMount, tick } from 'svelte';
   import { botTake, drawPiles, GAMES, review, starter, TAKES, type Player, type Review } from '../../lib/labs/nim';
 
@@ -104,6 +105,8 @@
 
   async function showDebrief() {
     debrief = true;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/nim');
     await tick();
     debriefEl?.focus();
   }

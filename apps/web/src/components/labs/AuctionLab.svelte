@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { tick } from 'svelte';
   import { BIDDERS, botBid, breakEvenShade, drawItem, HIGH, LOW, settle, SPREAD, BOT_SHADE, type Item } from '../../lib/labs/auction';
 
@@ -47,6 +48,8 @@
 
   async function showDebrief() {
     debrief = true;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/sealed-bid-auction');
     await tick();
     debriefEl?.focus();
   }

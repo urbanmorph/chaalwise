@@ -6,7 +6,8 @@ const first = (await lessonPath()).find((l) => l.data.game === 'chess')!;
 ---
 
 <p class="new-to-chess">
-  New to chess? The examples here use it. <a href={lessonHref(first)}>Learn chess from the beginning</a>, one short lesson at a time.
+  New to chess? The examples here use it. <a href="/chess/first-moves/">Play your first moves</a> (five minutes), then{' '}
+  <a href={lessonHref(first)}>learn chess from the beginning</a>, one short lesson at a time.
 </p>
 
 <style>

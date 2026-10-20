@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { markMet } from '../../lib/meet';
   import { tick } from 'svelte';
   import { describePattern, outcome, PatternBot, THROWS, type Outcome, type Throw } from '../../lib/labs/rock-paper-scissors';
 
@@ -38,6 +39,8 @@
     rounds.push({ you, bot: move, result, read: guess === you });
     status = `Round ${rounds.length}: you threw ${you}, the bot threw ${move}: ${said[result]}.`;
     if (!done) return;
+    // Played: the lab is met, and its questions open up in practice.
+    markMet('labs/rock-paper-scissors');
     await tick();
     debriefEl?.focus();
   }

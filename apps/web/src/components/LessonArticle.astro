@@ -1,9 +1,8 @@
 ---
 import { render } from 'astro:content';
 import { DONE_KEY } from '../lib/done-lessons';
-import { lessonHref, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
+import { lessonHref, lessonPath, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
 import LessonPage from './LessonPage.svelte';
-import NewToChess from './NewToChess.astro';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
 interface Props {
@@ -14,6 +13,9 @@ const { lesson } = Astro.props;
 const { Content } = await render(lesson);
 const { next, buildsOn } = await pathContext(lesson);
 const steps = await playedSteps(lesson);
+const firstChess = (await lessonPath()).find((l) => l.data.game === 'chess')!;
+// A strategy lesson with board questions: until chess is met, they are worked examples.
+const worked = lesson.data.game === 'strategy' && steps.some((s) => 'position' in s && s.position && s.kind !== 'read');
 const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
 ---
 
@@ -36,10 +38,27 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   })();
 </script>
 <h1>{lesson.data.title}</h1>
+{worked && (
+  <p class="meet-chess" data-testid="meet-chess" hidden>
+    This lesson uses chess positions. Until you have played a little, its board questions are worked examples to read. New to chess?{' '}
+    <a href="/chess/first-moves/">Play your first moves</a> (five minutes), then <a href={lessonHref(firstChess)}>learn it from the beginning</a>.
+  </p>
+)}
+{/* Inline, so it shows before the first paint and the lesson never jumps. */}
+{worked && <script is:inline define:vars={{ key: DONE_KEY }}>
+  (() => {
+    let done = [];
+    try {
+      done = JSON.parse(localStorage.getItem(key) ?? '[]');
+    } catch {
+      // Storage can be blocked: treat it as a new learner.
+    }
+    if (!done.some((id) => id.startsWith('chess/'))) document.currentScript.previousElementSibling.hidden = false;
+  })();
+</script>}
 <div class="intro">
   <Content />
 </div>
-{lesson.data.game === 'strategy' && <NewToChess />}
 <LessonPage
   client:load
   lesson={{ steps }}
@@ -47,6 +66,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   next={next && { href: lessonHref(next), title: next.data.title }}
   track={lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined}
   checkable={lesson.data.game === 'chess'}
+  workedUntilMet={worked}
 />
 
 <style>
@@ -56,8 +76,15 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
     background: var(--tint);
     border-radius: 0 var(--radius) var(--radius) 0;
   }
-  .builds-on[hidden] {
+  .builds-on[hidden],
+  .meet-chess[hidden] {
     display: none;
+  }
+  .meet-chess {
+    padding: 10px 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--tint);
+    border-radius: 0 var(--radius) var(--radius) 0;
   }
   .intro {
     font-size: 1.05rem;
