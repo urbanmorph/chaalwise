@@ -22,11 +22,10 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
   await completeLesson(page, 'hanging');
   await page.goto('/progress/');
   await hydrated(page);
-  // The chess safety answers are evidence for the strategy track they train.
+  // Chess safety answers show beside the track, on the board; they are not evidence of the skill off it.
   const ahead = page.locator('[data-skill="think-ahead"]');
-  await expect(ahead.locator('.label')).toHaveText('Noticing');
-  await expect(ahead).toContainText('You got 3 of your last 3 first time, over 1 day.');
-  await expect(ahead).toContainText('For Applying: at least 5 tries, and 6 in 10 first time.');
+  await expect(ahead.locator('.label')).toHaveText('Not started');
+  await expect(ahead.getByTestId('on-board')).toHaveText('On the board: Noticing');
   await expect(page.getByTestId('next-focus')).toContainText('Think ahead');
   await expect(page.locator('[data-game-skill="safety"]')).toContainText('Noticing');
 
@@ -50,7 +49,9 @@ test('the progress page does not jump about as the profile loads', async ({ page
   const shifts = await watchShifts(page);
   await page.goto('/progress/');
   await hydrated(page);
-  await expect(page.locator('[data-skill="think-ahead"] .label')).toHaveText('Noticing');
+  await expect(page.locator('[data-skill="think-ahead"] [data-testid="on-board"]')).toHaveText(
+    'On the board: Noticing',
+  );
   expect(await shifts()).toBeLessThan(0.1);
 });
 

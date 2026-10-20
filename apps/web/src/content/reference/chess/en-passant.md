@@ -4,7 +4,7 @@ game: 'chess'
 kind: 'rule'
 level: 'beginner'
 aliases: ['In passing']
-summary: 'A pawn that moves two squares can be captured as if it had moved one, but only on the very next move.'
+summary: 'A pawn that moves two squares can be captured by an enemy pawn standing beside it, as if it had moved one square, but only on the very next move.'
 position: 'moves: e4 Nf6 e5 d5'
 move: 'e5d6'
 highlight: ['d5']

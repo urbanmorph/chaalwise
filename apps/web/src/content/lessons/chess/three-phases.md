@@ -30,6 +30,10 @@ steps:
       - The middlegame
       - The endgame
     answer: 0
+    feedback:
+      - ''
+      - 'The middlegame starts once the pieces are out. Here most are still at home.'
+      - 'Every piece is still on the board. The endgame comes when most of them are gone.'
     explanation: Only two moves each, and most pieces are still at home. The opening has just begun.
   - kind: choice
     id: which-phase-2
@@ -40,15 +44,23 @@ steps:
       - The middlegame
       - The endgame
     answer: 2
+    feedback:
+      - 'The kings are still on their back ranks, but almost every piece is gone. That makes it an endgame.'
+      - 'With only a rook and pawns left, there are no pieces to build a middlegame plan around. It is an endgame.'
+      - ''
     explanation: A white rook and a few pawns each side, and nothing else. That is an endgame, even though the kings are still on their first ranks.
   - kind: choice
     id: when-opening-ends
     prompt: When is the opening over?
     options:
       - When both sides have brought out their pieces and castled
-      - After exactly ten moves
-      - When the queens have been traded
+      - After ten to fifteen moves, whatever is on the board
+      - When the first piece or pawn is captured
     answer: 0
+    feedback:
+      - ''
+      - 'That is how long it usually lasts, not what ends it. A slow opening can run longer.'
+      - 'Captures often happen while pieces are still coming out. The opening ends when development is done.'
     explanation: The phases are about what is happening on the board, not a move count. Once development is done, you need a plan, and that is the middlegame.
 ---
 

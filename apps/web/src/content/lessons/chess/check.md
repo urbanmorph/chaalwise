@@ -3,13 +3,13 @@ title: Check and getting out of it
 summary: When your king is attacked you must get out of check at once. There are three ways.
 game: chess
 stage: 0
-order: 10
+order: 8
 skills: [think-ahead]
 measures: board
 steps:
   - kind: read
     id: three-ways
-    text: A king that is attacked is in check, and must get out of check at once. There are three ways. Move the king, block the line, or take the piece giving check.
+    text: A king that is attacked is in check, and must get out of check at once. There are three ways. Move the king, block the line, or take the piece giving check. If two pieces give check at once, only moving the king works.
   - kind: move
     id: escape-check
     prompt: Your king is in check from the rook. Get out of check by taking it.

@@ -14,8 +14,12 @@ steps:
     options:
       - h1, a light square
       - h1, a dark square
-      - a1, a light square
+      - a1, a dark square
     answer: 0
+    feedback:
+      - ''
+      - 'Right corner, wrong colour. The square on your right is always light; if it is dark, the board is turned.'
+      - 'a1 is a dark square, but it is on your left. Files run from a on your left to h on your right.'
     hint: Look at the board. Your right-hand corner is the h-file and the first rank.
     explanation: 'Light on right: the corner square on your right is always light. If it is dark, the board is turned the wrong way.'
     highlight: [h1]
@@ -27,6 +31,9 @@ steps:
       - d1
       - e1
     answer: 0
+    feedback:
+      - ''
+      - 'e1 is where the king starts. The white queen stands on her own colour, the light square d1.'
     hint: The white queen stands on a light square.
     explanation: 'Queen on her colour: the white queen starts on the light square d1, and the black queen on the dark square d8. Each king stands next to its queen.'
     highlight: [d1, d8]

@@ -38,8 +38,12 @@ steps:
     options:
       - No, it is blocked
       - Yes, it takes the black pawn
-      - Yes, two squares
+      - Yes, it can step diagonally to d5 or f5
     answer: 0
+    feedback:
+      - ''
+      - 'Pawns capture diagonally, never straight ahead. The pawn in front just blocks it.'
+      - 'A pawn moves diagonally only when it captures, and d5 and f5 are empty.'
     explanation: A pawn cannot move or capture straight ahead, so two pawns face to face block each other.
 ---
 

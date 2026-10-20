@@ -30,7 +30,7 @@ test("a track's review has only its own questions", async ({ page }) => {
 
   await page.goto('/skills/think-ahead/');
   await hydrated(page);
-  await expect(page.getByTestId('track-level')).toHaveText('Noticing');
+  await expect(page.getByTestId('track-board')).toHaveText('Noticing');
   await expect(page.getByTestId('track-due')).toHaveText('3');
   await page.getByRole('link', { name: 'Review Think ahead questions' }).click();
   await expect(page.getByText('Only Think ahead questions.')).toBeVisible();

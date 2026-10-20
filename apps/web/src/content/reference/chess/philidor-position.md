@@ -4,8 +4,8 @@ game: 'chess'
 kind: 'endgame'
 level: 'advanced'
 aliases: ['Third-rank defence']
-summary: 'The key drawing method in rook endings: keep the rook on the third rank until the pawn advances.'
+summary: 'The key drawing method in rook endings: with your king on or in front of the queening square, keep the rook on the third rank until the pawn advances.'
 related: ['chess/lucena-position']
 ---
 
-The defending rook stops the enemy king coming forward. Once the pawn steps up to that rank, the rook drops back and checks from behind, where the king cannot hide.
+It works only when the defending king stands on the queening square or right in front of it. The defending rook stops the enemy king coming forward. Once the pawn steps up to that rank, the rook drops back and checks from behind, where the king cannot hide.

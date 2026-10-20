@@ -3,8 +3,8 @@
   import type { Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
   import type { Snippet } from 'svelte';
-  import { logAttempt } from '../lib/attempts';
-  import LessonPlayer from './LessonPlayer.svelte';
+  import { guessChance, logAttempt } from '../lib/attempts';
+  import Round from './Round.svelte';
   import SaveStatus, { type SaveState } from './SaveStatus.svelte';
   import { summarise } from './outcomes';
 
@@ -40,7 +40,8 @@
   }
 
   function onstep(stepId: string, outcome: Outcome) {
-    logAttempt(itemFor(stepId).step.measures, outcome, source);
+    const { cardId, step } = itemFor(stepId);
+    logAttempt(step.measures, outcome, source, { item: cardId, chance: guessChance(step) });
     saving = saving.then(() =>
       save([[stepId, outcome]]).catch((error) => {
         console.error(error);
@@ -63,8 +64,8 @@
   }
 </script>
 
-<LessonPlayer lesson={round} {onfinish} {onstep}>
-  {#snippet finished(outcomes)}
+<Round steps={round.steps} {onfinish} {onstep}>
+  {#snippet summary(outcomes)}
     <div class="card" data-testid="round-done">
       <h2>Round done</h2>
       <p>{summarise(outcomes)}. The ones you missed come back sooner.</p>
@@ -72,4 +73,4 @@
       {@render after()}
     </div>
   {/snippet}
-</LessonPlayer>
+</Round>

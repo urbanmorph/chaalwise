@@ -13,6 +13,10 @@ export interface Attempt {
   skill: string;
   outcome: Outcome;
   at: Date;
+  /** The question answered, so a repeat on the same day counts once. Older records have none. */
+  item?: string | undefined;
+  /** The chance of getting it right first time by guessing: 1 in the number of options, 0 for a move. */
+  chance?: number | undefined;
 }
 
 export interface Assessment {
@@ -28,11 +32,26 @@ export interface Assessment {
 
 const WINDOW = 20;
 
-/** Each level's bar: tries in all, share first time over the window, and different days. */
+/**
+ * Each level's bar: tries in all, share first time over the window (allowing
+ * for guesses), different days and different questions.
+ */
 const BARS = {
-  applying: { tries: 5, rate: 0.6, days: 1, text: 'at least 5 tries, and 6 in 10 first time' },
-  reliable: { tries: 12, rate: 0.8, days: 2, text: 'at least 12 tries, 4 in 5 first time, on at least 2 days' },
-  instinctive: { tries: 20, rate: 0.9, days: 3, text: 'at least 20 tries, 9 in 10 first time, on at least 3 days' },
+  applying: { tries: 5, rate: 0.6, days: 1, items: 1, text: 'at least 5 tries, and 6 in 10 first time' },
+  reliable: {
+    tries: 12,
+    rate: 0.8,
+    days: 2,
+    items: 8,
+    text: 'at least 12 tries on 8 different questions, 4 in 5 first time, on at least 2 days',
+  },
+  instinctive: {
+    tries: 20,
+    rate: 0.9,
+    days: 3,
+    items: 12,
+    text: 'at least 20 tries on 12 different questions, 9 in 10 first time, on at least 3 days',
+  },
 } as const;
 
 const NAMES: Record<Level, string> = {
@@ -40,13 +59,38 @@ const NAMES: Record<Level, string> = {
   noticing: 'Noticing',
   applying: 'Applying',
   reliable: 'Reliable',
-  instinctive: 'Instinctive',
+  // The id stays for stored records; answering questions shows fluency with an idea, not an instinct.
+  instinctive: 'Fluent',
 };
 export const levelName = (level: Level) => NAMES[level];
 
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
-export function assess(attempts: readonly Attempt[]): Assessment {
+/** One answer per question per day: the first. Answers with no question named all count. */
+function oncePerDay(attempts: readonly Attempt[]): Attempt[] {
+  const seen = new Set<string>();
+  return [...attempts]
+    .sort((a, b) => a.at.getTime() - b.at.getTime())
+    .filter((a, i) => {
+      const key = a.item ? `${a.item} ${a.at.toDateString()}` : `#${i}`;
+      return !seen.has(key) && !!seen.add(key);
+    });
+}
+
+/**
+ * The share right first time, allowing for guesses (the usual correction for
+ * multiple choice): a right answer scores 1, and a wrong one takes away what a
+ * guess between the same options would have won.
+ */
+const guessCorrected = (attempts: readonly Attempt[]) =>
+  Math.max(
+    0,
+    attempts.reduce((sum, a) => sum + (a.outcome === 'first-try' ? 1 : -(a.chance ?? 0) / (1 - (a.chance ?? 0))), 0) /
+      attempts.length,
+  );
+
+export function assess(all: readonly Attempt[]): Assessment {
+  const attempts = oncePerDay(all);
   if (!attempts.length) {
     return {
       level: 'not-started',
@@ -57,13 +101,14 @@ export function assess(attempts: readonly Attempt[]): Assessment {
       next: 'Try a lesson or drill for this skill.',
     };
   }
-  const recent = [...attempts].sort((a, b) => a.at.getTime() - b.at.getTime()).slice(-WINDOW);
+  const recent = attempts.slice(-WINDOW);
   const firstTry = recent.filter((a) => a.outcome === 'first-try').length;
   const total = recent.length;
   const days = new Set(recent.map((a) => a.at.toDateString())).size;
-  const rate = firstTry / total;
+  const rate = guessCorrected(recent);
+  const items = new Set(attempts.map((a, i) => a.item ?? `#${i}`)).size;
   const meets = (bar: (typeof BARS)[keyof typeof BARS]) =>
-    attempts.length >= bar.tries && rate >= bar.rate && days >= bar.days;
+    attempts.length >= bar.tries && rate >= bar.rate && days >= bar.days && items >= bar.items;
 
   const level: Level = meets(BARS.instinctive)
     ? 'instinctive'
@@ -89,7 +134,7 @@ const rank = (a: Assessment) => LEVELS.indexOf(a.level);
 /**
  * Every skill in the order to work on it: the weak ones already started,
  * weakest first (ties go to the lower first-time rate); then the ones not
- * started, in the curriculum's order; then the Reliable and Instinctive ones,
+ * started, in the curriculum's order; then the Reliable and Fluent ones,
  * lowest first.
  */
 export function focusOrder(profile: Readonly<Record<string, Assessment>>, order: readonly string[]): string[] {

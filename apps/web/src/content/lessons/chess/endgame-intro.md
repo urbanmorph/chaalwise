@@ -18,17 +18,27 @@ steps:
     options:
       - Towards the centre, where it can attack and defend
       - In the corner, out of harm's way
+      - Still behind its pawns, as in the middlegame
     answer: 0
+    feedback:
+      - ''
+      - 'That was right while the queens were on. With few pieces left, a king in the corner is a piece doing nothing.'
+      - 'Hiding made sense with many pieces about. Now mate is unlikely, and the king is needed to fight.'
     explanation: With the queens gone, mating attacks are rare, so the king can come out and fight.
   - kind: choice
     id: passed-pawn
-    prompt: A passed pawn has no enemy pawn in front of it or on the files beside it. Is the b-pawn passed?
+    prompt: A passed pawn has no enemy pawn in front of it, on its own file or on either file next to it. Is the b-pawn passed?
     position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
     options:
       - Yes, no black pawn can stop it
       - No, the black king is in the way
+      - No, it has not crossed the middle yet
     answer: 0
-    explanation: Only pawns count. The black king can still try to catch it, which is the next lesson's question.
+    feedback:
+      - ''
+      - 'Kings and pieces do not count, only pawns. The king may still catch it, but the pawn is passed.'
+      - 'A pawn can be passed anywhere on the board. What counts is that no enemy pawn stands ahead of it.'
+    explanation: Only pawns count. Whether the black king can still catch it is a matter of counting. Look up the square of the pawn in the reference.
     highlight: [b4]
   - kind: move
     id: push-it
@@ -36,7 +46,7 @@ steps:
     position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
     answers: [b4b5]
     hint: Move it one square towards the last rank.
-    explanation: Each push brings promotion closer. In the coming lessons you will learn when the king can stop it, and how your king helps.
+    explanation: Each push brings promotion closer. To see when the enemy king can stop it, and how your own king helps, look up the square of the pawn and the opposition in the reference.
 ---
 
 The endgame is where advantages become wins, and where the rules of thumb change.

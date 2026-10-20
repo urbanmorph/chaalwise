@@ -50,6 +50,14 @@ describe('lessonSchema', () => {
     expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, highlight: ['h9'] }] })).toThrow();
   });
 
+  it('lets a choice say why each wrong option fails, one line per option', () => {
+    const step = { kind: 'choice', id: 'c', prompt: 'p', options: ['a', 'b'], answer: 0, explanation: 'e' };
+    expect(lessonSchema.parse({ ...lesson, steps: [{ ...step, feedback: ['', 'b misses the point.'] }] })).toBeTruthy();
+    expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, feedback: ['only one'] }] })).toThrow(/feedback/);
+    // Every wrong option gets its reason; the right one needs none.
+    expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, feedback: ['', ''] }] })).toThrow(/feedback/);
+  });
+
   it('lets a read step show a board with squares picked out, and a square step show coordinates', () => {
     const steps = [
       { kind: 'read', id: 'files', text: 'This is the e-file.', position: 'empty', highlight: ['e1', 'e2'] },

@@ -21,6 +21,10 @@ steps:
       - A rook and a knight
       - A bishop and a knight
     answer: 0
+    feedback:
+      - ''
+      - 'The queen moves along lines like a rook, but she cannot jump in an L like a knight.'
+      - 'She moves on diagonals like a bishop, but not in an L. She also moves straight, like a rook.'
     explanation: The queen moves any distance in straight lines and on diagonals. That is why she is worth about nine pawns.
   - kind: move
     id: queen-captures
@@ -42,6 +46,10 @@ steps:
       - Any distance, like the queen
       - Two squares at a time
     answer: 0
+    feedback:
+      - ''
+      - 'The king moves in the same directions as the queen, but only one square at a time.'
+      - 'The king moves two squares only when castling. Every other king move is one square.'
     explanation: One square in any direction, but never onto a square an enemy piece attacks.
   - kind: move
     id: king-captures

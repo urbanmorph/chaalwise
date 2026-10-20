@@ -1,7 +1,7 @@
 import { SKILLS, type SkillId } from '@chaalwise/core/skills';
 import { COMES_WITH } from './planned-skills';
 
-/** How strongly a game trains a skill, from 0 (not at all) to 3 (plan, section 1a). */
+/** How much a game exercises a skill, from 0 (not at all) to 3: a design judgement (plan, section 1a), not a measured effect. */
 type Strength = 0 | 1 | 2 | 3;
 
 export interface Track {

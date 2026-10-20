@@ -20,7 +20,15 @@ export const exportSchema = z.object({
   // Added in October 2026; files exported before then have none.
   attempts: z
     .array(
-      z.object({ skill: z.string(), outcome, at: date, source: z.enum(['lesson', 'review', 'practice', 'drill']) }),
+      z.object({
+        skill: z.string(),
+        outcome,
+        at: date,
+        source: z.enum(['lesson', 'review', 'practice', 'drill']),
+        // Added with the stricter levels; earlier files have neither.
+        item: z.string().optional(),
+        chance: z.number().min(0).max(1).optional(),
+      }),
     )
     .default([]),
   drills: z

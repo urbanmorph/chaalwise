@@ -132,11 +132,22 @@ describe('attempts for the skill profile', () => {
 
   it('carries attempts through an export, and reads an export from before they existed', async () => {
     await fresh();
-    await store.recordAttempt({ skill: 'safety', outcome: 'first-try', at: now, source: 'lesson' });
+    await store.recordAttempt({
+      skill: 'safety',
+      outcome: 'first-try',
+      at: now,
+      source: 'lesson',
+      item: 'chess/hanging/q1',
+      chance: 0.5,
+    });
     const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
     const other = await openProgress(`test-${++n}`);
     await other.importData(exported);
-    expect((await other.attemptsBySkill()).safety?.[0]?.at).toEqual(now);
+    expect((await other.attemptsBySkill()).safety?.[0]).toMatchObject({
+      at: now,
+      item: 'chess/hanging/q1',
+      chance: 0.5,
+    });
     await other.importData({ app: 'chaalwise', version: 1, exportedAt: now.toISOString(), lessons: [], cards: [] });
     expect(await other.attemptsBySkill()).toEqual({});
     other.close();

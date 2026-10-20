@@ -6,7 +6,7 @@ level: 'intermediate'
 aliases: ['Trade down', 'Convert the advantage']
 summary: 'When you are ahead, reduce the risk: trade pieces and head for a position where your advantage is easy to use.'
 why: 'An advantage only counts once it is converted. Fewer pieces means fewer ways for things to go wrong.'
-inLife: 'Once you are ahead on a project or a deal, lock the gain in and remove the moving parts that could still fail.'
+inLife: 'When a sure, modest win is worth more to you than a bigger but riskier one, such as a deadline you must meet or a contract you only need to close, remove the moving parts that could still fail. Do not mistake this for cashing in every gain early.'
 skill: 'size-risk'
 related: ['chess/piece-values', 'strategy/trade-offs']
 try:

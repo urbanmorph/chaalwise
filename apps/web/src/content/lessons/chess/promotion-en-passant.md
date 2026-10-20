@@ -3,7 +3,7 @@ title: Promotion and en passant
 summary: The two special pawn moves, becoming a queen and the capture in passing.
 game: chess
 stage: 0
-order: 9
+order: 11
 skills: []
 measures: board
 steps:
@@ -20,9 +20,13 @@ steps:
     options:
       - A queen
       - A knight
-      - Another pawn
+      - A piece you have lost earlier
     answer: 0
-    explanation: A queen is the strongest piece. Very rarely a knight is better, for example to give check at once.
+    feedback:
+      - ''
+      - 'A knight helps only in rare cases, such as a check that wins. Most of the time a queen does far more.'
+      - 'You may choose any piece, even a second queen while your first is still on the board.'
+    explanation: A queen is the strongest piece. Very rarely another piece is better, a rook to avoid stalemate, or a knight to give check.
   - kind: move
     id: en-passant
     prompt: Black has just pushed the d-pawn two squares, past your pawn on e5. Take it en passant.

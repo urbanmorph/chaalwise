@@ -1,3 +1,4 @@
+import type { GradedStep } from '@chaalwise/core/lesson';
 import type { Outcome } from '@chaalwise/core/player';
 import { openProgress, type AttemptRecord } from '@chaalwise/core/progress';
 
@@ -10,12 +11,13 @@ export async function logAttempt(
   skill: string | undefined,
   outcome: Outcome,
   source: AttemptRecord['source'],
+  question: Pick<AttemptRecord, 'item' | 'chance'> = {},
 ): Promise<void> {
   if (!skill) return;
   try {
     const progress = await openProgress();
     try {
-      await progress.recordAttempt({ skill, outcome, at: new Date(), source });
+      await progress.recordAttempt({ skill, outcome, at: new Date(), source, ...question });
     } finally {
       progress.close();
     }
@@ -23,3 +25,6 @@ export async function logAttempt(
     console.error(error);
   }
 }
+
+/** The chance of getting a question right first time by guessing, so the profile can allow for it. */
+export const guessChance = (step: GradedStep): number => (step.kind === 'choice' ? 1 / step.options.length : 0);

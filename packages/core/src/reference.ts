@@ -30,7 +30,7 @@ export const KIND_NAMES = {
 export const FAMILY_NAMES = {
   open: 'Open game (1.e4 e5)',
   'semi-open': 'Semi-open game (1.e4, not 1...e5)',
-  closed: 'Closed game (1.d4 d5)',
+  closed: 'Closed game (1.d4, not 1...Nf6)',
   indian: 'Indian game (1.d4 Nf6)',
   flank: 'Flank opening',
 } as const;

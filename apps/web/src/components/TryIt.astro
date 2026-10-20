@@ -9,6 +9,8 @@ import Diagram from './Diagram.astro';
  * a light reading page.
  */
 interface Props {
+  /** The entry, such as `strategy/weakest-link`. */
+  entry: string;
   steps: GradedStep[];
   /** The skill the answers count towards. */
   measures?: string | undefined;
@@ -16,14 +18,14 @@ interface Props {
   more?: { href: string; label: string } | undefined;
 }
 
-const { steps, measures, more } = Astro.props;
+const { entry, steps, measures, more } = Astro.props;
 const first = steps[0]!;
 const count = steps.length === 1 ? 'One question' : `${steps.length} questions`;
 ---
 
 <section class="try" aria-labelledby="try-title">
   <h2 id="try-title">Try it yourself</h2>
-  <div class="stage" data-steps={JSON.stringify(steps)} data-measures={measures}>
+  <div class="stage" data-entry={entry} data-steps={JSON.stringify(steps)} data-measures={measures}>
     <div class:list={['preview', { 'has-board': first.position }]}>
       {first.position && (
         <div class="board">
@@ -53,7 +55,7 @@ const count = steps.length === 1 ? 'One question' : `${steps.length} questions`;
       button.disabled = true;
       try {
         const { mountTry } = await import('../lib/try-it');
-        mountTry(stage, JSON.parse(stage.dataset.steps!), stage.dataset.measures);
+        mountTry(stage, stage.dataset.entry!, JSON.parse(stage.dataset.steps!), stage.dataset.measures);
       } catch (error) {
         // Offline before the board was ever loaded: let the learner try again later.
         console.error(error);

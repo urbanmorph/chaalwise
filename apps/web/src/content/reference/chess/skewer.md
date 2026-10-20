@@ -3,7 +3,6 @@ term: 'Skewer'
 game: 'chess'
 kind: 'tactic'
 level: 'beginner'
-aliases: ['X-ray attack']
 summary: 'A valuable piece is attacked and must move, exposing a piece behind it.'
 position: 'R7/8/8/4k3/8/8/4q3/K7 w - - 0 1'
 move: 'a8e8'

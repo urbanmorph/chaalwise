@@ -38,7 +38,8 @@
   async function answer(safe: boolean) {
     answered = safe === item!.safe;
     if (answered) score++;
-    logAttempt(DRILL_SKILL.safety, answered ? 'first-try' : 'missed', 'drill');
+    // Safe or not: a coin flip would be right half the time.
+    logAttempt(DRILL_SKILL.safety, answered ? 'first-try' : 'missed', 'drill', { chance: 0.5 });
     await tick();
     nextButton?.focus();
   }

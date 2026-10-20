@@ -5,8 +5,8 @@ kind: 'principle'
 level: 'beginner'
 aliases: ['Pattern recognition', 'Chunking']
 summary: 'Learn common patterns so you recognise them at a glance instead of working them out each time.'
-why: 'Strong players do not calculate more than beginners so much as recognise more. Every pattern you know frees attention for what is new.'
-inLife: 'Experienced doctors, mechanics and editors spot familiar problems in seconds, and spend their effort on the unfamiliar ones.'
+why: 'Strong players recognise far more patterns than beginners, and use them to choose what to calculate. Every pattern you know frees attention for what is new.'
+inLife: 'Experienced doctors, mechanics and editors spot familiar problems in seconds and spend their effort on the unfamiliar ones, and the best know to double-check when a case does not quite fit.'
 skill: 'calculate'
 related: ['chess/back-rank-mate', 'chess/fork', 'chess/smothered-mate']
 lesson: 'strategy/patterns-save-thinking'
