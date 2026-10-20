@@ -157,11 +157,10 @@ describe('the footer', () => {
 });
 
 describe('analytics', () => {
-  it('loads the Cloudflare beacon only when its token is set, and only on the live site', async () => {
+  it('loads the Cloudflare beacon, with its token, only on the live site', async () => {
     const { BEACON_TOKEN, LIVE_HOST } = await import('../src/lib/analytics');
     const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
-    if (!BEACON_TOKEN) return expect(html).not.toContain('cloudflareinsights');
+    expect(html).toMatch(new RegExp(`location\\.host===?[\`"']${LIVE_HOST.replaceAll('.', '\\.')}`));
     expect(html).toContain(BEACON_TOKEN);
-    expect(html).toContain(`location.hostname === ${JSON.stringify(LIVE_HOST)}`);
   });
 });

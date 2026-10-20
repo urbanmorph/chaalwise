@@ -8,8 +8,8 @@ import { gzipSync } from 'node:zlib';
 /** Pages with a board or a practice table: chess and strategy lessons, the review, and poker practice. Everything else is a reading page. */
 const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|review|poker\/[^/]+)\/$/;
 
-/** The progress dashboard: a period filter and an interactive radar, but no board. */
-const DASHBOARD_PAGES = /^\/progress\/$/;
+/** Interactive pages without a board: the progress dashboard (period filter, radar) and each lab. */
+const DASHBOARD_PAGES = /^\/(progress|labs\/[^/]+)\/$/;
 
 /** @param {string} page */
 export const budgetFor = (page) => (BOARD_PAGES.test(page) ? 80_000 : DASHBOARD_PAGES.test(page) ? 40_000 : 30_000);

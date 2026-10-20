@@ -57,9 +57,9 @@ describe('the labs pages', () => {
         expect(text).not.toMatch(/\bchips?\b|₹|\$\d|rupees?/i);
       });
 
-      it('keeps its JavaScript within the 30 KB reading-page budget', () => {
+      it('keeps its JavaScript within the 40 KB budget for interactive pages', () => {
         const measured = measure(DIST).find((p) => p.page === `/labs/${lab.slug}/`)!;
-        expect(measured.bytes).toBeLessThan(30_000);
+        expect(measured.bytes).toBeLessThan(40_000);
       });
     });
   }
