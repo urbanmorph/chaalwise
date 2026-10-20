@@ -1,0 +1,18 @@
+kind: choice
+prompt: You hold the king and queen of diamonds, with one card to come. Your opponent holds either a pair of aces (you win 11%) or the king of spades and jack of clubs (you win 93%), each as often as the other. What is your equity?
+cards:
+  hole: [Kd, Qd]
+  board: [Kh, 7c, 2d, 9s]
+options:
+  - 'About 52%: the average of 11% and 93%'
+  - 'About 11%: assume the worst'
+  - 'About 93%: assume the best'
+  - It cannot be worked out
+answer: 0
+feedback:
+  - ''
+  - Assuming the worst folds hands that win half the time.
+  - Assuming the best calls too much against the aces.
+  - Weigh each hand by how likely it is, then average.
+explanation: 'Against each hand equally often, your equity is the average: (11 + 93) ÷ 2, about 52%. Thinking in ranges turns guesswork into an average you can act on.'
+measures: ranges

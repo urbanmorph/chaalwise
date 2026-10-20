@@ -1,0 +1,20 @@
+kind: choice
+prompt: Your flush draw comes about one time in five on the river. The pot holds 10 points and a call costs 4. If the flush comes, you expect to win 8 more points from your opponent. Call or fold?
+cards:
+  hole: [Ah, 5h]
+  board: [Kh, 9h, 2c, 7s]
+  pot: 10
+  toCall: 4
+options:
+  - 'Call: counting the 8 points to come, you need only about 18%'
+  - 'Fold: 20% is below the 29% the pot needs'
+  - 'Call: a flush always gets paid in full'
+  - 'Fold: never call without the odds in the pot now'
+answer: 0
+feedback:
+  - ''
+  - That is the pot alone. The 8 points you expect to win later change the price.
+  - Only if your opponent will pay; here you expect them to.
+  - Implied odds are exactly the case where the pot now is not enough, but later winnings are.
+explanation: 'You put in 4 to play for 10 + 4 + 8 = 22, so you need 4 of 22, about 18%. The flush comes about 20%: the call pays, but only because of the points to come.'
+measures: odds

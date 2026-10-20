@@ -1,0 +1,13 @@
+kind: choice
+prompt: For ten years you have been your office's expert in a desktop accounts program. Next year the firm moves to a new online system, which most staff will learn in a week. How do you plan your learning?
+options:
+  - Learn the new system early, and help others make the move
+  - Deepen your skill in the old program, your proven strength
+  - Wait for the move, since your experience will carry over
+answer: 0
+feedback:
+  - ''
+  - It was a strength, but its value falls when the firm stops using the program. You would be the expert in something nobody needs.
+  - Some of it will, but within a week everyone else catches up with you on the new system. The edge you had is gone unless you renew it.
+explanation: Resources change value. Your skill in the old program was worth a lot while the firm used it. When the situation changes, value what you hold again. Being early on the new system, and able to help others, is worth more now.
+measures: plan-long

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Card } from '@chaalwise/poker/cards';
-  import { pointsWord } from '../../lib/poker/points';
+  import { pointsWord } from '../../lib/poker/words';
   import type { StepCards } from '../../lib/poker/step-cards';
   import PlayingCard from './PlayingCard.svelte';
 

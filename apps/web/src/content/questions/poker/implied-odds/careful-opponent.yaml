@@ -1,0 +1,15 @@
+kind: choice
+prompt: Your opponent folds to almost any bet once the shared cards look dangerous. What are your implied odds against them?
+options:
+  - 'Small: they will not pay you when you hit'
+  - 'Large: careful players pay big pots'
+  - The same as against anyone
+  - Large, because they fold so often
+answer: 0
+feedback:
+  - ''
+  - A player who folds when the board looks dangerous is exactly the one who will not pay you.
+  - Implied odds depend on what this opponent will pay later.
+  - Folding often means they will not put in the later points you are counting on.
+explanation: Implied odds are what the other player will put in later. A player who stops when danger shows gives you almost nothing more, so call only on the pot odds.
+measures: odds

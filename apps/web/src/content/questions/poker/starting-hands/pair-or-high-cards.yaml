@@ -1,0 +1,15 @@
+kind: choice
+prompt: Before any shared cards, which of these hands is the strongest?
+options:
+  - A pair of queens
+  - Jack and ten of one suit
+  - Ace and four of different suits
+  - Seven and two of different suits
+answer: 0
+feedback:
+  - ''
+  - Suited connectors are worth playing, but a high pair is far stronger.
+  - The ace helps, but a low second card makes it weak.
+  - This is the weakest starting hand of all.
+explanation: 'A pair of queens is already a pair, and a high one: it starts ahead of all the others.'
+measures: starting-hands

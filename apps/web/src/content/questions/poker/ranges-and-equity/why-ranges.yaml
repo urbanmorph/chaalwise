@@ -1,0 +1,15 @@
+kind: choice
+prompt: Why think about a range of hands instead of guessing the one hand an opponent holds?
+options:
+  - A single guess is usually wrong
+  - A range lets you see their cards early
+  - A range always contains the best hand
+  - Because the rules of poker say so
+answer: 0
+feedback:
+  - ''
+  - Nothing shows you their cards before a showdown.
+  - A range is what they could hold, best and worst together.
+  - It is a way of thinking, not a rule of the game.
+explanation: You almost never know the exact hand. Listing what they could hold, and how often, gives an answer that is right on average.
+measures: ranges

@@ -14,12 +14,17 @@ const LESSONS = [
   'position',
   'outs-and-odds',
   'expected-value',
+  'implied-odds',
   'reading-the-board',
   'why-you-bet',
+  'ranges-and-equity',
+  'signals-and-tests',
+  'tilt',
 ];
 const POKER_PAGES = [
   'poker/index.html',
   'poker/first-hands/index.html',
+  'poker/practice/index.html',
   ...LESSONS.map((slug) => `poker/${slug}/index.html`),
 ];
 
@@ -27,6 +32,9 @@ describe('the poker pages keep to the terms: practice points, never money', () =
   it('say plainly that practice points are free and can never be bought or cashed out', () => {
     expect(main).toMatch(/Practice points are free and can never be bought, sold or cashed out/);
     expect(mainOf('poker/index.html')).toMatch(/Practice points are free and can never be bought, sold or cashed out/);
+    expect(mainOf('poker/practice/index.html')).toMatch(
+      /Practice points are free and can never be bought, sold or cashed out/,
+    );
   });
 
   it('use no money words', () => {
@@ -58,13 +66,30 @@ describe('the poker course', () => {
     }
   });
 
+  it('ends with the practice tables, where every decision is checked against the odds', () => {
+    const index = mainOf('poker/index.html');
+    expect(index).toContain('href="/poker/practice/"');
+    expect(index.indexOf('href="/poker/practice/"')).toBeGreaterThan(index.indexOf('href="/poker/why-you-bet/"'));
+  });
+
   it('keeps poker lessons out of the chess path', () => {
     expect(dist('chess/fork/index.html')).not.toMatch(/data-lesson="poker\//);
     expect(mainOf('chess/index.html')).not.toMatch(/href="\/poker\/hand-rankings\/"/);
   });
 
-  it('lets you try the idea on six poker reference entries, at the table, never only read it', () => {
-    for (const slug of ['hand-rankings', 'outs', 'pot-odds', 'expected-value', 'position', 'bluff'])
+  it('lets you try the idea on every poker reference entry, at the table, never only read it', () => {
+    for (const slug of [
+      'hand-rankings',
+      'outs',
+      'pot-odds',
+      'expected-value',
+      'position',
+      'bluff',
+      'tilt',
+      'equity',
+      'range',
+      'implied-odds',
+    ])
       expect(dist(`reference/poker/${slug}/index.html`), slug).toMatch(/<section class="try/);
     // The question shows its cards at the table: the pot and the price of the call travel with it.
     expect(dist('reference/poker/pot-odds/index.html')).toContain('&quot;toCall&quot;:4');
@@ -73,6 +98,13 @@ describe('the poker course', () => {
   it('links each poker reference entry to the lesson that teaches it', () => {
     expect(dist('reference/poker/outs/index.html')).toContain('href="/poker/outs-and-odds/"');
     expect(dist('reference/poker/hand-rankings/index.html')).toContain('href="/poker/hand-rankings/"');
+    for (const [slug, lesson] of [
+      ['tilt', 'tilt'],
+      ['equity', 'ranges-and-equity'],
+      ['range', 'ranges-and-equity'],
+      ['implied-odds', 'implied-odds'],
+    ])
+      expect(dist(`reference/poker/${slug}/index.html`), slug).toContain(`href="/poker/${lesson}/"`);
   });
 });
 

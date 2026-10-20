@@ -1,0 +1,15 @@
+kind: choice
+prompt: You want to give a 10-minute talk in a new language at a conference in nine months. You can study for 30 minutes a day. Which plan is most likely to get you there?
+options:
+  - Monthly targets, each useful alone, checked and adjusted each month
+  - Study grammar for six months, then start speaking
+  - Write the talk now and learn it by heart, word for word
+  - Take an intensive three-week course just before the conference
+answer: 0
+feedback:
+  - ''
+  - Grammar helps, but six months with nothing you can use is a long time to find out the plan is not working.
+  - It may get you through the talk, but the questions afterwards will be beyond you, and if the talk changes, the memorised version is lost.
+  - One big push at the end leaves no time to look again if it falls short.
+explanation: A plan, step by step. Break the goal into steps you can use on their own, such as ordering a meal, then a short chat, then a five-minute talk. Check after each one and adjust, because the route will change.
+measures: plan-long

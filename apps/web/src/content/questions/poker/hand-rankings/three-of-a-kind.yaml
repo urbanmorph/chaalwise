@@ -1,0 +1,21 @@
+kind: choice
+prompt: Your two sixes, with these shared cards. The computer holds the ace and king of clubs. Who wins?
+cards:
+  hole: [6s, 6d]
+  board: [6c, Ad, Kh, 9c, 2s]
+  others:
+    - name: Computer
+      cards: [Ac, Kc]
+options:
+  - You, with three sixes
+  - The computer, with two pair, aces and kings
+  - The computer, with an ace-high flush
+  - 'Neither: the pot is split'
+answer: 0
+feedback:
+  - ''
+  - Two pair loses to three of a kind.
+  - The computer has only three clubs, not five.
+  - 'The hands are different: three sixes against two pair.'
+explanation: Your sixes and the six on the board make three of a kind, which beats two pair.
+measures: hand-reading

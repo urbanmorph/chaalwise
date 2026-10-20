@@ -1,0 +1,19 @@
+kind: choice
+prompt: On the last round you hold the best possible hand, but your opponent has already folded every other time you bet. A bet now would win nothing more. What does that tell you about betting?
+cards:
+  hole: [Ad, Jd]
+  board: [9d, Kd, 4d, 7c, 2s]
+  pot: 14
+options:
+  - 'A bet needs a reason: a call from worse, or a fold from better'
+  - Always bet the best hand, whatever happens
+  - Never bet the best hand on the last round
+  - Bet bigger to make sure they call
+answer: 0
+feedback:
+  - ''
+  - Betting is a choice made for a reason, not a habit.
+  - Usually you do want to bet it, when worse hands can call.
+  - In these games the bet size is set by the round, and a bigger bet would not change their mind.
+explanation: 'Every bet needs a reason: to be paid by worse hands, or to make better ones fold. If neither can happen, the bet does nothing.'
+measures: betting

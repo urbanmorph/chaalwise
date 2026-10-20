@@ -1,0 +1,13 @@
+kind: choice
+prompt: One office printer costs 8,000 and another costs 15,000. Ink for the cheaper one costs 2,000 a month, and for the other 800 a month. You will keep it for three years. Which costs less over that time?
+options:
+  - 'The 8,000 one: it saves 7,000 today'
+  - 'The 15,000 one: 43,800 in all, against 80,000'
+  - 'About the same: the saving and the ink cancel out'
+answer: 1
+feedback:
+  - The 7,000 is real, but it is only the first step. Over 36 months the ink adds 72,000, against 28,800 for the other.
+  - ''
+  - They do not cancel. The ink costs 1,200 a month more, which passes the 7,000 saving in under six months.
+explanation: Count it through. 8,000 + 36 × 2,000 = 80,000, and 15,000 + 36 × 800 = 43,800. The low price is only the first step of the chain; judge where it ends.
+measures: calculate

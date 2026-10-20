@@ -1,0 +1,18 @@
+kind: choice
+prompt: The pot holds 18 points and a call costs 6. How often must you win for the call to pay?
+cards:
+  pot: 18
+  toCall: 6
+options:
+  - One time in four (25%)
+  - One time in three (33%)
+  - One time in six (17%)
+  - Half the time
+answer: 0
+feedback:
+  - ''
+  - '6 against 18 is a third of the pot, but you play for the pot after your call: 6 of 24.'
+  - 'Your call is part of what you play for: 6 of 24, not 1 of 6.'
+  - You need far less than half when the pot is three times the call.
+explanation: 'You put in 6 to play for 24: the 18 in the pot plus your 6. Six of 24 is a quarter.'
+measures: odds

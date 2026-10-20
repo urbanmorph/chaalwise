@@ -1,0 +1,27 @@
+---
+import PracticeTable from '../../components/poker/PracticeTable.svelte';
+import NewToPoker from '../../components/NewToPoker.astro';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Poker practice tables"
+  description="Play hands against a computer opponent, then see every decision checked against the odds. Practice points only."
+  wide
+>
+  <div class="wrap wide">
+    <h1>Practice tables</h1>
+    <p class="lead">
+      Play hands against the computer, then see each of your decisions beside the odds at that moment and what the maths suggested. Choose an opponent's style
+      to see how it changes the right decision. Practice points are free and can never be bought, sold or cashed out.
+    </p>
+    <NewToPoker />
+    <PracticeTable client:load />
+  </div>
+</Base>
+
+<style>
+  .lead {
+    color: var(--ink-2);
+  }
+</style>

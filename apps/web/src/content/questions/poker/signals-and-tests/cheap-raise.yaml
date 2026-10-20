@@ -1,0 +1,15 @@
+kind: choice
+prompt: A bold player raises for the third hand in a row. What does that raise tell you?
+options:
+  - 'Little: they raise with many hands'
+  - They have had three strong hands in a row
+  - They will fold if you raise back
+  - You must fold whatever you hold
+answer: 0
+feedback:
+  - ''
+  - Three strong hands in a row is unlikely; a habit is more likely.
+  - Some will, some will not; the raise alone does not say.
+  - Folding to every raise from a bold player gives them the pot every time.
+explanation: A signal that costs little to send is weak evidence. Against a bold player, judge your hand on its own strength more than on the raise.
+measures: signals

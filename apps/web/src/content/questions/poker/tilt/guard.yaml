@@ -1,0 +1,15 @@
+kind: choice
+prompt: What is a simple guard against tilt?
+options:
+  - Set your rules before you play, and pause after a big loss
+  - Play faster after a loss, to win the points back
+  - Only play on the days you are winning
+  - Stop thinking about the odds and trust your feeling
+answer: 0
+feedback:
+  - ''
+  - Speed after a loss is how tilt gets worse.
+  - You cannot know in advance when you will be winning.
+  - The odds are what a calm decision rests on.
+explanation: Rules made with a calm head, and a pause when you are not calm, keep a loss from making the next decision for you.
+measures: tilt

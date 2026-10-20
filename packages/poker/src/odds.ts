@@ -1,5 +1,6 @@
-import { deck, rankOf, type Card } from './cards';
-import { CATEGORIES, evaluate, type Category } from './evaluate';
+import { deck, rankOf, shuffle, type Card } from './cards';
+import { CATEGORIES, compare, evaluate, type Category } from './evaluate';
+import type { Random } from './random';
 
 /** What a hand is drawing to. */
 export type Drawing = 'flush' | 'straight' | 'flush or straight' | 'pair or better';
@@ -56,4 +57,55 @@ export function exactChance(outs: number, unseen: number, cardsToCome: 1 | 2): n
   let miss = 1;
   for (let i = 0; i < cardsToCome; i++) miss *= (unseen - outs - i) / (unseen - i);
   return (1 - miss) * 100;
+}
+
+export interface Equity {
+  /** Percentage of the pot the hand wins on average: wins, plus half the ties. */
+  share: number;
+  /** Worked out over every case (true) or by sampling (false). */
+  exact: boolean;
+}
+
+/** Above this many cases, equity is sampled instead of counted. */
+const MOST_CASES = 60_000;
+
+const pairs = (cards: Card[]): Card[][] => cards.flatMap((a, i) => cards.slice(i + 1).map((b) => [a, b]));
+const combos = (cards: Card[], k: number): Card[][] =>
+  k === 0 ? [[]] : cards.flatMap((card, i) => combos(cards.slice(i + 1), k - 1).map((rest) => [card, ...rest]));
+const choose = (n: number, k: number): number => (k === 0 ? 1 : (n * choose(n - 1, k - 1)) / k);
+
+/**
+ * Equity: the share of the pot a hand wins on average against one other hand,
+ * known or (by default) any two cards, over the shared cards still to come.
+ * Counted exactly when the cases are few, as on the turn or river; sampled otherwise.
+ */
+export function equity(
+  hole: Card[],
+  board: Card[],
+  { against, random = Math.random, samples = 3000 }: { against?: Card[]; random?: Random; samples?: number } = {},
+): Equity {
+  const unseen = deck().filter((card) => ![...hole, ...board, ...(against ?? [])].includes(card));
+  const toCome = 5 - board.length;
+  const others = against ? 1 : choose(unseen.length, 2);
+  const cases = others * choose(unseen.length - (against ? 0 : 2), toCome);
+  let won = 0;
+  let total = 0;
+  const play = (theirs: Card[], rest: Card[]) => {
+    const full = [...board, ...rest];
+    const result = compare(evaluate([...hole, ...full]), evaluate([...theirs, ...full]));
+    won += result > 0 ? 1 : result === 0 ? 0.5 : 0;
+    total += 1;
+  };
+  if (cases <= MOST_CASES) {
+    for (const theirs of against ? [against] : pairs(unseen)) {
+      const left = unseen.filter((card) => !theirs.includes(card));
+      for (const rest of combos(left, toCome)) play(theirs, rest);
+    }
+  } else {
+    for (let i = 0; i < samples; i++) {
+      const drawn = shuffle(unseen, random).slice(0, toCome + (against ? 0 : 2));
+      play(against ?? drawn.slice(toCome), drawn.slice(0, toCome));
+    }
+  }
+  return { share: (100 * won) / total, exact: cases <= MOST_CASES };
 }

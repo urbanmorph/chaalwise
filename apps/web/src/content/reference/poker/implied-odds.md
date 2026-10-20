@@ -4,6 +4,10 @@ game: 'poker'
 kind: 'odds'
 level: 'advanced'
 summary: 'Pot odds plus what you expect to win in later rounds if you hit your hand.'
+lesson: 'poker/implied-odds'
+try:
+  - 'poker/implied-odds/paid-later'
+  - 'poker/implied-odds/careful-opponent'
 related: ['poker/pot-odds', 'poker/expected-value']
 ---
 

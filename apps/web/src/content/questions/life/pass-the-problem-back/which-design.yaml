@@ -1,0 +1,13 @@
+kind: choice
+prompt: A client asks you to pick between two designs for their website. Both work well. The choice depends on how they want their brand to feel, which only they can say. What do you do?
+options:
+  - Set out what each says about the brand, and ask them to choose
+  - Pick the one you like best, to save them the trouble
+  - Make a third design that mixes the two of them
+answer: 0
+feedback:
+  - ''
+  - Then the choice is yours, and so is the blame if they later feel it does not fit their brand.
+  - That adds work and still leaves the real question, how the brand should feel, unanswered by the person who owns it.
+explanation: Pass the problem back. The choice belongs to the client, because it rests on what only they know. Hand it back clearly, with what they need to decide, rather than quietly taking it on yourself.
+measures: think-ahead

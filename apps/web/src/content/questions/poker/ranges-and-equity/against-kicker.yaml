@@ -1,0 +1,21 @@
+kind: choice
+prompt: You hold the king and queen of diamonds, with one card to come. Your opponent shows the king of spades and the jack of clubs. How often do you win?
+cards:
+  hole: [Kd, Qd]
+  board: [Kh, 7c, 2d, 9s]
+  others:
+    - name: Opponent
+      cards: [Ks, Jc]
+options:
+  - 'About 93%: only a jack beats you'
+  - 'About 50%: you both have kings'
+  - About 11%
+  - 'Always: your queen beats the jack'
+answer: 0
+feedback:
+  - ''
+  - You both have kings, but your queen beats their jack unless a jack comes.
+  - That was against aces; here you are far ahead.
+  - 'A jack on the last card gives them two pair: three such cards are left.'
+explanation: 'Your pair of kings with a queen beats their kings with a jack. Only one of the three jacks left beats you: 41 of 44 cards, about 93%.'
+measures: ranges

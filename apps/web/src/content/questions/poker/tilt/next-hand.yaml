@@ -1,0 +1,17 @@
+kind: choice
+prompt: You just lost a large pot when the last card gave your opponent a lucky flush. Next hand you hold the seven of clubs and the two of diamonds, and can call cheaply. What should you do?
+cards:
+  hole: [7c, 2d]
+options:
+  - Fold, as you would have before the loss
+  - 'Call: you are due a win'
+  - Raise, to win your points back quickly
+  - 'Call: the opponent was lucky and will not be again'
+answer: 0
+feedback:
+  - ''
+  - 'Nobody is ever due a win: each hand is dealt from a fresh shuffle.'
+  - Raising your weakest hand risks more points on the worst odds.
+  - Their luck last hand says nothing about this hand.
+explanation: Seven-two is the weakest starting hand, before a loss or after. Make the decision you would have made with a calm head.
+measures: tilt

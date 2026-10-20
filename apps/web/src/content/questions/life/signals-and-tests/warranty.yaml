@@ -1,0 +1,15 @@
+kind: choice
+prompt: One maker gives a five-year warranty on its washing machines; a rival gives one year. What does the long warranty most likely signal?
+options:
+  - 'Confidence: it would be costly to offer on a machine that often breaks'
+  - 'Nothing: warranties are just marketing'
+  - That the machine breaks often, so they need it
+  - That it is more expensive to buy
+answer: 0
+feedback:
+  - ''
+  - A promise is only marketing when it costs nothing to keep. A five-year promise on a poor machine would cost a lot.
+  - A maker whose machines often break would pay heavily for such a promise.
+  - Price is a separate question; the warranty speaks to quality.
+explanation: Like a rare raise in poker, a promise that is costly to make on a poor product is a believable signal of quality.
+measures: bluff

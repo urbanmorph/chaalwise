@@ -5,6 +5,10 @@ kind: 'concept'
 level: 'beginner'
 aliases: ['On tilt']
 summary: 'Playing worse because of frustration, often after a bad loss.'
+lesson: 'poker/tilt'
+try:
+  - 'poker/tilt/next-hand'
+  - 'poker/tilt/sign-of-tilt'
 related: ['strategy/cool-head', 'strategy/decisions-not-results']
 ---
 

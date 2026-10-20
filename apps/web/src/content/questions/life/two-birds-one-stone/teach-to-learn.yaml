@@ -1,0 +1,13 @@
+kind: choice
+prompt: This month you must learn a new data tool for work, and your manager has asked you to start sharing what you know with the team. You have about four free hours a week. Which plan serves you best?
+options:
+  - Run a short weekly session for the team on what you learn
+  - Learn the tool alone first, then plan the sharing next month
+  - Split the hours, two for learning and two for sharing
+answer: 0
+feedback:
+  - ''
+  - That does the two aims one after the other, so the sharing waits a month. Teaching as you go would serve both now.
+  - Splitting gives each aim half the time. One action that serves both gives each of them all of it.
+explanation: Two birds, one stone. Teaching the team what you are learning serves both aims at once. Preparing to explain the tool makes you learn it better, and the team learns too.
+measures: think-ahead

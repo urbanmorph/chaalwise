@@ -1,0 +1,13 @@
+kind: choice
+prompt: At a shop's help desk, you follow a script for refund requests. A caller says she does not want a refund. She wants to swap the item for another size before her daughter's birthday on Saturday. The script has no step for this. What do you do?
+options:
+  - Look for a way to swap it in time, since that is the script's aim
+  - Follow the script and offer the refund, as it says
+  - Tell her you can only help with refunds, and end the call
+answer: 0
+feedback:
+  - ''
+  - The script was written for refunds. Forcing it here answers a question she did not ask, and she may still miss the birthday.
+  - That keeps to the script's words but not its purpose, which is to keep customers. She will likely shop elsewhere next time.
+explanation: When the script runs out, act on the reason behind it. A refund script exists to solve customers' problems and keep them coming back. When a caller brings something new, use that aim, not the exact steps.
+measures: plan-long

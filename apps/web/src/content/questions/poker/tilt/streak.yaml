@@ -1,0 +1,15 @@
+kind: choice
+prompt: You have lost five hands in a row at the practice table. What is the best next move?
+options:
+  - Decide the next hand on its odds, or take a break
+  - Bet every hand until you win one back
+  - Call every bet, since you are due a win
+  - Switch to playing every hand you are dealt
+answer: 0
+feedback:
+  - ''
+  - Betting every hand risks the most on the worst hands.
+  - Being due is not how shuffled cards work.
+  - Playing more hands means playing more weak ones.
+explanation: A losing streak is what happened, not what will happen. Decide the next hand on its own odds.
+measures: tilt

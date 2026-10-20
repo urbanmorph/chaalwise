@@ -1,0 +1,13 @@
+kind: choice
+prompt: You have spent weeks gathering papers for a visa application, and the appointment is tomorrow morning. Everything seems to be in the folder. What do you do tonight?
+options:
+  - Check each paper against the official list, one by one
+  - Rest well, since the hard part is done and a clear head matters
+  - Start planning the trip, since the papers are all ready
+answer: 0
+feedback:
+  - ''
+  - Rest matters, but the last step is where a missing photo or an unsigned form can undo weeks of work.
+  - That treats the visa as granted. The application is not finished until it is handed in complete.
+explanation: Finish the job. Nearly done is when work is easiest to spoil. Before the last step, ask what could still go wrong, and check it with the same care you gave the first.
+measures: plan-long

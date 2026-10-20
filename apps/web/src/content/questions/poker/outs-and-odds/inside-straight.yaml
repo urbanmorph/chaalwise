@@ -1,0 +1,18 @@
+kind: choice
+prompt: Your nine and eight, with these shared cards. How many outs do you have to a straight?
+cards:
+  hole: [9s, 8d]
+  board: [6c, 5h, Kd]
+options:
+  - 'Four: only a seven fills the gap'
+  - 'Eight: a seven or a ten'
+  - Two
+  - Nine
+answer: 0
+feedback:
+  - ''
+  - A ten makes nine, eight, ten and the six and five, but that is not five in a row.
+  - All four sevens are still unseen.
+  - Nine is a flush draw; there are not four of a suit here.
+explanation: 'Six and five are on the board with your nine and eight: only a seven makes five in a row. Four sevens are left: four outs.'
+measures: odds
