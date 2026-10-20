@@ -41,6 +41,21 @@ steps:
       - ''
       - Undercutting is a bolder version of the same game. The chain can follow you down, and it can afford the losses for longer.
     explanation: A price fight is the chain's strongest ground. Changing what you compete on is the Sicilian answer, riskier but with more to win.
+  - kind: choice
+    id: compare
+    prompt: 'Black answers 1.e4 with c5. What does that share with your reply to the supplier?'
+    position: 'moves: e4 c5'
+    alongside: 'A supplier opens a negotiation with a firm price for the year.'
+    options:
+      - 'Choose to level it, or change its shape, before replying'
+      - 'Copy what the other side did, to stay even'
+      - 'Accept that the first mover keeps the advantage'
+    answer: 0
+    feedback:
+      - ''
+      - 'Copying hands the other side the lead. Black chose c5 to change the shape of the game, not to mirror it.'
+      - 'Moving first gives a small edge, not the result. The answer decides how much it is worth.'
+    explanation: 'The other side moved first in both. You decide, before replying, whether to answer it as it is or change its shape, as Black does with c5 and you can with a counter-offer.'
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you choose whether to lead or answer?'

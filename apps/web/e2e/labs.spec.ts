@@ -14,9 +14,17 @@ async function open(page: Page, slug: string) {
   return shifts;
 }
 
-test('the labs index leads to all three labs', async ({ page }) => {
+test('the labs index leads to every lab', async ({ page }) => {
   await page.goto('/labs/');
-  for (const name of ["Prisoner's Dilemma", 'Rock-paper-scissors', 'Sealed-bid auction']) {
+  for (const name of [
+    "Prisoner's Dilemma",
+    'Rock-paper-scissors',
+    'Sealed-bid auction',
+    'Nim',
+    'Rule finder',
+    'Split the pie',
+    'Which bag?',
+  ]) {
     await expect(page.getByRole('link', { name, exact: true })).toBeVisible();
   }
   await page.getByRole('link', { name: 'Rock-paper-scissors', exact: true }).click();

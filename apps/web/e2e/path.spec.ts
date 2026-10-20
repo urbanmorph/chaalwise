@@ -39,6 +39,8 @@ test('a strategy lesson plays like any other, then leads on along the path', asy
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Plan B, by 600 over the two years' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByRole('button', { name: 'Both need a look at what the other side can do next' }).click();
+  await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Finish' }).click();
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');
   await expect(page.getByRole('link', { name: 'Next: Their next move' })).toHaveAttribute(

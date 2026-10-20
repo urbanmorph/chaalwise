@@ -34,7 +34,7 @@ describe('each strategy track is a course', () => {
   });
 
   it('says where a track not trained yet will come from, with no practice', () => {
-    const html = course('weigh-odds');
+    const html = course('bluff');
     expect(html).toContain('Comes with poker.');
     expect(html).not.toContain('data-practice-count');
   });

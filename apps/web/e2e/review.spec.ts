@@ -25,7 +25,7 @@ test('a finished lesson comes back for review on a later day', async ({ page }) 
   await page.goto('/review/');
   await expect(page.getByText('3 to review')).toBeVisible();
   for (let i = 0; i < 3; i++) {
-    const prompt = await page.getByRole('heading', { level: 2 }).textContent();
+    const prompt = await page.locator('.player').getByRole('heading', { level: 2 }).textContent();
     const [, answer] = ANSWERS.find(([pattern]) => pattern.test(prompt ?? ''))!;
     await answer(page);
     await expect(page.getByText('You found it!')).toBeVisible();

@@ -69,7 +69,7 @@ describe('the skill profile on this device', () => {
   });
 
   it('says where a track not measured yet will come from', () => {
-    expect(PROFILE_SKILLS.find((s) => s.id === 'weigh-odds')?.later).toBe('Comes with poker.');
+    expect(PROFILE_SKILLS.find((s) => s.id === 'bluff')?.later).toBe('Comes with poker.');
   });
 
   it('keeps the chess skills as game proficiency, board sense included', () => {

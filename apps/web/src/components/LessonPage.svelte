@@ -10,6 +10,7 @@
   import { guessChance, logAttempt } from '../lib/attempts';
   import { addDone } from '../lib/done-lessons';
   import { isPracticeKind } from '../lib/practice-kinds';
+  import { practiceOf, roundItems } from '../lib/round-items';
   import LessonPlayer from './LessonPlayer.svelte';
   import PracticeRound from './PracticeRound.svelte';
   import SaveStatus, { type SaveState } from './SaveStatus.svelte';
@@ -21,9 +22,36 @@
     next?: { href: string; title: string } | undefined;
     /** The strategy track a plan made in this lesson belongs to. */
     track?: string | undefined;
+    /** Offer "already know this?": a check of the questions only, for learners who know the game. */
+    checkable?: boolean;
   }
 
-  let { lesson, lessonId, next, track }: Props = $props();
+  let { lesson, lessonId, next, track, checkable = false }: Props = $props();
+
+  /**
+   * The check: the lesson's questions without the reading, in fresh positions
+   * where a generator exists. All right first time, and the lesson counts as
+   * done; otherwise the lesson itself follows (the expertise reversal effect:
+   * worked steps help newcomers and slow down those who know it already).
+   */
+  let mode = $state<'lesson' | 'check' | 'passed' | 'not-yet'>('lesson');
+  let check = $state<GradedStep[]>([]);
+
+  async function takeCheck() {
+    const graded = lesson.steps.filter(isGraded);
+    const items = await roundItems(
+      graded.map((s) => s.id),
+      Object.fromEntries(graded.map((s) => [s.id, s])),
+    );
+    check = items.map(({ cardId, step }) => ({ ...step, id: cardId }));
+    mode = 'check';
+  }
+
+  async function checkDone(result: Record<string, Outcome>) {
+    const passed = Object.values(result).every((o) => o === 'first-try');
+    mode = passed ? 'passed' : 'not-yet';
+    if (passed) await onfinish(result);
+  }
 
   async function savePlan(stepId: string, text: string) {
     const progress = await openProgress();
@@ -42,7 +70,7 @@
   }
 
   /** Steps whose idea can be practised in fresh positions. */
-  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => isGraded(s) && !!s.practice && isPracticeKind(s.practice)));
+  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => isGraded(s) && isPracticeKind(practiceOf(s) ?? '')));
   const ROUND = 5;
   let practice = $state<{ cardId: string; step: GradedStep }[] | undefined>();
   let rounds = $state(0);
@@ -53,7 +81,7 @@
     const { practiceStep } = await import('../lib/practice');
     practice = Array.from({ length: ROUND }, (_, i) => {
       const source = practicable[i % practicable.length]!;
-      const step = practiceStep(source.practice as Parameters<typeof practiceStep>[0], Math.random);
+      const step = practiceStep(practiceOf(source) as Parameters<typeof practiceStep>[0], Math.random);
       return { cardId: `${lessonId}/${source.id}`, step: { ...step, measures: source.measures } };
     });
     rounds++;
@@ -78,24 +106,49 @@
   }
 </script>
 
-<LessonPlayer {lesson} {onfinish} onstep={logStep} onplan={savePlan}>
-  {#snippet finished(outcomes)}
-    <div class="card done" data-testid="lesson-done">
-      <h2>Lesson complete</h2>
-      <p>{summarise(outcomes)}.</p>
-      <SaveStatus status={saved} onretry={() => onfinish(outcomes)} saved="Saved on this device. These questions come back for review on later days." />
-      <div class="actions">
-        {#if next}
-          <a class="button primary" href={next.href}>Next: {next.title}</a>
-        {/if}
-        {#if practicable.length}
-          <button class="button" type="button" onclick={practiseAgain}>Practise again in new positions</button>
-        {/if}
-        <a class="button" href="/chess/">All chess lessons</a>
-      </div>
+{#if checkable && mode === 'lesson'}
+  <div class="card check">
+    <p><strong>Already know this?</strong> Take the check: just the questions, no reading. Get them all right first time and the lesson counts as done.</p>
+    <button class="button" type="button" onclick={takeCheck}>Take the check</button>
+  </div>
+{/if}
+
+{#if mode === 'check'}
+  <LessonPlayer lesson={{ steps: check }} onfinish={checkDone} onstep={logStep}>
+    {#snippet finished()}{/snippet}
+  </LessonPlayer>
+{:else if mode === 'passed'}
+  <div class="card done" data-testid="check-passed">
+    <h2>You know this one</h2>
+    <SaveStatus status={saved} onretry={() => onfinish(outcomes)} saved="Saved on this device. These questions come back for review on later days." />
+    <div class="actions">
+      {#if next}<a class="button primary" href={next.href}>Next: {next.title}</a>{/if}
+      <a class="button" href="/chess/">All chess lessons</a>
     </div>
-  {/snippet}
-</LessonPlayer>
+  </div>
+{:else}
+  {#if mode === 'not-yet'}
+    <p class="card not-yet" role="status">Not quite. Here is the lesson: the questions you missed are in it.</p>
+  {/if}
+  <LessonPlayer {lesson} {onfinish} onstep={logStep} onplan={savePlan}>
+    {#snippet finished(outcomes)}
+      <div class="card done" data-testid="lesson-done">
+        <h2>Lesson complete</h2>
+        <p>{summarise(outcomes)}.</p>
+        <SaveStatus status={saved} onretry={() => onfinish(outcomes)} saved="Saved on this device. These questions come back for review on later days." />
+        <div class="actions">
+          {#if next}
+            <a class="button primary" href={next.href}>Next: {next.title}</a>
+          {/if}
+          {#if practicable.length}
+            <button class="button" type="button" onclick={practiseAgain}>Practise again in new positions</button>
+          {/if}
+          <a class="button" href="/chess/">All chess lessons</a>
+        </div>
+      </div>
+    {/snippet}
+  </LessonPlayer>
+{/if}
 
 {#if practice}
   <section class="practice" aria-label="Practice in new positions">
@@ -121,6 +174,13 @@
   }
   .practice h2:focus {
     outline: none;
+  }
+  .check,
+  .not-yet {
+    margin-bottom: 16px;
+  }
+  .check p {
+    margin-top: 0;
   }
   .actions {
     display: flex;

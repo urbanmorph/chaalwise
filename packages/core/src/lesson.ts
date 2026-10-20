@@ -50,10 +50,16 @@ const choiceStep = z
     arrows: z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional(),
     /** Why each option fails, in the same order as the options, shown when it is picked; the right option's line is empty. */
     feedback: z.array(z.string()).optional(),
+    /** A case off the board shown beside the board, to compare the two: what do they share? */
+    alongside: z.string().min(1).optional(),
   })
   .refine((s) => s.answer < s.options.length, {
     message: 'answer must be the index of one of the options',
     path: ['answer'],
+  })
+  .refine((s) => !s.alongside || s.position, {
+    message: 'a step with a case alongside needs a board to compare it with',
+    path: ['alongside'],
   })
   .refine(
     (s) =>

@@ -37,7 +37,7 @@
   let debriefEl = $state<HTMLElement>();
 
   const points = (rs: Played[]) =>
-    rs.reduce(
+    rs.reduce<[number, number]>(
       ([y, t], r) => {
         const [py, pt] = payoff(r.you, r.bot);
         return [y + py, t + pt];
@@ -83,7 +83,7 @@
     debriefEl?.focus();
   }
 
-  const played = $derived(results.reduce((s, m) => [s[0] + m.you, s[1] + m.rounds], [0, 0]));
+  const played = $derived(results.reduce<[number, number]>((s, m) => [s[0] + m.you, s[1] + m.rounds], [0, 0]));
 </script>
 
 <div class="lab card">

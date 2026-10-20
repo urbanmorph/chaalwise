@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import RuleFinderLab from '../../components/labs/RuleFinderLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'rule-finder')!;
+---
+
+<LabPage {lab}>
+  <p>
+    A hidden rule says yes or no to any three whole numbers. You see three that fit it. Make a guess, then try your own numbers and see which fit. When you are
+    sure, say which rule it is. Three rounds, each with a different rule.
+  </p>
+  <RuleFinderLab client:load />
+</LabPage>

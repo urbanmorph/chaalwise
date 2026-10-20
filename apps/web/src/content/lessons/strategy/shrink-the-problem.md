@@ -41,6 +41,21 @@ steps:
       - Tidying everywhere looks like progress, but nothing is finished, and the mess spreads back over the week.
       - Sorting feels like a step forward, but piles on the floor make the whole garage harder to use until every pile is dealt with.
     explanation: A finished half is like a square the king can no longer use. The problem only shrinks if each gain is kept.
+  - kind: choice
+    id: compare
+    prompt: 'What do boxing in the king and the essay share?'
+    position: '8/8/8/2k5/8/3Q4/8/4K3 w - - 0 1'
+    alongside: 'A student has three weeks for a long essay and has not started.'
+    options:
+      - 'Make each step leave less to do, and take care at the end'
+      - 'Do the whole thing in one go while energy lasts'
+      - 'Wait until the end, when the task is clearest'
+    answer: 0
+    feedback:
+      - ''
+      - 'One rush is how the queen gives stalemate and the essay misses its argument. Small steps that keep their gains work better.'
+      - 'Waiting leaves the whole task for the last days, when there is no room for a mistake.'
+    explanation: "The queen shrinks the king's box one move at a time, and the last step needs the most care. An essay shrinks the same way: each session leaves less to do, and the final read matters."
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you shrink a big job?'

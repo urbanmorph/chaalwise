@@ -228,11 +228,15 @@ describe('the sealed-bid auction', () => {
 });
 
 describe('the labs', () => {
-  it('lists three labs, each training its track, with a reference entry for the debrief questions', () => {
+  it('lists the labs, each training its track, with a reference entry for the debrief questions', () => {
     expect(LABS.map((l) => [l.slug, l.track, l.entry])).toEqual([
       ['prisoners-dilemma', 'cooperate', 'labs/prisoners-dilemma'],
       ['rock-paper-scissors', 'unpredictable', 'labs/mixed-strategy'],
       ['sealed-bid-auction', 'value', 'labs/winners-curse'],
+      ['nim', 'calculate', 'labs/backward-induction'],
+      ['rule-finder', 'read-hidden', 'strategy/test-to-disprove'],
+      ['split-the-pie', 'value', 'strategy/walk-away-point'],
+      ['which-bag', 'weigh-odds', 'strategy/base-rates'],
     ]);
   });
 });

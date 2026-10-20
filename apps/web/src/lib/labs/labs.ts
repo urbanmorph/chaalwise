@@ -43,6 +43,43 @@ export const LABS: Lab[] = [
     entry: 'labs/winners-curse',
     read: ['strategy/winners-curse'],
   },
+  {
+    slug: 'nim',
+    title: 'Nim',
+    idea: 'Work backwards from the goal: find the positions you want to leave, and the first move follows.',
+    plays:
+      'Take one to three counters from a pile; whoever takes the last one wins. Five games against a bot that plays perfectly when it can.',
+    track: 'calculate',
+    entry: 'labs/backward-induction',
+    read: ['strategy/count-it-through'],
+  },
+  {
+    slug: 'rule-finder',
+    title: 'Rule finder',
+    idea: 'To find out whether you are right, test what would prove you wrong, not what would confirm you.',
+    plays: 'Guess the hidden rule behind a few numbers by trying your own; announce it when you are sure.',
+    track: 'read-hidden',
+    entry: 'strategy/test-to-disprove',
+    read: [],
+  },
+  {
+    slug: 'split-the-pie',
+    title: 'Split the pie',
+    idea: 'Know your walk-away point and theirs before you bargain: the deal lies between them.',
+    plays: 'Five negotiations over 100 points against bots, each side with its own walk-away point.',
+    track: 'value',
+    entry: 'strategy/walk-away-point',
+    read: [],
+  },
+  {
+    slug: 'which-bag',
+    title: 'Which bag?',
+    idea: 'Start from how common something is, then adjust for what you see. And a streak of luck usually ends.',
+    plays: 'Guess which bag a ball came from, then pick players for the next round after a lucky one.',
+    track: 'weigh-odds',
+    entry: 'strategy/base-rates',
+    read: ['strategy/regression-to-the-mean'],
+  },
 ];
 
 export const labHref = (lab: Lab): string => `/labs/${lab.slug}/`;

@@ -13,13 +13,13 @@ const page = (path: string) => {
 const tryIt = (html: string) => html.match(/<section class="try[\s\S]*?<\/section>/)?.[0] ?? '';
 
 describe('the labs pages', () => {
-  it('the index lists the three labs, each with its idea, its track and five minutes', () => {
+  it('the index lists every lab, each with its idea, its track and five minutes', () => {
     const html = page('labs/');
     for (const lab of LABS) {
       expect(html).toContain(`href="/labs/${lab.slug}/"`);
       expect(html).toContain(`href="/skills/${lab.track}/"`);
     }
-    expect(html.match(/5 minutes/g)).toHaveLength(3);
+    expect(html.match(/5 minutes/g)).toHaveLength(LABS.length);
   });
 
   for (const lab of LABS) {

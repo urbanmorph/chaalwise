@@ -174,7 +174,8 @@ test('clicking a piece picks that piece, even after something above the board pu
   // Safari has no scroll anchoring, so content appearing above the board moves it without any scroll event.
   await page.evaluate(() => {
     document.documentElement.style.overflowAnchor = 'none';
-    window.scrollTo(0, 250);
+    // Scrolled, with the board just below the top of the screen.
+    window.scrollTo(0, document.querySelector('cg-board')!.getBoundingClientRect().top + window.scrollY - 120);
   });
   const tap = async (square: string) => {
     const box = (await page.locator('cg-board').boundingBox())!;

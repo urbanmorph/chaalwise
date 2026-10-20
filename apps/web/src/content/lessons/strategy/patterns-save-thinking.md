@@ -41,6 +41,21 @@ steps:
       - Recipe timings help, but the recipes all differ and the onions burn in all of them. The cause is the same each time, so learn the cause.
       - Watching harder works, but it costs full attention every time. Knowing the moment onions catch frees that attention for the rest of the dish.
     explanation: Once the cause is a pattern you recognise, you stop solving the same problem every time.
+  - kind: choice
+    id: compare
+    prompt: "What does spotting Rd8 mate share with the team lead's case?"
+    position: '6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1'
+    alongside: 'A team lead sees a third project this year slip in the same final week of testing.'
+    options:
+      - 'A known shape, seen at a glance, saves working it out'
+      - 'Both are problems solved by thinking harder each time'
+      - 'Both go wrong at the very end, so nothing can be done'
+    answer: 0
+    feedback:
+      - ''
+      - 'Thinking harder each time is what patterns spare you. The strong player and the alert lead both recognise the shape.'
+      - 'The end is where it shows, not where it starts. Seen early, the pattern can be headed off.'
+    explanation: 'The boxed-in king and the late slip are both shapes that repeat. Once you know the shape, you see it at once and spend your thinking on what is new.'
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you look for the pattern?'

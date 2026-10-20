@@ -45,6 +45,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   lessonId={lesson.id}
   next={next && { href: lessonHref(next), title: next.data.title }}
   track={lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined}
+  checkable={lesson.data.game === 'chess'}
 />
 
 <style>

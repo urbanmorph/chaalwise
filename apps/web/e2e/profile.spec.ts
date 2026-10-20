@@ -41,7 +41,7 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
 test('strategy skills not measured yet say where they will come from instead of showing a level', async ({ page }) => {
   await page.goto('/progress/');
   await hydrated(page);
-  await expect(page.locator('[data-skill="weigh-odds"]')).toContainText('Comes with poker.');
+  await expect(page.locator('[data-skill="bluff"]')).toContainText('Comes with poker.');
 });
 
 test('the progress page does not jump about as the profile loads', async ({ page }) => {

@@ -103,3 +103,10 @@ test('saying how sure you are is optional, and the progress page shows how often
   await page.goto('/progress/');
   await expect(page.getByTestId('calibration').getByRole('row', { name: /90% sure/ })).toHaveText(/1\s*100%/);
 });
+
+test('mixed practice deals questions from different skills, one after another', async ({ page }) => {
+  await page.goto('/review/');
+  await page.getByRole('button', { name: 'Practise a mix' }).click();
+  await expect(page.getByRole('heading', { name: 'A mix of 8' })).toBeFocused();
+  await expect(page.getByRole('navigation', { name: 'Steps in this lesson' }).getByRole('button')).toHaveCount(8);
+});
