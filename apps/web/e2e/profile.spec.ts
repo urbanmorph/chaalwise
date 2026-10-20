@@ -32,7 +32,7 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
   const card = page.getByTestId('home-next-focus');
   await expect(card).toBeVisible();
   await expect(card).toContainText('Think ahead');
-  await expect(card.getByRole('link')).toHaveAttribute('href', '/skills/#think-ahead');
+  await expect(card.getByRole('link')).toHaveAttribute('href', '/skills/think-ahead/');
 });
 
 test('strategy skills not measured yet say where they will come from instead of showing a level', async ({ page }) => {

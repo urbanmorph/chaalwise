@@ -2,6 +2,7 @@ import { SKILL_IDS } from '@chaalwise/core/skills';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { HERO, pieceImages } from '../src/lib/diagram';
+import { PROFILE_SKILLS } from '../src/lib/profile-skills';
 import { TRACKS } from '../src/lib/skill-tracks';
 import { fromFen, legal, play } from '@chaalwise/teach/position';
 
@@ -37,11 +38,10 @@ describe('the hero diagram', () => {
 describe('the built home page', () => {
   const html = dist('index.html');
 
-  it('sells skills first: one map row per skill, linking to where it is trained', () => {
+  it('sells skills first: one map row per skill, each linking to its course', () => {
     const rows = [...html.matchAll(/data-track="([a-z-]+)"/g)].map((m) => m[1]);
     expect(rows.sort()).toEqual([...SKILL_IDS].sort());
-    const skills = dist('skills/index.html');
-    for (const [, id] of html.matchAll(/href="\/skills\/#([a-z-]+)"/g)) expect(skills).toContain(`id="${id}"`);
+    for (const id of SKILL_IDS) expect(html, id).toContain(`href="/skills/${id}/"`);
   });
 
   it('draws the chess diagram with no script', () => {
@@ -98,5 +98,14 @@ describe('strategy first', () => {
     expect(html).toMatch(/run (teams|things|organisations)/);
     expect(html).toMatch(/students/i);
     expect(html).not.toContain('Pick a game');
+  });
+});
+
+describe('what the home page offers to train now', () => {
+  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  it('offers "Train it" only for skills the site measures now, so each one has practice behind it', () => {
+    const trained = [...html.matchAll(/href="\/skills\/([a-z-]+)\/"[^>]*>\s*Train it/g)].map((m) => m[1]);
+    expect(trained).toEqual(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id));
   });
 });

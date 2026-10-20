@@ -4,6 +4,7 @@
       "staticDistDir": "apps/web/dist",
       "url": [
         "http://localhost/",
+        "http://localhost/skills/think-ahead/",
         "http://localhost/chess/",
         "http://localhost/chess/board/",
         "http://localhost/chess/drills/",

@@ -79,7 +79,7 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
           )}
           {data.skill && (
             <li>
-              Skill: <a href={`/skills/#${data.skill}`}>{SKILLS[data.skill]}</a>
+              Skill: <a href={`/skills/${data.skill}/`}>{SKILLS[data.skill]}</a>
             </li>
           )}
         </ul>

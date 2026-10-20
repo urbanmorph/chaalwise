@@ -1,0 +1,193 @@
+---
+import { SKILLS, type SkillId } from '@chaalwise/core/skills';
+import type { CollectionEntry } from 'astro:content';
+import { entryHref } from '../lib/reference';
+import { referenceEntries } from '../lib/reference-entries';
+import { chessLessonsFor, lessonHref, STAGES, trackLessons, trackSteps } from '../lib/lessons';
+import { COMES_WITH } from '../lib/planned-skills';
+import TrackPractice from './TrackPractice.svelte';
+
+/**
+ * A strategy track as a course: the idea, why it matters, an example at work
+ * and in study, the question that makes it a habit; then its lessons, practice
+ * and review across every lesson that trains it, and where to look it up.
+ */
+interface Props {
+  course: CollectionEntry<'tracks'>;
+}
+
+const { course } = Astro.props;
+const id = course.id as SkillId;
+const name = SKILLS[id];
+const lessons = await trackLessons(id);
+const chess = await chessLessonsFor(id);
+const steps = await trackSteps(id);
+const measured = Object.keys(steps).length > 0;
+const entries = (await referenceEntries()).filter((e) => e.data.game === 'strategy' && e.data.skill === id);
+const { idea, why, atWork, inStudy, habit } = course.data;
+---
+
+<div class="wrap">
+  <p class="label">
+    <a href="/skills/">Strategy</a>
+  </p>
+  <h1>{name}</h1>
+  <p class="idea">{idea}</p>
+
+  <div class="core">
+    <section aria-labelledby="why">
+      <h2 id="why">Why it matters</h2>
+      <p>{why}</p>
+    </section>
+    <section class="habit" aria-labelledby="habit">
+      <h2 id="habit">The question to ask</h2>
+      <p>{habit}</p>
+    </section>
+  </div>
+
+  <div class="uses">
+    <section class="card" aria-labelledby="work">
+      <h2 id="work">At work</h2>
+      <p>{atWork}</p>
+    </section>
+    <section class="card" aria-labelledby="study">
+      <h2 id="study">In study</h2>
+      <p>{inStudy}</p>
+    </section>
+  </div>
+
+  <section aria-labelledby="lessons">
+    <h2 id="lessons">Lessons</h2>
+    {lessons.length > 0 && (
+      <ol class="lessons">
+        {lessons.map(({ title, stage, lesson }) => (
+          <li class:list={{ planned: !lesson }}>
+            {lesson ? <a href={lessonHref(lesson)}>{title}</a> : <span class="title">{title}</span>}
+            <span class="meta">{lesson ? lesson.data.summary : `Coming with chess stage ${stage}: ${STAGES[stage]}`}</span>
+          </li>
+        ))}
+      </ol>
+    )}
+    {chess.length > 0 && (
+      <p class="also">
+        Shown and practised in chess:{' '}
+        {chess.map((l, i) => (
+          <>
+            <a href={lessonHref(l)}>{l.data.title}</a>
+            {i < chess.length - 1 && ', '}
+          </>
+        ))}
+        .
+      </p>
+    )}
+    {COMES_WITH[id] && <p class="also">Comes with {COMES_WITH[id]}.</p>}
+  </section>
+
+  {measured && (
+    <section aria-labelledby="practise">
+      <h2 id="practise">Practise and review</h2>
+      <p class="also">Questions from every lesson above, in mixed order. You do not need to finish a lesson first.</p>
+      <TrackPractice client:load track={{ id, name }} {steps} />
+    </section>
+  )}
+
+  {entries.length > 0 && (
+    <section aria-labelledby="look-up">
+      <h2 id="look-up">In the reference</h2>
+      <ul class="entries">
+        {entries.map((e) => (
+          <li>
+            <a href={entryHref(e.id)}>{e.data.term}</a>
+            <span class="meta">{e.data.summary}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</div>
+
+<style>
+  .idea {
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    line-height: 1.45;
+    margin-bottom: 32px;
+  }
+  section {
+    margin-top: 32px;
+  }
+  .core {
+    display: grid;
+    gap: 0 40px;
+  }
+  @media (min-width: 780px) {
+    .core {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    }
+  }
+  .core section {
+    margin-top: 0;
+  }
+  .habit p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .uses {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    margin-top: 24px;
+  }
+  .uses section {
+    margin-top: 0;
+  }
+  .uses h2 {
+    font-size: 1.05rem;
+  }
+  .uses p {
+    margin: 0;
+  }
+  .lessons,
+  .entries {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 2px solid var(--ink);
+  }
+  .lessons {
+    counter-reset: lesson;
+  }
+  .lessons li,
+  .entries li {
+    display: grid;
+    gap: 2px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lessons li {
+    counter-increment: lesson;
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+  .lessons li::before {
+    content: counter(lesson);
+    grid-row: span 2;
+    color: var(--ink-2);
+    font-weight: 700;
+  }
+  .lessons a,
+  .entries a,
+  .title {
+    font-weight: 700;
+  }
+  .planned .title {
+    color: var(--ink-2);
+  }
+  .meta,
+  .also {
+    color: var(--ink-2);
+  }
+  .also {
+    margin-top: 12px;
+  }
+</style>

@@ -1,8 +1,11 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { learningPath } from '@chaalwise/core/path';
+import type { SkillId } from '@chaalwise/core/skills';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { parseMoveText, positionFromMoves, toSan } from './chess';
 import { safetyVerdict } from './drills';
+import { PLANNED } from './planned-skills';
+import { trackOf } from './profile-skills';
 
 export type LessonEntry = CollectionEntry<'lessons'>;
 
@@ -75,6 +78,11 @@ export async function reviewSteps(): Promise<Record<string, GradedStep>> {
   return steps;
 }
 
+/** Every question that trains a strategy track, keyed by card id: its strategy lessons, and the chess lessons whose skill feeds it. */
+export async function trackSteps(track: SkillId): Promise<Record<string, GradedStep>> {
+  return Object.fromEntries(Object.entries(await reviewSteps()).filter(([, step]) => trackOf(step.measures) === track));
+}
+
 export interface SafetyItem {
   id: string;
   fen: string;
@@ -91,4 +99,22 @@ export async function safetyDrill(): Promise<SafetyItem[]> {
     const uci = parseMoveText(fen, data.move)!;
     return { id, fen, uci, san: toSan(fen, uci), ...safetyVerdict(fen, uci, data.note) };
   });
+}
+
+/** A track's strategy lessons in curriculum order: each built one with its lesson, each planned one with its stage. */
+export async function trackLessons(track: SkillId): Promise<{ title: string; stage: number; lesson?: LessonEntry }[]> {
+  const built = (await lessonPath()).filter((l) => l.data.game === 'strategy');
+  return PLANNED.filter((p) => p.skill === track).map((p) => ({
+    ...p,
+    lesson: built.find((l) => l.data.title === p.title),
+  }));
+}
+
+/** The chess lessons whose answers count towards a track. */
+export async function chessLessonsFor(track: SkillId): Promise<LessonEntry[]> {
+  return (await lessonPath()).filter(
+    (l) =>
+      l.data.game === 'chess' &&
+      stepsWithSkills(l).some((step) => 'measures' in step && trackOf(step.measures) === track),
+  );
 }
