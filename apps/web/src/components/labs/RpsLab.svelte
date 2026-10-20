@@ -39,7 +39,7 @@
     rounds.push({ you, bot: move, result, read: guess === you });
     status = `Round ${rounds.length}: you threw ${you}, the bot threw ${move}: ${said[result]}.`;
     if (!done) return;
-    // Played: the lab is met, and its questions open up in practice.
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
     markMet('labs/rock-paper-scissors');
     await tick();
     debriefEl?.focus();

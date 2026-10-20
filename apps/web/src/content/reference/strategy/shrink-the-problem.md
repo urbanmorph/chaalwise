@@ -9,7 +9,7 @@ why: 'Nobody can examine everything. Choosing what to examine is itself the skil
 inLife: 'Before comparing twenty suppliers or job offers in detail, cut the list to the few worth a close look. Keep the cutting rules few, because one hard rule can throw out the best option on a single point.'
 skill: 'plan-long'
 related: ['strategy/count-it-through', 'strategy/patterns-save-thinking']
-lesson: 'strategy/shrink-the-problem'
+lesson: 'strategy/look-at-three'
 try:
   - chess/shrink-the-problem/candidates
 ---

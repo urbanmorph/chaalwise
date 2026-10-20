@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import { DONE_KEY } from '../lib/done-lessons';
 import { lessonHref, lessonPath, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
+import { RESUME_KEY } from '../lib/resume';
 import LessonPage from './LessonPage.svelte';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
@@ -68,6 +69,21 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   checkable={lesson.data.game === 'chess'}
   workedUntilMet={worked}
 />
+{/* Inline, so the offer to carry on shows before the first paint and the lesson never jumps. LessonPage checks the place again (readResume). */}
+<script is:inline define:vars={{ key: RESUME_KEY, id: lesson.id, ids: steps.map((s) => s.id) }}>
+  (() => {
+    let left;
+    try {
+      left = JSON.parse(localStorage.getItem(key) ?? '{}')[id];
+    } catch {
+      // Storage can be blocked: the lesson starts from the beginning.
+    }
+    if (!left || !(left.index > 0 || Object.keys(left.outcomes ?? {}).length) || ids[left.index] !== left.step) return;
+    const offer = document.querySelector('[data-resume]');
+    offer.querySelector('[data-resume-step]').textContent = left.index + 1;
+    offer.hidden = false;
+  })();
+</script>
 
 <style>
   .builds-on {

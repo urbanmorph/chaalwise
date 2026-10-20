@@ -67,6 +67,8 @@
     r.deal = deal;
     played.push(r);
     over = true;
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    if (played.length === ROUNDS.length) markMet('labs/split-the-pie');
     const got = payout(r, deal);
     const name = STYLES[r.style].name;
     const result =
@@ -97,8 +99,6 @@
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/split-the-pie');
     await tick();
     debriefEl?.focus();
   }

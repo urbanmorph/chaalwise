@@ -2,6 +2,7 @@
   import { openProgress, requestPersistence } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
   import { saveDone } from '../lib/done-lessons';
+  import { labHref, labsPlayed, playedLabel } from '../lib/labs/labs';
 
   interface Props {
     /** Review questions the site still has; any others (from changed lessons) are not counted. */
@@ -12,6 +13,8 @@
   const known = $derived(new Set(cardIds));
 
   let stats = $state<{ lessons: number; cards: number; due: number } | undefined>();
+  // Every lab from the start, "Not yet" until the record is read, so nothing shifts.
+  let labs = $state(labsPlayed([]));
   // Assumed not yet kept, so the warning is laid out from the start and nothing shifts.
   let persisted = $state(false);
   let pending = $state<{ name: string; data: unknown } | undefined>();
@@ -26,6 +29,7 @@
       const due = (await progress.dueCards(now)).filter((c) => known.has(c.id));
       // Playing a lab is kept as a finished record, to remember the game is met; it is not a lesson.
       stats = { lessons: data.lessons.filter((l) => !l.lessonId.startsWith('labs/')).length, cards: data.cards.length, due: due.length };
+      labs = labsPlayed(data.lessons);
     } finally {
       progress.close();
     }
@@ -123,6 +127,18 @@
   </section>
 
   <section class="card">
+    <h2>Labs played</h2>
+    <dl aria-busy={!stats}>
+      {#each labs as lab (lab.slug)}
+        <div data-testid="lab-played-{lab.slug}">
+          <dt><a href={labHref(lab)}>{lab.title}</a></dt>
+          <dd class="when">{playedLabel(lab.at, lab.times)}</dd>
+        </div>
+      {/each}
+    </dl>
+  </section>
+
+  <section class="card">
     <h2>Move it to another device</h2>
     <p>Your progress never leaves this device on its own. Save it as a file, and load that file on another device.</p>
     <button class="button primary" onclick={exportFile}>Save progress to a file</button>
@@ -158,6 +174,9 @@
   dd {
     margin: 0;
     font: 600 1.1rem var(--mono);
+  }
+  dd.when {
+    font-size: 0.95rem;
   }
   .file {
     display: grid;

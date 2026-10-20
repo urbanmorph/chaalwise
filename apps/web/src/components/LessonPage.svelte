@@ -5,11 +5,12 @@
   // Loaded with the page, not on demand: if a deploy lands mid-lesson, the
   // on-demand chunk is gone from the server by the time the lesson is saved.
   import '@chaalwise/core/srs';
-  import { tick } from 'svelte';
+  import { tick, untrack } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
   import { addDone, readDone } from '../lib/done-lessons';
   import { gamesMet, needs, workedExample } from '../lib/games';
   import { isPracticeKind } from '../lib/practice-kinds';
+  import { clearResume, readResume, saveResume } from '../lib/resume';
   import { practiceOf, roundItems } from '../lib/round-items';
   import LessonPlayer from './LessonPlayer.svelte';
   import PracticeRound from './PracticeRound.svelte';
@@ -29,6 +30,31 @@
   }
 
   let { lesson, lessonId, next, track, checkable = false, workedUntilMet = false }: Props = $props();
+
+  /**
+   * Where the learner left this lesson, read at once: the page drew the offer to
+   * carry on before its first paint (LessonArticle), so it is there from the start.
+   */
+  const stepIds = $derived(lesson.steps.map((s) => s.id));
+  // Read once, as the page opens: moving on later keeps the place, it does not offer it again.
+  let left = $state(typeof localStorage === 'undefined' ? undefined : untrack(() => readResume(lessonId, stepIds)));
+  let player = $state<LessonPlayer>();
+
+  function carryOn() {
+    if (left) player?.resume(left.index, left.outcomes);
+    left = undefined;
+  }
+
+  function startAgain() {
+    clearResume(lessonId);
+    left = undefined;
+  }
+
+  /** Keep the learner's place as they go. Moving on in the lesson answers the offer: the place is now here. */
+  function keepPlace(index: number, outcomes: Record<string, Outcome>) {
+    left = undefined;
+    saveResume(lessonId, stepIds, index, outcomes);
+  }
 
   // Meet the game first. Read from the quick copy, so the lesson is right from the start; on the server, every question shows.
   const chessMet = typeof localStorage === 'undefined' || gamesMet(readDone()).has('chess');
@@ -100,6 +126,7 @@
   async function onfinish(result: Record<string, Outcome>) {
     outcomes = result;
     saved = 'saving';
+    clearResume(lessonId);
     try {
       const progress = await openProgress();
       await progress.recordLesson(lessonId, outcomes, new Date());
@@ -113,6 +140,14 @@
     }
   }
 </script>
+
+<div class="card resume" data-testid="resume" data-resume hidden={!left}>
+  <p>You were part-way through this lesson, at step <span data-resume-step>{(left?.index ?? 0) + 1}</span> of {lesson.steps.length}.</p>
+  <div class="actions">
+    <button class="button primary" type="button" onclick={carryOn}>Carry on</button>
+    <button class="button" type="button" onclick={startAgain}>Start again</button>
+  </div>
+</div>
 
 {#if checkable && mode === 'lesson'}
   <div class="card check">
@@ -138,7 +173,7 @@
   {#if mode === 'not-yet'}
     <p class="card not-yet" role="status">Not quite. Here is the lesson: the questions you missed are in it.</p>
   {/if}
-  <LessonPlayer lesson={played} {onfinish} onstep={logStep} onplan={savePlan}>
+  <LessonPlayer bind:this={player} lesson={played} {onfinish} onstep={logStep} onplan={savePlan} onprogress={keepPlace}>
     {#snippet finished(outcomes)}
       <div class="card done" data-testid="lesson-done">
         <h2>Lesson complete</h2>
@@ -183,10 +218,15 @@
   .practice h2:focus {
     outline: none;
   }
+  .resume,
   .check,
   .not-yet {
     margin-bottom: 16px;
   }
+  .resume[hidden] {
+    display: none;
+  }
+  .resume p,
   .check p {
     margin-top: 0;
   }
