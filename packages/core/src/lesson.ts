@@ -111,7 +111,21 @@ const playStep = z.object({
   explanation: z.string().min(1),
 });
 
-const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep]);
+/**
+ * A plan to use the idea away from the board, not graded: the learner picks the
+ * situation (or writes their own), and the action completes "When …, …".
+ */
+const planStep = z.object({
+  kind: z.literal('plan'),
+  id: stepId,
+  prompt: z.string().min(1),
+  /** Each completes "When …", such as "I am about to send an important email". */
+  situations: z.array(z.string().min(1)).min(2),
+  /** Completes the sentence, such as "I will ask what it lets the other side do". */
+  action: z.string().min(1),
+});
+
+const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep, planStep]);
 
 /** A question to try on its own, away from a lesson, such as a reference entry's "try it yourself". */
 export const tryStepSchema = z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep]);
@@ -157,4 +171,4 @@ export const lessonSchema = z
 
 export type Lesson = z.infer<typeof lessonSchema>;
 export type Step = z.infer<typeof stepSchema>;
-export type GradedStep = Exclude<Step, { kind: 'read' }>;
+export type GradedStep = Exclude<Step, { kind: 'read' } | { kind: 'plan' }>;

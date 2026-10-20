@@ -30,6 +30,13 @@ describe('spaced repetition', () => {
     expect(gap2).toBeGreaterThan(gap1);
   });
 
+  it('brings every idea back at least once a year, however well it is known', () => {
+    let card = schedule(newCard(now), 'first-try', now);
+    for (let i = 0; i < 12; i++) card = schedule(card, 'first-try', card.due);
+    // ts-fsrs keeps a Good answer a day beyond a Hard one, so the cap of 365 can give 366.
+    expect(card.scheduled_days).toBeLessThanOrEqual(366);
+  });
+
   it('does not change the card it is given', () => {
     const card = newCard(now);
     const copy = structuredClone(card);

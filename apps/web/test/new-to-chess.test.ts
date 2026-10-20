@@ -23,8 +23,8 @@ describe('pages that explain an idea through chess', () => {
     for (const id of SKILL_IDS) {
       const html = dist(`skills/${id}/index.html`);
       const chess =
-        html.includes('data-practice-count') ||
-        /href="\/chess\/[a-z-]+\/"/.test(html.replace(/<header[\s\S]*?<\/header>/, ''));
+        // Practice questions on a board carry a position.
+        /position&quot;/.test(html) || /href="\/chess\/[a-z-]+\/"/.test(html.replace(/<header[\s\S]*?<\/header>/, ''));
       expect(offersStart(html), id).toBe(chess);
     }
   });

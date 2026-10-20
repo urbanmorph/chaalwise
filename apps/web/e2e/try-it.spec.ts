@@ -39,6 +39,7 @@ test('options come in a fresh order, and a wrong pick says why it fails', async 
   }[];
   await stage.getByRole('button', { name: 'Try it' }).click();
 
+  await expect(page.locator('.options button')).toHaveCount(first!.options.length);
   const shown = await page.locator('.options button').allTextContents();
   expect(shown.map((t) => t.trim())).not.toEqual(first!.options);
   expect([...shown.map((t) => t.trim())].sort()).toEqual([...first!.options].sort());
@@ -70,4 +71,34 @@ test('a round ends on a right answer: the ones missed can be gone over again at 
 
   await page.getByRole('button', { name: 'Go over the one you missed' }).click();
   await expect(page.getByRole('heading', { name: first!.prompt })).toBeVisible();
+});
+
+test('saying how sure you are is optional, and the progress page shows how often you were right at each level', async ({
+  page,
+}) => {
+  await page.goto('/reference/strategy/weakest-link/');
+  const stage = page.locator('section.try .stage');
+  const [first] = JSON.parse((await stage.getAttribute('data-steps'))!) as { options: string[]; answer: number }[];
+  await stage.getByRole('button', { name: 'Try it' }).click();
+  await page.getByText('90%').click();
+  await page.getByRole('button', { name: first!.options[first!.answer], exact: true }).click();
+  await expect(page.getByText('You found it!')).toBeVisible();
+
+  // The answer is saved as it is given: wait until it has landed before leaving the page.
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          new Promise<number>((resolve) => {
+            const open = indexedDB.open('chaalwise');
+            open.onsuccess = () => {
+              const all = open.result.transaction('attempts').objectStore('attempts').getAll();
+              all.onsuccess = () => resolve(all.result.filter((a: { confidence?: number }) => a.confidence === 0.9).length);
+            };
+          }),
+      ),
+    )
+    .toBe(1);
+  await page.goto('/progress/');
+  await expect(page.getByTestId('calibration').getByRole('row', { name: /90% sure/ })).toHaveText(/1\s*100%/);
 });

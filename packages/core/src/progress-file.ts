@@ -28,6 +28,19 @@ export const exportSchema = z.object({
         // Added with the stricter levels; earlier files have neither.
         item: z.string().optional(),
         chance: z.number().min(0).max(1).optional(),
+        confidence: z.number().min(0).max(1).optional(),
+      }),
+    )
+    .default([]),
+  // Added with plans in October 2026; earlier files have none.
+  plans: z
+    .array(
+      z.object({
+        id: z.string(),
+        track: z.string(),
+        text: z.string(),
+        createdAt: date,
+        checkIns: z.array(z.object({ at: date, result: z.enum(['used', 'forgot', 'no-chance']) })),
       }),
     )
     .default([]),

@@ -1,0 +1,77 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import Base from '../../layouts/Base.astro';
+import { entryHref } from '../../lib/reference';
+import { referenceEntries } from '../../lib/reference-entries';
+import type { Lab } from '../../lib/labs/labs';
+import TryIt from '../TryIt.astro';
+import './labs.css';
+
+/**
+ * A game-theory lab: the idea, the game (the slot, an island), then the
+ * debrief questions from the lab's reference entry and where to read more.
+ */
+interface Props {
+  lab: Lab;
+}
+
+const { lab } = Astro.props;
+const all = await referenceEntries();
+const find = (id: string) => {
+  const entry = all.find((e) => e.id === id);
+  if (!entry) throw new Error(`lab ${lab.slug}: no reference entry ${id}`);
+  return entry;
+};
+const entry = find(lab.entry);
+const read = [entry, ...lab.read.map(find)];
+const steps = entry.data.try;
+if (!steps) throw new Error(`lab ${lab.slug}: ${lab.entry} has no questions to try`);
+const track = SKILLS[lab.track];
+---
+
+<Base title={`${lab.title} lab`} description={`${lab.idea} A five-minute game against the computer, then a debrief.`}>
+  <div class="wrap">
+    <p class="crumb">
+      <a href="/labs/">Labs</a>
+    </p>
+    <h1>{lab.title}</h1>
+    <p class="idea">{lab.idea}</p>
+    <p class="label">5 minutes · trains {track} · points only, never money</p>
+    <slot />
+    <TryIt entry={entry.id} {steps} measures={lab.track} more={{ href: `/skills/${lab.track}/`, label: `Practise ${track}` }} />
+    <section class="read">
+      <h2>Read more</h2>
+      <ul>
+        {read.map((e) => (
+          <li>
+            <a href={entryHref(e.id)}>{e.data.term}</a> <span>{e.data.summary}</span>
+          </li>
+        ))}
+        <li>
+          <a href={`/skills/${lab.track}/`}>The {track} course</a> <span>Lessons and practice for the skill this lab trains.</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .crumb {
+    margin-bottom: 4px;
+  }
+  .idea {
+    font-size: 1.2rem;
+  }
+  .read {
+    margin-top: 32px;
+  }
+  .read ul {
+    padding-left: 1.2em;
+  }
+  .read li {
+    margin-bottom: 6px;
+  }
+  .read span {
+    color: var(--ink-2);
+  }
+</style>

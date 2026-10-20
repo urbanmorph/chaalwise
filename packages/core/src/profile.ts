@@ -17,6 +17,8 @@ export interface Attempt {
   item?: string | undefined;
   /** The chance of getting it right first time by guessing: 1 in the number of options, 0 for a move. */
   chance?: number | undefined;
+  /** How sure the learner said they were before answering (see calibration.ts). */
+  confidence?: number | undefined;
 }
 
 export interface Assessment {

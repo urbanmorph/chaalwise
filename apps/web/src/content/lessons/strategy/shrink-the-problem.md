@@ -41,9 +41,14 @@ steps:
       - Tidying everywhere looks like progress, but nothing is finished, and the mess spreads back over the week.
       - Sorting feels like a step forward, but piles on the floor make the whole garage harder to use until every pile is dealt with.
     explanation: A finished half is like a square the king can no longer use. The problem only shrinks if each gain is kept.
-  - kind: read
-    id: try-it
-    text: Try it this week. Take one big job, mark a small corner of it you can finish today, and keep that corner done.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you shrink a big job?'
+    situations:
+      - 'a big job feels too large to start'
+      - 'I plan my day or my week'
+      - 'an assignment or project is due in more than a week'
+    action: 'I will mark one small part I can finish today, and finish it'
 ---
 
 The basic mates show the idea on a small board. Off the board, try it on one large task, as this week's task asks.

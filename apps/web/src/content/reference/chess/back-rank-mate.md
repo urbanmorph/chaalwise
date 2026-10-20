@@ -10,6 +10,7 @@ move: 'a1a8'
 highlight: ['g8']
 related: ['chess/luft', 'strategy/patterns-save-thinking']
 lesson: 'chess/back-rank'
+lichess: 'backRankMate'
 ---
 
 Rook to a8 is mate. The pawns on f7, g7 and h7, meant to shelter the king, also stop it escaping.

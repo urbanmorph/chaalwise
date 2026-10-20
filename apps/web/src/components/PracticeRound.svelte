@@ -33,15 +33,17 @@
   async function save(grades: [string, Outcome][]) {
     const progress = await openProgress();
     try {
-      for (const [stepId, outcome] of grades) await progress.recordReview(itemFor(stepId).cardId, outcome, new Date());
+      // Review reschedules each card; practice only adds new ones and reschedules those due.
+      const record = source === 'review' ? progress.recordReview : progress.recordPractice;
+      for (const [stepId, outcome] of grades) await record(itemFor(stepId).cardId, outcome, new Date());
     } finally {
       progress.close();
     }
   }
 
-  function onstep(stepId: string, outcome: Outcome) {
+  function onstep(stepId: string, outcome: Outcome, confidence?: number) {
     const { cardId, step } = itemFor(stepId);
-    logAttempt(step.measures, outcome, source, { item: cardId, chance: guessChance(step) });
+    logAttempt(step.measures, outcome, source, { item: cardId, chance: guessChance(step), confidence });
     saving = saving.then(() =>
       save([[stepId, outcome]]).catch((error) => {
         console.error(error);

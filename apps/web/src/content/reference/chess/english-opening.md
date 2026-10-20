@@ -9,6 +9,7 @@ family: 'flank'
 position: 'moves: c4'
 related: ['chess/reti-opening', 'chess/sicilian-defence']
 lesson: 'chess/opening-map'
+lichess: 'English_Opening'
 ---
 
 After 1.c4, the game can turn into many things, including a reversed Sicilian after 1...e5. It suits players who like to manoeuvre.

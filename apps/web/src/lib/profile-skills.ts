@@ -1,4 +1,5 @@
 import { SKILL_IDS, type SkillId } from '@chaalwise/core/skills';
+import { LABS } from './labs/labs';
 import { TRACKS } from './skill-tracks';
 
 /**
@@ -105,9 +106,9 @@ const SHORT: Record<SkillId, string> = {
   value: 'Value',
 };
 
-/** The strategy tracks, in the home page's order. A track is measured once some game skill gives evidence for it. */
+/** The strategy tracks, in the home page's order. A track is measured once a chess skill or a lab gives evidence for it. */
 export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
-  const measured = CHESS_SKILLS.some((s) => s.track === track.id);
+  const measured = CHESS_SKILLS.some((s) => s.track === track.id) || LABS.some((l) => l.track === track.id);
   return {
     id: track.id,
     name: track.name,
@@ -126,3 +127,13 @@ export const DRILL_SKILL: Record<string, string> = {
   'loose-pieces': 'safety',
   mate: 'endgame',
 };
+
+/**
+ * The track a reference question counts towards: off-board ideas (strategy and
+ * the labs) whose track the profile measures. Chess entries count nowhere: chess
+ * answers belong to the lessons' own game skills.
+ */
+export const referenceMeasures = (game: string, skill: string | undefined): SkillId | undefined =>
+  (game === 'strategy' || game === 'labs') && !PROFILE_SKILLS.find((s) => s.id === skill)?.later
+    ? (skill as SkillId | undefined)
+    : undefined;

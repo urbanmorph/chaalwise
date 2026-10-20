@@ -41,9 +41,14 @@ steps:
       - ''
       - Undercutting is a bolder version of the same game. The chain can follow you down, and it can afford the losses for longer.
     explanation: A price fight is the chain's strongest ground. Changing what you compete on is the Sicilian answer, riskier but with more to win.
-  - kind: read
-    id: try-it
-    text: Try it this week. The next time someone moves first, a request, an offer, a plan, decide before you reply whether you want to level it or change its shape.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you choose whether to lead or answer?'
+    situations:
+      - 'someone makes me an offer or a request'
+      - "a meeting opens with someone else's plan"
+      - 'a group project is shared out'
+    action: 'I will decide, before I reply, whether to answer it as it is or change its shape'
 ---
 
 Every opening is a first move and an answer. So are many of the situations you meet every day.

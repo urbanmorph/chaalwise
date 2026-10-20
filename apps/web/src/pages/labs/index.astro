@@ -1,0 +1,52 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import Base from '../../layouts/Base.astro';
+import { labHref, LABS } from '../../lib/labs/labs';
+---
+
+<Base title="Labs" description="Three five-minute games against the computer, each built around one idea from game theory, with a debrief.">
+  <div class="wrap">
+    <h1>Labs</h1>
+    <p>
+      Short games against the computer, each built around one idea from game theory: when to trust, when to be unpredictable, and how not to overpay. Each takes
+      about five minutes and ends with a debrief of what happened and why. Points only, never money.
+    </p>
+    <ul class="labs">
+      {LABS.map((lab) => (
+        <li class="card">
+          <h2>
+            <a href={labHref(lab)}>{lab.title}</a>
+          </h2>
+          <p class="label">
+            5 minutes · trains <a href={`/skills/${lab.track}/`}>{SKILLS[lab.track]}</a>
+          </p>
+          <p class="idea">{lab.idea}</p>
+          <p class="plays">{lab.plays}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .labs {
+    display: grid;
+    gap: 12px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .labs h2 {
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+  }
+  .labs p {
+    margin: 6px 0 0;
+  }
+  .label a {
+    color: inherit;
+  }
+  .plays {
+    color: var(--ink-2);
+  }
+</style>

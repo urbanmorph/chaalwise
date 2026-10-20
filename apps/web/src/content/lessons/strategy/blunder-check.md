@@ -41,9 +41,14 @@ steps:
       - ''
       - Plan A's two prices average 424, which looks close to 399, but 25 a month more over 24 months is 600.
     explanation: 'Plan A is 12 × 199 + 12 × 649 = 10,176. Plan B is 24 × 399 = 9,576. Like a piece left hanging, the danger is in the part you are not looking at: what happens after the offer ends.'
-  - kind: read
-    id: try-it
-    text: Try it this week. Before one decision that matters, pause and name one thing that could go wrong, and what you would do about it.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you pause before acting?'
+    situations:
+      - 'I am about to send an important email or message'
+      - 'I am about to agree to a deadline or a price'
+      - 'I am about to hand in an essay or a piece of work'
+    action: 'I will name one thing that could go wrong, and what I would do about it'
 ---
 
 In chess the blunder check becomes a habit because you run it every move. Off the board it becomes one only if you practise it there too, as this week's task asks.

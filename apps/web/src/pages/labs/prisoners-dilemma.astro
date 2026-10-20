@@ -1,0 +1,16 @@
+---
+import DilemmaLab from '../../components/labs/DilemmaLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { noisyPair, styleTable } from '../../lib/labs/dilemma';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'prisoners-dilemma')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Each round, you and a bot each choose to cooperate or defect, at the same time. Defecting on a cooperator scores best for you in that round, but the game
+    goes on, and the bot remembers. Play one bot, or all five in turn, and see how many points you can make.
+  </p>
+  <DilemmaLab client:load styles={styleTable()} noisy={noisyPair()} />
+</LabPage>

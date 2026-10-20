@@ -1,6 +1,7 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
 import { describe, expect, it } from 'vitest';
 import { buildProfile, trackAttempts } from '../src/lib/profile';
+import { LABS } from '../src/lib/labs/labs';
 import { CHESS_SKILLS, PROFILE_SKILLS } from '../src/lib/profile-skills';
 
 const at = (day: number) => new Date(Date.UTC(2026, 9, day, 9));
@@ -59,7 +60,12 @@ describe('the skill profile on this device', () => {
     const all = Object.fromEntries(PROFILE_SKILLS.map((s) => [s.id, solid(s.id)]));
     const { focus, ranked } = buildProfile(all);
     expect(PROFILE_SKILLS.find((s) => s.id === focus?.skill.id)?.later).toBeUndefined();
-    expect(ranked.map((s) => s.skill.id)).toEqual(['think-ahead', 'calculate', 'plan-long']);
+    expect(ranked.map((s) => s.skill.id)).toEqual(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id));
+  });
+
+  it('measures cooperating, being unpredictable and valuing things through the labs', () => {
+    for (const id of ['cooperate', 'unpredictable', 'value'])
+      expect(PROFILE_SKILLS.find((s) => s.id === id)?.later, id).toBeUndefined();
   });
 
   it('says where a track not measured yet will come from', () => {
@@ -72,8 +78,8 @@ describe('the skill profile on this device', () => {
     expect(games.find((g) => g.skill.id === 'board')?.assessment.level).toBe('noticing');
   });
 
-  it('measures every track that some chess skill gives evidence for, and only those', () => {
-    const fed = new Set(CHESS_SKILLS.map((s) => s.track).filter(Boolean));
+  it('measures every track that some chess skill or lab gives evidence for, and only those', () => {
+    const fed = new Set([...CHESS_SKILLS.map((s) => s.track).filter(Boolean), ...LABS.map((l) => l.track)]);
     expect(new Set(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id))).toEqual(fed);
   });
 });

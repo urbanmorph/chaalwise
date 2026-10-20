@@ -11,7 +11,7 @@
    */
   interface Props {
     steps: GradedStep[];
-    onstep: (stepId: string, outcome: Outcome) => void;
+    onstep: (stepId: string, outcome: Outcome, confidence?: number) => void;
     onfinish: (outcomes: Record<string, Outcome>) => void;
     /** The end-of-round card. */
     summary: Snippet<[Record<string, Outcome>]>;
@@ -35,7 +35,7 @@
     {/snippet}
   </LessonPlayer>
 {:else}
-  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep}>
+  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep} askConfidence>
     {#snippet finished(outcomes)}
       {@render summary(outcomes)}
       {#if missed.length}

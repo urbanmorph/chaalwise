@@ -1,0 +1,102 @@
+/* Shared look for the game-theory labs: the play area, its score line, round logs and the debrief. */
+
+.lab {
+  margin-top: 24px;
+}
+.lab-stage {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.lab-score {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 32px;
+  margin: 0;
+}
+.lab-score div {
+  min-width: 7em;
+}
+.lab-score dt {
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+.lab-score dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.lab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.lab-status {
+  min-height: 3.2em;
+  margin: 0;
+  font-weight: 600;
+}
+.lab-status:focus {
+  outline: none;
+}
+.lab-note {
+  color: var(--ink-2);
+  margin: 0;
+}
+.lab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.lab-table th,
+.lab-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+.lab-table :is(th, td):first-child {
+  padding-left: 0;
+}
+.lab-table th {
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.lab-table .num {
+  text-align: right;
+}
+.lab-table .you {
+  font-weight: 700;
+}
+.lab-scroll {
+  overflow-x: auto;
+}
+.lab-debrief {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid var(--ink);
+}
+.lab-debrief h2:focus,
+.lab-debrief h3:focus,
+.lab h2:focus,
+.lab h3:focus {
+  outline: none;
+}
+.lab-debrief h3 {
+  margin-top: 24px;
+}
+.lab-lesson {
+  padding-left: 1.2em;
+}
+.lab-lesson li {
+  margin-bottom: 0.5em;
+}
+.tag-c {
+  color: var(--pass);
+  font-weight: 600;
+}
+.tag-d {
+  color: var(--fail);
+  font-weight: 600;
+}

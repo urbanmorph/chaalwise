@@ -9,6 +9,8 @@ position: 'moves: e4 e5 Nf3 Nc6 d4 d6'
 move: 'f1b5'
 highlight: ['c6', 'e8']
 related: ['chess/skewer', 'chess/fork', 'chess/nimzo-indian-defence']
+lesson: 'chess/pin'
+lichess: 'pin'
 ---
 
 Bishop to b5 pins the knight on c6 to the king on e8: the knight may not move, because that would expose the king. Black played ...d6, which opened the diagonal.

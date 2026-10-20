@@ -41,9 +41,14 @@ steps:
       - Recipe timings help, but the recipes all differ and the onions burn in all of them. The cause is the same each time, so learn the cause.
       - Watching harder works, but it costs full attention every time. Knowing the moment onions catch frees that attention for the rest of the dish.
     explanation: Once the cause is a pattern you recognise, you stop solving the same problem every time.
-  - kind: read
-    id: try-it
-    text: Try it this week. Notice one mistake you have made more than once, and write down the shape it takes, so you see it coming next time.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you look for the pattern?'
+    situations:
+      - 'I notice a mistake I have made before'
+      - 'a problem at work or in study feels familiar'
+      - 'I check over a piece of work before handing it in'
+    action: 'I will write down the shape it takes, so I see it coming next time'
 ---
 
 Chess players get faster by learning patterns, not only by thinking harder. The same holds in any field you practise with quick, honest feedback, and patterns from one field rarely carry to another, so build them where you need them.

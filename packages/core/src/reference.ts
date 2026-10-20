@@ -68,6 +68,11 @@ export const referenceSchema = z
     related: z.array(z.string().regex(/^[a-z]+\/[a-z0-9-]+$/)).default([]),
     /** The lesson that teaches it, such as `chess/hanging`. */
     lesson: z.string().optional(),
+    /** Chess: the matching Lichess puzzle theme or opening page, as its name in https://lichess.org/training/<name>. */
+    lichess: z
+      .string()
+      .regex(/^[A-Za-z_-]+$/, 'the page name only, such as fork or Sicilian_Defense')
+      .optional(),
     /** One to three questions to try the idea on the page. */
     try: z.array(tryStepSchema).min(1).max(3).optional(),
   })
@@ -86,7 +91,7 @@ export const referenceSchema = z
         ctx.addIssue({ code: 'custom', path: ['position'], message: 'an opening gives its moves, as `moves: e4 e5`' });
     }
     if (entry.game !== 'chess')
-      for (const field of ['position', 'move', 'highlight'] as const)
+      for (const field of ['position', 'move', 'highlight', 'lichess'] as const)
         if (entry[field] !== undefined)
           ctx.addIssue({ code: 'custom', path: [field], message: 'only chess entries have a board' });
     // Strategy ideas are shown in chess; poker and the labs have no board yet.

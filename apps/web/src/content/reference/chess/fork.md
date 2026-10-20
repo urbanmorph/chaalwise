@@ -9,6 +9,8 @@ position: 'r3k3/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1'
 move: 'd5c7'
 highlight: ['e8', 'a8']
 related: ['chess/pin', 'chess/skewer', 'strategy/blunder-check']
+lesson: 'chess/fork'
+lichess: 'fork'
 ---
 
 Knight to c7 checks the king on e8 and attacks the rook on a8. The king must move, and the rook falls.

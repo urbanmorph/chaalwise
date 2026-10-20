@@ -10,6 +10,7 @@ position: 'moves: d4 d5 c4 c6'
 orientation: 'black'
 related: ['chess/queens-gambit']
 lesson: 'chess/opening-map'
+lichess: 'Slav_Defense'
 ---
 
 After 1.d4 d5 2.c4 c6, Black holds the centre without blocking the bishop on c8, the problem piece in the Queen's Gambit Declined.

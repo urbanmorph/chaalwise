@@ -1,23 +1,31 @@
 <script lang="ts">
   import type { Lesson } from '@chaalwise/core/lesson';
-  import { advance, answer, createPlayer, currentStep, giveUp, jumpTo, showHint, type Outcome, type Response } from '@chaalwise/core/player';
+  import { advance, answer, createPlayer, currentStep, giveUp, isGraded, jumpTo, showHint, type Outcome, type Response } from '@chaalwise/core/player';
   import { tick, type Snippet } from 'svelte';
   import { SvelteSet } from 'svelte/reactivity';
   import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
   import { squareHint } from '../lib/drills';
   import { shuffle } from '../lib/random';
+  import { CONFIDENCE } from '@chaalwise/core/calibration';
   import Board, { type Mark } from './Board.svelte';
+  import PlanStep from './PlanStep.svelte';
   import PlayOut from './PlayOut.svelte';
 
   interface Props {
     lesson: Pick<Lesson, 'steps'>;
     onfinish: (outcomes: Record<string, Outcome>) => void;
-    /** Called as each step is graded, so a long session is saved as it goes. */
-    onstep?: (stepId: string, outcome: Outcome) => void;
+    /** Called as each step is graded, so a long session is saved as it goes, with how sure the learner said they were. */
+    onstep?: (stepId: string, outcome: Outcome, confidence?: number) => void;
+    /** Offer "how sure are you?" before each answer (practice and review, not first lessons). */
+    askConfidence?: boolean;
     finished: Snippet<[Record<string, Outcome>]>;
+    /** Saves the learner's plan from a plan step; plan steps show only where this is given. */
+    onplan?: (stepId: string, text: string) => Promise<void>;
   }
 
-  let { lesson, onfinish, onstep, finished }: Props = $props();
+  let { lesson, onfinish, onstep, finished, onplan, askConfidence = false }: Props = $props();
+  /** How sure the learner said they were, chosen before the first answer only. */
+  let sure = $state<number>();
 
   let state = $state(createPlayer());
   let feedback = $state<{ tone: 'pass' | 'warn' | 'fail'; text: string } | undefined>();
@@ -39,13 +47,13 @@
   const showCoordinates = $derived(step?.kind !== 'square' || !!step.coordinates);
 
   const fen = $derived.by(() => {
-    if (!step || (step.kind === 'read' && !step.position)) return undefined;
+    if (!step || step.kind === 'plan' || (step.kind === 'read' && !step.position)) return undefined;
     if (step.position) return toFen(step.position);
     return step.kind === 'square' ? EMPTY_BOARD : undefined;
   });
 
   function respond(response: Response) {
-    if (!step || step.kind === 'read') return false;
+    if (!step || !isGraded(step)) return false;
     const isNew = !(step.id in state.outcomes);
     const result = answer(lesson, state, response);
     state = result.state;
@@ -59,7 +67,7 @@
   /** The control the learner used has gone or is disabled: move focus to Continue. */
   async function graded(stepId: string, isNew: boolean) {
     // Saved once: a step is graded the first time it is answered.
-    if (isNew) onstep?.(stepId, state.outcomes[stepId]!);
+    if (isNew) onstep?.(stepId, state.outcomes[stepId]!, sure);
     await tick();
     continueButton?.focus();
   }
@@ -120,7 +128,7 @@
   }
 
   function clearStep() {
-    feedback = picked = after = undefined;
+    feedback = picked = after = sure = undefined;
     marks = [];
   }
 
@@ -200,6 +208,21 @@
         </div>
       {/if}
       <div class="rest">
+        {#if askConfidence && isGraded(step) && !state.revealed}
+          <fieldset class="sure" disabled={state.attempts > 0}>
+            <legend>How sure are you? <span class="optional">Optional</span></legend>
+            <div class="choices">
+              {#each CONFIDENCE as level (level)}
+                <label><input type="radio" name="sure-{state.index}" value={level} bind:group={sure} /> {level * 100}%</label>
+              {/each}
+            </div>
+          </fieldset>
+        {/if}
+        {#if step.kind === 'plan' && onplan}
+          {#key state.index}
+            <PlanStep situations={step.situations} action={step.action} onsave={(text) => onplan(step.id, text)} />
+          {/key}
+        {/if}
         {#if step.kind === 'choice'}
           <div class="options">
             {#each order as i (i)}
@@ -216,16 +239,16 @@
 
         <div aria-live="polite">
           {#if feedback}<p class="feedback {feedback.tone}">{feedback.text}</p>{/if}
-          {#if state.hintShown && !state.revealed && step.kind !== 'read'}
+          {#if state.hintShown && !state.revealed && isGraded(step)}
             <p class="hint" tabindex="-1" bind:this={hintText}>{step.hint}</p>
           {/if}
-          {#if state.revealed && step.kind !== 'read'}<p class="explanation">
+          {#if state.revealed && isGraded(step)}<p class="explanation">
               {step.explanation}
             </p>{/if}
         </div>
 
         <div class="actions">
-          {#if step.kind === 'read' || state.revealed}
+          {#if !isGraded(step) || state.revealed}
             <button class="button primary" onclick={next} bind:this={continueButton}>
               {state.index + 1 === total ? 'Finish' : 'Continue'}
             </button>
@@ -246,6 +269,19 @@
 </section>
 
 <style>
+  .sure {
+    border: 0;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .sure legend {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+  .optional {
+    font-size: 0.8rem;
+  }
   .player {
     display: grid;
     gap: 12px;

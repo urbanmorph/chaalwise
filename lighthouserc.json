@@ -11,7 +11,8 @@
         "http://localhost/chess/opening-map/",
         "http://localhost/progress/",
         "http://localhost/reference/",
-        "http://localhost/reference/chess/kings-indian-defence/"
+        "http://localhost/reference/chess/kings-indian-defence/",
+        "http://localhost/labs/prisoners-dilemma/"
       ],
       "numberOfRuns": 3,
       "settings": {

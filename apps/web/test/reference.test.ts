@@ -92,3 +92,51 @@ describe('the reference page as built', () => {
     expect(form).not.toMatch(/\bhidden\b/);
   });
 });
+
+describe('more practice elsewhere', () => {
+  const page = (id: string) => readFileSync(new URL(`../dist/reference/${id}/index.html`, import.meta.url), 'utf8');
+
+  it('links to the matching puzzles on Lichess, credited, and says they do not count here', () => {
+    const html = page('chess/fork');
+    expect(html).toContain('href="https://lichess.org/training/fork"');
+    expect(html).toMatch(/on Lichess/);
+    expect(html).toMatch(/not counted in your progress here/);
+  });
+
+  it('links only where Lichess has an exact match', () => {
+    expect(page('chess/outpost')).not.toContain('lichess.org/training');
+  });
+
+  it('writes the theme as a Lichess page name', () => {
+    expect(
+      referenceSchema.safeParse({
+        term: 'F',
+        game: 'chess',
+        kind: 'tactic',
+        level: 'beginner',
+        summary: 's',
+        lichess: 'fork',
+      }).success,
+    ).toBe(true);
+    expect(
+      referenceSchema.safeParse({
+        term: 'F',
+        game: 'chess',
+        kind: 'tactic',
+        level: 'beginner',
+        summary: 's',
+        lichess: 'https://lichess.org/x',
+      }).success,
+    ).toBe(false);
+    expect(
+      referenceSchema.safeParse({
+        term: 'F',
+        game: 'poker',
+        kind: 'odds',
+        level: 'beginner',
+        summary: 's',
+        lichess: 'fork',
+      }).success,
+    ).toBe(false);
+  });
+});

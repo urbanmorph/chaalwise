@@ -1,4 +1,5 @@
 ---
+import PlanCheckIn from '../components/PlanCheckIn.svelte';
 import ReviewSession from '../components/ReviewSession.svelte';
 import Base from '../layouts/Base.astro';
 import { reviewSteps } from '../lib/lessons';
@@ -10,5 +11,7 @@ const steps = await reviewSteps();
   <div class="wrap wide">
     <h1>Today's review</h1>
     <ReviewSession client:load {steps} />
+    {/* Below the review, so it never pushes the questions down as it loads. */}
+    <PlanCheckIn client:idle />
   </div>
 </Base>

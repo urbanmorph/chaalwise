@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
 import { chessLessonsFor, lessonHref, STAGES, trackLessons, trackSteps } from '../lib/lessons';
+import { labHref, LABS } from '../lib/labs/labs';
 import { COMES_WITH } from '../lib/planned-skills';
 import NewToChess from './NewToChess.astro';
 import TrackPractice from './TrackPractice.svelte';
@@ -24,6 +25,7 @@ const lessons = await trackLessons(id);
 const chess = await chessLessonsFor(id);
 const steps = await trackSteps(id);
 const measured = Object.keys(steps).length > 0;
+const lab = LABS.find((l) => l.track === id);
 const entries = (await referenceEntries()).filter((e) => e.data.game === 'strategy' && e.data.skill === id);
 const { idea, why, atWork, inStudy, habit } = course.data;
 ---
@@ -81,7 +83,12 @@ const { idea, why, atWork, inStudy, habit } = course.data;
         .
       </p>
     )}
-    {(chess.length > 0 || measured) && <NewToChess />}
+    {lab && (
+      <p class="also">
+        Practise it in a game: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against bots.
+      </p>
+    )}
+    {(chess.length > 0 || Object.values(steps).some((s) => s.position)) && <NewToChess />}
     {COMES_WITH[id] && <p class="also">Comes with {COMES_WITH[id]}.</p>}
   </section>
 

@@ -41,9 +41,14 @@ steps:
       - Your share of customers is the same, but each cup now earns 2 less, so the same 100 cups bring in less.
       - ''
     explanation: 100 cups at 18 is 1,800 instead of 2,000. If their best reply cancels your move, your move only costs you. Think one reply ahead before you commit.
-  - kind: read
-    id: try-it
-    text: Try it this week. Before a conversation that matters, write down the other person's best reply, and how you would answer it.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you think about their reply?'
+    situations:
+      - 'I prepare for a conversation that matters'
+      - 'I am about to make a proposal or ask for something'
+      - 'I send a message that someone may push back on'
+    action: 'I will write down their best reply, and how I would answer it'
 ---
 
 Chess players call it anticipation. In daily life it is just thinking one step ahead of the other person.
