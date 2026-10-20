@@ -2,7 +2,8 @@ import { SKILL_IDS } from '@chaalwise/core/skills';
 import { describe, expect, it } from 'vitest';
 import { buildProfile, trackAttempts } from '../src/lib/profile';
 import { LABS } from '../src/lib/labs/labs';
-import { CHESS_SKILLS, PROFILE_SKILLS } from '../src/lib/profile-skills';
+import { readdirSync, readFileSync } from 'node:fs';
+import { CHESS_SKILLS, LESSON_TRACKS, PROFILE_SKILLS } from '../src/lib/profile-skills';
 
 const at = (day: number) => new Date(Date.UTC(2026, 9, day, 9));
 const tries = (skill: string, outcomes: ('first-try' | 'missed')[], day = 1) =>
@@ -78,8 +79,20 @@ describe('the skill profile on this device', () => {
     expect(games.find((g) => g.skill.id === 'board')?.assessment.level).toBe('noticing');
   });
 
-  it('measures every track that some chess skill or lab gives evidence for, and only those', () => {
-    const fed = new Set([...CHESS_SKILLS.map((s) => s.track).filter(Boolean), ...LABS.map((l) => l.track)]);
+  it('knows which tracks the built strategy lessons train, matching the lessons themselves', () => {
+    const dir = new URL('../src/content/lessons/strategy/', import.meta.url);
+    const trained = readdirSync(dir).map(
+      (f) => readFileSync(new URL(f, dir), 'utf8').match(/^skills: \[([a-z-]+)/m)![1],
+    );
+    expect(new Set(LESSON_TRACKS)).toEqual(new Set(trained));
+  });
+
+  it('measures every track that a chess skill, a lab or a strategy lesson gives evidence for, and only those', () => {
+    const fed = new Set([
+      ...CHESS_SKILLS.map((s) => s.track).filter(Boolean),
+      ...LABS.map((l) => l.track),
+      ...LESSON_TRACKS,
+    ]);
     expect(new Set(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id))).toEqual(fed);
   });
 });

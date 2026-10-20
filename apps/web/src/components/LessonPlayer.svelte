@@ -18,12 +18,14 @@
     onstep?: (stepId: string, outcome: Outcome, confidence?: number) => void;
     /** Offer "how sure are you?" before each answer (practice and review, not first lessons). */
     askConfidence?: boolean;
+    /** Where each step comes from, such as "In chess", for rounds that mix lessons. */
+    contexts?: (string | undefined)[];
     finished: Snippet<[Record<string, Outcome>]>;
     /** Saves the learner's plan from a plan step; plan steps show only where this is given. */
     onplan?: (stepId: string, text: string) => Promise<void>;
   }
 
-  let { lesson, onfinish, onstep, finished, onplan, askConfidence = false }: Props = $props();
+  let { lesson, onfinish, onstep, finished, onplan, askConfidence = false, contexts = [] }: Props = $props();
   /** How sure the learner said they were, chosen before the first answer only. */
   let sure = $state<number>();
 
@@ -173,6 +175,7 @@
     </nav>
     <div class="layout" class:has-board={fen || step.kind === 'play'}>
       <h2 tabindex="-1" bind:this={heading} class:reading={step.kind === 'read'}>
+        {#if contexts[player.index]}<span class="label context" data-testid="question-context">{contexts[player.index]}:</span>{/if}
         {step.kind === 'read' ? step.text : step.prompt}
       </h2>
       {#if step.kind === 'play'}
@@ -366,6 +369,11 @@
   h2 {
     font-size: clamp(1.4rem, 2.6vw, 1.8rem);
     margin: 0;
+  }
+  /* Where a mixed round's question comes from, read with it: "In chess: …". */
+  .context {
+    display: block;
+    margin-bottom: 6px;
   }
   /* A read step is a paragraph to read, not a question: body text, not a headline. */
   h2.reading {

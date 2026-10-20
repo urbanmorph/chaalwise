@@ -1,9 +1,11 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
+import { LABS } from './labs/labs';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
 import { shuffle } from './random';
 
-export type RoundItem = { cardId: string; step: GradedStep };
+/** A question in a round, with the review card it counts towards and where it comes from. */
+export type RoundItem = { cardId: string; step: GradedStep; context?: string | undefined };
 
 /** The practice a step names, if its kind can have one. */
 export const practiceOf = (step: GradedStep) => ('practice' in step ? step.practice : undefined);
@@ -23,7 +25,7 @@ export async function roundItems(ids: string[], steps: Record<string, GradedStep
       kind && isPracticeKind(kind) && practiceStep
         ? { ...practiceStep(kind, Math.random), measures: step.measures }
         : step;
-    return { cardId, step: fresh };
+    return { cardId, step: fresh, context: contextOf(cardId, step) };
   });
 }
 
@@ -44,4 +46,23 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
   while (ids.length < count && piles.some((p) => p.length))
     for (const pile of piles) if (pile.length && ids.length < count) ids.push(pile.pop()!);
   return ids;
+}
+
+const GAMES: Record<string, string> = { chess: 'In chess', poker: 'In poker' };
+
+/**
+ * Where a question comes from, for rounds that mix questions from many lessons:
+ * the game for game questions, the lab for its debrief, chess for a strategy
+ * question set on a board, and nothing for one about life off the board.
+ */
+export function contextOf(cardId: string, step: GradedStep): string | undefined {
+  const [first, game, entry] = cardId.split('/');
+  const source = first === 'reference' ? game! : first!;
+  if (GAMES[source]) return GAMES[source];
+  if (first === 'reference') {
+    const lab = LABS.find((l) => l.entry === `${game}/${entry}`);
+    if (lab) return `In the ${lab.title} lab`;
+    if (source === 'labs') return 'In game theory';
+  }
+  return step.position || step.kind === 'move' ? 'In chess' : undefined;
 }

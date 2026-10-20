@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { GradedStep } from '@chaalwise/core/lesson';
   import type { Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
   import type { Snippet } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
+  import type { RoundItem } from '../lib/round-items';
   import Round from './Round.svelte';
   import SaveStatus, { type SaveState } from './SaveStatus.svelte';
   import { summarise } from './outcomes';
@@ -14,7 +14,7 @@
    * keeps what was done.
    */
   interface Props {
-    items: { cardId: string; step: GradedStep }[];
+    items: RoundItem[];
     /** Where the answers come from, for the skill profile. */
     source: 'review' | 'practice';
     after: Snippet;
@@ -66,7 +66,7 @@
   }
 </script>
 
-<Round steps={round.steps} {onfinish} {onstep}>
+<Round steps={round.steps} contexts={items.map((item) => item.context)} {onfinish} {onstep}>
   {#snippet summary(outcomes)}
     <div class="card" data-testid="round-done">
       <h2>Round done</h2>

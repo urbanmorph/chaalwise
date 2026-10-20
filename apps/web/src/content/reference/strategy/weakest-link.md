@@ -9,6 +9,7 @@ why: 'When the parts depend on each other, as the pieces in a position or the st
 inLife: 'When a project has no crisis, spend the time on the slowest step or the least-supported person.'
 skill: 'plan-long'
 related: ['strategy/prophylaxis', 'chess/development']
+lesson: 'strategy/fix-your-weakest-link'
 try:
   - kind: choice
     id: which-piece

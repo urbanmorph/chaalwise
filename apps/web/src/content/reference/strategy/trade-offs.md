@@ -9,6 +9,7 @@ why: 'Most real decisions are not free wins but trades. Seeing all three currenc
 inLife: 'Spending money to save time, or time to build a better position later, is the same calculation.'
 skill: 'size-risk'
 related: ['strategy/simplify-when-ahead', 'chess/tempo', 'chess/gambit']
+lesson: 'strategy/give-a-little-get-more'
 try:
   - kind: move
     id: good-trade

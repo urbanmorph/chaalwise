@@ -9,6 +9,7 @@ why: 'Preventing a plan is usually cheaper than defending against it once it is 
 inLife: 'Fix the weak point a rival would attack before they attack it: the missing contract clause, the single supplier.'
 skill: 'think-ahead'
 related: ['strategy/their-next-move', 'strategy/weakest-link']
+lesson: 'strategy/not-so-fast'
 try:
   - kind: move
     id: stop-the-pin
