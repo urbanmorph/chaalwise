@@ -1,0 +1,28 @@
+/* A playing card, face up or face down (PlayingCard.svelte). */
+.playing-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 4.4rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1;
+}
+.playing-card.red {
+  color: var(--fail);
+}
+.playing-card .rank {
+  font-size: 1.3rem;
+}
+.playing-card .suit {
+  font-size: 1.4rem;
+}
+.playing-card.back {
+  background: repeating-linear-gradient(45deg, var(--felt-2) 0 5px, var(--felt) 5px 10px);
+  border-color: var(--felt-2);
+}

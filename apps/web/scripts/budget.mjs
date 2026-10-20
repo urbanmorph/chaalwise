@@ -5,8 +5,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
-/** Pages with a chess board: chess and strategy lessons, and the review. Everything else is a reading page. */
-const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|review)\/$/;
+/** Pages with a board or a practice table: chess and strategy lessons, the review, and poker practice. Everything else is a reading page. */
+const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|review|poker\/[^/]+)\/$/;
 
 /** The progress dashboard: a period filter and an interactive radar, but no board. */
 const DASHBOARD_PAGES = /^\/progress\/$/;

@@ -1,6 +1,6 @@
 card: reference/strategy/be-unpredictable/penalty
 kind: choice
-prompt: A penalty taker always shoots to the keeper's left. What should they do instead?
+prompt: "In football (soccer), a player taking a penalty kick always shoots to the goalkeeper's left. What should they do instead?"
 options:
   - 'Keep shooting left: it has worked so far'
   - Mix sides, leaning to their stronger side

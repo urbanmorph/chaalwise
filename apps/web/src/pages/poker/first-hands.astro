@@ -1,0 +1,23 @@
+---
+import FirstHands from '../../components/poker/FirstHands.svelte';
+import '../../components/poker/poker.css';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Your first poker hands" description="Learn how a poker hand runs in three guided hands, practice points only." wide>
+  <div class="wrap wide">
+    <h1>Your first poker hands</h1>
+    <p class="lead">
+      Never played? Learn how a hand runs by playing a few, with a coach at every decision. Poker here is for learning to weigh odds and decide well, against
+      the computer only.
+    </p>
+    <FirstHands client:load />
+  </div>
+</Base>
+
+<style>
+  .lead {
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+</style>
