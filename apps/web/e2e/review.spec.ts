@@ -24,6 +24,8 @@ test('a finished lesson comes back for review on a later day', async ({ page }) 
   await page.clock.setSystemTime(new Date('2026-11-18T09:00:00'));
   await page.goto('/review/');
   await expect(page.getByText('3 to review')).toBeVisible();
+  // Away from its lesson, a question says which game it is about.
+  await expect(page.getByTestId('question-context')).toHaveText('In chess:');
   for (let i = 0; i < 3; i++) {
     const prompt = await page.locator('.player').getByRole('heading', { level: 2 }).textContent();
     const [, answer] = ANSWERS.find(([pattern]) => pattern.test(prompt ?? ''))!;

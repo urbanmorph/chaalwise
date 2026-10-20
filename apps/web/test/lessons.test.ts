@@ -3,6 +3,7 @@ import { backRankWeak } from '@chaalwise/teach/endgame';
 import { moveSafety } from '@chaalwise/teach/safety';
 import { fromFen, play } from '@chaalwise/teach/position';
 import { describe, expect, it } from 'vitest';
+import { isChessSkill } from '../src/lib/profile-skills';
 import { parse } from 'yaml';
 import type { Lesson } from '@chaalwise/core/lesson';
 import { parseMoveText, toFen } from '../src/lib/chess';
@@ -118,13 +119,16 @@ describe('lesson claims', () => {
 
 describe('what a lesson answer is evidence for', () => {
   const built = (path: string) => readFileSync(new URL(`../dist/${path}/index.html`, import.meta.url), 'utf8');
-  const measured = (html: string) => [...html.matchAll(/measures&quot;:\[0,&quot;([a-z-]+)/g)].map((m) => m[1]);
+  const measured = (html: string) => [...html.matchAll(/measures&quot;:\[0,&quot;([a-z-]+)/g)].map((m) => m[1]!);
 
-  it('counts a strategy lesson answer towards its own strategy track', () => {
+  it('counts a strategy lesson answer towards its own strategy track, and a move on the board towards chess', () => {
     for (const { file, data } of strategy) {
       const skills = measured(built(`skills/${file.replace('.md', '')}`));
-      expect(skills.length, file).toBeGreaterThan(0);
-      expect(new Set(skills), file).toEqual(new Set([data.skills[0]]));
+      const track = data.skills[0]!;
+      expect(skills, file).toContain(track);
+      // The only other evidence a strategy lesson gives is chess skill, from its moves on the board.
+      for (const skill of skills.filter((s) => s !== track))
+        expect(isChessSkill(skill), `${file}: ${skill}`).toBe(true);
     }
   });
 });

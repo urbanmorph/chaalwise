@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { referenceMeasures } from '../src/lib/profile-skills';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
 const slugs = (game: string) =>
@@ -23,14 +24,14 @@ describe('a reference entry you can try', () => {
 
   it('counts the answers towards the skill the idea trains, when the profile measures it', () => {
     expect(section(dist('reference/strategy/weakest-link/index.html'))).toContain('data-measures="plan-long"');
-    // Composure is not measured yet, so its answers would show up nowhere.
-    expect(section(dist('reference/strategy/cool-head/index.html'))).not.toContain('data-measures');
+    expect(section(dist('reference/strategy/cool-head/index.html'))).toContain('data-measures="composure"');
+    // A track nothing measures yet, such as bluffing, would show the answers nowhere, so they count towards nothing.
+    expect(referenceMeasures('strategy', 'bluff')).toBeUndefined();
   });
 
   it('offers more practice on the skill’s course, when the course has practice', () => {
     expect(section(dist('reference/strategy/weakest-link/index.html'))).toContain('href="/skills/plan-long/"');
-    // Composure has no practice yet: nowhere to send the learner.
-    expect(section(dist('reference/strategy/cool-head/index.html'))).not.toContain('href="/skills/composure/"');
+    expect(section(dist('reference/strategy/cool-head/index.html'))).toContain('href="/skills/composure/"');
   });
 
   it('brings its questions back in review, so trying them once is not the last time', () => {

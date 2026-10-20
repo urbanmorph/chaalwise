@@ -91,7 +91,7 @@ const { idea, why, atWork, inStudy, habit } = course.data;
     {(chess.length > 0 || Object.values(steps).some((s) => s.position)) && <NewToChess />}
     {COMES_WITH[id] && (
       <p class="also">
-        {lab ? 'More comes with' : 'Comes with'} {COMES_WITH[id]}.
+        {measured ? 'More comes with' : 'Comes with'} {COMES_WITH[id]}.
       </p>
     )}
   </section>

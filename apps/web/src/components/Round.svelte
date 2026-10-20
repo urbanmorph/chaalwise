@@ -13,11 +13,13 @@
     steps: GradedStep[];
     onstep: (stepId: string, outcome: Outcome, confidence?: number) => void;
     onfinish: (outcomes: Record<string, Outcome>) => void;
+    /** Where each question comes from, such as "In chess". */
+    contexts?: (string | undefined)[];
     /** The end-of-round card. */
     summary: Snippet<[Record<string, Outcome>]>;
   }
 
-  let { steps, onstep, onfinish, summary }: Props = $props();
+  let { steps, onstep, onfinish, summary, contexts = [] }: Props = $props();
   let graded = $state<Record<string, Outcome>>();
   let again = $state<GradedStep[]>();
   const missed = $derived(graded ? steps.filter((s) => graded![s.id] === 'missed') : []);
@@ -29,13 +31,13 @@
 </script>
 
 {#if again}
-  <LessonPlayer lesson={{ steps: again }} onfinish={() => {}}>
+  <LessonPlayer lesson={{ steps: again }} onfinish={() => {}} contexts={again.map((s) => contexts[steps.indexOf(s)])}>
     {#snippet finished()}
       {@render summary(graded!)}
     {/snippet}
   </LessonPlayer>
 {:else}
-  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep} askConfidence>
+  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep} {contexts} askConfidence>
     {#snippet finished(outcomes)}
       {@render summary(outcomes)}
       {#if missed.length}

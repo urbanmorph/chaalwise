@@ -8,6 +8,7 @@ summary: 'A good decision can turn out badly, and a bad one can get lucky. Judge
 why: 'If you learn from results alone, luck teaches you the wrong lessons.'
 inLife: 'Review a plan by asking whether it was sensible with what you knew, and could have found out, not only whether it worked.'
 skill: 'composure'
+lesson: 'strategy/review-calmly'
 related: ['poker/expected-value', 'poker/tilt', 'strategy/sunk-cost']
 try:
   - kind: choice
