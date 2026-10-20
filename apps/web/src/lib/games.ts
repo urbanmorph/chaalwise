@@ -5,8 +5,8 @@ import { LABS, type Lab } from './labs/labs';
 /**
  * Meet the game first: a question about a game is asked only once the learner
  * has played it a little. A game is met through what is done on this device:
- * chess by any chess lesson (the first moves, or a check passed), a lab by
- * playing it. Questions about life off the board need nothing.
+ * chess by any chess lesson (the first moves, or a check passed), poker by its
+ * guided hands, a lab by playing it. Questions about life off the board need nothing.
  */
 
 /** Where a question comes from: its game, and its lab if it is a lab's. */
@@ -29,7 +29,11 @@ export function needs(cardId: string, step: GradedStep): string | undefined {
 
 /** The games met, from the lessons and labs done on this device. */
 export const gamesMet = (done: ReadonlySet<string>): Set<string> =>
-  new Set([...done].flatMap((id) => (id.startsWith('chess/') ? ['chess'] : id.startsWith('labs/') ? [id] : [])));
+  new Set(
+    [...done].flatMap((id) =>
+      id.startsWith('chess/') ? ['chess'] : id.startsWith('poker/') ? ['poker'] : id.startsWith('labs/') ? [id] : [],
+    ),
+  );
 
 export const askable = (cardId: string, step: GradedStep, met: ReadonlySet<string>): boolean => {
   const game = needs(cardId, step);

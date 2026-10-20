@@ -15,6 +15,9 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
     expect(budgetFor('/review/')).toBe(80_000);
     expect(budgetFor('/skills/blunder-check/')).toBe(80_000);
     expect(budgetFor('/skills/')).toBe(30_000);
+    // A poker practice table plays like a board; poker reference pages stay reading pages.
+    expect(budgetFor('/poker/first-hands/')).toBe(80_000);
+    expect(budgetFor('/reference/poker/outs/')).toBe(30_000);
     expect(budgetFor('/chess/')).toBe(30_000);
     expect(budgetFor('/')).toBe(30_000);
     // The progress dashboard is interactive (period filter, radar), so it sits between the two.

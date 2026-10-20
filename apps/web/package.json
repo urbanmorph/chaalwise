@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/svelte": "9.1.0",
     "@chaalwise/core": "workspace:*",
+    "@chaalwise/poker": "workspace:*",
     "@chaalwise/teach": "workspace:*",
     "astro": "7.4.0",
     "chessground": "9.2.1",

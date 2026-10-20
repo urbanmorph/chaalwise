@@ -4,6 +4,7 @@ import { SKILLS } from '@chaalwise/core/skills';
 import { render } from 'astro:content';
 import Diagram from '../../../components/Diagram.astro';
 import NewToChess from '../../../components/NewToChess.astro';
+import NewToPoker from '../../../components/NewToPoker.astro';
 import TryIt from '../../../components/TryIt.astro';
 import Base from '../../../layouts/Base.astro';
 import { toFen } from '../../../lib/chess';
@@ -79,6 +80,7 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
     </div>
 
     {(data.position || questions.some((step) => step.position)) && <NewToChess />}
+    {data.game === 'poker' && <NewToPoker />}
 
     {data.try && <TryIt steps={questions} more={measures && { href: `/skills/${measures}/`, label: `Practise ${SKILLS[measures]}` }} />}
 
