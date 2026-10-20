@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { tryStepSchema } from './lesson';
 import { SKILL_IDS } from './skills';
 
 /**
@@ -67,6 +68,8 @@ export const referenceSchema = z
     related: z.array(z.string().regex(/^[a-z]+\/[a-z0-9-]+$/)).default([]),
     /** The lesson that teaches it, such as `chess/hanging`. */
     lesson: z.string().optional(),
+    /** One to three questions to try the idea on the page. */
+    try: z.array(tryStepSchema).min(1).max(3).optional(),
   })
   .superRefine((entry, ctx) => {
     const need = (field: keyof typeof entry, why: string) => {
@@ -86,6 +89,20 @@ export const referenceSchema = z
       for (const field of ['position', 'move', 'highlight'] as const)
         if (entry[field] !== undefined)
           ctx.addIssue({ code: 'custom', path: [field], message: 'only chess entries have a board' });
+    // Strategy ideas are shown in chess; poker and the labs have no board yet.
+    const boardless = entry.game === 'poker' || entry.game === 'labs';
+    const ids = new Set<string>();
+    entry.try?.forEach((step, i) => {
+      if (ids.has(step.id))
+        ctx.addIssue({ code: 'custom', path: ['try', i, 'id'], message: `duplicate question id "${step.id}"` });
+      ids.add(step.id);
+      if (boardless && step.position !== undefined)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['try', i, 'position'],
+          message: 'only chess and strategy questions have a board',
+        });
+    });
   });
 
 export type ReferenceEntry = z.infer<typeof referenceSchema>;
