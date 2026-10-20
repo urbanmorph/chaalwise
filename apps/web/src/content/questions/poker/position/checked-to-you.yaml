@@ -1,0 +1,19 @@
+kind: choice
+prompt: You are last to act on the flop. Both other players check. What have you learned?
+cards:
+  hole: [Jc, Td]
+  board: [8s, 4h, 2d]
+  pot: 6
+options:
+  - Neither showed strength, so a bet may win the pot now
+  - Both are hiding very strong hands and want you to bet
+  - You must check too, as the others did
+  - 'Nothing: a check tells you nothing about a hand'
+answer: 0
+feedback:
+  - ''
+  - Strong hands often bet. A check is more often a hand that did not improve, though it can be a trap.
+  - You may bet or check, as you choose.
+  - 'A check is information: they passed up the chance to bet.'
+explanation: A check passes up the chance to bet, which hands that did not improve usually do. Acting last, you see two checks before you decide, and a bet may take the pot.
+measures: position

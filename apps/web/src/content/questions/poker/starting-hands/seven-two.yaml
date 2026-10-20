@@ -1,0 +1,17 @@
+kind: choice
+prompt: You hold the seven of clubs and the two of diamonds, and are first to act. What should you do?
+cards:
+  hole: [7c, 2d]
+options:
+  - 'Fold: it is the weakest starting hand'
+  - 'Call: any two cards can win'
+  - Raise, to show strength
+  - Call, because the cards are of different suits
+answer: 0
+feedback:
+  - ''
+  - 'Any two cards can win, but this pair wins least often of all: low, far apart, and of different suits.'
+  - Raising with the weakest hand risks more points on the worst odds.
+  - 'Different suits make a hand weaker, not stronger: it cannot make a flush with both cards.'
+explanation: 'Seven-two of different suits is the weakest starting hand: too far apart for a straight, no flush, and low pairs if it pairs. Folding it costs nothing.'
+measures: starting-hands

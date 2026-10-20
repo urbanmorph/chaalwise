@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildProfile, trackAttempts } from '../src/lib/profile';
 import { LABS } from '../src/lib/labs/labs';
 import { readdirSync, readFileSync } from 'node:fs';
-import { CHESS_SKILLS, LESSON_TRACKS, PROFILE_SKILLS } from '../src/lib/profile-skills';
+import { GAME_SKILLS, LESSON_TRACKS, POKER_SKILLS, PROFILE_SKILLS, trackOf } from '../src/lib/profile-skills';
 
 const at = (day: number) => new Date(Date.UTC(2026, 9, day, 9));
 const tries = (skill: string, outcomes: ('first-try' | 'missed')[], day = 1) =>
@@ -69,13 +69,25 @@ describe('the skill profile on this device', () => {
       expect(PROFILE_SKILLS.find((s) => s.id === id)?.later, id).toBeUndefined();
   });
 
-  it('says where a track not measured yet will come from', () => {
-    expect(PROFILE_SKILLS.find((s) => s.id === 'bluff')?.later).toBe('Comes with poker.');
+  it('measures every track now: weighing odds, risk, hidden information and bluffing through poker', () => {
+    expect(PROFILE_SKILLS.filter((s) => s.later)).toEqual([]);
+    for (const id of ['weigh-odds', 'size-risk', 'read-hidden', 'bluff'])
+      expect(
+        POKER_SKILLS.some((s) => s.track === id),
+        id,
+      ).toBe(true);
   });
 
-  it('keeps the chess skills as game proficiency, board sense included', () => {
+  it('counts poker answers as game evidence for the track they train, like chess', () => {
+    expect(trackOf('odds')).toBe('weigh-odds');
+    const { skills, onBoard } = buildProfile({ odds: solid('odds') });
+    expect(skills.find((s) => s.skill.id === 'weigh-odds')!.assessment.level).toBe('not-started');
+    expect(onBoard['weigh-odds']?.level).toBe('reliable');
+  });
+
+  it('keeps every game skill as proficiency, board sense and reading poker hands included', () => {
     const { games } = buildProfile({ board: tries('board', ['first-try']) });
-    expect(games.map((g) => g.skill.id)).toEqual(CHESS_SKILLS.map((s) => s.id));
+    expect(games.map((g) => g.skill.id)).toEqual(GAME_SKILLS.map((s) => s.id));
     expect(games.find((g) => g.skill.id === 'board')?.assessment.level).toBe('noticing');
   });
 
@@ -87,9 +99,9 @@ describe('the skill profile on this device', () => {
     expect(new Set(LESSON_TRACKS)).toEqual(new Set(trained));
   });
 
-  it('measures every track that a chess skill, a lab or a strategy lesson gives evidence for, and only those', () => {
+  it('measures every track that a game skill, a lab or a strategy lesson gives evidence for, and only those', () => {
     const fed = new Set([
-      ...CHESS_SKILLS.map((s) => s.track).filter(Boolean),
+      ...GAME_SKILLS.map((s) => s.track).filter(Boolean),
       ...LABS.map((l) => l.track),
       ...LESSON_TRACKS,
     ]);

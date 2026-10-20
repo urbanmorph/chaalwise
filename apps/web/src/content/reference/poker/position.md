@@ -5,6 +5,10 @@ kind: 'concept'
 level: 'beginner'
 aliases: ['Acting last', 'The button']
 summary: 'Where you sit relative to the dealer, which decides whether you act before or after the others in each round.'
+lesson: 'poker/position'
+try:
+  - 'poker/position/who-has-the-edge'
+  - 'poker/position/checked-to-you'
 related: ['strategy/information-advantage', 'poker/bluff']
 ---
 

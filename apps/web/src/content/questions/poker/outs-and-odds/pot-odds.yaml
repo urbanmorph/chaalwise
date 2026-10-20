@@ -1,0 +1,18 @@
+kind: choice
+prompt: The pot holds 12 points and a call costs 4. How often must you win for the call to pay?
+cards:
+  pot: 12
+  toCall: 4
+options:
+  - One time in four (25%)
+  - One time in three (33%)
+  - One time in two (50%)
+  - One time in twelve (8%)
+answer: 0
+feedback:
+  - ''
+  - '4 against 12 is one part in three of the pot, but you compare your call with the whole pot after it: 4 of 16.'
+  - Half would be right only if the pot were as small as your call.
+  - 'Your call is part of what you play for: 4 of 16, not 1 of 12.'
+explanation: 'You put in 4 to play for 16: the 12 in the pot plus your own 4. Four of sixteen is a quarter, so the call pays if you win more than one time in four.'
+measures: odds

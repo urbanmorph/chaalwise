@@ -11,9 +11,13 @@ import { ask, asStep, corpus } from './questions';
 
 export type LessonEntry = CollectionEntry<'lessons'>;
 
-/** Every lesson, chess and strategy, in the recommended order (see learningPath). */
-export async function lessonPath(): Promise<LessonEntry[]> {
-  const all = await getCollection('lessons');
+/** A course of lessons: chess, with the strategy lessons where they fall, or poker. */
+export type Course = 'chess' | 'poker';
+export const courseOf = (lesson: LessonEntry): Course => (lesson.data.game === 'poker' ? 'poker' : 'chess');
+
+/** A course's lessons in the recommended order (see learningPath): by default chess, with the strategy lessons. */
+export async function lessonPath(course: Course = 'chess'): Promise<LessonEntry[]> {
+  const all = (await getCollection('lessons')).filter((entry) => courseOf(entry) === course);
   const entries = all.map((entry) => ({
     id: entry.id,
     game: entry.data.game,
@@ -36,10 +40,22 @@ export { lessonHref } from './lesson-href';
 export async function pathContext(
   lesson: LessonEntry,
 ): Promise<{ next: LessonEntry | undefined; buildsOn: LessonEntry[] }> {
-  const path = await lessonPath();
+  const path = await lessonPath(courseOf(lesson));
   const at = path.findIndex((l) => l.id === lesson.id);
   return { next: path[at + 1], buildsOn: path.slice(0, at).filter((l) => l.data.stage < lesson.data.stage) };
 }
+
+/** Every lesson, both courses, for looking one up by id. */
+export const allLessons = async (): Promise<LessonEntry[]> => [
+  ...(await lessonPath('chess')),
+  ...(await lessonPath('poker')),
+];
+
+export const POKER_STAGES: Record<number, string> = {
+  1: 'The hands',
+  2: 'Odds',
+  3: 'Reading and betting',
+};
 
 export const STAGES: Record<number, string> = {
   0: 'The board',
@@ -92,6 +108,11 @@ export async function trackLessons(track: SkillId): Promise<{ title: string; sta
     ...p,
     lesson: built.find((l) => l.data.title === p.title),
   }));
+}
+
+/** The poker lessons that train a track. */
+export async function pokerLessonsFor(track: SkillId): Promise<LessonEntry[]> {
+  return (await lessonPath('poker')).filter((l) => l.data.skills.includes(track));
 }
 
 /** The chess lessons whose answers count towards a track. */

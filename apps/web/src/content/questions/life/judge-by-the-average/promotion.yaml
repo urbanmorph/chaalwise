@@ -1,0 +1,15 @@
+kind: choice
+prompt: A shop owner can run a promotion for 2,000. About one in five brings a regular customer worth 15,000. The first three promotions brought nobody. What should the owner do?
+options:
+  - 'Keep going: each promotion is worth about 1,000 on average'
+  - 'Stop: three failures show it does not work'
+  - 'Stop: it should have worked by now'
+  - Spend more on each one
+answer: 0
+feedback:
+  - ''
+  - Three misses in a row is not unusual when each works one time in five.
+  - One time in five means most single tries fail.
+  - The average says the promotion pays; spending more changes the price, not the chance.
+explanation: 'Each promotion wins 15,000 one time in five, 3,000 on average, for a cost of 2,000: about 1,000 gained each time. Judge it by the average, not the first few results.'
+measures: weigh-odds

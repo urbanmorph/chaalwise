@@ -7,6 +7,7 @@
   import { tick } from 'svelte';
   import { markMet } from '../../lib/meet';
   import { BOT, coachFor, GUIDED, LEARNER, learnerTurn, PLAYERS, startGuided, step } from '../../lib/poker/guided';
+  import { pointsWord } from '../../lib/poker/points';
   import PlayingCard from './PlayingCard.svelte';
 
   /**
@@ -88,7 +89,6 @@
     doneHeading?.focus();
   }
 
-  const pointsWord = (n: number) => `${n} ${n === 1 ? 'point' : 'points'}`;
   function resultText(t: Table): string {
     const r = t.result!;
     const you = r.winners.includes(LEARNER);
@@ -118,15 +118,15 @@
       <h2 tabindex="-1" bind:this={heading}>{hand ? `Hand ${index + 1}: ${hand.title}` : `On your own: hand ${free} of ${FREE}`}</h2>
       {#if hand}<p class="intro">{hand.intro}</p>{/if}
 
-      <div class="seat" aria-label="The bot's cards">
+      <div class="poker-row" aria-label="The bot's cards">
         <span class="who">Bot · {table.seats[BOT]!.points} points</span>
         {#each table.seats[BOT]!.cards as card (card)}<PlayingCard card={table.result && !table.result.byFold ? card : undefined} />{/each}
       </div>
-      <div class="board" aria-label="Shared cards">
+      <div class="poker-row" aria-label="Shared cards">
         {#each [0, 1, 2, 3, 4] as i (i)}{#if table.board[i]}<PlayingCard card={table.board[i]} />{:else}<span class="slot"></span>{/if}{/each}
         <span class="pot">Pot: {pointsWord(table.pot || (table.result?.won ?? 0))}</span>
       </div>
-      <div class="seat" aria-label="Your cards">
+      <div class="poker-row" aria-label="Your cards">
         <span class="who">You · {table.seats[LEARNER]!.points} points</span>
         {#each table.seats[LEARNER]!.cards as card (card)}<PlayingCard {card} />{/each}
       </div>
@@ -181,28 +181,6 @@
   }
   .play {
     min-height: 32rem;
-  }
-  .seat,
-  .board {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin: 12px 0;
-  }
-  .who,
-  .pot {
-    color: var(--ink-2);
-    min-width: 9rem;
-  }
-  .pot {
-    margin-left: 8px;
-  }
-  .slot {
-    width: 3.2rem;
-    height: 4.4rem;
-    border: 1px dashed var(--rule);
-    border-radius: 8px;
   }
   .intro,
   .why {

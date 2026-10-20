@@ -1,5 +1,5 @@
 ---
-import { lessonHref, lessonPath, STAGES } from '../lib/lessons';
+import { lessonHref, lessonPath, POKER_STAGES, STAGES, type Course } from '../lib/lessons';
 
 /**
  * The whole path beside a lesson: every stage folded except the one you are in,
@@ -8,10 +8,12 @@ import { lessonHref, lessonPath, STAGES } from '../lib/lessons';
  */
 interface Props {
   current: string;
+  course?: Course;
 }
 
-const { current } = Astro.props;
-const path = await lessonPath();
+const { current, course = 'chess' } = Astro.props;
+const path = await lessonPath(course);
+const names = course === 'poker' ? POKER_STAGES : STAGES;
 const stages = [...new Set(path.map((l) => l.data.stage))];
 ---
 
@@ -22,7 +24,7 @@ const stages = [...new Set(path.map((l) => l.data.stage))];
       <details open={lessons.some((l) => l.id === current)}>
         <summary>
           <span class="label">
-            Stage {stage} · {STAGES[stage]}
+            Stage {stage} · {names[stage]}
           </span>
           <span class="count">{lessons.length}</span>
         </summary>

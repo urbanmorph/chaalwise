@@ -1,0 +1,19 @@
+kind: choice
+prompt: On the last round you missed your draw and hold only high card. Your one opponent is careful, and folds often to a bet. Which reason could a bet have?
+cards:
+  hole: [6h, 5h]
+  board: [Ah, Kc, 9h, 3s, Qd]
+  pot: 14
+options:
+  - 'A bluff: a better hand might fold'
+  - 'Value: worse hands will call'
+  - 'None: never bet a weak hand'
+  - To see their cards for free
+answer: 0
+feedback:
+  - ''
+  - Almost every hand beats yours, so a call means you lose.
+  - A weak hand can win the pot only if the others fold. Checking gives up that chance.
+  - 'Seeing cards at the showdown is not free: a call costs the bet.'
+explanation: With high card you cannot win at the showdown, but you can win if they fold. Against a careful player a bluff sometimes does. Bluff rarely, and with a story your betting has told.
+measures: betting

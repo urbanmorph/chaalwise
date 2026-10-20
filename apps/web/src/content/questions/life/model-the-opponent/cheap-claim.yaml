@@ -1,0 +1,15 @@
+kind: choice
+prompt: A seller tells you three other buyers are interested. Saying it costs them nothing, true or not. How much should it move you?
+options:
+  - 'Little: a claim that costs nothing to make tells you little'
+  - 'A lot: they would not say it if it were false'
+  - 'Completely: offer the full price at once'
+  - Not at all, and you should leave
+answer: 0
+feedback:
+  - ''
+  - Some sellers say it either way, since it costs them nothing.
+  - You have learned almost nothing new, so there is no reason to give up your price.
+  - It may be true. Weigh it, but lightly, and ask for something that would cost them to fake.
+explanation: Ask what the other side would say whether or not it is true. A claim that costs nothing to make is weak evidence, like a bet from a player who bets every hand.
+measures: bluff

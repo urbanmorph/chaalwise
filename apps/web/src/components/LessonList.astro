@@ -1,0 +1,83 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import { lessonHref, type LessonEntry } from '../lib/lessons';
+
+/** A course's lessons by stage, as cards; strategy lessons stand out, and finished ones are marked. */
+interface Props {
+  lessons: LessonEntry[];
+  stageNames: Record<number, string>;
+}
+
+const { lessons, stageNames } = Astro.props;
+const stages = [...new Set(lessons.map((l) => l.data.stage))];
+---
+
+{stages.map((stage) => (
+  <section>
+    <h2>
+      <span class="label">Stage {stage}</span> {stageNames[stage]}
+    </h2>
+    <ol class="lessons">
+      {lessons
+        .filter((l) => l.data.stage === stage)
+        .map((l) => (
+          <li class="card" class:list={{ strategy: l.data.game === 'strategy' }} data-lesson={l.id}>
+            {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
+            <a href={lessonHref(l)}>{l.data.title}</a>
+            <p>{l.data.summary}</p>
+            <span class="done-badge label">Done</span>
+          </li>
+        ))}
+    </ol>
+  </section>
+))}
+
+<script>
+  import { markDone } from '../scripts/mark-done';
+
+  // Mark finished lessons; progress lives only on this device.
+  markDone().catch(console.error);
+</script>
+
+<style>
+  section {
+    margin-top: 32px;
+  }
+  h2 .label {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .lessons {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+  .lessons a {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .lessons p {
+    margin: 6px 0 0;
+    color: var(--ink-2);
+  }
+  .strategy {
+    background: var(--paper);
+    border-style: dashed;
+    border-color: var(--rule-strong);
+  }
+  .kind {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent-text);
+  }
+  .done-badge {
+    display: none;
+    margin-top: 10px;
+    color: var(--pass);
+  }
+  :global(li.done) .done-badge {
+    display: inline-block;
+  }
+</style>

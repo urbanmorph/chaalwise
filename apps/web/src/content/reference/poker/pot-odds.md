@@ -5,6 +5,10 @@ kind: 'odds'
 level: 'beginner'
 aliases: ['Odds to call']
 summary: 'The price of a call compared with what is in the pot, which tells you how often you need to win to make the call worth it.'
+lesson: 'poker/outs-and-odds'
+try:
+  - 'poker/outs-and-odds/pot-odds'
+  - 'poker/outs-and-odds/call-the-draw'
 related: ['poker/outs', 'poker/expected-value', 'strategy/sunk-cost']
 ---
 

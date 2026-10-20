@@ -1,5 +1,4 @@
 import { SKILLS, type SkillId } from '@chaalwise/core/skills';
-import { COMES_WITH } from './planned-skills';
 
 /** How much a game exercises a skill, from 0 (not at all) to 3: a design judgement (plan, section 1a), not a measured effect. */
 type Strength = 0 | 1 | 2 | 3;
@@ -13,8 +12,6 @@ export interface Track {
   poker: Strength;
   /** Labs and later games that train it too. */
   also: string;
-  /** The game it comes with, for a skill chess does not train. */
-  comesWith?: string;
 }
 
 const t = (id: SkillId, inLife: string, chess: Strength, poker: Strength, also: string): Track => ({
@@ -24,7 +21,6 @@ const t = (id: SkillId, inLife: string, chess: Strength, poker: Strength, also: 
   chess,
   poker,
   also,
-  comesWith: COMES_WITH[id],
 });
 
 /** Every skill track for the home page's map: the ones chess trains now first, then the ones that come with poker and the labs. */

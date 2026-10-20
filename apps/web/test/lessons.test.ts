@@ -3,7 +3,7 @@ import { backRankWeak } from '@chaalwise/teach/endgame';
 import { moveSafety } from '@chaalwise/teach/safety';
 import { fromFen, play } from '@chaalwise/teach/position';
 import { describe, expect, it } from 'vitest';
-import { isChessSkill } from '../src/lib/profile-skills';
+import { CHESS_SKILLS } from '../src/lib/profile-skills';
 import { lessonsIn } from './content';
 import { parseMoveText, toFen } from '../src/lib/chess';
 import { safetyVerdict } from '../src/lib/drills';
@@ -120,7 +120,10 @@ describe('what a lesson answer is evidence for', () => {
       expect(skills, file).toContain(track);
       // The only other evidence a strategy lesson gives is chess skill, from its moves on the board.
       for (const skill of skills.filter((s) => s !== track))
-        expect(isChessSkill(skill), `${file}: ${skill}`).toBe(true);
+        expect(
+          CHESS_SKILLS.some((s) => s.id === skill),
+          `${file}: ${skill}`,
+        ).toBe(true);
     }
   });
 });

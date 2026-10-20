@@ -1,6 +1,6 @@
 import { assess, focusOrder, type Assessment } from '@chaalwise/core/profile';
 import type { AttemptRecord } from '@chaalwise/core/progress';
-import { CHESS_SKILLS, PROFILE_SKILLS, type ChessSkill, type ProfileSkill } from './profile-skills';
+import { GAME_SKILLS, PROFILE_SKILLS, type ChessSkill, type ProfileSkill } from './profile-skills';
 
 type Entry<S = ProfileSkill> = { skill: S; assessment: Assessment };
 type Attempts = Record<string, AttemptRecord[]>;
@@ -10,7 +10,7 @@ const boardAttempts = (attempts: Attempts): Attempts =>
   Object.fromEntries(
     PROFILE_SKILLS.map(({ id }) => [
       id,
-      CHESS_SKILLS.filter((s) => s.track === id).flatMap((s) => attempts[s.id] ?? []),
+      GAME_SKILLS.filter((s) => s.track === id).flatMap((s) => attempts[s.id] ?? []),
     ]),
   );
 
@@ -46,5 +46,5 @@ export function buildProfile(attempts: Attempts): {
     Object.fromEntries(measurable.map((s) => [s.skill.id, s.assessment])),
     measurable.map((s) => s.skill.id),
   ).map((id) => measurable.find((s) => s.skill.id === id)!);
-  return { skills, onBoard, ranked, focus: ranked[0], games: assessAll(CHESS_SKILLS, attempts) };
+  return { skills, onBoard, ranked, focus: ranked[0], games: assessAll(GAME_SKILLS, attempts) };
 }

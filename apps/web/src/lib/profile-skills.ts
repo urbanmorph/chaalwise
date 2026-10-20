@@ -83,14 +83,54 @@ export const CHESS_SKILLS: ChessSkill[] = [
   },
 ];
 
-const CHESS_SKILL_IDS = CHESS_SKILLS.map((s) => s.id);
-export const isChessSkill = (id: string) => CHESS_SKILL_IDS.includes(id);
+/** Poker proficiency: what a poker lesson answer shows. */
+export const POKER_SKILLS: ChessSkill[] = [
+  {
+    id: 'hand-reading',
+    name: 'Reading hands',
+    means: 'Know what beats what, and see the best hand the shared cards allow.',
+    practise: { href: '/poker/hand-rankings/', label: 'What beats what' },
+  },
+  {
+    id: 'starting-hands',
+    track: 'size-risk',
+    name: 'Choosing hands',
+    means: 'Fold most starting hands, and play the few worth the points.',
+    practise: { href: '/poker/starting-hands/', label: 'Which hands to play' },
+  },
+  {
+    id: 'position',
+    track: 'read-hidden',
+    name: 'Position',
+    means: 'Use what the others do before you act.',
+    practise: { href: '/poker/position/', label: 'Acting last' },
+  },
+  {
+    id: 'odds',
+    track: 'weigh-odds',
+    name: 'Odds',
+    means: 'Count your outs and weigh the chance against the price of a call.',
+    practise: { href: '/poker/outs-and-odds/', label: 'Outs and odds' },
+  },
+  {
+    id: 'betting',
+    track: 'bluff',
+    name: 'Betting with a reason',
+    means: 'Bet to be called by worse hands, or to make better ones fold.',
+    practise: { href: '/poker/why-you-bet/', label: 'Why you bet' },
+  },
+];
+
+/** Every game's skills, chess and poker: the evidence a track gets from play, kept apart from answers off the board. */
+export const GAME_SKILLS: ChessSkill[] = [...CHESS_SKILLS, ...POKER_SKILLS];
+
+export const isGameSkill = (id: string) => GAME_SKILLS.some((s) => s.id === id);
 
 /** The strategy track an answer counts towards: a track's own id, or the track its chess skill trains. */
 export const trackOf = (measures: string | undefined): SkillId | undefined =>
   (SKILL_IDS as string[]).includes(measures ?? '')
     ? (measures as SkillId)
-    : CHESS_SKILLS.find((s) => s.id === measures)?.track;
+    : GAME_SKILLS.find((s) => s.id === measures)?.track;
 
 const SHORT: Record<SkillId, string> = {
   'think-ahead': 'Ahead',
@@ -115,7 +155,7 @@ export const LESSON_TRACKS: SkillId[] = ['think-ahead', 'calculate', 'plan-long'
 /** The strategy tracks, in the home page's order. A track is measured once a chess skill, a lab or a strategy lesson gives evidence for it. */
 export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
   const measured =
-    CHESS_SKILLS.some((s) => s.track === track.id) ||
+    GAME_SKILLS.some((s) => s.track === track.id) ||
     LABS.some((l) => l.track === track.id) ||
     LESSON_TRACKS.includes(track.id);
   return {
@@ -124,7 +164,7 @@ export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
     short: SHORT[track.id],
     means: track.inLife,
     practise: { href: `/skills/${track.id}/`, label: `${track.name} course` },
-    later: measured ? undefined : `Comes with ${track.comesWith ?? 'later lessons'}.`,
+    later: measured ? undefined : 'Comes with later lessons.',
   };
 });
 

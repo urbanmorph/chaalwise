@@ -63,6 +63,7 @@ export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }>
       text: `Worked example. ${beside}${step.prompt} The answer: “${step.options[step.answer]}”. ${step.explanation}`,
       highlight: step.highlight,
       arrows: step.arrows,
+      cards: step.cards,
     };
   }
   return { ...board, text: `Worked example. ${step.prompt} ${step.explanation}` };

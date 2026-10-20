@@ -1,0 +1,19 @@
+kind: choice
+prompt: On the last betting round you hold the best possible hand. Why bet?
+cards:
+  hole: [Ad, Jd]
+  board: [9d, Kd, 4d, 7c, 2s]
+  pot: 14
+options:
+  - So that worse hands can call and pay you
+  - To make the others fold
+  - Because you must bet a strong hand
+  - To end the hand sooner
+answer: 0
+feedback:
+  - ''
+  - If everyone folds, you win only what is already in the pot. You want a call.
+  - You may check; betting is a choice, made for a reason.
+  - The hand ends at the showdown either way; a bet is about points, not time.
+explanation: With the best hand, every call from a worse hand adds points to what you win. That is a value bet.
+measures: betting

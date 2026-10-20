@@ -1,12 +1,17 @@
 ---
 import { SKILL_IDS, SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, STAGES, trackLessons } from '../../lib/lessons';
+import { lessonHref, pokerLessonsFor, STAGES, trackLessons } from '../../lib/lessons';
 import { labHref, LABS } from '../../lib/labs/labs';
-import { COMES_WITH } from '../../lib/planned-skills';
 
 const tracks = await Promise.all(
-  SKILL_IDS.map(async (id) => ({ id, name: SKILLS[id], lessons: await trackLessons(id), comesWith: COMES_WITH[id], lab: LABS.find((l) => l.track === id) })),
+  SKILL_IDS.map(async (id) => ({
+    id,
+    name: SKILLS[id],
+    lessons: await trackLessons(id),
+    poker: await pokerLessonsFor(id),
+    lab: LABS.find((l) => l.track === id),
+  })),
 );
 ---
 
@@ -15,8 +20,8 @@ const tracks = await Promise.all(
     <h1>Strategy</h1>
     <p>
       Each skill is learned in a game, then shown off the board: where it turns up in ordinary life, and one way to try it this week. Chess builds thinking
-      ahead, calculating and planning. The <a href="/labs/">game-theory labs</a> build cooperating, being unpredictable and valuing things. Poker will build the
-      rest.
+      ahead, calculating and planning. The <a href="/labs/">game-theory labs</a> build cooperating, being unpredictable and valuing things. Poker builds
+      weighing odds, sizing a risk, reading hidden information and bluffing: <a href="/poker/">the poker lessons</a>.
     </p>
     {tracks.map((track) => (
       <section id={track.id}>
@@ -39,7 +44,18 @@ const tracks = await Promise.all(
             Play it out: <a href={labHref(track.lab)}>the {track.lab.title} lab</a>.
           </p>
         )}
-        {track.comesWith && <p class="soon">Comes with {track.comesWith}.</p>}
+        {track.poker.length > 0 && (
+          <p>
+            Practise it in poker:{' '}
+            {track.poker.map((l, i) => (
+              <>
+                <a href={lessonHref(l)}>{l.data.title}</a>
+                {i < track.poker.length - 1 && ', '}
+              </>
+            ))}
+            .
+          </p>
+        )}
       </section>
     ))}
   </div>

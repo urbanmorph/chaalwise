@@ -1,0 +1,18 @@
+kind: choice
+prompt: Your jack and ten of hearts, with these three shared cards. How many outs do you have to a straight?
+cards:
+  hole: [Jh, Th]
+  board: [9h, 8c, 2d]
+options:
+  - 'Eight: any queen or any seven'
+  - 'Four: only the queens'
+  - 'Nine: the hearts left'
+  - 'Two: the queen and seven of hearts'
+answer: 0
+feedback:
+  - ''
+  - A seven also completes a straight, seven to jack.
+  - Only one heart is on the board, so there is no flush draw.
+  - Every queen and every seven counts, whatever its suit.
+explanation: 'A queen makes eight to queen, a seven makes seven to jack. Four of each are left: eight outs.'
+measures: odds

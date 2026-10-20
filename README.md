@@ -1,6 +1,6 @@
 # Chaalwise
 
-A free, offline strategy gym. Learn to think ahead, calculate, weigh odds and plan, through chess now and poker next, against the computer only. No money, no multiplayer, no ratings, and your progress never leaves your device.
+A free, offline strategy gym. Learn to think ahead, calculate, weigh odds and plan, through chess, poker and game-theory labs, against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no ratings, and your progress never leaves your device.
 
 Live at [chaalwise.urbanmorph.com](https://chaalwise.urbanmorph.com).
 
@@ -12,7 +12,7 @@ apps/web        Astro site with Svelte 5 islands: the chess board (chessground),
                 and the offline service worker
 ```
 
-Lessons are Markdown files in `apps/web/src/content/lessons/`: their reading and plan steps, and the questions they ask by id. Every question lives once in the corpus, `apps/web/src/content/questions/<game>/<idea>/<name>.yaml`, where `<game>` is `chess`, `poker`, `labs` or `life` (questions about life off the board). Lessons (`- ask: chess/fork/knight-takes-two`), reference entries (`try:`) and labs ask questions by id; review, course practice and mixed practice draw on the whole corpus by the skill each question `measures`. To add a question, add a file: it is checked at build time (every position and answer with chessops), and it is practised for its skill straight away. A question that existed before the corpus keeps its review card in `card`, so learners' progress carries over.
+Lessons are Markdown files in `apps/web/src/content/lessons/`: their reading and plan steps, and the questions they ask by id. Every question lives once in the corpus, `apps/web/src/content/questions/<game>/<idea>/<name>.yaml`, where `<game>` is `chess`, `poker`, `labs` or `life` (questions about life off the board). Lessons (`- ask: chess/fork/knight-takes-two`), reference entries (`try:`) and labs ask questions by id; review, course practice and mixed practice draw on the whole corpus by the skill each question `measures`. To add a question, add a file: it is checked at build time (every position and answer with chessops; a poker question's cards for a card dealt twice, and its hands, outs and odds by tests against the poker engine), and it is practised for its skill straight away. A question that existed before the corpus keeps its review card in `card`, so learners' progress carries over.
 
 ## Develop
 

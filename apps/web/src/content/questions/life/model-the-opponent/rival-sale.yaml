@@ -1,0 +1,15 @@
+kind: choice
+prompt: A rival shop runs a big sale every time its business is slow, and only then. It has just announced a big sale. What does it tell you?
+options:
+  - Its business is probably slow
+  - Its business is booming
+  - 'Nothing: sales are random'
+  - You must match the sale at once
+answer: 0
+feedback:
+  - ''
+  - A shop that sells cheaply only when trade is slow has just told you trade is slow.
+  - 'The pattern is the clue: it does this only when business is slow.'
+  - Matching may or may not be wise; first read what the sale says about them.
+explanation: A player who acts the same way every time gives the game away. Watch what others do and when, and their moves tell you what they hold.
+measures: bluff

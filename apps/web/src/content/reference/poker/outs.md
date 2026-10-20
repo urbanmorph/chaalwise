@@ -4,6 +4,9 @@ game: 'poker'
 kind: 'odds'
 level: 'beginner'
 summary: 'The unseen cards that would improve your hand to the one you want.'
+lesson: 'poker/outs-and-odds'
+try:
+  - 'poker/outs-and-odds/open-ended'
 related: ['poker/pot-odds', 'poker/equity', 'strategy/blunder-check']
 ---
 

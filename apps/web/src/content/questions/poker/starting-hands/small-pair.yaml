@@ -1,0 +1,17 @@
+kind: choice
+prompt: You hold a pair of twos. Why is it weaker than it looks?
+cards:
+  hole: [2s, 2h]
+options:
+  - Most shared cards can give others a bigger pair
+  - A pair is the weakest hand in poker
+  - Twos can never make a straight
+  - Pairs must be folded before the flop
+answer: 0
+feedback:
+  - ''
+  - High card is weaker than a pair. A pair of twos is strong now; the problem is what comes next.
+  - Twos can be part of a straight, ace to five.
+  - Pairs are often worth playing; the question is how far.
+explanation: Before the shared cards, a pair of twos beats any hand without a pair. But every shared card above two can pair an opponent's card. Small pairs hope to make three of a kind, and are folded when that misses.
+measures: starting-hands

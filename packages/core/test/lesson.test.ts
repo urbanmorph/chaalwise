@@ -59,6 +59,38 @@ describe('a lesson', () => {
   });
 });
 
+describe('poker lessons', () => {
+  it('is a course of its own', () => {
+    expect(lessonSchema.parse({ ...authored, game: 'poker' })).toMatchObject({ game: 'poker' });
+  });
+
+  it("shows cards instead of a board: your hand, the shared cards, others' hands, the pot and the price of a call", () => {
+    const cards = {
+      hole: ['As', 'Kd'],
+      board: ['Qh', '7c', '2s'],
+      others: [{ name: 'Bot', cards: ['9d', '9c'] }],
+      pot: 12,
+      toCall: 4,
+    };
+    expect(questionSchema.parse({ ...choice, cards })).toMatchObject({ cards });
+    const read = { kind: 'read', id: 'hand', text: 'A pair of nines.', cards: { hole: ['9d', '9c'] } };
+    expect(lessonSchema.parse({ ...authored, steps: [read] }).steps[0]).toMatchObject({
+      cards: { hole: ['9d', '9c'] },
+    });
+  });
+
+  it('writes a card as rank and suit, such as As or Td', () => {
+    expect(() => questionSchema.parse({ ...choice, cards: { hole: ['A♠', 'Kd'] } })).toThrow();
+    expect(() => questionSchema.parse({ ...choice, cards: { hole: ['1s', 'Kd'] } })).toThrow();
+  });
+
+  it('shows cards or a board, never both', () => {
+    expect(() => questionSchema.parse({ ...choice, position: 'start', cards: { hole: ['As', 'Kd'] } })).toThrow(
+      /board or cards/,
+    );
+  });
+});
+
 describe('a question in the corpus', () => {
   it('takes its id from its file, and may keep the review card it was saved under before', () => {
     expect(questionSchema.parse({ ...choice, card: 'strategy/blunder-check/angry-email' })).toMatchObject({

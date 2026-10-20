@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { completeLesson, deploy, hydrated, watchShifts } from './helpers';
+import { choose, completeLesson, deploy, hydrated, watchShifts } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
@@ -25,7 +25,7 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
   // Chess safety answers show beside the track, on the board; they are not evidence of the skill off it.
   const ahead = page.locator('[data-skill="think-ahead"]');
   await expect(ahead.locator('.label')).toHaveText('Not started');
-  await expect(ahead.getByTestId('on-board')).toHaveText('On the board: Noticing');
+  await expect(ahead.getByTestId('on-board')).toHaveText('In the games: Noticing');
   await expect(page.getByTestId('next-focus')).toContainText('Think ahead');
   await expect(page.locator('[data-game-skill="safety"]')).toContainText('Noticing');
 
@@ -38,10 +38,23 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
   );
 });
 
-test('strategy skills not measured yet say where they will come from instead of showing a level', async ({ page }) => {
+test('poker answers show beside the track they train, as in the games', async ({ page }) => {
+  await page.goto('/poker/why-you-bet/');
+  await hydrated(page);
+  await page.getByRole('button', { name: 'Continue' }).click();
+  for (const option of [
+    'So that worse hands can call and pay you',
+    'Check: the bet gains nothing either way',
+    'A bluff: a better hand might fold',
+    'Little: a claim that costs nothing to make tells you little',
+    'Its business is probably slow',
+    'Call every big bet',
+  ])
+    await choose(page, option);
+  await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');
   await page.goto('/progress/');
   await hydrated(page);
-  await expect(page.locator('[data-skill="bluff"]')).toContainText('Comes with poker.');
+  await expect(page.locator('[data-skill="bluff"] [data-testid="on-board"]')).toContainText('In the games:');
 });
 
 test('the progress page does not jump about as the profile loads', async ({ page }) => {
@@ -50,7 +63,7 @@ test('the progress page does not jump about as the profile loads', async ({ page
   await page.goto('/progress/');
   await hydrated(page);
   await expect(page.locator('[data-skill="think-ahead"] [data-testid="on-board"]')).toHaveText(
-    'On the board: Noticing',
+    'In the games: Noticing',
   );
   expect(await shifts()).toBeLessThan(0.1);
 });

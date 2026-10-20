@@ -1,0 +1,19 @@
+kind: choice
+prompt: You hold a middling hand, a pair of eights, and must act first after the flop. Why is this harder than acting last?
+cards:
+  hole: [8c, 8d]
+  board: [Kh, 6s, 3c]
+  pot: 6
+options:
+  - You must decide before knowing whether the others will bet
+  - You are not allowed to bet first
+  - The first player must put in more points
+  - The others can see your cards
+answer: 0
+feedback:
+  - ''
+  - Any player may bet when it is their turn.
+  - The bet size is the same whoever acts first.
+  - Cards stay hidden until the showdown.
+explanation: 'Acting first, you choose blind: if you bet and are raised, you learn too late; if you check, you may face a bet you cannot judge. Middling hands are the hardest to play out of position.'
+measures: position

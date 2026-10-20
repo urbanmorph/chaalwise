@@ -1,0 +1,15 @@
+kind: choice
+prompt: Calling costs 10 points. If you win, you collect 20 points already in the pot; you win one time in five. Is the call worth it?
+options:
+  - 'No: it loses 4 points a call on average'
+  - 'Yes: it wins 10 points a call on average'
+  - 'Yes: you win twice what you put in'
+  - It breaks even
+answer: 0
+feedback:
+  - ''
+  - You win 20 only once in five; the other four times you lose 10.
+  - Winning twice your call is not enough when you win only one time in five.
+  - 'Count it: over five calls, 20 won once and 10 lost four times.'
+explanation: 'Over five calls you win 20 once and lose 10 four times: 20 − 40 = −20 over five calls, a loss of 4 points a call. Fold, and keep the points for a better price.'
+measures: odds

@@ -1,0 +1,17 @@
+kind: choice
+prompt: With these five shared cards, what is the best hand anyone could hold?
+cards:
+  board: [Ks, Qs, 7s, 4d, 2c]
+options:
+  - A flush with the ace of spades
+  - Three kings, with a pair of kings in the hand
+  - A straight, ace to ten
+  - Four of a kind, in any rank
+answer: 0
+feedback:
+  - ''
+  - Three kings would lose to any flush.
+  - 'No two cards make a straight here: the four, seven and two are too far from the king and queen.'
+  - Four of a kind needs a pair on the board, and there is none.
+explanation: Three spades on the board make a flush possible; no straight or full house is. The best flush holds the ace of spades.
+measures: hand-reading

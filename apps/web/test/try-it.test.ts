@@ -29,8 +29,7 @@ describe('a reference entry you can try', () => {
     expect(section(dist('reference/strategy/cool-head/index.html'))).toContain(
       '&quot;measures&quot;:&quot;composure&quot;',
     );
-    // A track nothing measures yet, such as bluffing, would show the answers nowhere, so they count towards nothing.
-    expect(referenceMeasures('strategy', 'bluff')).toBeUndefined();
+    expect(referenceMeasures('strategy', 'bluff')).toBe('bluff');
   });
 
   it('offers more practice on the skill’s course, when the course has practice', () => {

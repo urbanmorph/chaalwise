@@ -1,0 +1,22 @@
+---
+import LessonList from '../../components/LessonList.astro';
+import Base from '../../layouts/Base.astro';
+import { lessonPath, POKER_STAGES } from '../../lib/lessons';
+
+const lessons = await lessonPath('poker');
+---
+
+<Base title="Poker" description="Poker lessons for weighing odds and deciding under uncertainty, against the computer, practice points only.">
+  <div class="wrap">
+    <h1>Poker</h1>
+    <p>
+      Poker teaches deciding with half the facts: weighing a chance against a price, using what others show, and betting for a reason. Each lesson is one idea,
+      and its questions come back for review on later days.
+    </p>
+    <p>
+      Never played? Start with <a href="/poker/first-hands/">your first hands</a>: three guided hands with a coach at every decision, then a few on your own.
+    </p>
+    <p>Practice points are free and can never be bought, sold or cashed out. You play the computer only.</p>
+    <LessonList {lessons} stageNames={POKER_STAGES} />
+  </div>
+</Base>

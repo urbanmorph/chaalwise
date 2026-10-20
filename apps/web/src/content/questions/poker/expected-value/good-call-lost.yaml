@@ -1,0 +1,15 @@
+kind: choice
+prompt: You made a call that wins 1 point on average, and lost the hand. Was the call a mistake?
+options:
+  - 'No: a good choice can lose; judge it by its average, not this result'
+  - 'Yes: it lost, so it was wrong'
+  - 'Yes: you should only call when you are sure to win'
+  - It cannot be known
+answer: 0
+feedback:
+  - ''
+  - One result does not show whether a choice was good; the average over many tries does.
+  - You are almost never sure to win. Waiting for certainty means folding hands that pay.
+  - 'You worked out the average before the result: that answers it.'
+explanation: Results mix decisions with luck. Judge the decision by what you knew and its average value; a good call that loses is still a good call.
+measures: odds

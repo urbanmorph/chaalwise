@@ -5,6 +5,7 @@ import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
 import { chessLessonIssues, parseMoveText, positionFromMoves, questionIssues } from './lib/chess';
+import { cardIssues } from './lib/poker/step-cards';
 import { referenceIssues } from './lib/reference';
 
 /** Lessons are Markdown with their steps as data. A broken lesson fails the build. */
@@ -12,6 +13,11 @@ const lessons = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/lessons' }),
   schema: lessonSchema.superRefine((lesson, ctx) => {
     for (const issue of chessLessonIssues(lesson)) ctx.addIssue({ code: 'custom', ...issue });
+    lesson.steps.forEach((step, i) => {
+      if ('cards' in step && step.cards)
+        for (const issue of cardIssues(step.cards))
+          ctx.addIssue({ code: 'custom', ...issue, path: ['steps', i, ...issue.path] });
+    });
   }),
 });
 
@@ -54,6 +60,8 @@ const questions = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/questions' }),
   schema: questionSchema.superRefine((question, ctx) => {
     for (const issue of questionIssues(question)) ctx.addIssue({ code: 'custom', ...issue });
+    if ('cards' in question && question.cards)
+      for (const issue of cardIssues(question.cards)) ctx.addIssue({ code: 'custom', ...issue });
   }),
 });
 

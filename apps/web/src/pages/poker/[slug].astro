@@ -1,0 +1,23 @@
+---
+import LessonShell from '../../components/LessonShell.astro';
+import NewToPoker from '../../components/NewToPoker.astro';
+import Base from '../../layouts/Base.astro';
+import { lessonPath, POKER_STAGES, type LessonEntry } from '../../lib/lessons';
+
+export async function getStaticPaths() {
+  return (await lessonPath('poker')).map((lesson) => ({ params: { slug: lesson.id.replace(/^poker\//, '') }, props: { lesson } }));
+}
+
+const { lesson } = Astro.props as { lesson: LessonEntry };
+---
+
+<Base title={lesson.data.title} description={lesson.data.summary} wide>
+  <LessonShell {lesson}>
+    <div slot="crumb">
+      <p class="label">
+        <a href="/poker/">Poker</a> · Stage {lesson.data.stage}: {POKER_STAGES[lesson.data.stage]}
+      </p>
+      <NewToPoker />
+    </div>
+  </LessonShell>
+</Base>

@@ -1,0 +1,20 @@
+kind: choice
+prompt: The same flush draw, one card to come. Now the pot holds 20 points and a call costs 2. Call or fold?
+cards:
+  hole: [Ah, 5h]
+  board: [Kh, 9h, 2c, 7s]
+  pot: 20
+  toCall: 2
+options:
+  - 'Call: you need to win only 9% of the time, and the flush comes about 20%'
+  - 'Fold: you are behind'
+  - 'Fold: the flush comes less than half the time'
+  - Call, but only because you have the ace
+answer: 0
+feedback:
+  - ''
+  - Being behind now matters less than the price. You pay little to play for a lot.
+  - You do not need to win half the time; you need to win more often than the price.
+  - The price, not the ace, makes this a call.
+explanation: 'A call of 2 plays for 22, so you need to win one time in eleven, about 9%. The flush comes about 20% of the time. Call: over many such hands the calls win more than they cost.'
+measures: odds

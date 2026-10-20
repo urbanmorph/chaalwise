@@ -33,10 +33,9 @@ describe('each strategy track is a course', () => {
     expect(count).toBeGreaterThanOrEqual(8);
   });
 
-  it('says where a track not trained yet will come from, with no practice', () => {
-    const html = course('bluff');
-    expect(html).toContain('Comes with poker.');
-    expect(html).not.toContain('data-practice-count');
+  it('gives the tracks poker trains practice of their own, off the table as well as at it', () => {
+    for (const id of ['weigh-odds', 'size-risk', 'read-hidden', 'bluff'])
+      expect(Number(course(id).match(/data-practice-count="(\d+)"/)?.[1]), id).toBeGreaterThanOrEqual(3);
   });
 
   it('links each track on the strategy page, and in the profile, to its course', () => {
