@@ -62,7 +62,10 @@ describe.each(htmlFiles)('%s', (page) => {
   it('loads nothing from other sites, and links only to known ones', () => {
     const external = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)]
       .map((m) => m[1]!)
-      .filter((url) => !/^https:\/\/(github\.com|lichess\.org|www\.urbanmorph\.com|pdgi\.org)\//.test(url));
+      .filter(
+        (url) =>
+          !/^https:\/\/(github\.com|lichess\.org|database\.lichess\.org|www\.urbanmorph\.com|pdgi\.org)\//.test(url),
+      );
     expect(external).toEqual([]);
     expect(html).not.toMatch(/<link[^>]+href="https?:/);
   });

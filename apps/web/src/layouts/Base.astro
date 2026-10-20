@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../components/poker/poker.css';
 import favicon from '../../public/favicon.svg?raw';
+import { BEACON_TOKEN, LIVE_HOST } from '../lib/analytics';
 
 interface Props {
   title: string;
@@ -83,6 +84,14 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
       </div>
     </footer>
     <script src="../scripts/register-sw.ts"></script>
+    {/* Cloudflare Web Analytics, on the live site only: no cookies, and nothing about learners. */}
+    {BEACON_TOKEN && <script is:inline define:vars={{ token: BEACON_TOKEN, host: LIVE_HOST }}>
+      if (location.hostname === host) {
+        const beacon = Object.assign(document.createElement('script'), { defer: true, src: 'https://static.cloudflareinsights.com/beacon.min.js' });
+        beacon.dataset.cfBeacon = JSON.stringify({ token });
+        document.body.append(beacon);
+      }
+    </script>}
   </body>
 </html>
 
