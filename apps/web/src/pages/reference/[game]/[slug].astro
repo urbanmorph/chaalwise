@@ -3,6 +3,7 @@ import { FAMILY_NAMES, GAME_NAMES, KIND_NAMES } from '@chaalwise/core/reference'
 import { SKILLS } from '@chaalwise/core/skills';
 import { render } from 'astro:content';
 import Diagram from '../../../components/Diagram.astro';
+import NewToChess from '../../../components/NewToChess.astro';
 import Base from '../../../layouts/Base.astro';
 import { toFen } from '../../../lib/chess';
 import { lessonHref, lessonPath } from '../../../lib/lessons';
@@ -64,6 +65,7 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
             label={`${data.term}: a chess diagram${opening ? ` after ${opening}` : ''}.`}
           />
           {opening && <figcaption>{opening}</figcaption>}
+          <NewToChess />
         </figure>
       )}
     </div>

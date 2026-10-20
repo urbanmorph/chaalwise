@@ -8,8 +8,10 @@ test('a new learner starts on the home page with a strategy lesson, and every sk
 }) => {
   await page.goto('/');
   const card = page.getByTestId('home-next-focus');
-  await expect(card).toContainText('Start here');
-  await expect(card.getByRole('link', { name: 'Start the lesson' })).toHaveAttribute('href', /^\/skills\/[a-z-]+\/$/);
+  await expect(card.getByRole('link', { name: 'Start the first lesson' })).toHaveAttribute(
+    'href',
+    /^\/skills\/[a-z-]+\/$/,
+  );
   await page.goto('/progress/');
   await hydrated(page);
   await expect(page.locator('[data-skill] .label').first()).toHaveText('Not started');
@@ -31,8 +33,10 @@ test('finishing a lesson builds the profile from your own answers, and sets the 
   await page.goto('/');
   const card = page.getByTestId('home-next-focus');
   await expect(card).toBeVisible();
-  await expect(card).toContainText('Think ahead');
-  await expect(card.getByRole('link')).toHaveAttribute('href', '/skills/think-ahead/');
+  await expect(card.getByRole('link', { name: 'Your next focus: Think ahead' })).toHaveAttribute(
+    'href',
+    '/skills/think-ahead/',
+  );
 });
 
 test('strategy skills not measured yet say where they will come from instead of showing a level', async ({ page }) => {

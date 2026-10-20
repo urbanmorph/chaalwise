@@ -2,55 +2,47 @@
 import { lessonHref, lessonPath } from '../lib/lessons';
 
 /**
- * The home page's next step. Drawn at build time for a new learner: start with
- * the first strategy lesson. Once this device has answers, the script swaps in
- * the learner's next focus in place, so the page never jumps. Plain script, so
- * the home page stays light.
+ * The home page's one way in. Drawn at build time for a new learner: the first
+ * strategy lesson. Once this device has answers, the script points the same
+ * button at the learner's next focus, so there is never a second start button
+ * and the page does not jump. Plain script, so the home page stays light.
  */
 const first = (await lessonPath()).find((l) => l.data.game === 'strategy')!;
 ---
 
-<section class="card next-focus" data-testid="home-next-focus">
-  <p class="label">Start here</p>
-  <h2>{first.data.title}</h2>
-  <p class="means">{first.data.summary}</p>
+<div class="actions" data-testid="home-next-focus">
   <a class="button primary" href={lessonHref(first)}>
-    Start the lesson
+    Start the first lesson
   </a>
-</section>
+  <a class="button" href="#skills">
+    See the skills
+  </a>
+</div>
 
 <script>
   import { openProgress } from '@chaalwise/core/progress';
   import { buildProfile } from '../lib/profile';
 
-  const card = document.querySelector<HTMLElement>('.next-focus');
+  const start = document.querySelector<HTMLAnchorElement>('[data-testid="home-next-focus"] .primary');
   openProgress()
     .then(async (progress) => {
       const attempts = await progress.attemptsBySkill();
       progress.close();
       // A new learner keeps the first strategy lesson drawn at build time.
-      if (!card || !Object.keys(attempts).length) return;
+      if (!start || !Object.keys(attempts).length) return;
       const { focus } = buildProfile(attempts);
       if (!focus) return;
-      card.querySelector('.label')!.textContent = 'Your next focus';
-      card.querySelector('h2')!.textContent = focus.skill.name;
-      card.querySelector('.means')!.textContent = `${focus.skill.means} ${focus.assessment.level === 'not-started' ? '' : focus.assessment.reason}`.trim();
-      const link = card.querySelector('a')!;
-      link.href = focus.skill.practise.href;
-      link.textContent = `Practise: ${focus.skill.practise.label}`;
+      start.href = focus.skill.practise.href;
+      start.textContent = `Your next focus: ${focus.skill.name}`;
     })
     .catch(console.error);
 </script>
 
 <style>
-  .next-focus {
-    border-left: 4px solid var(--accent);
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 28px;
-  }
-  .next-focus h2 {
-    margin-bottom: 6px;
-  }
-  .means {
-    color: var(--ink-2);
   }
 </style>

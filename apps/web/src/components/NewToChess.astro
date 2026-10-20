@@ -1,0 +1,18 @@
+---
+import { lessonHref, lessonPath } from '../lib/lessons';
+
+/** For pages that explain an idea through chess: a way in for anyone who has never played. */
+const first = (await lessonPath()).find((l) => l.data.game === 'chess')!;
+---
+
+<p class="new-to-chess">
+  New to chess? The examples here use it. <a href={lessonHref(first)}>Learn chess from the beginning</a>, one short lesson at a time.
+</p>
+
+<style>
+  .new-to-chess {
+    margin-top: 12px;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+</style>

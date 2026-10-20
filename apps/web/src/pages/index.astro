@@ -3,12 +3,8 @@ import Diagram from '../components/Diagram.astro';
 import NextFocus from '../components/NextFocus.astro';
 import Base from '../layouts/Base.astro';
 import { HERO } from '../lib/diagram';
-import { lessonHref, lessonPath } from '../lib/lessons';
 import { PROFILE_SKILLS } from '../lib/profile-skills';
 import { TRACKS, type Track } from '../lib/skill-tracks';
-
-// A newcomer starts with the first strategy lesson: the idea first, the game as its example.
-const first = (await lessonPath()).find((l) => l.data.game === 'strategy');
 
 // A skill is trained now once the site measures it: its lessons, practice and review are there.
 const now = (t: Track) => !PROFILE_SKILLS.find((s) => s.id === t.id)!.later;
@@ -27,52 +23,26 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
         A strategy school that is always open. Learn to look ahead, weigh the odds, size a risk and keep a cool head, for work, for study and for life. Each
         idea is shown in a game, practised in a few minutes, and brought back until it sticks.
       </p>
-      <div class="actions">
-        {first && (
-          <a class="button primary" href={lessonHref(first)}>
-            Start with {first.data.title.toLowerCase()}
-          </a>
-        )}
-        <a class="button" href="#skills">
-          See the skills
-        </a>
-      </div>
+      <NextFocus />
       <p class="terms">Free and offline. No account, no ads, and no money, ever.</p>
     </div>
 
-    <figure class="hero-board">
-      <Diagram
-        fen={HERO.fen}
-        move={HERO.move}
-        highlight={HERO.attacked}
-        label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once."
-      />
-      <figcaption>
-        The blunder check, shown in chess: one knight move attacks the king and the rook together. At work it is the question before you send, sign or commit:
-        what does this let the other side do?
-      </figcaption>
-    </figure>
-  </section>
-
-  <div class="wrap">
-    <NextFocus />
-  </div>
-
-  <section class="wrap who" aria-labelledby="who-title">
-    <h2 id="who-title">Who it is for</h2>
-    <ul>
-      <li>
-        <strong>People who run teams and organisations.</strong> Plans, budgets, negotiations and hiring are strategy problems: what will the other side do,
-        what can go wrong, how much to commit.
-      </li>
-      <li>
-        <strong>People who want to succeed in one.</strong> Thinking a step ahead, and staying calm when a plan goes wrong, are what others notice.
-      </li>
-      <li>
-        <strong>Students.</strong> Exams, group projects and choices about what to study reward the same habits: check before you commit, and judge decisions,
-        not results.
-      </li>
-    </ul>
+    <div class="who">
+      <h2>Who it is for</h2>
+      <ul>
+        <li>
+          <strong>People who run teams and organisations.</strong> Plans, budgets, negotiations and hiring are strategy problems: what will the other side do,
+          what can go wrong, how much to commit.
+        </li>
+        <li>
+          <strong>People who want to succeed in one.</strong> Thinking a step ahead, and staying calm when a plan goes wrong, are what others notice.
+        </li>
+        <li>
+          <strong>Students.</strong> Exams, group projects and choices about what to study reward the same habits: check before you commit, and judge decisions,
+          not results.
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section class="wrap map" id="skills" aria-labelledby="skills-title">
@@ -135,6 +105,18 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
 
   <section class="wrap steps" aria-labelledby="steps-title">
     <h2 id="steps-title">How a skill is trained</h2>
+    <figure class="idea-board">
+      <Diagram
+        fen={HERO.fen}
+        move={HERO.move}
+        highlight={HERO.attacked}
+        label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once."
+      />
+      <figcaption>
+        The blunder check, shown in chess: one knight move attacks the king and the rook together. At work it is the question before you send, sign or commit:
+        what does this let the other side do?
+      </figcaption>
+    </figure>
     <ol>
       <li>
         <h3>
@@ -188,33 +170,20 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     line-height: 1.55;
     color: var(--ink-2);
   }
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-  }
   .terms {
     margin-top: 16px;
     color: var(--ink-2);
     font-size: 0.95rem;
   }
 
-  .hero-board {
+  .idea-board {
     margin: 0;
-    justify-self: center;
-    width: min(100%, 420px);
+    width: min(100%, 360px);
   }
   figcaption {
     margin-top: 14px;
     color: var(--ink-2);
     font-size: 0.95rem;
-  }
-  figcaption p {
-    margin: 0 0 4px;
-  }
-  figcaption a {
-    font-weight: 600;
   }
 
   section + section,
@@ -327,6 +296,19 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     }
   }
 
+  .steps {
+    display: grid;
+    gap: 24px 56px;
+    align-items: start;
+  }
+  @media (min-width: 780px) {
+    .steps {
+      grid-template-columns: 360px minmax(0, 1fr);
+    }
+    .steps h2 {
+      grid-column: 1 / -1;
+    }
+  }
   .steps ol {
     display: grid;
     gap: 24px 32px;
@@ -359,8 +341,9 @@ const strength = ['Not trained', 'A little', 'Well', 'Strongly'];
     margin: 0;
   }
 
-  .who {
-    margin-top: 48px;
+  .who h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
   }
   .who ul {
     display: grid;

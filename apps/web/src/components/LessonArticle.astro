@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import { DONE_KEY } from '../lib/done-lessons';
 import { lessonHref, pathContext, stepsWithSkills, type LessonEntry } from '../lib/lessons';
 import LessonPage from './LessonPage.svelte';
+import NewToChess from './NewToChess.astro';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
 interface Props {
@@ -37,6 +38,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
 <div class="intro">
   <Content />
 </div>
+{lesson.data.game === 'strategy' && <NewToChess />}
 <LessonPage client:load lesson={{ steps: stepsWithSkills(lesson) }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
 
 <style>
