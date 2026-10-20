@@ -1,5 +1,5 @@
 ---
-title: Shrink the problem
+title: Small steps that stick
 summary: Each step should leave fewer ways for things to go wrong, and the last step needs as much care as the first.
 game: strategy
 stage: 2

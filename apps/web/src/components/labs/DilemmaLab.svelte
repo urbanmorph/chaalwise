@@ -73,6 +73,8 @@
     over = true;
     const [y, t] = totals;
     results.push({ bot, rounds: n, you: y, them: t });
+    // A match played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    markMet('labs/prisoners-dilemma');
     status = `${status} That was the last round. Final points: you ${y}, ${botName(bot)} ${t}.`;
     await tick();
     statusEl?.focus();
@@ -80,8 +82,6 @@
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/prisoners-dilemma');
     await tick();
     debriefEl?.focus();
   }

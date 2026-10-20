@@ -63,6 +63,8 @@
       return rs;
     }, []);
     games.push({ pile: start, first: first!, winner, reviews });
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    if (games.length === GAMES) markMet('labs/nim');
     status = `${status} ${winner === 'you' ? 'You took the last counter: you win' : 'The bot took the last counter: it wins'} game ${games.length}.`;
     await tick();
     statusEl?.focus();
@@ -105,8 +107,6 @@
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/nim');
     await tick();
     debriefEl?.focus();
   }

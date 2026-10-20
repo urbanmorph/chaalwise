@@ -1,6 +1,7 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { PLANNED } from '../src/lib/planned-skills';
 import { PROFILE_SKILLS, trackOf } from '../src/lib/profile-skills';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
@@ -60,5 +61,39 @@ describe('addresses under /skills/', () => {
       f.replace('.md', ''),
     );
     expect(lessons.filter((slug) => (SKILL_IDS as string[]).includes(slug))).toEqual([]);
+  });
+});
+
+describe('lesson names', () => {
+  const title = (html: string) => html.match(/<h1[^>]*>([^<]*)<\/h1>/)![1]!.trim();
+  const slugs = (folder: string) =>
+    readdirSync(new URL(`../src/content/lessons/${folder}/`, import.meta.url)).map((f) => f.replace('.md', ''));
+  const lessons = [
+    ...slugs('chess').map((s) => ({ href: `/chess/${s}/`, file: `chess/${s}/index.html` })),
+    ...slugs('strategy').map((s) => ({ href: `/skills/${s}/`, file: `skills/${s}/index.html` })),
+  ].map((l) => ({ ...l, title: title(dist(l.file)) }));
+  const entries = ['strategy', 'chess', 'poker', 'labs'].flatMap((game) =>
+    readdirSync(new URL(`../dist/reference/${game}/`, import.meta.url)).map((slug) => {
+      const html = dist(`reference/${game}/${slug}/index.html`);
+      return { id: `${game}/${slug}`, html, term: title(html) };
+    }),
+  );
+
+  it('names the step-by-step lesson apart from the "Shrink the problem" entry, which is about cutting options', () => {
+    expect(title(dist('skills/shrink-the-problem/index.html'))).toBe('Small steps that stick');
+    expect(dist('reference/strategy/shrink-the-problem/index.html')).toContain(
+      'Lesson: <a href="/skills/look-at-three/"',
+    );
+  });
+
+  it('shares a name between a lesson and a reference entry only when the entry is that lesson’s idea', () => {
+    for (const lesson of lessons)
+      for (const entry of entries.filter((e) => e.term === lesson.title))
+        expect(entry.html, `${entry.id} and ${lesson.href}`).toContain(`Lesson: <a href="${lesson.href}"`);
+  });
+
+  it('lists every built strategy lesson in the curriculum under its own title', () => {
+    const planned = PLANNED.map((p) => p.title);
+    for (const lesson of lessons.filter((l) => l.href.startsWith('/skills/'))) expect(planned).toContain(lesson.title);
   });
 });
