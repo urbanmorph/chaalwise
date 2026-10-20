@@ -136,3 +136,17 @@ describe('what the home page offers to train now', () => {
     expect(trained).toEqual(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id));
   });
 });
+
+describe('the footer', () => {
+  const footer = dist('index.html').match(/<footer class="site-footer"[\s\S]*?<\/footer>/)![0];
+  const REPO = 'https://github.com/urbanmorph/chaalwise/blob/main';
+
+  it('links to the terms, which say it is a social game and how to raise an issue', () => {
+    expect(footer).toMatch(new RegExp(`href="${REPO}/TERMS.md"[^>]*>\\s*terms`));
+  });
+
+  it('links pdgi to the scorecard in the repository, not the pdgi.org site', () => {
+    expect(footer).toMatch(new RegExp(`href="${REPO}/PDGI.md"[^>]*>\\s*pdgi`));
+    expect(footer).not.toContain('href="https://pdgi.org/"');
+  });
+});
