@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import { entryHref } from '../../lib/reference';
 import { referenceEntries } from '../../lib/reference-entries';
 import type { Lab } from '../../lib/labs/labs';
+import { ask } from '../../lib/questions';
 import TryIt from '../TryIt.astro';
 import './labs.css';
 
@@ -24,8 +25,8 @@ const find = (id: string) => {
 };
 const entry = find(lab.entry);
 const read = [entry, ...lab.read.map(find)];
-const steps = entry.data.try;
-if (!steps) throw new Error(`lab ${lab.slug}: ${lab.entry} has no questions to try`);
+if (!entry.data.try) throw new Error(`lab ${lab.slug}: ${lab.entry} has no questions to try`);
+const steps = await ask(entry.data.try);
 const track = SKILLS[lab.track];
 ---
 
@@ -38,7 +39,7 @@ const track = SKILLS[lab.track];
     <p class="idea">{lab.idea}</p>
     <p class="label">5 minutes · trains {track} · points only, never money</p>
     <slot />
-    <TryIt entry={entry.id} {steps} measures={lab.track} more={{ href: `/skills/${lab.track}/`, label: `Practise ${track}` }} />
+    <TryIt {steps} more={{ href: `/skills/${lab.track}/`, label: `Practise ${track}` }} />
     <section class="read">
       <h2>Read more</h2>
       <ul>

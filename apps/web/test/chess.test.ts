@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import type { Lesson } from '@chaalwise/core/lesson';
+import { questionSchema, type Step } from '@chaalwise/core/lesson';
 import {
-  chessLessonIssues,
+  chessStepIssues,
+  questionIssues,
   EMPTY_BOARD,
   legalDests,
   parseMoveText,
@@ -14,15 +15,9 @@ import {
   turnOf,
 } from '../src/lib/chess';
 
-const lesson = (steps: Lesson['steps']): Lesson => ({
-  title: 't',
-  summary: 's',
-  game: 'chess',
-  stage: 0,
-  order: 1,
-  skills: [],
-  steps,
-});
+const lesson = (steps: Step[]) => ({ steps });
+/** The checks a lesson's boards and a corpus question's answers both get. */
+const chessLessonIssues = ({ steps }: { steps: Step[] }) => chessStepIssues(steps, 'steps');
 const move = (position: string, answers: string[]) =>
   lesson([{ kind: 'move', id: 'm', prompt: 'p', explanation: 'e', position, answers }]);
 
@@ -119,18 +114,13 @@ describe('chess checks for square and play steps', () => {
     expect(chessLessonIssues(move('empty', ['e2e4']))[0]?.message).toMatch(/not a legal position/);
   });
 
-  it('rejects a skill name the profile does not know, on the lesson or on a step', () => {
-    expect(
-      chessLessonIssues({ ...lesson([]), steps: [{ kind: 'read', id: 'r', text: 't' }], measures: 'juggling' })[0]
-        ?.message,
-    ).toMatch(/no skill called juggling/);
-    const l = lesson([
-      { kind: 'choice', id: 'c', prompt: 'p', explanation: 'e', options: ['a', 'b'], answer: 0, measures: 'juggling' },
-    ]);
-    expect(chessLessonIssues(l)[0]?.message).toMatch(/no skill called juggling/);
-    expect(
-      chessLessonIssues({ ...l, steps: [{ ...l.steps[0]!, measures: 'safety' } as Lesson['steps'][number]] }),
-    ).toEqual([]);
+  it('rejects a skill name the profile does not know on a question', () => {
+    const question = { kind: 'choice', prompt: 'p', explanation: 'e', options: ['a', 'b'], answer: 0 };
+    expect(questionIssues(questionSchema.parse({ ...question, measures: 'juggling' }))[0]?.message).toMatch(
+      /no skill called juggling/,
+    );
+    expect(questionIssues(questionSchema.parse({ ...question, measures: 'safety' }))).toEqual([]);
+    expect(questionIssues(questionSchema.parse({ ...question, measures: 'think-ahead' }))).toEqual([]);
   });
 
   it('checks the position of a square step', () => {

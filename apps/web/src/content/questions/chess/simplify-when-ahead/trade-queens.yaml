@@ -1,0 +1,9 @@
+card: strategy/simplify-when-ahead/trade-queens
+kind: move
+prompt: You are a knight ahead, and the queens face each other. Make the trade that leaves Black nothing to attack with.
+position: 6k1/pp3ppp/8/4p3/3q4/2N5/PP1Q1PPP/6K1 w - - 0 1
+measures: endgame
+answers:
+  - d2d4
+hint: Black's queen is guarded once. Take it anyway.
+explanation: Qxd4 exd4 trades queens. The knight then steps away from the pawn, and White has a knight against no pieces, with no danger to the king. Moving your queen away keeps Black's queen in play, free to give checks, and offering the trade elsewhere lets Black say no.

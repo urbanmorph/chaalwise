@@ -1,0 +1,14 @@
+card: strategy/simplify-when-ahead/deposit
+kind: choice
+prompt: You have saved 290,000 of the 300,000 deposit you need for a flat in six months. A friend suggests moving the savings into shares, which might rise 20% by then, or fall as much. What do you do?
+options:
+  - Move it all into shares for the faster growth
+  - Keep it in a safe savings account
+  - Move half into shares to balance the risk
+answer: 1
+feedback:
+  - A 20% rise is welcome, but you only need 10,000 more. A 20% fall would leave you 68,000 short of the deposit.
+  - ''
+  - Half in shares still risks a 29,000 fall, when you only need 10,000 more. It halves the risk; it does not remove it.
+explanation: You are nearly there, and money above the deposit matters little to you. Simplify. Keep the money safe, and save the last 10,000.
+measures: size-risk

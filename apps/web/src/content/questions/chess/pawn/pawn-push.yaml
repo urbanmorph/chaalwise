@@ -1,0 +1,8 @@
+kind: move
+prompt: Push the pawn two squares.
+position: 4k3/8/8/8/8/8/4P3/4K3 w - - 0 1
+answers:
+  - e2e4
+hint: On its first move, a pawn may go two squares.
+explanation: After this first move, the pawn moves one square at a time.
+measures: board

@@ -1,0 +1,14 @@
+card: reference/strategy/regression-to-the-mean/record-month
+kind: choice
+prompt: Your best salesperson had a record month, far above her usual. What should you expect next month?
+options:
+  - Another month about as strong
+  - A good month, but closer to her usual
+  - A weak month, to balance the record out
+answer: 1
+feedback:
+  - A record usually takes skill and good luck together. The skill stays; the luck does not come back on demand.
+  - ''
+  - Luck does not owe her anything, so it does not swing back to even things out. Expect something near her usual, not below it.
+explanation: 'An extreme result is part skill, part luck. Expect the skill to stay and the luck to fade: a result closer to her usual.'
+measures: weigh-odds

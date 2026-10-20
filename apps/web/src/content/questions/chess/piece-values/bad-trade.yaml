@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your rook can take a black knight, but then a black pawn takes your rook. Is that a good trade?
+options:
+  - No, you give 5 points for 3
+  - Yes, you took first
+  - It is even, a piece for a piece
+answer: 0
+feedback:
+  - ''
+  - Taking first does not decide it. Count both captures. You get 3 and give 5.
+  - Pieces are not all equal. A rook is worth 5 and a knight 3, so you lose 2 points.
+explanation: Count what you get and what you give. A knight (3) for a rook (5) loses 2 points.
+measures: calculation

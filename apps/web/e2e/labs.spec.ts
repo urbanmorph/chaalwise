@@ -61,7 +61,7 @@ test("Prisoner's Dilemma: play two bots in turn, round by round, then reach the 
   await expect(debrief).toContainText('Tit for tat never beats the player it faces');
   expect(await shifts()).toBeLessThan(0.1);
 
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-measures', 'cooperate');
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /"measures":"cooperate"/);
 });
 
 test('Rock-paper-scissors: the bot learns a habit, and the debrief shows how predictable you were', async ({
@@ -107,5 +107,5 @@ test('Sealed-bid auction: five sealed bids, each revealed, then the debrief', as
   await expect(debrief.getByRole('row')).toHaveCount(6);
   await expect(debrief).toContainText('On average you bid 5 points below your own estimate');
   expect(await shifts()).toBeLessThan(0.1);
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-entry', 'labs/winners-curse');
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /reference\/labs\/winners-curse\//);
 });

@@ -1,0 +1,13 @@
+kind: choice
+prompt: Which is a good middlegame question to ask yourself?
+options:
+  - Which of my pieces is doing least, and how can it do more?
+  - Which enemy piece can I attack right now?
+  - How can I trade off as many pieces as possible?
+answer: 0
+feedback:
+  - ''
+  - Attacking for its own sake often chases a piece to a better square. Ask what your position needs first.
+  - Trades help when you are ahead. Trading for its own sake can leave you with your worst pieces.
+explanation: Improving your worst piece is often the best plan when nothing else is happening.
+measures: planning

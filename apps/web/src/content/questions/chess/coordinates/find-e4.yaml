@@ -1,0 +1,8 @@
+kind: square
+practice: find-square
+prompt: Now without the letters and numbers. Find e4.
+answers:
+  - e4
+hint: The e-file is the fifth from the left. Count four rows up from your side.
+explanation: e4 is in the centre, on the king's file. It is where the most common first move goes.
+measures: board

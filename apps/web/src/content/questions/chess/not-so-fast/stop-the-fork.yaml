@@ -1,0 +1,10 @@
+card: strategy/not-so-fast/stop-the-fork
+kind: move
+prompt: Black's knight wants to jump to c2 with check, forking your king and rook. Stop it before it starts.
+position: 3r2k1/p4ppp/8/4p3/4P1b1/n4N2/P4PPP/R3KB2 w - - 0 1
+measures: anticipation
+answers:
+  - a1c1
+  - a1d1
+hint: Guard c2, or make sure a check from there costs you nothing.
+explanation: Rc1 guards c2, so the knight cannot land there. Rd1 also works. It offers to trade rooks, and after ...Rxd1+ Kxd1 your king guards c2. Moving your king dodges the check, but the knight still lands on c2 and chases your rook.

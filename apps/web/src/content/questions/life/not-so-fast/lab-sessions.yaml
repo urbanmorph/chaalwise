@@ -1,0 +1,14 @@
+card: strategy/not-so-fast/lab-sessions
+kind: choice
+prompt: Every year, the lab sessions for final projects are fully booked in the first week of term. You will need about 10 sessions, but your plan will not be clear until week three. What do you do?
+options:
+  - Book 10 sessions this week, and adjust them later
+  - Wait until week three, when you know what you need
+  - Plan to share a friend's sessions if it fills up
+answer: 0
+feedback:
+  - ''
+  - Waiting for a clear plan feels careful, but by week three the sessions are gone. The threat is known; it only needs acting on.
+  - A friend's sessions are theirs first. That plan answers the problem after it has happened, if it can be answered at all.
+explanation: You know what will happen in week one. Booking now stops the problem before it starts, and changing a booking later is cheap.
+measures: think-ahead

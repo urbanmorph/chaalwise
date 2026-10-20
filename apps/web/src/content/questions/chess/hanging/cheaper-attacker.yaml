@@ -1,0 +1,9 @@
+kind: move
+practice: win-hanging
+prompt: Black's rook on e5 is giving check. The pawn on f6 defends it, so it is not hanging, but there is still a good trade. Get out of check and win material.
+position: 4k3/8/5p2/4r3/3P4/8/8/4K3 w - - 0 1
+answers:
+  - d4e5
+hint: Which of your pieces is worth the least?
+explanation: Your pawn is worth one point and the rook five. After f6 takes back, you are still four points ahead. That is a good trade, not a hanging piece. Taking with something cheaper wins material even when the piece is defended.
+measures: safety

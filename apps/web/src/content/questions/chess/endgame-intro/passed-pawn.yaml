@@ -1,0 +1,16 @@
+kind: choice
+prompt: A passed pawn has no enemy pawn in front of it, on its own file or on either file next to it. Is the b-pawn passed?
+position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
+options:
+  - Yes, no black pawn can stop it
+  - No, the black king is in the way
+  - No, it has not crossed the middle yet
+answer: 0
+feedback:
+  - ''
+  - Kings and pieces do not count, only pawns. The king may still catch it, but the pawn is passed.
+  - A pawn can be passed anywhere on the board. What counts is that no enemy pawn stands ahead of it.
+explanation: Only pawns count. Whether the black king can still catch it is a matter of counting. Look up the square of the pawn in the reference.
+highlight:
+  - b4
+measures: endgame

@@ -1,0 +1,14 @@
+card: reference/strategy/walk-away-point/below-walk-away
+kind: choice
+prompt: You have a firm job offer of 900,000 a year. A second firm, which you like about as much, offers 850,000 and says that is its limit. What do you do?
+options:
+  - 'Accept 850,000: a limit is a limit'
+  - Decline, unless they can beat 900,000
+  - Ask for 875,000, to meet in the middle
+answer: 1
+feedback:
+  - Their limit is theirs, not yours. You already have 900,000 on the table, so 850,000 leaves you worse off than walking away.
+  - ''
+  - Meeting in the middle feels fair, but 875,000 is still below the 900,000 you already have. The middle of a bad range is still bad.
+explanation: 'Your walk-away point is your best alternative: here, the other offer of 900,000. Never accept a deal worth less than it.'
+measures: value

@@ -1,0 +1,14 @@
+card: reference/labs/prisoners-dilemma/known-end
+kind: choice
+prompt: A partnership will end on a fixed date next month, and both sides know it. What happens to cooperation near the end?
+options:
+  - It holds, since it has worked so far
+  - 'It weakens: the last rounds have no tomorrow to protect'
+  - It grows, as both want to part on good terms
+answer: 1
+feedback:
+  - The record helps, but in the last round nothing comes after, so a betrayal can no longer be answered. Expect it, and protect yourself in the terms.
+  - ''
+  - Many people do want to part well, and their wider name can keep them honest. But the deal itself no longer gives a reason to, so plan for that.
+explanation: A known end unravels cooperation from the back. That is why the lab never tells you which round is the last.
+measures: cooperate

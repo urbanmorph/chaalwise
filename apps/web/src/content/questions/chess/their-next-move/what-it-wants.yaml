@@ -1,0 +1,20 @@
+card: reference/strategy/their-next-move/what-it-wants
+kind: choice
+prompt: White has just played Qh5. What does it want to do next?
+position: 'moves: e4 e5 Bc4 Nc6 Qh5'
+options:
+  - Qxf7, checkmate
+  - Qxe5, taking a pawn with check
+  - Qxh7, taking a pawn
+answer: 0
+feedback:
+  - ''
+  - Qxe5 would give check and take a pawn, which looks like a threat. But the knight on c6 guards e5, so the queen would be lost.
+  - Qxh7 does take a pawn, but the rook on h8 takes the queen straight back.
+highlight:
+  - f7
+arrows:
+  - h5f7
+  - c4f7
+explanation: 'The queen and bishop both aim at f7, and only the king guards it. Qxf7 would be mate. Qxe5+ is not a threat here: the knight on c6 guards e5.'
+measures: think-ahead

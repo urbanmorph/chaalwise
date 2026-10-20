@@ -1,0 +1,14 @@
+card: strategy/pass-the-problem-back/fourth-project
+kind: choice
+prompt: You already have three projects due this month. Your manager asks you to fit in a fourth as well. What do you reply?
+options:
+  - Ask which of the three should move to make room
+  - Say yes, and work the weekends to fit it in
+  - Say no, as you are already fully booked
+answer: 0
+feedback:
+  - ''
+  - Saying yes feels helpful, but it makes the trade-off yours alone. Your weekends pay for a choice your manager should have made.
+  - No is honest, but it ends the talk and makes you the obstacle. The real question, which work matters most, is left unasked.
+explanation: Which project matters most is your manager's choice. Asking which one moves hands that choice back, where it belongs, instead of fitting four projects' work into the time for three.
+measures: think-ahead

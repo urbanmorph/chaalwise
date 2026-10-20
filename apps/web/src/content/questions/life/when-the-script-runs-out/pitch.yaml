@@ -1,0 +1,14 @@
+card: strategy/when-the-script-runs-out/pitch
+kind: choice
+prompt: You prepared a pitch for a client's finance head, built around cutting their costs by 20%. Ten minutes in, she says costs are fine; their problem is that staff keep leaving. What do you do?
+options:
+  - Finish the pitch, since the 20% saving may win her round
+  - Ask what staff turnover costs them, and how you could help
+  - Offer a bigger discount to keep her interested
+answer: 1
+feedback:
+  - The pitch was built for a problem she says she does not have. Pushing on is playing your memorised line after the opponent left it.
+  - ''
+  - A discount answers a worry about cost, which she has just told you is not the issue.
+explanation: The pitch was a way to help her business. That reason still holds when the script does not, so find out what her real problem costs, and answer that.
+measures: plan-long

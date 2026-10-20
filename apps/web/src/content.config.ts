@@ -1,10 +1,10 @@
-import { lessonSchema } from '@chaalwise/core/lesson';
+import { lessonSchema, questionSchema } from '@chaalwise/core/lesson';
 import { referenceSchema } from '@chaalwise/core/reference';
 import { trackSchema } from '@chaalwise/core/track';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
-import { chessLessonIssues, parseMoveText, positionFromMoves } from './lib/chess';
+import { chessLessonIssues, parseMoveText, positionFromMoves, questionIssues } from './lib/chess';
 import { referenceIssues } from './lib/reference';
 
 /** Lessons are Markdown with their steps as data. A broken lesson fails the build. */
@@ -49,4 +49,12 @@ const tracks = defineCollection({
   schema: trackSchema,
 });
 
-export const collections = { lessons, safetyDrills, reference, tracks };
+/** The question corpus: one YAML file per question, at `<game>/<idea>/<name>.yaml`. A broken question fails the build. */
+const questions = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/questions' }),
+  schema: questionSchema.superRefine((question, ctx) => {
+    for (const issue of questionIssues(question)) ctx.addIssue({ code: 'custom', ...issue });
+  }),
+});
+
+export const collections = { lessons, safetyDrills, reference, tracks, questions };

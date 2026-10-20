@@ -1,0 +1,14 @@
+kind: choice
+prompt: Which phase is this?
+position: 'moves: e4 e5 Nf3 Nc6'
+options:
+  - The opening
+  - The middlegame
+  - The endgame
+answer: 0
+feedback:
+  - ''
+  - The middlegame starts once the pieces are out. Here most are still at home.
+  - Every piece is still on the board. The endgame comes when most of them are gone.
+explanation: Only two moves each, and most pieces are still at home. The opening has just begun.
+measures: opening

@@ -1,0 +1,13 @@
+kind: choice
+prompt: The queen moves like which two pieces together?
+options:
+  - A rook and a bishop
+  - A rook and a knight
+  - A bishop and a knight
+answer: 0
+feedback:
+  - ''
+  - The queen moves along lines like a rook, but she cannot jump in an L like a knight.
+  - She moves on diagonals like a bishop, but not in an L. She also moves straight, like a rook.
+explanation: The queen moves any distance in straight lines and on diagonals. That is why she is worth about nine pawns.
+measures: board

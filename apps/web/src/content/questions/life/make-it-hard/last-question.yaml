@@ -1,0 +1,14 @@
+card: strategy/make-it-hard/last-question
+kind: choice
+prompt: With 15 minutes left in a maths exam, you see that you cannot fully solve the last question, worth 20 marks. What do you do?
+options:
+  - Write every step you can, for the method marks
+  - Leave it blank and check your earlier answers
+  - Write a guess at the final answer and stop
+answer: 0
+feedback:
+  - ''
+  - Checking is useful, but a blank page scores nothing, and a 20-mark question usually rewards the method too.
+  - A bare answer earns little if it is wrong, and shows nothing of how you got there.
+explanation: Most exams give marks for method. Partial work gives the examiner something to credit; a blank gives up marks that were there to take.
+measures: composure

@@ -18,9 +18,9 @@ describe('on-device progress', () => {
     expect(await store.dueCards(now)).toEqual([]);
   });
 
-  it('remembers a finished lesson and makes a card for each graded step', async () => {
+  it("remembers a finished lesson and makes a card for each question, under the question's own card id", async () => {
     await fresh();
-    await store.recordLesson('chess/board', { corner: 'first-try', push: 'missed' }, now);
+    await store.recordLesson('chess/board', { 'chess/board/corner': 'first-try', 'chess/board/push': 'missed' }, now);
     expect(await store.completedLessons()).toEqual(new Set(['chess/board']));
     expect(await store.dueCards(now)).toEqual([]);
     const due = await store.dueCards(later);
@@ -32,7 +32,7 @@ describe('on-device progress', () => {
     await store.recordPractice('reference/strategy/sunk-cost/knight', 'first-try', now);
     expect((await store.dueCards(later)).map((c) => c.id)).toEqual(['reference/strategy/sunk-cost/knight']);
 
-    await store.recordLesson('chess/board', { corner: 'first-try' }, now);
+    await store.recordLesson('chess/board', { 'chess/board/corner': 'first-try' }, now);
     const before = (await store.dueCards(later)).find((c) => c.id === 'chess/board/corner')!.card.due;
     // Practising it again the next day, before it is due, leaves its schedule alone.
     await store.recordPractice('chess/board/corner', 'missed', new Date(now.getTime() + 86_400_000));
@@ -41,7 +41,7 @@ describe('on-device progress', () => {
 
   it('reschedules a card after a review', async () => {
     await fresh();
-    await store.recordLesson('chess/board', { corner: 'missed' }, now);
+    await store.recordLesson('chess/board', { 'chess/board/corner': 'missed' }, now);
     const [card] = await store.dueCards(later);
     await store.recordReview(card!.id, 'first-try', later);
     expect(await store.dueCards(later)).toEqual([]);
@@ -49,7 +49,7 @@ describe('on-device progress', () => {
 
   it('round-trips through a JSON export, dates included', async () => {
     await fresh();
-    await store.recordLesson('chess/board', { corner: 'first-try' }, now);
+    await store.recordLesson('chess/board', { 'chess/board/corner': 'first-try' }, now);
     const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
     expect(exported).toMatchObject({ app: 'chaalwise', version: 1 });
 
@@ -63,7 +63,7 @@ describe('on-device progress', () => {
 
   it('refuses a file that is not a Chaalwise export, and keeps what it had', async () => {
     await fresh();
-    await store.recordLesson('chess/board', { corner: 'first-try' }, now);
+    await store.recordLesson('chess/board', { 'chess/board/corner': 'first-try' }, now);
     await expect(store.importData({ app: 'something-else' })).rejects.toThrow();
     expect(await store.completedLessons()).toEqual(new Set(['chess/board']));
   });

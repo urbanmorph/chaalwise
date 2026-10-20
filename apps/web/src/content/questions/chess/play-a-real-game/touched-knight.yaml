@@ -1,0 +1,13 @@
+kind: choice
+prompt: Over the board, you pick up your knight, then see that every knight move is bad. What now?
+options:
+  - You must move the knight somewhere
+  - Put it back, as you have not let go
+  - Say "I adjust" and move something else
+answer: 0
+feedback:
+  - ''
+  - Letting go only fixes where the piece lands. Which piece you move was fixed when you touched it.
+  - '"I adjust" must be said before you touch the piece, not after.'
+explanation: Touching your piece commits you to moving it, if it has a legal move. Decide before your hand moves.
+measures: board

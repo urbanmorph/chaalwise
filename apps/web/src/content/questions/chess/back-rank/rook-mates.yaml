@@ -1,0 +1,8 @@
+kind: move
+prompt: White to move. Mate along the back rank.
+position: 6k1/5ppp/8/8/8/8/1q3PPP/4R1K1 w - - 0 1
+answers:
+  - e1e8
+hint: The black king cannot step forward, because its own pawns are in the way.
+explanation: Re8 is mate. The pawns on f7, g7 and h7 box their own king in.
+measures: patterns

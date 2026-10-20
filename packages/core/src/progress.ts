@@ -102,8 +102,8 @@ export async function openProgress(name = 'chaalwise') {
         times: (previous?.times ?? 0) + 1,
         outcomes,
       });
-      for (const [stepId, result] of Object.entries(outcomes)) {
-        const id = `${lessonId}/${stepId}`;
+      // Each question's step id is its review card (see the question corpus).
+      for (const [id, result] of Object.entries(outcomes)) {
         const card = (await cards.get(id))?.card ?? newCard(now);
         await cards.put({ id, card: schedule(card, result, now) });
       }

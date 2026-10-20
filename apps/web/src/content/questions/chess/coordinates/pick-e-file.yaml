@@ -1,0 +1,16 @@
+kind: square
+prompt: Click any square on the e-file.
+position: empty
+coordinates: true
+answers:
+  - e1
+  - e2
+  - e3
+  - e4
+  - e5
+  - e6
+  - e7
+  - e8
+hint: Find the letter e along the bottom edge, then go straight up from it.
+explanation: Every square in that column has e in its name, from e1 at the bottom to e8 at the top.
+measures: board

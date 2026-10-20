@@ -1,0 +1,16 @@
+card: strategy/pass-the-problem-back/compare
+kind: choice
+prompt: Black, to move, must give way. What does that share with the engineer's reply?
+position: 8/4k3/8/4K3/4P3/8/8/8 b - - 0 1
+alongside: An engineer is asked to fit a fourth project into a month already full with three.
+options:
+  - Leave the hard choice with the side that must make it
+  - Both are about facing the other side head on
+  - Both are won by moving first, before the other side
+answer: 0
+feedback:
+  - ''
+  - The kings do face each other, but that is the surface. What decides it is who has to make the next choice.
+  - Having to move is what loses here. Black must move, and that is Black's problem. Handing back the choice is what wins.
+explanation: Black's king must give way because it is Black's move. The engineer hands back the choice of which project moves, so the person who owns it has to make it.
+measures: think-ahead

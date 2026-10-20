@@ -1,0 +1,14 @@
+card: reference/strategy/cooperate-or-defend/long-term
+kind: choice
+prompt: You will work with a supplier for years. They make a small mistake in your favour on an invoice. What pays best?
+options:
+  - 'Keep quiet: it was theirs to catch'
+  - 'Point it out: the relationship is worth more'
+  - Use it to ask for a bigger discount
+answer: 1
+feedback:
+  - It is their error, and the gain is real today. But when they find it, and they often do, they learn you take what you can, and that costs you in every deal after.
+  - ''
+  - Pressing an advantage feels shrewd, but it turns their honest slip into a lever against them. Suppliers remember who did that.
+explanation: When you will meet again, trust and reputation pay back many times what one invoice gains.
+measures: cooperate

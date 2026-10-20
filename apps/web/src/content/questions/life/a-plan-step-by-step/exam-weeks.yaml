@@ -1,0 +1,14 @@
+card: strategy/a-plan-step-by-step/exam-weeks
+kind: choice
+prompt: Your exam is in 7 weeks and covers 12 chapters. You want the last week free for revision. How do you plan the time?
+options:
+  - Two chapters a week, with a short self-test each Sunday
+  - Read all twelve once quickly, then go back over them
+  - Start with the hardest chapters and see how far you get
+answer: 0
+feedback:
+  - ''
+  - A quick first pass feels like progress, but nothing tells you that you are behind until week six.
+  - Hard chapters first is a fair idea, but with no pace set, you learn how far you got only when the time is gone.
+explanation: Twelve chapters in six weeks is two a week. The Sunday test is the look after each step. If a week slips, you know at once, and can change the plan while there is time.
+measures: plan-long

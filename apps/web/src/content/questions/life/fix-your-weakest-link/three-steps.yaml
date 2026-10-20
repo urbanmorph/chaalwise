@@ -1,0 +1,14 @@
+card: strategy/fix-your-weakest-link/three-steps
+kind: choice
+prompt: Each report your team sends passes through three people in turn. One drafts it in 1 day, one checks it in 4 days, and one sends it in 1 day. You can halve the time of one step. Which gets more reports out each month?
+options:
+  - Drafting, since every report starts there
+  - Checking, the 4-day step
+  - Sending, since it is the step the client sees
+answer: 1
+feedback:
+  - Faster drafting gets reports to the checker sooner, but they only pile up there. The checker still clears one every 4 days.
+  - ''
+  - Faster sending pleases the client, but the checker still releases only one report every 4 days.
+explanation: The checker finishes one report every 4 days, so the team sends about 7 a month. Halve checking and it sends about 15. Halving either other step changes nothing.
+measures: plan-long

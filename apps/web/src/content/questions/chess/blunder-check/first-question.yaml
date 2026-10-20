@@ -1,0 +1,15 @@
+kind: choice
+prompt: Your opponent has just moved. What do you ask first?
+options:
+  - What does their move attack, and what did it stop guarding?
+  - Which of my own pieces can I develop next?
+  - Can I attack something of theirs right away?
+  - What was my plan, and how do I carry it on?
+answer: 0
+feedback:
+  - ''
+  - Development matters, but only once you know your pieces are safe. Their move may have made a threat.
+  - Your chances come second. If their move threatens something, an attack of yours may come too late.
+  - A plan is no use if their last move wins a piece or threatens mate. Look at their move first.
+explanation: Their last move is where the danger comes from. Ask what it attacks and what it no longer protects.
+measures: safety

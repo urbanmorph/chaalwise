@@ -1,0 +1,8 @@
+kind: square
+practice: find-square
+prompt: Find h1.
+answers:
+  - h1
+hint: The last file, on your own back rank.
+explanation: h1 is the corner square on your right when you sit behind the white pieces. The next lesson shows why that corner matters.
+measures: board

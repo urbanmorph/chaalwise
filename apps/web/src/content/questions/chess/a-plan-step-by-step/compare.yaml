@@ -1,0 +1,16 @@
+card: strategy/a-plan-step-by-step/compare
+kind: choice
+prompt: White wants a knight on d5 and goes there through c3. What does that share with the shop?
+position: 4r1k1/1p2bppp/p2p4/4p3/4P3/8/PPP2PPP/1N2R1K1 w - - 0 1
+alongside: A manager wants a second shop open within a year.
+options:
+  - A goal reached in steps, each one worth having
+  - Both are about taking a strong new position
+  - Both are best done in one bold move, straight away
+answer: 0
+feedback:
+  - ''
+  - A strong square and a new shop sound alike, but that is the surface. What they share is the route, steps you can check one at a time.
+  - The knight cannot reach d5 in one move, and a shop does not open in one step either. Each needs a route, and a look after each step.
+explanation: Nc3 then Nd5 is a route to a goal. The shop is the same. Find the site, sign the lease, hire the staff, each a step that is useful on its own, with a look after each one.
+measures: plan-long

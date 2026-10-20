@@ -1,0 +1,8 @@
+kind: move
+prompt: Use your queen to take the black rook.
+position: 4k3/8/8/8/8/1r6/8/3QK3 w - - 0 1
+answers:
+  - d1b3
+hint: Look along the diagonal from d1 up and to the left.
+explanation: The queen takes along the diagonal, just as a bishop would.
+measures: board

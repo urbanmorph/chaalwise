@@ -1,4 +1,5 @@
-import type { Lesson, Step } from '@chaalwise/core/lesson';
+import type { Lesson, Question, Step } from '@chaalwise/core/lesson';
+import { SKILL_IDS } from '@chaalwise/core/skills';
 import { Chess, normalizeMove } from 'chessops/chess';
 import { chessgroundDests } from 'chessops/compat';
 import { INITIAL_FEN, makeFen, parseFen } from 'chessops/fen';
@@ -65,16 +66,23 @@ function playIssues(pos: Chess, within: number): string[] {
   return within < worst ? [`${material.signature} needs a move limit of at least ${worst}`] : [];
 }
 
-export function chessLessonIssues(lesson: Lesson): Issue[] {
-  const issues: Issue[] = [];
-  if (lesson.measures && !isChessSkill(lesson.measures))
-    issues.push({ path: ['measures'], message: `there is no skill called ${lesson.measures}` });
-  lesson.steps.forEach((step, i) => {
-    if ('measures' in step && step.measures && !isChessSkill(step.measures)) {
-      issues.push({ path: ['steps', i, 'measures'], message: `there is no skill called ${step.measures}` });
-    }
-  });
-  return [...issues, ...chessStepIssues(lesson.steps, 'steps')];
+/** A lesson's own boards, on its reading steps; its questions are checked in the corpus. */
+export const chessLessonIssues = (lesson: Lesson): Issue[] =>
+  chessStepIssues(lesson.steps.filter((step) => 'kind' in step) as Step[], 'steps');
+
+/** A question in the corpus: a skill that exists, and a board and answers that work. */
+export function questionIssues(question: Question): Issue[] {
+  const known =
+    !question.measures ||
+    isChessSkill(question.measures) ||
+    (SKILL_IDS as readonly string[]).includes(question.measures);
+  return [
+    ...(known ? [] : [{ path: ['measures'], message: `there is no skill called ${question.measures}` }]),
+    ...chessStepIssues([{ ...question, id: 'question' } as Step], 'question').map(({ path, message }) => ({
+      path: path.slice(2),
+      message,
+    })),
+  ];
 }
 
 /** Problems with steps' boards and answers, wherever the steps live: a lesson's steps, or a reference entry's questions. */

@@ -1,0 +1,12 @@
+kind: choice
+prompt: White's knight on g5 and bishop on c4 both attack f7. Is ...Bc5, developing, safe for Black?
+position: 'moves: e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5'
+options:
+  - Safe
+  - Not safe
+answer: 1
+feedback:
+  - It develops a piece, but straight after it Nxf7 wins a pawn and forks the queen on d8 and the rook on h8.
+  - ''
+explanation: '...Bc5 lets Nxf7 win a pawn and fork the queen and the rook. Strong players answer with the sharp Traxler counter-attack, ...Bxf2+, giving up material to attack the king. At your level, defend f7 first with ...d5.'
+measures: safety

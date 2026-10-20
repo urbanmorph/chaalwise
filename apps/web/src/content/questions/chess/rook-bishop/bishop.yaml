@@ -1,0 +1,8 @@
+kind: move
+prompt: Move the bishop to the far corner.
+position: 4k3/8/8/8/8/8/1B6/4K3 w - - 0 1
+answers:
+  - b2h8
+hint: Follow the long diagonal up and to the right.
+explanation: A bishop on the long diagonal sees right across the board.
+measures: board

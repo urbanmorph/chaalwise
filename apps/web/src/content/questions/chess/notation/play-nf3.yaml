@@ -1,0 +1,8 @@
+kind: move
+prompt: Play Nf3.
+position: start
+answers:
+  - g1f3
+hint: N is the knight. Which knight can reach f3?
+explanation: The knight on g1 jumps to f3. Only the piece and the square it lands on are written, not where it came from.
+measures: board

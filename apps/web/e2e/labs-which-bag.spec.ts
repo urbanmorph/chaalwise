@@ -50,6 +50,6 @@ test('Which bag?: eight draws, then a player to back after a lucky round, then t
   );
   await expect(debrief).toContainText('Nobody changed: the luck did');
   expect(await shifts()).toBeLessThan(0.1);
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-entry', 'strategy/base-rates');
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-measures', 'weigh-odds');
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /reference\/strategy\/base-rates\//);
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /"measures":"weigh-odds"/);
 });

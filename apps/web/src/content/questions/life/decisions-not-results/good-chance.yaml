@@ -1,0 +1,14 @@
+card: reference/strategy/decisions-not-results/good-chance
+kind: choice
+prompt: You took a chance you judged would work four times in five, and it failed. What should you do next time?
+options:
+  - 'Avoid that kind of chance: the failure shows it was too risky'
+  - 'Take it again without a second thought: the decision was good'
+  - Check whether the failure showed your four in five was wrong
+answer: 2
+feedback:
+  - A failure hurts, so it feels like proof. But a four-in-five chance still fails one time in five; one result cannot tell you much.
+  - 'This is half right: one failure does not make the decision bad. But a result is evidence too, and it may show something your estimate missed.'
+  - ''
+explanation: 'One bad result does not make a good decision bad: four in five still fails one time in five. But look at why it failed. If nothing you missed would have changed the estimate, take it again.'
+measures: composure

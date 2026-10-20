@@ -1,0 +1,14 @@
+card: reference/strategy/test-to-disprove/before-backing
+kind: choice
+prompt: A colleague is sure of a plan and asks for your backing. Which question is most useful to ask first?
+options:
+  - What evidence supports the plan?
+  - What result would show it is wrong?
+  - How many people back the plan?
+answer: 1
+feedback:
+  - Supporting evidence is easy to find for almost any plan. It shows the plan could be right, not that it is.
+  - ''
+  - Many backers can share the same blind spot. Agreement is not a test.
+explanation: Naming the result that would sink the plan, then looking for it, is the cheapest way to find a flaw before it costs you.
+measures: read-hidden

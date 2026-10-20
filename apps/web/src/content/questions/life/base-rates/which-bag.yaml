@@ -1,0 +1,14 @@
+card: reference/strategy/base-rates/which-bag
+kind: choice
+prompt: 'Eight bags in ten are mostly red (7 red balls, 3 blue). Two are mostly blue (3 red, 7 blue). A bag is picked at random and one ball drawn: it is blue. Which kind of bag is it more likely to be?'
+options:
+  - 'Mostly blue: the ball says so'
+  - Equally likely either way
+  - 'Mostly red: there are many more of them'
+answer: 2
+feedback:
+  - A blue ball does point towards a mostly-blue bag, but those bags are rare. Out of 100 picks, 24 blue balls come from mostly-red bags and only 14 from mostly-blue ones.
+  - The ball moves you towards blue, but not all the way from 8 in 10 to even. It still came from a mostly-red bag about 63 times in 100.
+  - ''
+explanation: Start from 8 in 10, then adjust. Out of 100 picks, a blue ball comes from a mostly-red bag 24 times and from a mostly-blue bag 14 times.
+measures: weigh-odds

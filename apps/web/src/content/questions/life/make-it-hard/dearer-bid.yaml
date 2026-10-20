@@ -1,0 +1,14 @@
+card: strategy/make-it-hard/dearer-bid
+kind: choice
+prompt: Your firm is bidding for a contract against a larger rival, and the client says your price is 15% higher. They will decide in a week. What do you do?
+options:
+  - Make the case on what you do better than the rival
+  - Withdraw now, as the rival is clearly ahead
+  - Cut your price by 15% to match the rival
+answer: 0
+feedback:
+  - ''
+  - Behind is not lost. Withdrawing hands the rival the contract without making them earn it.
+  - Matching on price plays the rival's strongest card, and takes 15% off your margin on a contract you may still lose.
+explanation: Make the rival prove they are better, on the points where you are strong, such as service, speed or what the whole contract costs to run. Price is one figure in the client's choice, not all of it.
+measures: composure

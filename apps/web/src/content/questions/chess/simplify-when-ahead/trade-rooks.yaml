@@ -1,0 +1,8 @@
+card: reference/strategy/simplify-when-ahead/trade-rooks
+kind: move
+prompt: White is a bishop ahead. Black's rook challenges on the d-file. Make the move that trades rooks and leaves an easy win.
+position: 3r4/p3kppp/8/8/2B5/8/P4PPP/3R2K1 w - - 0 1
+answers:
+  - d1d8
+explanation: 'Rxd8 Kxd8 leaves a bishop against nothing: fewer pieces, fewer ways for Black to make trouble, and the extra piece is easy to use.'
+measures: size-risk

@@ -1,0 +1,8 @@
+kind: move
+prompt: Fork the king and the queen.
+position: 6k1/5ppp/2q5/3N4/8/8/5PPP/6K1 w - - 0 1
+answers:
+  - d5e7
+hint: Find the square where your knight checks the king on g8 and also hits c6.
+explanation: Knight to e7 checks the king and attacks the queen. The king has to move, and the knight takes the queen.
+measures: patterns

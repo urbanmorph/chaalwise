@@ -1,0 +1,14 @@
+card: strategy/review-calmly/surprise-chapter
+kind: choice
+prompt: You followed a good revision plan for a test but scored 55, because it covered a chapter the teacher had said would not be on it. What do you change for next time?
+options:
+  - Keep the plan, but check what the test covers in writing
+  - Study twice as long, since the plan clearly failed
+  - Revise less, as the result came down to luck anyway
+answer: 0
+feedback:
+  - ''
+  - The study was not the problem; the missing chapter was. Twice the hours on the wrong chapters would give the same result.
+  - Luck played a part, but one piece was within reach, checking what the test covers. Revising less adds nothing.
+explanation: Sort luck from judgement. The plan was sound, and the surprise chapter was bad luck, but what the test covered could have been checked. Keep what was sound, and fix what was in reach.
+measures: composure

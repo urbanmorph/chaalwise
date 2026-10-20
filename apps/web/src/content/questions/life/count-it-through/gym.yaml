@@ -1,0 +1,14 @@
+card: strategy/count-it-through/gym
+kind: choice
+prompt: A gym gives you the first month free if you then sign a 12-month contract at 1,500 a month, which cannot be ended early. You expect to stop going after about three months. What does saying yes commit you to?
+options:
+  - 'Nothing at first: the first month is free'
+  - '3,000: the two paid months you will use'
+  - '18,000: the whole contract'
+answer: 2
+feedback:
+  - The free month is real, but it is only the first capture. Signing is what the free month is for, and the contract follows it.
+  - That counts what you expect to use, not what you sign for. The contract cannot be ended early, so you pay for all twelve months.
+  - ''
+explanation: The free month is the first capture; the contract is the recapture. 12 × 1,500 = 18,000, whether you go or not. Judge where the sequence ends.
+measures: calculate

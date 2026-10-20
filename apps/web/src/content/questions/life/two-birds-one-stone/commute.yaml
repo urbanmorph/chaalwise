@@ -1,0 +1,14 @@
+card: strategy/two-birds-one-stone/commute
+kind: choice
+prompt: You want to get fitter, and the bus to college costs you 60 a day, about 1,200 a month. College is 5 km away on a safe road. Which plan serves you best?
+options:
+  - Join a gym for 1,500 a month and keep taking the bus
+  - Cycle to college most days
+  - Walk at weekends, and keep the bus for college
+answer: 1
+feedback:
+  - The gym helps your fitness, but your costs rise to 2,700 a month, and the bus fares stay.
+  - ''
+  - Weekend walks help a little, but the weekday fares stay as they were.
+explanation: Cycling serves both aims with one change. It saves about 1,200 a month on fares, and builds exercise into every college day.
+measures: think-ahead

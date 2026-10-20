@@ -34,8 +34,16 @@ describe('the labs pages', () => {
       it("ends with the reference entry's questions, counted towards the lab's track", () => {
         const section = tryIt(html);
         expect(section).toContain('Try it yourself');
-        expect(section).toContain(`data-entry="${lab.entry}"`);
-        expect(section).toContain(`data-measures="${lab.track}"`);
+        // Each question from the entry carries the lab's track.
+        const steps = JSON.parse(
+          section
+            .match(/data-steps="([^"]*)"/)![1]!
+            .replaceAll('&quot;', '"')
+            .replaceAll('&#39;', "'")
+            .replaceAll('&amp;', '&'),
+        );
+        expect(steps.length).toBeGreaterThan(0);
+        for (const step of steps) expect(step.measures).toBe(lab.track);
       });
 
       it('links to its reference entries and its track course', () => {

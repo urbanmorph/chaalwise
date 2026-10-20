@@ -1,0 +1,14 @@
+card: reference/strategy/sunk-cost/project
+kind: choice
+prompt: A project has spent 80 of its budget of 100. New figures show that the last 20 will bring back only 10 once it is finished. What do you do?
+options:
+  - 'Carry on: only 20 more to finish what cost 80'
+  - 'Stop: the next 20 would bring back only 10'
+  - Carry on, or the 80 already spent is wasted
+answer: 1
+feedback:
+  - Being nearly done feels like a reason to finish, but the 80 is spent whether you finish or not. The choice is 20 out for 10 back.
+  - ''
+  - Not wanting the money to be wasted is the trap itself. The 80 is gone either way; carrying on only adds a loss of 10 to it.
+explanation: 'Only the future costs and gains can change: spending 20 to get 10 back loses 10. How stopping will look is a future cost too and can count, but weigh it honestly; it is usually smaller than more good money after bad.'
+measures: size-risk

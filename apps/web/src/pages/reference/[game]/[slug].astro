@@ -10,6 +10,7 @@ import { toFen } from '../../../lib/chess';
 import { lessonHref, lessonPath } from '../../../lib/lessons';
 import { labHref, LABS } from '../../../lib/labs/labs';
 import { referenceMeasures } from '../../../lib/profile-skills';
+import { ask } from '../../../lib/questions';
 import { entryHref, numberedMoves } from '../../../lib/reference';
 import { referenceEntries, type ReferenceItem } from '../../../lib/reference-entries';
 
@@ -30,6 +31,7 @@ const lesson = data.lesson ? (await lessonPath()).find((l) => l.id === data.less
 const measures = referenceMeasures(data.game, data.skill);
 // A lab that plays this idea out against bots.
 const lab = LABS.find((l) => l.entry === entry.id || l.read.includes(entry.id));
+const questions = await ask(data.try ?? []);
 const opening = data.position?.startsWith('moves:') ? numberedMoves(data.position.slice(6)) : undefined;
 ---
 
@@ -76,11 +78,9 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
       )}
     </div>
 
-    {(data.position || data.try?.some((step) => step.position)) && <NewToChess />}
+    {(data.position || questions.some((step) => step.position)) && <NewToChess />}
 
-    {data.try && (
-      <TryIt entry={entry.id} steps={data.try} {measures} more={measures && { href: `/skills/${measures}/`, label: `Practise ${SKILLS[measures]}` }} />
-    )}
+    {data.try && <TryIt steps={questions} more={measures && { href: `/skills/${measures}/`, label: `Practise ${SKILLS[measures]}` }} />}
 
     {lab && (
       <p class="elsewhere">

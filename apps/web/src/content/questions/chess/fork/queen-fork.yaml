@@ -1,0 +1,8 @@
+kind: move
+prompt: Black's bishop on h4 is loose. Win it with a check.
+position: 4k3/5ppp/8/8/7b/8/5PPP/3Q2K1 w - - 0 1
+answers:
+  - d1a4
+hint: Look for a queen check that also looks along the fourth rank.
+explanation: Queen to a4 checks along the diagonal and attacks the bishop along the rank. Black answers the check, and the queen takes the bishop.
+measures: patterns

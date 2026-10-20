@@ -1,0 +1,14 @@
+card: strategy/spend-effort-where-it-matters/lease
+kind: choice
+prompt: This week you must choose a booking tool for meeting rooms, which can be cancelled any month, and sign a five-year office lease. You have about ten hours for both. How do you split them?
+options:
+  - An hour on the tool, the rest on the lease
+  - Five hours each, so neither is rushed
+  - The tool first, as the team uses it every day
+answer: 0
+feedback:
+  - ''
+  - Equal time feels fair, but the two are not equal. A poor tool costs a month; a poor lease costs five years.
+  - Daily use makes the tool feel important, but it can be dropped next month. The lease cannot.
+explanation: Ask what each mistake would cost and whether it can be undone. The tool can be changed in a month; the lease binds you for sixty. Give the time to the lease.
+measures: composure

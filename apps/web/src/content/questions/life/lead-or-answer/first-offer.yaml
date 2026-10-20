@@ -1,0 +1,14 @@
+card: strategy/lead-or-answer/first-offer
+kind: choice
+prompt: You are selling your bicycle. Ones like it sell for about 8,000. A buyer opens at 4,000. What do you say?
+options:
+  - Counter at about 8,000, pointing to what similar ones sell for
+  - Offer to meet in the middle at 6,000
+  - Ask what is the most they could really pay
+answer: 0
+feedback:
+  - ''
+  - Meeting in the middle feels fair, but their low first number set the middle. Splitting the gap gives away 2,000 of a price you could justify.
+  - Asking for more information is wise when you know little, but you already know the value. Their 4,000 stays the anchor, and you invite a second number from them.
+explanation: Their 4,000 is an anchor. A counter grounded in what similar bicycles fetch pulls the talk back towards level; splitting the difference lets their first number decide the middle.
+measures: plan-long

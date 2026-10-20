@@ -1,0 +1,20 @@
+kind: choice
+prompt: Your knight on f3 takes the pawn on e5. How is that written?
+position: 'moves: e4 e5 Nf3 Nc6'
+options:
+  - Nxe5
+  - Ne5
+  - Kxe5
+  - xNe5
+answer: 0
+feedback:
+  - ''
+  - Ne5 is a knight moving to an empty e5. A capture needs the x.
+  - K is the king. The knight is N, because K was already taken.
+  - The x goes between the piece and the square, not in front.
+explanation: N for the knight, x for the capture, e5 for the square. Read aloud, it is "knight takes e5".
+highlight:
+  - e5
+arrows:
+  - f3e5
+measures: board

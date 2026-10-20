@@ -1,0 +1,14 @@
+card: strategy/find-what-everything-depends-on/one-mill
+kind: choice
+prompt: Your bakery sells 200 cakes a day. All its flour comes from one mill, which closed for a week last year. You have 50,000 to make the business safer. What do you spend it on?
+options:
+  - A second mill, and a week of flour in store
+  - A new oven, since the old one is the slowest
+  - Advertising, to grow sales past 200 a day
+answer: 0
+feedback:
+  - ''
+  - A slow oven limits how many cakes you bake. A closed mill stops every cake at once.
+  - More sales make the single mill matter more, not less. A week without flour stops all of them.
+explanation: Every cake rests on the one mill. Backing it up protects all 200 a day. The other spends improve one part while everything still hangs on the flour.
+measures: calculate

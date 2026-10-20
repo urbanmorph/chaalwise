@@ -1,0 +1,9 @@
+kind: move
+practice: win-hanging
+prompt: Black's knight on d5 has no defender. Win it.
+position: 4k3/8/8/3n4/8/8/8/3QK3 w - - 0 1
+answers:
+  - d1d5
+hint: Your queen on d1 looks straight up the d-file.
+explanation: Nothing defends d5, so your queen wins a knight for free.
+measures: safety

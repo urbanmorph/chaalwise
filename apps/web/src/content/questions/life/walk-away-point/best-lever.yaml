@@ -1,0 +1,14 @@
+card: reference/strategy/walk-away-point/best-lever
+kind: choice
+prompt: A supplier is your only source for a key part, and talks on price have stalled. What most improves your position?
+options:
+  - Hold out longer than they can
+  - Find a second supplier you could switch to
+  - Explain how much you need the part
+answer: 1
+feedback:
+  - Patience can help, but if they know you have nowhere else to go, waiting costs you more than it costs them.
+  - ''
+  - Being open about interests can help find a deal, but saying you have no alternative tells them they can ask more.
+explanation: A real alternative raises your walk-away point, and the other side must beat it to keep you. Improving it is usually your strongest lever.
+measures: value

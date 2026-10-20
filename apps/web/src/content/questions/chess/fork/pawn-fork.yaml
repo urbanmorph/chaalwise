@@ -1,0 +1,8 @@
+kind: move
+prompt: Even a pawn can fork. Win a piece.
+position: 6k1/5ppp/2n1b3/8/3PP3/8/5PPP/6K1 w - - 0 1
+answers:
+  - d4d5
+hint: A pawn attacks the two squares diagonally in front of it.
+explanation: The pawn on d5 attacks the knight and the bishop. If the bishop takes it, the e-pawn takes back, and you still win a piece for a pawn.
+measures: patterns

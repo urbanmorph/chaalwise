@@ -1,0 +1,14 @@
+card: reference/labs/prisoners-dilemma/misread
+kind: choice
+prompt: A colleague you work well with misses a deadline that hurts you, once. You are not sure it was on purpose. What tends to work best?
+options:
+  - Hit back once, as tit for tat would
+  - Let it go this time, and watch what comes next
+  - Stop relying on them from now on
+answer: 1
+feedback:
+  - Tit for tat does well, but when moves can be misread, one slip sets off a run of payback. Forgiving now and then breaks the echo.
+  - ''
+  - Cutting them off ends a relationship that has paid you well, over one move you may have misread.
+explanation: When moves can be misread, forgiveness keeps cooperation going. In the lab, two forgiving players stayed well ahead of two tit-for-tats when 1 move in 20 went wrong.
+measures: cooperate

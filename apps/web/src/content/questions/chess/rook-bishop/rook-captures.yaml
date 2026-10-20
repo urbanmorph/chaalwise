@@ -1,0 +1,8 @@
+kind: move
+prompt: Line pieces capture by moving onto the enemy piece. Take the knight with your rook.
+position: 4k3/8/n7/8/8/8/8/R3K3 w - - 0 1
+answers:
+  - a1a6
+hint: Straight up the a-file, as far as the knight.
+explanation: The rook takes the knight and stands where it was. Neither the rook nor the bishop can jump over a piece in the way.
+measures: board

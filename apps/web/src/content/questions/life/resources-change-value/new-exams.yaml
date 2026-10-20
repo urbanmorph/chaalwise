@@ -1,0 +1,14 @@
+card: strategy/resources-change-value/new-exams
+kind: choice
+prompt: At school you earned top marks by learning facts quickly. At university, the exams let you bring your notes and ask you to argue a case. You have one extra hour a day to study. How do you use it?
+options:
+  - Write practice answers that argue a case
+  - Learn more facts, since memory is your strength
+  - Copy out neater, fuller notes to take in
+answer: 0
+feedback:
+  - ''
+  - Memory was worth a great deal when exams tested facts. With notes allowed, it is worth much less, so more of it adds little.
+  - Good notes help, but with notes allowed, everyone has the facts. Marks now go to the argument, which notes cannot write for you.
+explanation: The same strength changed value when the exam changed. Spend the hour on what the new situation rewards, not on what used to earn marks.
+measures: plan-long

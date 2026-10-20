@@ -1,0 +1,8 @@
+kind: move
+prompt: Win the queen with a discovered check.
+position: 4k3/q4ppp/8/4N3/8/8/5PPP/4R1K1 w - - 0 1
+answers:
+  - e5c6
+hint: Every knight move uncovers check from the rook. Which one also attacks the queen?
+explanation: Knight to c6 uncovers check from the rook on e1 and attacks the queen. Black must answer the check, and the knight takes the queen.
+measures: patterns

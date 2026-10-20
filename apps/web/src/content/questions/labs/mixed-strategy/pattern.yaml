@@ -1,0 +1,14 @@
+card: reference/labs/mixed-strategy/pattern
+kind: choice
+prompt: In rock-paper-scissors, you often follow rock with paper. You have just thrown rock. What does a watchful opponent throw next?
+options:
+  - Scissors
+  - Paper, to match you
+  - Something at random, to be safe
+answer: 0
+feedback:
+  - ''
+  - Matching your paper only draws. The point of reading you is to play what beats your next throw.
+  - Random is safe for them, but wastes what they know. Your habit says paper is coming, and scissors beats it.
+explanation: A habit that can be read can be used. The bot in the lab does exactly this.
+measures: unpredictable

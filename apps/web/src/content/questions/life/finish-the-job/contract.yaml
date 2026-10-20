@@ -1,0 +1,14 @@
+card: strategy/finish-the-job/contract
+kind: choice
+prompt: After three months, a client has agreed every term of a large contract by phone. The signed copy is due on Friday. It is Thursday afternoon. What do you do?
+options:
+  - Check the final copy against what was agreed, then send it
+  - Send it straight away, since everything is agreed
+  - Celebrate with the team now; Friday is a formality
+answer: 0
+feedback:
+  - ''
+  - Agreed is not signed. A wrong figure or an old version in the copy can reopen three months of talks.
+  - The work feels finished, but nothing is signed. Relaxing before the last step is how won positions are drawn.
+explanation: The deal is won but not finished. One careful check of the final copy costs an hour; a mistake at this stage can cost the deal.
+measures: plan-long

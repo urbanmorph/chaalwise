@@ -1,15 +1,9 @@
-import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { parse } from 'yaml';
+import { lessonsIn } from './content';
 
-const dir = new URL('../src/content/lessons/strategy/', import.meta.url);
-const lessons = readdirSync(dir).map((f) => ({
-  id: f.replace('.md', ''),
-  steps: (
-    parse(readFileSync(new URL(f, dir), 'utf8').split(/^---$/m)[1]!) as {
-      steps: { kind: string; situations?: string[]; alongside?: string; position?: string }[];
-    }
-  ).steps,
+const lessons = lessonsIn('strategy').map(({ file, data }) => ({
+  id: file.replace('.md', ''),
+  steps: data.steps as { kind: string; situations?: string[]; alongside?: string; position?: string }[],
 }));
 
 describe('every strategy lesson ends with a plan to use the idea', () => {

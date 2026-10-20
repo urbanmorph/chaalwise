@@ -1,0 +1,8 @@
+kind: move
+prompt: Pin Black's queen to the king.
+position: 4k3/3q1ppp/8/8/P7/8/5PPP/5BK1 w - - 0 1
+answers:
+  - f1b5
+hint: Which diagonal joins the queen on d7 and the king on e8?
+explanation: Bishop to b5 pins the queen. It can only take the bishop, and the a-pawn takes back. You win a queen for a bishop.
+measures: patterns

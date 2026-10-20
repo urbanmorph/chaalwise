@@ -61,6 +61,9 @@ test('Split the pie: five negotiations, with offers, counters and walk-aways, th
   await expect(debrief).toContainText('The deal zone lies between the two walk-away points');
   await expect(debrief).toContainText('BATNA');
   expect(await shifts()).toBeLessThan(0.1);
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-entry', 'strategy/walk-away-point');
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-measures', 'value');
+  await expect(page.locator('section.try .stage')).toHaveAttribute(
+    'data-steps',
+    /reference\/strategy\/walk-away-point\//,
+  );
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /"measures":"value"/);
 });

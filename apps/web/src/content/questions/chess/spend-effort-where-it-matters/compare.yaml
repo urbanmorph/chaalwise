@@ -1,0 +1,16 @@
+card: strategy/spend-effort-where-it-matters/compare
+kind: choice
+prompt: Trading rooks here cannot be undone. What does that moment share with the lease?
+position: 3r4/4kppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
+alongside: A manager has a week to choose a five-year lease and a monthly software plan.
+options:
+  - Most time on the choice that cannot be undone
+  - Both are about trading one thing for another
+  - Every step deserves the same careful thought
+answer: 0
+feedback:
+  - ''
+  - A trade of rooks and a signed lease both sound like trades, but that is the surface. What matters is that neither can be taken back.
+  - Equal care leaves too little time for the moves that cannot be undone. On the clock, that costs games.
+explanation: A recapture or a monthly plan can be decided fast, because a mistake is cheap or can be reversed. The rook trade and the lease are final, so they get the time.
+measures: composure

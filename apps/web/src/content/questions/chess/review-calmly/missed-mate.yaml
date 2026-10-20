@@ -1,0 +1,9 @@
+card: strategy/review-calmly/missed-mate
+kind: move
+prompt: You won this game forty moves later. In review, you find that you missed a mate in one here. Find it.
+position: 6k1/5p1p/6p1/8/8/8/1B3PPP/3R2K1 w - - 0 1
+measures: patterns
+answers:
+  - d1d8
+hint: Which square next to Black's king does the bishop already cover?
+explanation: Rd8 is mate. The rook covers the back rank, and the bishop covers g7. The win hid the miss, which is why you review the moves, not the result.

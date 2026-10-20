@@ -1,0 +1,14 @@
+card: strategy/count-it-through/bulk-offer
+kind: choice
+prompt: A bottle of sauce costs 120, or you can have three for the price of two. You will finish one bottle before the others go off. What does the offer do for you?
+options:
+  - It saves you 120, the price of the free bottle
+  - It saves you 40 on each bottle
+  - It costs you 120 more than you need to spend
+answer: 2
+feedback:
+  - The third bottle is free only if you would have bought it anyway. You would not, so nothing is saved.
+  - Each bottle is cheaper, but you pay for bottles you will throw away. The price per bottle is the first step, not the end.
+  - ''
+explanation: You pay 240 for three bottles to use one that costs 120 on its own. Counted through, the deal costs you twice what you needed to spend.
+measures: calculate

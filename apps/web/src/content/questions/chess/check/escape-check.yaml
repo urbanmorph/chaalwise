@@ -1,0 +1,8 @@
+kind: move
+prompt: Your king is in check from the rook. Get out of check by taking it.
+position: 4k3/8/8/8/8/8/4r3/4K3 w - - 0 1
+answers:
+  - e1e2
+hint: Nothing protects the rook, so your king can take it.
+explanation: Capturing the piece that gives check is often the best way out, here winning a rook.
+measures: board

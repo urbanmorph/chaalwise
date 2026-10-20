@@ -1,0 +1,8 @@
+kind: move
+prompt: Now castle on the queen's side.
+position: r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1
+answers:
+  - e1c1
+hint: Move the king two squares to the left, to c1.
+explanation: On the queen's side the king goes to c1 and the rook to d1.
+measures: board

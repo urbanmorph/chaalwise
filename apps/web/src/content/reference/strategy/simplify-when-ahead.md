@@ -11,12 +11,7 @@ skill: 'size-risk'
 related: ['chess/piece-values', 'strategy/trade-offs']
 lesson: 'strategy/simplify-when-ahead'
 try:
-  - kind: move
-    id: trade-rooks
-    prompt: "White is a bishop ahead. Black's rook challenges on the d-file. Make the move that trades rooks and leaves an easy win."
-    position: '3r4/p3kppp/8/8/2B5/8/P4PPP/3R2K1 w - - 0 1'
-    answers: ['d1d8']
-    explanation: 'Rxd8 Kxd8 leaves a bishop against nothing: fewer pieces, fewer ways for Black to make trouble, and the extra piece is easy to use.'
+  - chess/simplify-when-ahead/trade-rooks
 ---
 
 Trade pieces, not pawns: with fewer pieces left, an extra pawn or piece matters more. The side that is behind wants complications; deny them.

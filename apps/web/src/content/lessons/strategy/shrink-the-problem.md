@@ -15,47 +15,9 @@ steps:
   - kind: read
     id: off-the-board
     text: Off the board, a big goal is a series of small steps, each leaving fewer ways for it to go wrong. And the finish needs care, because that is where hurry spoils the work.
-  - kind: choice
-    id: saving
-    prompt: You want 300,000 for a deposit in two years, and you can afford to save 12,500 a month. Which plan is most likely to get you there?
-    options:
-      - Move 12,500 to a separate account each payday
-      - Save whatever is left at the end of each month
-      - Save more later, once your pay goes up
-    answer: 0
-    feedback:
-      - ''
-      - It feels flexible, but what is left at the end of the month is usually less than planned, and nothing is locked in.
-      - A pay rise may come, but waiting leaves the whole gap open for longer, and spending tends to rise with pay.
-    explanation: 24 × 12,500 = 300,000. Moving it on payday keeps each month's gain out of reach, so the gap gets smaller and the plan gets harder to knock off course, like the shrinking box.
-  - kind: choice
-    id: room
-    prompt: You have one weekend to clear a garage packed to the roof, and you will not finish it. By Sunday night, which is the better state to leave it in?
-    options:
-      - Half of it fully cleared, the rest untouched
-      - All of it a little tidier than before
-      - Everything sorted into piles on the floor
-    answer: 0
-    feedback:
-      - ''
-      - Tidying everywhere looks like progress, but nothing is finished, and the mess spreads back over the week.
-      - Sorting feels like a step forward, but piles on the floor make the whole garage harder to use until every pile is dealt with.
-    explanation: A finished half is like a square the king can no longer use. The problem only shrinks if each gain is kept.
-  - kind: choice
-    id: compare
-    prompt: 'What do boxing in the king and the essay share?'
-    position: '8/8/8/2k5/8/3Q4/8/4K3 w - - 0 1'
-    alongside: 'A student has three weeks for a long essay and has not started.'
-    options:
-      - 'Make each step leave less to do, and take care at the end'
-      - 'Do the whole thing in one go while energy lasts'
-      - 'Wait until the end, when the task is clearest'
-    answer: 0
-    feedback:
-      - ''
-      - 'One rush is how the queen gives stalemate and the essay misses its argument. Small steps that keep their gains work better.'
-      - 'Waiting leaves the whole task for the last days, when there is no room for a mistake.'
-    explanation: "The queen shrinks the king's box one move at a time, and the last step needs the most care. An essay shrinks the same way: each session leaves less to do, and the final read matters."
+  - ask: life/shrink-the-problem/saving
+  - ask: life/shrink-the-problem/room
+  - ask: chess/shrink-the-problem/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you shrink a big job?'

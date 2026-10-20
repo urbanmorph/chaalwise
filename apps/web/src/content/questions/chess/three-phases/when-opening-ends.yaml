@@ -1,0 +1,13 @@
+kind: choice
+prompt: When is the opening over?
+options:
+  - When both sides have brought out their pieces and castled
+  - After ten to fifteen moves, whatever is on the board
+  - When the first piece or pawn is captured
+answer: 0
+feedback:
+  - ''
+  - That is how long it usually lasts, not what ends it. A slow opening can run longer.
+  - Captures often happen while pieces are still coming out. The opening ends when development is done.
+explanation: The phases are about what is happening on the board, not a move count. Once development is done, you need a plan, and that is the middlegame.
+measures: opening

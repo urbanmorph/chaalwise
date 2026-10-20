@@ -1,0 +1,12 @@
+kind: choice
+prompt: Black wants to chase White's queen away with ...g6. Is that safe?
+position: 'moves: e4 e5 Qh5'
+options:
+  - Safe
+  - Not safe
+answer: 1
+feedback:
+  - It does chase the queen, but she takes on e5 with check, and then attacks the rook on h8 as well.
+  - ''
+explanation: After ...g6, Qxe5+ wins the e5 pawn with check, and the queen then attacks the rook on h8 too. Defend e5 first, with ...Nc6.
+measures: safety

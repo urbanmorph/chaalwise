@@ -1,0 +1,18 @@
+kind: choice
+prompt: The game record ends with Qxf7#. What happened?
+position: 'moves: e4 e5 Qh5 Nc6 Bc4 Nf6'
+options:
+  - The queen took on f7, and it was mate
+  - The queen took on f7, and it was check
+  - The queen moved to f7, and it was mate
+answer: 0
+feedback:
+  - ''
+  - '+ is check. # is the sign for mate, so the game is over.'
+  - The x says the queen captured something on f7, here the pawn.
+explanation: "Q for the queen, x for the capture, f7 for the square, # for mate. This short mate is called Scholar's mate."
+arrows:
+  - h5f7
+highlight:
+  - e8
+measures: board

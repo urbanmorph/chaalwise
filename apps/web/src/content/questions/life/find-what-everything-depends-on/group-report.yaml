@@ -1,0 +1,14 @@
+card: strategy/find-what-everything-depends-on/group-report
+kind: choice
+prompt: Your group of four has six weeks for a report. Every chapter uses the results of a survey that one member is running, due in week two. It is week one. What do you check first?
+options:
+  - That each chapter has a clear outline
+  - That the survey is on track, and who could step in
+  - That the work is split fairly between the four
+answer: 1
+feedback:
+  - Outlines help, but every chapter will need rewriting if the survey is late or wrong.
+  - ''
+  - A fair split matters to the group, but all four shares stand on the survey.
+explanation: All four chapters rest on one survey and one person. Check it, and have someone ready to step in, before anything else.
+measures: calculate

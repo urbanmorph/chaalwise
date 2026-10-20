@@ -1,0 +1,14 @@
+card: reference/strategy/base-rates/rare-condition
+kind: choice
+prompt: 1 person in 100 has a condition. A test finds 9 in 10 people who have it, and wrongly flags 1 in 10 who do not. Someone tests positive. How likely is it they have it?
+options:
+  - About 90%
+  - About 50%
+  - About 8%
+answer: 2
+feedback:
+  - That is how often the test finds the condition, not how often a positive is right. With so few people having it, most positives come from the many who do not.
+  - It can feel as if the good test and the rare condition cancel out. Count it out of 1,000 people to see how lopsided it is.
+  - ''
+explanation: 'Out of 1,000 people, 10 have it and 9 of them test positive; 990 do not and 99 of them test positive. Only 9 of the 108 positives are real: about 8%.'
+measures: weigh-odds

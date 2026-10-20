@@ -1,0 +1,14 @@
+card: reference/strategy/winners-curse/who-wins
+kind: choice
+prompt: Ten firms bid for a building contract. The real cost will be the same whichever firm does the work, but nobody knows it yet. Your estimate was the lowest, so you won. What is most likely?
+options:
+  - You priced it best
+  - You underestimated the cost the most
+  - The other firms padded their prices
+answer: 1
+feedback:
+  - Winning feels like being right. But the cost is the same for every firm, so the lowest price is not better pricing, only the lowest guess.
+  - ''
+  - Some firms may add a margin, but ten estimates of the same cost spread around the truth. The lowest of them is most likely below it.
+explanation: When everyone guesses the same unknown cost, the lowest guess wins, and the lowest guess is most likely too low.
+measures: value

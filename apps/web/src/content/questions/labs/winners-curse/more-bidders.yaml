@@ -1,0 +1,14 @@
+card: reference/labs/winners-curse/more-bidders
+kind: choice
+prompt: Next time there are ten bidders instead of five, with the same kind of jar. How should you change your bid?
+options:
+  - Shade it further below your estimate
+  - Shade it less, to have a chance of winning
+  - 'Keep the same margin: your estimate is the same'
+answer: 0
+feedback:
+  - ''
+  - More rivals feels like a reason to sharpen your price, and real bidders often do. But the more bidders, the further the winning estimate is above the truth.
+  - 'Your estimate is the same, but what winning tells you is not: against more bidders, winning means you were even more optimistic.'
+explanation: The more bidders, the bigger the overestimate behind the winning bid, so the more you shade.
+measures: value

@@ -1,0 +1,14 @@
+card: strategy/a-plan-step-by-step/month-end
+kind: choice
+prompt: Your team takes 10 working days to close the accounts each month. You want it down to 5 within six months. Which plan is most likely to get there?
+options:
+  - Change one stage a month, and count the days after each
+  - Switch every stage to a new process at once next month
+  - Set the 5-day target now and leave the team to find a way
+answer: 0
+feedback:
+  - ''
+  - One big switch feels decisive, but if the close then takes longer, you cannot tell which change caused it, and nothing works well while it all beds in.
+  - A target is the goal, not the route. Without steps, there is nothing to check along the way until the six months are gone.
+explanation: Six months give room for six changes, each one checked. A day saved is kept even if a later change fails, and a change that does not help shows at once.
+measures: plan-long
