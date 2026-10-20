@@ -1,0 +1,15 @@
+kind: choice
+prompt: A client rejected your proposal harshly. On the next bid, you are tempted to cut your price far below cost to make sure you win. What is going on?
+options:
+  - The loss is deciding, not the numbers
+  - Cutting the price is the wise move after a loss
+  - You should stop bidding for a year to recover
+  - Winning the next bid at any price fixes the loss
+answer: 0
+feedback:
+  - ''
+  - A bid priced below cost loses money even when it wins.
+  - One rejection is not a reason to stop; it is a reason to stay calm.
+  - A bid won at a loss adds a second loss to the first.
+explanation: Like tilt at a poker table, a painful loss pushes you to win back what you lost. Decide the next bid on its own numbers.
+measures: composure

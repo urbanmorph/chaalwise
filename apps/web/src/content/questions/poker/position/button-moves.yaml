@@ -1,0 +1,15 @@
+kind: choice
+prompt: Why does the dealer button move one seat each hand?
+options:
+  - So every player takes turns acting last, the best seat
+  - To decide who shuffles
+  - So the best player always acts last
+  - It is decoration
+answer: 0
+feedback:
+  - ''
+  - Who shuffles is not what the button is for in these games.
+  - The button rotates whoever is playing.
+  - The button decides the order of play.
+explanation: Acting last is an advantage, so the button moves round the table and every player gets it in turn.
+measures: position

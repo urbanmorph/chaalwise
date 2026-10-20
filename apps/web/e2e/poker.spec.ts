@@ -54,5 +54,26 @@ test('a poker lesson shows the cards at the table, and checks the answer', async
 test('the poker course starts with the first hands and lists every lesson', async ({ page }) => {
   await page.goto('/poker/');
   await expect(page.getByRole('link', { name: 'your first hands' })).toHaveAttribute('href', '/poker/first-hands/');
-  await expect(page.locator('[data-lesson^="poker/"]')).toHaveCount(7);
+  await expect(page.locator('[data-lesson^="poker/"]')).toHaveCount(11);
+});
+
+test('the practice table reviews each decision against the odds after the hand', async ({ page }) => {
+  await page.goto('/poker/practice/');
+  await hydrated(page);
+  await expect(page.getByText('Practice points are free')).toBeVisible();
+  await page.getByRole('radio', { name: /Cautious/ }).check();
+  await page.getByRole('button', { name: 'Deal a hand' }).click();
+  await expect(page.getByLabel('Your cards').getByRole('img')).toHaveCount(2);
+  // Fold at the first decision: the review shows it, with the chance and what the maths suggested.
+  const fold = page.getByRole('button', { name: 'Fold' });
+  if (await fold.isVisible()) await fold.click();
+  else await page.getByRole('button', { name: 'Check' }).click();
+  while (!(await page.getByTestId('review').isVisible())) {
+    const moves = page.locator('.moves button');
+    await moves.first().click();
+  }
+  const review = page.getByTestId('review');
+  await expect(review.getByRole('row')).not.toHaveCount(1);
+  await expect(review).toContainText('%');
+  await expect(page.getByTestId('tally')).toContainText(/\d+ of \d+ decisions/);
 });

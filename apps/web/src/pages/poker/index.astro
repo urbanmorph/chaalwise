@@ -18,5 +18,17 @@ const lessons = await lessonPath('poker');
     </p>
     <p>Practice points are free and can never be bought, sold or cashed out. You play the computer only.</p>
     <LessonList {lessons} stageNames={POKER_STAGES} />
+    <section class="practice">
+      <h2>Practice tables</h2>
+      <p>
+        <a href="/poker/practice/">Play hands against the computer</a>, cautious, steady or bold, and see every decision checked against the odds at the time.
+      </p>
+    </section>
   </div>
 </Base>
+
+<style>
+  .practice {
+    margin-top: 32px;
+  }
+</style>

@@ -31,3 +31,6 @@ Thumbs.db
 supporting-docs/
 apps/web/e2e/.builds/
 .lighthouseci/
+
+# Agent worktrees (local only)
+.claude/worktrees/

@@ -1,0 +1,18 @@
+kind: choice
+prompt: Your ace and two, with these shared cards. What is your best hand?
+cards:
+  hole: [Ac, 2d]
+  board: [3h, 4s, 5c, Jd, 9h]
+options:
+  - A straight, five high
+  - High card, ace high
+  - A pair of twos, ace kicker
+  - A straight, ace high
+answer: 0
+feedback:
+  - ''
+  - 'The ace can count as one, below the two: ace, two, three, four, five.'
+  - There is no second two.
+  - An ace-high straight needs a king, queen, jack and ten.
+explanation: 'The ace counts high or low. Here it joins two, three, four and five: the lowest straight, five high.'
+measures: hand-reading

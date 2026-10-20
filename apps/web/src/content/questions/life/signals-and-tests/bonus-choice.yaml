@@ -1,0 +1,15 @@
+kind: choice
+prompt: "An employer offers new sales staff a choice: a higher fixed salary, or a lower one with a large bonus for meeting targets. What does each person's choice tell the employer?"
+options:
+  - Those who pick the bonus mostly expect to meet the targets
+  - 'Nothing: people choose at random'
+  - Those who pick the fixed salary are the best sellers
+  - Everyone will pick the higher salary
+answer: 0
+feedback:
+  - ''
+  - People choose by what they expect of themselves, which is the point.
+  - Strong sellers usually earn more with the bonus, so they tend to pick it.
+  - Those who expect to meet the targets do better with the bonus.
+explanation: 'A choice that suits some people more than others is a test, like a bet in poker: what each person chooses tells you about them.'
+measures: bluff

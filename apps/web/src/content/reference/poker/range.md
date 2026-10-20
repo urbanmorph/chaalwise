@@ -5,6 +5,10 @@ kind: 'concept'
 level: 'intermediate'
 aliases: ['Hand range']
 summary: 'All the hands another player could have, given what they have done so far.'
+lesson: 'poker/ranges-and-equity'
+try:
+  - 'poker/ranges-and-equity/why-ranges'
+  - 'poker/ranges-and-equity/against-kicker'
 related: ['poker/equity', 'poker/bluff']
 ---
 

@@ -1,0 +1,21 @@
+kind: choice
+prompt: You and the computer both have a flush in hearts. Who wins?
+cards:
+  hole: [Kh, 3c]
+  board: [Jh, 8h, 5h, 2h, 9s]
+  others:
+    - name: Computer
+      cards: [Qh, Ad]
+options:
+  - 'You: your king of hearts beats its queen as the highest card'
+  - 'Neither: a flush is a flush'
+  - 'The computer: it has more hearts'
+  - Whoever has the ace of a different suit
+answer: 0
+feedback:
+  - ''
+  - Two flushes are compared card by card from the top.
+  - Only five cards count, and both use five hearts.
+  - Off-suit cards play no part in a flush.
+explanation: When both have a flush, the highest card decides, then the next. Your king of hearts beats the computer's queen.
+measures: hand-reading

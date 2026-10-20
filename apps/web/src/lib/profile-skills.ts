@@ -119,6 +119,27 @@ export const POKER_SKILLS: ChessSkill[] = [
     means: 'Bet to be called by worse hands, or to make better ones fold.',
     practise: { href: '/poker/why-you-bet/', label: 'Why you bet' },
   },
+  {
+    id: 'ranges',
+    track: 'read-hidden',
+    name: 'Ranges',
+    means: 'Think of every hand the other player could hold, and how often you win against them.',
+    practise: { href: '/poker/ranges-and-equity/', label: 'What they could hold' },
+  },
+  {
+    id: 'signals',
+    track: 'bluff',
+    name: 'Signals and tests',
+    means: 'Believe what is costly to fake, and bet to learn what others hold.',
+    practise: { href: '/poker/signals-and-tests/', label: 'Signals and tests' },
+  },
+  {
+    id: 'tilt',
+    track: 'composure',
+    name: 'Keeping your head',
+    means: 'Decide the next hand as well as the last, whatever you just lost.',
+    practise: { href: '/poker/tilt/', label: 'After a bad loss' },
+  },
 ];
 
 /** Every game's skills, chess and poker: the evidence a track gets from play, kept apart from answers off the board. */

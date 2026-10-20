@@ -141,7 +141,7 @@ describe('the footer', () => {
   const footer = dist('index.html').match(/<footer class="site-footer"[\s\S]*?<\/footer>/)![0];
   const REPO = 'https://github.com/urbanmorph/chaalwise/blob/main';
 
-  it('links to the terms, which say it is a social game and how to raise an issue', () => {
+  it('links to the terms, which say it is a learning app and how to raise an issue', () => {
     expect(footer).toMatch(new RegExp(`href="${REPO}/TERMS.md"[^>]*>\\s*terms`));
   });
 

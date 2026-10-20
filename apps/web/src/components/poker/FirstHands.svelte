@@ -1,14 +1,14 @@
 <script lang="ts">
   import { deck, shuffle } from '@chaalwise/poker/cards';
   import { playBots } from '@chaalwise/poker/bots';
-  import { evaluate, type HandValue } from '@chaalwise/poker/evaluate';
+  import { evaluate } from '@chaalwise/poker/evaluate';
   import { outs, ruleOf } from '@chaalwise/poker/odds';
-  import { act, betSize, legalMoves, newHand, toCall, type Move, type Table } from '@chaalwise/poker/table';
+  import { act, legalMoves, newHand, toCall, type Move, type Table } from '@chaalwise/poker/table';
   import { tick } from 'svelte';
   import { markMet } from '../../lib/meet';
   import { BOT, coachFor, GUIDED, LEARNER, learnerTurn, PLAYERS, startGuided, step } from '../../lib/poker/guided';
-  import { pointsWord } from '../../lib/poker/points';
-  import PlayingCard from './PlayingCard.svelte';
+  import { moveLabel, resultText } from '../../lib/poker/words';
+  import TableView from './TableView.svelte';
 
   /**
    * Poker's front door: three guided hands, then three on your own against a
@@ -51,17 +51,6 @@
     return { notice: `You have ${made}.${drawing}`, why: toCall(t) ? `Calling costs ${toCall(t)} points.` : 'Nothing to call: checking is free.' };
   }
 
-  const LABEL = (t: Table, move: Move) =>
-    move === 'call'
-      ? `Call ${toCall(t)}`
-      : move === 'bet'
-        ? `Bet ${betSize(t.street)}`
-        : move === 'raise'
-          ? `Raise, ${toCall(t) + betSize(t.street)} points`
-          : move === 'fold'
-            ? 'Fold'
-            : 'Check';
-
   async function deal() {
     phase = 'hand';
     table = guided
@@ -88,19 +77,6 @@
     await tick();
     doneHeading?.focus();
   }
-
-  function resultText(t: Table): string {
-    const r = t.result!;
-    const you = r.winners.includes(LEARNER);
-    if (r.byFold) return you ? `The bot folded. You win the pot of ${pointsWord(r.won)}.` : `You folded. The bot wins the pot of ${pointsWord(r.won)}.`;
-    // At a showdown, both hands are known.
-    const yours: HandValue = r.hands[LEARNER]!;
-    const theirs: HandValue = r.hands[BOT]!;
-    if (r.winners.length > 1) return `A split pot: you both have ${yours.name}.`;
-    return you
-      ? `You win ${pointsWord(r.won)} with ${yours.name}. The bot had ${theirs.name}.`
-      : `The bot wins ${pointsWord(r.won)} with ${theirs.name}. You had ${yours.name}.`;
-  }
 </script>
 
 <div class="first-hands">
@@ -118,34 +94,23 @@
       <h2 tabindex="-1" bind:this={heading}>{hand ? `Hand ${index + 1}: ${hand.title}` : `On your own: hand ${free} of ${FREE}`}</h2>
       {#if hand}<p class="intro">{hand.intro}</p>{/if}
 
-      <div class="poker-row" aria-label="The bot's cards">
-        <span class="who">Bot · {table.seats[BOT]!.points} points</span>
-        {#each table.seats[BOT]!.cards as card (card)}<PlayingCard card={table.result && !table.result.byFold ? card : undefined} />{/each}
-      </div>
-      <div class="poker-row" aria-label="Shared cards">
-        {#each [0, 1, 2, 3, 4] as i (i)}{#if table.board[i]}<PlayingCard card={table.board[i]} />{:else}<span class="slot"></span>{/if}{/each}
-        <span class="pot">Pot: {pointsWord(table.pot || (table.result?.won ?? 0))}</span>
-      </div>
-      <div class="poker-row" aria-label="Your cards">
-        <span class="who">You · {table.seats[LEARNER]!.points} points</span>
-        {#each table.seats[LEARNER]!.cards as card (card)}<PlayingCard {card} />{/each}
-      </div>
+      <TableView {table} you={LEARNER} bot={BOT} />
 
       {#if coach}
         <div class="coach" data-testid="coach" aria-live="polite">
           <p>{coach.notice}</p>
-          <p class="why">{coach.suggest ? `Suggested: ${LABEL(table, coach.suggest).toLowerCase()}. ` : ''}{coach.why}</p>
+          <p class="why">{coach.suggest ? `Suggested: ${moveLabel(table, coach.suggest).toLowerCase()}. ` : ''}{coach.why}</p>
         </div>
         <div class="moves">
           {#each legalMoves(table) as move (move)}
             <button class="button" class:primary={move === coach.suggest} class:suggested={move === coach.suggest} type="button" onclick={() => play(move)}
-              >{LABEL(table, move)}</button
+              >{moveLabel(table, move)}</button
             >
           {/each}
         </div>
       {:else if table.result}
         <div class="result" data-testid="result" aria-live="polite">
-          <p><strong>{resultText(table)}</strong></p>
+          <p><strong>{resultText(table, LEARNER, BOT)}</strong></p>
           {#if hand}<p>{hand.lesson}</p>{/if}
           <button class="button primary" type="button" onclick={next}>{index + 1 >= GUIDED.length + FREE ? 'Finish' : 'Next hand'}</button>
         </div>

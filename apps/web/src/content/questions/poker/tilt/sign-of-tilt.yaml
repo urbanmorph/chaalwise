@@ -1,0 +1,15 @@
+kind: choice
+prompt: Which of these is a sign of tilt?
+options:
+  - Calling bets you know are bad, to win back what you lost
+  - Folding a weak hand after a loss
+  - Taking a short break after a big loss
+  - Checking your decisions against the odds
+answer: 0
+feedback:
+  - ''
+  - Folding a weak hand is the right play whatever came before.
+  - A break is a guard against tilt, not a sign of it.
+  - Checking against the odds is what keeps tilt out.
+explanation: 'Tilt shows when the last result, not the odds, decides your move: chasing losses with calls you would not make calmly.'
+measures: tilt

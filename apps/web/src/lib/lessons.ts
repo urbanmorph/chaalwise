@@ -55,6 +55,7 @@ export const POKER_STAGES: Record<number, string> = {
   1: 'The hands',
   2: 'Odds',
   3: 'Reading and betting',
+  4: 'Keeping your head',
 };
 
 export const STAGES: Record<number, string> = {

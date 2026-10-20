@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { deck, type Card } from '@chaalwise/poker/cards';
 import { compare, evaluate } from '@chaalwise/poker/evaluate';
-import { exactChance, outs } from '@chaalwise/poker/odds';
+import { equity, exactChance, outs } from '@chaalwise/poker/odds';
 import { cardIssues, type StepCards } from '../src/lib/poker/step-cards';
 import { corpus } from './content';
 
@@ -100,5 +100,39 @@ describe('what the poker lessons claim', () => {
       ['4h', '2c', 'Ks', 'Ad'].map((card) => [card, beating(hole, [...board, card]).length]),
     );
     expect(Math.max(...Object.values(threats))).toBe(threats['4h']);
+  });
+
+  it('checks the review questions on hands and outs', () => {
+    expect(hand('hand-rankings/three-of-a-kind').category).toBe('three-of-a-kind');
+    expect(compare(hand('hand-rankings/three-of-a-kind'), theirs('hand-rankings/three-of-a-kind'))).toBeGreaterThan(0);
+    expect(hand('hand-rankings/wheel').name).toMatch(/straight, five high/);
+    expect(
+      compare(hand('hand-rankings/flush-against-flush'), theirs('hand-rankings/flush-against-flush')),
+    ).toBeGreaterThan(0);
+    expect(theirs('hand-rankings/flush-against-flush').category).toBe('flush');
+    const inside = cardsOf('outs-and-odds/inside-straight');
+    expect(outs(inside.hole as Card[], inside.board as Card[])).toMatchObject({ count: 4, drawing: 'straight' });
+    const both = cardsOf('outs-and-odds/two-draws');
+    expect(outs(both.hole as Card[], both.board as Card[])).toMatchObject({ count: 15, drawing: 'flush or straight' });
+    const price = cardsOf('outs-and-odds/price');
+    expect(price.toCall! / (price.pot! + price.toCall!)).toBe(0.25);
+  });
+
+  it('works out the equity the ranges lesson gives, against each hand and the range', () => {
+    const { hole = [], board = [] } = cardsOf('ranges-and-equity/against-aces');
+    const vs = (id: string) =>
+      equity(hole as Card[], board as Card[], { against: cardsOf(id).others![0]!.cards as Card[] });
+    const aces = vs('ranges-and-equity/against-aces');
+    const kings = vs('ranges-and-equity/against-kicker');
+    expect(aces.exact && kings.exact).toBe(true);
+    expect(Math.round(aces.share)).toBe(11);
+    expect(Math.round(kings.share)).toBe(93);
+    expect(Math.round((aces.share + kings.share) / 2)).toBe(52);
+    expect(cardsOf('ranges-and-equity/both-hands').board).toEqual(board);
+  });
+
+  it('counts the implied odds the lesson gives', () => {
+    const { pot = 0, toCall = 0 } = cardsOf('implied-odds/paid-later');
+    expect(Math.round((100 * toCall) / (pot + toCall + 8))).toBe(18);
   });
 });

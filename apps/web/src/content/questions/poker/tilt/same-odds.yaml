@@ -1,0 +1,15 @@
+kind: choice
+prompt: Why does losing a hand change nothing about the chances in the next one?
+options:
+  - The cards are shuffled again before every hand
+  - The computer lets you win after a loss
+  - Losses and wins even out over a session
+  - 'It does change them: losing streaks continue'
+answer: 0
+feedback:
+  - ''
+  - The computer plays its style; it does not hand out wins.
+  - 'Nothing evens out on purpose: each hand is new.'
+  - A streak is only what happened; it does not make the next hand worse.
+explanation: Each hand is dealt from a freshly shuffled deck. The chances reset every time, whatever happened before.
+measures: tilt

@@ -1,0 +1,15 @@
+kind: choice
+prompt: Why does a bet work as a test of the other player's hand?
+options:
+  - Weak hands tend to fold to it, strong ones call
+  - It forces them to show their cards at once
+  - It always wins the pot straight away
+  - It makes them play worse from then on
+answer: 0
+feedback:
+  - ''
+  - Cards are shown only at the showdown.
+  - A bet that is called wins nothing on the spot.
+  - A bet does not change their skill, only the choice in front of them.
+explanation: A test works when different hands answer it differently. After your bet, a call tells you more than a check would have.
+measures: signals

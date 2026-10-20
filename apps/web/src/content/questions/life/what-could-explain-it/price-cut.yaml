@@ -1,0 +1,15 @@
+kind: choice
+prompt: A rival business suddenly cuts its prices by a third. Before you react, how should you think about why?
+options:
+  - List the likely reasons and weigh each one
+  - Settle on the most worrying reason and act on it
+  - Assume it is a mistake they will soon undo
+  - Ignore it, since their reasons are hidden
+answer: 0
+feedback:
+  - ''
+  - Acting on one guess is right only when the guess is right.
+  - It might be, but that is one guess among several.
+  - Hidden reasons can still be weighed by what fits the facts.
+explanation: As with an opponent's range of hands in poker, keep several explanations in mind and weigh them, rather than betting everything on one guess.
+measures: read-hidden

@@ -1,0 +1,21 @@
+kind: choice
+prompt: You hold the king and queen of diamonds; your opponent shows a pair of aces. With one card to come, how often do you win?
+cards:
+  hole: [Kd, Qd]
+  board: [Kh, 7c, 2d, 9s]
+  others:
+    - name: Opponent
+      cards: [Ah, Ac]
+options:
+  - 'About 11%: only a king or a queen saves you'
+  - 'About 50%: it is down to the last card'
+  - 'About 30%: you have two high cards'
+  - 'Never: aces always win'
+answer: 0
+feedback:
+  - ''
+  - The aces are well ahead; most last cards change nothing.
+  - 'Two high cards help only if one of them pairs: five cards out of 44.'
+  - A king or queen on the last card gives you a better hand.
+explanation: 'A king gives you three kings; a queen gives you two pair, kings and queens. That is 2 kings and 3 queens: 5 of the 44 unseen cards, about 11%.'
+measures: ranges
