@@ -1,0 +1,14 @@
+card: strategy/their-next-move/ask-for-a-raise
+kind: choice
+prompt: You plan to ask for a raise next week. Last week you missed an important deadline. How do you prepare?
+options:
+  - List your best results of the year to make the case
+  - Expect the deadline to come up, and prepare your answer
+  - Ask at once, before the deadline counts against you
+answer: 1
+feedback:
+  - Your results are your strongest move, but they are your move. Their best reply is the deadline, and an unprepared answer to it undoes the list.
+  - ''
+  - Moving fast feels like getting ahead of it, but the deadline is freshest now. Their reply will be the same, only sooner.
+explanation: Their best reply uses your weakest point. Prepare for it, or choose a better moment.
+measures: think-ahead

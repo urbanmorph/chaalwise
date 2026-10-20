@@ -1,11 +1,10 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { backRankWeak } from '@chaalwise/teach/endgame';
 import { moveSafety } from '@chaalwise/teach/safety';
 import { fromFen, play } from '@chaalwise/teach/position';
 import { describe, expect, it } from 'vitest';
 import { isChessSkill } from '../src/lib/profile-skills';
-import { parse } from 'yaml';
-import type { Lesson } from '@chaalwise/core/lesson';
+import { lessonsIn } from './content';
 import { parseMoveText, toFen } from '../src/lib/chess';
 import { safetyVerdict } from '../src/lib/drills';
 
@@ -14,15 +13,8 @@ import { safetyVerdict } from '../src/lib/drills';
  * claim about them: that a mate is a mate, and that "safe" agrees with the
  * teaching helpers. Lesson text is written by people; the board decides.
  */
-const DIR = new URL('../src/content/lessons/chess/', import.meta.url);
-const STRATEGY = new URL('../src/content/lessons/strategy/', import.meta.url);
-const read = (dir: URL) =>
-  readdirSync(dir).map((file) => ({
-    file,
-    data: parse(readFileSync(new URL(file, dir), 'utf8').split(/^---$/m)[1]!) as Lesson,
-  }));
-const lessons = read(DIR);
-const strategy = read(STRATEGY);
+const lessons = lessonsIn('chess');
+const strategy = lessonsIn('strategy');
 const steps = lessons.flatMap(({ file, data }) => data.steps.map((step) => ({ file, step })));
 const step = (file: string, id: string) =>
   [
@@ -47,7 +39,7 @@ describe('lesson order', () => {
   });
 
   it('does not use move-number notation (1. e4) in stage 0, where it has not been explained', () => {
-    const stage0 = lessons.filter((l) => l.data.stage === 0).map((l) => readFileSync(new URL(l.file, DIR), 'utf8'));
+    const stage0 = lessons.filter((l) => l.data.stage === 0).map((l) => JSON.stringify(l.data));
     for (const text of stage0) expect(text).not.toMatch(/\b\d+\.\s?[a-hKQRBNO]/);
   });
 });

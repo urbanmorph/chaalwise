@@ -1,0 +1,18 @@
+kind: choice
+prompt: White pushes the pawn from b7 to b8, makes a queen, and the new queen gives check. How is that written?
+position: 4k3/1P6/8/8/8/8/8/4K3 w - - 0 1
+options:
+  - b8=Q+
+  - b8=Q#
+  - Pb8=Q
+  - Qb8+
+answer: 0
+feedback:
+  - ''
+  - '# means mate, but the black king can still step to d7, e7 or f7. Use + for check.'
+  - Pawns have no letter, and the check needs its +.
+  - That reads as a queen moving to b8. A promotion names the pawn's square, then =Q.
+explanation: The square, then =Q for the new piece, then + for the check.
+arrows:
+  - b7b8
+measures: board

@@ -1,0 +1,16 @@
+kind: choice
+prompt: 1.e4 c6, the Caro-Kann. Which family?
+position: 'moves: e4 c6'
+options:
+  - Open games
+  - Semi-open games
+  - Closed games
+  - Indian games
+answer: 1
+feedback:
+  - Open games need 1...e5. Here Black answered 1.e4 with ...c6.
+  - ''
+  - Black soon plays ...d5, but closed games start with 1.d4. This one began 1.e4.
+  - Indian games start 1.d4 Nf6. This one began 1.e4.
+explanation: White played 1.e4 and Black answered with something other than ...e5, so it is semi-open.
+measures: opening

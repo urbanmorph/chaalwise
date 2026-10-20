@@ -1,0 +1,13 @@
+kind: choice
+prompt: How far can the king move?
+options:
+  - One square in any direction
+  - Any distance, like the queen
+  - Two squares at a time
+answer: 0
+feedback:
+  - ''
+  - The king moves in the same directions as the queen, but only one square at a time.
+  - The king moves two squares only when castling. Every other king move is one square.
+explanation: One square in any direction, but never onto a square an enemy piece attacks.
+measures: board

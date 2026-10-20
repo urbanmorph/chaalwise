@@ -1,0 +1,14 @@
+card: reference/strategy/decisions-not-results/lucky-win
+kind: choice
+prompt: A friend left a piece hanging, the opponent missed it, and the friend won. Was it a good move?
+options:
+  - 'Yes: it won the game'
+  - 'No: it was a mistake that got lucky'
+  - Yes, if the friend guessed the opponent would miss it
+answer: 1
+feedback:
+  - The win is real, but it came from the opponent missing the piece, not from the move. Next time the piece is taken.
+  - ''
+  - Reading an opponent can matter, but hoping they miss a free piece is a gamble with nothing to gain. A safe move would have kept the same chances.
+explanation: Judge the move by what was known when it was played. It gave away a piece; the win came from the opponent's mistake.
+measures: composure

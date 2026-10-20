@@ -1,0 +1,8 @@
+kind: move
+prompt: The knight cannot run. Attack it and win it.
+position: 4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 w - - 0 1
+answers:
+  - d4d5
+hint: Attack the pinned piece with something cheap.
+explanation: The pawn on d5 attacks the knight, and the knight cannot move. You win a knight for at most a pawn. Pile up on a pinned piece, because it cannot get away.
+measures: patterns

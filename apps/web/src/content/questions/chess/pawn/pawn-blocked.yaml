@@ -1,0 +1,14 @@
+kind: choice
+prompt: A black pawn stands right in front of your pawn. Can your pawn move?
+position: 4k3/8/8/4p3/4P3/8/8/4K3 w - - 0 1
+options:
+  - No, it is blocked
+  - Yes, it takes the black pawn
+  - Yes, it can step diagonally to d5 or f5
+answer: 0
+feedback:
+  - ''
+  - Pawns capture diagonally, never straight ahead. The pawn in front just blocks it.
+  - A pawn moves diagonally only when it captures, and d5 and f5 are empty.
+explanation: A pawn cannot move or capture straight ahead, so two pawns face to face block each other.
+measures: board

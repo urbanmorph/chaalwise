@@ -1,0 +1,8 @@
+kind: move
+prompt: The knight attacks your queen. Deal with it in the best way.
+position: 4k3/8/8/8/8/2n5/3P4/3QK3 w - - 0 1
+answers:
+  - d2c3
+hint: Can something cheap take the knight?
+explanation: Your pawn takes the knight for free. When something attacks you, look for a way to take it before you run.
+measures: safety

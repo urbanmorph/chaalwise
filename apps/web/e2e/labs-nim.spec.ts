@@ -38,8 +38,11 @@ test('Nim: leave multiples of 4 to win all five games, looking back after each, 
   await expect(debrief).toContainText('You won 5 of 5');
   await expect(debrief).toContainText('backward induction');
   expect(await shifts()).toBeLessThan(0.1);
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-entry', 'labs/backward-induction');
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-measures', 'calculate');
+  await expect(page.locator('section.try .stage')).toHaveAttribute(
+    'data-steps',
+    /reference\/labs\/backward-induction\//,
+  );
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /"measures":"calculate"/);
 });
 
 test('Nim: taking turns starts the next game at once, with the bot first', async ({ page }) => {

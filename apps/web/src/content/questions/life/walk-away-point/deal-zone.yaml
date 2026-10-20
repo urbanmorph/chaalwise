@@ -1,0 +1,14 @@
+card: reference/strategy/walk-away-point/deal-zone
+kind: choice
+prompt: You will sell a machine for no less than 40,000. You later learn the buyer would have paid up to 55,000. Where could a deal have happened?
+options:
+  - Anywhere above 40,000, your floor
+  - Only at 47,500, halfway between
+  - Anywhere from 40,000 to 55,000
+answer: 2
+feedback:
+  - Your floor is only one end. Above 55,000 the buyer would rather walk away, so the zone stops there.
+  - Halfway is one possible deal, and talks often end near it. But any price in the zone beats no deal for both sides.
+  - ''
+explanation: The zone of agreement runs from your walk-away point to theirs. Where in it you land depends on the bargaining; outside it, no deal is the right result.
+measures: value

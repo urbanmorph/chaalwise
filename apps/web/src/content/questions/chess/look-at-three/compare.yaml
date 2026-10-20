@@ -1,0 +1,16 @@
+card: strategy/look-at-three/compare
+kind: choice
+prompt: Rxa7 grabs a pawn; Nf6+ wins the queen. What does choosing between them share with the engineer's case?
+position: 6k1/p2q4/8/8/4N3/8/8/R5K1 w - - 0 1
+alongside: A manager must decide whether to match a rival's offer to a key engineer.
+options:
+  - Name several options and compare them before choosing
+  - Both are about winning something from the other side
+  - Both reward the first good idea, played quickly
+answer: 0
+feedback:
+  - ''
+  - Winning material is the surface of the board. The engineer's case is not about taking anything; what they share is how the choice is made.
+  - The first idea here, Rxa7, loses the rook. Playing it quickly is the mistake both cases warn against.
+explanation: On the board you name the checks, captures and threats, then compare. At work you name more than match or let go. In both, the best move is often not the first one you see.
+measures: calculate

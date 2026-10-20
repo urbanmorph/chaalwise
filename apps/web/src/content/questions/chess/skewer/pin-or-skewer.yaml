@@ -1,0 +1,17 @@
+kind: choice
+prompt: After Bf3+ here, is it a pin, a skewer or a fork?
+position: q7/7p/8/3k4/8/5B2/6PP/6K1 b - - 0 1
+options:
+  - A skewer, as the king is in front
+  - A pin, as the queen is stuck
+  - A fork, as two pieces are hit
+answer: 0
+feedback:
+  - ''
+  - In a pin the cheaper piece is in front. Here the king is in front, and it is the king that must move.
+  - A fork attacks in two directions. Here both pieces are on one line, so the front one moves and the back one falls.
+explanation: The king is in front and must move out of check, which exposes the queen behind it. That is a skewer.
+highlight:
+  - d5
+  - a8
+measures: patterns

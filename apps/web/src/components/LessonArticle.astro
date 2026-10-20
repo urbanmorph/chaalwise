@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import { DONE_KEY } from '../lib/done-lessons';
-import { lessonHref, pathContext, stepsWithSkills, type LessonEntry } from '../lib/lessons';
+import { lessonHref, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
 import LessonPage from './LessonPage.svelte';
 import NewToChess from './NewToChess.astro';
 
@@ -13,6 +13,7 @@ interface Props {
 const { lesson } = Astro.props;
 const { Content } = await render(lesson);
 const { next, buildsOn } = await pathContext(lesson);
+const steps = await playedSteps(lesson);
 const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
 ---
 
@@ -41,7 +42,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
 {lesson.data.game === 'strategy' && <NewToChess />}
 <LessonPage
   client:load
-  lesson={{ steps: stepsWithSkills(lesson) }}
+  lesson={{ steps }}
   lessonId={lesson.id}
   next={next && { href: lessonHref(next), title: next.data.title }}
   track={lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined}

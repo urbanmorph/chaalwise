@@ -1,0 +1,13 @@
+kind: choice
+prompt: In the endgame, where should your king usually be?
+options:
+  - Towards the centre, where it can attack and defend
+  - In the corner, out of harm's way
+  - Still behind its pawns, as in the middlegame
+answer: 0
+feedback:
+  - ''
+  - That was right while the queens were on. With few pieces left, a king in the corner is a piece doing nothing.
+  - Hiding made sense with many pieces about. Now mate is unlikely, and the king is needed to fight.
+explanation: With the queens gone, mating attacks are rare, so the king can come out and fight.
+measures: endgame

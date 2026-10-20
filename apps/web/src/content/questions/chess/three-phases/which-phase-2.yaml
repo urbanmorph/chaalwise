@@ -1,0 +1,14 @@
+kind: choice
+prompt: And this one?
+position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
+options:
+  - The opening
+  - The middlegame
+  - The endgame
+answer: 2
+feedback:
+  - The kings are still on their back ranks, but almost every piece is gone. That makes it an endgame.
+  - With only a rook and pawns left, there are no pieces to build a middlegame plan around. It is an endgame.
+  - ''
+explanation: A white rook and a few pawns each side, and nothing else. That is an endgame, even though the kings are still on their first ranks.
+measures: opening

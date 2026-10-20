@@ -1,0 +1,13 @@
+kind: choice
+prompt: Only the two kings are left. What happens?
+options:
+  - It is a draw, because neither side can ever give mate
+  - The game goes on until fifty moves pass without a capture
+  - The player with more time left on the clock wins
+answer: 0
+feedback:
+  - ''
+  - The fifty-move rule is real, but there is no need to wait. With no way to mate, the game is drawn at once.
+  - A clock decides only while mate is still possible. Even if one side runs out of time here, it is a draw.
+explanation: When neither side can ever give mate, the game is drawn at once. That covers king against king, and king and bishop or king and knight against a lone king. A game is also drawn when the same position comes three times, when fifty moves each pass with no capture and no pawn move, or when both players agree. Online sites apply most of these automatically; over the board you claim them.
+measures: board

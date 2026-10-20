@@ -23,8 +23,12 @@ describe('a reference entry you can try', () => {
   });
 
   it('counts the answers towards the skill the idea trains, when the profile measures it', () => {
-    expect(section(dist('reference/strategy/weakest-link/index.html'))).toContain('data-measures="plan-long"');
-    expect(section(dist('reference/strategy/cool-head/index.html'))).toContain('data-measures="composure"');
+    expect(section(dist('reference/strategy/weakest-link/index.html'))).toContain(
+      '&quot;measures&quot;:&quot;plan-long&quot;',
+    );
+    expect(section(dist('reference/strategy/cool-head/index.html'))).toContain(
+      '&quot;measures&quot;:&quot;composure&quot;',
+    );
     // A track nothing measures yet, such as bluffing, would show the answers nowhere, so they count towards nothing.
     expect(referenceMeasures('strategy', 'bluff')).toBeUndefined();
   });

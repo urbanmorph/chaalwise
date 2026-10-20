@@ -1,0 +1,8 @@
+kind: move
+prompt: Passed pawns must be pushed. Push yours.
+position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
+answers:
+  - b4b5
+hint: Move it one square towards the last rank.
+explanation: Each push brings promotion closer. To see when the enemy king can stop it, and how your own king helps, look up the square of the pawn and the opposition in the reference.
+measures: endgame

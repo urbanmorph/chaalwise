@@ -1,0 +1,16 @@
+card: strategy/simplify-when-ahead/compare
+kind: choice
+prompt: What do Rxe8+ and the team's choice share?
+position: 4rk2/pp3ppp/8/8/8/2N5/PP3PPP/4R1K1 w - - 0 1
+alongside: A week before a fixed deadline, with the work done, a team is offered a new tool that might make it faster.
+options:
+  - When ahead, remove what could still go wrong
+  - Both are about swapping one thing for another
+  - Always cash in a gain as early as you can
+answer: 0
+feedback:
+  - ''
+  - 'Swapping is the surface likeness. The point is why: fewer moving parts, when a sure result is all you need.'
+  - Cashing in every gain early is a known mistake. Simplify when a sure, modest win is what you need, as with the extra knight or the fixed deadline.
+explanation: White trades off Black's only active piece, and the team keeps the tools it knows a week before the deadline. Both are ahead, and both remove what could still go wrong.
+measures: size-risk

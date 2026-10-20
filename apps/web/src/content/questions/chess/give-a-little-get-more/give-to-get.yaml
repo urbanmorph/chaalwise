@@ -1,0 +1,9 @@
+card: strategy/give-a-little-get-more/give-to-get
+kind: move
+prompt: Give a little to get more. Find the move that wins material.
+position: 6k1/pp3ppp/4q3/3N4/8/8/PP3PPP/2R3K1 w - - 0 1
+measures: calculation
+answers:
+  - c1c8
+hint: Where would Black's queen have to stand for your knight to fork it with the king?
+explanation: Rc8+ gives the rook. If ...Qxc8, Ne7+ forks the king and the queen, and Nxc8 wins the queen, a rook (5) for a queen (9). If ...Qe8 blocks instead, Rxe8 is mate.

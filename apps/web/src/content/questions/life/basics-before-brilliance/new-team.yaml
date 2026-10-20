@@ -1,0 +1,14 @@
+card: strategy/basics-before-brilliance/new-team
+kind: choice
+prompt: You start as the manager of a team of six. Two of them missed deadlines last month because nobody tracks who is doing what. Your director wants a bold idea for next year within a month. What do you do first?
+options:
+  - Draft the bold idea, since the director asked for it
+  - Set up a weekly list of who is doing what, by when
+  - Hire a seventh person to cover the missed work
+answer: 1
+feedback:
+  - The idea matters, but a team that misses deadlines cannot deliver it. It is the queen out before the pieces.
+  - ''
+  - A seventh person does not fix a tracking problem. They join the same confusion.
+explanation: The missed deadlines come from a missing basic. Fix that first, and the bold idea has a team that can deliver it.
+measures: plan-long

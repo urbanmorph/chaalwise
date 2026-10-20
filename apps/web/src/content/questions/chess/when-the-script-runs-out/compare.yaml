@@ -1,0 +1,16 @@
+card: strategy/when-the-script-runs-out/compare
+kind: choice
+prompt: What does facing 1...a6 share with the customer's new question?
+position: 'moves: e4 a6'
+alongside: A call-centre script ends, and the customer asks something it never covered.
+options:
+  - The plan has run out, but the reasons behind it still guide you
+  - Both happen in the first minute of an exchange
+  - Both call for a longer script that covers more cases
+answer: 0
+feedback:
+  - ''
+  - When it happens is a surface likeness. What they share is that the prepared lines stop, and the purpose does not.
+  - No script covers everything, because opponents and customers always find something new. The reasons are what carry over.
+explanation: In both, the prepared lines have ended. On the board, take the centre and develop; on the call, help the customer with what they need. The purpose outlasts the script.
+measures: plan-long

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { lessonSchema } from '../src/lesson';
 import { advance, createPlayer, giveUp } from '../src/player';
 import { planSentence, planToAsk, type PlanRecord } from '../src/plans';
-import { lesson } from './fixtures';
+import { authored, lesson } from './fixtures';
 
 const day = 86_400_000;
 const now = new Date('2026-10-20T09:00:00Z');
@@ -26,8 +26,8 @@ const step = {
 
 describe('a plan to use the idea', () => {
   it('is a lesson step with situations to choose from and the action to take', () => {
-    expect(lessonSchema.parse({ ...lesson, steps: [step] }).steps[0]).toMatchObject({ kind: 'plan' });
-    expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, situations: ['only one'] }] })).toThrow();
+    expect(lessonSchema.parse({ ...authored, steps: [step] }).steps[0]).toMatchObject({ kind: 'plan' });
+    expect(() => lessonSchema.parse({ ...authored, steps: [{ ...step, situations: ['only one'] }] })).toThrow();
   });
 
   it('is not graded: the learner moves on without answering, and it cannot be given up', () => {

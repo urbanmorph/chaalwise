@@ -1,0 +1,9 @@
+card: strategy/when-the-script-runs-out/reasons-not-lines
+kind: move
+prompt: Black has left your prepared lines with ...h6. You still know what the opening is for. Your knight and bishop are out, so make your king safe.
+position: 'moves: e4 e5 Nf3 Nc6 Bc4 h6'
+measures: opening
+answers:
+  - e1g1
+hint: The squares between your king and the rook on h1 are empty now.
+explanation: Castling tucks the king away and brings the rook towards the centre. You needed no line for ...h6, only the reasons every opening follows.

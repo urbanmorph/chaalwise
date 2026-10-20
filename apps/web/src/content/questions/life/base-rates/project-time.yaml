@@ -1,0 +1,14 @@
+card: reference/strategy/base-rates/project-time
+kind: choice
+prompt: Your team expects its new system to take six months. Of ten similar projects in your firm, eight ran at least half as long again. What is the best estimate?
+options:
+  - 'Six months: this team knows its plan'
+  - Six months, plus a week or two of slack
+  - About nine months, then adjust for real differences
+answer: 2
+feedback:
+  - The plan is the inside view, and each of those ten teams had a plan too. Most of them still ran over.
+  - Some slack feels prudent, but a week or two is far less than similar projects needed. Start from how they went.
+  - ''
+explanation: 'Start from the outside view: similar projects mostly ran half as long again. Then adjust only for what truly differs, such as a smaller scope.'
+measures: weigh-odds

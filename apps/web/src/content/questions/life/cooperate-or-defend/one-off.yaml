@@ -1,0 +1,14 @@
+card: reference/strategy/cooperate-or-defend/one-off
+kind: choice
+prompt: You are selling a used laptop online to a stranger in another city. You will not deal with them again. How do you set the terms?
+options:
+  - 'Send it first: most buyers are honest'
+  - Payment cleared before it ships, and an honest description
+  - 'Make it sound better than it is: you will not meet again'
+answer: 1
+feedback:
+  - Most buyers are honest, but with no future between you, nothing protects you from the one who is not.
+  - ''
+  - With no next deal, honesty can look optional. But reviews, ratings and complaints travel, and few deals are truly one-off.
+explanation: 'With no future between you, protect yourself in the terms. That is not a licence to behave badly: others may be watching, and your own good name is a repeated game.'
+measures: cooperate

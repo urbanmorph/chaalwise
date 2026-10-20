@@ -1,0 +1,16 @@
+kind: choice
+prompt: It is Black's move. Can the knight on c6 move?
+position: 4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 b - - 0 1
+options:
+  - No, moving it would expose the king
+  - Yes, but White would then win the king
+  - Yes, a knight can jump out of a pin
+answer: 0
+feedback:
+  - ''
+  - No move may leave your own king in check, so the move is not allowed at all.
+  - Jumping does not help. Once the knight leaves c6, the bishop sees the king.
+explanation: A pin to the king is absolute, so the pinned piece cannot legally move. A pin to anything else only costs material if the piece moves.
+highlight:
+  - c6
+measures: patterns

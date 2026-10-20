@@ -1,0 +1,14 @@
+card: strategy/pass-the-problem-back/group-split
+kind: choice
+prompt: In a group project, a teammate asks you to split the work, then objects to each split you suggest. The deadline is in ten days. What do you do next?
+options:
+  - Offer two fair splits and ask them to choose one
+  - Take on their part yourself to end the argument
+  - Keep suggesting new splits until one is accepted
+answer: 0
+feedback:
+  - ''
+  - It ends the argument, but you carry twice the work, and next time the same thing will happen.
+  - Each new split leaves the hard choice with you, and costs days. Ten days do not allow many rounds.
+explanation: While you keep proposing, they keep the easy part, which is objecting. Two fair options hand the choice to them. Now they must decide, as the king that has to move must give way.
+measures: think-ahead

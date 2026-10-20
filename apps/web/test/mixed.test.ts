@@ -46,6 +46,12 @@ describe('where a question comes from, shown when it is asked away from its less
     expect(contextOf('reference/poker/outs/count', choice())).toBe('In poker');
   });
 
+  it("reads a question's place in the corpus too, for questions added after it began", () => {
+    expect(contextOf('chess/fork/another', choice())).toBe('In chess');
+    expect(contextOf('labs/prisoners-dilemma/another', choice())).toBe("In the Prisoner's Dilemma lab");
+    expect(contextOf('life/sunk-cost/another', choice())).toBeUndefined();
+  });
+
   it('names the lab for its debrief questions', () => {
     expect(contextOf('reference/labs/prisoners-dilemma/q1', choice())).toBe("In the Prisoner's Dilemma lab");
     expect(contextOf('reference/strategy/test-to-disprove/q1', choice())).toBe('In the Rule finder lab');

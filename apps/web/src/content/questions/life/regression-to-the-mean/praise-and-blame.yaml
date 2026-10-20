@@ -1,0 +1,14 @@
+card: reference/strategy/regression-to-the-mean/praise-and-blame
+kind: choice
+prompt: After a cadet pilot's worst landing, the instructor shouts, and the next landing is better. After a best landing, he praises, and the next is worse. What does this show?
+options:
+  - Shouting works and praise backfires
+  - 'Little: the next landing is usually more ordinary'
+  - Cadets try harder after being shouted at
+answer: 1
+feedback:
+  - It looks that way, but the next landing would move towards normal whatever he did. A best landing is usually followed by a worse one.
+  - ''
+  - 'They might, but this pattern cannot show it: a worst landing is usually followed by a better one with no shouting at all.'
+explanation: Extreme landings are partly luck, so the next one is usually closer to the cadet's average, after praise and shouting alike.
+measures: weigh-odds

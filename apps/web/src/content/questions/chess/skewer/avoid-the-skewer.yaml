@@ -1,0 +1,16 @@
+kind: choice
+prompt: Black to move. Which king move is safe from a skewer?
+position: 8/7p/3k4/7q/8/8/5PPP/R5K1 b - - 0 1
+options:
+  - '...Ke6'
+  - '...Kd5'
+  - '...Ke5'
+answer: 0
+feedback:
+  - ''
+  - This puts the king on the fifth rank with the queen. Ra5+ drives the king away, and the rook takes on h5.
+  - Moving towards the queen does not help. The king is still on the fifth rank, so Ra5+ and then Rxh5 wins the queen.
+explanation: Keep your king and queen off the same line when an enemy rook, bishop or queen can check along it. On e6 the king is off the fifth rank, so there is no skewer.
+highlight:
+  - a5
+measures: patterns

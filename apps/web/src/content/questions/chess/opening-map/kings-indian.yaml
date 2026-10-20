@@ -1,0 +1,14 @@
+kind: choice
+prompt: 1.d4 Nf6 2.c4 g6. Which family?
+position: 'moves: d4 Nf6 c4 g6'
+options:
+  - Closed games
+  - Indian games
+  - Flank openings
+answer: 1
+feedback:
+  - White began 1.d4, but closed games need 1...d5. Black answered ...Nf6.
+  - ''
+  - 2.c4 is the English move, but the game began 1.d4, so it is not a flank opening.
+explanation: 1.d4 Nf6 makes it an Indian game. With ...g6 it is heading for the King's Indian or the Grünfeld.
+measures: opening

@@ -1,0 +1,14 @@
+card: strategy/two-birds-one-stone/new-hire
+kind: choice
+prompt: This week you must train a new hire and clear 40 overdue customer queries. Training takes about 10 hours, the queries about 12, and you have 15 free hours. What do you do?
+options:
+  - Train first, then clear what queries you can
+  - Clear the queries first, and train next week
+  - Train the hire by clearing the queries together
+answer: 2
+feedback:
+  - Training first uses 10 of your 15 hours and leaves 5 for 12 hours of queries. Most of them wait another week.
+  - The queries get done, but the new hire sits idle for a week, and more queries arrive meanwhile.
+  - ''
+explanation: Done one after the other, the two jobs need 22 hours and you have 15. Done together, the queries become the training material, and the same hours serve both aims.
+measures: think-ahead

@@ -1,0 +1,13 @@
+kind: choice
+prompt: When can you NOT castle?
+options:
+  - When your king is in check, or would pass through or land on an attacked square
+  - When the rook would cross a square that an enemy piece attacks
+  - When your king has been in check earlier in the game
+answer: 0
+feedback:
+  - ''
+  - Only the king's squares matter. The rook may cross an attacked square, such as b1 when castling long.
+  - A past check does not matter, as long as the king never moved. Only a check right now stops you.
+explanation: You also cannot castle if the king, or that rook, has moved before, or if any piece stands between them. Only the king's squares matter; the rook may cross an attacked square.
+measures: board

@@ -55,6 +55,9 @@ test('Rule finder: test a guess, find it wrong, name the rule, three rounds, the
   await expect(page.getByTestId('rf-summary')).toContainText('You found 2 of 3 rules');
   await expect(debrief).toContainText('confirmation bias');
   expect(await shifts()).toBeLessThan(0.1);
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-entry', 'strategy/test-to-disprove');
-  await expect(page.locator('section.try .stage')).toHaveAttribute('data-measures', 'read-hidden');
+  await expect(page.locator('section.try .stage')).toHaveAttribute(
+    'data-steps',
+    /reference\/strategy\/test-to-disprove\//,
+  );
+  await expect(page.locator('section.try .stage')).toHaveAttribute('data-steps', /"measures":"read-hidden"/);
 });

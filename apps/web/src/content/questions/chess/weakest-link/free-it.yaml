@@ -1,0 +1,10 @@
+card: reference/strategy/weakest-link/free-it
+kind: move
+prompt: Start fixing it. Which pawn move opens a road for the bishop, without giving anything away?
+position: 5rk1/pp3ppp/2pbpn2/3p4/3P4/2P1PN2/PP3PPP/2B2RK1 w - - 0 1
+answers:
+  - b2b3
+  - b2b4
+hint: The bishop can get out through b2. Which pawn stands there?
+explanation: After b3 the bishop can come to a3 and offer to trade itself for Black's good bishop on d6; b4 also opens b2 and a3 for it. e4 would open the other road, but after dxe4 nothing can take back, so the pawn is lost for nothing.
+measures: plan-long

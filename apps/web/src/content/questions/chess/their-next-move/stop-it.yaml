@@ -1,0 +1,12 @@
+card: reference/strategy/their-next-move/stop-it
+kind: move
+prompt: Now stop it, without giving anything away.
+position: 'moves: e4 e5 Bc4 Nc6 Qh5'
+orientation: black
+answers:
+  - g7g6
+  - d8e7
+  - d8f6
+hint: Guard f7, or chase the queen away.
+explanation: 'g6 chases the queen, and Qe7 or Qf6 guard f7. Nf6, which looks natural, allows Qxf7 mate: that is why you ask what their move wants.'
+measures: think-ahead

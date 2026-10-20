@@ -1,0 +1,16 @@
+kind: choice
+prompt: It is Black to move. What is this?
+position: k7/1Q6/1K6/8/8/8/8/8 b - - 0 1
+options:
+  - Checkmate
+  - Stalemate
+  - Neither
+answer: 0
+feedback:
+  - ''
+  - Stalemate means no legal move and no check. Here the queen on b7 gives check, so it is mate.
+  - The king seems able to take the queen, but your king on b6 guards her, and a7 and b8 are covered too.
+explanation: The king on a8 is in check from the queen. It cannot take her because your king guards her, and every square it could go to is covered. That is checkmate.
+highlight:
+  - a8
+measures: board

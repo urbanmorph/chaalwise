@@ -1,0 +1,12 @@
+kind: choice
+prompt: Can White win a pawn with Nxe5 here?
+position: 'moves: e4 e5 Nf3 Nc6'
+options:
+  - Yes, the pawn is free
+  - No, the knight on c6 takes back
+answer: 1
+feedback:
+  - The e5 pawn looks loose, but the knight on c6 guards it. Nxe5 Nxe5 gives a knight for a pawn.
+  - ''
+explanation: The knight on c6 defends e5. After Nxe5 Nxe5, White has given a knight (3) for a pawn (1).
+measures: safety

@@ -1,0 +1,13 @@
+kind: choice
+prompt: Over the board, you want to castle. How do you do it?
+options:
+  - Touch the king first, move it two squares, then the rook
+  - Touch the rook first, then jump the king over it
+  - Move the king and the rook at once, one in each hand
+answer: 0
+feedback:
+  - ''
+  - If you touch the rook first, you must move the rook, and you may not castle with it.
+  - Every move is made with one hand, and castling counts as a king move.
+explanation: Castling is a king move, so the king goes first, two squares, then the rook hops over it.
+measures: board

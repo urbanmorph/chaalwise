@@ -1,0 +1,16 @@
+card: strategy/finish-the-job/compare
+kind: choice
+prompt: Kc7 before queening wins; queening at once draws. What does that share with the contract?
+position: 8/kP6/2K5/8/8/8/8/8 w - - 0 1
+alongside: A sales team has agreed every term of a contract, and the signed copy is due tomorrow.
+options:
+  - The last step needs care, even when the win looks sure
+  - Both are about promoting what you have built
+  - Both are settled once the hard part is done
+answer: 0
+feedback:
+  - ''
+  - Promotion is the surface, a pawn becoming a queen. The contract shares the moment, not the word.
+  - That is the mistake both warn against. The hard part is done in both, and the last step can still throw it away.
+explanation: One careless move turns the won pawn ending into a draw. One unchecked copy can reopen a finished deal. In both, slow down at the last step.
+measures: plan-long

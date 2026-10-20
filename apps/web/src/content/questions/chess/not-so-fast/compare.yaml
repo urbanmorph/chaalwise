@@ -1,0 +1,16 @@
+card: strategy/not-so-fast/compare
+kind: choice
+prompt: What does ...Qe7 share with the firm's move?
+position: 3q2k1/5ppp/8/8/8/3B4/5PPP/3R2K1 b - - 0 1
+alongside: A firm signs up a second supplier before its only one can raise prices.
+options:
+  - Stop their best plan before it starts
+  - Both move something out of the way
+  - Wait for the threat, then answer it
+answer: 0
+feedback:
+  - ''
+  - 'Moving out of the way is the surface likeness. The point is when: before the other side can act.'
+  - Waiting lets the threat start. Once Bxh7+ comes, the queen is lost; once prices rise, they are hard to bring down.
+explanation: Black sees Bxh7+ coming and takes the queen off the line. The firm sees a price rise coming and finds a second supplier. Both act first, quietly.
+measures: think-ahead

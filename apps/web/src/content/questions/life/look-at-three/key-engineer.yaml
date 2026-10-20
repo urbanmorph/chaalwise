@@ -1,0 +1,14 @@
+card: strategy/look-at-three/key-engineer
+kind: choice
+prompt: Your best engineer has an offer from a rival paying 20% more. Your first thought is to match it. What do you do before deciding?
+options:
+  - Ask her what would make her stay, and list a few options
+  - Match the offer at once, before she signs
+  - Weigh matching against letting her go, on cost alone
+answer: 0
+feedback:
+  - ''
+  - Speed feels decisive, but money may not be why she is looking. You might pay 20% more and lose her anyway.
+  - That compares two options, both about the offer. A new role, more flexibility or a promotion date are not on the list at all.
+explanation: Matching or not is a yes or a no. Asking what matters to her turns up other options, such as a new role, flexible hours or a clear path to promotion, which may cost less and work better. Compare them all, then choose.
+measures: calculate

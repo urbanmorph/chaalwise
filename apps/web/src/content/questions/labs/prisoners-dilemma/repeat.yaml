@@ -1,0 +1,14 @@
+card: reference/labs/prisoners-dilemma/repeat
+kind: choice
+prompt: Two teams share a budget that is split again every quarter, with no end date. Each could grab more this quarter. What best keeps both from grabbing?
+options:
+  - A strict rule from above on who gets what
+  - Each knowing a grab now will be answered next quarter
+  - Each team being generous by nature
+answer: 1
+feedback:
+  - 'Rules help, but they cannot cover everything. The bots in the lab had no rule: tit for tat cooperated because a grab would be answered.'
+  - ''
+  - Kindness alone gets exploited. In the lab, always kind earned the least of all five styles.
+explanation: When the game repeats and nobody knows the last round, what you do now is answered later. That is what makes cooperation last.
+measures: cooperate

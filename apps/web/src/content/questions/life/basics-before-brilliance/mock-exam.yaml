@@ -1,0 +1,14 @@
+card: strategy/basics-before-brilliance/mock-exam
+kind: choice
+prompt: Your maths exam is in six weeks. In the mock, you lost 30 of 100 marks to slips with fractions and signs, and 10 on the two hardest questions. How do you spend most of your revision?
+options:
+  - Practise the hardest questions until you can solve them
+  - Drill fractions and signs until the slips stop
+  - Learn shortcut tricks that save time in the exam
+answer: 1
+feedback:
+  - The hardest questions cost you 10 marks; the slips cost 30. Solving hard ones feels like progress, but the marks are in the basics.
+  - ''
+  - Tricks save time only when the working is sound. With slips in the basics, faster working makes more slips.
+explanation: 30 marks lost to the basics against 10 to the hardest questions. Fixing the basics is worth three times as much, and it helps every question on the paper.
+measures: plan-long

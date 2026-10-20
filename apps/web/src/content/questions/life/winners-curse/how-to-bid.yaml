@@ -1,0 +1,14 @@
+card: reference/strategy/winners-curse/how-to-bid
+kind: choice
+prompt: So how should you bid next time?
+options:
+  - 'Bid your estimate exactly: it is your best guess'
+  - Add a margin for error, bigger the more bidders there are
+  - Keep a smaller margin when bidders are many, to stay in it
+answer: 1
+feedback:
+  - Your estimate is your best guess before the bidding. But winning tells you it was probably the lowest guess, and a guess that wins is a guess that was too low.
+  - ''
+  - Tougher competition feels like a reason to sharpen your price, and real bidders often do this. But with more bidders, the winning guess is further from the truth, so you need more margin, not less.
+explanation: 'Winning means you were the most optimistic. Build that in: the more bidders, the bigger the margin.'
+measures: value

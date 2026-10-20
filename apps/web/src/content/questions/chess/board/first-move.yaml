@@ -1,0 +1,8 @@
+kind: move
+prompt: Move the pawn in front of your king forward two squares.
+position: start
+answers:
+  - e2e4
+hint: Your king is on e1, so its pawn is on e2.
+explanation: Moving this pawn to e4 takes space in the centre and opens lines for your queen and the bishop on f1.
+measures: board

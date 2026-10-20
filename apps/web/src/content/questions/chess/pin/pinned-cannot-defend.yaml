@@ -1,0 +1,9 @@
+kind: move
+prompt: Black's bishop on d4 is guarded only by the knight. Win the bishop.
+position: 4k3/pp3ppp/2n5/1B6/3b4/8/PP3PPP/3R2K1 w - - 0 1
+answers:
+  - d1d4
+  - b5c6
+hint: Does the knight really guard d4?
+explanation: The knight is pinned, so it cannot take back on d4. A pinned piece guards nothing. Taking on c6 first, then on d4, also wins the bishop.
+measures: patterns

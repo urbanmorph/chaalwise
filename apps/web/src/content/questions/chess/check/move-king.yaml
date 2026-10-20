@@ -1,0 +1,11 @@
+kind: move
+prompt: Nothing can block this check or take the rook. Move your king out of check.
+position: 4r2k/8/8/8/8/8/8/4K3 w - - 0 1
+answers:
+  - e1d1
+  - e1d2
+  - e1f1
+  - e1f2
+hint: Step off the e-file.
+explanation: Any square off the e-file will do here. The king may not step to e2, which the rook still attacks.
+measures: board

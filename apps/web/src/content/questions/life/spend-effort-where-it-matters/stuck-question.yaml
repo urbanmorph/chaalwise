@@ -1,0 +1,14 @@
+card: strategy/spend-effort-where-it-matters/stuck-question
+kind: choice
+prompt: In a two-hour exam, you have spent 20 minutes on a 2-mark question you cannot crack. There are 60 marks still to answer. What now?
+options:
+  - Leave it, do the rest, and come back if time allows
+  - Keep at it, since you have already put in 20 minutes
+  - Rush the rest at speed to win back the lost time
+answer: 0
+feedback:
+  - ''
+  - The 20 minutes are gone whatever you do. Another 20 on 2 marks is time taken from 60.
+  - The lost time is real, but rushing spreads mistakes over the 60 marks that matter most.
+explanation: Two marks against sixty means the time belongs to the sixty. Moving on is not giving up. It is spending effort where it earns most, then coming back if there is time.
+measures: composure

@@ -1,0 +1,14 @@
+card: strategy/give-a-little-get-more/data-entry
+kind: choice
+prompt: Your team spends 10 hours a week on manual data entry. A tool costing 60,000 a year would cut that to 2 hours. An hour of the team's time costs the firm 500. What do you do?
+options:
+  - Buy it, as the hours saved are worth about 200,000 a year
+  - Skip it, since the team's time is already paid for
+  - Buy it only if it pays for itself within a month
+answer: 0
+feedback:
+  - ''
+  - Salaries are paid either way, but the freed hours could go to other work. That lost work is the real cost.
+  - It pays for itself in about 15 weeks, and keeps paying after. A one-month bar turns down a trade that returns three times its cost.
+explanation: 8 hours a week at 500, over about 50 working weeks, is 200,000 a year of time for 60,000 of money. Give the little to get the more.
+measures: size-risk

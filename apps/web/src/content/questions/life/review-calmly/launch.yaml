@@ -1,0 +1,14 @@
+card: strategy/review-calmly/launch
+kind: choice
+prompt: Your team launched a product after testing it with 200 customers, 80% of whom liked it. A month later, a supplier failure delayed every order, and sales were poor. In the review, what do you ask first?
+options:
+  - Was the launch sound on what we knew, and could know?
+  - Who approved the launch, given that it failed?
+  - Should we stop launching without a bigger test?
+answer: 0
+feedback:
+  - ''
+  - Looking for someone to blame judges the decision by its result. The failure came from a supplier, not from the call to launch.
+  - A bigger test would not have caught a supplier failure. Changing the rule because of this result learns the wrong lesson.
+explanation: 160 of 200 liking it was good evidence. Ask whether the supplier risk was known, or could have been checked. If it could, that is the lesson. If not, the decision was sound and the result was bad luck.
+measures: composure

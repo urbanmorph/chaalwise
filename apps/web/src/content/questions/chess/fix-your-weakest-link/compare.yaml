@@ -1,0 +1,16 @@
+card: strategy/fix-your-weakest-link/compare
+kind: choice
+prompt: What do White's bishop and the restaurant's till share?
+position: 5rk1/pp3ppp/2pbpn2/3p4/3P4/2P1PN2/PP3PPP/2B2RK1 w - - 0 1
+alongside: A restaurant serves excellent food, but every order waits 40 minutes at one slow till.
+options:
+  - The part doing least sets the limit; fix it first
+  - Both are stuck at the back, out of sight
+  - Both say build on what is already strongest
+answer: 0
+feedback:
+  - ''
+  - Being at the back is a surface likeness. What matters is that the rest cannot do more until this part does.
+  - Building on strength pays when one great result is enough. A good meal needs both the food and the till, so the weakest part counts.
+explanation: The shut-in bishop holds White back, and the slow till holds back excellent food. When the parts depend on each other, the weakest one decides.
+measures: plan-long

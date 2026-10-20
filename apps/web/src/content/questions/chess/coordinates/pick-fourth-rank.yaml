@@ -1,0 +1,16 @@
+kind: square
+prompt: Click any square on the fourth rank.
+position: empty
+coordinates: true
+answers:
+  - a4
+  - b4
+  - c4
+  - d4
+  - e4
+  - f4
+  - g4
+  - h4
+hint: Find the number 4 along the left edge, then go straight across from it.
+explanation: Every square in that row has 4 in its name, from a4 on the left to h4 on the right.
+measures: board

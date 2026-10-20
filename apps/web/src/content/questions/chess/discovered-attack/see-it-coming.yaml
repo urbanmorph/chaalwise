@@ -1,0 +1,17 @@
+kind: choice
+prompt: Black to move. White threatens Bxh7+, uncovering the rook on your queen. Which move stops it?
+position: 3q2k1/5ppp/8/8/8/3B4/5PPP/3R2K1 b - - 0 1
+options:
+  - '...Qe7, leaving the d-file'
+  - '...h6, saving the h-pawn'
+  - '...Qd5, centralising the queen'
+answer: 0
+feedback:
+  - ''
+  - Bh7+ still comes, now without a capture. The king must answer it, and Rxd8 takes the queen.
+  - The queen is still on the d-file, behind the bishop. Bxh7+ uncovers the rook, and Rxd5 wins her.
+explanation: Take the valuable piece off the line before the screening piece moves. When an enemy piece stands between your queen and a rook, the danger is already there.
+highlight:
+  - d1
+  - d8
+measures: patterns

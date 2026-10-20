@@ -1,0 +1,9 @@
+kind: move
+prompt: Take a black pawn.
+position: 4k3/8/8/3p1p2/4P3/8/8/4K3 w - - 0 1
+answers:
+  - e4d5
+  - e4f5
+hint: Diagonally forward, either side.
+explanation: Either capture works. A pawn that captures moves onto the next file.
+measures: board

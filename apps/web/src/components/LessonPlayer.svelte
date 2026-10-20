@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Lesson } from '@chaalwise/core/lesson';
+  import type { Step } from '@chaalwise/core/lesson';
   import { advance, answer, createPlayer, currentStep, giveUp, isGraded, jumpTo, showHint, type Outcome, type Response } from '@chaalwise/core/player';
   import { tick, type Snippet } from 'svelte';
   import { SvelteSet } from 'svelte/reactivity';
@@ -12,7 +12,7 @@
   import PlayOut from './PlayOut.svelte';
 
   interface Props {
-    lesson: Pick<Lesson, 'steps'>;
+    lesson: { steps: Step[] };
     onfinish: (outcomes: Record<string, Outcome>) => void;
     /** Called as each step is graded, so a long session is saved as it goes, with how sure the learner said they were. */
     onstep?: (stepId: string, outcome: Outcome, confidence?: number) => void;

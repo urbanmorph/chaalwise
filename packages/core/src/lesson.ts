@@ -131,10 +131,40 @@ const planStep = z.object({
   action: z.string().min(1),
 });
 
-const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep, planStep]);
+/** A step as played: reading, a question looked up from the corpus, or a plan. */
+export const stepSchema = z.discriminatedUnion('kind', [
+  readStep,
+  choiceStep,
+  moveStep,
+  squareStep,
+  playStep,
+  planStep,
+]);
 
-/** A question to try on its own, away from a lesson, such as a reference entry's "try it yourself". */
-export const tryStepSchema = z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep]);
+/** A question in the corpus, named by its file: `<game>/<idea>/<name>`, such as `chess/fork/knight-takes-two`. */
+export const questionId = z
+  .string()
+  .regex(/^[a-z]+\/[a-z0-9-]+\/[a-z0-9-]+$/, 'a question id such as chess/fork/knight-takes-two');
+
+/**
+ * A question in the corpus: one file each, in any of the question formats. Its
+ * id is its file's path; `card` keeps the review card it was saved under
+ * before the corpus existed, so learners' progress carries over.
+ */
+export const questionSchema = z.intersection(
+  z.preprocess(
+    (value) => (value && typeof value === 'object' ? { ...value, id: 'question' } : value),
+    z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep, playStep]),
+  ),
+  z.object({ card: z.string().min(1).optional() }),
+);
+export type Question = z.infer<typeof questionSchema>;
+
+/** A lesson step that asks a question from the corpus. */
+const askStep = z.object({ ask: questionId }).strict();
+
+/** A lesson step as written: reading and plans in the lesson, questions asked from the corpus. */
+const authoredStep = z.union([z.discriminatedUnion('kind', [readStep, planStep]), askStep]);
 
 export const lessonSchema = z
   .object({
@@ -145,11 +175,9 @@ export const lessonSchema = z
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),
-    /** The profile skill this lesson's answers give evidence for, unless a step says otherwise. */
-    measures,
     /** For a strategy lesson: the lesson it follows on the path, e.g. `chess/blunder-check`. */
     after: z.string().optional(),
-    steps: z.array(stepSchema).min(1),
+    steps: z.array(authoredStep).min(1),
   })
   .superRefine((lesson, ctx) => {
     if (lesson.game === 'strategy') {
@@ -164,14 +192,9 @@ export const lessonSchema = z
     }
     const seen = new Set<string>();
     lesson.steps.forEach((step, i) => {
-      if (seen.has(step.id)) {
-        ctx.addIssue({
-          code: 'custom',
-          message: `duplicate step id "${step.id}"`,
-          path: ['steps', i, 'id'],
-        });
-      }
-      seen.add(step.id);
+      const key = 'ask' in step ? step.ask : step.id;
+      if (seen.has(key)) ctx.addIssue({ code: 'custom', message: `duplicate step "${key}"`, path: ['steps', i] });
+      seen.add(key);
     });
   });
 

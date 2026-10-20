@@ -1,0 +1,16 @@
+kind: choice
+measures: anticipation
+prompt: Black's knight has just landed on c3. What does it attack?
+position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
+options:
+  - Your queen on d1
+  - Your king on e1
+  - Nothing, it is too far away
+answer: 0
+feedback:
+  - ''
+  - It lands next to your king, but a knight jumps in an L. From c3 it reaches d1 and e2, not e1.
+  - A knight attacks from a distance by jumping. Trace its L from c3 and it lands on d1.
+explanation: The knight on c3 attacks d1, where your queen stands. Spotting that is half the blunder check.
+arrows:
+  - c3d1

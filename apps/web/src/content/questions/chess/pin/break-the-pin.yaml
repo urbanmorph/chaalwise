@@ -1,0 +1,16 @@
+kind: choice
+prompt: Black to move. White threatens d5, attacking the pinned knight. Which move saves it?
+position: 4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 b - - 0 1
+options:
+  - '...Ke7, stepping off the line'
+  - '...Kd7, guarding the knight'
+  - '...h6, giving the king room'
+answer: 0
+feedback:
+  - ''
+  - d7 is still on the bishop's diagonal, behind the knight. The pin holds, and d5 wins the knight.
+  - The king gains a square, but the knight is still pinned, and d5 wins it.
+explanation: Once the king leaves the line, the knight is free to move away from the pawn. Break a pin before it is attacked.
+highlight:
+  - e7
+measures: patterns

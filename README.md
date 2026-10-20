@@ -12,7 +12,7 @@ apps/web        Astro site with Svelte 5 islands: the chess board (chessground),
                 and the offline service worker
 ```
 
-Lessons are Markdown files in `apps/web/src/content/lessons/`, with their steps as data. Every position and answer is checked with chessops at build time, so a broken lesson fails the build.
+Lessons are Markdown files in `apps/web/src/content/lessons/`: their reading and plan steps, and the questions they ask by id. Every question lives once in the corpus, `apps/web/src/content/questions/<game>/<idea>/<name>.yaml`, where `<game>` is `chess`, `poker`, `labs` or `life` (questions about life off the board). Lessons (`- ask: chess/fork/knight-takes-two`), reference entries (`try:`) and labs ask questions by id; review, course practice and mixed practice draw on the whole corpus by the skill each question `measures`. To add a question, add a file: it is checked at build time (every position and answer with chessops), and it is practised for its skill straight away. A question that existed before the corpus keeps its review card in `card`, so learners' progress carries over.
 
 ## Develop
 

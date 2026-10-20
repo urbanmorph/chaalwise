@@ -1,12 +1,8 @@
 import type { ReferenceEntry } from '@chaalwise/core/reference';
-import { chessStepIssues, moveIssue, setup, type Issue } from './chess';
+import { moveIssue, setup, type Issue } from './chess';
 
-/** Problems with a reference entry's board and its questions, so a wrong diagram or answer fails the build. */
+/** Problems with a reference entry's board, so a wrong diagram fails the build. Its questions are checked in the corpus. */
 export function referenceIssues(entry: ReferenceEntry): Issue[] {
-  return [...boardIssues(entry), ...chessStepIssues(entry.try ?? [], 'try')];
-}
-
-function boardIssues(entry: ReferenceEntry): Issue[] {
   if (entry.position === undefined) return [];
   let pos;
   try {

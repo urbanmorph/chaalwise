@@ -1,0 +1,14 @@
+card: strategy/give-a-little-get-more/study-swap
+kind: choice
+prompt: A friend offers a swap. You spend 3 hours helping with her coding assignment, and she teaches you the statistics you are stuck on, which would take you about 8 hours alone. Your own deadline is in a week. What do you do?
+options:
+  - Accept, as you give 3 hours and save about 5
+  - Decline, as you cannot spare 3 hours this week
+  - Decline, and learn the statistics alone to be sure
+answer: 0
+feedback:
+  - ''
+  - The 3 hours feel like a loss, but learning alone costs 8. Declining spends more of your week, not less.
+  - Learning alone may feel safer, but it costs 8 hours instead of 3, five hours you could spend on the rest of your work.
+explanation: Give 3 hours, get back 8. Counted in the same units, the trade leaves you 5 hours ahead before your deadline.
+measures: size-risk

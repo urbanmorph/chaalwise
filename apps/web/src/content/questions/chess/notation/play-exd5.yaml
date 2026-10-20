@@ -1,0 +1,8 @@
+kind: move
+prompt: Play exd5.
+position: 'moves: e4 d5'
+answers:
+  - e4d5
+hint: No letter, so it is a pawn. Which pawn stands on the e-file?
+explanation: Your e-pawn takes on d5. A pawn capture names the file the pawn starts on, because pawns have no letter.
+measures: board

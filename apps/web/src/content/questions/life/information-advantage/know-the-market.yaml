@@ -1,0 +1,14 @@
+card: reference/strategy/information-advantage/know-the-market
+kind: choice
+prompt: You are selling a used car. Twenty listings show cars like yours sell for 450,000 to 500,000. A buyer asks what you are looking for. What do you say?
+options:
+  - Ask what they had in mind first
+  - Ask 500,000, and show the listings behind it
+  - Ask 450,000, so they are not put off
+answer: 1
+feedback:
+  - Letting them go first feels careful, but you already know the value. Waiting tells you little and hands them the anchor.
+  - ''
+  - A modest number feels friendly, but it starts the talk at your floor, and the only way from there is down.
+explanation: When you know the value, a confident first number grounded in facts anchors the talk near it. Moving second pays only when their move would tell you something you lack.
+measures: read-hidden

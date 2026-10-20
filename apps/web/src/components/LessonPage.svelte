@@ -1,11 +1,10 @@
 <script lang="ts">
-  import type { Lesson } from '@chaalwise/core/lesson';
+  import type { GradedStep, Step } from '@chaalwise/core/lesson';
   import { isGraded, type Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress, requestPersistence } from '@chaalwise/core/progress';
   // Loaded with the page, not on demand: if a deploy lands mid-lesson, the
   // on-demand chunk is gone from the server by the time the lesson is saved.
   import '@chaalwise/core/srs';
-  import type { GradedStep } from '@chaalwise/core/lesson';
   import { tick } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
   import { addDone } from '../lib/done-lessons';
@@ -17,7 +16,7 @@
   import { summarise } from './outcomes';
 
   interface Props {
-    lesson: Pick<Lesson, 'steps'>;
+    lesson: { steps: Step[] };
     lessonId: string;
     next?: { href: string; title: string } | undefined;
     /** The strategy track a plan made in this lesson belongs to. */
@@ -66,7 +65,7 @@
 
   function logStep(stepId: string, outcome: Outcome) {
     const step = lesson.steps.find((s) => s.id === stepId);
-    if (step && isGraded(step)) logAttempt(step.measures, outcome, 'lesson', { item: `${lessonId}/${stepId}`, chance: guessChance(step) });
+    if (step && isGraded(step)) logAttempt(step.measures, outcome, 'lesson', { item: stepId, chance: guessChance(step) });
   }
 
   /** Steps whose idea can be practised in fresh positions. */
@@ -82,7 +81,7 @@
     practice = Array.from({ length: ROUND }, (_, i) => {
       const source = practicable[i % practicable.length]!;
       const step = practiceStep(practiceOf(source) as Parameters<typeof practiceStep>[0], Math.random);
-      return { cardId: `${lessonId}/${source.id}`, step: { ...step, measures: source.measures } };
+      return { cardId: source.id, step: { ...step, measures: source.measures } };
     });
     rounds++;
     await tick();

@@ -1,0 +1,8 @@
+kind: move
+prompt: Castling moves your king two squares towards a rook, and the rook jumps over to the king's other side. Castle on the king's side.
+position: r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1
+answers:
+  - e1g1
+hint: Move the king two squares to the right, to g1.
+explanation: The king is tucked away on g1, and the rook comes to f1, towards the centre. Over the board, touch the king first, because castling counts as a king move.
+measures: board

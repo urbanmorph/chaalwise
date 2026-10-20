@@ -1,0 +1,13 @@
+kind: choice
+prompt: Online, the same position comes up for the third time. What happens?
+options:
+  - It is a draw, and the site handles it
+  - You must find an arbiter to claim it
+  - Nothing; play goes on until mate
+answer: 0
+feedback:
+  - ''
+  - 'Over the board you claim it from the arbiter. Online there is none: the site draws the game, or gives you a button to claim it.'
+  - Threefold repetition is a draw by the rules, online and over the board.
+explanation: Online, the site either draws the game itself or gives you a button to claim the draw. Over the board, you claim it.
+measures: board

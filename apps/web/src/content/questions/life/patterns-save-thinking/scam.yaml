@@ -1,0 +1,14 @@
+card: strategy/patterns-save-thinking/scam
+kind: choice
+prompt: "A text says: 'Your bank account will be blocked today. Verify now at this link and tell us the code we send you.' Last month's scam text was about a parcel. What tells you most about this one?"
+options:
+  - Its shape, a rush, a link and a request for a code
+  - It reads nothing like the parcel text you saw
+  - It names your own bank, and the number looks real
+answer: 0
+feedback:
+  - ''
+  - Comparing with the last scam feels sensible, but scams change their wording every time. The shape is what repeats.
+  - A real bank name and a real-looking number are reassuring, but both are easy to fake. They do not change the shape of the request.
+explanation: A pattern is the shape, not one example. Urgency, a link and a request for a code mark a scam whatever the story; learn the shape and you will spot the next one, worded differently.
+measures: calculate

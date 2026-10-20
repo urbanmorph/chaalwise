@@ -39,47 +39,21 @@ describe('a reference entry', () => {
   });
 
   describe('try it yourself', () => {
-    const choice = {
-      kind: 'choice',
-      id: 'which',
-      prompt: 'Which?',
-      options: ['a', 'b'],
-      answer: 0,
-      explanation: 'Because.',
-    };
-    const move = {
-      kind: 'move',
-      id: 'find',
-      prompt: 'Find it.',
-      position: 'start',
-      answers: ['g1f3'],
-      explanation: 'Develops.',
-    };
-
-    it('takes one to three questions in the lesson formats', () => {
-      expect(referenceSchema.parse({ ...base, try: [choice, move] }).try).toHaveLength(2);
+    it('asks one to three questions from the corpus, by id', () => {
+      expect(referenceSchema.parse({ ...base, try: ['chess/fork/find', 'chess/fork/defend'] }).try).toHaveLength(2);
       expect(referenceSchema.safeParse({ ...base, try: [] }).success).toBe(false);
       expect(
-        referenceSchema.safeParse({ ...base, try: [choice, move, { ...choice, id: 'c' }, { ...choice, id: 'd' }] })
-          .success,
+        referenceSchema.safeParse({ ...base, try: ['chess/a/b', 'chess/a/c', 'chess/a/d', 'chess/a/e'] }).success,
       ).toBe(false);
     });
 
-    it('leaves out reading steps: every question is tried', () => {
-      expect(referenceSchema.safeParse({ ...base, try: [{ kind: 'read', id: 'r', text: 'Just read.' }] }).success).toBe(
-        false,
-      );
+    it('keeps questions in the corpus, never written into the entry', () => {
+      const written = { kind: 'choice', id: 'c', prompt: 'p', options: ['a', 'b'], answer: 0, explanation: 'e' };
+      expect(referenceSchema.safeParse({ ...base, try: [written] }).success).toBe(false);
     });
 
-    it('needs different ids for each question', () => {
-      expect(referenceSchema.safeParse({ ...base, try: [choice, choice] }).success).toBe(false);
-    });
-
-    it('lets strategy entries show their idea on a chess board, but not poker or the labs, which have no board yet', () => {
-      const strategy = { ...base, game: 'strategy', kind: 'principle', why: 'w', inLife: 'l', skill: 'think-ahead' };
-      expect(referenceSchema.safeParse({ ...strategy, try: [move] }).success).toBe(true);
-      expect(referenceSchema.safeParse({ ...base, game: 'poker', kind: 'odds', try: [move] }).success).toBe(false);
-      expect(referenceSchema.safeParse({ ...base, game: 'poker', kind: 'odds', try: [choice] }).success).toBe(true);
+    it('asks each question once', () => {
+      expect(referenceSchema.safeParse({ ...base, try: ['chess/fork/find', 'chess/fork/find'] }).success).toBe(false);
     });
   });
 });

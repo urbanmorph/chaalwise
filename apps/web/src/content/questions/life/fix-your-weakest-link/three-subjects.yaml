@@ -1,0 +1,14 @@
+card: strategy/fix-your-weakest-link/three-subjects
+kind: choice
+prompt: To get into your course, you need 60 or more in each of three subjects. Your mock marks are maths 78, physics 74 and chemistry 41. You have 10 hours of revision left this week. How do you use them?
+options:
+  - Split them evenly, about 3 hours each
+  - Put most of them into chemistry
+  - Push maths higher, since it is your best
+answer: 1
+feedback:
+  - Even hours feel fair, but maths and physics are already over 60. Only chemistry is below the line.
+  - ''
+  - Building on your best pays when one great result is enough. Here each subject must reach 60, and maths already does.
+explanation: You need all three at 60. Chemistry, at 41, is the only one below, so it sets the limit. Hours there change the outcome; hours elsewhere do not.
+measures: plan-long

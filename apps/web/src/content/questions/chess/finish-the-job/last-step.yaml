@@ -1,0 +1,9 @@
+card: strategy/finish-the-job/last-step
+kind: move
+prompt: The pawn is one step from queening. Only one move wins. Find it.
+position: 8/kP6/2K5/8/8/8/8/8 w - - 0 1
+measures: endgame
+answers:
+  - c6c7
+hint: If you queen now, can Black's king take the new queen?
+explanation: Kc7 guards b8. Black's king must step back to a6, and the pawn queens next move. Queening at once lets Black's king take the new queen, and with nothing left, it is a draw.

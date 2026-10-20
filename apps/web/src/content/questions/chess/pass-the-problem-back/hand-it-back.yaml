@@ -1,0 +1,9 @@
+card: strategy/pass-the-problem-back/hand-it-back
+kind: move
+prompt: White to move. Only one move wins, the one that leaves Black to choose. Find it.
+position: 8/8/4k3/8/3K4/4P3/8/8 w - - 0 1
+measures: endgame
+answers:
+  - d4e4
+hint: Put your king face to face with Black's, with one square between.
+explanation: Ke4 faces Black's king with one square between, and leaves Black to move. Black must give way, White's king steps forward, and the pawn follows. Every other move, even e4, lets Black take the opposition, and it is a draw.

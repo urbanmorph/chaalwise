@@ -1,0 +1,14 @@
+card: reference/strategy/be-unpredictable/penalty
+kind: choice
+prompt: A penalty taker always shoots to the keeper's left. What should they do instead?
+options:
+  - 'Keep shooting left: it has worked so far'
+  - Mix sides, leaning to their stronger side
+  - Switch to always shooting right
+answer: 1
+feedback:
+  - A record of goals feels like proof, but a keeper who has watched the pattern will dive left, and then it stops working.
+  - ''
+  - Breaking the old habit feels like the fix, but a new fixed habit is just as easy to read once the keeper notices it.
+explanation: 'Mixing so the other side cannot predict you is often the best plan. The mix need not be even: real penalty takers shoot to their stronger side more often, but never always.'
+measures: unpredictable

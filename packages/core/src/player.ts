@@ -1,10 +1,10 @@
-import type { GradedStep, Lesson, Step } from './lesson';
+import type { GradedStep, Step } from './lesson';
 
 /** Steps with an answer to grade: not reading, and not a plan. Here rather than in lesson.ts, which brings zod. */
 export const isGraded = (step: Step): step is GradedStep => step.kind !== 'read' && step.kind !== 'plan';
 
-/** The player needs only a lesson's steps, so a review session can be played the same way. */
-type Playable = Pick<Lesson, 'steps'>;
+/** The player needs only steps, as played (questions looked up), so a review session can be played the same way. */
+type Playable = { steps: Step[] };
 
 /**
  * The lesson player as pure state transitions, so the UI only renders state.

@@ -1,0 +1,8 @@
+kind: move
+prompt: Now bring out the other knight towards the centre.
+position: 'moves: Nf3 e5'
+answers:
+  - b1c3
+hint: The knight on b1 has a square towards the centre.
+explanation: Knights do most from the centre, where they reach the most squares.
+measures: board

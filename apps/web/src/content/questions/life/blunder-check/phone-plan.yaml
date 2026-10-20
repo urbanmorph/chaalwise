@@ -1,0 +1,14 @@
+card: strategy/blunder-check/phone-plan
+kind: choice
+prompt: Plan A costs 199 a month for the first year, then 649 a month, on a two-year contract. Plan B costs 399 a month throughout. Over the two years, which costs less?
+options:
+  - Plan A, because the first year saves 2,400
+  - Plan B, by 600 over the two years
+  - They come to about the same over two years
+answer: 1
+feedback:
+  - The first-year saving is real, but it is the part you were meant to look at. The second year costs 3,000 more than Plan B and wipes it out.
+  - ''
+  - Plan A's two prices average 424, which looks close to 399, but 25 a month more over 24 months is 600.
+explanation: 'Plan A is 12 × 199 + 12 × 649 = 10,176. Plan B is 24 × 399 = 9,576. Like a piece left hanging, the danger is in the part you are not looking at: what happens after the offer ends.'
+measures: think-ahead

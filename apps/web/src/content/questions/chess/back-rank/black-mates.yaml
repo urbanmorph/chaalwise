@@ -1,0 +1,8 @@
+kind: move
+prompt: Now Black does the same to White. Find the mate.
+position: 4r1k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1
+answers:
+  - e8e1
+hint: White's king has the same problem.
+explanation: Re1 is mate. Every player should spot this pattern, for both sides, at a glance.
+measures: patterns

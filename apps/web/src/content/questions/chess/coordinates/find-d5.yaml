@@ -1,0 +1,8 @@
+kind: square
+practice: find-square
+prompt: Find d5.
+answers:
+  - d5
+hint: d is next to e, towards the a-file. Rank 5 is just over halfway up.
+explanation: d5 is one of the four centre squares, with d4, e4 and e5.
+measures: board

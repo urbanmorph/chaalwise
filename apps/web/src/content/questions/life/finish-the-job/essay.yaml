@@ -1,0 +1,14 @@
+card: strategy/finish-the-job/essay
+kind: choice
+prompt: Your essay is written, two hours before the deadline. Last time you lost 10 marks for a missing reference list. What do you do with the two hours?
+options:
+  - Check it against the mark scheme, then submit
+  - Submit now, before anything can go wrong
+  - Rewrite the opening, which you never liked
+answer: 0
+feedback:
+  - ''
+  - Submitting early feels safe, but the risk is already in the file. Last time, a missing list cost 10 marks.
+  - Starting a new change at the end opens new ways to go wrong, with no time left to check them.
+explanation: The last step is a check, not a new move. Last time, the 10 marks were lost at the finish, not in the writing.
+measures: plan-long

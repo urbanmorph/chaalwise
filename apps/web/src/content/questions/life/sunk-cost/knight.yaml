@@ -1,0 +1,14 @@
+card: reference/strategy/sunk-cost/knight
+kind: choice
+prompt: You spent five moves bringing a knight into an attack. The attack has failed and the knight is now in danger. What should decide your next move?
+options:
+  - The five moves already spent on it
+  - What the knight can do from here
+  - Finishing the attack it was brought for
+answer: 1
+feedback:
+  - Five moves feel like an investment to protect, but they are gone whatever you do next. Only the position in front of you can change.
+  - ''
+  - Seeing a plan through feels like resolve, but the attack has failed. Pressing on spends more moves on what has stopped working.
+explanation: The five moves are gone either way. Retreat it, trade it or use it, whichever is best from here.
+measures: size-risk

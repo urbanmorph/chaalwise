@@ -1,0 +1,8 @@
+kind: move
+prompt: Two black pieces can be taken. Take the one that wins the most.
+position: 4k3/3n4/8/8/r2Q4/8/8/4K3 w - - 0 1
+answers:
+  - d4a4
+hint: Is either of them defended?
+explanation: The rook is worth 5 and nothing defends it. The knight is defended by the king, so Qxd7+ Kxd7 would give your queen for a knight.
+measures: calculation

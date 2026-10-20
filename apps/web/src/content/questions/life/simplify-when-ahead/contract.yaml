@@ -1,0 +1,14 @@
+card: strategy/simplify-when-ahead/contract
+kind: choice
+prompt: A client has agreed to sign your contract for 1,000,000 next week. Your team suggests adding a feature you have never built, which would raise it to 1,200,000. A late delivery would let the client cancel. What do you do?
+options:
+  - Add the feature, since 200,000 more is worth the effort
+  - Sign the contract as agreed
+  - Sign, and promise the feature as a free extra
+answer: 1
+feedback:
+  - The extra 200,000 is real, but untested work puts the whole 1,000,000 at risk of a late delivery.
+  - ''
+  - A free promise adds the same untested work and the same risk of being late, and earns nothing for it.
+explanation: You are ahead, and the deal is won. Adding untested work risks 1,000,000 to chase 200,000. Close the sure deal, and offer the feature later as its own project.
+measures: size-risk

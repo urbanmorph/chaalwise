@@ -1,0 +1,8 @@
+kind: move
+prompt: A pawn that reaches the last rank must become another piece. Promote your pawn.
+position: 4k3/1P6/8/8/8/8/8/4K3 w - - 0 1
+answers:
+  - b7b8q
+hint: Push the pawn to b8.
+explanation: Here the new queen even gives check along the back rank.
+measures: board

@@ -1,0 +1,14 @@
+card: reference/labs/backward-induction/deadline
+kind: choice
+prompt: A report must reach the board on Friday morning. Printing and sending it takes all of Thursday, and review takes two full days before that. When must the draft be ready?
+options:
+  - By the end of Wednesday
+  - By the end of Tuesday
+  - By the end of Monday
+answer: 2
+feedback:
+  - 'That leaves no time for review: Thursday goes on printing, so review has to happen before Thursday.'
+  - That allows one day of review, Wednesday. Review needs two days, Tuesday and Wednesday, so the draft is due before them.
+  - ''
+explanation: 'Start from the end: Friday morning needs Thursday for printing, Thursday needs Tuesday and Wednesday for review, so the draft is due by the end of Monday.'
+measures: calculate

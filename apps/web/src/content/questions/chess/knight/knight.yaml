@@ -1,0 +1,8 @@
+kind: move
+prompt: Jump a knight over your pawns to f3.
+position: start
+answers:
+  - g1f3
+hint: The knight on g1 can reach f3.
+explanation: Knights are the only pieces that can move before any pawn has.
+measures: board

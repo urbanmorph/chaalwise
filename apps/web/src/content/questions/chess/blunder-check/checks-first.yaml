@@ -1,0 +1,8 @@
+kind: move
+measures: patterns
+prompt: Look at your checks first. Find the move that wins.
+position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
+answers:
+  - d1d8
+hint: The black king is boxed in by its own pawns.
+explanation: Rd8 is checkmate. Checks come first in the blunder check because they can end the game.

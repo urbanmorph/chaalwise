@@ -1,0 +1,14 @@
+card: reference/labs/mixed-strategy/random-mix
+kind: choice
+prompt: Against an opponent who learns your habits, what is the best plan over many throws?
+options:
+  - Switch habits whenever you start to lose
+  - Throw each a third of the time, at random
+  - Never throw the same thing twice in a row
+answer: 1
+feedback:
+  - 'A new habit is still a habit: a learner picks it up within a few throws.'
+  - ''
+  - 'Avoiding repeats is itself a pattern. After your rock, a learner knows only paper or scissors can come, and throws scissors: it never loses.'
+explanation: A truly random mix, each throw a third of the time, cannot be exploited. It cannot win much either, but nothing beats it.
+measures: unpredictable

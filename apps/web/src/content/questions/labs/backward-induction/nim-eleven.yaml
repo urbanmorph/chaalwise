@@ -1,0 +1,14 @@
+card: reference/labs/backward-induction/nim-eleven
+kind: choice
+prompt: In Nim, each player takes 1, 2 or 3 counters, and whoever takes the last one wins. The pile has 11 and it is your move. How many do you take?
+options:
+  - 3, to leave 8
+  - 1, to leave 10
+  - 2, to leave 9
+answer: 0
+feedback:
+  - ''
+  - From 10, the other player takes 2 and leaves you 8. Every multiple of 4 is a loss for the player to move, so you want to leave one, not face one.
+  - From 9, the other player takes 1 and leaves you 8, a multiple of 4. Whatever you take from 8, they can leave you 4, then 0.
+explanation: 'Work back from 0: the player who leaves 0 wins, so leaving 4 wins, and so does leaving 8. Taking 3 from 11 leaves 8.'
+measures: calculate

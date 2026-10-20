@@ -1,13 +1,22 @@
-import type { Lesson } from '../src/lesson';
+import type { Lesson, Step } from '../src/lesson';
 
-/** A lesson with one of each step kind. Positions are opaque strings to core. */
-export const lesson: Lesson = {
+/** A lesson as written: reading, and questions asked from the corpus by id. */
+export const authored: Lesson = {
   title: 'A sample lesson',
   summary: 'One of each step.',
   game: 'chess',
   stage: 0,
   order: 1,
   skills: ['think-ahead'],
+  steps: [
+    { kind: 'read', id: 'intro', text: 'Read this first.' },
+    { ask: 'chess/board/corner' },
+    { ask: 'chess/board/push' },
+  ],
+};
+
+/** The same lesson as played: its questions looked up. Positions are opaque strings to core. */
+export const lesson: { steps: Step[] } = {
   steps: [
     { kind: 'read', id: 'intro', text: 'Read this first.' },
     {

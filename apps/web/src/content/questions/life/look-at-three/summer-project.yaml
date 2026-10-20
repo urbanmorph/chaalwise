@@ -1,0 +1,14 @@
+card: strategy/look-at-three/summer-project
+kind: choice
+prompt: You must choose a summer project. Your tutor has offered one, and a friend wants you to join theirs. How do you choose?
+options:
+  - Find a third option, then compare all three
+  - Compare the two offers in detail, point by point
+  - Take the tutor's, since it will count for more
+answer: 0
+feedback:
+  - ''
+  - Careful comparison is good, but only between the options on the table. The best one may be one nobody has offered yet.
+  - It might count for more, but that settles it on one point before you have looked at anything else.
+explanation: Two offers make a choice look complete. A third option, such as a project you propose yourself, changes the comparison, even if you do not take it.
+measures: calculate

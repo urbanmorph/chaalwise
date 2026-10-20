@@ -1,0 +1,16 @@
+card: strategy/resources-change-value/compare
+kind: choice
+prompt: The b-pawn, worth one point earlier in the game, is worth a queen here. What does that share with the shop?
+position: 8/8/6k1/8/1P6/8/8/6K1 w - - 0 1
+alongside: A family firm's shop on the high street was its best asset, until most of its sales moved online.
+options:
+  - What a thing is worth depends on the situation
+  - Both are about something small growing large
+  - Both show that old strengths always lose value
+answer: 0
+feedback:
+  - ''
+  - The pawn grew in value, but the shop shrank. What they share is that the value moved with the situation, in either direction.
+  - Not always. The pawn was a small thing that became decisive. Value can rise as well as fall; the point is to look again.
+explanation: Neither the pawn nor the shop has a fixed worth. When the pieces came off, the pawn's worth rose; when buyers moved online, the shop's worth fell. In both, value what you hold now.
+measures: plan-long

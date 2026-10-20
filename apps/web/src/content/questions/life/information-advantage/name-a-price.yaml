@@ -1,0 +1,14 @@
+card: reference/strategy/information-advantage/name-a-price
+kind: choice
+prompt: A firm wants to buy a design you made and asks you to name a price. You have no idea what such work sells for, or what they can pay. What do you do first?
+options:
+  - Name a high price at once, to anchor them
+  - Ask their budget, and check what similar work sells for
+  - Name a modest price, so as not to lose the deal
+answer: 1
+feedback:
+  - First numbers do anchor, but only if they are well grounded. Knowing nothing, your number may be far too low, or so high it ends the talk.
+  - ''
+  - Keeping the deal alive feels safe, but a guess made to please them may leave much of the value on the table.
+explanation: When you know little about the value, close the gap before you anchor. Their answer, and the market, tell you what a first number of yours would give away.
+measures: read-hidden

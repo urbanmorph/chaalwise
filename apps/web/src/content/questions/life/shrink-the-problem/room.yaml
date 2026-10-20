@@ -1,0 +1,14 @@
+card: strategy/shrink-the-problem/room
+kind: choice
+prompt: You have one weekend to clear a garage packed to the roof, and you will not finish it. By Sunday night, which is the better state to leave it in?
+options:
+  - Half of it fully cleared, the rest untouched
+  - All of it a little tidier than before
+  - Everything sorted into piles on the floor
+answer: 0
+feedback:
+  - ''
+  - Tidying everywhere looks like progress, but nothing is finished, and the mess spreads back over the week.
+  - Sorting feels like a step forward, but piles on the floor make the whole garage harder to use until every pile is dealt with.
+explanation: A finished half is like a square the king can no longer use. The problem only shrinks if each gain is kept.
+measures: plan-long

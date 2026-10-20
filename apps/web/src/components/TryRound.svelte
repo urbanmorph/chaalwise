@@ -7,26 +7,19 @@
   import { summarise } from './outcomes';
 
   /**
-   * A reference entry's questions, tried on the page. Answers count towards the
-   * skill the idea trains, but make no review cards: the courses and lessons do that.
+   * A reference entry's questions, tried on the page. Each answer counts towards
+   * the question's skill, and the question joins the review.
    */
-  interface Props {
-    /** The entry, such as `strategy/weakest-link`. */
-    entry: string;
-    steps: GradedStep[];
-    measures: string | undefined;
-  }
+  let { steps }: { steps: GradedStep[] } = $props();
 
-  let { entry, steps, measures }: Props = $props();
-
-  function logStep(stepId: string, outcome: Outcome, confidence?: number) {
-    const step = steps.find((s) => s.id === stepId)!;
-    const item = `reference/${entry}/${stepId}`;
-    logAttempt(measures, outcome, 'practice', { item, chance: guessChance(step), confidence });
-    // The question joins the review, so trying it once is not the last time.
+  function logStep(cardId: string, outcome: Outcome, confidence?: number) {
+    // Questions come from the corpus: a step's id is its review card.
+    const step = steps.find((s) => s.id === cardId)!;
+    logAttempt(step.measures, outcome, 'practice', { item: cardId, chance: guessChance(step), confidence });
+    // Trying it once is not the last time: it comes back in review.
     openProgress()
       .then(async (progress) => {
-        await progress.recordPractice(item, outcome, new Date());
+        await progress.recordPractice(cardId, outcome, new Date());
         progress.close();
       })
       .catch(console.error);

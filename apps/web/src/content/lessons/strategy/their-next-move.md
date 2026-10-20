@@ -15,47 +15,9 @@ steps:
   - kind: read
     id: off-the-board
     text: Off the board, before you act, think through how the other side will respond. Picture their best reply from where they stand, then decide.
-  - kind: choice
-    id: ask-for-a-raise
-    prompt: You plan to ask for a raise next week. Last week you missed an important deadline. How do you prepare?
-    options:
-      - List your best results of the year to make the case
-      - Expect the deadline to come up, and prepare your answer
-      - Ask at once, before the deadline counts against you
-    answer: 1
-    feedback:
-      - Your results are your strongest move, but they are your move. Their best reply is the deadline, and an unprepared answer to it undoes the list.
-      - ''
-      - Moving fast feels like getting ahead of it, but the deadline is freshest now. Their reply will be the same, only sooner.
-    explanation: Their best reply uses your weakest point. Prepare for it, or choose a better moment.
-  - kind: choice
-    id: price-cut
-    prompt: You and the stall across the road each sell 100 cups of tea a day at 20 a cup. You cut to 18 to win their customers. If they cut to 18 the next day, and each stall keeps its 100 cups, what has your cut done to your daily takings?
-    options:
-      - Raised them, from the customers you win
-      - Left them the same, since you both cut
-      - Lowered them by 200, and theirs too
-    answer: 2
-    feedback:
-      - You would win customers if they did nothing, but that is the reply you hope for. Once they match, nobody has a reason to switch.
-      - Your share of customers is the same, but each cup now earns 2 less, so the same 100 cups bring in less.
-      - ''
-    explanation: 100 cups at 18 is 1,800 instead of 2,000. If their best reply cancels your move, your move only costs you. Think one reply ahead before you commit.
-  - kind: choice
-    id: compare
-    prompt: 'Before answering Qh5, Black asks what White wants. What does that share with preparing for the meeting?'
-    position: 'moves: e4 e5 Qh5'
-    alongside: 'Next week you will ask your manager for a raise.'
-    options:
-      - 'Work out their best reply before you make your move'
-      - 'Hope they react the way you would like'
-      - 'Move first so they have no time to think'
-    answer: 0
-    feedback:
-      - ''
-      - 'Hoping is how Nf6 walks into Qxf7 mate. Plan for their best reply, not the one you want.'
-      - 'Speed does not remove their reply. Moving without thinking it through only hides it from you.'
-    explanation: 'In both, you think through the other sides best reply, as they see it, before you commit: Black guards f7, and you prepare the answer to "not this year".'
+  - ask: life/their-next-move/ask-for-a-raise
+  - ask: life/their-next-move/price-cut
+  - ask: chess/their-next-move/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you think about their reply?'

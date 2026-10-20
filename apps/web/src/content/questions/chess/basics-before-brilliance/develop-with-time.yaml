@@ -1,0 +1,9 @@
+card: strategy/basics-before-brilliance/develop-with-time
+kind: move
+prompt: Black's queen came out early and took on d5. Bring out a piece and attack the queen with it.
+position: 'moves: e4 d5 exd5 Qxd5'
+measures: opening
+answers:
+  - b1c3
+hint: Which knight can reach a square that attacks d5?
+explanation: Nc3 develops a knight and makes the queen move again, so White gains time. Bc4 also attacks the queen, but nothing guards the bishop, and ...Qxc4 takes it.

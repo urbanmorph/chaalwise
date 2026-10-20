@@ -1,0 +1,19 @@
+card: reference/strategy/blunder-check/what-it-allows
+kind: choice
+prompt: 'White would like to play Bxf7+, taking a pawn with check. Check first: what does it allow?'
+position: 3q2k1/pp3ppp/5n2/8/2B5/8/PP2QPPP/6K1 w - - 0 1
+options:
+  - 'Nothing: it wins a pawn'
+  - The king takes the bishop
+  - Black's queen takes the bishop
+answer: 1
+feedback:
+  - A check looks forcing, so it is easy to stop looking. But the king is allowed to answer a check by taking the piece that gives it.
+  - ''
+  - The queen is the piece that looks most dangerous, but from d8 it cannot reach f7. The king can.
+highlight:
+  - f7
+arrows:
+  - g8f7
+explanation: 'Nothing guards the bishop on f7, so the king simply takes it. A check is not a reason to skip the question: what does this let the other side do?'
+measures: think-ahead

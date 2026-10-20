@@ -1,0 +1,13 @@
+kind: choice
+prompt: Before every move, what do you look for, for both sides?
+options:
+  - Checks, captures and threats
+  - Pins, forks and skewers
+  - The centre, development and castling
+answer: 0
+feedback:
+  - ''
+  - Those tactics are worth knowing, but most pieces are lost to a simple check, capture or threat that was missed.
+  - Good opening aims, but they do not tell you whether a piece is about to be taken.
+explanation: Checks, captures and threats, yours and your opponent's, before every move. This is the blunder check, and it is the habit that stops you leaving pieces hanging.
+measures: safety

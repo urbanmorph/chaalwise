@@ -1,0 +1,14 @@
+card: reference/strategy/test-to-disprove/two-four-six
+kind: choice
+prompt: You are told 2, 4, 6 fits a hidden rule, and you guess "numbers going up by 2". Which test tells you most about whether you are right?
+options:
+  - 8, 10, 12
+  - 1, 2, 3
+  - 2, 4, 6 again, to be sure
+answer: 1
+feedback:
+  - It fits your guess, so a yes is what you expect. But it also fits "any numbers going up" and "all even", so a yes cannot tell them apart.
+  - ''
+  - You already know it gets a yes, so it can tell you nothing new.
+explanation: Your guess says 1, 2, 3 should get a no. If it gets a yes, your guess is wrong. That is the test that can surprise you.
+measures: read-hidden

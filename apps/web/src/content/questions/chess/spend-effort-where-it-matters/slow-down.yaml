@@ -1,0 +1,9 @@
+card: strategy/spend-effort-where-it-matters/slow-down
+kind: move
+prompt: A moment to slow down. One move here changes the game for good, and only one wins. Find it.
+position: 3r4/4k3/8/4K3/4P3/8/8/3R4 w - - 0 1
+measures: calculation
+answers:
+  - d1d8
+hint: 'Count it through: what is left after the rooks come off?'
+explanation: Rxd8 Kxd8 leaves a pawn ending, and White wins it. The king steps to d6 or e6, on the sixth rank ahead of its pawn. With the rooks still on, Black can defend, and every other move only draws or worse.

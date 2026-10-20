@@ -1,0 +1,14 @@
+card: strategy/resources-change-value/next-hire
+kind: choice
+prompt: A small firm has five sales staff and one web developer. Two years ago, one order in five came through the website. Now four in five do. There is money for one new hire. Who should it be?
+options:
+  - A second developer, for the website
+  - A sixth salesperson, as sales staff bring in orders
+  - Half of each, a part-time developer and seller
+answer: 0
+feedback:
+  - ''
+  - That was true two years ago. Now the five salespeople bring in one order in five between them, and one person runs the channel that brings in the rest.
+  - Splitting feels safe, but it gives the channel that brings in four orders in five only half the help it needs.
+explanation: The website used to bring one order in five; now it brings four. The value of each role moved with the business, so the next hire should follow it, as a pawn's value grows when the pieces come off.
+measures: plan-long

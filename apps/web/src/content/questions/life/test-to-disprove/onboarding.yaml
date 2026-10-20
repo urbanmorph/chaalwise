@@ -1,0 +1,14 @@
+card: reference/strategy/test-to-disprove/onboarding
+kind: choice
+prompt: You believe a new welcome call makes customers stay longer. Which check could show you are wrong?
+options:
+  - Ask customers who stayed whether they liked the call
+  - Compare customers who got the call with similar ones who did not
+  - Count the happy emails that mention the call
+answer: 1
+feedback:
+  - Customers who stayed are the ones most likely to like it. Those who left are missing, so this can only agree with you.
+  - ''
+  - Happy emails come from happy customers. They say nothing about whether the call changed who stayed.
+explanation: 'A fair comparison could come out against you: if similar customers without the call stay just as long, the call is not what keeps them.'
+measures: read-hidden
