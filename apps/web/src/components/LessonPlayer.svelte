@@ -26,6 +26,8 @@
   }
 
   let { lesson, onfinish, onstep, finished, onplan, askConfidence = false, contexts = [] }: Props = $props();
+  /** Arrows on the board: shown with a reading step at once, and with a choice once it is answered. */
+  const arrowMarks = (arrows: string[], brush: Mark['brush']): Mark[] => arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush }));
   /** How sure the learner said they were, chosen before the first answer only. */
   let sure = $state<number>();
 
@@ -193,9 +195,11 @@
               lastMove={after?.move}
               orientation={'orientation' in step ? step.orientation : undefined}
               interactive={step.kind === 'move' && !player.revealed}
-              marks={player.revealed && step.kind === 'choice' && step.arrows
-                ? [...marks, ...step.arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush: 'yellow' as const }))]
-                : marks}
+              marks={step.kind === 'read' && step.arrows
+                ? arrowMarks(step.arrows, 'green')
+                : player.revealed && step.kind === 'choice' && step.arrows
+                  ? [...marks, ...arrowMarks(step.arrows, 'yellow')]
+                  : marks}
               highlight={step.kind === 'read' ? (step.highlight ?? []) : player.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
               highlightStyle={step.kind === 'read' ? 'area' : 'outline'}
               coordinates={showCoordinates}

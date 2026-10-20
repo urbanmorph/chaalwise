@@ -1,6 +1,7 @@
 kind: choice
 prompt: After Bf3+ here, is it a pin, a skewer or a fork?
 position: q7/7p/8/3k4/8/5B2/6PP/6K1 b - - 0 1
+arrows: [f3a8]
 options:
   - A skewer, as the king is in front
   - A pin, as the queen is stuck

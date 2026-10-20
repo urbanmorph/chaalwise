@@ -22,6 +22,8 @@ const measures = z
   .optional();
 
 const squareName = z.string().regex(/^[a-h][1-8]$/, 'a square such as e4');
+/** Arrows on a board, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
+const arrows = z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional();
 
 /** Text to read, optionally beside a board with squares picked out (e.g. a file or a rank). */
 const readStep = z.object({
@@ -31,6 +33,8 @@ const readStep = z.object({
   position: z.string().optional(),
   orientation: z.enum(['white', 'black']).optional(),
   highlight: z.array(squareName).optional(),
+  /** Arrows shown with the text, such as the attack it describes. */
+  arrows,
 });
 
 const choiceStep = z
@@ -47,7 +51,7 @@ const choiceStep = z
     /** Squares to highlight on the board once the answer is shown, e.g. the square the question is about. */
     highlight: z.array(squareName).optional(),
     /** Arrows to draw once the answer is shown, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
-    arrows: z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional(),
+    arrows,
     /** Why each option fails, in the same order as the options, shown when it is picked; the right option's line is empty. */
     feedback: z.array(z.string()).optional(),
     /** A case off the board shown beside the board, to compare the two: what do they share? */

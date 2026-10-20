@@ -22,7 +22,7 @@ No account, no signup, no server holding learner data. Progress exports to a JSO
 
 ### Free software and the digital commons — ✅
 
-AGPL-3.0 code. It builds on free software from the Lichess community (chessground and chessops, GPL-3.0), credited on the site and never presented as ours. Evidence: [LICENSE](./LICENSE), the [credits page](https://chaalwise.urbanmorph.com/credits/).
+AGPL-3.0 code. It builds on free software from the Lichess community (chessground and chessops, GPL-3.0), credited on the site and never presented as ours. Evidence: [LICENSE](./LICENSE), [CREDITS.md](./CREDITS.md).
 
 ### Privacy — ✅
 

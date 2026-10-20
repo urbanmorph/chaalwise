@@ -12,6 +12,7 @@ steps:
     text: On the board, before a capture, you follow every capture on that square to the end. Who is ahead when the captures stop? Here exd5 exd5 leaves White a knight for a pawn up.
     position: 4k3/8/4p3/3n4/4P3/8/8/4K3 w - - 0 1
     highlight: [d5]
+    arrows: [e4d5, e6d5]
   - kind: read
     id: off-the-board
     text: Off the board, many offers look good at the first step. Count the whole chain, to where it stops, before you agree.

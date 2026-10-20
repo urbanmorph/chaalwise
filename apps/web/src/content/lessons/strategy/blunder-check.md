@@ -12,6 +12,7 @@ steps:
     text: On the board, before every move, you look at checks, captures and threats, theirs first. Here the knight on c3 attacks the queen. Missing that is how many games are lost.
     position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
     highlight: [c3, d1]
+    arrows: [c3d1]
   - kind: read
     id: off-the-board
     text: Off the board it is the same habit. Before you act, ask what could go wrong. Look first at what the other side, or the situation, can do to you, and only then at what you want to do.

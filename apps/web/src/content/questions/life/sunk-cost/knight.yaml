@@ -1,6 +1,6 @@
 card: reference/strategy/sunk-cost/knight
 kind: choice
-prompt: You spent five moves bringing a knight into an attack. The attack has failed and the knight is now in danger. What should decide your next move?
+prompt: In a game of chess, you spent five moves bringing a knight into an attack. The attack has failed and the knight is now in danger. What should decide your next move?
 options:
   - The five moves already spent on it
   - What the knight can do from here

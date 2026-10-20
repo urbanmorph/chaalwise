@@ -2,6 +2,7 @@ card: strategy/two-birds-one-stone/compare
 kind: choice
 prompt: What do the knight's move and the shop's move share?
 position: r3k3/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1
+arrows: [d5c7]
 alongside: A shop moves its counter to the station, where the rent is lower and more people pass.
 options:
   - One move that serves two aims at once

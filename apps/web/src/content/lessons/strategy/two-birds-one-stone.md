@@ -12,6 +12,7 @@ steps:
     text: On the board, a fork attacks two things with one move, and only one of them can be saved. Here Nc7+ checks the king and attacks the rook on a8. Black must answer the check, and the rook falls.
     position: r3k3/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1
     highlight: [c7, e8, a8]
+    arrows: [d5c7]
   - ask: chess/two-birds-one-stone/one-move-two-jobs
   - kind: read
     id: off-the-board

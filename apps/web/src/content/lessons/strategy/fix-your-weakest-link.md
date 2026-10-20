@@ -12,6 +12,7 @@ steps:
     text: On the board, nothing is urgent here. White's bishop on c1 is shut in by its own pawns and touches nothing. The best plan is to give it a road, starting with b3, so it can come out to b2 or a3.
     position: 5rk1/pp3ppp/2pbpn2/3p4/3P4/2P1PN2/PP3PPP/2B2RK1 w - - 0 1
     highlight: [c1]
+    arrows: [b2b3]
   - ask: chess/fix-your-weakest-link/worst-piece
   - kind: read
     id: off-the-board

@@ -1,6 +1,7 @@
 kind: choice
 prompt: White's knight on g5 and bishop on c4 both attack f7. Is ...Bc5, developing, safe for Black?
 position: 'moves: e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5'
+arrows: [g5f7, c4f7]
 options:
   - Safe
   - Not safe

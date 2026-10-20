@@ -2,6 +2,7 @@ card: strategy/make-it-hard/compare
 kind: choice
 prompt: A queen down, Black keeps the king in the corner and draws. What does that share with the bid?
 position: 6K1/8/8/3Q4/8/8/pk6/8 b - - 0 1
+arrows: [b2b1, b2a1]
 alongside: A small firm, 15% dearer than a larger rival, has a week before the client decides.
 options:
   - Behind is not lost, so make the other side prove it

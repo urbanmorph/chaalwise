@@ -113,7 +113,7 @@ test('coordinates show while names are taught, and hide once the learner finds s
   await page.getByRole('button', { name: 'Continue' }).click();
   await answer('a4');
   await page.getByRole('button', { name: 'Continue' }).click();
-  await expect(page.getByText('Now without the letters and numbers. Find e4.')).toBeVisible();
+  await expect(page.getByText('Find e4, without the letters and numbers on the edges.')).toBeVisible();
   await expect(page.locator('coords')).toHaveCount(0);
 });
 

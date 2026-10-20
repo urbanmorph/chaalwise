@@ -12,6 +12,7 @@ steps:
     text: On the board, White is a knight ahead. Black's rook is its only active piece, and it threatens ...Rxe1 mate. Rxe8+ Kxe8 answers the threat and trades off that rook. With nothing left to attack with, Black cannot stop the extra knight from deciding the game.
     position: 4rk2/pp3ppp/8/8/8/2N5/PP3PPP/4R1K1 w - - 0 1
     highlight: [e1, e8]
+    arrows: [e1e8]
   - ask: chess/simplify-when-ahead/trade-queens
   - kind: read
     id: off-the-board

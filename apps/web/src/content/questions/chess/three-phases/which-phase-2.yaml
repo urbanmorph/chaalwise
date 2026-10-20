@@ -1,5 +1,5 @@
 kind: choice
-prompt: And this one?
+prompt: Which phase of the game is this?
 position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
 options:
   - The opening

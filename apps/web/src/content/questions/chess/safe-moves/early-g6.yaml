@@ -1,6 +1,7 @@
 kind: choice
 prompt: Black wants to chase White's queen away with ...g6. Is that safe?
 position: 'moves: e4 e5 Qh5'
+arrows: [g7g6, h5e5]
 options:
   - Safe
   - Not safe

@@ -12,6 +12,7 @@ steps:
     text: On the board, being far behind is not the same as losing. Here Black is a queen for a pawn down, and many would resign. Yet Kb1 or Ka1 holds the draw, keeping the king in the corner by its pawn; any other king move loses. With Black's king on a1, in front of its pawn, a queen move that takes its last square without check is stalemate.
     position: 6K1/8/8/3Q4/8/8/pk6/8 b - - 0 1
     highlight: [a1, a2, b2]
+    arrows: [b2b1, b2a1]
   - ask: chess/make-it-hard/hold-on
   - kind: read
     id: off-the-board

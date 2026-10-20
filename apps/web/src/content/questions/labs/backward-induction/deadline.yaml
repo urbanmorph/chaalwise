@@ -1,6 +1,6 @@
 card: reference/labs/backward-induction/deadline
 kind: choice
-prompt: A report must reach the board on Friday morning. Printing and sending it takes all of Thursday, and review takes two full days before that. When must the draft be ready?
+prompt: A report must reach the board of directors on Friday morning. Printing and sending it takes all of Thursday, and review takes two full days before that. When must the draft be ready?
 options:
   - By the end of Wednesday
   - By the end of Tuesday

@@ -1,6 +1,6 @@
 card: reference/labs/winners-curse/more-bidders
 kind: choice
-prompt: Next time there are ten bidders instead of five, with the same kind of jar. How should you change your bid?
+prompt: Bidders estimate a jar of coins worth the same to each of them. If there are ten bidders instead of five, how should you change your bid?
 options:
   - Shade it further below your estimate
   - Shade it less, to have a chance of winning

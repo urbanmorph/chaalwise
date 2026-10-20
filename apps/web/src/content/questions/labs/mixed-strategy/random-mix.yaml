@@ -1,6 +1,6 @@
 card: reference/labs/mixed-strategy/random-mix
 kind: choice
-prompt: Against an opponent who learns your habits, what is the best plan over many throws?
+prompt: In rock-paper-scissors, against an opponent who learns your habits, what is the best plan over many throws?
 options:
   - Switch habits whenever you start to lose
   - Throw each a third of the time, at random

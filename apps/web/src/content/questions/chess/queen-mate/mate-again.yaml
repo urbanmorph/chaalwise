@@ -1,6 +1,6 @@
 kind: play
 practice: mate-kq
-prompt: Again, from here. Make the box first.
+prompt: Mate the lone king again, from a new start. Make the box first.
 position: 8/8/3k4/8/8/2K5/8/7Q w - - 0 1
 goal: checkmate
 within: 15

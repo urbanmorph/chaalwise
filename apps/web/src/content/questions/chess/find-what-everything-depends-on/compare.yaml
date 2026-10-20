@@ -2,6 +2,7 @@ card: strategy/find-what-everything-depends-on/compare
 kind: choice
 prompt: What does the pinned knight share with the sales manager?
 position: 4k3/pp3ppp/2n5/1B6/3b4/8/PP3PPP/3R2K1 w - - 0 1
+arrows: [d1d4, c6d4, b5e8]
 alongside: All of a firm's sales depend on one manager, who holds every client contact.
 options:
   - Much rests on one piece, so find it first

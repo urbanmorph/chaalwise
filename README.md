@@ -39,4 +39,4 @@ Pushes to `main` deploy through GitHub Actions after every check passes. For a m
 
 ## Licence and credits
 
-AGPL-3.0. The board ([chessground](https://github.com/lichess-org/chessground)) and the chess rules ([chessops](https://github.com/niklasf/chessops)) come from the Lichess community, under GPL-3.0; Chaalwise is independent and not part of Lichess. Full credits are on the site's [credits page](https://chaalwise.urbanmorph.com/credits/).
+AGPL-3.0. The board ([chessground](https://github.com/lichess-org/chessground)) and the chess rules ([chessops](https://github.com/niklasf/chessops)) come from the Lichess community, under GPL-3.0; Chaalwise is independent and not part of Lichess. Full credits, with each licence, are in [CREDITS.md](./CREDITS.md); the terms of use are in [TERMS.md](./TERMS.md).

@@ -1,6 +1,6 @@
 card: strategy/basics-before-brilliance/mock-exam
 kind: choice
-prompt: Your maths exam is in six weeks. In the mock, you lost 30 of 100 marks to slips with fractions and signs, and 10 on the two hardest questions. How do you spend most of your revision?
+prompt: Your maths exam is in six weeks. In a practice exam, you lost 30 of 100 marks to slips with fractions and signs, and 10 on the two hardest questions. How do you spend most of your revision?
 options:
   - Practise the hardest questions until you can solve them
   - Drill fractions and signs until the slips stop

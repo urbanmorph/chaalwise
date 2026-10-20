@@ -1,6 +1,7 @@
 kind: choice
 prompt: It is Black's move. Can the knight on c6 move?
 position: 4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 b - - 0 1
+arrows: [b5e8]
 options:
   - No, moving it would expose the king
   - Yes, but White would then win the king

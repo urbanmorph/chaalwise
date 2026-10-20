@@ -86,10 +86,14 @@ describe.each(htmlFiles)('%s', (page) => {
 });
 
 describe('credits', () => {
-  it('credits the Lichess projects the board and rules come from, with their licences', () => {
-    const html = read('credits/index.html');
-    expect(html).toMatch(/chessground/);
-    expect(html).toMatch(/chessops/);
-    expect(html).toMatch(/GPL-3\.0/);
+  it('credits the Lichess projects the board and rules come from, with their licences, in CREDITS.md', () => {
+    const credits = readFileSync(new URL('../../../CREDITS.md', import.meta.url), 'utf8');
+    expect(credits).toMatch(/chessground/);
+    expect(credits).toMatch(/chessops/);
+    expect(credits).toMatch(/GPL-3\.0/);
+    expect(credits).toMatch(/not part of or endorsed by Lichess/);
+    // The notices the GPL and AGPL ask an interactive program to show: copyright, no warranty, the licence.
+    expect(credits).toMatch(/Copyright/);
+    expect(credits).toMatch(/no warranty/);
   });
 });

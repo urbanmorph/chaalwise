@@ -12,6 +12,7 @@ steps:
     text: On the board, when you consider a move you ask, if I play this, what will they play? Their best reply, not the one you hope for. Here, if Black plays ...g6 to chase the queen, the queen simply takes on e5 with check.
     position: 'moves: e4 e5 Qh5'
     highlight: [h5, e5]
+    arrows: [g7g6, h5e5]
   - kind: read
     id: off-the-board
     text: Off the board, before you act, think through how the other side will respond. Picture their best reply from where they stand, then decide.

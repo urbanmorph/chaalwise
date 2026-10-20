@@ -2,6 +2,7 @@ card: strategy/review-calmly/compare
 kind: choice
 prompt: Nf6 allowed mate, yet Black might still win. What does judging that move share with the launch review?
 position: 'moves: e4 e5 Qh5 Nc6 Bc4 Nf6'
+arrows: [h5f7]
 alongside: A team reviews a product launch that went badly after a supplier failed.
 options:
   - Judge the choice by what was known, not the result

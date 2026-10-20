@@ -12,6 +12,7 @@ steps:
     text: On the board, strong players do not work out the back-rank mate each time. They know the pattern, a king boxed in by its own pawns, and see the answer at once.
     position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
     highlight: [g8, f7, g7, h7]
+    arrows: [d1d8]
   - kind: read
     id: off-the-board
     text: Off the board, every field has its patterns. Learn the common shapes by heart, so the obvious answers are instant and your effort goes to what is new.

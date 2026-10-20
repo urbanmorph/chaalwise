@@ -12,6 +12,7 @@ steps:
     text: On the board, strong players do not play the first good-looking move. They name a few candidates, then compare them. Here White might attack f7 with Ng5, open the centre with d4, or play the quiet d3. Each leads to a different game.
     position: 'moves: e4 e5 Nf3 Nc6 Bc4 Nf6'
     highlight: [g5, d4, d3]
+    arrows: [f3g5, d2d4, d2d3]
   - ask: chess/look-at-three/three-candidates
   - kind: read
     id: off-the-board

@@ -12,6 +12,7 @@ steps:
     text: On the board, a plan is a goal and a route to it. Here White wants a knight on d5, a strong central square that Black's pawns cannot easily attack. It takes two steps, Nc3 and then Nd5. After each step White looks again, because Black moves too.
     position: 4r1k1/1p2bppp/p2p4/4p3/4P3/8/PPP2PPP/1N2R1K1 w - - 0 1
     highlight: [b1, c3, d5]
+    arrows: [b1c3, c3d5]
   - ask: chess/a-plan-step-by-step/first-step
   - kind: read
     id: off-the-board

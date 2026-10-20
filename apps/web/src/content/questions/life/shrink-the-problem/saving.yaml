@@ -1,6 +1,6 @@
 card: strategy/shrink-the-problem/saving
 kind: choice
-prompt: You want 300,000 for a deposit in two years, and you can afford to save 12,500 a month. Which plan is most likely to get you there?
+prompt: You want 300,000 for a deposit on a home in two years, and you can afford to save 12,500 a month. Which plan is most likely to get you there?
 options:
   - Move 12,500 to a separate account each payday
   - Save whatever is left at the end of each month
@@ -10,5 +10,5 @@ feedback:
   - ''
   - It feels flexible, but what is left at the end of the month is usually less than planned, and nothing is locked in.
   - A pay rise may come, but waiting leaves the whole gap open for longer, and spending tends to rise with pay.
-explanation: 24 × 12,500 = 300,000. Moving it on payday keeps each month's gain out of reach, so the gap gets smaller and the plan gets harder to knock off course, like the shrinking box.
+explanation: 24 × 12,500 = 300,000. Moving it on payday keeps each month's gain out of reach, so the gap gets smaller and the plan gets harder to knock off course, like the shrinking box around the king in a chess endgame.
 measures: plan-long

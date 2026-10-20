@@ -1,6 +1,6 @@
 card: reference/strategy/information-advantage/last-to-act
 kind: choice
-prompt: In poker, why is acting last in a round worth so much?
+prompt: In poker, why is acting last in a betting round worth so much?
 options:
   - You see what the others did before you decide
   - You see more of the shared cards before you decide

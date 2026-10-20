@@ -2,6 +2,7 @@ card: strategy/finish-the-job/compare
 kind: choice
 prompt: Kc7 before queening wins; queening at once draws. What does that share with the contract?
 position: 8/kP6/2K5/8/8/8/8/8 w - - 0 1
+arrows: [c6c7]
 alongside: A sales team has agreed every term of a contract, and the signed copy is due tomorrow.
 options:
   - The last step needs care, even when the win looks sure
