@@ -1,11 +1,13 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { learningPath } from '@chaalwise/core/path';
+import { isGraded } from '@chaalwise/core/player';
 import type { SkillId } from '@chaalwise/core/skills';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { parseMoveText, positionFromMoves, toSan } from './chess';
 import { safetyVerdict } from './drills';
 import { PLANNED } from './planned-skills';
-import { trackOf } from './profile-skills';
+import { referenceMeasures, trackOf } from './profile-skills';
+import { referenceEntries } from './reference-entries';
 
 export type LessonEntry = CollectionEntry<'lessons'>;
 
@@ -56,7 +58,7 @@ export const STAGES: Record<number, string> = {
  */
 export const stepsWithSkills = (lesson: LessonEntry) =>
   lesson.data.steps.map((step) =>
-    step.kind === 'read'
+    !isGraded(step)
       ? step
       : {
           ...step,
@@ -72,8 +74,13 @@ export async function reviewSteps(): Promise<Record<string, GradedStep>> {
   const steps: Record<string, GradedStep> = {};
   for (const lesson of await lessonPath()) {
     for (const step of stepsWithSkills(lesson)) {
-      if (step.kind !== 'read') steps[`${lesson.id}/${step.id}`] = step;
+      if (isGraded(step)) steps[`${lesson.id}/${step.id}`] = step;
     }
+  }
+  // Reference questions tried on their page come back in review too.
+  for (const entry of await referenceEntries()) {
+    const measures = referenceMeasures(entry.data.game, entry.data.skill);
+    for (const step of entry.data.try ?? []) steps[`reference/${entry.id}/${step.id}`] = { ...step, measures };
   }
   return steps;
 }

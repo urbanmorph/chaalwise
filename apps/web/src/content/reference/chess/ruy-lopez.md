@@ -9,6 +9,7 @@ family: 'open'
 position: 'moves: e4 e5 Nf3 Nc6 Bb5'
 related: ['chess/italian-game', 'chess/pin']
 lesson: 'chess/opening-map'
+lichess: 'Ruy_Lopez'
 ---
 
 After 1.e4 e5 2.Nf3 Nc6 3.Bb5, the bishop hits the knight that guards Black's e5 pawn. The threat is not immediate, but the pressure lasts for many moves.

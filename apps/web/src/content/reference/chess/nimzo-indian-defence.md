@@ -10,6 +10,7 @@ position: 'moves: d4 Nf6 c4 e6 Nc3 Bb4'
 orientation: 'black'
 related: ['chess/pin', 'chess/queens-indian-defence']
 lesson: 'chess/opening-map'
+lichess: 'Nimzo-Indian_Defense'
 ---
 
 After 1.d4 Nf6 2.c4 e6 3.Nc3 Bb4, Black controls e4 with pieces rather than pawns. It is flexible and respected at every level.

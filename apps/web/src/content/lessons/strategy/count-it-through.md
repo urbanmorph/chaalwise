@@ -41,9 +41,14 @@ steps:
       - Each bottle is cheaper, but you pay for bottles you will throw away. The price per bottle is the first step, not the end.
       - ''
     explanation: You pay 240 for three bottles to use one that costs 120 on its own. Counted through, the deal costs you twice what you needed to spend.
-  - kind: read
-    id: try-it
-    text: Try it this week. When an offer looks good, write down every step that follows, and its cost, before you say yes.
+  - kind: plan
+    id: plan
+    prompt: 'Use it this week. When will you count a chain through?'
+    situations:
+      - 'an offer looks good at first sight'
+      - 'I am asked to take on a new commitment'
+      - 'I am about to sign up for something with a free start'
+    action: 'I will write down every step that follows, and its cost, before I say yes'
 ---
 
 Calculation in chess is counting a sequence to the end. Off the board, the counting becomes a habit only if you practise it there too, as this week's task asks.

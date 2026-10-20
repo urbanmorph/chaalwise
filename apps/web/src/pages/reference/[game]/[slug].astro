@@ -8,7 +8,8 @@ import TryIt from '../../../components/TryIt.astro';
 import Base from '../../../layouts/Base.astro';
 import { toFen } from '../../../lib/chess';
 import { lessonHref, lessonPath } from '../../../lib/lessons';
-import { PROFILE_SKILLS } from '../../../lib/profile-skills';
+import { labHref, LABS } from '../../../lib/labs/labs';
+import { referenceMeasures } from '../../../lib/profile-skills';
 import { entryHref, numberedMoves } from '../../../lib/reference';
 import { referenceEntries, type ReferenceItem } from '../../../lib/reference-entries';
 
@@ -25,8 +26,10 @@ const { Content } = await render(entry);
 const all = await referenceEntries();
 const related = data.related.map((id) => all.find((e) => e.id === id)!);
 const lesson = data.lesson ? (await lessonPath()).find((l) => l.id === data.lesson) : undefined;
-// A skill the profile measures: its course has practice, and answers here count towards it.
-const course = data.skill && !PROFILE_SKILLS.find((s) => s.id === data.skill)?.later ? data.skill : undefined;
+// A track the profile measures: its course has practice, and answers here count towards it.
+const measures = referenceMeasures(data.game, data.skill);
+// A lab that plays this idea out against bots.
+const lab = LABS.find((l) => l.entry === entry.id || l.read.includes(entry.id));
 const opening = data.position?.startsWith('moves:') ? numberedMoves(data.position.slice(6)) : undefined;
 ---
 
@@ -76,12 +79,20 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
     {(data.position || data.try?.some((step) => step.position)) && <NewToChess />}
 
     {data.try && (
-      <TryIt
-        entry={entry.id}
-        steps={data.try}
-        measures={data.game === 'strategy' ? course : undefined}
-        more={course && { href: `/skills/${course}/`, label: `Practise ${SKILLS[course]}` }}
-      />
+      <TryIt entry={entry.id} steps={data.try} {measures} more={measures && { href: `/skills/${measures}/`, label: `Practise ${SKILLS[measures]}` }} />
+    )}
+
+    {lab && (
+      <p class="elsewhere">
+        Play it out: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against bots.
+      </p>
+    )}
+
+    {data.lichess && (
+      <p class="elsewhere">
+        Want more? <a href={`https://lichess.org/training/${data.lichess}`}>Puzzles on this from real games, on Lichess</a>, free and with no account. They are
+        not counted in your progress here.
+      </p>
     )}
 
     {(lesson || data.skill) && (
@@ -179,6 +190,10 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
     font-weight: 600;
   }
   .related span {
+    color: var(--ink-2);
+  }
+  .elsewhere {
+    margin-top: 24px;
     color: var(--ink-2);
   }
 </style>

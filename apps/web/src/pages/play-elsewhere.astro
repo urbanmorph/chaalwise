@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { lessonHref, lessonPath } from '../lib/lessons';
+
+// Learners do not play full games here: this page says where to, once they know enough.
+const path = await lessonPath();
+const chess = path.filter((l) => l.data.game === 'chess');
+// The chess path is enough to play once it reaches the full-game lesson; the rest is for coming back.
+const enough = chess.findIndex((l) => l.id === 'chess/play-a-real-game') + 1;
+const realGame = chess[enough - 1]!;
+---
+
+<Base title="Play it elsewhere" description="Where to play the games you learn here: free, online or face to face.">
+  <div class="wrap">
+    <h1>Play it elsewhere</h1>
+    <p class="lead">
+      Chaalwise teaches each game well enough to play it, then sends you to play. Full games are where the ideas get tested. Play some, then come back to learn
+      more and to review.
+    </p>
+
+    <section id="chess" aria-labelledby="chess-title">
+      <h2 id="chess-title">Chess</h2>
+      <p>
+        Before your first game, work through the first {enough} chess lessons, from <a href={lessonHref(chess[0]!)}>{chess[0]!.data.title}</a> to{' '}
+        <a href={lessonHref(realGame)}>{realGame.data.title}</a>: a few minutes each. Tactics, the middlegame and endgames come after, when you come back to
+        learn more.
+      </p>
+      <h3>Online, free</h3>
+      <ul>
+        <li>
+          <a href="https://lichess.org/">Lichess</a> is free, with no ads and no paid tier, and you can play without an account. It is run by a non-profit and
+          its code is open. Some of Chaalwise's own tools come from it.
+        </li>
+        <li>Choose at least 10 minutes each. Slower games give you time to use the blunder check; very fast games mostly test speed.</li>
+        <li>Play against people near your level, or against the computer at a low level first. Losing many games early is normal.</li>
+      </ul>
+      <h3>Face to face</h3>
+      <ul>
+        <li>A friend or family member with a board is the easiest start. Agree the rules first: touch-move, and what happens with a draw.</li>
+        <li>
+          Chess clubs welcome beginners, and many meet weekly at schools, colleges, libraries and community halls. Ask for a club near you, or a casual game
+          night.
+        </li>
+        <li>Bring back the moments that cost you a game. They are the best things to look up in the reference.</li>
+      </ul>
+    </section>
+
+    <section id="poker" aria-labelledby="poker-title">
+      <h2 id="poker-title">Poker</h2>
+      <p>
+        Poker is coming to Chaalwise as a game of decisions, played for practice points that can never be bought, sold or cashed out. When you play elsewhere,
+        keep it the same way.
+      </p>
+      <ul>
+        <li>Play at home with friends or family, for points written on paper, or for matchsticks or counters that are worth nothing.</li>
+        <li>Never play for money, and never on sites or apps that take money. Chaalwise does not link to any.</li>
+        <li>Afterwards, talk about one decision each: was it good, whatever the cards did?</li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .lead {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+  }
+  section {
+    margin-top: 36px;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin-top: 20px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+</style>

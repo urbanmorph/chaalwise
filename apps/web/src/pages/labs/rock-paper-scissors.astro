@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import RpsLab from '../../components/labs/RpsLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'rock-paper-scissors')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Rock beats scissors, scissors beats paper, paper beats rock. The bot starts by throwing at random, and watches what you throw. Try to beat it over 30
+    rounds, and see how quickly it learns your habits.
+  </p>
+  <RpsLab client:load />
+</LabPage>

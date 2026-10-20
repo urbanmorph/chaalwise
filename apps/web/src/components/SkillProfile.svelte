@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { calibration } from '@chaalwise/core/calibration';
   import { LEVELS, levelName } from '@chaalwise/core/profile';
   import { openProgress, type AttemptRecord } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
@@ -27,6 +28,7 @@
   let active = $state<string>();
 
   const profile = $derived(buildProfile(attempts));
+  const sureness = $derived(calibration(Object.values(attempts).flat()));
   const stats = $derived(dashboard(attempts, period));
   const percent = (rate: number | undefined) => (rate === undefined ? '–' : `${Math.round(rate * 100)}%`);
 
@@ -231,7 +233,39 @@
   </tbody>
 </table>
 
+<h2 class="heading">How sure you were</h2>
+<p class="lede">
+  In practice and review you can say how sure you are before you answer. Well judged, you are right about as often as you said: 9 in 10 at 90%. Many people are
+  right less often than they feel, which is worth knowing before a big decision.
+</p>
+<table class="sureness" data-testid="calibration">
+  <thead><tr><th scope="col">You said</th><th scope="col">Answers</th><th scope="col">Right first time</th></tr></thead>
+  <tbody>
+    {#each sureness as row (row.confidence)}
+      <tr>
+        <th scope="row">{row.confidence * 100}% sure</th>
+        <td>{row.answers}</td>
+        <td>{row.answers ? percent(row.right / row.answers) : '–'}</td>
+      </tr>
+    {/each}
+  </tbody>
+</table>
+
 <style>
+  .sureness {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .sureness th,
+  .sureness td {
+    text-align: left;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sureness thead th {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
   .choices {
     margin-bottom: 12px;
   }

@@ -32,4 +32,13 @@ describe('a reference entry you can try', () => {
     // Composure has no practice yet: nowhere to send the learner.
     expect(section(dist('reference/strategy/cool-head/index.html'))).not.toContain('href="/skills/composure/"');
   });
+
+  it('brings its questions back in review, so trying them once is not the last time', () => {
+    const review = dist('review/index.html');
+    expect(review).toContain('reference/strategy/sunk-cost/knight');
+    // Counted towards the track only where the profile measures it.
+    expect(review).toMatch(
+      /reference\/strategy\/weakest-link\/which-piece&quot;:\[0,\{[^}]*measures&quot;:\[0,&quot;plan-long/,
+    );
+  });
 });

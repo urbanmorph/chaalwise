@@ -10,6 +10,7 @@ position: 'moves: e4 c5'
 orientation: 'black'
 related: ['chess/french-defence', 'chess/caro-kann', 'strategy/lead-or-answer']
 lesson: 'chess/opening-map'
+lichess: 'Sicilian_Defense'
 ---
 
 After 1.e4 c5, Black does not copy White. The c-pawn controls d4, and the game usually becomes sharp, with the two sides attacking on opposite wings.

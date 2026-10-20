@@ -37,7 +37,4 @@ export const COMES_WITH: Partial<Record<SkillId, string>> = {
   'read-hidden': 'poker',
   bluff: 'poker',
   composure: 'poker',
-  cooperate: 'the game-theory labs (Prisoner’s Dilemma)',
-  unpredictable: 'the game-theory labs (rock-paper-scissors)',
-  value: 'the game-theory labs (auctions)',
 };

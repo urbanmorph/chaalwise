@@ -1,4 +1,7 @@
-import type { Lesson, Step } from './lesson';
+import type { GradedStep, Lesson, Step } from './lesson';
+
+/** Steps with an answer to grade: not reading, and not a plan. Here rather than in lesson.ts, which brings zod. */
+export const isGraded = (step: Step): step is GradedStep => step.kind !== 'read' && step.kind !== 'plan';
 
 /** The player needs only a lesson's steps, so a review session can be played the same way. */
 type Playable = Pick<Lesson, 'steps'>;
@@ -84,13 +87,13 @@ export const showHint = (state: PlayerState): PlayerState => (state.revealed ? s
 
 export function giveUp(lesson: Playable, state: PlayerState): PlayerState {
   const step = currentStep(lesson, state);
-  if (!step || step.kind === 'read' || state.revealed) return state;
+  if (!step || !isGraded(step) || state.revealed) return state;
   return reveal(state, step.id, 'missed');
 }
 
 export function advance(lesson: Playable, state: PlayerState): PlayerState {
   const step = currentStep(lesson, state);
-  if (!step || (step.kind !== 'read' && !state.revealed)) return state;
+  if (!step || (isGraded(step) && !state.revealed)) return state;
   const index = state.index + 1;
   return {
     ...state,

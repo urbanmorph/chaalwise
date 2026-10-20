@@ -39,7 +39,13 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   <Content />
 </div>
 {lesson.data.game === 'strategy' && <NewToChess />}
-<LessonPage client:load lesson={{ steps: stepsWithSkills(lesson) }} lessonId={lesson.id} next={next && { href: lessonHref(next), title: next.data.title }} />
+<LessonPage
+  client:load
+  lesson={{ steps: stepsWithSkills(lesson) }}
+  lessonId={lesson.id}
+  next={next && { href: lessonHref(next), title: next.data.title }}
+  track={lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined}
+/>
 
 <style>
   .builds-on {

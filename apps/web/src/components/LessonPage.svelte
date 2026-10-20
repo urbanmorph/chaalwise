@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Lesson } from '@chaalwise/core/lesson';
-  import type { Outcome } from '@chaalwise/core/player';
+  import { isGraded, type Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress, requestPersistence } from '@chaalwise/core/progress';
   // Loaded with the page, not on demand: if a deploy lands mid-lesson, the
   // on-demand chunk is gone from the server by the time the lesson is saved.
@@ -19,19 +19,30 @@
     lesson: Pick<Lesson, 'steps'>;
     lessonId: string;
     next?: { href: string; title: string } | undefined;
+    /** The strategy track a plan made in this lesson belongs to. */
+    track?: string | undefined;
   }
 
-  let { lesson, lessonId, next }: Props = $props();
+  let { lesson, lessonId, next, track }: Props = $props();
+
+  async function savePlan(stepId: string, text: string) {
+    const progress = await openProgress();
+    try {
+      await progress.savePlan({ id: `${lessonId}/${stepId}`, track: track ?? '', text, createdAt: new Date() });
+    } finally {
+      progress.close();
+    }
+  }
   let saved = $state<SaveState>('saving');
   let outcomes: Record<string, Outcome> = {};
 
   function logStep(stepId: string, outcome: Outcome) {
     const step = lesson.steps.find((s) => s.id === stepId);
-    if (step && step.kind !== 'read') logAttempt(step.measures, outcome, 'lesson', { item: `${lessonId}/${stepId}`, chance: guessChance(step) });
+    if (step && isGraded(step)) logAttempt(step.measures, outcome, 'lesson', { item: `${lessonId}/${stepId}`, chance: guessChance(step) });
   }
 
   /** Steps whose idea can be practised in fresh positions. */
-  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => s.kind !== 'read' && !!s.practice && isPracticeKind(s.practice)));
+  const practicable = $derived(lesson.steps.filter((s): s is GradedStep => isGraded(s) && !!s.practice && isPracticeKind(s.practice)));
   const ROUND = 5;
   let practice = $state<{ cardId: string; step: GradedStep }[] | undefined>();
   let rounds = $state(0);
@@ -67,7 +78,7 @@
   }
 </script>
 
-<LessonPlayer {lesson} {onfinish} onstep={logStep}>
+<LessonPlayer {lesson} {onfinish} onstep={logStep} onplan={savePlan}>
   {#snippet finished(outcomes)}
     <div class="card done" data-testid="lesson-done">
       <h2>Lesson complete</h2>

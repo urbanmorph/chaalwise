@@ -27,6 +27,18 @@ describe('on-device progress', () => {
     expect(due.map((c) => c.id).sort()).toEqual(['chess/board/corner', 'chess/board/push']);
   });
 
+  it('lets practice add a question to review, but never move one that is not due yet', async () => {
+    await fresh();
+    await store.recordPractice('reference/strategy/sunk-cost/knight', 'first-try', now);
+    expect((await store.dueCards(later)).map((c) => c.id)).toEqual(['reference/strategy/sunk-cost/knight']);
+
+    await store.recordLesson('chess/board', { corner: 'first-try' }, now);
+    const before = (await store.dueCards(later)).find((c) => c.id === 'chess/board/corner')!.card.due;
+    // Practising it again the next day, before it is due, leaves its schedule alone.
+    await store.recordPractice('chess/board/corner', 'missed', new Date(now.getTime() + 86_400_000));
+    expect((await store.dueCards(later)).find((c) => c.id === 'chess/board/corner')!.card.due).toEqual(before);
+  });
+
   it('reschedules a card after a review', async () => {
     await fresh();
     await store.recordLesson('chess/board', { corner: 'missed' }, now);
@@ -150,6 +162,46 @@ describe('attempts for the skill profile', () => {
     });
     await other.importData({ app: 'chaalwise', version: 1, exportedAt: now.toISOString(), lessons: [], cards: [] });
     expect(await other.attemptsBySkill()).toEqual({});
+    other.close();
+  });
+
+  it('keeps plans on the device, with each check-in, and carries them through an export', async () => {
+    await fresh();
+    await store.savePlan({
+      id: 'strategy/blunder-check/plan',
+      track: 'think-ahead',
+      text: 'When I send, I will check.',
+      createdAt: now,
+    });
+    await store.checkInPlan('strategy/blunder-check/plan', 'used', later);
+    expect(await store.plans()).toEqual([
+      {
+        id: 'strategy/blunder-check/plan',
+        track: 'think-ahead',
+        text: 'When I send, I will check.',
+        createdAt: now,
+        checkIns: [{ at: later, result: 'used' }],
+      },
+    ]);
+    // Saving the plan again changes its words but keeps its history.
+    await store.savePlan({
+      id: 'strategy/blunder-check/plan',
+      track: 'think-ahead',
+      text: 'When I sign, I will check.',
+      createdAt: later,
+    });
+    expect((await store.plans())[0]).toMatchObject({
+      text: 'When I sign, I will check.',
+      checkIns: [{ result: 'used' }],
+    });
+
+    const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
+    const other = await openProgress(`test-${++n}`);
+    await other.importData(exported);
+    expect((await other.plans())[0]).toMatchObject({
+      text: 'When I sign, I will check.',
+      checkIns: [{ at: later, result: 'used' }],
+    });
     other.close();
   });
 

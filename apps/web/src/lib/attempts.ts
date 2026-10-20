@@ -11,7 +11,7 @@ export async function logAttempt(
   skill: string | undefined,
   outcome: Outcome,
   source: AttemptRecord['source'],
-  question: Pick<AttemptRecord, 'item' | 'chance'> = {},
+  question: Pick<AttemptRecord, 'item' | 'chance' | 'confidence'> = {},
 ): Promise<void> {
   if (!skill) return;
   try {

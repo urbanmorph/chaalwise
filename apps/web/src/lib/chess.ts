@@ -84,7 +84,7 @@ export function chessStepIssues(steps: Step[], at: string): Issue[] {
     if ('practice' in step && step.practice && !isPracticeKind(step.practice)) {
       issues.push({ path: [at, i, 'practice'], message: `there is no practice called ${step.practice}` });
     }
-    if (step.position === undefined) return;
+    if (step.kind === 'plan' || step.position === undefined) return;
     // Read and square steps only show a board, so any readable board will do, even one with no kings.
     if (step.kind === 'read' || step.kind === 'square') {
       if (!boardIssue(step.position)) return;

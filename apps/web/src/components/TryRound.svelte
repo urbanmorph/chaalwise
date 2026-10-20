@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GradedStep } from '@chaalwise/core/lesson';
   import type { Outcome } from '@chaalwise/core/player';
+  import { openProgress } from '@chaalwise/core/progress';
   import { guessChance, logAttempt } from '../lib/attempts';
   import Round from './Round.svelte';
   import { summarise } from './outcomes';
@@ -18,9 +19,17 @@
 
   let { entry, steps, measures }: Props = $props();
 
-  function logStep(stepId: string, outcome: Outcome) {
+  function logStep(stepId: string, outcome: Outcome, confidence?: number) {
     const step = steps.find((s) => s.id === stepId)!;
-    logAttempt(measures, outcome, 'practice', { item: `reference/${entry}/${stepId}`, chance: guessChance(step) });
+    const item = `reference/${entry}/${stepId}`;
+    logAttempt(measures, outcome, 'practice', { item, chance: guessChance(step), confidence });
+    // The question joins the review, so trying it once is not the last time.
+    openProgress()
+      .then(async (progress) => {
+        await progress.recordPractice(item, outcome, new Date());
+        progress.close();
+      })
+      .catch(console.error);
   }
   let rounds = $state(0);
 </script>

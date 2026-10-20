@@ -10,6 +10,7 @@ position: 'moves: e4 d5'
 orientation: 'black'
 related: ['chess/tempo']
 lesson: 'chess/opening-map'
+lichess: 'Scandinavian_Defense'
 ---
 
 After 1.e4 d5 2.exd5 Qxd5, Black's queen is developed early and can be chased with tempo by 3.Nc3. Simple to learn and still sound.
