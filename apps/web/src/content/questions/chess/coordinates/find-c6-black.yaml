@@ -1,6 +1,6 @@
 kind: square
 practice: find-square-black
-prompt: Now you are Black, looking from the other side. Find c6.
+prompt: You are Black, looking from the other side. Find c6.
 orientation: black
 answers:
   - c6

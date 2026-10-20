@@ -52,7 +52,7 @@ describe('a worked example, for a board question before chess is met', () => {
       kind: 'read',
       id: 'strategy/x/find',
       position: move.position,
-      highlight: ['d5', 'e7'],
+      arrows: ['d5e7'],
     });
     expect(worked.text).toBe('Worked example. Find the fork. The move is Ne7+. It checks the king and hits the rook.');
   });
@@ -69,5 +69,9 @@ describe('a worked example, for a board question before chess is met', () => {
     expect(worked.text).toBe(
       'Worked example. Off the board: A client asks for a discount. What do they share? The answer: “B”. Because.',
     );
+  });
+
+  it('keeps a choice question’s arrows on its worked example', () => {
+    expect(workedExample({ ...board, arrows: ['c3d1'] } as GradedStep)).toMatchObject({ arrows: ['c3d1'] });
   });
 });

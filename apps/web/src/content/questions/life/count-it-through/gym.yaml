@@ -7,8 +7,8 @@ options:
   - '18,000: the whole contract'
 answer: 2
 feedback:
-  - The free month is real, but it is only the first capture. Signing is what the free month is for, and the contract follows it.
+  - The free month is real, but it is only the first step. Signing is what the free month is for, and the contract follows it.
   - That counts what you expect to use, not what you sign for. The contract cannot be ended early, so you pay for all twelve months.
   - ''
-explanation: The free month is the first capture; the contract is the recapture. 12 × 1,500 = 18,000, whether you go or not. Judge where the sequence ends.
+explanation: As in a chess exchange, the free month is the first capture and the contract is the recapture. 12 × 1,500 = 18,000, whether you go or not. Judge where the sequence ends.
 measures: calculate

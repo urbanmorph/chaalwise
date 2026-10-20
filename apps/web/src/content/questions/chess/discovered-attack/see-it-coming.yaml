@@ -1,6 +1,7 @@
 kind: choice
 prompt: Black to move. White threatens Bxh7+, uncovering the rook on your queen. Which move stops it?
 position: 3q2k1/5ppp/8/8/8/3B4/5PPP/3R2K1 b - - 0 1
+arrows: [d3h7, d1d8, d8e7]
 options:
   - '...Qe7, leaving the d-file'
   - '...h6, saving the h-pawn'

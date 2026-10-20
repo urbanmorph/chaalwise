@@ -1,6 +1,6 @@
 card: reference/strategy/decisions-not-results/lucky-win
 kind: choice
-prompt: A friend left a piece hanging, the opponent missed it, and the friend won. Was it a good move?
+prompt: In a game of chess, a friend left a piece where it could be taken for free. The opponent missed it, and the friend won. Was it a good move?
 options:
   - 'Yes: it won the game'
   - 'No: it was a mistake that got lucky'

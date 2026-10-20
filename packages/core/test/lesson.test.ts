@@ -26,6 +26,18 @@ describe('a lesson', () => {
     expect(() => lessonSchema.parse({ ...authored, steps: [{ ask: 'Corner question' }] })).toThrow();
   });
 
+  it('lets a read step draw arrows on its board, such as an attack', () => {
+    const step = {
+      kind: 'read',
+      id: 'attack',
+      text: 'The knight attacks the queen.',
+      position: 'start',
+      arrows: ['c3d1'],
+    };
+    expect(lessonSchema.parse({ ...authored, steps: [step] }).steps[0]).toMatchObject({ arrows: ['c3d1'] });
+    expect(() => lessonSchema.parse({ ...authored, steps: [{ ...step, arrows: ['c3'] }] })).toThrow();
+  });
+
   it('lets a read step show a board with squares picked out', () => {
     const step = { kind: 'read', id: 'files', text: 'This is the e-file.', position: 'empty', highlight: ['e1', 'e2'] };
     expect(lessonSchema.parse({ ...authored, steps: [step] }).steps[0]).toEqual(step);

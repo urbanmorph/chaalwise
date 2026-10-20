@@ -1,6 +1,6 @@
 card: strategy/fix-your-weakest-link/three-subjects
 kind: choice
-prompt: To get into your course, you need 60 or more in each of three subjects. Your mock marks are maths 78, physics 74 and chemistry 41. You have 10 hours of revision left this week. How do you use them?
+prompt: To get into your course, you need 60 or more out of 100 in each of three subjects. Your practice exam marks are maths 78, physics 74 and chemistry 41. You have 10 hours of revision left this week. How do you use them?
 options:
   - Split them evenly, about 3 hours each
   - Put most of them into chemistry

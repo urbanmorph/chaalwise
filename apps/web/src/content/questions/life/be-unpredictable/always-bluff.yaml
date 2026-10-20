@@ -1,6 +1,6 @@
 card: reference/strategy/be-unpredictable/always-bluff
 kind: choice
-prompt: A player bets big only when they have nothing. What does a watchful opponent do?
+prompt: In poker, a player bets big only when they have a weak hand. What does a watchful opponent do?
 options:
   - Call every big bet
   - Fold to big bets, as most players do

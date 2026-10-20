@@ -52,3 +52,13 @@ test('mixed practice asks a newcomer only what they can answer: no chess or lab 
     await expect(page.getByTestId('question-context')).toHaveCount(0);
   }
 });
+
+test('a board in a lesson draws the attack its text describes, and a worked example draws it too', async ({ page }) => {
+  await page.goto('/skills/blunder-check/');
+  await hydrated(page);
+  // The first step: the knight on c3 attacks the queen on d1.
+  await expect(page.locator('.player svg.arrows polyline')).toHaveCount(1);
+  await toStep(page, 2); // the compare question, a worked example for a newcomer
+  await expect(page.locator('.player h2')).toContainText('Worked example.');
+  await expect(page.locator('.player svg.arrows polyline')).toHaveCount(1);
+});

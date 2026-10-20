@@ -1,6 +1,7 @@
 kind: choice
 prompt: Can White castle on the king's side here?
 position: r3kr2/8/8/8/8/8/8/R3K2R w KQq - 0 1
+arrows: [f8f1]
 options:
   - No, the king would pass through f1, which the black rook attacks
   - Yes, nothing stands between the king and the rook

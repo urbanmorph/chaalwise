@@ -1,6 +1,6 @@
 card: reference/strategy/winners-curse/how-to-bid
 kind: choice
-prompt: So how should you bid next time?
+prompt: Firms bid for a building contract whose real cost is the same whoever does it, and the lowest price wins. How should you price your bid?
 options:
   - 'Bid your estimate exactly: it is your best guess'
   - Add a margin for error, bigger the more bidders there are

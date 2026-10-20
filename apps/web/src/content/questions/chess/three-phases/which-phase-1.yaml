@@ -1,5 +1,5 @@
 kind: choice
-prompt: Which phase is this?
+prompt: Which phase of the game is this?
 position: 'moves: e4 e5 Nf3 Nc6'
 options:
   - The opening

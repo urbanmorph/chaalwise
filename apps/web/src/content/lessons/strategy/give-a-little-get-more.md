@@ -12,6 +12,7 @@ steps:
     text: On the board, White offers the f-pawn in the King's Gambit. If Black takes, White aims to build a centre with d4 and use the half-open f-file. A pawn is given for time and space, and the trade is good only if White can use them.
     position: 'moves: e4 e5 f4 exf4'
     highlight: [e4, f4]
+    arrows: [d2d4]
   - ask: chess/give-a-little-get-more/give-to-get
   - kind: read
     id: off-the-board

@@ -12,6 +12,7 @@ steps:
     text: On the board, Black sees what White wants. Bxh7+ would uncover the rook on the queen. Black does not wait for it. ...Qe7 takes the queen off the line first, and the threat is gone before it starts.
     position: 3q2k1/5ppp/8/8/8/3B4/5PPP/3R2K1 b - - 0 1
     highlight: [d1, d3, d8]
+    arrows: [d3h7, d1d8, d8e7]
   - ask: chess/not-so-fast/stop-the-fork
   - kind: read
     id: off-the-board

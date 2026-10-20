@@ -2,7 +2,7 @@ card: strategy/finish-the-job/essay
 kind: choice
 prompt: Your essay is written, two hours before the deadline. Last time you lost 10 marks for a missing reference list. What do you do with the two hours?
 options:
-  - Check it against the mark scheme, then submit
+  - Check it against the marking guide, then submit
   - Submit now, before anything can go wrong
   - Rewrite the opening, which you never liked
 answer: 0

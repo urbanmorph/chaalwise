@@ -53,7 +53,7 @@ export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }>
     return {
       ...board,
       text: `Worked example. ${step.prompt} The move is ${san}. ${step.explanation}`,
-      highlight: [move.slice(0, 2), move.slice(2, 4)],
+      arrows: [move.slice(0, 4)],
     };
   }
   if (step.kind === 'choice') {
@@ -62,6 +62,7 @@ export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }>
       ...board,
       text: `Worked example. ${beside}${step.prompt} The answer: “${step.options[step.answer]}”. ${step.explanation}`,
       highlight: step.highlight,
+      arrows: step.arrows,
     };
   }
   return { ...board, text: `Worked example. ${step.prompt} ${step.explanation}` };

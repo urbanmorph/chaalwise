@@ -1,6 +1,6 @@
 card: reference/strategy/weakest-link/free-it
 kind: move
-prompt: Start fixing it. Which pawn move opens a road for the bishop, without giving anything away?
+prompt: White's bishop on c1 is shut in by its own pawns. Which pawn move opens a road for it, without giving anything away?
 position: 5rk1/pp3ppp/2pbpn2/3p4/3P4/2P1PN2/PP3PPP/2B2RK1 w - - 0 1
 answers:
   - b2b3

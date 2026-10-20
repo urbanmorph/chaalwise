@@ -1,6 +1,7 @@
 kind: choice
 prompt: It is Black to move. What is this?
 position: k7/1Q6/1K6/8/8/8/8/8 b - - 0 1
+arrows: [b7a8]
 options:
   - Checkmate
   - Stalemate

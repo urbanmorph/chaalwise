@@ -12,6 +12,7 @@ steps:
     text: On the board, a result can hide its mistakes. Here Black has just played Nf6, and Qxf7 is mate. Suppose White missed it, and Black went on to win. Judged by the result, Nf6 was fine. Judged by what Black could see when playing it, it was a blunder.
     position: 'moves: e4 e5 Qh5 Nc6 Bc4 Nf6'
     highlight: [c4, f7, h5]
+    arrows: [h5f7]
   - ask: chess/review-calmly/missed-mate
   - kind: read
     id: off-the-board

@@ -1,5 +1,5 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { HERO, pieceImages } from '../src/lib/diagram';
 import { PROFILE_SKILLS } from '../src/lib/profile-skills';
@@ -143,6 +143,11 @@ describe('the footer', () => {
 
   it('links to the terms, which say it is a social game and how to raise an issue', () => {
     expect(footer).toMatch(new RegExp(`href="${REPO}/TERMS.md"[^>]*>\\s*terms`));
+  });
+
+  it('links the credits to CREDITS.md in the repository, with no credits page on the site', () => {
+    expect(footer).toMatch(new RegExp(`href="${REPO}/CREDITS.md"[^>]*>\\s*credits`));
+    expect(existsSync(new URL('../dist/credits/index.html', import.meta.url))).toBe(false);
   });
 
   it('links pdgi to the scorecard in the repository, not the pdgi.org site', () => {

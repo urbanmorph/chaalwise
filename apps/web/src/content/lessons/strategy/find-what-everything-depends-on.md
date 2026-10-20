@@ -12,6 +12,7 @@ steps:
     text: On the board, Black's bishop on d4 is guarded only by the knight on c6, and the knight is pinned to its king. The whole defence rests on one piece, and that piece cannot move. Rxd4 wins the bishop, because the knight cannot take back.
     position: 4k3/pp3ppp/2n5/1B6/3b4/8/PP3PPP/3R2K1 w - - 0 1
     highlight: [c6, d4]
+    arrows: [d1d4, c6d4, b5e8]
   - ask: chess/find-what-everything-depends-on/remove-the-guard
   - kind: read
     id: off-the-board

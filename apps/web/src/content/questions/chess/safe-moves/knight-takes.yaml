@@ -1,6 +1,7 @@
 kind: choice
 prompt: Can White win a pawn with Nxe5 here?
 position: 'moves: e4 e5 Nf3 Nc6'
+arrows: [f3e5, c6e5]
 options:
   - Yes, the pawn is free
   - No, the knight on c6 takes back

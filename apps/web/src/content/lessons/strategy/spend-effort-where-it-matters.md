@@ -12,6 +12,7 @@ steps:
     text: On the board, your clock runs only on your turn, and every minute spent now is gone for later. Strong players move quickly when the move is obvious, such as a forced recapture, and slow down when a move cannot be undone. Here Rxd8 Kxd8 would leave only kings and pawns. Once the rooks are off, they never come back, so that is the moment to think.
     position: 3r4/4kppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
     highlight: [d1, d8]
+    arrows: [d1d8]
   - ask: chess/spend-effort-where-it-matters/slow-down
   - kind: read
     id: off-the-board
