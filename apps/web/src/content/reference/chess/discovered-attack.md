@@ -5,12 +5,12 @@ kind: 'tactic'
 level: 'intermediate'
 aliases: ['Discovered check', 'Discovery']
 summary: 'Moving one piece uncovers an attack by another piece behind it.'
-position: '4q1k1/5ppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1'
-move: 'e4f6'
-highlight: ['g8', 'e8']
+position: '4q3/5ppk/8/8/4N3/8/5PPP/4R1K1 w - - 0 1'
+move: 'e4g5'
+highlight: ['h7', 'e8']
 related: ['chess/fork', 'chess/double-check']
 ---
 
-Knight to f6 gives check, and by moving it uncovers the rook on e1 against the queen on e8. Black must answer the check, and the queen is lost.
+Knight to g5 checks the king on h7, and by moving it uncovers the rook on e1 against the queen on e8. The knight does not touch the queen; the rook does. Black must answer the check, and the rook takes the queen.
 
-When the moving piece gives check as well, it is a discovered check, one of the strongest tactics there is: two threats arrive at once, and only one can be answered.
+Two threats arrive with one move, and only one can be answered. When the uncovered piece gives check, it is a discovered check. When the moving piece checks as well, it is a double check.

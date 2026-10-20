@@ -3,7 +3,7 @@ term: 'Scotch Game'
 game: 'chess'
 kind: 'opening'
 level: 'intermediate'
-summary: 'White opens the centre at once with d4, trading a central pawn for free development.'
+summary: "White strikes at once with d4, trading its d-pawn for Black's e-pawn to open the centre and gain space."
 family: 'open'
 position: 'moves: e4 e5 Nf3 Nc6 d4'
 related: ['chess/italian-game', 'chess/ruy-lopez']

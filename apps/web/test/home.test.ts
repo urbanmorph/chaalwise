@@ -114,6 +114,20 @@ describe('strategy first', () => {
   });
 });
 
+describe('claims the evidence supports', () => {
+  const html = dist('index.html');
+
+  it('says carrying a skill over is more likely with practice off the board, not that naming it is enough', () => {
+    expect(html).toContain('does little for general thinking');
+    expect(html).toMatch(/more likely to carry over/);
+    expect(html).not.toMatch(/Skills carry over when/);
+  });
+
+  it('promises new positions only for chess ideas, which are the ones made afresh', () => {
+    expect(html).not.toContain('Each idea returns in new positions');
+  });
+});
+
 describe('what the home page offers to train now', () => {
   const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
 

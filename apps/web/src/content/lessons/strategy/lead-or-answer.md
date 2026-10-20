@@ -1,6 +1,6 @@
 ---
 title: Lead or answer well
-summary: Moving first is a small edge. When you answer, choose on purpose, to level things or to change their shape.
+summary: Move first when your move commits you or anchors the other side; answer when their move tells you something. When you answer, choose on purpose, to level things or to change their shape.
 game: strategy
 stage: 3
 order: 1
@@ -14,24 +14,33 @@ steps:
     highlight: [c5]
   - kind: read
     id: off-the-board
-    text: Off the board, someone always moves first, with the first offer or the first idea in a meeting. If you lead, keep the initiative. If you answer, choose on purpose. Make it level and solid, or change the shape of the problem.
+    text: Off the board, someone always moves first, with the first offer or the first idea in a meeting. Moving first pays when your move commits you or anchors the other side, and you know what things are worth. Moving second pays when their move tells you something you lack. Ask which is true here. If you lead, keep the initiative. If you answer, choose on purpose. Make it level and solid, or change the shape of the problem.
   - kind: choice
     id: first-offer
-    prompt: A buyer makes a low first offer for your bicycle. What is the solid, levelling answer?
+    prompt: You are selling your bicycle. Ones like it sell for about 8,000. A buyer opens at 4,000. What do you say?
     options:
-      - A fair counter-offer based on what similar bicycles sell for
-      - Accept straight away
-      - Walk away without a word
+      - Counter at about 8,000, pointing to what similar ones sell for
+      - Offer to meet in the middle at 6,000
+      - Ask what is the most they could really pay
     answer: 0
-    explanation: A counter-offer grounded in facts takes away the first mover's edge and brings the game back to level.
+    feedback:
+      - ''
+      - Meeting in the middle feels fair, but their low first number set the middle. Splitting the gap gives away 2,000 of a price you could justify.
+      - Asking for more information is wise when you know little, but you already know the value. Their 4,000 stays the anchor, and you invite a second number from them.
+    explanation: Their 4,000 is an anchor. A counter grounded in what similar bicycles fetch pulls the talk back towards level; splitting the difference lets their first number decide the middle.
   - kind: choice
     id: rival-shop
-    prompt: A rival shop opens next door with lower prices. What is the unbalancing answer?
+    prompt: A large chain opens next door to your small hardware shop. It sells the same items for 15% less, and it can afford low prices for longer than you can. What is your best answer?
     options:
-      - Offer something they do not, such as repairs or delivery, rather than matching prices
-      - Match every price they set
-    answer: 0
-    explanation: Matching prices plays their game on their terms. Changing what you compete on is the Sicilian move, riskier but with more to win.
+      - Match its prices on the items people buy most
+      - Offer what it does not, such as repairs and advice
+      - Cut your prices below its prices for a while
+    answer: 1
+    feedback:
+      - Matching keeps customers for now, but it plays the chain's game on its terms, where the bigger purse lasts longer.
+      - ''
+      - Undercutting is a bolder version of the same game. The chain can follow you down, and it can afford the losses for longer.
+    explanation: A price fight is the chain's strongest ground. Changing what you compete on is the Sicilian answer, riskier but with more to win.
   - kind: read
     id: try-it
     text: Try it this week. The next time someone moves first, a request, an offer, a plan, decide before you reply whether you want to level it or change its shape.

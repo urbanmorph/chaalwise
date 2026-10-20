@@ -37,6 +37,9 @@ export interface AttemptRecord {
   outcome: Outcome;
   at: Date;
   source: 'lesson' | 'review' | 'practice' | 'drill';
+  /** The question answered and the chance of guessing it, for the profile's level (see profile.ts). */
+  item?: string | undefined;
+  chance?: number | undefined;
 }
 
 interface ProgressDB extends DBSchema {

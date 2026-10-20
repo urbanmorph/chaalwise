@@ -26,6 +26,7 @@
   /** A short round: enough to practise, short enough to fit in a break. */
   const ROUND = $derived(Math.min(8, Object.keys(steps).length));
   let level = $state('Not started');
+  let board = $state('Not started');
   let reason = $state('No tries yet.');
   let due = $state(0);
   let items = $state<RoundItem[]>();
@@ -35,7 +36,9 @@
   onMount(async () => {
     try {
       const progress = await openProgress();
-      const entry = buildProfile(await progress.attemptsBySkill()).skills.find((s) => s.skill.id === track.id);
+      const profile = buildProfile(await progress.attemptsBySkill());
+      const entry = profile.skills.find((s) => s.skill.id === track.id);
+      if (profile.onBoard[track.id]) board = levelName(profile.onBoard[track.id]!.level);
       due = (await progress.dueCards(new Date())).filter((c) => c.id in steps).length;
       progress.close();
       if (entry) [level, reason] = [levelName(entry.assessment.level), entry.assessment.reason];
@@ -57,6 +60,10 @@
     <div>
       <dt>Your level</dt>
       <dd data-testid="track-level">{level}</dd>
+    </div>
+    <div>
+      <dt>On the board</dt>
+      <dd data-testid="track-board">{board}</dd>
     </div>
     <div>
       <dt>Due for review</dt>

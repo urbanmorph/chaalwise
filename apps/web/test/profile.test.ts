@@ -20,7 +20,18 @@ describe('the skill profile on this device', () => {
     expect(buildProfile({}).focus?.skill.id).toBe('think-ahead');
   });
 
-  it('counts chess answers as evidence for the strategy track they train, with the strategy lessons own answers', () => {
+  it('keeps a track level to answers off the board, and shows chess answers beside it as on the board', () => {
+    const { skills, onBoard } = buildProfile({
+      safety: solid('safety'),
+      'think-ahead': tries('think-ahead', ['first-try']),
+    });
+    const ahead = skills.find((s) => s.skill.id === 'think-ahead')!;
+    // Winning hanging pieces is chess skill; it is not evidence of thinking ahead at work.
+    expect(ahead.assessment).toMatchObject({ level: 'noticing', total: 1 });
+    expect(onBoard['think-ahead']?.level).toBe('reliable');
+  });
+
+  it('still adds chess answers to the track for the activity chart, with the strategy lessons own answers', () => {
     const merged = trackAttempts({
       safety: tries('safety', ['first-try', 'missed']),
       anticipation: tries('anticipation', ['first-try']),
@@ -36,16 +47,16 @@ describe('the skill profile on this device', () => {
     ).toHaveLength(0);
   });
 
-  it('focuses on the weakest track started', () => {
+  it('focuses on the weakest track started off the board', () => {
     const { focus } = buildProfile({
-      safety: solid('safety'),
-      calculation: tries('calculation', ['first-try', 'missed', 'missed']),
+      'think-ahead': solid('think-ahead'),
+      calculate: tries('calculate', ['first-try', 'missed', 'missed']),
     });
     expect(focus?.skill.id).toBe('calculate');
   });
 
   it('never makes a track that cannot be measured yet the focus, and leaves it out of the ranking', () => {
-    const all = Object.fromEntries(CHESS_SKILLS.map((s) => [s.id, solid(s.id)]));
+    const all = Object.fromEntries(PROFILE_SKILLS.map((s) => [s.id, solid(s.id)]));
     const { focus, ranked } = buildProfile(all);
     expect(PROFILE_SKILLS.find((s) => s.id === focus?.skill.id)?.later).toBeUndefined();
     expect(ranked.map((s) => s.skill.id)).toEqual(['think-ahead', 'calculate', 'plan-long']);

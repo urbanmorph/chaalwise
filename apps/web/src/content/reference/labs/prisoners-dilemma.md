@@ -8,4 +8,6 @@ summary: 'Two players each do better by betraying, yet both do better together i
 related: ['labs/tit-for-tat', 'labs/nash-equilibrium', 'strategy/cooperate-or-defend']
 ---
 
-Played once, betraying is the safer choice for each player, and both end up worse off. Played many times with the same partner, cooperation can win, because the future is at stake.
+Played once, betraying is better for each player whatever the other does, so both end up worse off than if both had cooperated.
+
+Played many times with the same partner, cooperation can last, because betrayal today costs you tomorrow. It holds only while the future matters enough and nobody knows which round is the last: a known last round unravels, since there is no tomorrow to protect.

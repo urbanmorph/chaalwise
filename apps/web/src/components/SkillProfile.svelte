@@ -185,8 +185,9 @@
 
 <h2 class="heading">Your strategy skills</h2>
 <p class="lede">
-  Each level comes from your own last 20 answers that train it, in the strategy lessons and in the games: Noticing, Applying, Reliable, Instinctive. Levels go
-  down as well as up, and never compare you with anyone else.
+  Each level shows how reliably you use the idea in these exercises, from your own last 20 answers off the board: Noticing, Applying, Reliable, Fluent. Chess
+  answers show beside it as on the board, because being good at a game is not proof of the skill elsewhere. Levels go down as well as up, and never compare you
+  with anyone else.
 </p>
 <ul class="skills">
   {#each profile.skills.filter((s) => !s.skill.later) as { skill, assessment } (skill.id)}
@@ -202,6 +203,7 @@
       <!-- Always both lines, so a card keeps its size when the record loads. -->
       <p class="evidence">{assessment.reason}</p>
       <p class="next">{assessment.next ?? 'The top level. Keep it there.'}</p>
+      <p class="on-board" data-testid="on-board">On the board: {levelName(profile.onBoard[skill.id]!.level)}</p>
       <a href={skill.practise.href}>{skill.practise.label}</a>
     </li>
   {/each}
@@ -419,7 +421,8 @@
     background: var(--pass);
   }
   .means,
-  .next {
+  .next,
+  .on-board {
     color: var(--ink-2);
     margin-bottom: 8px;
   }

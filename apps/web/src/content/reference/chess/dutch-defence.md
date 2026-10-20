@@ -12,4 +12,4 @@ related: ['chess/king-safety']
 lesson: 'chess/opening-map'
 ---
 
-After 1.d4 f5, Black fights for e4 in an unbalanced way. It starts 1.d4 but not 1...d5 or 1...Nf6, so it sits beside the closed games.
+After 1.d4 f5, Black fights for e4 in an unbalanced way. It starts 1.d4 but not 1...Nf6, so the opening map counts it with the closed games, though it does not start 1...d5.

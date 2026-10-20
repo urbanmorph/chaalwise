@@ -16,21 +16,29 @@ steps:
     prompt: Where do middlegame plans mostly come from?
     options:
       - The pawn structure
-      - The name of the opening
-      - How many moves have been played
+      - The name of the opening you played
+      - Which side has more pieces developed
     answer: 0
+    feedback:
+      - ''
+      - 'The opening gives you a start, but once play leaves the book, the pawns on the board decide what to do.'
+      - 'That matters in the opening. In the middlegame both sides are out, and the pawns show where to play.'
     explanation: Pawns move slowly and cannot go back, so they fix the shape of the game. Plans follow from that shape.
   - kind: read
     id: three-questions
-    text: Three questions help at every move. Where are the weaknesses? Which is my worst piece? What does my opponent want? The lessons in this stage take them one at a time.
+    text: Three questions help at every move. Where are the weaknesses? Which is my worst piece? What does my opponent want? To take each one further, look up pawn structure, outposts and open files in the reference.
   - kind: choice
     id: good-question
     prompt: Which is a good middlegame question to ask yourself?
     options:
       - Which of my pieces is doing least, and how can it do more?
-      - How can I move my queen as often as possible?
-      - Which piece did I move last?
+      - Which enemy piece can I attack right now?
+      - How can I trade off as many pieces as possible?
     answer: 0
+    feedback:
+      - ''
+      - 'Attacking for its own sake often chases a piece to a better square. Ask what your position needs first.'
+      - 'Trades help when you are ahead. Trading for its own sake can leave you with your worst pieces.'
     explanation: Improving your worst piece is often the best plan when nothing else is happening.
 ---
 

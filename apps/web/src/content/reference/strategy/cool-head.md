@@ -5,7 +5,7 @@ kind: 'principle'
 level: 'beginner'
 aliases: ['Tilt control', 'Composure']
 summary: 'Decide as well after a setback as before it.'
-why: 'Mistakes cluster: one bad moment, if it upsets you, causes the next.'
+why: 'Mistakes tend to cluster: one bad moment, if it upsets you, makes the next more likely.'
 inLife: 'After a failed pitch or a sharp email, pause before the next decision; the next one is the one you can still get right.'
 skill: 'composure'
 related: ['poker/tilt', 'strategy/decisions-not-results']

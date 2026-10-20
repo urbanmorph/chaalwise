@@ -48,11 +48,21 @@ const choiceStep = z
     highlight: z.array(squareName).optional(),
     /** Arrows to draw once the answer is shown, as from-to pairs such as c3d1 (a knight's arrow turns the corner). */
     arrows: z.array(z.string().regex(/^[a-h][1-8][a-h][1-8]$/, 'an arrow such as c3d1')).optional(),
+    /** Why each option fails, in the same order as the options, shown when it is picked; the right option's line is empty. */
+    feedback: z.array(z.string()).optional(),
   })
   .refine((s) => s.answer < s.options.length, {
     message: 'answer must be the index of one of the options',
     path: ['answer'],
-  });
+  })
+  .refine(
+    (s) =>
+      !s.feedback || (s.feedback.length === s.options.length && s.feedback.every((line, i) => i === s.answer || line)),
+    {
+      message: 'feedback needs one line per option, and a reason for every wrong one',
+      path: ['feedback'],
+    },
+  );
 
 const moveStep = z.object({
   kind: z.literal('move'),

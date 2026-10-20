@@ -9,4 +9,4 @@ related: ['strategy/count-it-through', 'strategy/simplify-when-ahead']
 lesson: 'chess/piece-values'
 ---
 
-The values guide trades: giving a rook for a knight loses about two pawns of value. They are averages; a well-placed knight can be worth more than a buried bishop. The king has no value, because it can never be traded.
+The values guide trades: giving a rook for a knight loses about two pawns of value. They are averages. Most players rate a bishop slightly above a knight, and the pair of bishops about half a pawn extra. A well-placed knight can be worth more than a buried bishop. The king has no value, because it can never be traded.

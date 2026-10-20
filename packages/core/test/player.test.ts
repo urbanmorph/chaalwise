@@ -29,11 +29,18 @@ describe('lesson player', () => {
     expect(state.outcomes).toEqual({ corner: 'first-try' });
   });
 
-  it('counts a correct answer after a wrong one as needing help', () => {
-    let { state } = answer(lesson, atStep(1), { kind: 'choice', index: 0 });
+  it('counts a correct answer after a wrong one as needing help, when the second try is still a real choice', () => {
+    const four = { steps: [{ ...lesson.steps[1]!, options: ['a1', 'h1', 'a8', 'h8'] }] } as typeof lesson;
+    let { state } = answer(four, createPlayer(), { kind: 'choice', index: 0 });
     expect(state.revealed).toBe(false);
-    ({ state } = answer(lesson, state, { kind: 'choice', index: 1 }));
+    ({ state } = answer(four, state, { kind: 'choice', index: 1 }));
     expect(state.outcomes).toEqual({ corner: 'with-help' });
+  });
+
+  it('counts it as missed when only two or three options were left to guess from, so it comes back soon', () => {
+    let { state } = answer(lesson, atStep(1), { kind: 'choice', index: 0 });
+    ({ state } = answer(lesson, state, { kind: 'choice', index: 1 }));
+    expect(state.outcomes).toEqual({ corner: 'missed' });
   });
 
   it('counts a correct answer after a hint as needing help', () => {

@@ -34,10 +34,10 @@ test('a strategy lesson plays like any other, then leads on along the path', asy
   await hydrated(page);
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: /Ask how they could respond/ }).click();
+  await page.getByRole('button', { name: 'Read it as they will, and ask what happens if it is forwarded' }).click();
   await expect(page.getByText('You found it!')).toBeVisible();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: /The price after the first year/ }).click();
+  await page.getByRole('button', { name: 'Plan B, by 600 over the two years' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Finish' }).click();
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');

@@ -16,10 +16,14 @@ steps:
     prompt: Black's knight has just landed on c3. What does it attack?
     position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
     options:
-      - Your queen
-      - Your king
-      - Nothing
+      - Your queen on d1
+      - Your king on e1
+      - Nothing, it is too far away
     answer: 0
+    feedback:
+      - ''
+      - 'It lands next to your king, but a knight jumps in an L. From c3 it reaches d1 and e2, not e1.'
+      - 'A knight attacks from a distance by jumping. Trace its L from c3 and it lands on d1.'
     explanation: The knight on c3 attacks d1, where your queen stands. Spotting that is half the blunder check.
     arrows: [c3d1]
   - kind: move
@@ -42,9 +46,15 @@ steps:
     prompt: Your opponent has just moved. What do you ask first?
     options:
       - What does their move attack, and what did it stop guarding?
-      - Which of my pieces should I develop?
-      - Can I castle yet?
+      - Which of my own pieces can I develop next?
+      - Can I attack something of theirs right away?
+      - What was my plan, and how do I carry it on?
     answer: 0
+    feedback:
+      - ''
+      - 'Development matters, but only once you know your pieces are safe. Their move may have made a threat.'
+      - 'Your chances come second. If their move threatens something, an attack of yours may come too late.'
+      - 'A plan is no use if their last move wins a piece or threatens mate. Look at their move first.'
     explanation: Their last move is where the danger comes from. Ask what it attacks and what it no longer protects.
 ---
 

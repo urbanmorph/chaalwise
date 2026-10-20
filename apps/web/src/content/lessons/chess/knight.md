@@ -36,6 +36,10 @@ steps:
       - Always light
       - It depends on the move
     answer: 0
+    feedback:
+      - ''
+      - 'A knight never lands on its own colour. Two squares one way and one to the side always changes colour.'
+      - 'It looks as if it should, but every L ends on the other colour, whichever way the knight goes.'
     explanation: Every knight move changes the colour of its square. That is a handy check when you picture where it can go.
   - kind: move
     id: knight-develop

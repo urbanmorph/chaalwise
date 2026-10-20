@@ -7,7 +7,7 @@
   import '@chaalwise/core/srs';
   import type { GradedStep } from '@chaalwise/core/lesson';
   import { tick } from 'svelte';
-  import { logAttempt } from '../lib/attempts';
+  import { guessChance, logAttempt } from '../lib/attempts';
   import { addDone } from '../lib/done-lessons';
   import { isPracticeKind } from '../lib/practice-kinds';
   import LessonPlayer from './LessonPlayer.svelte';
@@ -25,10 +25,10 @@
   let saved = $state<SaveState>('saving');
   let outcomes: Record<string, Outcome> = {};
 
-  const skillOf = (stepId: string) => {
+  function logStep(stepId: string, outcome: Outcome) {
     const step = lesson.steps.find((s) => s.id === stepId);
-    return step && step.kind !== 'read' ? step.measures : undefined;
-  };
+    if (step && step.kind !== 'read') logAttempt(step.measures, outcome, 'lesson', { item: `${lessonId}/${stepId}`, chance: guessChance(step) });
+  }
 
   /** Steps whose idea can be practised in fresh positions. */
   const practicable = $derived(lesson.steps.filter((s): s is GradedStep => s.kind !== 'read' && !!s.practice && isPracticeKind(s.practice)));
@@ -67,7 +67,7 @@
   }
 </script>
 
-<LessonPlayer {lesson} {onfinish} onstep={(stepId, outcome) => logAttempt(skillOf(stepId), outcome, 'lesson')}>
+<LessonPlayer {lesson} {onfinish} onstep={logStep}>
   {#snippet finished(outcomes)}
     <div class="card done" data-testid="lesson-done">
       <h2>Lesson complete</h2>

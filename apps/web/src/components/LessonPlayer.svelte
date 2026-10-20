@@ -5,6 +5,7 @@
   import { SvelteSet } from 'svelte/reactivity';
   import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
   import { squareHint } from '../lib/drills';
+  import { shuffle } from '../lib/random';
   import Board, { type Mark } from './Board.svelte';
   import PlayOut from './PlayOut.svelte';
 
@@ -31,6 +32,8 @@
   const seen = new SvelteSet<number>();
 
   const step = $derived(currentStep(lesson, state));
+  // Options in a fresh order each time a question is shown, so where the answer sits gives nothing away.
+  const order = $derived(step?.kind === 'choice' ? shuffle(step.options.map((_, i) => i)) : []);
   const total = $derived(lesson.steps.length);
   // Square steps hide the coordinates unless asked, or the answer is written on the edge.
   const showCoordinates = $derived(step?.kind !== 'square' || !!step.coordinates);
@@ -79,6 +82,7 @@
       const hint = squareHint(step.answers, response.square, step.orientation ?? 'white');
       if (hint) return `${hint} Try again.`;
     }
+    if (step?.kind === 'choice' && response.kind === 'choice' && step.feedback?.[response.index]) return `${step.feedback[response.index]} Try again.`;
     return step?.kind === 'play' ? 'Not this time. Try again.' : 'Not that one. Try again.';
   }
 
@@ -88,7 +92,8 @@
       after = { fen: playUci(fen, move), move };
       feedback = { tone: 'fail', text: `The move was ${toSan(fen, move)}.` };
     } else if (step?.kind === 'choice') {
-      feedback = { tone: 'fail', text: `The answer was “${step.options[step.answer]}”.` };
+      const why = picked === undefined ? undefined : step.feedback?.[picked];
+      feedback = { tone: 'fail', text: `${why ? `${why} ` : ''}The answer was “${step.options[step.answer]}”.` };
     } else if (step?.kind === 'square') {
       feedback = { tone: 'fail', text: `The square was ${step.answers[0]}.` };
       marks = [{ orig: step.answers[0]!, brush: 'green' }];
@@ -197,13 +202,13 @@
       <div class="rest">
         {#if step.kind === 'choice'}
           <div class="options">
-            {#each step.options as option, i (i)}
+            {#each order as i (i)}
               <button
                 class="button option"
                 class:correct={state.revealed && i === step.answer}
                 class:wrong={picked === i && i !== step.answer}
                 disabled={state.revealed}
-                onclick={() => choose(i)}>{option}</button
+                onclick={() => choose(i)}>{step.options[i]}</button
               >
             {/each}
           </div>

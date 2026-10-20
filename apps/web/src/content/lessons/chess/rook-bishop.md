@@ -37,7 +37,12 @@ steps:
     options:
       - No, it stays on dark squares all game
       - Yes, after a few moves
+      - Yes, by capturing a piece on a light square
     answer: 0
+    feedback:
+      - ''
+      - 'Every diagonal step keeps the same colour, however many moves you make.'
+      - 'A capture is still a diagonal move, so it lands on a dark square too. A piece on a light square is out of reach.'
     explanation: Moving diagonally never changes a square's colour. That is why each side has one light-squared and one dark-squared bishop.
   - kind: move
     id: rook-captures

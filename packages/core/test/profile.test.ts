@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Outcome } from '../src/player';
-import { assess, focusOrder, type Attempt } from '../src/profile';
+import { assess, focusOrder, levelName, type Attempt } from '../src/profile';
 
 const day = (n: number) => new Date(Date.UTC(2026, 9, 1 + n, 9));
 /** `pattern` is one letter per attempt: f first try, h with help, m missed. Attempts spread over `days`. */
@@ -31,7 +31,8 @@ describe('a skill level from your own record', () => {
     expect(assess(attempts('ffffffffffhf', 1)).level).toBe('applying');
   });
 
-  it('is Instinctive with twenty or more tries, nine in ten first time, over at least three days', () => {
+  it('is Fluent with twenty or more tries, nine in ten first time, over at least three days: a quiz shows fluency, not instinct', () => {
+    expect(levelName('instinctive')).toBe('Fluent');
     expect(assess(attempts('fffffffffffffffffffh', 3)).level).toBe('instinctive');
     expect(assess(attempts('fffffffffffffffffffh', 2)).level).toBe('reliable');
   });
@@ -45,6 +46,38 @@ describe('a skill level from your own record', () => {
   it('says what the next level needs', () => {
     expect(assess(attempts('fm')).next).toBe('For Applying: at least 5 tries, and 6 in 10 first time.');
     expect(assess(attempts('fffffffffffffffffffh', 3)).next).toBeUndefined();
+  });
+});
+
+describe('a level that means something', () => {
+  const on = (n: number, fields: Partial<Attempt>, outcome: Outcome = 'first-try'): Attempt => ({
+    skill: 'safety',
+    outcome,
+    at: day(n),
+    ...fields,
+  });
+
+  it('counts one answer per question per day, so repeating a question in one sitting proves nothing new', () => {
+    const repeated = Array.from({ length: 8 }, () => on(0, { item: 'q1' }));
+    expect(assess(repeated)).toMatchObject({ level: 'noticing', total: 1 });
+    // The same question on another day counts again.
+    expect(assess([on(0, { item: 'q1' }), on(1, { item: 'q1' })]).total).toBe(2);
+  });
+
+  it('allows for lucky guesses: a wrong answer between two options costs what a guess would have won', () => {
+    const outcomes = [...'ffffffmmmm'].map((c, i) =>
+      on(0, { item: `q${i}`, chance: 0.5 }, c === 'f' ? 'first-try' : 'missed'),
+    );
+    expect(assess(outcomes).level).toBe('noticing');
+    // The same record on moves, where nothing can be guessed, is Applying.
+    expect(assess(outcomes.map((a) => ({ ...a, chance: 0 }))).level).toBe('applying');
+  });
+
+  it('needs different questions for the higher levels, not the same few again', () => {
+    const few = Array.from({ length: 14 }, (_, i) => on(i % 3, { item: `q${i % 4}` }));
+    expect(assess(few).level).toBe('applying');
+    const varied = Array.from({ length: 14 }, (_, i) => on(i % 3, { item: `q${i}` }));
+    expect(assess(varied).level).toBe('reliable');
   });
 });
 

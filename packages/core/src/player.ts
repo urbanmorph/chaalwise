@@ -55,6 +55,13 @@ const reveal = (state: PlayerState, stepId: string, outcome: Outcome): PlayerSta
   outcomes: stepId in state.outcomes ? state.outcomes : { ...state.outcomes, [stepId]: outcome },
 });
 
+/**
+ * A right answer after a wrong one, among two or three options, is close to a
+ * guess, not recall: grade it missed so the question comes back soon.
+ */
+const helpedOutcome = (step: Step, state: PlayerState): Outcome =>
+  step.kind === 'choice' && state.attempts > 0 && step.options.length <= 3 ? 'missed' : 'with-help';
+
 export function answer(
   lesson: Playable,
   state: PlayerState,
@@ -66,7 +73,7 @@ export function answer(
 
   if (correct) {
     const helped = state.attempts > 0 || state.hintShown;
-    return { state: reveal(state, step.id, helped ? 'with-help' : 'first-try'), correct };
+    return { state: reveal(state, step.id, helped ? helpedOutcome(step, state) : 'first-try'), correct };
   }
   const attempts = state.attempts + 1;
   const next = { ...state, attempts };

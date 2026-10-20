@@ -3,7 +3,7 @@ term: 'Equity'
 game: 'poker'
 kind: 'odds'
 level: 'intermediate'
-summary: 'Your share of the pot on average: the chance your hand ends up best, given the cards still to come.'
+summary: 'Your share of the pot on average: the chance your hand ends up best (a tie counts as half), given the cards still to come.'
 related: ['poker/outs', 'poker/expected-value', 'poker/range']
 ---
 
