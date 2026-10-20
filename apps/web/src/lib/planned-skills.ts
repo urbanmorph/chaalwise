@@ -9,7 +9,7 @@ export const PLANNED: { title: string; skill: SkillId; stage: number }[] = [
   { title: 'The blunder check', skill: 'think-ahead', stage: 1 },
   { title: 'Their next move', skill: 'think-ahead', stage: 1 },
   { title: 'Count it through', skill: 'calculate', stage: 1 },
-  { title: 'Shrink the problem', skill: 'plan-long', stage: 2 },
+  { title: 'Small steps that stick', skill: 'plan-long', stage: 2 },
   { title: 'Patterns save thinking', skill: 'calculate', stage: 2 },
   { title: 'Basics before brilliance', skill: 'plan-long', stage: 3 },
   { title: 'Lead or answer well', skill: 'plan-long', stage: 3 },

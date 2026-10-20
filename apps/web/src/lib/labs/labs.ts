@@ -82,4 +82,18 @@ export const LABS: Lab[] = [
   },
 ];
 
-export const labHref = (lab: Lab): string => `/labs/${lab.slug}/`;
+export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;
+
+/** Each lab, with when it was last played to the end on this device and how often, from the finished records. */
+export function labsPlayed(records: { lessonId: string; completedAt: Date; times: number }[]) {
+  return LABS.map(({ slug, title }) => {
+    const record = records.find((r) => r.lessonId === `labs/${slug}`);
+    return { slug, title, at: record?.completedAt, times: record?.times ?? 0 };
+  });
+}
+
+/** When a lab was last played: one short line, like "Not yet", so the list does not move as it loads. */
+export const playedLabel = (at: Date | undefined, times: number): string =>
+  !at
+    ? 'Not yet'
+    : `${at.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}${times > 1 ? `, ${times} times` : ''}`;

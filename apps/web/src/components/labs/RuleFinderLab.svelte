@@ -60,6 +60,8 @@
     }
     pick = guess;
     played.push({ hidden: round.hidden, pick, tests: tests.map((t) => ({ disconfirming: t.disconfirming })) });
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    if (played.length === rounds.length) markMet('labs/rule-finder');
     const could = tests.filter((t) => t.disconfirming).length;
     const tell = telling(round, pick);
     const lead =
@@ -82,8 +84,6 @@
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/rule-finder');
     await tick();
     debriefEl?.focus();
   }

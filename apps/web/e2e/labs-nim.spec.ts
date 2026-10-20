@@ -1,12 +1,11 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+import { DONE_KEY } from '../src/lib/done-lessons';
 import { deploy, hydrated, watchShifts } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
-test('Nim: leave multiples of 4 to win all five games, looking back after each, then the debrief', async ({ page }) => {
-  const shifts = await watchShifts(page);
-  await page.goto('/labs/nim/');
-  await hydrated(page);
+/** Win all five games by always leaving the bot a multiple of 4, checking the look back after each. */
+async function winAll(page: Page) {
   const pile = async () => Number(await page.getByTestId('nim-pile').textContent());
   const status = page.getByTestId('nim-status');
 
@@ -30,6 +29,13 @@ test('Nim: leave multiples of 4 to win all five games, looking back after each, 
     await expect(review).not.toContainText('would have left');
     if (game < 5) await page.getByRole('button', { name: 'Next game' }).click();
   }
+}
+
+test('Nim: leave multiples of 4 to win all five games, looking back after each, then the debrief', async ({ page }) => {
+  const shifts = await watchShifts(page);
+  await page.goto('/labs/nim/');
+  await hydrated(page);
+  await winAll(page);
 
   await page.getByRole('button', { name: 'See the debrief' }).click();
   const debrief = page.getByTestId('nim-debrief');
@@ -59,4 +65,27 @@ test('Nim: taking turns starts the next game at once, with the bot first', async
   await expect(page.getByRole('list', { name: 'Moves this game' }).getByRole('listitem').first()).toContainText(
     'Bot took',
   );
+});
+
+test('Nim: playing the five games records the lab as played, with the date, even without the debrief', async ({
+  page,
+}) => {
+  await page.goto('/progress/');
+  await hydrated(page);
+  const when = page.getByTestId('lab-played-nim').locator('dd');
+  await expect(when).toHaveText('Not yet');
+
+  await page.goto('/labs/nim/');
+  await hydrated(page);
+  await winAll(page);
+  await expect(page.getByTestId('nim-debrief')).toHaveCount(0);
+  // Met: its questions now open up in practice.
+  await expect.poll(() => page.evaluate((key) => localStorage.getItem(key), DONE_KEY)).toContain('labs/nim');
+
+  await page.goto('/progress/');
+  await hydrated(page);
+  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  await expect(when).toHaveText(today);
+  // A lab is not a lesson.
+  await expect(page.getByTestId('lessons-finished')).toHaveText('0');
 });

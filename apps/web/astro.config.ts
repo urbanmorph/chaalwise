@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process';
 import svelte from '@astrojs/svelte';
 import { defineConfig } from 'astro/config';
+import redirects from './src/integrations/redirects';
 import serviceWorker from './src/integrations/service-worker';
 
 /** Identifies the build in the page, so a stale copy is easy to spot. */
@@ -21,7 +22,7 @@ export default defineConfig({
   trailingSlash: 'ignore',
   // Inline styles: no render-blocking stylesheet request on a slow connection.
   build: { format: 'directory', inlineStylesheets: 'always' },
-  integrations: [svelte(), serviceWorker()],
+  integrations: [svelte(), redirects(), serviceWorker()],
   vite: {
     // Name workers like every other build file (name.hash.js), so the offline worker caches them.
     worker: { rollupOptions: { output: { entryFileNames: '_astro/[name].[hash].js' } } },

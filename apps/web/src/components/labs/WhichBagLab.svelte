@@ -101,13 +101,13 @@
     pick = i;
     second = playRound(players, Math.random);
     phase = 'done';
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    markMet('labs/which-bag');
     focus(() => statusEl);
   }
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/which-bag');
     await focus(() => debriefEl);
   }
 </script>

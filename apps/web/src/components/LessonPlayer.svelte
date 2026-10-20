@@ -24,9 +24,11 @@
     finished: Snippet<[Record<string, Outcome>]>;
     /** Saves the learner's plan from a plan step; plan steps show only where this is given. */
     onplan?: (stepId: string, text: string) => Promise<void>;
+    /** Called as the learner moves on or answers, with the step reached and the answers so far, to keep their place. */
+    onprogress?: (index: number, outcomes: Record<string, Outcome>) => void;
   }
 
-  let { lesson, onfinish, onstep, finished, onplan, askConfidence = false, contexts = [] }: Props = $props();
+  let { lesson, onfinish, onstep, finished, onplan, onprogress, askConfidence = false, contexts = [] }: Props = $props();
   /** Arrows on the board: shown with a reading step at once, and with a choice once it is answered. */
   const arrowMarks = (arrows: string[], brush: Mark['brush']): Mark[] => arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush }));
   /** How sure the learner said they were, chosen before the first answer only. */
@@ -76,6 +78,7 @@
   async function graded(stepId: string, isNew: boolean) {
     // Saved once: a step is graded the first time it is answered.
     if (isNew) onstep?.(stepId, player.outcomes[stepId]!, sure);
+    progressed();
     await tick();
     continueButton?.focus();
   }
@@ -140,23 +143,38 @@
     marks = [];
   }
 
-  /** The step dots: go straight to any step. */
-  async function goTo(index: number) {
-    seen.add(player.index);
-    player = jumpTo(lesson, player, index);
+  /** A plain copy of the answers so far: storage cannot keep the reactive proxy. */
+  const answers = () => $state.snapshot(player.outcomes);
+  const progressed = () => onprogress?.(player.index, answers());
+
+  /** Show the new step from the top, with focus on it. */
+  async function shown() {
     clearStep();
     await tick();
     heading?.focus();
   }
 
-  async function next() {
+  /** The step dots: go straight to any step. */
+  function goTo(index: number) {
+    seen.add(player.index);
+    player = jumpTo(lesson, player, index);
+    progressed();
+    return shown();
+  }
+
+  /** Carry on where the learner left off: that step, with the answers so far kept and the steps before it seen. */
+  export function resume(index: number, outcomes: Record<string, Outcome>) {
+    for (let i = 0; i < index; i++) seen.add(i);
+    player = jumpTo(lesson, { ...createPlayer(), outcomes }, index);
+    return shown();
+  }
+
+  function next() {
     seen.add(player.index);
     player = advance(lesson, player);
-    clearStep();
-    // A plain copy: IndexedDB cannot store the reactive proxy.
-    if (player.done) onfinish($state.snapshot(player.outcomes));
-    await tick();
-    heading?.focus();
+    if (player.done) onfinish(answers());
+    else progressed();
+    return shown();
   }
 </script>
 

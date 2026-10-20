@@ -42,14 +42,14 @@
     const bids = [Math.round(bid), ...item.estimates.slice(1).map(botBid)];
     jars.push({ ...item, bids, ...settle(item.value, bids) });
     revealed = true;
+    // Played to the end: the lab is met, its questions open up in practice, and the progress page shows when.
+    if (jars.length === JARS) markMet('labs/sealed-bid-auction');
     await tick();
     resultEl?.focus();
   }
 
   async function showDebrief() {
     debrief = true;
-    // Played: the lab is met, and its questions open up in practice.
-    markMet('labs/sealed-bid-auction');
     await tick();
     debriefEl?.focus();
   }

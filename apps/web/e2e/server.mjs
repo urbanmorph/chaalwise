@@ -1,5 +1,6 @@
 // A static server for end-to-end tests that behaves like Cloudflare's static
-// assets for what the tests rely on: `_headers`, directory pages with a
+// assets for what the tests rely on: `_headers`, `_redirects` (static rules:
+// exact paths, a status, the query kept), directory pages with a
 // trailing-slash redirect, and the 404 page. `/__deploy/<name>` switches the
 // served build, which is how a test simulates a deploy. Test use only.
 import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
@@ -33,6 +34,18 @@ function headerRules() {
   return rules;
 }
 
+/** `_redirects` rules as {path: [target, status]}: `/old /new 301` per line, `#` for comments. */
+function redirectRules() {
+  const file = join(root, '_redirects');
+  if (!existsSync(file)) return {};
+  const rules = {};
+  for (const line of readFileSync(file, 'utf8').split('\n')) {
+    const [from, to, status = '302'] = line.trim().split(/\s+/);
+    if (from?.startsWith('/') && to) rules[from] ??= [to, Number(status)];
+  }
+  return rules;
+}
+
 const matches = (pattern, path) => (pattern.endsWith('*') ? path.startsWith(pattern.slice(0, -1)) : pattern === path);
 
 createServer((req, res) => {
@@ -41,6 +54,13 @@ createServer((req, res) => {
   if (deploy) {
     root = join(buildsDir, deploy[1]);
     res.end(`serving ${deploy[1]}`);
+    return;
+  }
+
+  const redirect = redirectRules()[url.pathname];
+  if (redirect) {
+    const [to, status] = redirect;
+    res.writeHead(status, { location: to.startsWith('/') ? `${to}${url.search}` : to }).end();
     return;
   }
 
