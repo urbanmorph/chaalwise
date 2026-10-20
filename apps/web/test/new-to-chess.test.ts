@@ -29,7 +29,7 @@ describe('pages that explain an idea through chess', () => {
     }
   });
 
-  it('offer it on every reference entry drawn on a chess board', () => {
+  it('offer it on every reference entry drawn on a chess board, in its picture or its questions', () => {
     const boards = readdirSync(new URL('../dist/reference/', import.meta.url), { withFileTypes: true })
       .filter((d) => d.isDirectory())
       .flatMap((game) =>
@@ -38,7 +38,10 @@ describe('pages that explain an idea through chess', () => {
         ),
       )
       .map((file) => ({ file, html: dist(file) }))
-      .filter(({ html }) => html.includes('<figure class="board'));
+      .filter(
+        ({ html }) =>
+          html.includes('<figure class="board') || /<section class="try[\s\S]*?<svg class="diagram"/.test(html),
+      );
     expect(boards.length).toBeGreaterThan(10);
     for (const { file, html } of boards) expect(offersStart(html), file).toBe(true);
   });

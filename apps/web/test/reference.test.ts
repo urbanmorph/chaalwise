@@ -29,6 +29,24 @@ describe('checking a chess entry', () => {
     const fen = 'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1';
     expect(referenceIssues(entry({ position: fen, move: 'e1h1' }))[0]!.message).toMatch(/write it as e1g1/);
   });
+
+  it("checks the try-it questions' boards and answers like a lesson's", () => {
+    const step = {
+      kind: 'move',
+      id: 'find',
+      prompt: 'Find it.',
+      position: 'start',
+      answers: ['g1f3'],
+      explanation: 'Develops.',
+    };
+    expect(referenceIssues(entry({ try: [step] }))).toEqual([]);
+    expect(referenceIssues(entry({ try: [{ ...step, answers: ['e2e5'] }] }))[0]!.path).toEqual([
+      'try',
+      0,
+      'answers',
+      0,
+    ]);
+  });
 });
 
 describe('showing an entry', () => {

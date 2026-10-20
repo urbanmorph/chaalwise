@@ -1,4 +1,4 @@
-import type { Lesson } from '@chaalwise/core/lesson';
+import type { Lesson, Step } from '@chaalwise/core/lesson';
 import { Chess, normalizeMove } from 'chessops/chess';
 import { chessgroundDests } from 'chessops/compat';
 import { INITIAL_FEN, makeFen, parseFen } from 'chessops/fen';
@@ -73,33 +73,41 @@ export function chessLessonIssues(lesson: Lesson): Issue[] {
     if ('measures' in step && step.measures && !isChessSkill(step.measures)) {
       issues.push({ path: ['steps', i, 'measures'], message: `there is no skill called ${step.measures}` });
     }
+  });
+  return [...issues, ...chessStepIssues(lesson.steps, 'steps')];
+}
+
+/** Problems with steps' boards and answers, wherever the steps live: a lesson's steps, or a reference entry's questions. */
+export function chessStepIssues(steps: Step[], at: string): Issue[] {
+  const issues: Issue[] = [];
+  steps.forEach((step, i) => {
     if ('practice' in step && step.practice && !isPracticeKind(step.practice)) {
-      issues.push({ path: ['steps', i, 'practice'], message: `there is no practice called ${step.practice}` });
+      issues.push({ path: [at, i, 'practice'], message: `there is no practice called ${step.practice}` });
     }
     if (step.position === undefined) return;
     // Read and square steps only show a board, so any readable board will do, even one with no kings.
     if (step.kind === 'read' || step.kind === 'square') {
       if (!boardIssue(step.position)) return;
-      issues.push({ path: ['steps', i, 'position'], message: boardIssue(step.position)! });
+      issues.push({ path: [at, i, 'position'], message: boardIssue(step.position)! });
       return;
     }
     let pos: Chess | undefined;
     try {
       pos = setup(step.position);
     } catch (error) {
-      issues.push({ path: ['steps', i, 'position'], message: (error as Error).message });
+      issues.push({ path: [at, i, 'position'], message: (error as Error).message });
       return;
     }
     if (!pos) {
-      issues.push({ path: ['steps', i, 'position'], message: `not a legal position: ${step.position}` });
+      issues.push({ path: [at, i, 'position'], message: `not a legal position: ${step.position}` });
       return;
     }
     if (step.kind === 'play')
-      issues.push(...playIssues(pos, step.within).map((message) => ({ path: ['steps', i], message })));
+      issues.push(...playIssues(pos, step.within).map((message) => ({ path: [at, i], message })));
     if (step.kind !== 'move') return;
     step.answers.forEach((uci, j) => {
       const message = moveIssue(pos, uci);
-      if (message) issues.push({ path: ['steps', i, 'answers', j], message });
+      if (message) issues.push({ path: [at, i, 'answers', j], message });
     });
   });
   return issues;

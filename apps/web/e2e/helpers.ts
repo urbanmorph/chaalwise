@@ -30,12 +30,12 @@ const answered = async (page: Page) => {
   await next(page);
 };
 
-const choose = async (page: Page, option: string) => {
+export const choose = async (page: Page, option: string) => {
   await page.getByRole('button', { name: option, exact: true }).click();
   await answered(page);
 };
 
-const typeMove = async (page: Page, move: string) => {
+export const typeMove = async (page: Page, move: string) => {
   await page.getByLabel('Or type your move').fill(move);
   await page.getByRole('button', { name: 'Play' }).click();
   await answered(page);

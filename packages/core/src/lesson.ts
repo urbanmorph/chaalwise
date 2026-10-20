@@ -103,6 +103,9 @@ const playStep = z.object({
 
 const stepSchema = z.discriminatedUnion('kind', [readStep, choiceStep, moveStep, squareStep, playStep]);
 
+/** A question to try on its own, away from a lesson, such as a reference entry's "try it yourself". */
+export const tryStepSchema = z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep]);
+
 export const lessonSchema = z
   .object({
     title: z.string().min(1),
