@@ -1,0 +1,13 @@
+kind: choice
+prompt: A small restaurant's kitchen can cook 60 meals an hour and its waiters can serve 80, but the one dishwasher can clean plates for only 35. On busy nights, orders wait. Where should the next improvement go?
+options:
+  - The washing up, which holds everything else to 35
+  - The kitchen, since the food is what customers come for
+  - The waiters, so customers feel well looked after
+answer: 0
+feedback:
+  - ''
+  - Faster cooking does not help if there are no clean plates to serve on. The kitchen already outpaces the washing up.
+  - The waiters can already serve 80, more than anything else here. Speeding them up adds nothing.
+explanation: Fix your weakest link. The steps depend on each other, so the slowest one, washing up at 35 an hour, sets the pace for the whole restaurant. Raise it, and every other step can do more.
+measures: plan-long

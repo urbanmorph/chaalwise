@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your firm's biggest customer, a quarter of your sales, renews its contract in eight months. You hear a rival has been meeting their buyers. Your own plan this quarter is to win new customers. What do you do now?
+options:
+  - Visit the customer now, ask what they need, and fix it early
+  - Stick to the plan, and deal with the renewal when it comes
+  - Cut your price to them now, before they ask for it
+answer: 0
+feedback:
+  - ''
+  - By renewal time the rival may have its offer ready. Winning a customer back costs far more than keeping one.
+  - A price cut answers a question they may not be asking, and costs you for the whole contract. Find out what they want first.
+explanation: Not so fast. Before pushing on with your own plan, ask what the other side most wants to do next. A quiet step with your biggest customer now is cheaper than fighting to win them back later.
+measures: think-ahead

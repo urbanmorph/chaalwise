@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are starting at a new university. This week you must choose a phone cover, a regular lunch spot and your main subject of study, which is hard to change after the first year. How do you spend your time?
+options:
+  - Choose the small things fast, and give most time to the subject
+  - Give each of the three choices the same careful thought
+  - Settle the easy ones properly first, then the subject
+answer: 0
+feedback:
+  - ''
+  - Fair-minded, but it gives a phone cover the care your subject needs. Equal care leaves too little for what matters.
+  - Doing the easy things first feels productive, but it lets them eat the time the hard, lasting choice needs.
+explanation: Spend effort where it matters. A phone cover and a lunch spot are small and easy to undo. Your subject is large and hard to reverse, so it gets most of your time.
+measures: composure

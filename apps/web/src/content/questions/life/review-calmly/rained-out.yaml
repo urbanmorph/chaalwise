@@ -1,0 +1,13 @@
+kind: choice
+prompt: You organised an outdoor college event after checking a forecast that gave a 10% chance of rain. It rained hard, and half the guests left early. A friend says it was a bad decision. What do you ask first?
+options:
+  - Was the choice sound, given the forecast, and was there a backup?
+  - Who chose the outdoor venue, so it does not happen again?
+  - Should every event be held indoors from now on?
+answer: 0
+feedback:
+  - ''
+  - That treats the rain as someone's fault. With a 10% chance, rain will sometimes come even after a sound choice.
+  - That learns too much from one result. Indoor halls cost more and suit some events less; one wet evening does not settle it.
+explanation: 'Review calmly: decisions, not results. Judge the choice by what you knew and could have found out. A 10% risk was fair to take. The useful question is whether a backup, such as a tent, was ready in case it came.'
+measures: composure

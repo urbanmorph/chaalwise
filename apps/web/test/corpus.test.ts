@@ -1,3 +1,4 @@
+import { readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { askedIds, corpus } from './content';
 
@@ -26,6 +27,34 @@ describe('the question corpus', () => {
       ([id, data]) => !id.startsWith('chess/') && (data.position || data.kind !== 'choice'),
     );
     expect(boarded.map(([id]) => id)).toEqual([]);
+  });
+});
+
+describe('every strategy idea', () => {
+  const ideas = readdirSync(new URL('../src/content/lessons/strategy/', import.meta.url)).map((f) =>
+    f.replace('.md', ''),
+  );
+  const inIdea = (idea: string) => [...corpus].filter(([id]) => id.split('/')[1] === idea);
+
+  /** Review shows one question of an idea at a time, so each idea needs several to vary. */
+  it('has at least three questions off the board, unless it already has five in all', () => {
+    const thin = ideas.filter((idea) => {
+      const all = inIdea(idea);
+      return all.filter(([id]) => id.startsWith('life/')).length < 3 && all.length < 5;
+    });
+    expect(thin).toEqual([]);
+  });
+
+  it('measures one track off the board, so its questions are variants of each other', () => {
+    const mixed = ideas.filter(
+      (idea) =>
+        new Set(
+          inIdea(idea)
+            .filter(([id]) => id.startsWith('life/'))
+            .map(([, d]) => d.measures),
+        ).size > 1,
+    );
+    expect(mixed).toEqual([]);
   });
 });
 

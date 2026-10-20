@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your work laptop is slow. A repair shop will fix it overnight for 3,000. Fixing it yourself costs nothing but takes about 12 hours, time you would otherwise spend on freelance work paid at 400 an hour. What do you do?
+options:
+  - 'Pay the shop: 3,000 is less than the 4,800 you give up'
+  - Fix it yourself, since it costs nothing
+  - Live with it, since both options cost something
+answer: 0
+feedback:
+  - ''
+  - It costs no money, but it costs 12 hours you would otherwise be paid for. That is 4,800, more than the repair.
+  - Living with it is a trade too. A slow laptop costs you time every working day, and that adds up.
+explanation: Give a little, get more. Count both sides in the same units. 12 hours × 400 = 4,800 of your time, against 3,000 for the shop. What you give up is the cost, even when no money changes hands.
+measures: size-risk

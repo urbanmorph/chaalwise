@@ -1,0 +1,13 @@
+kind: choice
+prompt: A new accountant checks monthly reports. She keeps finding the same few kinds of error, such as a total that leaves out a row, and each takes her an hour to track down. What helps her most?
+options:
+  - Learn the common errors as a list to look for first
+  - Check every figure in each report, one by one, from the top
+  - Wait until she has seen enough reports to spot errors by feel
+answer: 0
+feedback:
+  - ''
+  - Careful, but slow. Most errors are of a few known kinds, so checking for those first finds them in minutes.
+  - Experience does build this, but slowly. Learning the common shapes on purpose gets there much sooner.
+explanation: Patterns save thinking. Once the common errors are known by heart, they are spotted at once, and her hour goes to the unusual problems that need real thought.
+measures: calculate

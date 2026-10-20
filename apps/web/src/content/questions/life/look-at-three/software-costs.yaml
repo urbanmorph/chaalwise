@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your team must cut its software costs by a fifth. The first idea in the meeting is to drop the most expensive tool, and someone asks for a vote on it now. What do you suggest?
+options:
+  - List a few more ways to cut, then compare them all
+  - Vote now, since dropping it meets the target
+  - Agree to drop it, but ask for a trial month first
+answer: 0
+feedback:
+  - ''
+  - It may meet the target, but nobody has looked at what else could. That tool may be the one the team needs most.
+  - A trial is careful, but it still weighs only one idea. Others, such as removing unused accounts, are not on the table.
+explanation: Look at three before choosing. A first idea put to a vote becomes a yes or a no. Name other options, such as removing unused accounts or moving to a cheaper plan, then compare them all on the same points.
+measures: calculate

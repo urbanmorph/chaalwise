@@ -1,0 +1,13 @@
+kind: choice
+prompt: In a job interview, you fumble the first two technical questions. Three are left, and the panel looks unimpressed. What do you do?
+options:
+  - Keep going, and give each question left your full effort
+  - Admit it is not going well, and thank them for their time
+  - Rush through the rest so as not to waste their time
+answer: 0
+feedback:
+  - ''
+  - Giving in early makes the loss certain. Panels often weigh how you recover, and three questions are still to play for.
+  - Hurrying throws away the questions you could still answer well. It gives in a little at a time.
+explanation: Make it hard. When you are behind, do not give in early. Strong answers to the last three leave the panel the most to weigh, and recovering under pressure is something many panels look for.
+measures: composure

@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are moving house in two weeks and have a whole flat to pack. Which way of packing leaves the fewest things to go wrong on moving day?
+options:
+  - A room at a time, each box labelled and sealed as you go
+  - Everything in the last two days, so you can use things till then
+  - A few things from every room each evening, to sort out later
+answer: 0
+feedback:
+  - ''
+  - Packing late keeps things in use, but it puts all the risk into the last two days, when any delay spoils the move.
+  - Steady effort, but nothing is ever finished. Half-packed rooms and unsorted boxes leave as many ways to go wrong at the end as at the start.
+explanation: Shrink the problem. Each finished room is one fewer way for moving day to go wrong. The last step, the move itself, still needs care, and that is easier when little is left open.
+measures: plan-long

@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are opening a small café. A friend suggests a big social media launch with a well-known guest. You have not yet settled your suppliers, prices or opening hours. What comes first?
+options:
+  - Settle suppliers, prices and hours, then plan the launch
+  - The launch, since first impressions decide a café
+  - Both at once, splitting your time evenly between them
+answer: 0
+feedback:
+  - ''
+  - A big launch brings crowds to a café that may run out of stock or charge the wrong prices. First impressions cut both ways.
+  - Splitting evenly gives the clever part the same weight as the groundwork it depends on.
+explanation: Basics before brilliance. A clever launch pays only on top of a café that runs well. Get the plain parts right first; then the launch has something to show.
+measures: plan-long
