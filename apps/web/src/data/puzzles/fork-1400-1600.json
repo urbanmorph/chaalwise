@@ -1,0 +1,579 @@
+{
+  "theme": "fork",
+  "min": 1400,
+  "max": 1600,
+  "source": "Lichess puzzle database, database.lichess.org",
+  "licence": "CC0",
+  "puzzles": [
+    {
+      "id": "000Pw",
+      "fen": "6k1/5p1p/4p3/4q3/3nN3/2Q3P1/PP3P1P/6K1 w - - 2 37",
+      "moves": ["e4d2", "d4e2", "g1f1", "e2c3"],
+      "rating": 1530,
+      "themes": ["crushing", "endgame", "fork", "short"]
+    },
+    {
+      "id": "003Tx",
+      "fen": "2r5/pR5p/5p1k/4p3/4r3/B4nPP/PP3P2/1K2R3 w - - 0 27",
+      "moves": ["e1e4", "f3d2", "b1a1", "c8c1"],
+      "rating": 1511,
+      "themes": ["backRankMate", "endgame", "fork", "mate", "mateIn2", "short"]
+    },
+    {
+      "id": "006wz",
+      "fen": "2r5/4ppkp/5bp1/1p6/1P6/P3B3/2r2PPP/1R1R2K1 b - - 2 22",
+      "moves": ["f6b2", "b1b2", "c2b2", "e3d4", "f7f6", "d4b2"],
+      "rating": 1426,
+      "themes": ["attraction", "crushing", "endgame", "fork", "long", "sacrifice"]
+    },
+    {
+      "id": "008D5",
+      "fen": "r1bqk2r/pp3ppp/4p2n/3pP3/1b1P1P2/2N5/PP4PP/R1BQKB1R b KQkq - 2 9",
+      "moves": ["h6f5", "d1a4", "c8d7", "a4b4"],
+      "rating": 1421,
+      "themes": ["advantage", "fork", "master", "opening", "short"]
+    },
+    {
+      "id": "00HzX",
+      "fen": "4r1k1/5pp1/2R4p/1p6/8/1PP3QP/2q2PP1/6K1 w - - 0 29",
+      "moves": ["c6h6", "c2c1", "g1h2", "c1h6"],
+      "rating": 1565,
+      "themes": ["crushing", "endgame", "fork", "short"]
+    },
+    {
+      "id": "00Kq4",
+      "fen": "r2qk3/5p1r/p1p1p3/1p1pP1p1/P1nP2Pn/2P2NB1/2P2P2/R1QR2K1 w q - 1 21",
+      "moves": ["f3g5", "d8g5", "c1g5", "h4f3", "g1g2", "f3g5"],
+      "rating": 1417,
+      "themes": ["advantage", "attraction", "fork", "long", "middlegame", "sacrifice"]
+    },
+    {
+      "id": "00Myw",
+      "fen": "r1b3r1/2q2p1k/1n2p2n/p2pP1NP/P1pP1QP1/1pP5/1P3PB1/R3R1K1 b - - 4 26",
+      "moves": ["h7h8", "f4f6", "g8g7", "f6h6"],
+      "rating": 1523,
+      "themes": ["crushing", "fork", "master", "middlegame", "short"]
+    },
+    {
+      "id": "00Nf5",
+      "fen": "r1bq1rk1/pp2bppp/2pp1n2/8/5P2/5N2/PBPPB1PP/RN1Q1RK1 w - - 5 11",
+      "moves": ["b1c3", "d8b6", "g1h1", "b6b2", "a1b1", "b2a3"],
+      "rating": 1491,
+      "themes": ["advantage", "fork", "long", "opening"]
+    },
+    {
+      "id": "00PUc",
+      "fen": "3r3k/pp4bp/3Bn1p1/7n/8/8/PP3P1K/R4RN1 w - - 1 27",
+      "moves": ["a1d1", "d8d6", "d1d6", "g7e5", "h2h1", "e5d6"],
+      "rating": 1536,
+      "themes": ["advantage", "attraction", "exposedKing", "fork", "long", "middlegame", "sacrifice"]
+    },
+    {
+      "id": "00QCe",
+      "fen": "1k5r/n2r2pp/5p2/ppN5/5P2/8/2R3PP/1R4K1 b - - 3 28",
+      "moves": ["d7c7", "c5a6", "b8b7", "a6c7"],
+      "rating": 1427,
+      "themes": ["crushing", "endgame", "fork", "short"]
+    },
+    {
+      "id": "00QnO",
+      "fen": "1k1r1r2/pp4p1/6q1/2Qp4/5bP1/2P4p/PPN3NP/R4R1K w - - 0 30",
+      "moves": ["g2f4", "g6e4", "h1g1", "f8f4"],
+      "rating": 1467,
+      "themes": ["crushing", "fork", "intermezzo", "middlegame", "short"]
+    },
+    {
+      "id": "00Rmm",
+      "fen": "2rr2k1/5ppp/p7/1p1nP3/1B1P1PP1/PK5P/4R3/3R4 w - - 4 30",
+      "moves": ["e2c2", "c8c2", "b3c2", "d5e3", "c2d3", "e3d1"],
+      "rating": 1492,
+      "themes": ["advantage", "attraction", "endgame", "fork", "long"]
+    },
+    {
+      "id": "00SU7",
+      "fen": "2rqr1k1/B2b1ppp/5n2/8/3Q4/3B4/P1P2PPP/R3R1K1 w - - 3 22",
+      "moves": ["d4h4", "e8e1", "a1e1", "d8a5", "e1a1", "a5a7"],
+      "rating": 1590,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "00Tll",
+      "fen": "5r1k/1pp3p1/7p/pP1N4/P3P3/2PP3P/3BnbPK/R7 w - - 2 27",
+      "moves": ["d5c7", "f2g3", "h2h1", "g3c7"],
+      "rating": 1544,
+      "themes": ["advantage", "endgame", "fork", "short"]
+    },
+    {
+      "id": "00WUu",
+      "fen": "r3k1nr/pp3ppp/1q2b3/8/1n1p4/6P1/PB1QPPBP/R3K1NR w KQkq - 0 13",
+      "moves": ["b2d4", "b6d4", "d2d4", "b4c2", "e1f1", "c2d4"],
+      "rating": 1505,
+      "themes": ["attraction", "crushing", "fork", "long", "opening", "sacrifice"]
+    },
+    {
+      "id": "00eix",
+      "fen": "2r1r1k1/pb2qpbp/1p1p1np1/4P3/3B1P2/1P3BP1/PQ1N3P/1R2R1K1 b - - 0 21",
+      "moves": ["b7f3", "e5f6", "e7e1", "b1e1", "e8e1", "g1f2"],
+      "rating": 1471,
+      "themes": ["crushing", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "00huW",
+      "fen": "8/3k4/p6p/1p2Q1pP/3P2b1/1PP2qP1/P3p3/1K2R3 w - - 3 44",
+      "moves": ["d4d5", "f3d3", "b1b2", "d3d2", "b2a3", "d2e1"],
+      "rating": 1548,
+      "themes": ["advantage", "endgame", "fork", "long"]
+    },
+    {
+      "id": "00isY",
+      "fen": "rnbqkb1r/ppp3pp/5n2/3P1p2/4pB2/2N5/PP3PPP/R2QKBNR b KQkq - 0 7",
+      "moves": ["f8b4", "d1a4", "c7c6", "a4b4"],
+      "rating": 1538,
+      "themes": ["crushing", "fork", "master", "opening", "short"]
+    },
+    {
+      "id": "00oQO",
+      "fen": "5rk1/1p4pp/p7/3R1N2/4rn2/6KP/PPR2PP1/8 w - - 1 34",
+      "moves": ["d5d4", "f4e2", "c2e2", "e4e2"],
+      "rating": 1572,
+      "themes": ["crushing", "endgame", "fork", "master", "short"]
+    },
+    {
+      "id": "01243",
+      "fen": "r7/pp1Qp1B1/8/3kb3/4q3/8/PP3PP1/5K2 b - - 4 34",
+      "moves": ["e5d6", "d7b7", "d5e6", "b7e4"],
+      "rating": 1561,
+      "themes": ["crushing", "deflection", "endgame", "fork", "master", "short", "skewer"]
+    },
+    {
+      "id": "01EEp",
+      "fen": "5r1k/2p3p1/7p/p4N2/Pb1B1n2/3B1b2/1PP4P/R5K1 b - - 0 23",
+      "moves": ["f4d3", "d4g7", "h8h7", "g7f8", "b4f8", "c2d3"],
+      "rating": 1422,
+      "themes": ["crushing", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "01TRg",
+      "fen": "4k3/6R1/4B1K1/1r4p1/6P1/8/3b4/8 b - - 15 45",
+      "moves": ["d2c3", "e6d7", "e8d8", "d7b5", "c3g7", "g6g7"],
+      "rating": 1428,
+      "themes": ["crushing", "endgame", "fork", "long"]
+    },
+    {
+      "id": "01Wpf",
+      "fen": "4rrk1/pbp3pp/3q4/2P2p2/5b2/P1Q2N1P/6PN/R4R1K b - - 0 27",
+      "moves": ["d6c6", "c3c4", "f8f7", "c4f4"],
+      "rating": 1483,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "01d2J",
+      "fen": "r3r1k1/pp4pp/2pq4/3nNQ1b/3P4/4pP1P/PP2P1B1/1K1R3R b - - 0 19",
+      "moves": ["g7g6", "f5f7", "g8h8", "f7e8", "a8e8", "e5f7", "h8g7", "f7d6"],
+      "rating": 1599,
+      "themes": ["clearance", "crushing", "fork", "middlegame", "sacrifice", "veryLong"]
+    },
+    {
+      "id": "01gro",
+      "fen": "r3k2r/ppp4p/3qpQp1/5n2/4R3/2P1P2P/P4PP1/5RK1 b kq - 9 22",
+      "moves": ["h8f8", "e4e6", "f5e7", "e6d6", "f8f6", "d6f6"],
+      "rating": 1440,
+      "themes": ["crushing", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "01kWj",
+      "fen": "1k6/1q6/1p3Q1p/2r1p1p1/6P1/8/5PPK/1R6 b - - 0 38",
+      "moves": ["b7c6", "b1b6", "b8c7", "b6c6"],
+      "rating": 1565,
+      "themes": ["crushing", "endgame", "fork", "short"]
+    },
+    {
+      "id": "01l3i",
+      "fen": "r3R3/Q1pk1p2/1pbp4/6qp/3N4/7P/PPP5/1K2R3 b - - 0 32",
+      "moves": ["a8a7", "e1e7", "g5e7", "e8e7", "d7e7", "d4c6", "e7d7", "c6a7"],
+      "rating": 1543,
+      "themes": ["advantage", "attraction", "endgame", "fork", "veryLong"]
+    },
+    {
+      "id": "01pkQ",
+      "fen": "8/R5pk/p1b4p/4pp2/7P/1B4P1/PP1r1P2/5K2 w - - 4 34",
+      "moves": ["a7a6", "c6b5", "f1e1", "d2e2", "e1d1", "b5a6"],
+      "rating": 1518,
+      "themes": ["crushing", "endgame", "fork", "long"]
+    },
+    {
+      "id": "01rEy",
+      "fen": "2b4k/1p4bp/3R2p1/3B4/2p2B2/3r2P1/n5KP/8 b - - 3 29",
+      "moves": ["h7h6", "d6d8", "h8h7", "d5g8"],
+      "rating": 1451,
+      "themes": ["advantage", "fork", "master", "middlegame", "short"]
+    },
+    {
+      "id": "029wQ",
+      "fen": "r7/pp1q2bk/3p2p1/2pN3p/2Pn1Q2/3P3P/PP4PN/R5K1 b - - 0 22",
+      "moves": ["g7e5", "f4e5", "d6e5", "d5f6", "h7h6", "f6d7"],
+      "rating": 1490,
+      "themes": ["advantage", "fork", "long", "middlegame", "sacrifice"]
+    },
+    {
+      "id": "02CG7",
+      "fen": "r1b1k2r/1pp2p2/p3pnp1/4n1Bp/8/P1N5/1P2BPPP/R3K2R b KQkq - 3 18",
+      "moves": ["f6d5", "c3d5", "e6d5", "g5f6", "h8g8", "f6e5"],
+      "rating": 1582,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "02E3j",
+      "fen": "1k5r/1p1Q4/pP1p4/P1pP3p/3qP3/2N3p1/2P5/R2KR3 w - - 3 35",
+      "moves": ["d1c1", "d4c3", "d7d6", "b8a8", "e1d1", "c3a1"],
+      "rating": 1405,
+      "themes": ["advantage", "endgame", "fork", "long"]
+    },
+    {
+      "id": "02GVg",
+      "fen": "5r2/8/1p3qkp/2n5/1PP3P1/4Q2P/8/4R1K1 b - - 0 36",
+      "moves": ["c5d7", "e3d3", "g6g7", "d3d7"],
+      "rating": 1575,
+      "themes": ["advantage", "endgame", "fork", "short"]
+    },
+    {
+      "id": "02Mor",
+      "fen": "r4rk1/2p1qppp/p3p3/P1bpQ3/6N1/5P2/1P1B1P1P/R4RK1 w - - 3 25",
+      "moves": ["d2g5", "f7f6", "g5f6", "g7f6"],
+      "rating": 1433,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "02WmY",
+      "fen": "r2qk2r/1p3pbp/p1npbnp1/3Np3/4P3/2NB4/PPP2PPP/R1BQK2R b KQkq - 3 11",
+      "moves": ["f6d5", "e4d5", "e6d5", "c3d5", "d8a5", "d5c3"],
+      "rating": 1514,
+      "themes": ["advantage", "defensiveMove", "fork", "long", "opening"]
+    },
+    {
+      "id": "02XhI",
+      "fen": "2kr3r/1pp2p2/2qp2p1/1N6/PP6/8/2P2QnP/R5K1 b - - 2 23",
+      "moves": ["h8h2", "b5a7", "c8b8", "a7c6", "b7c6", "g1h2"],
+      "rating": 1499,
+      "themes": ["crushing", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "02Yfe",
+      "fen": "2r5/1p4pp/p3p1k1/n1N5/P7/4P3/1P2K1PP/2R5 w - - 7 26",
+      "moves": ["e2d2", "c8c5", "c1c5", "a5b3", "d2c3", "b3c5"],
+      "rating": 1427,
+      "themes": ["attraction", "crushing", "endgame", "fork", "long", "sacrifice"]
+    },
+    {
+      "id": "02aU0",
+      "fen": "3R1rk1/1b3pp1/4pb1p/p1r5/Ppp2B2/1Q2PN2/1P3PPP/R5K1 b - - 0 23",
+      "moves": ["c4b3", "d8f8", "g8f8", "f4d6", "f6e7", "d6c5"],
+      "rating": 1512,
+      "themes": ["advantage", "attraction", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "02lbK",
+      "fen": "2k5/5p2/Q1p1p1p1/2P5/1r6/1P2q3/K1R5/8 b - - 0 41",
+      "moves": ["c8d8", "a6a5", "d8e7", "a5b4"],
+      "rating": 1450,
+      "themes": ["crushing", "endgame", "fork", "master", "short"]
+    },
+    {
+      "id": "02lyy",
+      "fen": "8/4k2p/7P/1bnBBp2/6p1/1P2P1P1/5P2/4K3 w - - 1 50",
+      "moves": ["d5c4", "b5c4", "b3c4", "c5d3", "e1d2", "d3e5"],
+      "rating": 1404,
+      "themes": ["crushing", "endgame", "fork", "long"]
+    },
+    {
+      "id": "02o7A",
+      "fen": "3q2k1/1p4pp/p1p5/3pN1p1/1P1Pn1P1/4P2P/7B/5RK1 b - - 0 31",
+      "moves": ["d8b6", "f1f8", "g8f8", "e5d7", "f8e7", "d7b6"],
+      "rating": 1540,
+      "themes": ["advantage", "attraction", "endgame", "fork", "long", "sacrifice"]
+    },
+    {
+      "id": "02vbv",
+      "fen": "r2qk2r/1Np3p1/4p2p/3pn3/P3n3/2P5/1P3RPP/R1BQ2K1 b kq - 0 16",
+      "moves": ["e4f2", "d1h5", "e5f7", "b7d8"],
+      "rating": 1502,
+      "themes": ["advantage", "fork", "middlegame", "pin", "short"]
+    },
+    {
+      "id": "02vqK",
+      "fen": "r2qk2r/pppbn2p/2nb1pp1/1B1Q4/3NpP2/1P2P3/PBPP2PP/RN2K2R w KQkq - 1 10",
+      "moves": ["d4c6", "b7c6", "d5d4", "c6b5"],
+      "rating": 1596,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "02xFH",
+      "fen": "3r2k1/1bpr2pp/p3Qpq1/1p2p1N1/1P6/P1PPP2P/5RP1/5R1K b - - 1 25",
+      "moves": ["g8f8", "f2f6", "g7f6", "f1f6", "f8g7", "f6g6"],
+      "rating": 1450,
+      "themes": ["crushing", "fork", "long", "middlegame", "sacrifice"]
+    },
+    {
+      "id": "033Gi",
+      "fen": "7k/4b3/3p3p/1p2prpn/6R1/PP2BP1q/4QP1P/3R3K w - - 0 30",
+      "moves": ["e2b5", "h3f3", "g4g2", "f3d1"],
+      "rating": 1489,
+      "themes": ["crushing", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "03BHm",
+      "fen": "r2q1rk1/pp3ppp/2p1b3/2R5/2P5/3P3P/P1P2PP1/R1BQ2K1 w - - 1 15",
+      "moves": ["d1f3", "d8d4", "a1b1", "d4c5"],
+      "rating": 1526,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "03C3g",
+      "fen": "1k1r3r/pp4pp/3b1p2/1N6/P2Pqp2/2Q2N1P/5PP1/2R3K1 b - - 3 24",
+      "moves": ["d8c8", "c3c8", "h8c8", "c1c8", "b8c8", "b5d6", "c8d7", "d6e4"],
+      "rating": 1551,
+      "themes": ["advantage", "attraction", "fork", "middlegame", "veryLong"]
+    },
+    {
+      "id": "03Drl",
+      "fen": "r4rk1/1p1n2pp/5p2/p7/5N2/P3PBqb/1P1Q2P1/R4RK1 b - - 1 24",
+      "moves": ["h3f5", "d2d5", "g8h8", "d5f5"],
+      "rating": 1480,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "03Q8z",
+      "fen": "5rk1/1p1b1ppp/4p3/q2p2P1/3R4/PRN2P1B/1KP4P/8 b - - 0 26",
+      "moves": ["e6e5", "d4d5", "a5d5", "c3d5"],
+      "rating": 1405,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "03TIU",
+      "fen": "8/3q1pkp/p5p1/2rP1B2/4R3/6P1/3Q3P/6K1 b - - 0 45",
+      "moves": ["d7f5", "d2d4", "g7h6", "e4h4"],
+      "rating": 1452,
+      "themes": ["crushing", "endgame", "fork", "short"]
+    },
+    {
+      "id": "03XeV",
+      "fen": "r6r/2pqkp2/3p1pnp/p1bPp3/4P3/2P2QP1/NPKRNP1P/7R w - - 2 20",
+      "moves": ["h1b1", "d7a4", "b2b3", "a4a2", "b1b2", "a2a3"],
+      "rating": 1581,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "03Yux",
+      "fen": "1R6/4bkpp/5q2/2p5/2Q4P/2P1P1P1/P4P1K/3r4 b - - 4 37",
+      "moves": ["f7g6", "c4g4", "g6h6", "g4d1"],
+      "rating": 1515,
+      "themes": ["advantage", "endgame", "fork", "short"]
+    },
+    {
+      "id": "03r58",
+      "fen": "r4r1k/pQ4pp/8/P3N3/1P5n/2P3Nb/4Bq1P/R3R2K w - - 1 24",
+      "moves": ["e5g4", "h3g2", "b7g2", "f2g2"],
+      "rating": 1565,
+      "themes": ["fork", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "03vki",
+      "fen": "8/2R2pk1/7p/p1R3p1/Pq1P4/4P2P/5PP1/6K1 w - - 7 31",
+      "moves": ["c5f5", "b4b1", "g1h2", "b1f5"],
+      "rating": 1410,
+      "themes": ["advantage", "endgame", "fork", "queenRookEndgame", "short"]
+    },
+    {
+      "id": "04A8a",
+      "fen": "5r2/1bb5/4p1k1/1P1p1p1B/2pP3q/2P3NP/3Q1P2/7K b - - 3 35",
+      "moves": ["g6f6", "d2h6", "f6e7", "h6g7", "e7d6", "g7f8"],
+      "rating": 1586,
+      "themes": ["advantage", "deflection", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "04Axh",
+      "fen": "r2q1rk1/pppb1ppp/2nb1p2/8/2QP4/2NBPN2/PP3PPP/R3K2R b KQ - 2 10",
+      "moves": ["d7e6", "d4d5", "c6e5", "f3e5"],
+      "rating": 1401,
+      "themes": ["crushing", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "04Dbs",
+      "fen": "r4rk1/p4pbp/1p2p1p1/8/2PP4/q4P2/3B1P1P/1R1QR1K1 b - - 0 18",
+      "moves": ["g7d4", "d2b4", "a3b4", "b1b4"],
+      "rating": 1594,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "04EfB",
+      "fen": "r3r3/p1p3kp/1p4p1/4Np2/2nP1q1P/2P1nN2/PP4P1/1KQ1R2R w - - 1 22",
+      "moves": ["e5c4", "f4e4", "b1a1", "e3c2", "c1c2", "e4c2"],
+      "rating": 1536,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "04L6t",
+      "fen": "r3q1k1/5p1p/1QN3p1/1p3p2/4n3/4P3/P4PPP/3R2K1 w - - 0 27",
+      "moves": ["b6b5", "e4c3", "c6e7", "e8e7"],
+      "rating": 1573,
+      "themes": ["crushing", "endgame", "fork", "master", "short"]
+    },
+    {
+      "id": "04NEq",
+      "fen": "rnb1kbr1/pppp1Npp/5q2/2n5/2B5/5P2/PPPP2PP/RNBQK2R w KQq - 1 7",
+      "moves": ["b1c3", "f6h4", "g2g3", "h4c4"],
+      "rating": 1541,
+      "themes": ["advantage", "fork", "opening", "short"]
+    },
+    {
+      "id": "04OCu",
+      "fen": "3rr1k1/ppp2ppp/1n6/8/3qp2P/PQ5R/1P2BPP1/4RK2 b - - 2 20",
+      "moves": ["d4a4", "b3a4", "b6a4", "e2b5", "a4c5", "b5e8"],
+      "rating": 1576,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "04QN1",
+      "fen": "8/7n/p5Rp/3R4/4pq1k/7P/PP4P1/6K1 b - - 0 40",
+      "moves": ["f4e3", "g1h2", "e3f4", "g2g3", "f4g3", "g6g3"],
+      "rating": 1446,
+      "themes": ["crushing", "defensiveMove", "endgame", "fork", "long"]
+    },
+    {
+      "id": "04Rat",
+      "fen": "3q2k1/5Rp1/pn2pbQp/1p1p4/3P4/7P/2r2PP1/4R1K1 b - - 0 28",
+      "moves": ["c2c6", "f7f6", "d8f6", "g6e8", "g8h7", "e8c6"],
+      "rating": 1549,
+      "themes": ["advantage", "clearance", "fork", "long", "middlegame", "pin", "sacrifice"]
+    },
+    {
+      "id": "04Xrh",
+      "fen": "r2qk1nr/p4p1b/2n1P1pp/1p1p4/2pP1NQ1/P1P3P1/1P1B1P1P/R3R2K b kq - 0 17",
+      "moves": ["g8f6", "e6f7", "e8f7", "g4e6", "f7g7", "e6c6"],
+      "rating": 1472,
+      "themes": [
+        "advancedPawn",
+        "attackingF2F7",
+        "attraction",
+        "crushing",
+        "discoveredCheck",
+        "doubleCheck",
+        "fork",
+        "long",
+        "middlegame"
+      ]
+    },
+    {
+      "id": "04bIW",
+      "fen": "r1b2rk1/pp1n1ppp/4p3/2P1n3/QP1N1B1q/3B4/P4PP1/RN3RK1 w - - 5 16",
+      "moves": ["f4g3", "h4d4", "d3h7", "g8h7"],
+      "rating": 1458,
+      "themes": ["advantage", "fork", "hangingPiece", "opening", "short"]
+    },
+    {
+      "id": "04e5c",
+      "fen": "8/1R1k2pp/3P4/8/8/3q1N1P/6PK/8 b - - 3 31",
+      "moves": ["d7d6", "b7d7", "d6d7", "f3e5", "d7c8", "e5d3"],
+      "rating": 1408,
+      "themes": ["attraction", "crushing", "endgame", "exposedKing", "fork", "long", "sacrifice"]
+    },
+    {
+      "id": "04qzg",
+      "fen": "1k1r3b/pp3N2/1np5/5p2/1B1Ppq2/8/PPQ5/1K1R4 b - - 3 26",
+      "moves": ["d8d4", "d1d4", "h8d4", "b4d6", "f4d6", "f7d6"],
+      "rating": 1439,
+      "themes": ["advantage", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "04wsf",
+      "fen": "r3kb1r/pp3ppp/1q2p1b1/1Nnp4/5B2/3BPP2/PPP3PP/1R1Q1RK1 b kq - 2 14",
+      "moves": ["g6d3", "b5c7", "b6c7", "f4c7"],
+      "rating": 1429,
+      "themes": ["advantage", "fork", "opening", "short"]
+    },
+    {
+      "id": "053zh",
+      "fen": "3rr1k1/ppp3b1/7p/2BN2pP/2P2pb1/P2R1P2/1P4P1/2K4R b - - 0 22",
+      "moves": ["g4f5", "d5e7", "g8f7", "d3d8"],
+      "rating": 1538,
+      "themes": ["advantage", "discoveredAttack", "fork", "master", "middlegame", "short"]
+    },
+    {
+      "id": "05Fg9",
+      "fen": "1k1r4/pp1nq1b1/2p1bp2/6p1/4P1P1/2NNQ3/PPPR4/2K4B b - - 0 21",
+      "moves": ["e6g4", "e3g3", "b8a8", "g3g4"],
+      "rating": 1404,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "05LSW",
+      "fen": "3r4/1p3pk1/2p3b1/p7/3qPQ2/P6B/1P3R2/6K1 b - - 1 36",
+      "moves": ["d4e4", "f4f6", "g7h7", "f6d8"],
+      "rating": 1422,
+      "themes": ["advantage", "endgame", "fork", "short"]
+    },
+    {
+      "id": "05dji",
+      "fen": "5n1k/R7/p4p2/3B3p/2p2N2/1q2B2b/4R2P/6K1 w - - 0 39",
+      "moves": ["e3d4", "b3d1", "g1f2", "d1d4"],
+      "rating": 1533,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "05go0",
+      "fen": "1nkr4/1pp3r1/7p/1P2p2q/2P1Pp2/B3Q1Pb/5PN1/R3RNK1 w - - 0 30",
+      "moves": ["e3e2", "f4f3", "e2f3", "h5f3"],
+      "rating": 1536,
+      "themes": ["advantage", "fork", "middlegame", "short"]
+    },
+    {
+      "id": "05hh9",
+      "fen": "r1b1kr2/3p3p/pq4p1/1p6/1n1NP3/1P2Q3/P2N1P1P/R3K2R w KQq - 7 18",
+      "moves": ["a2a3", "b6d4", "e3d4", "b4c2", "e1e2", "c2d4"],
+      "rating": 1523,
+      "themes": ["advantage", "attraction", "fork", "long", "middlegame", "sacrifice"]
+    },
+    {
+      "id": "05jJv",
+      "fen": "r2qk2r/ppp3pp/2b1P3/1B6/6n1/1QN5/PP3pPP/R4K1R b kq - 1 16",
+      "moves": ["c6b5", "b3b5", "c7c6", "b5h5", "g7g6", "h5g4"],
+      "rating": 1553,
+      "themes": ["advantage", "exposedKing", "fork", "long", "middlegame"]
+    },
+    {
+      "id": "05jmH",
+      "fen": "3r4/ppp1kp1p/4np2/7R/8/2N5/PPPrRPPP/6K1 w - - 8 21",
+      "moves": ["g1f1", "d2e2", "f1e2", "e6f4", "e2e3", "f4h5"],
+      "rating": 1406,
+      "themes": ["attraction", "crushing", "endgame", "fork", "long"]
+    },
+    {
+      "id": "05ovL",
+      "fen": "r3r1k1/1bp2p2/1p4pp/p3n3/Pb2NP1q/1P1P4/2P1Q1BP/B2R1RK1 b - - 0 22",
+      "moves": ["e5g4", "e2g4", "h4g4", "e4f6", "g8f8", "f6g4", "b7g2", "g1g2"],
+      "rating": 1548,
+      "themes": ["attraction", "crushing", "fork", "master", "middlegame", "sacrifice", "veryLong"]
+    },
+    {
+      "id": "05pgH",
+      "fen": "5rk1/3P4/6p1/3Pp3/4P3/6bb/2Q2PBq/1R2RK2 w - - 1 35",
+      "moves": ["g2h3", "f8f2", "c2f2", "h2f2"],
+      "rating": 1408,
+      "themes": ["fork", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "05qga",
+      "fen": "r1b1k2r/pp4pp/2pB4/n3N3/3P4/8/P4PPP/4R1K1 b - - 0 18",
+      "moves": ["e8d8", "e5f7", "d8d7", "e1e7"],
+      "rating": 1539,
+      "themes": ["fork", "mate", "mateIn2", "middlegame", "operaMate", "short", "vukovicMate"]
+    },
+    {
+      "id": "05rVv",
+      "fen": "r1b1k2r/pp2qppp/2nppn2/3p4/3P1B2/4PN2/PPP2PPP/R2QKB1R w KQkq - 1 8",
+      "moves": ["f1d3", "e6e5", "f4g5", "e5e4", "d3e2", "e4f3"],
+      "rating": 1435,
+      "themes": ["advantage", "fork", "long", "opening"]
+    }
+  ]
+}

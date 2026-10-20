@@ -1,0 +1,42 @@
+---
+import PuzzleDrill from '../../components/PuzzleDrill.svelte';
+import NewToChess from '../../components/NewToChess.astro';
+import Base from '../../layouts/Base.astro';
+import { THEMES } from '../../lib/puzzles';
+---
+
+<Base title="Chess puzzles by theme" description="Ten puzzles at a time on one idea, from mate in one to forks and pins, at a level you choose." wide>
+  <div class="wrap wide">
+    <h1>Puzzles by theme</h1>
+    <p class="lead">
+      Ten puzzles at a time on one idea, at a level you choose. Each comes from a real game: the opponent has just moved, and you find the best reply. Your
+      answers count towards your progress on this device.
+    </p>
+    <NewToChess />
+    <PuzzleDrill client:load />
+    <section class="themes">
+      <h2>The themes</h2>
+      <ul>
+        {THEMES.map((t) => (
+          <li>
+            {t.title}: <a href={`/reference/${t.entry}/`}>what it is</a>
+          </li>
+        ))}
+      </ul>
+      <p class="credit">
+        Puzzles from the <a href="https://database.lichess.org/#puzzles">Lichess puzzle database</a> (CC0), chosen for popularity and checked move by move.
+        Chaalwise is not part of Lichess.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .lead,
+  .credit {
+    color: var(--ink-2);
+  }
+  .themes {
+    margin-top: 40px;
+  }
+</style>

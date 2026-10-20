@@ -1,0 +1,580 @@
+{
+  "theme": "hangingPiece",
+  "min": 1000,
+  "max": 1200,
+  "source": "Lichess puzzle database, database.lichess.org",
+  "licence": "CC0",
+  "puzzles": [
+    {
+      "id": "002bK",
+      "fen": "8/7p/2b1k3/p2p1pPB/1n1P3P/N1p1P3/4K3/8 b - - 1 42",
+      "moves": ["c6b5", "a3b5", "c3c2", "e2d2"],
+      "rating": 1100,
+      "themes": ["advantage", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "00BJm",
+      "fen": "r2q1rk1/1Q2bppp/p1N1p3/1p6/2pP1n2/2P5/PP3PPP/R4RK1 b - - 1 18",
+      "moves": ["d8d5", "c6e7", "g8h8", "e7d5"],
+      "rating": 1088,
+      "themes": ["advantage", "fork", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "01M89",
+      "fen": "8/2p5/1p2B3/p7/5r2/P4pN1/1PP4k/1K4R1 w - - 1 59",
+      "moves": ["g3e2", "f3e2", "g1e1", "f4f1", "b1c1", "f1e1"],
+      "rating": 1158,
+      "themes": ["advancedPawn", "crushing", "endgame", "hangingPiece", "long", "pin"]
+    },
+    {
+      "id": "01Y2F",
+      "fen": "r3kb1r/pp1q1ppp/4p3/4Pn2/3pN3/2P4P/PP3RP1/R1BQ2K1 w kq - 0 15",
+      "moves": ["f2f5", "e6f5", "e4d6", "f8d6"],
+      "rating": 1055,
+      "themes": ["advantage", "hangingPiece", "master", "middlegame", "short"]
+    },
+    {
+      "id": "01pl8",
+      "fen": "3r4/pR1N2p1/2p2p1k/4p2p/2B1Pn1N/1P6/P1P2PPP/3R2K1 w - - 4 31",
+      "moves": ["d7f6", "d8d1", "c4f1", "f4e2", "g1h1", "d1f1"],
+      "rating": 1098,
+      "themes": ["backRankMate", "deflection", "hangingPiece", "long", "mate", "mateIn3", "middlegame", "pin"]
+    },
+    {
+      "id": "02a9L",
+      "fen": "7k/1p1rp1bp/pB4p1/4rp2/P7/2P1Q2P/1P3PP1/4R1K1 w - - 0 34",
+      "moves": ["e3f4", "e5e1", "g1h2", "g7e5", "f4e5", "e1e5"],
+      "rating": 1101,
+      "themes": ["crushing", "endgame", "hangingPiece", "kingsideAttack", "long", "pin"]
+    },
+    {
+      "id": "02l1m",
+      "fen": "r3r1k1/p4ppb/7p/1ppQn1q1/3p4/P2P4/BPP1N3/R3K2R b KQ - 1 23",
+      "moves": ["e8e7", "d5a8", "e7e8", "a8e8"],
+      "rating": 1104,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "02vYV",
+      "fen": "3qr1k1/1r1nbpp1/p1p4p/3p4/N1p5/BP1P1Q1P/P1P2PP1/R3R1K1 w - - 0 19",
+      "moves": ["d3c4", "e7a3", "e1e8", "d8e8"],
+      "rating": 1143,
+      "themes": ["advantage", "hangingPiece", "master", "middlegame", "short"]
+    },
+    {
+      "id": "03Vfo",
+      "fen": "r2r2k1/pp2bppp/2N1p3/3q4/3P4/P3B2P/1P2bPP1/R2Q1RK1 b - - 0 15",
+      "moves": ["e2d1", "c6e7", "g8h8", "e7d5"],
+      "rating": 1117,
+      "themes": ["crushing", "fork", "hangingPiece", "master", "middlegame", "short"]
+    },
+    {
+      "id": "03hK3",
+      "fen": "5r1k/p4p1p/q3p2Q/8/P7/1rp5/4RPPb/3R1K2 b - - 1 31",
+      "moves": ["c3c2", "h6f8"],
+      "rating": 1057,
+      "themes": ["hangingPiece", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "043Nu",
+      "fen": "2r1k2r/5q2/1ppQ2n1/4p3/4P1p1/2P2pP1/PP1N3P/R4R1K b k - 0 26",
+      "moves": ["h8h2", "h1h2", "c8d8", "d6c6"],
+      "rating": 1089,
+      "themes": ["crushing", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "049Js",
+      "fen": "1r5k/5pb1/nrbRp1pp/1Np1P3/p1P1NB1P/P7/1P3PP1/2K1R3 w - - 6 29",
+      "moves": ["e1d1", "c6e4", "d6b6", "b8b6"],
+      "rating": 1033,
+      "themes": ["advantage", "hangingPiece", "master", "middlegame", "short"]
+    },
+    {
+      "id": "04Mis",
+      "fen": "r1b3k1/5rpp/p1n1Np2/1p1n4/2pP1q2/2P2N2/PPB2PPP/R2QR1K1 w - - 1 18",
+      "moves": ["c2e4", "c8e6", "e4h7", "g8h7"],
+      "rating": 1120,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "053LP",
+      "fen": "3rr1k1/pbp2ppp/1p6/nNnP2q1/2P5/P6P/1B2BPP1/1R1QR1K1 b - - 12 21",
+      "moves": ["a5c4", "e2c4", "e8e1", "d1e1"],
+      "rating": 1111,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "057jr",
+      "fen": "r3r1k1/pp3ppp/2q2b2/2p5/3n4/5N2/PPQ2PPP/1RB1R1K1 w - - 4 19",
+      "moves": ["f3d4", "e8e1"],
+      "rating": 1185,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "05Htz",
+      "fen": "4n1k1/2r2p1p/b2p2p1/3Pp3/1P2P3/1p3NNP/1P3PP1/2R4K w - - 1 37",
+      "moves": ["g3e2", "a6e2", "c1c7", "e8c7"],
+      "rating": 1124,
+      "themes": ["advantage", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "05Pdl",
+      "fen": "8/k7/2PKp3/4P3/2P5/5bp1/6B1/8 w - - 2 55",
+      "moves": ["d6d7", "f3g2", "c6c7", "g2b7", "c7c8q", "b7c8"],
+      "rating": 1168,
+      "themes": ["bishopEndgame", "crushing", "endgame", "hangingPiece", "long", "quietMove"]
+    },
+    {
+      "id": "05nFU",
+      "fen": "2k3rr/1pq2p2/p1pbpQ2/P4p1p/2P5/8/1PP2PP1/3RR2K b - - 3 26",
+      "moves": ["g8g6", "f6h8", "c7d8", "h8d8"],
+      "rating": 1158,
+      "themes": ["crushing", "hangingPiece", "middlegame", "queensideAttack", "short"]
+    },
+    {
+      "id": "06ORP",
+      "fen": "5q1k/6p1/1p4Pp/8/2Qp4/2P4K/3r4/5R2 b - - 1 40",
+      "moves": ["f8c8", "c4c8"],
+      "rating": 1039,
+      "themes": ["endgame", "hangingPiece", "mate", "mateIn1", "oneMove"]
+    },
+    {
+      "id": "06yZ3",
+      "fen": "5k2/1r3p2/6p1/q4p2/P1BQ4/1P5R/1KP5/8 w - - 4 45",
+      "moves": ["d4d8", "a5d8", "h3h8", "f8e7", "h8d8", "e7d8"],
+      "rating": 1131,
+      "themes": ["advantage", "endgame", "hangingPiece", "long"]
+    },
+    {
+      "id": "078wL",
+      "fen": "3r1r1k/5Npp/5p2/3QP3/2P5/1q6/6P1/5RK1 b - - 3 27",
+      "moves": ["f8f7", "d5d8", "f7f8", "d8f8"],
+      "rating": 1006,
+      "themes": ["endgame", "hangingPiece", "mate", "mateIn2", "short"]
+    },
+    {
+      "id": "07I7d",
+      "fen": "r3kb1r/pppq1ppp/2n1b3/3np3/2B5/P1NP1N2/1PP2PPP/R1BQK2R w KQkq - 1 8",
+      "moves": ["f3e5", "c6e5", "c4d5", "e6d5", "c3d5", "d7d5"],
+      "rating": 1147,
+      "themes": ["crushing", "hangingPiece", "long", "opening"]
+    },
+    {
+      "id": "07QKu",
+      "fen": "8/8/1p1K4/pB1R4/P7/8/1k6/3r4 w - - 13 78",
+      "moves": ["d6d7", "d1d5", "d7c6", "d5b5", "a4b5", "a5a4", "c6b6", "a4a3", "b6c7", "a3a2", "b5b6", "a2a1q"],
+      "rating": 1153,
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "endgame",
+        "hangingPiece",
+        "master",
+        "masterVsMaster",
+        "promotion",
+        "quietMove",
+        "superGM",
+        "veryLong"
+      ]
+    },
+    {
+      "id": "07et0",
+      "fen": "5k2/1r3p2/3P3p/2p2Kp1/2PbN3/p5PP/P2R2P1/8 w - - 3 41",
+      "moves": ["d2d4", "c5d4", "c4c5", "d4d3"],
+      "rating": 1185,
+      "themes": ["advantage", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "07jVz",
+      "fen": "8/1p1r1kpp/pR6/P5b1/1P3p2/2P5/3NK1PP/8 b - - 6 37",
+      "moves": ["d7d2", "e2d2", "f4f3", "d2e1"],
+      "rating": 1168,
+      "themes": ["advantage", "defensiveMove", "endgame", "hangingPiece", "master", "masterVsMaster", "short"]
+    },
+    {
+      "id": "08qo3",
+      "fen": "2k2r1r/pppqnQ1p/3p4/8/4PN2/7P/PPP2PP1/2KR3R w - - 1 18",
+      "moves": ["f7e6", "f8f4", "e6d7", "c8d7"],
+      "rating": 1143,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0A7YZ",
+      "fen": "r2qr3/1pp2kpp/1p3n2/3pn3/8/2PB4/PP3PPP/RN1QR1K1 w - - 2 16",
+      "moves": ["b1d2", "e5d3", "e1e8", "d8e8"],
+      "rating": 1089,
+      "themes": ["crushing", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0Ar8z",
+      "fen": "r4rk1/2q2pp1/2nbpn1p/pp1p4/3P4/P1P1NB1P/1PQB1PP1/R4RK1 b - - 0 16",
+      "moves": ["c6d4", "c3d4", "c7c2", "e3c2"],
+      "rating": 1189,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0Are1",
+      "fen": "2kr1b1r/pppqpppp/1nn5/4P3/3P2b1/2NBBN2/PP3PPP/R2Q1RK1 b - - 10 10",
+      "moves": ["c6e5", "f3e5", "g4d1", "e5d7"],
+      "rating": 1139,
+      "themes": ["advantage", "hangingPiece", "master", "opening", "short"]
+    },
+    {
+      "id": "0B2Xm",
+      "fen": "Qn1k3r/p4ppp/5p2/8/1q1P4/2b1Q3/P1b1PPPP/4KBNR w K - 0 14",
+      "moves": ["e3c3", "b4c3"],
+      "rating": 1082,
+      "themes": ["hangingPiece", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "0BAKu",
+      "fen": "4r1k1/5ppp/p3rn2/1p3q2/1P1B1P2/P5Q1/6PP/1R2R2K w - - 1 25",
+      "moves": ["e1e6", "f5b1", "g3e1", "b1e1", "e6e1", "e8e1"],
+      "rating": 1071,
+      "themes": ["crushing", "hangingPiece", "long", "middlegame", "xRayAttack"]
+    },
+    {
+      "id": "0BZ8F",
+      "fen": "5rk1/p5p1/1p4QN/3r4/P7/2p5/1qP3PP/5RK1 b - - 0 28",
+      "moves": ["g8h8", "f1f8"],
+      "rating": 1003,
+      "themes": ["endgame", "hangingPiece", "mate", "mateIn1", "oneMove"]
+    },
+    {
+      "id": "0Bi3l",
+      "fen": "2rr2kq/p3N1b1/1nn1bpB1/1pp1p3/6Q1/2PP2P1/PP3P1P/R1BR2K1 b - - 6 22",
+      "moves": ["c6e7", "g4e6", "g8f8", "e6f7"],
+      "rating": 1099,
+      "themes": ["fork", "hangingPiece", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "0C15U",
+      "fen": "1n1q1rk1/2p2ppp/3b4/1r2p3/4Q3/P3PP2/1B4PP/1R2K1NR b K - 1 15",
+      "moves": ["d6a3", "b2a3", "b5b1", "e4b1"],
+      "rating": 1182,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0CAjn",
+      "fen": "r6k/6p1/p4r1p/Pp4NQ/1q6/8/6PP/R4R1K w - - 0 38",
+      "moves": ["f1f5", "f6f5", "g5f7", "f5f7"],
+      "rating": 1098,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0CB8c",
+      "fen": "5Qnk/6pp/r5p1/4q3/1R6/pP5P/2P2PP1/R5K1 w - - 1 32",
+      "moves": ["b4b8", "e5a1", "g1h2", "a1e5"],
+      "rating": 1199,
+      "themes": ["crushing", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "0CHDY",
+      "fen": "rn3rk1/pp1q3p/2pbR1p1/3p4/3Pn3/2PB3P/PP3PP1/RNB1Q1K1 w - - 1 15",
+      "moves": ["d3e4", "d7e6", "e4d5", "e6d5"],
+      "rating": 1154,
+      "themes": ["advantage", "hangingPiece", "opening", "short"]
+    },
+    {
+      "id": "0ChLC",
+      "fen": "8/p2r1pk1/4bq2/2p1N2p/4Q1p1/2P5/PP3PP1/4R1K1 b - - 1 31",
+      "moves": ["e6d5", "e5d7", "d5e4", "d7f6"],
+      "rating": 1133,
+      "themes": ["crushing", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "0Cvn8",
+      "fen": "r2q1rk1/pp1n2pp/2pbp3/3pNp2/2PPn3/1P2P1P1/PB3P1P/R2QKB1R b KQ - 0 12",
+      "moves": ["d8f6", "e5d7", "d6b4", "e1e2"],
+      "rating": 1176,
+      "themes": ["advantage", "defensiveMove", "fork", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0D39x",
+      "fen": "8/8/nkB5/1P6/7b/6p1/6K1/8 w - - 0 53",
+      "moves": ["b5a6", "b6c6", "a6a7", "c6b7", "a7a8q", "b7a8"],
+      "rating": 1174,
+      "themes": ["bishopEndgame", "crushing", "endgame", "hangingPiece", "long"]
+    },
+    {
+      "id": "0DdGz",
+      "fen": "8/p4ppk/1p6/3R2P1/1P2n3/3R4/P3Nq2/3K4 b - - 8 43",
+      "moves": ["e4g5", "d5g5", "f2f1", "d1d2"],
+      "rating": 1149,
+      "themes": ["advantage", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "0Dieq",
+      "fen": "rn3rk1/4pp1p/1pPq2p1/pP2Q3/P1P2n2/5N1b/3PBP1P/RN4KR w - - 6 17",
+      "moves": ["e5d6", "f4e2"],
+      "rating": 1131,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "0EAoN",
+      "fen": "r2q1rk1/p4ppp/3pb3/b2Q4/2B5/2P1B3/PP3PPP/RN2K2R w KQ - 3 15",
+      "moves": ["d5a5", "d8a5", "c4e6", "f7e6"],
+      "rating": 1160,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0ESj6",
+      "fen": "1r3rk1/ppp1qpp1/5p1p/nQ1P1b2/3N1b2/2P2N2/PP3PPP/2K1RB1R w - - 5 17",
+      "moves": ["f3d2", "e7e1"],
+      "rating": 1054,
+      "themes": ["hangingPiece", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "0F9iD",
+      "fen": "5r2/R4pkp/3p2p1/6B1/8/1Bb2KPP/P3rP2/8 b - - 4 27",
+      "moves": ["e2f2", "f3f2", "c3d4", "g5e3", "d4a7", "e3a7"],
+      "rating": 1130,
+      "themes": ["advantage", "endgame", "hangingPiece", "long"]
+    },
+    {
+      "id": "0FGee",
+      "fen": "6k1/6p1/2qP1p2/3R1P2/6PQ/6B1/r3r3/3R3K b - - 2 57",
+      "moves": ["c6d5", "d1d5", "a2a1", "g3e1"],
+      "rating": 1089,
+      "themes": ["advantage", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "0FO97",
+      "fen": "rn2qk1r/p3b3/2ppBnQB/5p2/Np6/3P4/PPP3PP/R5K1 b - - 0 19",
+      "moves": ["h8h6", "g6h6"],
+      "rating": 1151,
+      "themes": ["hangingPiece", "master", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "0Foaj",
+      "fen": "6k1/5R2/6P1/r3BK2/5P2/8/8/4b3 w - - 3 54",
+      "moves": ["g6g7", "g8f7", "g7g8q", "f7g8"],
+      "rating": 1083,
+      "themes": ["crushing", "endgame", "hangingPiece", "short"]
+    },
+    {
+      "id": "0GIjw",
+      "fen": "3r2k1/1p3pp1/1Q2p2p/p4q2/8/P2r2RP/5PP1/2R3K1 b - - 12 36",
+      "moves": ["d3g3", "b6d8", "g8h7", "f2g3"],
+      "rating": 1079,
+      "themes": ["advantage", "endgame", "hangingPiece", "intermezzo", "short"]
+    },
+    {
+      "id": "0GXJp",
+      "fen": "8/3P4/5pk1/8/8/1p1KP1p1/1P1N4/3r4 b - - 2 58",
+      "moves": ["d1d2", "d3d2", "g3g2", "d7d8q", "g2g1q", "d8g8"],
+      "rating": 1018,
+      "themes": ["advancedPawn", "crushing", "endgame", "hangingPiece", "long", "master", "promotion"]
+    },
+    {
+      "id": "0GtEE",
+      "fen": "8/8/2p5/p3Bk2/1pP2Pb1/1P2PP1p/P1K3rR/8 w - - 1 44",
+      "moves": ["c2d3", "g2h2", "e3e4", "f5e6"],
+      "rating": 1191,
+      "themes": ["crushing", "endgame", "hangingPiece", "master", "short"]
+    },
+    {
+      "id": "0HGzz",
+      "fen": "8/1PK5/8/4pk2/8/1r6/6p1/2R5 b - - 1 46",
+      "moves": ["b3c3", "c1c3", "g2g1q", "b7b8q"],
+      "rating": 1063,
+      "themes": ["advancedPawn", "crushing", "endgame", "hangingPiece", "master", "promotion", "rookEndgame", "short"]
+    },
+    {
+      "id": "0Hxu5",
+      "fen": "r1bkr3/1p1p2pp/p7/5p2/2Q2b2/7P/PPPn2P1/1K1RR3 w - - 3 30",
+      "moves": ["d1d2", "e8e1", "d2d1", "e1d1"],
+      "rating": 1162,
+      "themes": ["backRankMate", "hangingPiece", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "0I1RZ",
+      "fen": "2Br2k1/2R2p1p/P5p1/8/3r4/7P/2K5/8 b - - 2 41",
+      "moves": ["d8c8", "c7c8", "g8g7", "a6a7"],
+      "rating": 1177,
+      "themes": ["advancedPawn", "crushing", "endgame", "hangingPiece", "rookEndgame", "short"]
+    },
+    {
+      "id": "0ISpP",
+      "fen": "3r4/2p5/1kP2p2/pN2p3/Pn5p/1Q2n2P/1P1q3R/1K4R1 b - - 0 34",
+      "moves": ["d2h2", "b3e3", "d8d4", "b5d4", "e5d4", "e3d4"],
+      "rating": 1106,
+      "themes": ["advantage", "hangingPiece", "long", "middlegame"]
+    },
+    {
+      "id": "0IabK",
+      "fen": "6k1/1p2qp2/p1b2n1Q/8/5P2/P2R3P/2B3PK/4r3 b - - 2 33",
+      "moves": ["f6g4", "h3g4", "e1h1", "h2h1"],
+      "rating": 1174,
+      "themes": ["crushing", "hangingPiece", "master", "middlegame", "short"]
+    },
+    {
+      "id": "0IfZq",
+      "fen": "3rr2k/1p3ppB/p1b1p3/3q4/3P2n1/1P2BP2/P1Q3PP/R4RK1 w - - 1 22",
+      "moves": ["h7e4", "g4e3", "e4d5", "e3c2"],
+      "rating": 1129,
+      "themes": ["advantage", "fork", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0Isaq",
+      "fen": "1b2r1k1/1p3pp1/p1b5/7p/3B1Nq1/1P2P1P1/P4Q1P/2RR2K1 w - - 3 29",
+      "moves": ["c1c6", "g4d1", "f2f1", "d1f1"],
+      "rating": 1185,
+      "themes": ["advantage", "hangingPiece", "kingsideAttack", "master", "middlegame", "short"]
+    },
+    {
+      "id": "0J02L",
+      "fen": "5r1k/1p2QBqp/2b5/2P5/1P2p3/P3P3/5PPP/R2R2K1 w - - 3 30",
+      "moves": ["d1d8", "g7a1", "d8d1", "a1d1"],
+      "rating": 1171,
+      "themes": ["backRankMate", "hangingPiece", "mate", "mateIn2", "middlegame", "short"]
+    },
+    {
+      "id": "0JBf1",
+      "fen": "r3qrk1/pp4pn/2n1p1b1/3p4/3b1P2/2NBB3/PPP4Q/2KR2NR w - - 0 18",
+      "moves": ["d3g6", "d4e3", "c1b1", "e8g6"],
+      "rating": 1184,
+      "themes": ["crushing", "hangingPiece", "intermezzo", "middlegame", "short"]
+    },
+    {
+      "id": "0JDnk",
+      "fen": "4Rr1k/1p4p1/1pp5/3p1P2/5r1q/1P4Q1/PP5P/1K2R3 b - - 6 28",
+      "moves": ["h4g3", "e8f8", "h8h7", "h2g3"],
+      "rating": 1132,
+      "themes": ["crushing", "endgame", "hangingPiece", "intermezzo", "master", "queenRookEndgame", "short"]
+    },
+    {
+      "id": "0JI69",
+      "fen": "2r1r3/1p3k2/1q1bNpp1/1p1P3p/6PQ/P7/7P/4R2K b - - 0 30",
+      "moves": ["b6d4", "e6d4", "e8e1", "h4e1"],
+      "rating": 1160,
+      "themes": ["crushing", "hangingPiece", "master", "masterVsMaster", "middlegame", "short"]
+    },
+    {
+      "id": "0JoLP",
+      "fen": "rn4k1/pp3p1p/2p4r/8/3P3B/5Bq1/PPP5/R2Q1R1K w - - 0 18",
+      "moves": ["f1g1", "h6h4"],
+      "rating": 1002,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn1", "middlegame", "oneMove"]
+    },
+    {
+      "id": "0KCrx",
+      "fen": "5rk1/4Qpbp/4p1p1/3bP3/3P1PPn/4B1rN/7P/1R1N1R1K w - - 3 28",
+      "moves": ["f1f3", "d5f3"],
+      "rating": 1192,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn1", "middlegame", "morphysMate", "oneMove"]
+    },
+    {
+      "id": "0LD6t",
+      "fen": "2k1r2r/p1p2pp1/2p5/7p/3Pn1b1/2P1qN1P/P1P3PB/R3QR1K b - - 1 17",
+      "moves": ["g4f3", "e1e3", "e4g3", "h2g3"],
+      "rating": 1073,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0LcD2",
+      "fen": "8/8/1p6/1n2k2p/5p1P/p2Kp3/6P1/1R6 b - - 1 61",
+      "moves": ["a3a2", "b1b5", "e5f6", "b5b6"],
+      "rating": 1163,
+      "themes": ["crushing", "endgame", "hangingPiece", "master", "short"]
+    },
+    {
+      "id": "0LeZV",
+      "fen": "3Q1r1k/2P3p1/b6p/P1p5/1p6/4NrPq/7P/4R1K1 b - - 0 34",
+      "moves": ["f3e3", "d8f8", "h8h7", "e1e3"],
+      "rating": 1015,
+      "themes": ["crushing", "endgame", "hangingPiece", "intermezzo", "short"]
+    },
+    {
+      "id": "0Mmnz",
+      "fen": "1k1r4/4q1p1/1Q5p/3p4/8/6P1/P7/2KRr3 b - - 0 44",
+      "moves": ["e7b7", "b6d8", "b7c8", "d8c8", "b8c8", "d1e1"],
+      "rating": 1196,
+      "themes": ["crushing", "endgame", "exposedKing", "hangingPiece", "long"]
+    },
+    {
+      "id": "0MqY4",
+      "fen": "Rr5r/1pp1k3/4n1p1/2P3Pp/4q3/4B3/3Q2PP/1R4K1 w - - 2 37",
+      "moves": ["a8b8", "e4b1", "d2c1", "b1c1", "e3c1", "h8b8"],
+      "rating": 1199,
+      "themes": ["crushing", "hangingPiece", "long", "middlegame"]
+    },
+    {
+      "id": "0NdZK",
+      "fen": "r1bq1rk1/pp1pppbp/2N3p1/8/2B1P3/2N1n3/PPP2PPP/R2Q1RK1 w - - 0 10",
+      "moves": ["c4f7", "f8f7", "c6d8", "e3d1"],
+      "rating": 1026,
+      "themes": ["advantage", "hangingPiece", "opening", "short"]
+    },
+    {
+      "id": "0NqwM",
+      "fen": "2k3rr/ppp2p2/3q4/4N1pp/5Bn1/P1QP4/1P3PPP/3R1RK1 w - - 0 19",
+      "moves": ["e5f7", "d6f4", "g2g3", "f4f7"],
+      "rating": 1101,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0OElv",
+      "fen": "3r2k1/p4ppp/1bp2q2/8/1P3B2/PQ2P2P/3r1PP1/R2R2K1 w - - 2 20",
+      "moves": ["d1d2", "f6a1", "g1h2", "d8d2"],
+      "rating": 1034,
+      "themes": ["crushing", "hangingPiece", "intermezzo", "master", "middlegame", "short"]
+    },
+    {
+      "id": "0OqGQ",
+      "fen": "1Q2b1k1/5ppp/2p1p3/2b1N3/P1PNPP2/2qPn3/6PP/6K1 b - - 1 25",
+      "moves": ["c3d4", "b8e8", "c5f8", "e8f7", "g8h8", "f7f8"],
+      "rating": 1174,
+      "themes": ["deflection", "endgame", "hangingPiece", "kingsideAttack", "long", "mate", "mateIn3"]
+    },
+    {
+      "id": "0OvME",
+      "fen": "8/4B2p/1Pb4K/5p2/p1k1p2P/R2r2P1/8/8 w - - 8 59",
+      "moves": ["a3a4", "c6a4", "b6b7", "d3b3", "b7b8q", "b3b8"],
+      "rating": 1184,
+      "themes": ["crushing", "endgame", "hangingPiece", "long"]
+    },
+    {
+      "id": "0PtMe",
+      "fen": "r3r1k1/2pb2p1/p3pq1p/4Np2/5P1P/1QP5/PP4P1/4RK1R b - - 2 24",
+      "moves": ["a8b8", "e5d7", "b8b3", "d7f6", "g7f6", "a2b3"],
+      "rating": 1176,
+      "themes": ["crushing", "fork", "hangingPiece", "long", "middlegame"]
+    },
+    {
+      "id": "0PzC8",
+      "fen": "1r6/1bQ1n1kp/p2p1rpq/1p1P4/8/P7/1P2B2R/3R3K b - - 1 29",
+      "moves": ["h6g5", "c7e7", "g7g8", "e7h7"],
+      "rating": 1148,
+      "themes": ["crushing", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0QAiN",
+      "fen": "r4rk1/pp1b1ppp/1qn1p3/2bpPn2/N7/5NP1/PPP1QPBP/R1B2RK1 b - - 6 11",
+      "moves": ["b6c7", "a4c5", "c6d4", "f3d4"],
+      "rating": 1124,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0QQUt",
+      "fen": "3r4/p4pk1/4pqp1/1p1nR3/2r3P1/2P2NK1/PP2QP1R/8 b - - 3 32",
+      "moves": ["c4g4", "g3g4", "f6f4", "g4h3", "d8h8", "h3g2", "f4h2", "f3h2"],
+      "rating": 1189,
+      "themes": ["advantage", "hangingPiece", "middlegame", "veryLong"]
+    },
+    {
+      "id": "0QTfA",
+      "fen": "r1bqk2r/1p3ppp/1np5/4N3/p1BPP3/P7/3Q1PPP/R3K2R w KQkq - 1 16",
+      "moves": ["e5f7", "b6c4", "f7d8", "c4d2"],
+      "rating": 1064,
+      "themes": ["advantage", "hangingPiece", "middlegame", "short"]
+    },
+    {
+      "id": "0QVch",
+      "fen": "5r1k/pp3p1p/3p1npN/2r1P1Q1/8/P4B2/1q3PPP/4R1K1 b - - 0 24",
+      "moves": ["c5e5", "g5f6"],
+      "rating": 1155,
+      "themes": ["hangingPiece", "kingsideAttack", "mate", "mateIn1", "middlegame", "oneMove"]
+    }
+  ]
+}

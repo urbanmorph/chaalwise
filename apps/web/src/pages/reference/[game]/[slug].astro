@@ -1,4 +1,5 @@
 ---
+import { THEMES } from '../../../lib/puzzles';
 import { FAMILY_NAMES, GAME_NAMES, KIND_NAMES } from '@chaalwise/core/reference';
 import { SKILLS } from '@chaalwise/core/skills';
 import { render } from 'astro:content';
@@ -90,6 +91,11 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
       </p>
     )}
 
+    {data.lichess && THEMES.some((t) => t.id === data.lichess) && (
+      <p class="elsewhere">
+        Practise it here: <a href={`/chess/puzzles/?theme=${data.lichess}`}>ten puzzles on this idea</a>, at a level you choose, counted in your progress.
+      </p>
+    )}
     {data.lichess && (
       <p class="elsewhere">
         Want more? <a href={`https://lichess.org/training/${data.lichess}`}>Puzzles on this from real games, on Lichess</a>, free and with no account. They are
