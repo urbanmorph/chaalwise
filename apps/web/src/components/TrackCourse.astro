@@ -5,6 +5,7 @@ import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
 import { chessLessonsFor, lessonHref, STAGES, trackLessons, trackSteps } from '../lib/lessons';
 import { COMES_WITH } from '../lib/planned-skills';
+import NewToChess from './NewToChess.astro';
 import TrackPractice from './TrackPractice.svelte';
 
 /**
@@ -80,6 +81,7 @@ const { idea, why, atWork, inStudy, habit } = course.data;
         .
       </p>
     )}
+    {(chess.length > 0 || measured) && <NewToChess />}
     {COMES_WITH[id] && <p class="also">Comes with {COMES_WITH[id]}.</p>}
   </section>
 

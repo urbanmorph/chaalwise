@@ -45,7 +45,7 @@ describe('the built home page', () => {
   });
 
   it('draws the chess diagram with no script', () => {
-    const figure = html.match(/<figure class="hero-board[\s\S]*?<\/figure>/)![0];
+    const figure = html.match(/<figure class="idea-board[\s\S]*?<\/figure>/)![0];
     expect(figure).not.toContain('<script');
     expect(figure.match(/<use /g)).toHaveLength(HERO.pieces);
     // Each piece image once, however many times it is used: here a king, rook and pawns of each side, and a knight.
@@ -92,6 +92,19 @@ describe('strategy first', () => {
   it('starts a newcomer on a strategy lesson, not a chess one', () => {
     const primary = html.match(/<a class="button primary" href="([^"]+)"/)![1];
     expect(primary).toMatch(/^\/skills\/[a-z-]+\/$/);
+  });
+
+  it('leads with who it is for: the audience shares the first screen with the headline, and the chess board comes later', () => {
+    const hero = html.match(/<section class="hero[\s\S]*?<\/section>/)![0];
+    expect(hero).toContain('Who it is for');
+    expect(hero).toMatch(/Students/);
+    expect(hero).not.toContain('<figure');
+    expect(html.indexOf('<figure class="idea-board')).toBeGreaterThan(html.indexOf('id="skills"'));
+  });
+
+  it('has one way to start, named for the school, not a game', () => {
+    const starts = [...html.matchAll(/<a class="button primary"[^>]*>([^<]*)</g)].map((m) => m[1]!.trim());
+    expect(starts).toEqual(['Start the first lesson']);
   });
 
   it('speaks to people who run things and to students, and keeps games off the front page', () => {
