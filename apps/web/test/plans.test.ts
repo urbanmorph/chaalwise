@@ -7,7 +7,7 @@ const lessons = readdirSync(dir).map((f) => ({
   id: f.replace('.md', ''),
   steps: (
     parse(readFileSync(new URL(f, dir), 'utf8').split(/^---$/m)[1]!) as {
-      steps: { kind: string; situations?: string[] }[];
+      steps: { kind: string; situations?: string[]; alongside?: string; position?: string }[];
     }
   ).steps,
 }));
@@ -19,5 +19,15 @@ describe('every strategy lesson ends with a plan to use the idea', () => {
       expect(last.kind, id).toBe('plan');
       expect(last.situations!.length, id).toBeGreaterThanOrEqual(3);
     }
+  });
+});
+
+describe('every strategy lesson compares its board with a case off it', () => {
+  it('sets a work or study case beside the chess position, and asks what the two share', () => {
+    for (const { id, steps } of lessons)
+      expect(
+        steps.some((s) => s.kind === 'choice' && s.alongside && s.position),
+        id,
+      ).toBe(true);
   });
 });

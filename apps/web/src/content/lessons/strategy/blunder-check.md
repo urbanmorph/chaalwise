@@ -41,6 +41,21 @@ steps:
       - ''
       - Plan A's two prices average 424, which looks close to 399, but 25 a month more over 24 months is 600.
     explanation: 'Plan A is 12 × 199 + 12 × 649 = 10,176. Plan B is 24 × 399 = 9,576. Like a piece left hanging, the danger is in the part you are not looking at: what happens after the offer ends.'
+  - kind: choice
+    id: compare
+    prompt: 'The knight on c3 attacks the queen. What do the board and the email have in common?'
+    position: '4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1'
+    alongside: 'A colleague has written a sharp reply to a client and is about to press send.'
+    options:
+      - 'Both need a look at what the other side can do next'
+      - 'Both are about acting quickly before the chance goes'
+      - 'Both involve something valuable already under attack'
+    answer: 0
+    feedback:
+      - ''
+      - 'Speed is the danger in both. The queen move and the send button reward a pause, not haste.'
+      - 'The queen is attacked, but the email is not yet. What they share is the check before you act.'
+    explanation: "In both, the question is what your move lets the other side do. On the board it is the knight; at work it is the client's reply and who else reads it."
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you pause before acting?'

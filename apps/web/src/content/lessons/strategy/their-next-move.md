@@ -41,6 +41,21 @@ steps:
       - Your share of customers is the same, but each cup now earns 2 less, so the same 100 cups bring in less.
       - ''
     explanation: 100 cups at 18 is 1,800 instead of 2,000. If their best reply cancels your move, your move only costs you. Think one reply ahead before you commit.
+  - kind: choice
+    id: compare
+    prompt: 'Before answering Qh5, Black asks what White wants. What does that share with preparing for the meeting?'
+    position: 'moves: e4 e5 Qh5'
+    alongside: 'Next week you will ask your manager for a raise.'
+    options:
+      - 'Work out their best reply before you make your move'
+      - 'Hope they react the way you would like'
+      - 'Move first so they have no time to think'
+    answer: 0
+    feedback:
+      - ''
+      - 'Hoping is how Nf6 walks into Qxf7 mate. Plan for their best reply, not the one you want.'
+      - 'Speed does not remove their reply. Moving without thinking it through only hides it from you.'
+    explanation: 'In both, you think through the other sides best reply, as they see it, before you commit: Black guards f7, and you prepare the answer to "not this year".'
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you think about their reply?'

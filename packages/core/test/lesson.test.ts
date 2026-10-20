@@ -58,6 +58,24 @@ describe('lessonSchema', () => {
     expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, feedback: ['', ''] }] })).toThrow(/feedback/);
   });
 
+  it('lets a choice set a case off the board beside its board, to compare the two', () => {
+    const step = {
+      kind: 'choice',
+      id: 'c',
+      prompt: 'What do they share?',
+      position: 'start',
+      alongside: 'A client asks for a discount.',
+      options: ['a', 'b'],
+      answer: 0,
+      explanation: 'e',
+    };
+    expect(lessonSchema.parse({ ...lesson, steps: [step] }).steps[0]).toMatchObject({
+      alongside: 'A client asks for a discount.',
+    });
+    // There is nothing to compare without a board.
+    expect(() => lessonSchema.parse({ ...lesson, steps: [{ ...step, position: undefined }] })).toThrow(/alongside/);
+  });
+
   it('lets a read step show a board with squares picked out, and a square step show coordinates', () => {
     const steps = [
       { kind: 'read', id: 'files', text: 'This is the e-file.', position: 'empty', highlight: ['e1', 'e2'] },

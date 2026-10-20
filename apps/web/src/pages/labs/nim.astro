@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import NimLab from '../../components/labs/NimLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'nim')!;
+---
+
+<LabPage {lab}>
+  <p>
+    There is one pile of counters. You and the bot take turns to take 1, 2 or 3 of them, and whoever takes the last counter wins. You play five games, each with
+    a new pile, and you choose who goes first. The bot plays perfectly whenever it can. Can you find the rule that beats it?
+  </p>
+  <NimLab client:load />
+</LabPage>

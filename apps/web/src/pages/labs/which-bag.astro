@@ -1,0 +1,19 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import WhichBagLab from '../../components/labs/WhichBagLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+import { seeded } from '../../lib/labs/seeded';
+import { regression } from '../../lib/labs/which-bag';
+
+const lab = LABS.find((l) => l.slug === 'which-bag')!;
+// What the round-one top and bottom three score over many games, worked out once at build time.
+const typical = regression(2000, seeded(1));
+---
+
+<LabPage {lab}>
+  <p>
+    Two short games about judging chances. First, guess which kind of bag a ball came from, and say how sure you are. Then back a player for the next round
+    after seeing one round of scores.
+  </p>
+  <WhichBagLab client:load {typical} />
+</LabPage>

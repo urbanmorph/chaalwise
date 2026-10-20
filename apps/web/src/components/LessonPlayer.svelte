@@ -27,7 +27,7 @@
   /** How sure the learner said they were, chosen before the first answer only. */
   let sure = $state<number>();
 
-  let state = $state(createPlayer());
+  let player = $state(createPlayer());
   let feedback = $state<{ tone: 'pass' | 'warn' | 'fail'; text: string } | undefined>();
   let picked = $state<number | undefined>();
   let marks = $state<Mark[]>([]);
@@ -39,7 +39,7 @@
   /** Steps the learner has been through, for the step dots (read steps have no grade to show it). */
   const seen = new SvelteSet<number>();
 
-  const step = $derived(currentStep(lesson, state));
+  const step = $derived(currentStep(lesson, player));
   // Options in a fresh order each time a question is shown, so where the answer sits gives nothing away.
   const order = $derived(step?.kind === 'choice' ? shuffle(step.options.map((_, i) => i)) : []);
   const total = $derived(lesson.steps.length);
@@ -54,33 +54,33 @@
 
   function respond(response: Response) {
     if (!step || !isGraded(step)) return false;
-    const isNew = !(step.id in state.outcomes);
-    const result = answer(lesson, state, response);
-    state = result.state;
+    const isNew = !(step.id in player.outcomes);
+    const result = answer(lesson, player, response);
+    player = result.state;
     if (result.correct) feedback = { tone: 'pass', text: step.kind === 'play' ? 'Checkmate. Well played!' : 'You found it!' };
-    else if (state.revealed) reveal();
+    else if (player.revealed) reveal();
     else feedback = { tone: 'warn', text: retryText(response) };
-    if (state.revealed) graded(step.id, isNew);
+    if (player.revealed) graded(step.id, isNew);
     return result.correct;
   }
 
   /** The control the learner used has gone or is disabled: move focus to Continue. */
   async function graded(stepId: string, isNew: boolean) {
     // Saved once: a step is graded the first time it is answered.
-    if (isNew) onstep?.(stepId, state.outcomes[stepId]!, sure);
+    if (isNew) onstep?.(stepId, player.outcomes[stepId]!, sure);
     await tick();
     continueButton?.focus();
   }
 
   async function hint() {
-    state = showHint(state);
+    player = showHint(player);
     await tick();
     hintText?.focus();
   }
 
   function showAnswer() {
-    const isNew = !!step && !(step.id in state.outcomes);
-    state = giveUp(lesson, state);
+    const isNew = !!step && !(step.id in player.outcomes);
+    player = giveUp(lesson, player);
     reveal();
     if (step) graded(step.id, isNew);
   }
@@ -118,7 +118,7 @@
 
   function pick(square: string) {
     const correct = respond({ kind: 'square', square });
-    if (!state.revealed) marks = [{ orig: square, brush: 'red' }];
+    if (!player.revealed) marks = [{ orig: square, brush: 'red' }];
     else if (correct) marks = [{ orig: square, brush: 'green' }];
   }
 
@@ -134,19 +134,19 @@
 
   /** The step dots: go straight to any step. */
   async function goTo(index: number) {
-    seen.add(state.index);
-    state = jumpTo(lesson, state, index);
+    seen.add(player.index);
+    player = jumpTo(lesson, player, index);
     clearStep();
     await tick();
     heading?.focus();
   }
 
   async function next() {
-    seen.add(state.index);
-    state = advance(lesson, state);
+    seen.add(player.index);
+    player = advance(lesson, player);
     clearStep();
     // A plain copy: IndexedDB cannot store the reactive proxy.
-    if (state.done) onfinish($state.snapshot(state.outcomes));
+    if (player.done) onfinish($state.snapshot(player.outcomes));
     await tick();
     heading?.focus();
   }
@@ -160,16 +160,16 @@
           <li>
             <button
               type="button"
-              class:done={s.id in state.outcomes || seen.has(i)}
-              class:missed={state.outcomes[s.id] === 'missed'}
-              aria-current={i === state.index ? 'step' : undefined}
-              aria-label="Step {i + 1}{s.id in state.outcomes ? ', done' : ''}"
+              class:done={s.id in player.outcomes || seen.has(i)}
+              class:missed={player.outcomes[s.id] === 'missed'}
+              aria-current={i === player.index ? 'step' : undefined}
+              aria-label="Step {i + 1}{s.id in player.outcomes ? ', done' : ''}"
               onclick={() => goTo(i)}>{i + 1}</button
             >
           </li>
         {/each}
       </ol>
-      <p class="label">Step {state.index + 1} of {total}</p>
+      <p class="label">Step {player.index + 1} of {total}</p>
     </nav>
     <div class="layout" class:has-board={fen || step.kind === 'play'}>
       <h2 tabindex="-1" bind:this={heading} class:reading={step.kind === 'read'}>
@@ -177,8 +177,8 @@
       </h2>
       {#if step.kind === 'play'}
         <div class="board-col">
-          {#key state.index}
-            <PlayOut {step} finished={state.revealed} onresult={(won) => respond({ kind: 'play', won })} />
+          {#key player.index}
+            <PlayOut {step} finished={player.revealed} onresult={(won) => respond({ kind: 'play', won })} />
           {/key}
         </div>
       {:else if fen}
@@ -188,49 +188,55 @@
             <Board
               fen={after?.fen ?? fen}
               lastMove={after?.move}
-              orientation={step.kind === 'choice' ? undefined : step.orientation}
-              interactive={step.kind === 'move' && !state.revealed}
-              marks={state.revealed && step.kind === 'choice' && step.arrows
+              orientation={'orientation' in step ? step.orientation : undefined}
+              interactive={step.kind === 'move' && !player.revealed}
+              marks={player.revealed && step.kind === 'choice' && step.arrows
                 ? [...marks, ...step.arrows.map((a) => ({ orig: a.slice(0, 2), dest: a.slice(2, 4), brush: 'yellow' as const }))]
                 : marks}
-              highlight={step.kind === 'read' ? (step.highlight ?? []) : state.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
+              highlight={step.kind === 'read' ? (step.highlight ?? []) : player.revealed && step.kind === 'choice' ? (step.highlight ?? []) : []}
               highlightStyle={step.kind === 'read' ? 'area' : 'outline'}
               coordinates={showCoordinates}
-              label={step.kind === 'move' && !state.revealed
+              label={step.kind === 'move' && !player.revealed
                 ? 'Chess board: make your move'
-                : step.kind === 'square' && !state.revealed
+                : step.kind === 'square' && !player.revealed
                   ? 'Chess board: pick a square'
                   : 'Chess board'}
               {onmove}
-              onpick={step.kind === 'square' && !state.revealed ? pick : undefined}
+              onpick={step.kind === 'square' && !player.revealed ? pick : undefined}
             />
           {/key}
         </div>
       {/if}
       <div class="rest">
-        {#if askConfidence && isGraded(step) && !state.revealed}
-          <fieldset class="sure" disabled={state.attempts > 0}>
+        {#if askConfidence && isGraded(step) && !player.revealed}
+          <fieldset class="sure" disabled={player.attempts > 0}>
             <legend>How sure are you? <span class="optional">Optional</span></legend>
             <div class="choices">
               {#each CONFIDENCE as level (level)}
-                <label><input type="radio" name="sure-{state.index}" value={level} bind:group={sure} /> {level * 100}%</label>
+                <label><input type="radio" name="sure-{player.index}" value={level} bind:group={sure} /> {level * 100}%</label>
               {/each}
             </div>
           </fieldset>
         {/if}
         {#if step.kind === 'plan' && onplan}
-          {#key state.index}
+          {#key player.index}
             <PlanStep situations={step.situations} action={step.action} onsave={(text) => onplan(step.id, text)} />
           {/key}
+        {/if}
+        {#if step.kind === 'choice' && step.alongside}
+          <div class="alongside">
+            <p class="label">Off the board</p>
+            <p>{step.alongside}</p>
+          </div>
         {/if}
         {#if step.kind === 'choice'}
           <div class="options">
             {#each order as i (i)}
               <button
                 class="button option"
-                class:correct={state.revealed && i === step.answer}
+                class:correct={player.revealed && i === step.answer}
                 class:wrong={picked === i && i !== step.answer}
-                disabled={state.revealed}
+                disabled={player.revealed}
                 onclick={() => choose(i)}>{step.options[i]}</button
               >
             {/each}
@@ -239,36 +245,44 @@
 
         <div aria-live="polite">
           {#if feedback}<p class="feedback {feedback.tone}">{feedback.text}</p>{/if}
-          {#if state.hintShown && !state.revealed && isGraded(step)}
+          {#if player.hintShown && !player.revealed && isGraded(step)}
             <p class="hint" tabindex="-1" bind:this={hintText}>{step.hint}</p>
           {/if}
-          {#if state.revealed && isGraded(step)}<p class="explanation">
+          {#if player.revealed && isGraded(step)}<p class="explanation">
               {step.explanation}
             </p>{/if}
         </div>
 
         <div class="actions">
-          {#if !isGraded(step) || state.revealed}
+          {#if !isGraded(step) || player.revealed}
             <button class="button primary" onclick={next} bind:this={continueButton}>
-              {state.index + 1 === total ? 'Finish' : 'Continue'}
+              {player.index + 1 === total ? 'Finish' : 'Continue'}
             </button>
           {:else}
-            {#if step.hint && !state.hintShown}
+            {#if step.hint && !player.hintShown}
               <button class="button" onclick={hint}>Hint</button>
             {/if}
-            {#if state.attempts > 0}
+            {#if player.attempts > 0}
               <button class="button" onclick={showAnswer}>Show the answer</button>
             {/if}
           {/if}
         </div>
       </div>
     </div>
-  {:else if state.done}
-    {@render finished(state.outcomes)}
+  {:else if player.done}
+    {@render finished(player.outcomes)}
   {/if}
 </section>
 
 <style>
+  .alongside {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 14px;
+    margin-bottom: 14px;
+  }
+  .alongside p {
+    margin: 0 0 4px;
+  }
   .sure {
     border: 0;
     padding: 0;

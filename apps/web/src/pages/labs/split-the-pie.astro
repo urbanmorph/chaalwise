@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import SplitLab from '../../components/labs/SplitLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'split-the-pie')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Five negotiations, each over 100 points, against bots that bargain in different styles. Each side knows what it gets if there is no deal. Try to end with
+    more than your walk-away points add up to.
+  </p>
+  <SplitLab client:load />
+</LabPage>

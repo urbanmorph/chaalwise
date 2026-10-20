@@ -41,6 +41,21 @@ steps:
       - Each bottle is cheaper, but you pay for bottles you will throw away. The price per bottle is the first step, not the end.
       - ''
     explanation: You pay 240 for three bottles to use one that costs 120 on its own. Counted through, the deal costs you twice what you needed to spend.
+  - kind: choice
+    id: compare
+    prompt: 'What do the captures on d5 and the phone offer share?'
+    position: '4k3/8/4p3/3n4/4P3/8/8/4K3 w - - 0 1'
+    alongside: 'A phone shop offers a free handset with a two-year contract.'
+    options:
+      - 'The first step looks good; only the end of the chain tells'
+      - 'Both are a free gain that should be taken at once'
+      - 'Both are about counting what you have right now'
+    answer: 0
+    feedback:
+      - ''
+      - 'Neither is free. The handset is paid for by the contract, just as a capture can be paid for by the recapture.'
+      - 'Counting what you have now misses what follows. Both need counting to the end of the chain.'
+    explanation: 'A capture and an offer both start with something that looks like a gain. Follow every step to where it stops, then judge.'
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you count a chain through?'
