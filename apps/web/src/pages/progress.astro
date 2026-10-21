@@ -2,6 +2,7 @@
 import ProgressPanel from '../components/ProgressPanel.svelte';
 import SkillProfile from '../components/SkillProfile.svelte';
 import Base from '../layouts/Base.astro';
+import { OLD_HOST } from '../lib/analytics';
 import { reviewSteps } from '../lib/lessons';
 
 const cardIds = Object.keys(await reviewSteps());
@@ -10,6 +11,17 @@ const cardIds = Object.keys(await reviewSteps());
 <Base title="Progress" description="Your skill profile and progress, kept on this device.">
   <div class="wrap">
     <h1>Your progress</h1>
+    <div class="card moved" data-moved hidden>
+      <p>
+        <strong>
+          Chaalwise has moved to <a href="https://chaalwise.com/progress/">chaalwise.com</a>.
+        </strong>{' '}
+        Your progress is saved on this device under the old address. To take it with you, save it to a file below, then open{' '}
+        <a href="https://chaalwise.com/progress/">chaalwise.com/progress</a> and load the file there.
+      </p>
+    </div>
+    {/* Only on the old address: everywhere else the note stays hidden. Inline, so it shows with the page. */}
+    <script is:inline set:html={`if(location.host===${JSON.stringify(OLD_HOST)})document.querySelector('[data-moved]').hidden=false`} />
     <SkillProfile client:load {cardIds} />
     <h2 class="device">Your progress on this device</h2>
     <ProgressPanel client:load {cardIds} />
@@ -17,6 +29,13 @@ const cardIds = Object.keys(await reviewSteps());
 </Base>
 
 <style>
+  .moved {
+    margin-bottom: 24px;
+    border-left: 3px solid var(--accent);
+  }
+  .moved p {
+    margin: 0;
+  }
   .device {
     margin-top: 40px;
   }

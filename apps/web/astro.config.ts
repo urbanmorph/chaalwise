@@ -18,7 +18,7 @@ const buildId =
   })();
 
 export default defineConfig({
-  site: 'https://chaalwise.urbanmorph.com',
+  site: 'https://chaalwise.com',
   trailingSlash: 'ignore',
   // Inline styles: no render-blocking stylesheet request on a slow connection.
   build: { format: 'directory', inlineStylesheets: 'always' },

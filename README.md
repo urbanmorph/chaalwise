@@ -2,7 +2,7 @@
 
 A free, offline strategy gym. Learn to think ahead, calculate, weigh odds and plan, through chess, poker and game-theory labs, against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no ratings, and your progress never leaves your device.
 
-Live at [chaalwise.urbanmorph.com](https://chaalwise.urbanmorph.com).
+Live at [chaalwise.com](https://chaalwise.com).
 
 ## Layout
 

@@ -4,7 +4,11 @@
   // (the UrbanMorph account), set explicitly in .env or CI, never the ambient login.
   "name": "chaalwise",
   "compatibility_date": "2026-10-01",
-  "routes": [{ "pattern": "chaalwise.urbanmorph.com", "custom_domain": true }],
+  "routes": [
+    { "pattern": "chaalwise.com", "custom_domain": true },
+    { "pattern": "www.chaalwise.com", "custom_domain": true },
+    { "pattern": "chaalwise.urbanmorph.com", "custom_domain": true },
+  ],
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
