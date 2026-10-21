@@ -1,0 +1,14 @@
+card: reference/strategy/framing/operation
+kind: choice
+prompt: One doctor says that after an operation, 90 in 100 patients are alive a month later. Another says 10 in 100 die within the month. In studies, more people choose the operation after hearing the first. How should you weigh such a choice?
+options:
+  - Go by the hopeful version, to decide calmly
+  - Hear it both ways, then decide on the figures
+  - Go by the grim version, as it shows the real risk
+answer: 1
+feedback:
+  - The hopeful version is the same figure as the grim one. Hearing only that one makes the risk feel smaller than it is.
+  - ''
+  - 'The grim version is no truer: it is the same 10 in 100. It only makes the risk feel larger.'
+explanation: 'Both descriptions give the same figures. McNeil and colleagues (1982) found that the wording changed choices of patients and doctors alike, so say it both ways and decide on the numbers.'
+measures: composure

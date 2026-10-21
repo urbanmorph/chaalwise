@@ -1,0 +1,14 @@
+card: reference/strategy/independent-estimates/interview-panel
+kind: choice
+prompt: On an interview panel, the chair gives her score for each candidate first, and the others then give theirs. What is the main risk?
+options:
+  - The chair's view ends up counting for less
+  - Others lean towards her score, repeating her error
+  - The panel takes longer to agree
+answer: 1
+feedback:
+  - It is the other way round. Heard first, her score pulls everyone else's towards it.
+  - ''
+  - Speed is not the problem; it may even be faster. The cost is that the scores stop being independent.
+explanation: 'Once a first score is heard, the others drift towards it, so if she is wrong, the panel is wrong with her. Have everyone score alone, then reveal the scores together.'
+measures: read-hidden

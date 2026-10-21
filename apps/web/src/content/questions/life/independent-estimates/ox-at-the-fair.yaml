@@ -1,0 +1,14 @@
+card: reference/strategy/independent-estimates/ox-at-the-fair
+kind: choice
+prompt: At a country fair, hundreds of people each write a guess of an ox's weight on their own ticket. Which usually lands closest to the true weight?
+options:
+  - The guess of the most confident person
+  - The guess of a farmer who raises oxen
+  - The middle of all the guesses
+answer: 2
+feedback:
+  - Confidence is not accuracy. A confident guesser is wrong in their own way like everyone else.
+  - An expert may well beat most guessers, but no single guess is reliably as close as the pooled one.
+  - ''
+explanation: 'When Galton studied such a contest (1907), the middle of 787 guesses was within 1% of the true weight. Each guess was wrong in its own way, and the errors cancelled.'
+measures: read-hidden

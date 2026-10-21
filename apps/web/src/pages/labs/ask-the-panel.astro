@@ -1,0 +1,19 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import PanelLab from '../../components/labs/PanelLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+import { typical as replay } from '../../lib/labs/panel';
+import { seeded } from '../../lib/labs/seeded';
+
+const lab = LABS.find((l) => l.slug === 'ask-the-panel')!;
+// How far off one bot, an independent panel and a panel that heard first are over many replays, worked out once at build time.
+const typical = replay(2000, seeded(1));
+---
+
+<LabPage {lab}>
+  <p>
+    Guess how many dots are in a box, alongside a panel of bots. Sometimes everyone guesses alone; sometimes everyone hears one bot's guess first. Then see how
+    far off the panel's average was each way.
+  </p>
+  <PanelLab client:load {typical} />
+</LabPage>

@@ -1,0 +1,14 @@
+card: reference/strategy/incentives/calls-answered
+kind: choice
+prompt: A help line pays its staff a bonus for each call they answer. What is most likely to happen?
+options:
+  - Callers get their problems solved faster
+  - Calls get shorter, and many callers ring back
+  - 'Nothing much: staff ignore small bonuses'
+answer: 1
+feedback:
+  - The bonus counts calls, not problems solved. The quickest way to earn it is a short call, solved or not.
+  - ''
+  - Even a small bonus says what counts. Staff who want it will find the cheapest way to earn it.
+explanation: 'The rule pays for calls, so it gets calls: short ones, and repeat calls from callers whose problem was not solved. Pay for problems solved first time instead.'
+measures: think-ahead

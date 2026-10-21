@@ -80,6 +80,34 @@ export const LABS: Lab[] = [
     entry: 'strategy/base-rates',
     read: ['strategy/regression-to-the-mean'],
   },
+  {
+    slug: 'gain-or-loss',
+    title: 'Gain or loss?',
+    idea: 'The same choice, put as a gain or as a loss, gets different answers. Restate it the other way before you decide.',
+    plays:
+      'Eight choices between a sure thing and a gamble, then see where your answers changed with the wording alone.',
+    track: 'composure',
+    entry: 'strategy/framing',
+    read: ['strategy/sunk-cost', 'poker/tilt'],
+  },
+  {
+    slug: 'bonus-rule',
+    title: 'The bonus rule',
+    idea: 'People do what a rule rewards, not what you hoped for. Before you set one, ask what is the cheapest way to score on it.',
+    plays: 'Four weeks setting the bonus for a support team of bots, and seeing what they do to earn it.',
+    track: 'think-ahead',
+    entry: 'strategy/incentives',
+    read: ['strategy/their-next-move'],
+  },
+  {
+    slug: 'ask-the-panel',
+    title: 'Ask the panel',
+    idea: 'Independent guesses, averaged, cancel each other’s errors. Guesses that follow the first voice do not.',
+    plays: 'Six boxes of dots to estimate with a panel of bots: some rounds alone, some after hearing a first guess.',
+    track: 'read-hidden',
+    entry: 'strategy/independent-estimates',
+    read: ['strategy/base-rates'],
+  },
 ];
 
 export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;

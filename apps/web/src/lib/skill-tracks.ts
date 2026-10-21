@@ -30,14 +30,32 @@ export const TRACKS: Track[] = [
     'See how others will respond before you act: in a negotiation, against a competitor, at the family table.',
     3,
     2,
-    'Connect Four, Go, Bagh-Chal',
+    'The bonus rule lab, Connect Four, Go, Bagh-Chal',
   ),
-  t('calculate', 'Work a plan through step by step before you commit to it.', 3, 1, 'Nim, Pallanguzhi'),
+  t('calculate', 'Work a plan through step by step before you commit to it.', 3, 1, 'Nim lab, Pallanguzhi'),
   t('plan-long', 'Know what you are trying to achieve, and make each step serve it.', 3, 1, 'Go'),
   t('size-risk', 'Commit in proportion to your edge, so one bad outcome cannot ruin you.', 1, 3, 'Backgammon'),
-  t('composure', 'Decide as well after a setback as before it, and judge decisions, not results.', 1, 3, ''),
-  t('weigh-odds', 'Put numbers on uncertainty instead of going on gut feeling.', 0, 3, "Backgammon, Liar's Dice"),
-  t('read-hidden', 'Reason from incomplete evidence, and update as more arrives.', 0, 3, "Liar's Dice, Mastermind"),
+  t(
+    'composure',
+    'Decide as well after a setback as before it, and judge decisions, not results.',
+    1,
+    3,
+    'Gain or loss? lab',
+  ),
+  t(
+    'weigh-odds',
+    'Put numbers on uncertainty instead of going on gut feeling.',
+    0,
+    3,
+    "Which bag? lab, Backgammon, Liar's Dice",
+  ),
+  t(
+    'read-hidden',
+    'Reason from incomplete evidence, and update as more arrives.',
+    0,
+    3,
+    "Rule finder and Ask the panel labs, Liar's Dice, Mastermind",
+  ),
   t('bluff', 'Understand how others see you, and how that shapes what they do.', 0, 3, "Liar's Dice"),
   t(
     'cooperate',
@@ -47,9 +65,15 @@ export const TRACKS: Track[] = [
     "Prisoner's Dilemma lab",
   ),
   t('unpredictable', 'Stop being predictable where someone can take advantage of it.', 0, 2, 'Rock-paper-scissors lab'),
-  t('value', 'Price things fairly, and avoid overpaying when you win.', 0, 2, 'Auction lab'),
+  t(
+    'value',
+    'Price things fairly, and avoid overpaying when you win.',
+    0,
+    2,
+    'Sealed-bid auction and Split the pie labs',
+  ),
 ];
 
-/** The game that trains a skill best, for the home page: chess where it is strongest, a game-theory lab where one trains it, otherwise poker. */
+/** The game that trains a skill best, for the home page: chess or poker where it is strongest, otherwise the game-theory labs. */
 export const bestIn = (t: Track): 'chess' | 'poker' | 'labs' =>
-  t.chess === 3 ? 'chess' : t.also.endsWith(' lab') ? 'labs' : 'poker';
+  t.chess === 3 ? 'chess' : t.poker === 3 ? 'poker' : 'labs';
