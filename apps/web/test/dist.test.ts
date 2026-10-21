@@ -64,7 +64,9 @@ describe.each(htmlFiles)('%s', (page) => {
       .map((m) => m[1]!)
       .filter(
         (url) =>
-          !/^https:\/\/(github\.com|lichess\.org|database\.lichess\.org|www\.urbanmorph\.com|pdgi\.org)\//.test(url),
+          !/^https:\/\/(github\.com|lichess\.org|database\.lichess\.org|www\.urbanmorph\.com|pdgi\.org|doi\.org|www1\.udel\.edu)\//.test(
+            url,
+          ),
       );
     expect(external).toEqual([]);
     expect(html).not.toMatch(/<link[^>]+href="https?:/);

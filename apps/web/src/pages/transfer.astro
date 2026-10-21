@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+
+const SOURCES = [
+  {
+    cite: 'Sala, G. & Gobet, F. (2016). Do the benefits of chess instruction transfer to academic and cognitive skills? A meta-analysis. Educational Research Review, 18.',
+    href: 'https://doi.org/10.1016/j.edurev.2016.02.002',
+  },
+  {
+    cite: 'Sala, G. & Gobet, F. (2017). Does far transfer exist? Negative evidence from chess, music, and working memory training. Current Directions in Psychological Science, 26(6).',
+    href: 'https://doi.org/10.1177/0963721417712760',
+  },
+  {
+    cite: 'Barnett, S. M. & Ceci, S. J. (2002). When and where do we apply what we learn? A taxonomy for far transfer. Psychological Bulletin, 128(4).',
+    href: 'https://doi.org/10.1037/0033-2909.128.4.612',
+  },
+  {
+    cite: 'Perkins, D. N. & Salomon, G. (1988). Teaching for transfer. Educational Leadership, 46(1).',
+    href: 'https://www1.udel.edu/dssep/transfer/teaching_for_transfer.htm',
+  },
+  {
+    cite: 'Gentner, D., Loewenstein, J. & Thompson, L. (2003). Learning and transfer: a general role for analogical encoding. Journal of Educational Psychology, 95(2).',
+    href: 'https://doi.org/10.1037/0022-0663.95.2.393',
+  },
+  {
+    cite: 'Bisra, K. et al. (2018). Inducing self-explanation: a meta-analysis. Educational Psychology Review, 30.',
+    href: 'https://doi.org/10.1007/s10648-018-9434-x',
+  },
+  {
+    cite: 'Morewedge, C. K. et al. (2015). Debiasing decisions: improved decision making with a single training intervention. Policy Insights from the Behavioral and Brain Sciences, 2(1).',
+    href: 'https://doi.org/10.1177/2372732215600886',
+  },
+  {
+    cite: 'Gollwitzer, P. M. & Sheeran, P. (2006). Implementation intentions and goal achievement: a meta-analysis. Advances in Experimental Social Psychology, 38.',
+    href: 'https://doi.org/10.1016/S0065-2601(06)38002-1',
+  },
+  {
+    cite: 'Blume, B. D. et al. (2010). Transfer of training: a meta-analytic review. Journal of Management, 36(4).',
+    href: 'https://doi.org/10.1177/0149206309352880',
+  },
+];
+---
+
+<Base
+  title="Does this transfer?"
+  description="What the research says about learning strategy through games, what Chaalwise does about it, and what it cannot promise."
+>
+  <div class="wrap">
+    <h1>Does this transfer?</h1>
+    <p class="lead">
+      Partly, and only if it is taught for. Playing games on its own does little for general thinking. An idea is more likely to carry over to work and study
+      when it is named, met in different settings and used on your own decisions.
+    </p>
+
+    <section aria-labelledby="evidence-title">
+      <h2 id="evidence-title">What the evidence says</h2>
+      <ul>
+        <li>
+          <strong>Getting good at a game makes you good at that game.</strong> Studies of chess lessons find small effects on school results and general
+          thinking, shrinking to about nothing in the best-controlled studies (Sala and Gobet 2016, 2017). A skill learned in one setting does not move to a
+          distant one by itself (Barnett and Ceci 2002).
+        </li>
+        <li>
+          <strong>Ideas move when they are bridged.</strong> Naming the idea and asking where else it applies makes transfer more likely (Perkins and Salomon
+          1988). Comparing two cases of the same idea did far more than studying either one alone (Gentner, Loewenstein and Thompson 2003). Explaining why an
+          answer is right helps too (Bisra and others 2018).
+        </li>
+        <li>
+          <strong>Short training can change decisions.</strong> One session of game-based training with named biases and personal feedback reduced biased
+          decisions in new settings for at least two months (Morewedge and others 2015).
+        </li>
+        <li>
+          <strong>Use at work depends on work.</strong> Training is used more when people get a chance to apply it soon and are supported in trying (Blume and
+          others 2010). A plan of the form "When this happens, I will do that" helps people act (Gollwitzer and Sheeran 2006).
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="does-title">
+      <h2 id="does-title">What Chaalwise does about it</h2>
+      <ul>
+        <li>Each lesson names its idea, and says where it turns up at work and in study.</li>
+        <li>Each idea is shown in a game and in at least three cases away from the board, so review shows a different one each time.</li>
+        <li>Strategy lessons set a board position beside a case from work or study, to compare.</li>
+        <li>Each strategy lesson ends with a plan, "When …, I will …", and the review asks later whether you used it.</li>
+        <li>Questions come back just before you would forget them.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="cannot-title">
+      <h2 id="cannot-title">What it cannot promise</h2>
+      <p>
+        Chaalwise cannot see your work. It measures your answers to questions, not what you do on Monday. A strong level on your progress page means you know an
+        idea well and can spot it in a new case, which is a start, not proof that you use it. Whether you do depends on using it soon, on real decisions, and on
+        the people around you.
+      </p>
+      <p>
+        If you run a team: give people a decision to use the idea on within a week, and ask how it went. <a href="/pack/">The printable pack</a> is made for
+        that.
+      </p>
+    </section>
+
+    <section aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <ol class="sources">
+        {SOURCES.map((s) => (
+          <li>
+            {s.cite} <a href={s.href}>{s.href.replace('https://', '')}</a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .lead {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+  }
+  section {
+    margin-top: 36px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 10px;
+  }
+  .sources {
+    padding-left: 20px;
+    color: var(--ink-2);
+    font-size: 0.9rem;
+  }
+  .sources a {
+    overflow-wrap: anywhere;
+  }
+</style>
