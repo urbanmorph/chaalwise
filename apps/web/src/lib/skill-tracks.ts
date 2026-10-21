@@ -49,3 +49,7 @@ export const TRACKS: Track[] = [
   t('unpredictable', 'Stop being predictable where someone can take advantage of it.', 0, 2, 'Rock-paper-scissors lab'),
   t('value', 'Price things fairly, and avoid overpaying when you win.', 0, 2, 'Auction lab'),
 ];
+
+/** The game that trains a skill best, for the home page: chess where it is strongest, a game-theory lab where one trains it, otherwise poker. */
+export const bestIn = (t: Track): 'chess' | 'poker' | 'labs' =>
+  t.chess === 3 ? 'chess' : t.also.endsWith(' lab') ? 'labs' : 'poker';

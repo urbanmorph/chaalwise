@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { HERO, pieceImages } from '../src/lib/diagram';
 import { PROFILE_SKILLS } from '../src/lib/profile-skills';
-import { TRACKS } from '../src/lib/skill-tracks';
+import { bestIn, TRACKS } from '../src/lib/skill-tracks';
 import { fromFen, legal, play } from '@chaalwise/teach/position';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
@@ -18,6 +18,17 @@ describe('the skill map', () => {
     const now = TRACKS.map((t) => t.chess > 0);
     expect(now.indexOf(false)).toBeGreaterThan(0);
     expect(now.slice(now.indexOf(false))).not.toContain(true);
+  });
+
+  it('offers only skills with practice behind them: every one is measured now', () => {
+    expect(PROFILE_SKILLS.filter((s) => s.later)).toEqual([]);
+  });
+
+  it('files each skill under the game that trains it best', () => {
+    const where = (game: string) => TRACKS.filter((t) => bestIn(t) === game).map((t) => t.id);
+    expect(where('chess')).toEqual(['think-ahead', 'calculate', 'plan-long']);
+    expect(where('poker')).toEqual(['size-risk', 'composure', 'weigh-odds', 'read-hidden', 'bluff']);
+    expect(where('labs')).toEqual(['cooperate', 'unpredictable', 'value']);
   });
 });
 
@@ -94,12 +105,27 @@ describe('strategy first', () => {
     expect(primary).toMatch(/^\/skills\/[a-z-]+\/$/);
   });
 
-  it('leads with who it is for: the audience shares the first screen with the headline, and the chess board comes later', () => {
+  it('shows one idea in three settings on the first screen: chess, poker and work, with who it is for', () => {
     const hero = html.match(/<section class="hero[\s\S]*?<\/section>/)![0];
-    expect(hero).toContain('Who it is for');
-    expect(hero).toMatch(/Students/);
-    expect(hero).not.toContain('<figure');
-    expect(html.indexOf('<figure class="idea-board')).toBeGreaterThan(html.indexOf('id="skills"'));
+    expect(hero).toContain('<figure class="idea-board');
+    for (const setting of ['In chess', 'In poker', 'At work']) expect(hero).toContain(setting);
+    expect(hero).toMatch(/run teams/);
+    expect(hero).toMatch(/students/);
+  });
+
+  it('groups the skills by the game that trains them, each group with its game named', () => {
+    const groups = [...html.matchAll(/<section class="game" data-game="([a-z]+)"/g)].map((m) => m[1]);
+    expect(groups).toEqual(['chess', 'poker', 'labs']);
+  });
+
+  it('is short: the page reads in a minute, not five', () => {
+    const main = html.match(/<main[\s\S]*?<\/main>/)![0];
+    const words = main
+      .replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>|<svg[\s\S]*?<\/svg>/g, '')
+      .replace(/<[^>]+>/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean);
+    expect(words.length).toBeLessThan(420);
   });
 
   it('has one way to start, named for the school, not a game', () => {
@@ -125,15 +151,6 @@ describe('claims the evidence supports', () => {
 
   it('promises new positions only for chess ideas, which are the ones made afresh', () => {
     expect(html).not.toContain('Each idea returns in new positions');
-  });
-});
-
-describe('what the home page offers to train now', () => {
-  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
-
-  it('offers "Train it" only for skills the site measures now, so each one has practice behind it', () => {
-    const trained = [...html.matchAll(/href="\/skills\/([a-z-]+)\/"[^>]*>\s*Train it/g)].map((m) => m[1]);
-    expect(trained).toEqual(PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id));
   });
 });
 
