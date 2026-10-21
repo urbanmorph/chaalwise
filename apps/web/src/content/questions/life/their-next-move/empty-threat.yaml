@@ -1,0 +1,14 @@
+card: strategy/their-next-move/empty-threat
+kind: choice
+prompt: You tell your supplier you will switch to a rival unless they cut their price by 10%. They know the rival has a three-month waiting list for new customers. What are they most likely to do?
+options:
+  - Cut the price, to keep your business
+  - Hold the price, since you cannot switch soon
+  - Raise the price, now that they know you are unhappy
+answer: 1
+feedback:
+  - That is the reply you hope for. From where they stand, you cannot leave for three months, so cutting the price gains them nothing yet.
+  - ''
+  - Raising it would push you to leave once the waiting list clears. Their best reply is quieter than that.
+explanation: Picture their reply from where they stand, not from where you hope they stand. A threat they know you cannot carry out soon is easy to wait out. Make the threat once you have a place on the rival's list, or bargain with something they want.
+measures: think-ahead

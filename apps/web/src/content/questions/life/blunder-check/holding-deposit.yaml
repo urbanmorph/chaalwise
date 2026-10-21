@@ -1,0 +1,14 @@
+card: strategy/blunder-check/holding-deposit
+kind: choice
+prompt: You have found a flat you like. The owner asks you to transfer two months' rent today "to hold it", before you have seen the rental agreement. What do you check first?
+options:
+  - That the rent and deposit match the advert
+  - What stops them keeping the money if no agreement follows
+  - Pay now, since good flats go quickly
+answer: 1
+feedback:
+  - Checking the numbers is careful, but it only checks your own move. The risk is in what the payment lets them do next.
+  - ''
+  - Speed feels like the safe choice when flats go fast, but paying before anything is signed is the move that leaves you with no answer if they keep it.
+explanation: Before you commit, ask what your move lets the other side do. Money paid before an agreement can be kept, or used to push for new terms. Ask for a receipt that says when it is refunded, or pay when you sign.
+measures: think-ahead

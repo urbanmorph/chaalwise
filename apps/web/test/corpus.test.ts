@@ -37,11 +37,8 @@ describe('every strategy idea', () => {
   const inIdea = (idea: string) => [...corpus].filter(([id]) => id.split('/')[1] === idea);
 
   /** Review shows one question of an idea at a time, so each idea needs several to vary. */
-  it('has at least three questions off the board, unless it already has five in all', () => {
-    const thin = ideas.filter((idea) => {
-      const all = inIdea(idea);
-      return all.filter(([id]) => id.startsWith('life/')).length < 3 && all.length < 5;
-    });
+  it('has at least three questions off the board, however many it has on it', () => {
+    const thin = ideas.filter((idea) => inIdea(idea).filter(([id]) => id.startsWith('life/')).length < 3);
     expect(thin).toEqual([]);
   });
 
