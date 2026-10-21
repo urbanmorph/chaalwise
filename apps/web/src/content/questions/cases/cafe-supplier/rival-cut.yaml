@@ -7,7 +7,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Worth counting, but it assumes they stop at ₹150. If they cut again when you follow, the count is wrong.
+  - Count that too, but it assumes they stop at ₹150. If they cut again when you follow, the count is wrong, so ask about their reply first.
   - That tells you what has happened so far, not what they will do next.
 explanation: This is Their next move. A price cut is a move, and if you match it, they may cut again, and both cafés earn less on every cup. Ask how they will answer, as they see it, before you move. Often it is better to compete on what they lack, such as quality or a loyalty card.
 measures: think-ahead

@@ -1,5 +1,5 @@
 kind: choice
-prompt: Several college societies are making sealed bids for the same hall on the same night. You think it is worth about ₹12,000 to your society, but you are unsure. What do you bid?
+prompt: Several college societies are making sealed bids for the same hall on the same night. Whoever wins sells tickets to the same crowd, and nobody knows how big it will be. You think the night is worth about ₹12,000, but you are unsure. What do you bid?
 options:
   - Somewhat below ₹12,000, in case your guess is too high
   - ₹12,000, exactly what you think it is worth
@@ -7,7 +7,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - If you win, it is likely because your guess was higher than everyone else's, and so perhaps too high.
+  - Every society is guessing at the same crowd. If you win, it is likely because your guess was the highest, and so perhaps too high.
   - Winning by overpaying leaves less for everything else the night needs.
-explanation: This is Don't overpay to win. When many bid on something uncertain, the winner is often the one who guessed highest. Bid below your guess, so that winning does not mean you paid too much.
+explanation: This is Don't overpay to win. When many bid on something worth the same to all of them but uncertain, the winner is often the one who guessed highest. Bid below your guess, so that winning does not mean you paid too much.
 measures: value

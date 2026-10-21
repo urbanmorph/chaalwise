@@ -1,7 +1,9 @@
 import { between, shuffle, type Random } from './seeded';
 
 /**
- * Ask the panel, after Galton's ox (1907) and Lorenz and colleagues (2011): a
+ * Ask the panel, after Galton's ox (1907) and anchoring (Tversky and Kahneman
+ * 1974; Lorenz and colleagues 2011 show a related loss when people see each
+ * other's estimates): a
  * panel of bots estimates how many dots are in a box. Each bot is wrong by its
  * own amount. Guessing alone, their errors largely cancel in the average; after
  * hearing a first voice, each leans towards it, so its error is shared and does not.

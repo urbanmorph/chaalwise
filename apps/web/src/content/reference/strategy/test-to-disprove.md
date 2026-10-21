@@ -4,7 +4,7 @@ game: 'strategy'
 kind: 'principle'
 level: 'beginner'
 aliases: ['Confirmation bias', 'Seek disconfirming evidence', '2-4-6 task']
-summary: 'To find out whether you are right, test what would prove you wrong, not what would confirm you.'
+summary: 'To find out whether you are right, include tests that would prove you wrong, not only ones that would confirm you.'
 why: 'Evidence that fits your idea usually fits many other ideas too, so it cannot tell them apart. Only a test that could fail can show you are wrong before it costs you.'
 inLife: 'Before backing a plan, ask what result would show it is wrong, and go and look for that result.'
 skill: 'read-hidden'

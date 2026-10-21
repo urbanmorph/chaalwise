@@ -87,7 +87,8 @@ export const GUIDED: GuidedHand[] = [
   {
     id: 'folding-is-a-move',
     title: 'Folding is a good move',
-    intro: 'Most hands are not worth playing. Giving one up early, before it costs you, is part of playing well.',
+    intro:
+      'The weakest hands are not worth playing. Giving one up early, before it costs you, is part of playing well.',
     you: ['7c', '2d'],
     bot: ['Ah', 'Ad'],
     board: ['Js', 'Jh', '5c', 'Qd', '9s'],
@@ -96,7 +97,7 @@ export const GUIDED: GuidedHand[] = [
     coach: {
       preflop: {
         notice:
-          'Seven and two of different suits: the weakest starting hand there is. They are far apart, too low, and cannot make a flush together.',
+          'Seven and two of different suits: one of the weakest starting hands there is. They are far apart, too low, and cannot make a flush together.',
         suggest: 'fold',
         why: 'Fold now. It costs only the 1 point you put in as the small blind, instead of points you would lose later.',
       },
@@ -124,10 +125,10 @@ export const GUIDED: GuidedHand[] = [
       flop: {
         notice: (table) => {
           const o = outs(table.seats[LEARNER]!.cards, table.board);
-          return `You have four hearts. One more heart makes a flush. There are ${o.count} hearts left, your ${o.count} outs. By the rule of 2 and 4, with two cards to come that is about ${ruleOf(o.count, 2)}% (outs × 4). The bot bet ${toCall(table)} into a pot of ${table.pot - toCall(table)}.`;
+          return `You have four hearts. One more heart makes a flush. There are ${o.count} hearts left, your ${o.count} outs. By the rule of 2 and 4, the next card gives about ${ruleOf(o.count, 1)}% (outs × 2), and about ${ruleOf(o.count, 2)}% by the river if you see both cards (outs × 4). The bot bet ${toCall(table)} into a pot of ${table.pot - toCall(table)}.`;
         },
         suggest: 'call',
-        why: 'Call. You pay a little now for about a one in three chance of a flush, and if it comes you can win much more. The bot probably has the king.',
+        why: 'Call. The price is a little more than the chance the next card gives. But if the flush comes, the bets still to come can win you much more. The bot probably has the king.',
       },
       turn: {
         notice: 'The ace of hearts: your flush has come in. Five hearts beat a pair of kings.',

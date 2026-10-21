@@ -19,7 +19,7 @@ export const LABS: Lab[] = [
   {
     slug: 'prisoners-dilemma',
     title: "Prisoner's Dilemma",
-    idea: 'Cooperation pays when you will meet again and nobody knows which round is the last.',
+    idea: 'Cooperation pays when you will meet again, nobody knows which round is the last, and the other side answers in kind.',
     plays: 'About ten rounds against each of five bots: cooperate or defect, and watch the points.',
     track: 'cooperate',
     entry: 'labs/prisoners-dilemma',
@@ -56,7 +56,7 @@ export const LABS: Lab[] = [
   {
     slug: 'rule-finder',
     title: 'Rule finder',
-    idea: 'To find out whether you are right, test what would prove you wrong, not what would confirm you.',
+    idea: 'To find out whether you are right, include tests that would prove you wrong, not only ones that would confirm you.',
     plays: 'Guess the hidden rule behind a few numbers by trying your own; announce it when you are sure.',
     track: 'read-hidden',
     entry: 'strategy/test-to-disprove',

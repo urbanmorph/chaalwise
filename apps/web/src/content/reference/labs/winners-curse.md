@@ -12,4 +12,4 @@ try:
   - labs/winners-curse/personal
 ---
 
-If the item is worth about the same to every bidder, and everyone estimates that value with some error, the highest bid comes from the biggest overestimate. Bid below your estimate, by more when there are more bidders and more uncertainty.
+If the item is worth about the same to every bidder, and everyone estimates that value with some error, the highest bid comes from the biggest overestimate. Bid below your estimate. The more bidders and the rougher the estimates, the bigger the cut you need just to break even when you win.

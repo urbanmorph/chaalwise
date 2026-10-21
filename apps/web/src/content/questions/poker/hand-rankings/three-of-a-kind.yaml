@@ -15,7 +15,7 @@ answer: 0
 feedback:
   - ''
   - Two pair loses to three of a kind.
-  - The computer has only three clubs, not five.
+  - 'The computer has four clubs, not five: one short of a flush.'
   - 'The hands are different: three sixes against two pair.'
 explanation: Your sixes and the six on the board make three of a kind, which beats two pair.
 measures: hand-reading

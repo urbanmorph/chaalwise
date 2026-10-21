@@ -3,12 +3,12 @@ kind: choice
 prompt: In a points game you are 300 points down for the evening. You can take 100 points back for sure, or a 1 in 3 chance of winning all 300 back, else nothing. Many people take the gamble. What usually pulls them to it?
 options:
   - The gamble is the better bet on average
-  - Being down feels worse than an equal gain feels good
+  - Wanting to get back to even makes the long shot look better
   - After a bad run, luck is due to turn
 answer: 1
 feedback:
   - Both options are worth 100 points on average. The gamble is not better, only riskier.
   - ''
   - Luck owes you nothing; each chance is the same as before. That feeling is the wish to undo the loss.
-explanation: 'Losses weigh more than equal gains, so a loss you want to escape pulls you towards long shots. Ask what you would choose if you were level: the same 100 for sure or a 1 in 3 chance of 300.'
+explanation: 'Facing a sure loss, people tend to gamble to avoid it, and a chance to get back to even feels worth more than it is (the break-even effect). Ask what you would choose if you were level: the same 100 for sure or a 1 in 3 chance of 300.'
 measures: composure

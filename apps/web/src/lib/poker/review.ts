@@ -46,12 +46,17 @@ export function suggestion({
     if (equity < price)
       return { equity, price, suggest: 'fold', why: `${cost} The chance is below the price, so the maths says fold.` };
     if (equity >= STRONG && can('raise'))
-      return { equity, price, suggest: 'raise', why: `${cost} A hand this strong is worth raising.` };
+      return {
+        equity,
+        price,
+        suggest: 'raise',
+        why: `${cost} Against any two cards, a hand this strong is worth raising. Against a bot that has already raised, it may not be.`,
+      };
     return {
       equity,
       price,
       suggest: 'call',
-      why: `${cost} The chance is above the price, so the call pays over many hands.`,
+      why: `${cost} The chance is above the price against any two cards. If this bot bets only strong hands, your real chance is lower.`,
     };
   }
   if (equity >= STRONG && (can('bet') || can('raise')))
@@ -65,7 +70,7 @@ export function suggestion({
     equity,
     price,
     suggest: 'check',
-    why: `${chance} Checking is free, and a bet would mostly be called by better hands.`,
+    why: `${chance} Checking is free, and this hand is not strong enough to bet for value against any two cards.`,
   };
 }
 

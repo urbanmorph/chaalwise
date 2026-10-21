@@ -211,14 +211,15 @@
     </div>
     <p>
       Paying per ticket closed got the biggest number and helped nobody: a quick reply closes a ticket, and splitting one problem into three closes three.
-      Paying for fewer tickets got fewer tickets, by turning customers away. Paying per hour got more hours, spent slowly. Paying for problems solved, and for
-      problems a help page heads off, starts slower, because the pages take time, but it pulls ahead once the pages cut the work.
+      Paying for fewer tickets got fewer tickets, by turning customers away. Paying per hour got slower work: the same hours, fewer fixes. Paying for problems
+      solved, and for problems a help page heads off, starts slower, because the pages take time, but it pulls ahead once the pages cut the work.
     </p>
     <h3>What it shows</h3>
     <ul class="lab-lesson">
       <li>People do what a rule rewards, not what you hoped for. If the cheapest way to earn the reward is not what you want, you get the cheap way.</li>
       <li>
-        When a measure becomes a target, it stops being a good measure. The number you pay on goes up while the goal goes nowhere, and the numbers hide it.
+        When a measure becomes a target, it often stops being a good measure. The number you pay on goes up while the goal goes nowhere, and the numbers hide
+        it.
       </li>
       <li>
         Before you set a rule, think one step past it: imagine someone who wants the reward and does not care about the goal. What would they do? Pay for

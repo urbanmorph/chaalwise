@@ -75,6 +75,9 @@
     {/each}
   </fieldset>
   <label class="maths"><input type="checkbox" bind:checked={showMaths} /> Show the maths before each decision</label>
+  <p class="maths-note">
+    The maths uses your chance against any two cards. A bot that bets or raises usually holds better, so against a bet treat the chance as the most it could be.
+  </p>
 
   {#if !table}
     <button class="button primary" type="button" onclick={deal}>Deal a hand</button>
@@ -121,8 +124,8 @@
         {/if}
         <p class="tally" data-testid="tally">
           {tally.agreed} of {tally.decisions} decisions matched the maths over {tally.hands}
-          {tally.hands === 1 ? 'hand' : 'hands'}. The maths counts your chance against any two cards; against a cautious bot that bets, the real chance is
-          lower.
+          {tally.hands === 1 ? 'hand' : 'hands'}. The maths counts your chance against any two cards. When the cautious or steady bot bets or raises, its cards
+          are stronger than that, so your real chance is lower; against the bold bot it is closer.
         </p>
         <button class="button primary" type="button" onclick={deal}>Deal the next hand</button>
       </div>
@@ -148,8 +151,13 @@
   }
   .maths {
     display: block;
+    margin-bottom: 4px;
+    color: var(--ink-2);
+  }
+  .maths-note {
     margin-bottom: 20px;
     color: var(--ink-2);
+    font-size: 0.9rem;
   }
   .moves {
     display: flex;

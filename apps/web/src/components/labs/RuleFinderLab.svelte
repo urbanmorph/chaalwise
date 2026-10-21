@@ -192,7 +192,10 @@
         A yes to a test your guess predicts fits many other rules too, so it tells you little. A test your guess says should fail is the one that can surprise
         you.
       </li>
-      <li>This is confirmation bias: looking for, and giving weight to, evidence that agrees with what you already think.</li>
+      <li>
+        Testing only cases you expect to fit often works, but it cannot catch a guess that is too narrow, and it feeds confirmation bias: looking for, and
+        giving weight to, evidence that agrees with what you already think.
+      </li>
       <li>In work, before backing a plan, ask what result would show it is wrong, and go and look for that result.</li>
     </ul>
     <button class="button" type="button" onclick={again}>Play again</button>
