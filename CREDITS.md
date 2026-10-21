@@ -4,7 +4,7 @@ Chaalwise is free software, made by [UrbanMorph](https://www.urbanmorph.com/), l
 
 ## Licence and no warranty
 
-Copyright © 2026 UrbanMorph. Chaalwise is licensed under the [GNU Affero General Public License, version 3](./LICENSE) (AGPL-3.0). It comes with no warranty, to the extent permitted by law; see the licence for details. Its full source is in [this repository](https://github.com/urbanmorph/chaalwise). Its terms of use are in [TERMS.md](./TERMS.md), and how it follows the principles of People's Digital Goods and Infrastructure is in [PDGI.md](./PDGI.md).
+Copyright © 2026 UrbanMorph. Chaalwise is licensed under the [GNU Affero General Public License, version 3](./LICENSE) (AGPL-3.0). It comes with no warranty, to the extent permitted by law; see the licence for details. Its full source is in [this repository](https://github.com/urbanmorph/chaalwise). Its terms of use are in [TERMS.md](./TERMS.md).
 
 ## Chess
 

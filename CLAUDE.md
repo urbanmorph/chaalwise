@@ -10,7 +10,7 @@ The canonical plan is the mdshare document `KQDNOxQ3lD`. `supporting-docs/plan.m
 
 ## Repo discipline
 
-- The repo is code only, plus `README.md`, `PDGI.md` (the public scorecard every UrbanMorph app carries) `CREDITS.md` (credits and licence notices, linked from the footer) and `TERMS.md` (the terms: a learning app, not a game or gaming service, and never a money game; GitHub issues for questions and complaints). Plans, research, mockups and notes go in `supporting-docs/`, which is gitignored.
+- The repo is code only, plus `README.md`, `CREDITS.md` (credits and licence notices, linked from the footer) and `TERMS.md` (the terms: a learning app, not a game or gaming service, and never a money game; GitHub issues for questions and complaints). Plans, research, mockups and notes go in `supporting-docs/`, which is gitignored.
 - The look follows the UrbanMorph family: mdshare, twelveswaras and bharatlas (`~/GitHub/geodata`, see `web/scripts/shared-chrome.mjs`). Not rf-website or sc-app.
 - Public repo, AGPL-3.0. Never commit secrets: `.env`, `.dev.vars` and Cloudflare tokens stay local.
 - Deploy only with the UrbanMorph Cloudflare account, set explicitly for this project, never the ambient token.
