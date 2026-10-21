@@ -8,7 +8,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Speed after a loss is how tilt gets worse.
+  - Rushing after a loss makes tilt worse, not better.
   - You cannot know in advance when you will be winning.
   - The odds are what a calm decision rests on.
 explanation: Rules made with a calm head, and a pause when you are not calm, keep a loss from making the next decision for you.

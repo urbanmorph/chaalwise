@@ -17,4 +17,4 @@ steps:
   - ask: life/be-unpredictable/always-bluff
 ---
 
-Every bet should have a reason you can say: to be called by worse, or to make better fold. Bluffing is part of the second, used rarely.
+Every bet should have a reason you can say: to be called by worse, or to make better fold. Bluffs are part of the second, used less often than value bets. A bet with a draw does both: it may make better hands fold, and it can still win if called. That is a semi-bluff.
