@@ -1,0 +1,14 @@
+card: strategy/simplify-when-ahead/pass-mark
+kind: choice
+prompt: You must pass a course, and need 40 marks. Your coursework already gives you 30. The final exam has a section worth 20 on topics you have practised, and a hard section worth 30 that could take the whole time. How do you use the exam?
+options:
+  - Start with the hard section, for the bigger score
+  - Answer the practised section first, then try the rest
+  - Split the time evenly between the two sections
+answer: 1
+feedback:
+  - The 30 marks look bigger, but you only need 10. If the hard section takes the whole time, you could fail a course you were close to passing.
+  - ''
+  - An even split still leaves the sure marks short of time, when they are all you need. Take the sure part first.
+explanation: You are ahead and only need to finish. The practised section can give you the 10 marks you need. Secure that first, then spend what time is left on the extra.
+measures: size-risk
