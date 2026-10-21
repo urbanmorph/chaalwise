@@ -6,5 +6,3 @@
  */
 export const BEACON_TOKEN = '4c253a8ddd83492b88adfe9bf06a0988';
 export const LIVE_HOST = 'chaalwise.com';
-/** The first address, kept so it can redirect here; learners' progress saved there stays there until they move it. */
-export const OLD_HOST = 'chaalwise.urbanmorph.com';
