@@ -1,0 +1,13 @@
+kind: choice
+prompt: A client pleased with your design studio's work asks for a 20% lower price, saying other studios quoted that much less. They do not show the quotes. How much should it move you?
+options:
+  - A little, since saying it costs them nothing, true or not
+  - A lot, since a client would not say it if it were untrue
+  - 'Not at all: call it a bluff and refuse to talk about price'
+answer: 0
+feedback:
+  - ''
+  - Some clients say it either way, because it costs nothing to say and may win a discount.
+  - It may be true. Weigh it lightly, and ask what the other quotes include, or to see them.
+explanation: 'From the Bluff and model opponents course: a claim that costs nothing to make tells you little. What costs them something says more, and they came back to you after one job. Ask what the other quotes cover before you move on price.'
+measures: bluff

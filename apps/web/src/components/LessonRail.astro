@@ -1,5 +1,5 @@
 ---
-import { lessonHref, lessonPath, POKER_STAGES, STAGES, type Course } from '../lib/lessons';
+import { CASE_GROUPS, lessonHref, lessonPath, POKER_STAGES, STAGES, type Course } from '../lib/lessons';
 
 /**
  * The whole path beside a lesson: every stage folded except the one you are in,
@@ -13,19 +13,19 @@ interface Props {
 
 const { current, course = 'chess' } = Astro.props;
 const path = await lessonPath(course);
-const names = course === 'poker' ? POKER_STAGES : STAGES;
+const names = course === 'poker' ? POKER_STAGES : course === 'case' ? CASE_GROUPS : STAGES;
+// Work cases are grouped by who they are for, not by stage.
+const heading = (stage: number) => (course === 'case' ? names[stage] : `Stage ${stage} · ${names[stage]}`);
 const stages = [...new Set(path.map((l) => l.data.stage))];
 ---
 
-<nav class="rail" aria-label="All lessons">
+<nav class="rail" aria-label={course === 'case' ? 'All work cases' : 'All lessons'}>
   {stages.map((stage) => {
     const lessons = path.filter((l) => l.data.stage === stage);
     return (
       <details open={lessons.some((l) => l.id === current)}>
         <summary>
-          <span class="label">
-            Stage {stage} · {names[stage]}
-          </span>
+          <span class="label">{heading(stage)}</span>
           <span class="count">{lessons.length}</span>
         </summary>
         <ol>

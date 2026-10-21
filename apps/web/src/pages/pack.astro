@@ -1,0 +1,192 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { corpus } from '../lib/questions';
+
+/**
+ * Every strategy idea on its own printed page, for a manager or a teacher to run
+ * a session without screens or accounts: the idea, its questions away from the
+ * board, things to discuss, and the answers on the next page (the back, printed on both sides).
+ */
+const all = await corpus();
+const lessons = (await getCollection('lessons', (l) => l.data.game === 'strategy')).sort((a, b) => a.data.stage - b.data.stage || a.data.order - b.data.order);
+const LETTERS = 'ABCDE';
+
+const ideas = lessons.map((lesson) => {
+  const idea = lesson.id.replace(/^strategy\//, '');
+  const steps = lesson.data.steps;
+  const offBoard = steps.find((s) => 'id' in s && s.id === 'off-the-board');
+  const plan = steps.find((s) => 'kind' in s && s.kind === 'plan');
+  const questions = [...all.values()]
+    .filter((q) => q.id.startsWith(`life/${idea}/`) && q.data.kind === 'choice')
+    .map((q) => q.data as { prompt: string; options: string[]; answer: number; explanation: string });
+  return {
+    idea,
+    title: lesson.data.title,
+    summary: lesson.data.summary,
+    text: offBoard && 'text' in offBoard ? offBoard.text : undefined,
+    situations: plan && 'situations' in plan ? plan.situations : [],
+    questions,
+  };
+});
+---
+
+<Base
+  title="Printable pack"
+  description="Every Chaalwise strategy idea on its own page, with questions, discussion points and answers, for a team session or a class."
+>
+  <div class="wrap">
+    <header class="intro">
+      <h1>The printable pack</h1>
+      <p class="lead">
+        Every strategy idea on its own page, for a team session or a class, with no screens or accounts. Print it from your browser, on both sides: each idea
+        starts a new page, with its answers on the back.
+      </p>
+      <button class="button primary print" type="button" onclick="print()">
+        Print the pack
+      </button>
+      <h2>Running a session, about 30 minutes</h2>
+      <ol>
+        <li>Read the idea aloud (2 minutes).</li>
+        <li>Everyone answers the questions alone, on paper, before anyone speaks (8 minutes). Independent answers first make the discussion better.</li>
+        <li>Compare answers, then read the answers and why (10 minutes).</li>
+        <li>Each person writes one plan, "When …, I will …", from the discussion points (5 minutes).</li>
+        <li>At the next session, ask who used it and what happened (5 minutes).</li>
+      </ol>
+      <p class="note">
+        Chaalwise measures answers, not behaviour: <a href="/transfer/">Does this transfer?</a> says what to expect. The ideas are shown in chess and other
+        games on the site; this pack keeps to the cases away from the board.
+      </p>
+    </header>
+
+    {ideas.map((idea, n) => (
+      <section class="idea" id={idea.idea}>
+        <p class="label">
+          Idea {n + 1} of {ideas.length}
+        </p>
+        <h2>{idea.title}</h2>
+        <p class="summary">{idea.summary}</p>
+        {idea.text && <p>{idea.text}</p>}
+        <h3>Questions</h3>
+        <ol class="questions">
+          {idea.questions.map((q) => (
+            <li class="question">
+              <p>{q.prompt}</p>
+              <ol class="options">
+                {q.options.map((o) => (
+                  <li>{o}</li>
+                ))}
+              </ol>
+            </li>
+          ))}
+        </ol>
+        {idea.situations.length > 0 && (
+          <>
+            <h3>To discuss</h3>
+            <p>Where would this help you? For example, when:</p>
+            <ul>
+              {idea.situations.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        <div class="answers">
+          <h3>Answers</h3>
+          <ol>
+            {idea.questions.map((q) => (
+              <li>
+                <strong>{LETTERS[q.answer]}.</strong> {q.explanation}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .lead {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+  }
+  .note {
+    color: var(--ink-2);
+  }
+  .intro ol {
+    padding-left: 20px;
+  }
+  .idea {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+  }
+  .summary {
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin-top: 20px;
+  }
+  .questions {
+    padding-left: 20px;
+  }
+  .question {
+    margin-bottom: 14px;
+  }
+  .question p {
+    margin-bottom: 6px;
+  }
+  .options {
+    list-style: upper-alpha;
+    padding-left: 22px;
+    color: var(--ink-2);
+  }
+  .answers {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: var(--tint);
+    font-size: 0.92rem;
+  }
+  .answers ol {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  @media print {
+    :global(.site-header),
+    :global(.site-footer),
+    :global(.skip),
+    :global(#update),
+    .print {
+      display: none !important;
+    }
+    :global(body) {
+      background: #fff;
+      color: #000;
+      font-size: 11pt;
+    }
+    .idea {
+      break-before: page;
+      border-top: 0;
+      margin-top: 0;
+    }
+    .options,
+    .note,
+    .lead {
+      color: #000;
+    }
+    /* The answers on the next page: printed on both sides, they are on the back. */
+    .answers {
+      break-before: page;
+      background: none;
+      border-top: 1px solid #000;
+      border-radius: 0;
+    }
+    a {
+      color: #000;
+    }
+  }
+</style>

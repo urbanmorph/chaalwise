@@ -1,0 +1,72 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import Base from '../../layouts/Base.astro';
+import { CASE_GROUPS, lessonHref, lessonPath } from '../../lib/lessons';
+
+const cases = await lessonPath('case');
+const groups = [...new Set(cases.map((c) => c.data.stage))].map((stage) => ({
+  name: CASE_GROUPS[stage],
+  cases: cases.filter((c) => c.data.stage === stage),
+}));
+---
+
+<Base title="Work cases" description="Short stories of three to five linked decisions, each using strategy ideas you have learned. No game needed.">
+  <div class="wrap">
+    <p class="label">
+      <a href="/skills/">Strategy</a>
+    </p>
+    <h1>Work cases</h1>
+    <p>
+      A work case is a short story with three to five decisions in a row. Each decision follows from the last, and each uses an idea from the strategy lessons,
+      such as looking at three options, counting it through or judging decisions and not results. Ideas carry over best when you use them on problems like your
+      own, so these give you that practice. No game is needed. Your answers come back for review with your other questions.
+    </p>
+    {groups.map((group) => (
+      <section>
+        <h2>{group.name}</h2>
+        <ul class="cases">
+          {group.cases.map((c) => (
+            <li class="card">
+              <h3>
+                <a href={lessonHref(c)}>{c.data.title}</a>
+              </h3>
+              <p class="label">
+                {c.data.steps.filter((s) => 'ask' in s).length} decisions · uses{' '}
+                {c.data.skills.map((s, i) => (
+                  <>
+                    <a href={`/skills/${s}/`}>{SKILLS[s]}</a>
+                    {i < c.data.skills.length - 1 && ', '}
+                  </>
+                ))}
+              </p>
+              <p>{c.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  section {
+    margin-top: 28px;
+  }
+  .cases {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+  .cases h3 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .cases p {
+    margin: 6px 0 0;
+  }
+  .label a {
+    color: inherit;
+  }
+</style>

@@ -3,7 +3,7 @@ import { SKILLS, type SkillId } from '@chaalwise/core/skills';
 import type { CollectionEntry } from 'astro:content';
 import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
-import { chessLessonsFor, lessonHref, pokerLessonsFor, STAGES, trackLessons, trackSteps } from '../lib/lessons';
+import { chessLessonsFor, lessonHref, lessonsFor, STAGES, trackLessons, trackSteps } from '../lib/lessons';
 import { labHref, LABS } from '../lib/labs/labs';
 import NewToChess from './NewToChess.astro';
 import NewToPoker from './NewToPoker.astro';
@@ -23,7 +23,8 @@ const id = course.id as SkillId;
 const name = SKILLS[id];
 const lessons = await trackLessons(id);
 const chess = await chessLessonsFor(id);
-const poker = await pokerLessonsFor(id);
+const poker = await lessonsFor('poker', id);
+const cases = await lessonsFor('case', id);
 const games = [
   { name: 'chess', lessons: chess },
   { name: 'poker', lessons: poker },
@@ -91,6 +92,18 @@ const { idea, why, atWork, inStudy, habit } = course.data;
     {lab && (
       <p class="also">
         Practise it in a game: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against bots.
+      </p>
+    )}
+    {cases.length > 0 && (
+      <p class="also">
+        Use it in a <a href="/cases/">work case</a>, a short story of linked decisions:{' '}
+        {cases.map((l, i) => (
+          <>
+            <a href={lessonHref(l)}>{l.data.title}</a>
+            {i < cases.length - 1 && ', '}
+          </>
+        ))}
+        .
       </p>
     )}
     {(chess.length > 0 || Object.values(steps).some((s) => s.position)) && <NewToChess />}

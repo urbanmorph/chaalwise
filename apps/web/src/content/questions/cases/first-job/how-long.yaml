@@ -1,0 +1,13 @@
+kind: choice
+prompt: At work, your manager asks how long a new report will take. It feels like two days, but your last three estimates each took about half as long again. What do you say?
+options:
+  - Three days, from how your past estimates turned out
+  - Two days, since you know this kind of work better now
+  - A week, so that you cannot possibly be late
+answer: 0
+feedback:
+  - ''
+  - You may have improved, but every estimate feels right when you make it. Your record is better evidence than the feeling.
+  - A padded estimate wastes the time others plan around it, and soon nobody trusts your numbers.
+explanation: This is Start from the base rate. Your estimates have run about half as long again, so two days becomes about three. Start from that record, then adjust if this job really is different.
+measures: weigh-odds

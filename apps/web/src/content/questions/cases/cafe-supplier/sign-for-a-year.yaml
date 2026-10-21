@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your café's roaster offers ₹780 a kilo instead of ₹820 if you sign for a year and take 40 kilos every month. You use 40 kilos now, but sales were lower last winter. What do you do?
+options:
+  - Ask for the lower price on a smaller amount you are sure to use
+  - Sign for 40 kilos, since ₹19,200 a year is a real saving
+  - Turn it down, since no contract is worth your freedom
+answer: 0
+feedback:
+  - ''
+  - 'Count the bad case too. If sales fall by a quarter, you use 30 kilos but pay for 40: ₹31,200 a month, instead of ₹24,600 for 30 kilos bought month by month.'
+  - A contract you can keep even in a bad month gives a real saving for little risk. Refusing every contract gives that up.
+explanation: Count it through, then size the risk. If sales drop by a quarter, the full contract costs ₹6,600 a month more than buying only what you use, so three bad months would wipe out the year's saving. Commit to the amount you are sure of, so one bad season cannot hurt you much.
+measures: size-risk

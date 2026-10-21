@@ -1,0 +1,13 @@
+kind: choice
+prompt: For a college quiz night, 200 people have said they are interested. In past years, about 60% of those who said so came. How many do you plan food for?
+options:
+  - About 120, as six in ten came before
+  - 200, everyone who said they are interested
+  - About 90, the number who came last year
+answer: 0
+feedback:
+  - ''
+  - Saying you are interested costs nothing. In past years four in ten did not come, and food for 80 would go to waste.
+  - That ignores that more people signed up this year. The rate, not last year's number, is what carries over.
+explanation: This is Start from the base rate. In past years six in ten of those interested came, so start from 60% of 200, which is 120. Then adjust if something this year is different.
+measures: weigh-odds

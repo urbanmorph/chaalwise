@@ -1,0 +1,13 @@
+kind: choice
+prompt: A designer you hired two months ago is two weeks late with her first project at work, after the client changed the brief. Your manager asks if hiring her was a mistake. How do you answer?
+options:
+  - Separate what the client's change caused from what she could fix
+  - Agree it may have been, and start checking her work daily
+  - Defend her fully, since the hire was right whatever happened
+answer: 0
+feedback:
+  - ''
+  - That judges the hire by one result, much of it not her doing, and daily checks may slow her further.
+  - Defending the decision blindly means you learn nothing, and her slowness to share drafts is real.
+explanation: "This is Review calmly: decisions, not results. The hire was sound on what you knew. The delay is partly the client's change and partly the habit her referees warned of, sharing drafts late. Work on that with her, and judge again later."
+measures: composure

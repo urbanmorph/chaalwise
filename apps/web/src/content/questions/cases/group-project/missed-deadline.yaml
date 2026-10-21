@@ -1,0 +1,13 @@
+kind: choice
+prompt: In your college group project, Arjun is three days late with the survey questions and has not answered messages. You will work with him for three more weeks. What do you do first?
+options:
+  - Ask him on his own what got in the way, and agree a new date
+  - Tell the group chat that he is letting everyone down
+  - Write the questions yourself and say nothing to him
+answer: 0
+feedback:
+  - ''
+  - Shaming him in front of everyone makes him less likely to help, and you still need him for three weeks.
+  - It saves this week, but he learns that missing a date costs nothing, and you may carry his share from now on.
+explanation: 'This is Cooperate or defend. You will keep working together, so start by cooperating: ask, listen and agree a clear new date. If he misses that too, protect the project, for example by moving his part to someone else.'
+measures: cooperate

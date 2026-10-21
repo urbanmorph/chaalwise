@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your design team is starting a nine-week project for a client whose marketing head has, on past jobs, changed the brief late. What do you do in week one?
+options:
+  - Agree in writing who signs off each stage, and what late changes cost
+  - Start quickly, and deal with any changes when they come
+  - Tell the client that no changes will be accepted after week one
+answer: 0
+feedback:
+  - ''
+  - By the time a late change comes, the work is done and the date is close. You will have fewer ways to answer it.
+  - Some changes will be needed. A flat no makes the client unhappy, or makes them go around you.
+explanation: This is Not so fast. Ask what the other side is likely to do, and stop it before it starts. Clear sign-offs and a price for late changes make a late change less likely, and less costly if it comes.
+measures: think-ahead

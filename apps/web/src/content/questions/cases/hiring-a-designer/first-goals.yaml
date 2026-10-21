@@ -1,0 +1,13 @@
+kind: choice
+prompt: A designer has just joined your team, whose aim this year is to make its app easier for new users. What goals do you set for her first three months at work?
+options:
+  - Three small goals, each useful alone, reviewed every month
+  - 'One big goal: redesign the whole app by the end of the year'
+  - None yet, so that she has three months to settle in
+answer: 0
+feedback:
+  - ''
+  - A year-long goal gives no sign of trouble until it is too late, and nothing of use until the end.
+  - Settling in goes faster with something real to do. Three months with no goals wastes her best time to learn.
+explanation: This is A plan, step by step. Each small goal, such as a simpler sign-up screen, is worth having on its own and serves the year's aim. A monthly review lets you both look again after each step.
+measures: plan-long
