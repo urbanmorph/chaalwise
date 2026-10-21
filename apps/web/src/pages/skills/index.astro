@@ -11,7 +11,7 @@ const tracks = await Promise.all(
     lessons: await trackLessons(id),
     poker: await lessonsFor('poker', id),
     cases: await lessonsFor('case', id),
-    lab: LABS.find((l) => l.track === id),
+    labs: LABS.filter((l) => l.track === id),
   })),
 );
 ---
@@ -44,9 +44,16 @@ const tracks = await Promise.all(
             ))}
           </ul>
         )}
-        {track.lab && (
+        {track.labs.length > 0 && (
           <p>
-            Play it out: <a href={labHref(track.lab)}>the {track.lab.title} lab</a>.
+            Play it out:{' '}
+            {track.labs.map((lab, i) => (
+              <>
+                <a href={labHref(lab)}>the {lab.title} lab</a>
+                {i < track.labs.length - 1 && (i === track.labs.length - 2 ? ' or ' : ', ')}
+              </>
+            ))}
+            .
           </p>
         )}
         {track.poker.length > 0 && (

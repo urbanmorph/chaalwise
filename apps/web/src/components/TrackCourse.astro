@@ -31,7 +31,7 @@ const games = [
 ].filter((g) => g.lessons.length > 0);
 const steps = await trackSteps(id);
 const measured = Object.keys(steps).length > 0;
-const lab = LABS.find((l) => l.track === id);
+const labs = LABS.filter((l) => l.track === id);
 const entries = (await referenceEntries()).filter((e) => e.data.game === 'strategy' && e.data.skill === id);
 const { idea, why, atWork, inStudy, habit } = course.data;
 ---
@@ -89,9 +89,16 @@ const { idea, why, atWork, inStudy, habit } = course.data;
         .
       </p>
     ))}
-    {lab && (
+    {labs.length > 0 && (
       <p class="also">
-        Practise it in a game: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against bots.
+        Practise it in a game, about five minutes against bots:{' '}
+        {labs.map((lab, i) => (
+          <>
+            <a href={labHref(lab)}>the {lab.title} lab</a>
+            {i < labs.length - 1 && (i === labs.length - 2 ? ' or ' : ', ')}
+          </>
+        ))}
+        .
       </p>
     )}
     {cases.length > 0 && (
