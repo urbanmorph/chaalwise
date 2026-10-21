@@ -32,7 +32,15 @@
     all?: { href: string; label: string; done: string };
   }
 
-  let { lesson, lessonId, next, track, checkable = false, workedUntilMet = false, all = { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' } }: Props = $props();
+  let {
+    lesson,
+    lessonId,
+    next,
+    track,
+    checkable = false,
+    workedUntilMet = false,
+    all = { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' },
+  }: Props = $props();
 
   /**
    * Where the learner left this lesson, read at once: the page drew the offer to
