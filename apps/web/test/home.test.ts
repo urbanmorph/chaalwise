@@ -167,9 +167,9 @@ describe('the footer', () => {
     expect(existsSync(new URL('../dist/credits/index.html', import.meta.url))).toBe(false);
   });
 
-  it('links pdgi to the scorecard in the repository, not the pdgi.org site', () => {
-    expect(footer).toMatch(new RegExp(`href="${REPO}/PDGI.md"[^>]*>\\s*pdgi`));
-    expect(footer).not.toContain('href="https://pdgi.org/"');
+  it('carries no PDGI link, and the repository no PDGI.md', () => {
+    expect(footer).not.toMatch(/pdgi/i);
+    expect(existsSync(new URL('../../../PDGI.md', import.meta.url))).toBe(false);
   });
 });
 

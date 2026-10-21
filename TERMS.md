@@ -39,7 +39,7 @@ Chaalwise is offered as it is, free of charge. We check it with care, including 
 
 ## Open source
 
-Chaalwise's code is free software under the [GNU Affero General Public License, version 3](./LICENSE). It uses free software from the Lichess community (chessground and chessops), credited in [CREDITS.md](./CREDITS.md). Chaalwise is not made by, or affiliated with, Lichess. How Chaalwise follows the principles of People's Digital Goods and Infrastructure is set out in [PDGI.md](./PDGI.md).
+Chaalwise's code is free software under the [GNU Affero General Public License, version 3](./LICENSE). It uses free software from the Lichess community (chessground and chessops), credited in [CREDITS.md](./CREDITS.md). Chaalwise is not made by, or affiliated with, Lichess.
 
 ## Changes
 
