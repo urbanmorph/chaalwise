@@ -1,0 +1,102 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { labHref, LABS } from '../lib/labs/labs';
+import { lessonHref } from '../lib/lessons';
+import { STARTS } from '../lib/start';
+
+/** A step on a path: a strategy lesson or a lab, with its title and one line on it. A missing id fails the build. */
+async function resolve(id: string) {
+  if (id.startsWith('labs/')) {
+    const lab = LABS.find((l) => `labs/${l.slug}` === id);
+    if (!lab) throw new Error(`no lab ${id}`);
+    return { href: labHref(lab), title: `${lab.title} lab`, line: lab.idea };
+  }
+  const lesson = await getEntry('lessons', id);
+  if (!lesson) throw new Error(`no lesson ${id}`);
+  return { href: lessonHref(lesson), title: lesson.data.title, line: lesson.data.summary };
+}
+
+const starts = await Promise.all(STARTS.map(async (s) => ({ ...s, steps: await Promise.all(s.steps.map(resolve)) })));
+---
+
+<Base title="Where to start" description="A short first path through Chaalwise for people who run teams, people starting out at work, and students.">
+  <div class="wrap">
+    <h1>Where to start</h1>
+    <p class="lead">Pick the one that sounds like you. Each is five or six short lessons and labs, about an hour in all, in any order you like.</p>
+
+    {starts.map((start) => (
+      <section id={start.id} aria-labelledby={`${start.id}-title`}>
+        <h2 id={`${start.id}-title`}>{start.who}</h2>
+        <p class="why">{start.why}</p>
+        <ol>
+          {start.steps.map((step) => (
+            <li>
+              <a href={step.href}>{step.title}</a>
+              <span>{step.line}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+    <section class="more" aria-labelledby="more-title">
+      <h2 id="more-title">Running a session for a team or a class?</h2>
+      <p>
+        <a href="/pack/">The printable pack</a> has every strategy idea on its own page, with questions to answer on paper and an answer key. And before you
+        promise anyone results, read <a href="/transfer/">Does this transfer?</a>
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .lead {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+  }
+  section {
+    margin-top: 40px;
+  }
+  .why {
+    color: var(--ink-2);
+  }
+  ol {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    margin: 16px 0 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    column-gap: 12px;
+  }
+  li::before {
+    content: counter(step);
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--felt-2);
+    color: var(--on-felt);
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+  li a {
+    font-weight: 700;
+  }
+  li span {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .more {
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+</style>
