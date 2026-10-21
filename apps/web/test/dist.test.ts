@@ -64,7 +64,7 @@ describe.each(htmlFiles)('%s', (page) => {
       .map((m) => m[1]!)
       .filter(
         (url) =>
-          !/^https:\/\/(github\.com|lichess\.org|database\.lichess\.org|www\.urbanmorph\.com|doi\.org|www1\.udel\.edu)\//.test(
+          !/^https:\/\/(github\.com|lichess\.org|database\.lichess\.org|chaalwise\.com|www\.urbanmorph\.com|doi\.org|www1\.udel\.edu)\//.test(
             url,
           ),
       );

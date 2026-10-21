@@ -1,6 +1,6 @@
 # Terms
 
-These terms cover [Chaalwise](https://chaalwise.urbanmorph.com), a free learning app made by [UrbanMorph](https://www.urbanmorph.com/). By using it, you agree to them. Last changed on 20 October 2026; every change is in this file's history.
+These terms cover [Chaalwise](https://chaalwise.com), a free learning app made by [UrbanMorph](https://www.urbanmorph.com/). By using it, you agree to them. Last changed on 20 October 2026; every change is in this file's history.
 
 ## What Chaalwise is
 

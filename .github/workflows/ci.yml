@@ -68,7 +68,7 @@ jobs:
           retention-days: 7
 
   deploy:
-    name: Deploy to chaalwise.urbanmorph.com
+    name: Deploy to chaalwise.com
     needs: verify
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # The Cloudflare token lives in this environment, which only main may deploy to.
