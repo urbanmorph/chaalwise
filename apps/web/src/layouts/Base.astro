@@ -16,6 +16,9 @@ const {
   description = 'A free, offline strategy gym: learn to think ahead through chess and poker, against the computer. No money, no ratings.',
 } = Astro.props;
 const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
+// What a link preview shows: the page's own title and description, on one share card for the site (scripts/og-image.mjs).
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const card = new URL('/og.png', Astro.site).href;
 // Strategy first; the games, with their lessons and drills, are found through the reference.
 const NAV = [
   ['/skills/', 'strategy'],
@@ -35,6 +38,16 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Chaalwise" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={card} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Chaalwise: think a move ahead. Free, short lessons in strategy." />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
