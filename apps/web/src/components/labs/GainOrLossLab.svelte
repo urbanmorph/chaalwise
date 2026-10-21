@@ -106,7 +106,7 @@
     </p>
     <h3>What it shows</h3>
     <ul class="lab-lesson">
-      <li>A loss weighs more than an equal gain, so people tend to play safe with gains and gamble to avoid losses.</li>
+      <li>With gains, people tend to play safe; facing a sure loss, they tend to gamble to avoid it. That is why the wording can flip the choice.</li>
       <li>The wording sets what counts as a gain or a loss. Change the wording and the choice can change, though the facts have not.</li>
       <li>
         Neither plan is wrong: each pair keeps the same on average. What is hard to defend is choosing differently because of the words. Before you decide, say

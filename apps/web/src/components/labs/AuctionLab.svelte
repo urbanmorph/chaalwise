@@ -157,7 +157,10 @@
         With {BIDDERS} bidders and errors of up to {SPREAD} points, the highest estimate is about {Math.round(breakEvenShade(BIDDERS))} points too high on average.
         Shade your bid by about that much just to break even when you win. With 10 bidders it would be about {Math.round(breakEvenShade(10))}.
       </li>
-      <li>Shade more when bidders are many and estimates are rough. Real bidders often do the opposite, bidding harder when the competition is fierce.</li>
+      <li>
+        The more bidders and the rougher the estimates, the more you must shade just to break even. Real bidders often do the opposite, bidding harder when the
+        competition is fierce.
+      </li>
       <li>
         When the value is personal to you, such as a house you love for your own reasons, there is no curse from winning: set your limit from what it is worth
         to you, and keep to it.

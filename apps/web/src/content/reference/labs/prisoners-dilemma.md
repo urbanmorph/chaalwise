@@ -15,4 +15,4 @@ try:
 
 Played once, betraying is better for each player whatever the other does, so both end up worse off than if both had cooperated.
 
-Played many times with the same partner, cooperation can last, because betrayal today costs you tomorrow. It holds only while the future matters enough and nobody knows which round is the last: a known last round unravels, since there is no tomorrow to protect.
+Played many times with the same partner, cooperation can last, because betrayal today costs you tomorrow. It holds only while the future matters enough and nobody knows which round is the last: in theory a known last round unravels it, since there is no tomorrow to protect; in practice people tend to cooperate until near the end, then defect.
