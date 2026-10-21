@@ -1,0 +1,14 @@
+card: reference/strategy/independent-estimates/before-the-meeting
+kind: choice
+prompt: Your team meets to estimate how long a project will take. How should you collect their estimates?
+options:
+  - Hear the most experienced person first, then the rest
+  - Each writes theirs down before anyone speaks
+  - Talk it through until everyone agrees on one figure
+answer: 1
+feedback:
+  - Experience helps, but once a figure is said aloud the others lean towards it, so its error is repeated rather than cancelled.
+  - ''
+  - Agreement feels safe, but talk pulls the estimates together without making them more accurate. Collect them first, then discuss.
+explanation: 'Written down alone, each estimate is wrong in its own way, and the errors partly cancel when you pool them. Share them all at once, then talk about the gaps.'
+measures: read-hidden

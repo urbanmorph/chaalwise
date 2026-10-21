@@ -1,0 +1,14 @@
+card: reference/strategy/incentives/before-the-bonus
+kind: choice
+prompt: You are about to set a bonus for your sales team. Which question is most useful to ask first?
+options:
+  - How big must the bonus be to make them try?
+  - How could they earn it without doing what I want?
+  - Which result is the easiest to count?
+answer: 1
+feedback:
+  - Size matters less than direction. A big bonus for the wrong thing gets you more of the wrong thing.
+  - ''
+  - 'Easy to count is how many bad targets get chosen: the count goes up while the goal does not.'
+explanation: 'Imagine someone who wants the bonus and does not care about the goal. If what they would do is not what you want, change the rule before it starts.'
+measures: think-ahead

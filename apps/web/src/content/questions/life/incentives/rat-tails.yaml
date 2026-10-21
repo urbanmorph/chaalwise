@@ -1,0 +1,14 @@
+card: reference/strategy/incentives/rat-tails
+kind: choice
+prompt: In 1902 the rulers of Hanoi paid a bounty for each rat tail handed in, to cut the number of rats. What went wrong?
+options:
+  - People cut off tails and let the rats go to breed
+  - The bounty was too small for anyone to bother
+  - Rats moved in from the towns nearby
+answer: 0
+feedback:
+  - ''
+  - 'People did bother: many tails were handed in. The trouble was what earned the bounty.'
+  - 'That would not explain it: the bounty itself gave people a reason to keep rats alive.'
+explanation: 'The bounty paid for tails, not for fewer rats. A rat without a tail could still breed more tails, and some people even farmed rats for it (Vann 2003).'
+measures: think-ahead

@@ -16,3 +16,13 @@ export function seeded(seed: number): Random {
 /** A whole number from min to max, both included. */
 export const between = (min: number, max: number, random: Random): number =>
   min + Math.floor(random() * (max - min + 1));
+
+/** A shuffled copy of a list (Fisher-Yates). */
+export function shuffle<T>(list: readonly T[], random: Random): T[] {
+  const out = [...list];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [out[i], out[j]] = [out[j]!, out[i]!];
+  }
+  return out;
+}

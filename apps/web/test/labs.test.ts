@@ -14,6 +14,7 @@ import { counter, describePattern, outcome, PatternBot, type Throw } from '../sr
 import { BIDDERS, breakEvenShade, drawItem, settle, simulateAuctions, SPREAD } from '../src/lib/labs/auction';
 import { LABS } from '../src/lib/labs/labs';
 import { seeded } from '../src/lib/labs/seeded';
+import { TRACKS } from '../src/lib/skill-tracks';
 
 describe('a seeded random', () => {
   it('gives the same numbers for the same seed, and different ones for another', () => {
@@ -237,6 +238,13 @@ describe('the labs', () => {
       ['rule-finder', 'read-hidden', 'strategy/test-to-disprove'],
       ['split-the-pie', 'value', 'strategy/walk-away-point'],
       ['which-bag', 'weigh-odds', 'strategy/base-rates'],
+      ['gain-or-loss', 'composure', 'strategy/framing'],
+      ['bonus-rule', 'think-ahead', 'strategy/incentives'],
+      ['ask-the-panel', 'read-hidden', 'strategy/independent-estimates'],
     ]);
+  });
+
+  it('are named on the skill map under each track they train', () => {
+    for (const lab of LABS) expect(TRACKS.find((t) => t.id === lab.track)!.also, lab.slug).toContain(lab.title);
   });
 });

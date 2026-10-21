@@ -83,3 +83,13 @@ describe('the labs, linked where learners look', () => {
     expect(page('reference/strategy/winners-curse/index.html')).toContain('href="/labs/sealed-bid-auction/"');
   });
 });
+
+describe('every lab, from its skill', () => {
+  it('is linked from its skill’s course page and from the strategy page, where a skill has two labs', () => {
+    for (const lab of LABS) {
+      expect(page(`skills/${lab.track}/`), lab.slug).toContain(`href="/labs/${lab.slug}/"`);
+      const section = page('skills/').match(new RegExp(`<section id="${lab.track}"[\\s\\S]*?</section>`))![0];
+      expect(section, lab.slug).toContain(`href="/labs/${lab.slug}/"`);
+    }
+  });
+});

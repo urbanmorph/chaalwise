@@ -1,4 +1,4 @@
-import type { Random } from './seeded';
+import { shuffle, type Random } from './seeded';
 
 /**
  * The rule finder, after Wason's 2-4-6 task (1960): a hidden rule says yes or
@@ -82,12 +82,7 @@ export const ROUNDS: Round[] = [
 
 /** Three rounds: the classic 2, 4, 6 first, then two of the others in a random order. */
 export function drawRounds(random: Random): Round[] {
-  const rest = ROUNDS.slice(1);
-  for (let i = rest.length - 1; i > 0; i--) {
-    const j = Math.floor(random() * (i + 1));
-    [rest[i], rest[j]] = [rest[j]!, rest[i]!];
-  }
-  return [ROUNDS[0]!, ...rest.slice(0, 2)];
+  return [ROUNDS[0]!, ...shuffle(ROUNDS.slice(1), random).slice(0, 2)];
 }
 
 /** Small triples, simplest first, to look for one that tells two rules apart. */

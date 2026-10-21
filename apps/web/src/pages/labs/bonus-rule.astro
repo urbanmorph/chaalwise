@@ -1,0 +1,15 @@
+---
+import BonusRuleLab from '../../components/labs/BonusRuleLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'bonus-rule')!;
+---
+
+<LabPage {lab}>
+  <p>
+    You set the bonus for a support team of four bots. They do not care what you meant, only what the rule pays for. Four weeks to find a rule that gets you
+    what you want.
+  </p>
+  <BonusRuleLab client:load />
+</LabPage>

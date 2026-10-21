@@ -1,0 +1,15 @@
+---
+import GainOrLossLab from '../../components/labs/GainOrLossLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'gain-or-loss')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Eight choices about floods, jobs, trees and points, each between a sure thing and a gamble. Choose the plan you would rather have. At the end, see whether
+    your answers depended on the facts or on the words.
+  </p>
+  <GainOrLossLab client:load />
+</LabPage>

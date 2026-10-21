@@ -1,0 +1,14 @@
+card: reference/strategy/framing/flood-plan
+kind: choice
+prompt: 'A flood threatens 600 homes. Plan A saves 200 homes for sure. Plan B has a 1 in 3 chance of saving all 600 and a 2 in 3 chance of saving none. A colleague says: "Plan A means losing 400 homes for sure, so take Plan B." What is wrong with that?'
+options:
+  - 'Nothing: losing 400 is worse than it first sounded'
+  - Both plans are as before; only the wording changed
+  - Plan B saves more homes on average
+answer: 1
+feedback:
+  - 'It sounds worse, but it is the same plan: 200 saved is 400 lost out of 600. Only the description moved.'
+  - ''
+  - On average both plans save 200 homes. Plan B is a gamble, not a better bet.
+explanation: Saving 200 of 600 is losing 400 of 600. Put the plans the other way round and see whether your choice still holds before you take it.
+measures: composure
