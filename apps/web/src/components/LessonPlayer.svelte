@@ -162,9 +162,9 @@
     return shown();
   }
 
-  /** Carry on where the learner left off: that step, with the answers so far kept and the steps before it seen. */
-  export function resume(index: number, outcomes: Record<string, Outcome>) {
-    for (let i = 0; i < index; i++) seen.add(i);
+  /** Carry on where the learner left off: that step, with the answers so far kept and, unless told otherwise, the steps before it seen. */
+  export function resume(index: number, outcomes: Record<string, Outcome>, seenBefore = true) {
+    if (seenBefore) for (let i = 0; i < index; i++) seen.add(i);
     player = jumpTo(lesson, { ...createPlayer(), outcomes }, index);
     return shown();
   }
@@ -276,6 +276,9 @@
           </div>
         {/if}
 
+        {#if isGraded(step) && !player.revealed && player.outcomes[step.id] === 'first-try'}
+          <p class="answered">You got this one right already. Answer it again, or carry on.</p>
+        {/if}
         <div aria-live="polite">
           {#if feedback}<p class="feedback {feedback.tone}">{feedback.text}</p>{/if}
           {#if player.hintShown && !player.revealed && isGraded(step)}
@@ -287,11 +290,12 @@
         </div>
 
         <div class="actions">
-          {#if !isGraded(step) || player.revealed}
-            <button class="button primary" onclick={next} bind:this={continueButton}>
+          {#if !isGraded(step) || player.revealed || player.outcomes[step.id] === 'first-try'}
+            <button class={['button', (!isGraded(step) || player.revealed) && 'primary']} onclick={next} bind:this={continueButton}>
               {player.index + 1 === total ? 'Finish' : 'Continue'}
             </button>
-          {:else}
+          {/if}
+          {#if isGraded(step) && !player.revealed}
             {#if step.hint && !player.hintShown}
               <button class="button" onclick={hint}>Hint</button>
             {/if}
@@ -452,6 +456,7 @@
   .fail {
     color: var(--fail);
   }
+  .answered,
   .hint {
     color: var(--ink-2);
     font-style: italic;

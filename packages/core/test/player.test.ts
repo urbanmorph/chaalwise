@@ -22,6 +22,16 @@ describe('lesson player', () => {
     expect(advance(lesson, state)).toBe(state);
   });
 
+  it('moves past a graded step right first time before, such as in the check, without asking it again', () => {
+    const state = { ...atStep(1), outcomes: { corner: 'first-try' as const } };
+    expect(currentStep(lesson, advance(lesson, state))?.id).toBe('push');
+  });
+
+  it('asks again a step missed before: it must be answered to move on', () => {
+    const state = { ...atStep(1), outcomes: { corner: 'missed' as const } };
+    expect(advance(lesson, state)).toBe(state);
+  });
+
   it('grades a first-try correct answer and reveals the explanation', () => {
     const { state, correct } = answer(lesson, atStep(1), { kind: 'choice', index: 1 });
     expect(correct).toBe(true);
