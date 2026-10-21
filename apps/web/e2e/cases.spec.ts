@@ -47,6 +47,7 @@ test('a work case is reached from the strategy page, played through with no game
   await page.getByRole('radio', { name: /When I start a group project/ }).check();
   await expect(page.getByText(/I will agree one finished piece for each week/)).toBeVisible();
   await next(page);
+  await expect(page.getByTestId('lesson-done')).toContainText('Case complete');
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device.');
   await expect(page.getByRole('link', { name: 'All work cases' })).toHaveAttribute('href', '/cases/');
 

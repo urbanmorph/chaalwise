@@ -29,10 +29,10 @@
     /** A strategy lesson: until chess is met, its board questions are worked examples to read. */
     workedUntilMet?: boolean;
     /** Where all the lessons of this course are listed. */
-    all?: { href: string; label: string };
+    all?: { href: string; label: string; done: string };
   }
 
-  let { lesson, lessonId, next, track, checkable = false, workedUntilMet = false, all = { href: '/chess/', label: 'All chess lessons' } }: Props = $props();
+  let { lesson, lessonId, next, track, checkable = false, workedUntilMet = false, all = { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' } }: Props = $props();
 
   /**
    * Where the learner left this lesson, read at once: the page drew the offer to
@@ -198,7 +198,7 @@
   <LessonPlayer bind:this={player} lesson={played} {onfinish} onstep={logStep} onplan={savePlan} onprogress={keepPlace}>
     {#snippet finished(outcomes)}
       <div class="card done" data-testid="lesson-done">
-        <h2>Lesson complete</h2>
+        <h2>{all.done}</h2>
         <p>{summarise(outcomes)}.</p>
         <SaveStatus status={saved} onretry={() => onfinish(outcomes)} saved="Saved on this device. These questions come back for review on later days." />
         <div class="actions">

@@ -17,10 +17,10 @@ export const courseOf = ({ data: { game } }: LessonEntry): Course =>
   game === 'poker' || game === 'case' ? game : 'chess';
 
 /** Where each course's lessons are all listed. */
-export const COURSE_HOME: Record<Course, { href: string; label: string }> = {
-  chess: { href: '/chess/', label: 'All chess lessons' },
-  poker: { href: '/poker/', label: 'All poker lessons' },
-  case: { href: '/cases/', label: 'All work cases' },
+export const COURSE_HOME: Record<Course, { href: string; label: string; done: string }> = {
+  chess: { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' },
+  poker: { href: '/poker/', label: 'All poker lessons', done: 'Lesson complete' },
+  case: { href: '/cases/', label: 'All work cases', done: 'Case complete' },
 };
 
 /** A course's lessons in the recommended order (see learningPath): by default chess, with the strategy lessons. */
