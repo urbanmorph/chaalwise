@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your student group has 24 hours left before a report is due, and 30 hours of work: 10 for the analysis, 12 for the writing, and 8 for an extra chapter. What do you do?'
+options:
+  - Drop the extra chapter, and do the analysis and writing well
+  - Keep the extra chapter, since it is what will impress
+  - Do all three, cutting a fifth of the time from each
+answer: 0
+feedback:
+  - ''
+  - An impressive extra on top of a rushed analysis and rushed writing makes a weak report. The basics carry most of the marks.
+  - That fits the hours, since 30 less a fifth is 24, but every part ends up rushed, including the ones the mark depends on.
+explanation: This is Basics before brilliance. Get the plain, sound parts right first. The extra chapter would pay only on top of a good analysis and clear writing, not instead of them. Dropping it leaves 22 hours of work for 24 hours.
+measures: plan-long

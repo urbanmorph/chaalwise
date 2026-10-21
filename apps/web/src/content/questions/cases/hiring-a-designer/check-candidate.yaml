@@ -1,0 +1,13 @@
+kind: choice
+prompt: You lead a team and want to hire a designer who impressed you in her interview. Before you make an offer, how do you check your view of her?
+options:
+  - Ask her referees what she found hardest, and how she handled it
+  - Ask her referees to confirm she is as good as she seemed
+  - Look again at the portfolio pieces that impressed you
+answer: 0
+feedback:
+  - ''
+  - Referees asked to confirm will mostly confirm. You learn little you did not already believe.
+  - Looking again at what impressed you will impress you again. It cannot show what you have missed.
+explanation: This is Test to disprove. To find out whether you are right, look for what would show you are wrong. A question about her hardest moments can turn up a problem; a question that invites praise cannot.
+measures: read-hidden

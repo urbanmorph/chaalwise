@@ -48,6 +48,13 @@ describe('a lesson', () => {
     expect(lessonSchema.parse(strategy)).toMatchObject({ game: 'strategy', after: 'chess/blunder-check' });
   });
 
+  it('accepts a work case: a story of linked decisions, on no game path, naming the tracks it trains', () => {
+    const story = { ...authored, game: 'case', skills: ['plan-long', 'size-risk'] };
+    expect(lessonSchema.parse(story)).toMatchObject({ game: 'case', skills: ['plan-long', 'size-risk'] });
+    expect(() => lessonSchema.parse({ ...story, skills: [] })).toThrow(/skill/);
+    expect(() => lessonSchema.parse({ ...story, after: 'chess/board' })).toThrow(/path/);
+  });
+
   it('requires a strategy lesson to say which lesson it follows, and which skill it trains', () => {
     expect(() => lessonSchema.parse({ ...authored, game: 'strategy', skills: ['think-ahead'] })).toThrow(/after/);
     expect(() => lessonSchema.parse({ ...authored, game: 'strategy', skills: [], after: 'chess/x' })).toThrow(/skill/);

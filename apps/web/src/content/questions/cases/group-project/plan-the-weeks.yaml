@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your group of four students has six weeks for a report worth 30% of the course mark. How do you plan the work?
+options:
+  - Agree one finished piece for each week, and check it together
+  - Split the four parts, then join them up in week five
+  - Do it all together in the last two weeks, when all are free
+answer: 0
+feedback:
+  - ''
+  - Nobody sees a problem until week five, when there is little time left to fix it. The parts may not fit together either.
+  - The first four weeks then give you nothing, and a surprise in the last two leaves no room to deal with it.
+explanation: This is A plan, step by step. Turn the goal into small steps, each worth having on its own, and look again after each one. A weekly check shows a problem while there is still time to act.
+measures: plan-long

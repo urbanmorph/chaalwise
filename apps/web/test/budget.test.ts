@@ -15,6 +15,9 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
     expect(budgetFor('/review/')).toBe(80_000);
     expect(budgetFor('/skills/blunder-check/')).toBe(80_000);
     expect(budgetFor('/skills/')).toBe(30_000);
+    // A work case plays in the lesson player, so it gets a lesson's budget; the cases index is a reading page.
+    expect(budgetFor('/cases/cafe-supplier/')).toBe(80_000);
+    expect(budgetFor('/cases/')).toBe(30_000);
     // A poker practice table plays like a board; poker reference pages stay reading pages.
     expect(budgetFor('/poker/first-hands/')).toBe(80_000);
     expect(budgetFor('/reference/poker/outs/')).toBe(30_000);

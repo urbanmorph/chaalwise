@@ -1,0 +1,13 @@
+kind: choice
+prompt: At work, you are about to agree a salary with a designer you want to hire. Your budget allows up to ₹18 lakh a year. What do you settle before the talk?
+options:
+  - The most she is worth to you, given your next-best choice
+  - A first figure low enough to leave room for bargaining
+  - Her current salary, so you can offer a fair rise on it
+answer: 0
+feedback:
+  - ''
+  - An opening figure is a tactic, not a limit. Without a limit you can be talked up to the whole budget.
+  - Her current pay tells you about her last job, not about what she is worth to your team.
+explanation: This is Know your walk-away point. Your other choice, the next candidate at ₹14 lakh with three months more training, sets what Neha is worth to you. Decide that limit before you talk. The budget is the most you could pay, not what you should.
+measures: value

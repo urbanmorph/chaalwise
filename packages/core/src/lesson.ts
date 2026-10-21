@@ -195,8 +195,11 @@ export const lessonSchema = z
   .object({
     title: z.string().min(1),
     summary: z.string().min(1),
-    /** `strategy` lessons teach a skill off the board, between the game lessons that ground it. */
-    game: z.enum(['chess', 'strategy', 'poker']),
+    /**
+     * `strategy` lessons teach a skill off the board, between the game lessons that ground it.
+     * A `case` is a work case: a short story of linked decisions that uses ideas already taught, on no game's path.
+     */
+    game: z.enum(['chess', 'strategy', 'poker', 'case']),
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),
@@ -214,6 +217,12 @@ export const lessonSchema = z
         });
       if (!lesson.skills.length)
         ctx.addIssue({ code: 'custom', message: 'a strategy lesson must name the skill it trains', path: ['skills'] });
+    }
+    if (lesson.game === 'case') {
+      if (lesson.after)
+        ctx.addIssue({ code: 'custom', message: 'a work case is on no game path: it needs no game', path: ['after'] });
+      if (!lesson.skills.length)
+        ctx.addIssue({ code: 'custom', message: 'a work case must name the skills it trains', path: ['skills'] });
     }
     const seen = new Set<string>();
     lesson.steps.forEach((step, i) => {

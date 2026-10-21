@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import { DONE_KEY } from '../lib/done-lessons';
-import { lessonHref, lessonPath, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
+import { COURSE_HOME, courseOf, lessonHref, lessonPath, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
 import { RESUME_KEY } from '../lib/resume';
 import LessonPage from './LessonPage.svelte';
 
@@ -65,7 +65,8 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   lesson={{ steps }}
   lessonId={lesson.id}
   next={next && { href: lessonHref(next), title: next.data.title }}
-  track={lesson.data.game === 'strategy' ? lesson.data.skills[0] : undefined}
+  track={lesson.data.game === 'strategy' || lesson.data.game === 'case' ? lesson.data.skills[0] : undefined}
+  all={COURSE_HOME[courseOf(lesson)]}
   checkable={lesson.data.game === 'chess'}
   workedUntilMet={worked}
 />

@@ -1,7 +1,7 @@
 ---
 import { SKILL_IDS, SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, pokerLessonsFor, STAGES, trackLessons } from '../../lib/lessons';
+import { lessonHref, lessonsFor, STAGES, trackLessons } from '../../lib/lessons';
 import { labHref, LABS } from '../../lib/labs/labs';
 
 const tracks = await Promise.all(
@@ -9,7 +9,8 @@ const tracks = await Promise.all(
     id,
     name: SKILLS[id],
     lessons: await trackLessons(id),
-    poker: await pokerLessonsFor(id),
+    poker: await lessonsFor('poker', id),
+    cases: await lessonsFor('case', id),
     lab: LABS.find((l) => l.track === id),
   })),
 );
@@ -22,6 +23,10 @@ const tracks = await Promise.all(
       Each skill is learned in a game, then shown off the board: where it turns up in ordinary life, and one way to try it this week. Chess builds thinking
       ahead, calculating and planning. The <a href="/labs/">game-theory labs</a> build cooperating, being unpredictable and valuing things. Poker builds
       weighing odds, sizing a risk, reading hidden information and bluffing: <a href="/poker/">the poker lessons</a>.
+    </p>
+    <p>
+      Then put the ideas together: <a href="/cases/">work cases</a> are short stories of three to five linked decisions, at college, in a first job, running a
+      team or a business. They need no game.
     </p>
     {tracks.map((track) => (
       <section id={track.id}>
@@ -51,6 +56,18 @@ const tracks = await Promise.all(
               <>
                 <a href={lessonHref(l)}>{l.data.title}</a>
                 {i < track.poker.length - 1 && ', '}
+              </>
+            ))}
+            .
+          </p>
+        )}
+        {track.cases.length > 0 && (
+          <p>
+            Use it in a work case:{' '}
+            {track.cases.map((l, i) => (
+              <>
+                <a href={lessonHref(l)}>{l.data.title}</a>
+                {i < track.cases.length - 1 && ', '}
               </>
             ))}
             .

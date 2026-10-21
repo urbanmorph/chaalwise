@@ -1,0 +1,13 @@
+kind: choice
+prompt: The café across the road from yours has cut its coffee from ₹180 a cup to ₹150. Before you change your own price, what do you work out first?
+options:
+  - What they will do next if you cut your price too
+  - How many more cups you must sell at ₹150 to earn the same
+  - Which of your regulars have been trying their café
+answer: 0
+feedback:
+  - ''
+  - Worth counting, but it assumes they stop at ₹150. If they cut again when you follow, the count is wrong.
+  - That tells you what has happened so far, not what they will do next.
+explanation: This is Their next move. A price cut is a move, and if you match it, they may cut again, and both cafés earn less on every cup. Ask how they will answer, as they see it, before you move. Often it is better to compete on what they lack, such as quality or a loyalty card.
+measures: think-ahead
