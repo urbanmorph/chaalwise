@@ -7,6 +7,7 @@
   import '@chaalwise/core/srs';
   import { tick, untrack } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
+  import { afterCheck } from '../lib/check-result';
   import { addDone, readDone } from '../lib/done-lessons';
   import { gamesMet, needs, workedExample } from '../lib/games';
   import { isPracticeKind } from '../lib/practice-kinds';
@@ -81,11 +82,19 @@
     mode = 'check';
   }
 
+  /** The check's answers, kept in the lesson that follows a miss: the questions right first time need not be answered again. */
+  let checked = $state<ReturnType<typeof afterCheck> & { result: Record<string, Outcome> }>();
+
   async function checkDone(result: Record<string, Outcome>) {
     const passed = Object.values(result).every((o) => o === 'first-try');
     mode = passed ? 'passed' : 'not-yet';
-    if (passed) await onfinish(result);
+    if (passed) return onfinish(result);
+    checked = { ...afterCheck(played.steps, result), result };
+    await tick();
+    player?.resume(checked.start, result, false);
   }
+
+  const stepList = (steps: number[]) => (steps.length === 1 ? `step ${steps[0]}` : `steps ${steps.slice(0, -1).join(', ')} and ${steps.at(-1)}`);
 
   async function savePlan(stepId: string, text: string) {
     const progress = await openProgress();
@@ -170,8 +179,19 @@
     </div>
   </div>
 {:else}
-  {#if mode === 'not-yet'}
-    <p class="card not-yet" role="status">Not quite. Here is the lesson: the questions you missed are in it.</p>
+  {#if mode === 'not-yet' && checked}
+    <div class="card not-yet" role="status" data-testid="check-missed">
+      <p>
+        Not quite: {checked.right} of {checked.total} right first time. The {checked.missed.length === 1 ? 'one' : 'ones'} to work on: {stepList(
+          checked.missed,
+        )}, marked on the steps below. The lesson opens at {checked.start + 1 < checked.missed[0]!
+          ? `step ${checked.start + 1}, the reading before it`
+          : `step ${checked.missed[0]}`}. The questions you got right count, so you can pass them.
+      </p>
+      {#if checked.start > 0}
+        <button class="button" type="button" onclick={() => player?.resume(0, checked!.result, false)}>Start from the beginning</button>
+      {/if}
+    </div>
   {/if}
   <LessonPlayer bind:this={player} lesson={played} {onfinish} onstep={logStep} onplan={savePlan} onprogress={keepPlace}>
     {#snippet finished(outcomes)}
@@ -227,7 +247,8 @@
     display: none;
   }
   .resume p,
-  .check p {
+  .check p,
+  .not-yet p {
     margin-top: 0;
   }
   .actions {

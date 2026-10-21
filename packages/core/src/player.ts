@@ -91,9 +91,10 @@ export function giveUp(lesson: Playable, state: PlayerState): PlayerState {
   return reveal(state, step.id, 'missed');
 }
 
+/** A graded step can be passed once answered, or if it was right first time earlier (in the check, or before leaving the lesson). */
 export function advance(lesson: Playable, state: PlayerState): PlayerState {
   const step = currentStep(lesson, state);
-  if (!step || (isGraded(step) && !state.revealed)) return state;
+  if (!step || (isGraded(step) && !state.revealed && state.outcomes[step.id] !== 'first-try')) return state;
   const index = state.index + 1;
   return {
     ...state,
