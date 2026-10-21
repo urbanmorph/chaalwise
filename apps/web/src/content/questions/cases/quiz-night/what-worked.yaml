@@ -1,0 +1,13 @@
+kind: choice
+prompt: After your college quiz night, a member says the new picture round made it a success, and wants only picture rounds next year. How do you check?
+options:
+  - Ask everyone who came to rate each round, not just that one
+  - Collect the comments that praised the picture round
+  - Ask the member what made the picture round work
+answer: 0
+feedback:
+  - ''
+  - Some praise for the picture round was always going to exist. It cannot show whether other rounds did better.
+  - They already believe it. Their reasons will support the idea, not test it.
+explanation: 'This is Test to disprove. Look for what would show the idea is wrong: if other rounds were rated as highly, the picture round was not the reason. Ratings for every round can show that; praise for one round cannot.'
+measures: read-hidden

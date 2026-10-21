@@ -1,0 +1,13 @@
+kind: choice
+prompt: A new roaster offers your café beans at ₹100 a kilo less than your usual one, a saving of ₹4,000 a month. You have never used them. What do you do?
+options:
+  - Buy 10 kilos a month from them for two months, as a trial
+  - Move all 40 kilos to them now, to save the full ₹4,000
+  - Stay with your usual roaster, since a new one is too risky
+answer: 0
+feedback:
+  - ''
+  - If their beans are poor or late, every cup you sell suffers at once, and regulars may not come back.
+  - That gives up a real saving to avoid a risk you could make small. A trial costs little if it fails.
+explanation: 'This is Size the risk: commit in proportion to what you know. You do not know the new roaster yet, so stake a small share. Ten kilos a month saves ₹1,000 and tells you about quality and delivery. If it goes wrong, you can easily recover.'
+measures: size-risk

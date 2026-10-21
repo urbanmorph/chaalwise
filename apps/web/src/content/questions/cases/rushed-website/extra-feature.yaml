@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your design team is a week ahead on a client's website, due in two weeks. The client asks for an extra feature your team has not built before, if there is time. What do you do?
+options:
+  - Launch the agreed site first, then offer the extra as a next stage
+  - Add it now, since you have a whole week in hand
+  - Say no, since extras are never part of the deal
+answer: 0
+feedback:
+  - ''
+  - New work brings new ways to go wrong. A week in hand can vanish, and the whole launch would slip with it.
+  - A flat no loses goodwill and paid work. The extra is welcome later, once the agreed site is safe.
+explanation: This is Simplify when ahead. When you are ahead and a sure result is what you need, remove the moving parts that could still go wrong. Finish what was agreed, then add the extra as a separate stage.
+measures: size-risk

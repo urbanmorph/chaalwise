@@ -1,0 +1,13 @@
+kind: choice
+prompt: At work, a colleague asks you to cover his task for the third time this month, and has never helped you in return. You will work with him for years. What do you do?
+options:
+  - Say not this week, and offer to swap tasks when you both need it
+  - Say yes again, since refusing looks bad when you are new
+  - Say no, and tell your manager that he keeps asking
+answer: 0
+feedback:
+  - ''
+  - Help that is never returned teaches him that you always say yes. It will not stop at three.
+  - Going to the manager first turns a small matter into a complaint, about someone you will work beside for years.
+explanation: 'This is Cooperate or defend. With someone you will keep meeting, cooperate, but on fair terms: help that goes both ways. A swap keeps the door open, and stops him taking your help for granted.'
+measures: cooperate

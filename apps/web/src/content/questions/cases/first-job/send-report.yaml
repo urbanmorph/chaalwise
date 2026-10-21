@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your weekly report at work is due in an hour, and you have found that two of its figures are counted in different ways. What do you do?
+options:
+  - Send it on time, with a note on the problem and what you checked
+  - Send it as it is, since it is the format your manager asked for
+  - Turn the van trips into parcels with your own best guess
+answer: 0
+feedback:
+  - ''
+  - If someone acts on the total, the mistake becomes theirs and yours. Ask what could go wrong before you send.
+  - A guess hidden in a report looks like a fact. If it is wrong, nobody knows to check it.
+explanation: This is The blunder check. Before you act, ask what could go wrong. Here, someone could act on a total that means nothing. A short note lets your manager decide, and shows that you check your work.
+measures: think-ahead

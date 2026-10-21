@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your student group planned its report week by week and got a B. Another group did everything in the final week and got an A. How do you judge your way of working?
+options:
+  - By what you knew when you chose it, not by the mark alone
+  - 'As worse: their way got the better mark, so copy it'
+  - As fine, and put the B down to a harsh marker
+answer: 0
+feedback:
+  - ''
+  - One result is a small sample. They may have been lucky, or stronger on the topic, and a last-week rush often fails.
+  - That keeps your plan safe from any lesson at all. The marker's comments may show something you could fix.
+explanation: "This is Review calmly: decisions, not results. Judge the choice by what you knew, and could have found out, when you made it. Then read the marker's comments to see whether the result shows something you missed, such as the small survey."
+measures: composure

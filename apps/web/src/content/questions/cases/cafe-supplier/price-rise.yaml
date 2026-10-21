@@ -1,0 +1,13 @@
+kind: choice
+prompt: You run a small café, and your coffee roaster has just raised its price by 15%. Before you decide what to do about it, what is your first step?
+options:
+  - List several ways to answer it, then compare them
+  - Find the cheapest roaster you can, and switch
+  - Decide whether to accept the rise or refuse it
+answer: 0
+feedback:
+  - ''
+  - Price is one point, but a cheap roaster may be late or poor. You would be choosing on one option and one point.
+  - That turns the decision into a yes or a no. Other options, such as a different blend or a second supplier, are not on the list at all.
+explanation: 'This is Look at three before choosing. A price rise arrives as a yes or a no, so name more options first: ask for a smaller rise, get other quotes, change the blend or the price of a cup. Then compare them on the same points: price, quality and how reliably they deliver.'
+measures: calculate

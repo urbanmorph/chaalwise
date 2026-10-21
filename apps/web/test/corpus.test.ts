@@ -5,7 +5,7 @@ import { askedIds, corpus } from './content';
 describe('the question corpus', () => {
   it('holds every question once, each under its game and idea', () => {
     expect(corpus.size).toBeGreaterThan(200);
-    for (const id of corpus.keys()) expect(id, id).toMatch(/^(chess|poker|labs|life)\/[a-z0-9-]+\/[a-z0-9-]+$/);
+    for (const id of corpus.keys()) expect(id, id).toMatch(/^(chess|poker|labs|life|cases)\/[a-z0-9-]+\/[a-z0-9-]+$/);
   });
 
   it('gives every question its own review card', () => {
@@ -74,27 +74,26 @@ describe('every question names its setting', () => {
     [/\bbasketball\b/i, /\b(free throw|three-pointer)s?\b/i],
   ];
 
+  /** Questions about life off the board: the life questions, and the decisions in the work cases. */
+  const offBoard = [...corpus].filter(([id]) => id.startsWith('life/') || id.startsWith('cases/'));
+
   it('names the game whenever a question about life uses its terms', () => {
-    const unnamed = [...corpus]
-      .filter(([id]) => id.startsWith('life/'))
-      .flatMap(([id, data]) => {
-        const text = JSON.stringify(data);
-        return GAMES.filter(([name, terms]) => terms.test(text) && !name.test(text)).map(
-          ([name]) => `${id}: ${name.source}`,
-        );
-      });
+    const unnamed = offBoard.flatMap(([id, data]) => {
+      const text = JSON.stringify(data);
+      return GAMES.filter(([name, terms]) => terms.test(text) && !name.test(text)).map(
+        ([name]) => `${id}: ${name.source}`,
+      );
+    });
     expect(unnamed).toEqual([]);
   });
 
   it('names the setting in the question itself, not only in the feedback', () => {
-    const unnamed = [...corpus]
-      .filter(([id]) => id.startsWith('life/'))
-      .flatMap(([id, data]) => {
-        const prompt = `${data.prompt as string} ${(data.alongside as string | undefined) ?? ''}`;
-        return GAMES.filter(([name, terms]) => terms.test(prompt) && !name.test(prompt)).map(
-          ([name]) => `${id}: ${name.source}`,
-        );
-      });
+    const unnamed = offBoard.flatMap(([id, data]) => {
+      const prompt = `${data.prompt as string} ${(data.alongside as string | undefined) ?? ''}`;
+      return GAMES.filter(([name, terms]) => terms.test(prompt) && !name.test(prompt)).map(
+        ([name]) => `${id}: ${name.source}`,
+      );
+    });
     expect(unnamed).toEqual([]);
   });
 });

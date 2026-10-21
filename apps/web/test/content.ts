@@ -31,7 +31,7 @@ export const question = (id: string) => {
 
 const frontmatter = (path: string) => parse(readFileSync(new URL(path, CONTENT), 'utf8').split(/^---$/m)[1]!);
 
-/** The lessons in a folder (`chess` or `strategy`), each with its questions looked up. */
+/** The lessons in a folder (`chess`, `strategy` or `cases`), each with its questions looked up. */
 export const lessonsIn = (folder: string) =>
   readdirSync(new URL(`lessons/${folder}/`, CONTENT)).map((file) => {
     const data = frontmatter(`lessons/${folder}/${file}`) as Lesson;
@@ -48,7 +48,7 @@ export const entriesIn = (game: string) =>
 
 /** Every question id that a lesson asks or a reference entry tries. */
 export const askedIds = (): string[] => [
-  ...['chess', 'strategy'].flatMap((folder) =>
+  ...['chess', 'strategy', 'cases'].flatMap((folder) =>
     readdirSync(new URL(`lessons/${folder}/`, CONTENT)).flatMap((file) =>
       (frontmatter(`lessons/${folder}/${file}`) as Lesson).steps.flatMap((step) => ('ask' in step ? [step.ask] : [])),
     ),

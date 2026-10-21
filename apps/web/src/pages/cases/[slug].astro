@@ -1,0 +1,27 @@
+---
+import { SKILLS } from '@chaalwise/core/skills';
+import LessonShell from '../../components/LessonShell.astro';
+import Base from '../../layouts/Base.astro';
+import { CASE_GROUPS, lessonPath, type LessonEntry } from '../../lib/lessons';
+
+/** Each work case, at /cases/<slug>/: a lesson on no game's path. */
+export async function getStaticPaths() {
+  return (await lessonPath('case')).map((lesson) => ({ params: { slug: lesson.id.replace(/^cases\//, '') }, props: { lesson } }));
+}
+
+const { lesson } = Astro.props as { lesson: LessonEntry };
+---
+
+<Base title={lesson.data.title} description={lesson.data.summary} wide>
+  <LessonShell {lesson}>
+    <p class="label" slot="crumb">
+      <a href="/cases/">Work cases</a> · {CASE_GROUPS[lesson.data.stage]} ·{' '}
+      {lesson.data.skills.map((s, i) => (
+        <>
+          <a href={`/skills/${s}/`}>{SKILLS[s]}</a>
+          {i < lesson.data.skills.length - 1 && ' · '}
+        </>
+      ))}
+    </p>
+  </LessonShell>
+</Base>

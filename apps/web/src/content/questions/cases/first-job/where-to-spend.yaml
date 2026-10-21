@@ -1,0 +1,13 @@
+kind: choice
+prompt: In your first week at a new job, you have spent an hour on the look of a report, and have not yet checked where its numbers come from. Where should your next hour go?
+options:
+  - Checking the numbers, since a wrong one is hard to take back
+  - Finishing the look, since first impressions at work count
+  - A little on each part, so that nothing is left out
+answer: 0
+feedback:
+  - ''
+  - The layout can be fixed next week in minutes. A wrong figure, once your manager has passed it on, cannot.
+  - Spreading time evenly treats small, easy choices like large ones. The numbers matter far more than the fonts.
+explanation: This is Spend effort where it matters. Decide small choices you can undo quickly, such as the layout, and spend your effort on the few that are large and hard to undo, such as whether the numbers are right.
+measures: composure
