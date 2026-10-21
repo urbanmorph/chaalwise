@@ -8,7 +8,7 @@ skills: [weigh-odds]
 steps:
   - kind: read
     id: more-to-come
-    text: 'Pot odds compare a call with the pot as it is. If you make your hand, you may win more on the rounds still to come: these are implied odds. They let you call a little more than the pot alone pays, but only if the other player will keep paying when you hit, and they cannot see it coming.'
+    text: 'Pot odds compare a call with the pot as it is. If you make your hand, you may win more on the rounds still to come: these are implied odds. They let you call a little more than the pot alone pays, but only if the other player will keep paying when you hit, and the more hidden your hand, the more they will pay. The reverse also happens: if your hand can come in and still lose, as with a low flush when a higher one is possible, hitting can cost you more later.'
     cards:
       hole: [Ah, 5h]
       board: [Kh, 9h, 2c, 7s]

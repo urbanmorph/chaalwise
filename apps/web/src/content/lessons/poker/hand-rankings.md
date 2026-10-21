@@ -14,7 +14,7 @@ steps:
       board: [Qh, Jh, Th, 4c, 2d]
   - kind: read
     id: what-each-is
-    text: A flush is any five cards of one suit. A straight is five ranks in a row, of any suits; the ace counts high or low. A full house is three of one rank and two of another. When two players have the same kind of hand, the higher cards win, and the five cards are compared from the top down.
+    text: 'A flush is any five cards of one suit. A straight is five ranks in a row, of any suits; the ace counts high or low. A full house is three of one rank and two of another. When two players have the same kind of hand, compare the cards that make it first: the higher pair, three or four of a kind wins. Then compare the remaining cards from the top down.'
   - ask: poker/hand-rankings/flush-or-straight
   - ask: poker/hand-rankings/full-house-or-flush
   - ask: poker/hand-rankings/kicker
