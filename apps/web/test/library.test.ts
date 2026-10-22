@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DRILLS } from '../src/lib/drill-list';
+import { ALL_DRILLS } from '../src/lib/drill-list';
 import { libraryItems } from '../src/lib/library';
 import { matchesQuery } from '../src/lib/search';
 
@@ -24,7 +24,7 @@ const strategyLesson = {
 } as const;
 
 describe('the searchable library', () => {
-  const items = libraryItems([entry], [lesson, strategyLesson], DRILLS);
+  const items = libraryItems([entry], [lesson, strategyLesson], ALL_DRILLS);
   const find = (title: string) => items.find((i) => i.title === title)!;
 
   it('puts reference entries, lessons and drills in one list, each with its type and game', () => {
@@ -52,12 +52,18 @@ describe('the searchable library', () => {
       href: '/chess/drills/#find-the-square',
       meta: 'Practice drill',
     });
+    expect(find('Poker: count the outs')).toMatchObject({
+      type: 'practice',
+      game: 'poker',
+      href: '/poker/drills/#count-the-outs',
+      meta: 'Practice drill',
+    });
   });
 
   it('lists every drill once, each with its own anchor', () => {
-    const anchors = DRILLS.map((d) => d.id);
-    expect(new Set(anchors).size).toBe(anchors.length);
-    expect(items.filter((i) => i.type === 'practice')).toHaveLength(DRILLS.length);
+    const hrefs = items.filter((i) => i.type === 'practice').map((i) => i.href);
+    expect(new Set(hrefs).size).toBe(hrefs.length);
+    expect(hrefs).toHaveLength(ALL_DRILLS.length);
   });
 
   it('finds lessons and drills by words in their summaries too', () => {

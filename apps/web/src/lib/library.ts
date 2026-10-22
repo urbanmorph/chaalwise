@@ -25,7 +25,7 @@ type LessonLike = { id: string; data: { title: string; summary: string; game: st
 export function libraryItems(
   entries: readonly EntryLike[],
   lessons: readonly LessonLike[],
-  drills: readonly Drill[],
+  drills: readonly (Drill & { game: 'chess' | 'poker' })[],
 ): LibraryItem[] {
   return [
     ...entries.map(({ id, data }) => ({
@@ -48,9 +48,9 @@ export function libraryItems(
     })),
     ...drills.map((drill) => ({
       type: 'practice' as const,
-      game: 'chess',
+      game: drill.game,
       title: drill.title,
-      href: `/chess/drills/#${drill.id}`,
+      href: `/${drill.game}/drills/#${drill.id}`,
       meta: 'Practice drill',
       summary: drill.summary,
       search: searchText({ term: drill.title, aliases: [], summary: drill.summary }),
