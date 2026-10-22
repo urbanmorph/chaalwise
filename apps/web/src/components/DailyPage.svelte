@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { readDaily, today, type DailyRecord } from '../lib/daily';
   import DailyChess from './DailyChess.svelte';
+  import DailyPoker from './poker/DailyPoker.svelte';
 
   /** Today's puzzles, and the streak of days with one finished, kept on this device. */
   let record = $state<DailyRecord>({ done: {} });
@@ -19,12 +20,12 @@
 
 <p class="streak" data-testid="daily-streak">
   {#if current}
-    <strong>{current} {current === 1 ? 'day' : 'days'}</strong> in a row{record.done.chess?.date === date
+    <strong>{current} {current === 1 ? 'day' : 'days'}</strong> in a row{record.streak?.last === date
       ? ', today included'
-      : ': solve today’s to keep it going'}.
+      : ': solve one of today’s to keep it going'}.
     {#if record.streak && record.streak.best > current}<span class="best">Best: {record.streak.best} days.</span>{/if}
   {:else}
-    Solve today’s puzzle to start a streak. A new one comes every day.
+    Solve one of today’s puzzles to start a streak. New ones come every day.
   {/if}
 </p>
 
@@ -33,9 +34,18 @@
   <DailyChess onfinished={(r) => (record = r)} />
 </section>
 
+<section aria-labelledby="poker-title">
+  <h2 id="poker-title">Today’s poker puzzle</h2>
+  <p class="sub">One exercise from the <a href="/poker/drills/">poker drills</a>, worked out by the same odds the practice tables use. Practice points only.</p>
+  <DailyPoker onfinished={(r) => (record = r)} />
+</section>
+
 <style>
   .streak {
     font-size: 1.05rem;
+  }
+  .sub {
+    color: var(--ink-2);
   }
   .best {
     color: var(--ink-2);
