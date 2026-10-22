@@ -1,0 +1,22 @@
+---
+import type { LichessLink } from '../lib/lichess';
+
+/** One line: where to practise this more on Lichess. */
+interface Props {
+  link?: LichessLink | undefined;
+}
+const { link } = Astro.props;
+---
+
+{link && (
+  <p class="lichess">
+    More practice, free: <a href={link.href}>{link.label}</a>, on Lichess.
+  </p>
+)}
+
+<style>
+  .lichess {
+    margin-top: 16px;
+    color: var(--ink-2);
+  }
+</style>

@@ -4,6 +4,8 @@ import MateDrill from '../../components/MateDrill.svelte';
 import TapAllDrill from '../../components/TapAllDrill.svelte';
 import SafetyDrill from '../../components/SafetyDrill.svelte';
 import Base from '../../layouts/Base.astro';
+import MoreOnLichess from '../../components/MoreOnLichess.astro';
+import { LICHESS_DRILLS } from '../../lib/lichess';
 import { DRILLS } from '../../lib/drill-list';
 import { safetyDrill } from '../../lib/lessons';
 
@@ -19,31 +21,37 @@ const [find, name, where, safe, loose, mates] = DRILLS;
       <h2>{find.title}</h2>
       <p>{find.summary}</p>
       <CoordinatesDrill client:load />
+      <MoreOnLichess link={LICHESS_DRILLS[find.id]} />
     </section>
     <section id={name.id}>
       <h2>{name.title}</h2>
       <p>{name.summary}</p>
       <CoordinatesDrill client:load mode="name" />
+      <MoreOnLichess link={LICHESS_DRILLS[name.id]} />
     </section>
     <section id={where.id}>
       <h2>{where.title}</h2>
       <p>{where.summary}</p>
       <TapAllDrill client:load kind="piece-squares" />
+      <MoreOnLichess link={LICHESS_DRILLS[where.id]} />
     </section>
     <section id={safe.id}>
       <h2>{safe.title}</h2>
       <p>{safe.summary}</p>
       <SafetyDrill client:load {items} />
+      <MoreOnLichess link={LICHESS_DRILLS[safe.id]} />
     </section>
     <section id={loose.id}>
       <h2>{loose.title}</h2>
       <p>{loose.summary}</p>
       <TapAllDrill client:load kind="loose-pieces" />
+      <MoreOnLichess link={LICHESS_DRILLS[loose.id]} />
     </section>
     <section id={mates.id}>
       <h2>{mates.title}</h2>
       <p>{mates.summary}</p>
       <MateDrill client:load />
+      <MoreOnLichess link={LICHESS_DRILLS[mates.id]} />
     </section>
     <section id="puzzles">
       <h2>Puzzles by theme</h2>
