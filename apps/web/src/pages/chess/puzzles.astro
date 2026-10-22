@@ -3,6 +3,8 @@ import PuzzleDrill from '../../components/PuzzleDrill.svelte';
 import NewToChess from '../../components/NewToChess.astro';
 import Base from '../../layouts/Base.astro';
 import { THEMES } from '../../lib/puzzles';
+import MoreOnLichess from '../../components/MoreOnLichess.astro';
+import { LICHESS_THEMES } from '../../lib/lichess';
 ---
 
 <Base title="Chess puzzles by theme" description="Ten puzzles at a time on one idea, from mate in one to forks and pins, at a level you choose." wide>
@@ -19,10 +21,11 @@ import { THEMES } from '../../lib/puzzles';
       <ul>
         {THEMES.map((t) => (
           <li>
-            {t.title}: <a href={`/reference/${t.entry}/`}>what it is</a>
+            {t.title}: <a href={`/reference/${t.entry}/`}>what it is</a> · <a href={`https://lichess.org/training/${t.id}`}>more on Lichess</a>
           </li>
         ))}
       </ul>
+      <MoreOnLichess link={LICHESS_THEMES} />
       <p class="credit">
         Puzzles from the <a href="https://database.lichess.org/#puzzles">Lichess puzzle database</a> (CC0), chosen for popularity and checked move by move.
         Chaalwise is not part of Lichess.
