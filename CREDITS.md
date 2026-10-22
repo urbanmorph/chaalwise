@@ -11,7 +11,7 @@ Copyright © 2026 UrbanMorph. Chaalwise is licensed under the [GNU Affero Genera
 - The board is [chessground](https://github.com/lichess-org/chessground) and the chess rules are [chessops](https://github.com/niklasf/chessops), both free software from the [Lichess](https://lichess.org/) community, under the GNU General Public License, version 3 (GPL-3.0). Chaalwise is an independent project, not part of or endorsed by Lichess.
 - The chess pieces are Colin M.L. Burnett's set, under the GNU General Public License, version 2 or later, as distributed with chessground.
 - The puzzle pipeline (`tools/puzzles`) takes its puzzles from the [Lichess puzzle database](https://database.lichess.org/#puzzles), released into the public domain (CC0). Each keeps its Lichess puzzle id.
-- Chess reference entries link to Lichess puzzle themes and opening pages for further practice. Lichess's name and logo belong to Lichess and are never used as ours.
+- Chess lessons, drills, puzzle themes and reference entries link to Lichess (its puzzles by theme, coordinates trainer, Learn, Practice and opening pages) for further practice. Lichess's name and logo belong to Lichess and are never used as ours.
 
 ## Learning
 

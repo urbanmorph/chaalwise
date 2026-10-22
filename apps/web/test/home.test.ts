@@ -97,7 +97,7 @@ describe('strategy first', () => {
 
   it('leads every page with strategy: the games are found through the reference', () => {
     for (const page of ['index.html', 'chess/index.html', 'reference/index.html'])
-      expect(nav(page)).toEqual(['strategy', 'reference', 'review', 'progress']);
+      expect(nav(page)).toEqual(['strategy', 'daily', 'reference', 'review', 'progress']);
   });
 
   it('starts a newcomer on a strategy lesson, not a chess one', () => {

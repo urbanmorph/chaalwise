@@ -75,6 +75,9 @@ export const CASE_GROUPS: Record<number, string> = {
   4: 'Running a business',
 };
 
+/** The chess stage where the path goes deeper: stages 0 to 3 are enough to play a real game; the rest is for after your first games. */
+export const GOING_DEEPER = 4;
+
 export const STAGES: Record<number, string> = {
   0: 'The board',
   1: "Don't hang pieces",

@@ -1,7 +1,7 @@
 {
   "name": "Chaalwise",
   "short_name": "Chaalwise",
-  "description": "A free, offline strategy gym: learn to think ahead through chess and poker, against the computer.",
+  "description": "Free, short lessons in strategy and decision-making, shown in chess and poker. Offline, with no account and no money.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
