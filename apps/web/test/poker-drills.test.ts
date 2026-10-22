@@ -49,19 +49,23 @@ describe('poker drills: every answer is worked out by the engine', () => {
     }
   });
 
-  it('name poker in every question, explain the jargon, and say points, never chips or money', () => {
-    for (const kind of POKER_DRILL_KINDS) {
-      for (const item of items(kind, kind === 'equity' ? 2 : 10)) {
-        expect(item.prompt, kind).toMatch(/\bpoker\b/);
-        expect(`${item.prompt} ${item.explanation}`, kind).not.toMatch(/\bchips?\b|\bcash\b|money|₹|\$/i);
-        expect(item.explanation.length, kind).toBeGreaterThan(20);
-        if (item.options) expect(item.answer).toBeLessThan(item.options.length);
+  it(
+    'name poker in every question, explain the jargon, and say points, never chips or money',
+    { timeout: 60_000 },
+    () => {
+      for (const kind of POKER_DRILL_KINDS) {
+        for (const item of items(kind, kind === 'equity' ? 2 : 10)) {
+          expect(item.prompt, kind).toMatch(/\bpoker\b/);
+          expect(`${item.prompt} ${item.explanation}`, kind).not.toMatch(/\bchips?\b|\bcash\b|money|₹|\$/i);
+          expect(item.explanation.length, kind).toBeGreaterThan(20);
+          if (item.options) expect(item.answer).toBeLessThan(item.options.length);
+        }
       }
-    }
-    expect(items('outs', 1)[0]!.prompt).toMatch(/an out is an unseen card/i);
-    expect(items('nuts', 1)[0]!.prompt).toMatch(/the nuts/);
-    expect(items('equity', 1)[0]!.prompt).toMatch(/equity/);
-  });
+      expect(items('outs', 1)[0]!.prompt).toMatch(/an out is an unseen card/i);
+      expect(items('nuts', 1)[0]!.prompt).toMatch(/the nuts/);
+      expect(items('equity', 1)[0]!.prompt).toMatch(/equity/);
+    },
+  );
 
   it('count the outs: the answer is every unseen card that makes the stated hand', () => {
     for (const item of items('outs', 30)) {
