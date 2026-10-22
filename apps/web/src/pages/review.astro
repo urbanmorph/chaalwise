@@ -8,7 +8,7 @@ import { reviewSteps } from '../lib/lessons';
 const steps = await reviewSteps();
 ---
 
-<Base title="Review" description="Today's spaced-repetition review." wide>
+<Base title="Review" description="Today's spaced-repetition review." wide noindex>
   <div class="wrap wide">
     <h1>Today's review</h1>
     <ReviewSession client:load {steps} />

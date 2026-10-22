@@ -37,7 +37,7 @@ const questions = await ask(data.try ?? []);
 const opening = data.position?.startsWith('moves:') ? numberedMoves(data.position.slice(6)) : undefined;
 ---
 
-<Base title={data.term} description={data.summary}>
+<Base title={`${data.term} · ${GAME_NAMES[data.game]} reference`} description={data.summary}>
   <article class="wrap entry">
     <p class="crumb">
       <a href="/reference/">Reference</a> / <a href={`/reference/?game=${data.game}`}>{GAME_NAMES[data.game]}</a>

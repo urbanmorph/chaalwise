@@ -4,6 +4,7 @@ import NextFocus from '../components/NextFocus.astro';
 import PlayingCard from '../components/poker/PlayingCard.svelte';
 import Base from '../layouts/Base.astro';
 import { HERO } from '../lib/diagram';
+import { SITE_SCHEMA } from '../lib/seo';
 import { bestIn, TRACKS } from '../lib/skill-tracks';
 
 // The skills, each under the game that trains it best: that game is where its practice is.
@@ -14,7 +15,7 @@ const GAMES = [
 ] as const;
 ---
 
-<Base title="Chaalwise">
+<Base title="Learn strategy through chess and poker" schema={SITE_SCHEMA}>
   <section class="hero wrap">
     <div class="pitch">
       <h1>Think a move ahead.</h1>

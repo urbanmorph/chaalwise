@@ -8,17 +8,24 @@ interface Props {
   description?: string;
   /** Pages with a board beside text use the wider column, header and footer included. */
   wide?: boolean;
+  /** The learner's own pages, and the not-found page: kept out of search. */
+  noindex?: boolean;
+  /** Structured data for search engines (lib/seo.ts); a single item gets this page's address. */
+  schema?: Record<string, unknown>;
 }
 
 const {
   title,
   wide = false,
-  description = 'A free, offline strategy gym: learn to think ahead through chess and poker, against the computer. No money, no ratings.',
+  noindex = false,
+  schema,
+  description = 'Free, short lessons in strategy and decision-making, shown in chess and poker and used at work and in study. Offline, with no account and no money.',
 } = Astro.props;
 const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
 // What a link preview shows: the page's own title and description, on one share card for the site (scripts/og-image.mjs).
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href;
+const jsonLd = schema && JSON.stringify(schema['@graph'] ? schema : { ...schema, url: pageUrl });
 // Strategy first; the games, with their lessons and drills, are found through the reference.
 const NAV = [
   ['/skills/', 'strategy'],
@@ -38,6 +45,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={pageUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Chaalwise" />
     <meta property="og:title" content={fullTitle} />
@@ -53,6 +61,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body>
     <a class="skip" href="#main">

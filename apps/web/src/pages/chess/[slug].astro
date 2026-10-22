@@ -1,4 +1,5 @@
 ---
+import { lessonSchema } from '../../lib/seo';
 import LessonShell from '../../components/LessonShell.astro';
 import Base from '../../layouts/Base.astro';
 import { chessLessons, STAGES, type LessonEntry } from '../../lib/lessons';
@@ -10,7 +11,7 @@ export async function getStaticPaths() {
 const { lesson } = Astro.props as { lesson: LessonEntry };
 ---
 
-<Base title={lesson.data.title} description={lesson.data.summary} wide>
+<Base title={lesson.data.title} description={lesson.data.summary} schema={lessonSchema(lesson)} wide>
   <LessonShell {lesson}>
     <p class="label" slot="crumb">
       <a href="/chess/">Chess</a> · Stage {lesson.data.stage}: {STAGES[lesson.data.stage]}
