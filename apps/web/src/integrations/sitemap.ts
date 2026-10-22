@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
 
 /** Pages that are the learner's own, or not a page at all: marked noindex, and left out of the sitemap. */
-export const PRIVATE_PAGES = ['progress/', 'review/', '404/'];
+export const PRIVATE_PAGES = ['progress/', 'review/', 'offline/', '404/'];
 
 /** The sitemap: every public page, by its full address. */
 export const sitemap = (site: string, paths: string[]): string =>

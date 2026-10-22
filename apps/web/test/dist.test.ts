@@ -16,19 +16,31 @@ const htmlFiles = all.filter((f) => f.endsWith('.html'));
 const read = (path: string) => readFileSync(join(DIST, path), 'utf8');
 
 /** The worker starts with `self.__PRECACHE__={...};` so the list can be read back. */
-const precache = (): { version: string; pages: string[]; assets: string[] } => {
+const precache = (): { version: string; pages: string[]; rest: string[]; assets: string[] } => {
   const first = read('sw.js').split('\n')[0]!;
   return JSON.parse(first.replace(/^self\.__PRECACHE__=/, '').replace(/;$/, ''));
 };
 
 describe('the offline worker', () => {
-  it('precaches every page, by the URL a learner visits', () => {
+  it('saves every page, by the URL a learner visits', () => {
     const urls = htmlFiles.filter((f) => f.endsWith('index.html')).map((f) => f.replace(/index\.html$/, ''));
-    expect(precache().pages.sort()).toEqual(urls.sort());
+    const { pages, rest } = precache();
+    expect([...pages, ...rest].sort()).toEqual(urls.sort());
+  });
+
+  it('installs with the key pages only: the home page, each section and the offline page; the rest follow', () => {
+    const { pages, rest } = precache();
+    expect(pages).toEqual(
+      expect.arrayContaining(['/', '/offline/', '/chess/', '/poker/', '/skills/', '/progress/', '/review/']),
+    );
+    expect(pages.every((p) => p.split('/').length <= 3)).toBe(true);
+    expect(rest).toEqual(expect.arrayContaining(['/chess/board/', '/chess/hanging/']));
+    expect(rest.every((p) => p.split('/').length > 3)).toBe(true);
   });
 
   it('leaves out the 404 page, which Cloudflare only serves by redirect', () => {
-    expect(precache().pages).not.toContain('/404.html');
+    const { pages, rest } = precache();
+    expect([...pages, ...rest]).not.toContain('/404.html');
   });
 
   it('precaches every build file, and every one of them is content-hashed', () => {
@@ -92,8 +104,8 @@ describe('installing the app', () => {
   });
   it('keeps the screenshots out of the offline cache: only the install dialog fetches them', () => {
     expect(screenshots.length).toBeGreaterThan(0);
-    const { pages, assets } = precache();
-    for (const { src } of screenshots) expect([...pages, ...assets]).not.toContain(src);
+    const { pages, rest, assets } = precache();
+    for (const { src } of screenshots) expect([...pages, ...rest, ...assets]).not.toContain(src);
     expect(read('sw.js')).not.toMatch(/screenshot/);
   });
   it('offers a hidden install button and the iPhone guide on every page', () => {

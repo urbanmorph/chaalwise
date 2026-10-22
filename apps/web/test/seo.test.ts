@@ -15,7 +15,7 @@ function pages(dir = DIST): string[] {
   });
 }
 const html = (page: string) => read(page.endsWith('.html') ? page : `${page}index.html`);
-const PRIVATE = ['/progress/', '/review/', '/404.html'];
+const PRIVATE = ['/progress/', '/review/', '/offline/', '/404.html'];
 const indexable = pages().filter((p) => !PRIVATE.includes(p));
 const jsonLd = (page: string) =>
   [...html(page).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]!));
@@ -38,7 +38,7 @@ describe('what search engines are told', () => {
     }
   });
 
-  it('keeps the learner’s own pages and the not-found page out of search', () => {
+  it('keeps the learner’s own pages, the offline page and the not-found page out of search', () => {
     for (const page of PRIVATE) expect(html(page), page).toContain('<meta name="robots" content="noindex">');
   });
 

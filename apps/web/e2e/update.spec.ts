@@ -1,5 +1,15 @@
 import { expect, test, type Page } from '@playwright/test';
+import { readdirSync } from 'node:fs';
+import { BUILDS } from './build.setup';
 import { deploy, waitForOffline } from './helpers';
+
+/** A build file of version A that version B does not have: gone from the server once B is deployed. */
+const onlyInA = () => {
+  const b = new Set(readdirSync(`${BUILDS}B/_astro`));
+  const file = readdirSync(`${BUILDS}A/_astro`).find((f) => f.endsWith('.js') && !b.has(f));
+  expect(file).toBeDefined();
+  return `/_astro/${file}`;
+};
 
 const checkForUpdate = (page: Page) =>
   page.evaluate(async () => (await navigator.serviceWorker.getRegistration())?.update());
@@ -40,4 +50,8 @@ test('accepting in one tab does not reload a lesson open in another', async ({ c
   await expect(second.getByText('Chaalwise was updated in another tab.')).toBeVisible();
   expect(secondLoads).toBe(0);
   await expect(second.locator('section.player')).toHaveAttribute('data-build', 'A');
+  // The tab on A can still load A's code, which the server no longer has.
+  const old = onlyInA();
+  expect((await second.request.get(old)).status()).toBe(404);
+  expect(await second.evaluate((url) => fetch(url).then((r) => r.status), old)).toBe(200);
 });

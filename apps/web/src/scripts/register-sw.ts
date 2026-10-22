@@ -5,8 +5,33 @@
  * the update happened elsewhere.
  */
 import { BEACON_TOKEN, LIVE_HOST } from '../lib/analytics';
+import { isChunkLoadError, shouldReload } from '../lib/stale-chunk';
 
 document.documentElement.dataset.build = __BUILD_ID__;
+
+// A tab open across a deploy whose code is gone from the server reloads once, to the new version.
+const RELOADED_AT = 'chaalwise-chunk-reload';
+function reloadForNewVersion() {
+  try {
+    const now = Date.now();
+    const last = Number(sessionStorage.getItem(RELOADED_AT)) || undefined;
+    const controlled = !!navigator.serviceWorker?.controller;
+    if (!shouldReload({ now, last, online: navigator.onLine, controlled })) return;
+    sessionStorage.setItem(RELOADED_AT, String(now));
+  } catch {
+    return; // Storage is blocked: with no way to stop a loop, stay put.
+  }
+  location.reload();
+}
+window.addEventListener('vite:preloadError', reloadForNewVersion);
+// An island whose code fails to load, after Astro's own retry.
+window.addEventListener('astro:hydration-error', (event) => {
+  if (isChunkLoadError((event as CustomEvent<{ error: unknown }>).detail.error)) reloadForNewVersion();
+});
+// The lessons' own lazy imports.
+window.addEventListener('unhandledrejection', (event) => {
+  if (isChunkLoadError(event.reason)) reloadForNewVersion();
+});
 
 // Cloudflare Web Analytics, on the live site only: no cookies, and nothing about learners.
 if (location.host === LIVE_HOST) {
@@ -72,4 +97,7 @@ if ('serviceWorker' in navigator && __TOMBSTONE__) {
       });
     })
     .catch((error) => console.warn('Offline mode is unavailable:', error));
+
+  // The worker installs with the key pages only; this has it save the rest, in the background.
+  void navigator.serviceWorker.ready.then((reg) => reg.active?.postMessage('fill'));
 }

@@ -59,3 +59,29 @@ test('starting again forgets the place, and a fresh lesson offers nothing', asyn
   await hydrated(page);
   await expect(offer(page)).toBeHidden();
 });
+
+test('the place in a lesson goes into the progress file, and carries on from it on another device', async ({
+  page,
+  browser,
+}) => {
+  await leaveAtStepThree(page);
+  await page.goto('/progress/');
+  await hydrated(page);
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: 'Save progress to a file' }).click(),
+  ]);
+  const file = await download.path();
+
+  // Another device: a browser with nothing saved.
+  const other = await browser.newContext();
+  const fresh = await other.newPage();
+  await fresh.goto('/progress/');
+  await hydrated(fresh);
+  await fresh.getByLabel('Load a progress file').setInputFiles(file);
+  await fresh.getByRole('button', { name: 'Replace my progress' }).click();
+  await expect(fresh.getByText(/^Progress loaded from/)).toBeVisible();
+  await fresh.goto('/chess/hanging/');
+  await expect(offer(fresh)).toContainText('step 3 of 4');
+  await other.close();
+});

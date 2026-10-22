@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { clearResume, readResume, RESUME_KEY, saveResume } from '../src/lib/resume';
+import { clearResume, exportResume, importResume, readResume, RESUME_KEY, saveResume } from '../src/lib/resume';
 
 const STEPS = ['intro', 'q1', 'q2', 'plan'];
 
@@ -65,5 +65,38 @@ describe('where a learner left a lesson', () => {
     expect(readResume('strategy/a', STEPS)).toBeUndefined();
     expect(() => saveResume('strategy/a', STEPS, 1, {})).not.toThrow();
     expect(() => clearResume('strategy/a')).not.toThrow();
+  });
+});
+
+describe('the place in each lesson, in the progress file', () => {
+  it('goes into the file, and comes back from it on another device', () => {
+    saveResume('strategy/a', STEPS, 2, { q1: 'first-try' });
+    const file = JSON.parse(JSON.stringify(exportResume()));
+    localStorage.removeItem(RESUME_KEY);
+    importResume(file);
+    expect(readResume('strategy/a', STEPS)).toEqual({ index: 2, outcomes: { q1: 'first-try' } });
+  });
+
+  it('replaces the places on this device, like the rest of the file; a file with none clears them', () => {
+    saveResume('chess/b', ['x', 'y'], 1, {});
+    importResume({ 'strategy/a': { index: 1, step: 'q1', outcomes: {} } });
+    expect(readResume('chess/b', ['x', 'y'])).toBeUndefined();
+    expect(readResume('strategy/a', STEPS)?.index).toBe(1);
+    // Files saved before October 2026 have no places at all.
+    importResume(undefined);
+    expect(localStorage.getItem(RESUME_KEY)).toBeNull();
+  });
+
+  it('keeps only well-formed places from a file', () => {
+    importResume({
+      'strategy/a': { index: 2, step: 'q2', outcomes: { q1: 'first-try', q2: 'won' } },
+      'chess/b': { index: 'two', step: 'y', outcomes: {} },
+      'chess/c': { index: 1, outcomes: {} },
+      'chess/d': 'step 3',
+    });
+    expect(Object.keys(exportResume())).toEqual(['strategy/a']);
+    expect(readResume('strategy/a', STEPS)).toEqual({ index: 2, outcomes: { q1: 'first-try' } });
+    importResume([1, 2]);
+    expect(exportResume()).toEqual({});
   });
 });

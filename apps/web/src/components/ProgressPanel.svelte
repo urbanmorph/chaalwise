@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { saveDone } from '../lib/done-lessons';
   import { labHref, labsPlayed, playedLabel } from '../lib/labs/labs';
+  import { exportResume, importResume } from '../lib/resume';
 
   interface Props {
     /** Review questions the site still has; any others (from changed lessons) are not counted. */
@@ -47,7 +48,8 @@
 
   async function exportFile() {
     const progress = await openProgress();
-    const data = await progress.exportData(new Date());
+    // The place in each unfinished lesson goes too, so another device carries on from there.
+    const data = { ...(await progress.exportData(new Date())), resume: exportResume() };
     progress.close();
     const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
     const link = Object.assign(document.createElement('a'), {
@@ -81,6 +83,7 @@
       try {
         await progress.importData(data);
         saveDone(await progress.completedLessons());
+        importResume((data as { resume?: unknown }).resume);
       } finally {
         progress.close();
       }
