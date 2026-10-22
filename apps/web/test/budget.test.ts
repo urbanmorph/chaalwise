@@ -13,6 +13,7 @@ describe('JavaScript budgets (plan, section 12: India-first, mid-range phone on 
   it('gives board pages 80 KB, the progress dashboard and the labs 40 KB, and every other page 30 KB, compressed', () => {
     expect(budgetFor('/chess/board/')).toBe(80_000);
     expect(budgetFor('/review/')).toBe(80_000);
+    expect(budgetFor('/daily/')).toBe(80_000);
     expect(budgetFor('/skills/blunder-check/')).toBe(80_000);
     expect(budgetFor('/skills/')).toBe(30_000);
     // A work case plays in the lesson player, so it gets a lesson's budget; the cases index is a reading page.

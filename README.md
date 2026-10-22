@@ -1,6 +1,8 @@
 # Chaalwise
 
-A free, offline strategy gym. Learn to think ahead, calculate, weigh odds and plan, through chess, poker and game-theory labs, against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no ratings, and your progress never leaves your device.
+Free, short lessons in strategy and decision-making for people who run things, or are learning to. Eleven skills (thinking ahead, weighing odds, sizing a risk, keeping a cool head and more), each shown in chess, poker or a game-theory lab, used on work and study cases, and brought back by spaced review. Against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no ratings, no account, and your progress never leaves your device.
+
+What is there: 27 chess lessons, from the board to full games; 11 poker lessons, guided first hands, practice tables and poker drills; 10 game-theory labs; 22 strategy lessons and 6 work cases; daily chess drills and puzzles by theme; today's puzzles (one chess, one poker, every day, with a streak); review, practice and a skill profile; a reference of every idea; a printable pack for teams and classes.
 
 Live at [chaalwise.com](https://chaalwise.com).
 
@@ -8,8 +10,11 @@ Live at [chaalwise.com](https://chaalwise.com).
 
 ```
 packages/core   lesson format, lesson player, spaced repetition (FSRS), on-device progress (IndexedDB)
-apps/web        Astro site with Svelte 5 islands: the chess board (chessground), lessons, review, progress
-                and the offline service worker
+packages/teach  chess teaching helpers: positions, legal moves, practice generators
+packages/poker  poker engine: cards, hand ranking, outs, odds and equity, the table and its bots
+apps/web        Astro site with Svelte 5 islands: the chess board (chessground), lessons, labs, drills,
+                review, progress and the offline service worker
+apps/web/src/worker   the Worker for /api/count, the anonymous counts (D1, migrations/ in apps/web)
 tools/puzzles   build-time tool: the Lichess puzzle database to small theme chunks, cached in R2
 ```
 
@@ -36,7 +41,11 @@ The service worker fetches pages network-first, caches only content-hashed build
 
 ## Deploy
 
-Pushes to `main` deploy through GitHub Actions after every check passes. For a manual deploy, put the UrbanMorph account's `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in `.env` (never committed) and run `pnpm ship`.
+Pushes to `main` deploy through GitHub Actions after every check passes. For a manual deploy, put the UrbanMorph account's `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in `.env` (never committed) and run `pnpm ship`. The site is static files on Cloudflare Workers at chaalwise.com, served first; a small Worker (`apps/web/src/worker`) answers only `/api/count`.
+
+## What is counted
+
+Progress never leaves the device. The site counts two things, both anonymous: page visits, with Cloudflare Web Analytics (no cookies), and how often things are finished. When a lesson, lab, drill, practice hand or review round is finished, the page sends only its name, such as `played:labs/nim` (`apps/web/src/lib/count.ts`), and the Worker adds one to that name's daily total in the D1 database `chaalwise-metrics`. No ID, answer or anything about the learner is sent or stored. The schema is `apps/web/migrations/`; apply a new one with `pnpm --filter @chaalwise/web exec wrangler d1 migrations apply chaalwise-metrics --remote`.
 
 ## Puzzle pipeline
 

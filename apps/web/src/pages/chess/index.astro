@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import LessonList from '../../components/LessonList.astro';
-import { lessonPath, STAGES } from '../../lib/lessons';
+import { GOING_DEEPER, lessonPath, STAGES } from '../../lib/lessons';
 
 // The whole path: chess lessons, with strategy lessons where they fall.
 const lessons = await lessonPath();
@@ -17,6 +17,6 @@ const lessons = await lessonPath();
     <p>
       <a href="/chess/drills/">Daily drills</a>: find the square, and is this move safe? A few minutes a day.
     </p>
-    <LessonList {lessons} stageNames={STAGES} />
+    <LessonList {lessons} stageNames={STAGES} deeperFrom={GOING_DEEPER} />
   </div>
 </Base>

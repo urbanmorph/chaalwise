@@ -6,30 +6,43 @@ import { lessonHref, type LessonEntry } from '../lib/lessons';
 interface Props {
   lessons: LessonEntry[];
   stageNames: Record<number, string>;
+  /** The stage from which the rest is optional depth, marked with a break before it (chess only). */
+  deeperFrom?: number;
 }
 
-const { lessons, stageNames } = Astro.props;
+const { lessons, stageNames, deeperFrom } = Astro.props;
 const stages = [...new Set(lessons.map((l) => l.data.stage))];
 ---
 
 {stages.map((stage) => (
-  <section>
-    <h2>
-      <span class="label">Stage {stage}</span> {stageNames[stage]}
-    </h2>
-    <ol class="lessons">
-      {lessons
-        .filter((l) => l.data.stage === stage)
-        .map((l) => (
-          <li class="card" class:list={{ strategy: l.data.game === 'strategy' }} data-lesson={l.id}>
-            {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
-            <a href={lessonHref(l)}>{l.data.title}</a>
-            <p>{l.data.summary}</p>
-            <span class="done-badge label">Done</span>
-          </li>
-        ))}
-    </ol>
-  </section>
+  <>
+    {stage === deeperFrom && (
+      <div class="deeper">
+        <h2>Going deeper: after your first games</h2>
+        <p>
+          The stages above are enough to play a real game. <a href="/play-elsewhere/">Play some games</a> first, then come back for tactics, the middlegame,
+          endgames and the full game. Nothing is locked: start anywhere.
+        </p>
+      </div>
+    )}
+    <section>
+      <h2>
+        <span class="label">Stage {stage}</span> {stageNames[stage]}
+      </h2>
+      <ol class="lessons">
+        {lessons
+          .filter((l) => l.data.stage === stage)
+          .map((l) => (
+            <li class="card" class:list={{ strategy: l.data.game === 'strategy' }} data-lesson={l.id}>
+              {l.data.game === 'strategy' && <span class="label kind">Strategy · {l.data.skills.map((s) => SKILLS[s]).join(' · ')}</span>}
+              <a href={lessonHref(l)}>{l.data.title}</a>
+              <p>{l.data.summary}</p>
+              <span class="done-badge label">Done</span>
+            </li>
+          ))}
+      </ol>
+    </section>
+  </>
 ))}
 
 <script>
@@ -40,6 +53,14 @@ const stages = [...new Set(lessons.map((l) => l.data.stage))];
 </script>
 
 <style>
+  .deeper {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 2px solid var(--felt-2);
+  }
+  .deeper p {
+    color: var(--ink-2);
+  }
   section {
     margin-top: 32px;
   }

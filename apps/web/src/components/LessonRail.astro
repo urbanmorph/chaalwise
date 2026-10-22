@@ -1,5 +1,5 @@
 ---
-import { CASE_GROUPS, lessonHref, lessonPath, POKER_STAGES, STAGES, type Course } from '../lib/lessons';
+import { CASE_GROUPS, GOING_DEEPER, lessonHref, lessonPath, POKER_STAGES, STAGES, type Course } from '../lib/lessons';
 
 /**
  * The whole path beside a lesson: every stage folded except the one you are in,
@@ -23,21 +23,24 @@ const stages = [...new Set(path.map((l) => l.data.stage))];
   {stages.map((stage) => {
     const lessons = path.filter((l) => l.data.stage === stage);
     return (
-      <details open={lessons.some((l) => l.id === current)}>
-        <summary>
-          <span class="label">{heading(stage)}</span>
-          <span class="count">{lessons.length}</span>
-        </summary>
-        <ol>
-          {lessons.map((l) => (
-            <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
-              <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
-                {l.data.title}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </details>
+      <>
+        {course === 'chess' && stage === GOING_DEEPER && <p class="deeper">Going deeper: after your first games</p>}
+        <details open={lessons.some((l) => l.id === current)}>
+          <summary>
+            <span class="label">{heading(stage)}</span>
+            <span class="count">{lessons.length}</span>
+          </summary>
+          <ol>
+            {lessons.map((l) => (
+              <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
+                <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
+                  {l.data.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
+      </>
     );
   })}
 </nav>
@@ -49,6 +52,14 @@ const stages = [...new Set(path.map((l) => l.data.stage))];
 </script>
 
 <style>
+  .deeper {
+    margin: 16px 0 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    color: var(--accent-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
   details + details {
     margin-top: 4px;
   }

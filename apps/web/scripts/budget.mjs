@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
 /** Pages with a board or a practice table: chess and strategy lessons, work cases (they play in the lesson player), the review, and poker practice. Everything else is a reading page. */
-const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|cases\/[^/]+|review|poker\/[^/]+)\/$/;
+const BOARD_PAGES = /^\/(chess\/[^/]+|skills\/[^/]+|cases\/[^/]+|review|daily|poker\/[^/]+)\/$/;
 
 /** Interactive pages without a board: the progress dashboard (period filter, radar) and each lab. */
 const DASHBOARD_PAGES = /^\/(progress|labs\/[^/]+)\/$/;

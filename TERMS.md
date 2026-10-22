@@ -20,7 +20,7 @@ If you go on to play poker away from Chaalwise, play only at home for points or 
 
 ## Your progress stays with you
 
-- What you do in Chaalwise is stored in your own browser, on your own device. It is never sent to us or to anyone else.
+- Your progress (your answers, what you have finished, your plans, your streak) is stored in your own browser, on your own device. It is never sent to us or to anyone else.
 - There are no accounts, ads, tracking cookies or third-party trackers.
 - To see which parts are used, the site counts, anonymously, how often things are finished: when a lesson, lab, drill, practice hand or review is finished, it sends only that thing's name, such as "lab Nim played", and a daily total goes up by one. Nothing about you, your answers or your device is sent, and the counts cannot be linked to anyone. Page visits are counted the same way, with Cloudflare Web Analytics, which uses no cookies.
 - You can export your progress to a file and import it on another device from the progress page.
