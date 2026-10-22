@@ -1,0 +1,36 @@
+---
+import NewToPoker from '../../components/NewToPoker.astro';
+import PokerDrill from '../../components/poker/PokerDrill.svelte';
+import Base from '../../layouts/Base.astro';
+import { POKER_DRILLS } from '../../lib/drill-list';
+import { lessonPath } from '../../lib/lessons';
+
+const lessons = await lessonPath('poker');
+const titleOf = (slug: string) => lessons.find((lesson) => lesson.id === `poker/${slug}`)!.data.title;
+---
+
+<Base title="Poker drills" description="Short poker drills for every day: count the outs, call or fold, find the nuts, play or fold, and guess your chance.">
+  <div class="wrap wide">
+    <h1>Poker drills</h1>
+    <p>
+      Ten hands at a time, dealt fresh each round and checked by the same odds the practice tables use, for the sums that should become automatic. Your best
+      scores stay on this device.
+    </p>
+    <NewToPoker />
+    {POKER_DRILLS.map((drill) => (
+      <section id={drill.id}>
+        <h2>{drill.title}</h2>
+        <p>
+          {drill.summary} Learn it in <a href={`/poker/${drill.lesson}/`}>{titleOf(drill.lesson)}</a>.
+        </p>
+        <PokerDrill client:load kind={drill.kind} />
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  section {
+    margin-top: 40px;
+  }
+</style>

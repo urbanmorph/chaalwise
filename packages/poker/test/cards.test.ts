@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cardName, deck, rankName, rankPlural, shuffle, type Card } from '../src/cards';
+import { cardName, deck, rankName, rankPlural, shuffle, suitName, type Card } from '../src/cards';
 import { seeded } from '../src/random';
 
 describe('cards', () => {
@@ -29,6 +29,8 @@ describe('cards', () => {
     expect(rankName('J')).toBe('jack');
     expect(rankPlural('6')).toBe('sixes');
     expect(rankPlural('A')).toBe('aces');
+    expect(suitName('h')).toBe('hearts');
+    expect(suitName('c')).toBe('clubs');
   });
 });
 

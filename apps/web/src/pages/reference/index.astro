@@ -1,12 +1,12 @@
 ---
 import { GAME_NAMES, REFERENCE_GAMES } from '@chaalwise/core/reference';
 import Base from '../../layouts/Base.astro';
-import { DRILLS } from '../../lib/drill-list';
+import { ALL_DRILLS } from '../../lib/drill-list';
 import { lessonPath } from '../../lib/lessons';
 import { libraryItems } from '../../lib/library';
 import { referenceEntries } from '../../lib/reference-entries';
 
-const items = libraryItems(await referenceEntries(), await lessonPath(), DRILLS);
+const items = libraryItems(await referenceEntries(), await lessonPath(), ALL_DRILLS);
 const groups = REFERENCE_GAMES.map((game) => ({ game, items: items.filter((i) => i.game === game) }));
 /** Where a game's lessons are listed in order, for working through them rather than looking one up. */
 const IN_ORDER: Partial<Record<string, { href: string; label: string }>> = {

@@ -196,6 +196,12 @@ export const DRILL_SKILL: Record<string, string> = {
   safety: 'safety',
   'loose-pieces': 'safety',
   mate: 'endgame',
+  'poker-outs': 'odds',
+  'poker-pot-odds': 'odds',
+  'poker-equity': 'odds',
+  // Reading the board for the nuts is seeing every hand the others could hold.
+  'poker-nuts': 'ranges',
+  'poker-preflop': 'starting-hands',
 };
 
 /**
