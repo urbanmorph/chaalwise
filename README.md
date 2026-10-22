@@ -2,7 +2,7 @@
 
 Free, short lessons in strategy and decision-making for people who run things, or are learning to. Eleven skills (thinking ahead, weighing odds, sizing a risk, keeping a cool head and more), each shown in chess, poker or a game-theory lab, used on work and study cases, and brought back by spaced review. Against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no ratings, no account, and your progress never leaves your device.
 
-What is there: 27 chess lessons, from the board to full games; 11 poker lessons, guided first hands, practice tables and poker drills; 10 game-theory labs; 22 strategy lessons and 6 work cases; daily chess drills and puzzles by theme; today's puzzles (one chess, one poker, every day, with a streak); review, practice and a skill profile; a reference of every idea; a printable pack for teams and classes.
+What is there: 27 chess lessons, from the board to full games; 11 poker lessons, guided first hands, practice tables and poker drills; 11 game-theory labs; 22 strategy lessons and 6 work cases; daily chess drills and puzzles by theme; today's puzzles (one chess, one poker, every day, with a streak); review, practice and a skill profile; a reference of every idea; a printable pack for teams and classes.
 
 Live at [chaalwise.com](https://chaalwise.com).
 
