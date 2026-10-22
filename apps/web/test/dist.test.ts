@@ -57,6 +57,20 @@ describe('response headers', () => {
   });
 });
 
+describe('installing the app', () => {
+  it('names the app by a fixed id and language in the manifest', () => {
+    const manifest = JSON.parse(read('manifest.webmanifest'));
+    expect(manifest).toMatchObject({ id: '/', lang: 'en', start_url: '/', display: 'standalone' });
+  });
+  it('offers a hidden install button and the iPhone guide on every page', () => {
+    for (const page of htmlFiles) {
+      const html = read(page);
+      expect(html, page).toMatch(/<button[^>]*id="install-app"[^>]*hidden[^>]*>\s*Install app/);
+      expect(html, page).toMatch(/<dialog[^>]*id="install-guide"/);
+    }
+  });
+});
+
 describe.each(htmlFiles)('%s', (page) => {
   const html = read(page);
   it('loads nothing from other sites, and links only to known ones', () => {
