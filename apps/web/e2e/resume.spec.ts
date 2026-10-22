@@ -60,10 +60,14 @@ test('starting again forgets the place, and a fresh lesson offers nothing', asyn
   await expect(offer(page)).toBeHidden();
 });
 
-test('the place in a lesson goes into the progress file, and carries on from it on another device', async ({
+test('the place in a lesson and the daily streak go into the progress file, and carry on from it on another device', async ({
   page,
   browser,
 }) => {
+  await page.goto('/daily/');
+  await hydrated(page);
+  await page.getByRole('button', { name: 'Show the answer' }).click();
+  await expect(page.getByTestId('daily-streak')).toContainText('1 day in a row, today included');
   await leaveAtStepThree(page);
   await page.goto('/progress/');
   await hydrated(page);
@@ -83,5 +87,8 @@ test('the place in a lesson goes into the progress file, and carries on from it 
   await expect(fresh.getByText(/^Progress loaded from/)).toBeVisible();
   await fresh.goto('/chess/hanging/');
   await expect(offer(fresh)).toContainText('step 3 of 4');
+  await fresh.goto('/daily/');
+  await hydrated(fresh);
+  await expect(fresh.getByTestId('daily-streak')).toContainText('1 day in a row, today included');
   await other.close();
 });

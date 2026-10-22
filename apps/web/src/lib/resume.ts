@@ -1,4 +1,5 @@
 import type { Outcome } from '@chaalwise/core/player';
+import { isObject } from './is-object';
 
 /**
  * Where the learner left each unfinished lesson on this device: the step
@@ -21,8 +22,6 @@ interface Resume {
 type Saved = Record<string, Resume & { step: string }>;
 
 const OUTCOMES = new Set<string>(['first-try', 'with-help', 'missed'] satisfies Outcome[]);
-
-const isObject = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 
 /** The answers that are real outcomes, to steps `keep` accepts. */
 const outcomesIn = (outcomes: unknown, keep: (id: string) => boolean): Record<string, Outcome> =>

@@ -1,3 +1,4 @@
+import { isObject } from './is-object';
 import { THEMES } from './puzzles';
 
 /**
@@ -45,7 +46,9 @@ export function nextStreak(prev: Streak | undefined, date: string): Streak {
 
 /**
  * The streak and today's results, in localStorage like the lesson bookmark: a small
- * record that reads before the page paints. It never leaves the device.
+ * record that reads before the page paints. It goes into the progress file the
+ * learner saves (exportDaily), so a new device keeps the streak; otherwise it
+ * never leaves the device.
  */
 export const DAILY_KEY = 'chaalwise-daily';
 export type DailyKind = 'chess' | 'poker';
@@ -58,7 +61,7 @@ export interface DailyRecord {
 export function readDaily(): DailyRecord {
   try {
     const saved = JSON.parse(localStorage.getItem(DAILY_KEY) ?? '{}');
-    return { done: {}, ...(saved && typeof saved === 'object' ? saved : {}) };
+    return { done: {}, ...(isObject(saved) ? saved : {}) };
   } catch {
     return { done: {} };
   }
@@ -68,10 +71,42 @@ export function readDaily(): DailyRecord {
 export function finishDaily(kind: DailyKind, date: string, right: boolean): DailyRecord {
   const prev = readDaily();
   const record = { streak: nextStreak(prev.streak, date), done: { ...prev.done, [kind]: { date, right } } };
+  writeDaily(record);
+  return record;
+}
+
+function writeDaily(record: DailyRecord): void {
   try {
-    localStorage.setItem(DAILY_KEY, JSON.stringify(record));
+    if (record.streak || Object.keys(record.done).length) localStorage.setItem(DAILY_KEY, JSON.stringify(record));
+    else localStorage.removeItem(DAILY_KEY);
   } catch {
     // Storage can be blocked: the puzzle still works, without a streak.
   }
-  return record;
+}
+
+/** The streak and today's results, for the progress file; nothing on a device that has never finished one. */
+export function exportDaily(): DailyRecord | undefined {
+  const record = readDaily();
+  return record.streak || Object.keys(record.done).length ? record : undefined;
+}
+
+const isDate = (v: unknown): v is string => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+const isCount = (v: unknown): v is number => Number.isInteger(v) && (v as number) > 0;
+const KINDS: DailyKind[] = ['chess', 'poker'];
+
+/** Replaces the streak with a progress file's, keeping only well-formed parts; files from before October 2026 have none. */
+export function importDaily(fromFile: unknown): void {
+  const file = isObject(fromFile) ? fromFile : {};
+  const s = isObject(file.streak) ? file.streak : {};
+  const streak =
+    isDate(s.last) && isCount(s.streak) && isCount(s.best)
+      ? { last: s.last, streak: s.streak, best: s.best }
+      : undefined;
+  const done: DailyRecord['done'] = {};
+  const fileDone = isObject(file.done) ? file.done : {};
+  for (const kind of KINDS) {
+    const d = fileDone[kind];
+    if (isObject(d) && isDate(d.date) && typeof d.right === 'boolean') done[kind] = { date: d.date, right: d.right };
+  }
+  writeDaily(streak ? { streak, done } : { done });
 }
