@@ -11,6 +11,16 @@ test('Chrome finds the app installable, by a manifest with an id and a language'
   await expect.poll(async () => (await cdp.send('Page.getInstallabilityErrors')).installabilityErrors).toEqual([]);
 });
 
+test('screenshots for the install dialog load, with the type the manifest declares', async ({ page }) => {
+  const { screenshots } = await (await page.request.get('/manifest.webmanifest')).json();
+  expect(screenshots).toHaveLength(2);
+  for (const { src, type } of screenshots) {
+    const res = await page.request.get(src);
+    expect(res.status(), src).toBe(200);
+    expect(res.headers()['content-type'], src).toBe(type);
+  }
+});
+
 test('the button is hidden until the browser offers an install, then prompts on tap', async ({ page }) => {
   await page.goto('/');
   const button = page.getByRole('button', { name: 'Install app' });

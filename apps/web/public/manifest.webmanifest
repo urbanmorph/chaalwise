@@ -34,5 +34,21 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home-narrow.webp",
+      "sizes": "824x1830",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Chaalwise on a phone: short, free strategy lessons, shown in chess and poker"
+    },
+    {
+      "src": "/screenshots/home-wide.webp",
+      "sizes": "1280x800",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Chaalwise on a desktop: short, free strategy lessons, shown in chess and poker"
+    }
   ]
 }
