@@ -4,6 +4,8 @@ import { DONE_KEY } from '../lib/done-lessons';
 import { COURSE_HOME, courseOf, lessonHref, lessonPath, pathContext, playedSteps, type LessonEntry } from '../lib/lessons';
 import { RESUME_KEY } from '../lib/resume';
 import LessonPage from './LessonPage.svelte';
+import MoreOnLichess from './MoreOnLichess.astro';
+import { LICHESS_LESSONS } from '../lib/lichess';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
 interface Props {
@@ -70,6 +72,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   checkable={lesson.data.game === 'chess'}
   workedUntilMet={worked}
 />
+<MoreOnLichess link={LICHESS_LESSONS[lesson.id]} />
 {/* Inline, so the offer to carry on shows before the first paint and the lesson never jumps. LessonPage checks the place again (readResume). */}
 <script is:inline define:vars={{ key: RESUME_KEY, id: lesson.id, ids: steps.map((s) => s.id) }}>
   (() => {
