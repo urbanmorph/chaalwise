@@ -1,7 +1,7 @@
 <script lang="ts">
   import { openProgress, requestPersistence } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
-  import { exportDaily, importDaily } from '../lib/daily';
+  import { exportDaily, importDaily } from '../lib/streak';
   import { saveDone } from '../lib/done-lessons';
   import { labHref, labsPlayed, playedLabel } from '../lib/labs/labs';
   import { exportResume, importResume } from '../lib/resume';

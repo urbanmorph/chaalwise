@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { readDaily, today, type DailyRecord } from '../lib/daily';
+  import { readDaily, today, type DailyRecord } from '../lib/streak';
   import DailyChess from './DailyChess.svelte';
   import DailyPoker from './poker/DailyPoker.svelte';
 

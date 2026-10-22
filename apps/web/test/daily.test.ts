@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
-import { DAILY_KEY, dailyChess, exportDaily, finishDaily, importDaily, nextStreak, readDaily } from '../src/lib/daily';
+import { dailyChess } from '../src/lib/daily';
+import { DAILY_KEY, exportDaily, finishDaily, importDaily, nextStreak, readDaily } from '../src/lib/streak';
 import { THEMES } from '../src/lib/puzzles';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
