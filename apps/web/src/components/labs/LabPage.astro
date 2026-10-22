@@ -1,4 +1,5 @@
 ---
+import { withContext } from '../../lib/seo';
 import { SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
 import { entryHref } from '../../lib/reference';
@@ -30,7 +31,7 @@ const steps = await ask(entry.data.try);
 const track = SKILLS[lab.track];
 ---
 
-<Base title={`${lab.title} lab`} description={`${lab.idea} A five-minute game against the computer, then a debrief.`}>
+<Base title={`${lab.title} lab`} description={withContext(lab.idea, 'A five-minute lab against the computer.')}>
   <div class="wrap">
     <p class="crumb">
       <a href="/labs/">Labs</a>

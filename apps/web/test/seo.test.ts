@@ -48,6 +48,19 @@ describe('what search engines are told', () => {
     for (const page of indexable) expect(html(page).match(/<h1[\s>]/g)?.length, page).toBe(1);
   });
 
+  it('gives every public page a description search results show in full', () => {
+    const lengths = indexable.map(
+      (p) => [p, html(p).match(/<meta name="description" content="([^"]*)"/)![1]!.length] as const,
+    );
+    expect(lengths.filter(([, n]) => n < 50 || n > 160)).toEqual([]);
+  });
+
+  it('says what kind of page a lesson or reference entry is, when there is room', () => {
+    const description = (p: string) => html(p).match(/<meta name="description" content="([^"]*)"/)![1];
+    expect(description('/chess/fork/')).toMatch(/A free chess lesson\.$/);
+    expect(description('/reference/chess/fork/')).toMatch(/From the Chaalwise chess reference\.$/);
+  });
+
   it('names what the site teaches in the home page title and description', () => {
     const h = html('/');
     expect(h.match(/<title>([^<]*)<\/title>/)![1]).toMatch(/strategy/i);

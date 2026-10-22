@@ -1,5 +1,5 @@
 ---
-import { lessonSchema } from '../../lib/seo';
+import { lessonSchema, withContext } from '../../lib/seo';
 import LessonShell from '../../components/LessonShell.astro';
 import NewToPoker from '../../components/NewToPoker.astro';
 import Base from '../../layouts/Base.astro';
@@ -12,7 +12,12 @@ export async function getStaticPaths() {
 const { lesson } = Astro.props as { lesson: LessonEntry };
 ---
 
-<Base title={lesson.data.title} description={lesson.data.summary} schema={lessonSchema(lesson)} wide>
+<Base
+  title={lesson.data.title}
+  description={withContext(lesson.data.summary, 'A free poker lesson, for practice points only.')}
+  schema={lessonSchema(lesson)}
+  wide
+>
   <LessonShell {lesson}>
     <div slot="crumb">
       <p class="label">

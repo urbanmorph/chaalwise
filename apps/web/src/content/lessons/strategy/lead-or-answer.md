@@ -1,6 +1,6 @@
 ---
 title: Lead or answer well
-summary: Move first when your move commits you or anchors the other side; answer when their move tells you something. When you answer, choose on purpose, to level things or to change their shape.
+summary: Move first when it commits you or anchors the other side; answer when their move tells you something, and answer on purpose, to level things or reshape them.
 game: strategy
 stage: 3
 order: 1

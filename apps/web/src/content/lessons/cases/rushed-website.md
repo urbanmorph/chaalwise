@@ -1,6 +1,6 @@
 ---
 title: The rushed website
-summary: A big client wants a website sooner than your team can easily make it. Count the cost, guard against late changes, protect your lead, and weigh a claim about price.
+summary: A big client wants a website sooner than your team can easily make it. Count the cost, guard against late changes, protect your lead, and weigh a price claim.
 game: case
 stage: 3
 order: 2
