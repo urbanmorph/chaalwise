@@ -2,13 +2,15 @@
 // assets for what the tests rely on: `_headers`, `_redirects` (static rules:
 // exact paths, a status, the query kept), directory pages with a
 // trailing-slash redirect, and the 404 page. `/__deploy/<name>` switches the
-// served build, which is how a test simulates a deploy. Test use only.
+// served build, which is how a test simulates a deploy; `/__down/on` makes every
+// page a 502, like an outage, until `/__down/off`. Test use only.
 import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize } from 'node:path';
 
 const [port, buildsDir] = process.argv.slice(2);
 let root = join(buildsDir, 'A');
+let down = false;
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -58,6 +60,12 @@ createServer((req, res) => {
     res.end(`serving ${deploy[1]}`);
     return;
   }
+  const outage = url.pathname.match(/^\/__down\/(on|off)$/);
+  if (outage) {
+    down = outage[1] === 'on';
+    res.end(`down: ${down}`);
+    return;
+  }
 
   const redirect = redirectRules()[url.pathname];
   if (redirect) {
@@ -90,6 +98,11 @@ createServer((req, res) => {
     status = 404;
     file = join(root, '404.html');
     path = '/404.html';
+  }
+
+  if (down && extname(file) === '.html') {
+    res.writeHead(502, { 'content-type': 'text/html; charset=utf-8' }).end('<h1>502 Bad gateway</h1>');
+    return;
   }
 
   const headers = { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' };

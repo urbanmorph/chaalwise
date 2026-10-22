@@ -3,7 +3,7 @@
   import { logAttempt } from '../../lib/attempts';
   import { count } from '../../lib/count';
   import { POKER_DRILLS } from '../../lib/drill-list';
-  import { finishDaily, readDaily, today, type DailyRecord } from '../../lib/daily';
+  import { finishDaily, readDaily, today, type DailyRecord } from '../../lib/streak';
   import { pokerDailyItem, type PokerItem } from '../../lib/poker/drills';
   import { DRILL_SKILL } from '../../lib/profile-skills';
   import PokerQuestion from './PokerQuestion.svelte';

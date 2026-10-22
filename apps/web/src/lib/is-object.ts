@@ -1,0 +1,2 @@
+/** A plain object, as read from storage or a file: not null, and not an array. */
+export const isObject = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);

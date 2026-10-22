@@ -5,18 +5,29 @@ export const deploy = async (page: Page, build: 'A' | 'B' | 'T') => {
   expect(res.ok()).toBe(true);
 };
 
+/** Turn the test server's outage on or off: every page a 502 while on. */
+export const outage = async (page: Page, on: boolean) => {
+  const res = await page.request.get(`/__down/${on ? 'on' : 'off'}`);
+  expect(res.ok()).toBe(true);
+};
+
 /** Wait until every interactive island on the page has loaded its code (Astro drops `ssr` then). */
 export const hydrated = (page: Page) => expect(page.locator('astro-island[ssr]')).toHaveCount(0);
 
-/** Wait until the offline worker controls the page and has finished precaching. */
+/** Wait until the offline worker controls the page and has saved every page. */
 export async function waitForOffline(page: Page) {
   await page.evaluate(async () => {
-    await navigator.serviceWorker.ready;
+    const reg = await navigator.serviceWorker.ready;
     if (!navigator.serviceWorker.controller) {
       await new Promise((resolve) =>
         navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true }),
       );
     }
+    // The worker answers on the channel once it has saved the pages not saved at install.
+    const channel = new MessageChannel();
+    const filled = new Promise((resolve) => (channel.port1.onmessage = resolve));
+    reg.active!.postMessage('fill', [channel.port2]);
+    await filled;
   });
 }
 

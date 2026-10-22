@@ -2,7 +2,8 @@
   import { onMount, tick } from 'svelte';
   import { logAttempt } from '../lib/attempts';
   import { count } from '../lib/count';
-  import { dailyChess, finishDaily, readDaily, today, type DailyRecord } from '../lib/daily';
+  import { dailyChess } from '../lib/daily';
+  import { finishDaily, readDaily, today, type DailyRecord } from '../lib/streak';
   import { begin, move, puzzlesFor, type PuzzleState } from '../lib/puzzles';
   import Board from './Board.svelte';
 

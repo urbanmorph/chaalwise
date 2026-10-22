@@ -1,8 +1,10 @@
 <script lang="ts">
   import { openProgress, requestPersistence } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
+  import { exportDaily, importDaily } from '../lib/streak';
   import { saveDone } from '../lib/done-lessons';
   import { labHref, labsPlayed, playedLabel } from '../lib/labs/labs';
+  import { exportResume, importResume } from '../lib/resume';
 
   interface Props {
     /** Review questions the site still has; any others (from changed lessons) are not counted. */
@@ -47,7 +49,8 @@
 
   async function exportFile() {
     const progress = await openProgress();
-    const data = await progress.exportData(new Date());
+    // The place in each unfinished lesson and the daily streak go too, so another device carries on from there.
+    const data = { ...(await progress.exportData(new Date())), resume: exportResume(), daily: exportDaily() };
     progress.close();
     const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
     const link = Object.assign(document.createElement('a'), {
@@ -81,6 +84,9 @@
       try {
         await progress.importData(data);
         saveDone(await progress.completedLessons());
+        const { resume, daily } = data as { resume?: unknown; daily?: unknown };
+        importResume(resume);
+        importDaily(daily);
       } finally {
         progress.close();
       }

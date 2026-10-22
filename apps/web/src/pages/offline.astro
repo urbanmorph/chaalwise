@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Shown by the offline worker, at the address asked for, when there is no connection and that page is not saved.
+---
+
+<Base title="You are offline" noindex>
+  <div class="wrap">
+    <h1>You are offline</h1>
+    <p>
+      This page is not saved on this device yet. Every lesson is saved in the background the first time Chaalwise is open with a connection, ready for next
+      time.
+    </p>
+    <p class="actions">
+      <!-- An empty link is this page's own address: the page asked for, tried again. -->
+      <a class="button primary" href="">
+        Try again
+      </a>
+      <a class="button" href="/">
+        Go to the home page
+      </a>
+      <a class="button" href="/progress/">
+        Your progress
+      </a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>
