@@ -108,6 +108,16 @@ export const LABS: Lab[] = [
     entry: 'strategy/independent-estimates',
     read: ['strategy/base-rates'],
   },
+  {
+    slug: 'pick-the-same',
+    title: 'Pick the same',
+    idea: 'When everyone gains by choosing alike, pick what stands out to everyone, not your favourite. To get a group to aim high, go first where all can see.',
+    plays:
+      'Four meet-ups with a crowd of bots and no way to talk, then eight hunts where a stag is caught only if all five hunters go for it.',
+    track: 'cooperate',
+    entry: 'strategy/coordination',
+    read: ['strategy/cooperate-or-defend', 'labs/nash-equilibrium'],
+  },
 ];
 
 export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;

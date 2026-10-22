@@ -241,6 +241,7 @@ describe('the labs', () => {
       ['gain-or-loss', 'composure', 'strategy/framing'],
       ['bonus-rule', 'think-ahead', 'strategy/incentives'],
       ['ask-the-panel', 'read-hidden', 'strategy/independent-estimates'],
+      ['pick-the-same', 'cooperate', 'strategy/coordination'],
     ]);
   });
 

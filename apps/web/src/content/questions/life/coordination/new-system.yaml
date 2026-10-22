@@ -1,0 +1,14 @@
+card: reference/strategy/coordination/new-system
+kind: choice
+prompt: At work, five teams must all move to a new shared booking system for it to pay off; if any team stays on the old one, it breaks. Last year two teams moved and were left stranded. What most helps all five move?
+options:
+  - Ask every team to promise in a meeting that they will move
+  - Move your own team first, where the others can see it working
+  - Wait until the other four have moved, then follow
+answer: 1
+feedback:
+  - Promises cost nothing, and the teams left stranded last year heard promises then too. They need something they can see.
+  - ''
+  - Waiting is safe for you, but if every team waits for the others, nobody moves and everyone keeps the worse system.
+explanation: 'When a better outcome needs everyone, the problem is trust, not reward. A visible first move is a signal others can believe, and each success makes the next step easier.'
+measures: cooperate

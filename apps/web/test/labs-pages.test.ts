@@ -81,6 +81,7 @@ describe('the labs, linked where learners look', () => {
   it('are linked from the reference entries they play out', () => {
     expect(page('reference/labs/prisoners-dilemma/index.html')).toContain('href="/labs/prisoners-dilemma/"');
     expect(page('reference/strategy/winners-curse/index.html')).toContain('href="/labs/sealed-bid-auction/"');
+    expect(page('reference/strategy/coordination/index.html')).toContain('href="/labs/pick-the-same/"');
   });
 });
 

@@ -62,7 +62,7 @@ export const TRACKS: Track[] = [
     'Know when to trust, when to protect yourself, and how reputation builds.',
     0,
     1,
-    "Prisoner's Dilemma lab",
+    "Prisoner's Dilemma and Pick the same labs",
   ),
   t('unpredictable', 'Stop being predictable where someone can take advantage of it.', 0, 2, 'Rock-paper-scissors lab'),
   t(

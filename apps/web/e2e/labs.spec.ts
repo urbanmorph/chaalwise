@@ -27,6 +27,7 @@ test('the labs index leads to every lab', async ({ page }) => {
     'Gain or loss?',
     'The bonus rule',
     'Ask the panel',
+    'Pick the same',
   ]) {
     await expect(page.getByRole('link', { name, exact: true })).toBeVisible();
   }
