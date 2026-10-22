@@ -52,8 +52,11 @@ export const rankName = (rank: Rank): string => RANK_NAMES[rank];
 /** "jacks", "sixes", "aces". */
 export const rankPlural = (rank: Rank): string => (rank === '6' ? 'sixes' : `${RANK_NAMES[rank]}s`);
 
+/** "spades", "hearts". */
+export const suitName = (suit: Suit): string => SUIT_NAMES[suit];
+
 /** "Ace of spades", "Ten of hearts". */
 export function cardName(card: Card): string {
   const name = rankName(rankOf(card));
-  return `${name[0]!.toUpperCase()}${name.slice(1)} of ${SUIT_NAMES[suitOf(card)]}`;
+  return `${name[0]!.toUpperCase()}${name.slice(1)} of ${suitName(suitOf(card))}`;
 }

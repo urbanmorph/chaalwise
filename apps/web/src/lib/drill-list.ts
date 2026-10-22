@@ -1,4 +1,4 @@
-/** The practice drills, for the drills page and the reference search. Each id is the drill's anchor on /chess/drills/. */
+/** The chess drills, for the drills page and the reference search. Each id is the drill's anchor on /chess/drills/. */
 export const DRILLS = [
   {
     id: 'find-the-square',
@@ -33,4 +33,52 @@ export const DRILLS = [
   },
 ] as const;
 
-export type Drill = (typeof DRILLS)[number];
+/** The poker drills, ten exercises a round, dealt and checked by the engine. Each id is the drill's anchor on /poker/drills/. */
+export const POKER_DRILLS = [
+  {
+    id: 'count-the-outs',
+    kind: 'outs',
+    lesson: 'outs-and-odds',
+    title: 'Poker: count the outs',
+    summary:
+      'Your two cards and the shared cards in poker: how many unseen cards would make your flush or straight? Ten hands.',
+  },
+  {
+    id: 'call-or-fold',
+    kind: 'pot-odds',
+    lesson: 'outs-and-odds',
+    title: 'Poker: call or fold?',
+    summary: 'A pot, a call and your chance to win: is the call worth its price in poker? Ten decisions.',
+  },
+  {
+    id: 'the-nuts',
+    kind: 'nuts',
+    lesson: 'reading-the-board',
+    title: 'Poker: what is the best hand possible?',
+    summary: 'Five shared cards: pick the best hand anyone could make with them, called the nuts in poker. Ten boards.',
+  },
+  {
+    id: 'play-or-fold',
+    kind: 'preflop',
+    lesson: 'starting-hands',
+    title: 'Poker: play or fold?',
+    summary:
+      'Your two cards and your seat, against one opponent or a full poker table: play the hand, or fold it? Ten hands.',
+  },
+  {
+    id: 'guess-your-chance',
+    kind: 'equity',
+    lesson: 'ranges-and-equity',
+    title: 'Poker: guess your chance',
+    summary:
+      'Your cards and the shared cards: guess how often your poker hand wins against any two, then see the true figure. Ten hands.',
+  },
+] as const;
+
+export type Drill = { id: string; title: string; summary: string };
+
+/** Every drill, chess and poker, with its game: for the reference search. */
+export const ALL_DRILLS = [
+  ...DRILLS.map((drill) => ({ ...drill, game: 'chess' as const })),
+  ...POKER_DRILLS.map(({ id, title, summary }) => ({ id, title, summary, game: 'poker' as const })),
+];
