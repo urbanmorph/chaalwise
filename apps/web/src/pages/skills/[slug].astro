@@ -1,4 +1,5 @@
 ---
+import { lessonSchema } from '../../lib/seo';
 import { SKILLS } from '@chaalwise/core/skills';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import LessonShell from '../../components/LessonShell.astro';
@@ -19,7 +20,7 @@ const { lesson, course } = Astro.props as { lesson?: LessonEntry; course?: Colle
 ---
 
 {lesson ? (
-  <Base title={lesson.data.title} description={lesson.data.summary} wide>
+  <Base title={lesson.data.title} description={lesson.data.summary} schema={lessonSchema(lesson)} wide>
     <LessonShell {lesson}>
       <p class="label" slot="crumb">
         <a href="/skills/">Strategy</a> ·{' '}

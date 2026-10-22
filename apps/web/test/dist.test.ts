@@ -69,7 +69,8 @@ describe.each(htmlFiles)('%s', (page) => {
           ),
       );
     expect(external).toEqual([]);
-    expect(html).not.toMatch(/<link[^>]+href="https?:/);
+    // The canonical address names this page; it loads nothing.
+    expect(html).not.toMatch(/<link(?![^>]*rel="canonical")[^>]+href="https?:/);
   });
   it('keeps the space between words and links (Astro drops it at some line breaks)', () => {
     const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, '');

@@ -7,7 +7,7 @@ import { reviewSteps } from '../lib/lessons';
 const cardIds = Object.keys(await reviewSteps());
 ---
 
-<Base title="Progress" description="Your skill profile and progress, kept on this device.">
+<Base title="Progress" description="Your skill profile and progress, kept on this device." noindex>
   <div class="wrap">
     <h1>Your progress</h1>
     <SkillProfile client:load {cardIds} />
