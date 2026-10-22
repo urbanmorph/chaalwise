@@ -57,10 +57,44 @@ describe('response headers', () => {
   });
 });
 
+/** Width and height of a WebP file with a VP8X header, as the browser's encoder writes it (scripts/screenshots.mjs). */
+const webpSize = (file: Buffer): [number, number] => {
+  expect(file.subarray(8, 16).toString()).toBe('WEBPVP8X');
+  return [file.readUIntLE(24, 3) + 1, file.readUIntLE(27, 3) + 1];
+};
+
 describe('installing the app', () => {
+  const manifest = JSON.parse(read('manifest.webmanifest'));
+  type Screenshot = { src: string; sizes: string; type: string; form_factor: string; label: string };
+  const screenshots: Screenshot[] = manifest.screenshots ?? [];
+
   it('names the app by a fixed id and language in the manifest', () => {
-    const manifest = JSON.parse(read('manifest.webmanifest'));
     expect(manifest).toMatchObject({ id: '/', lang: 'en', start_url: '/', display: 'standalone' });
+  });
+  it('shows a phone and a desktop screenshot in the install dialog', () => {
+    expect(screenshots.map((s) => s.form_factor).sort()).toEqual(['narrow', 'wide']);
+  });
+  it.each(['narrow', 'wide'])('declares the real size and type of the %s screenshot, small enough to fetch', (form) => {
+    const shot = screenshots.find((s) => s.form_factor === form)!;
+    expect(shot.label).toBeTruthy();
+    const file = readFileSync(join(DIST, shot.src));
+    expect(file.length).toBeLessThan(300_000);
+    expect(shot.type).toBe('image/webp');
+    const [width, height] = webpSize(file);
+    expect(shot.sizes).toBe(`${width}x${height}`);
+    // What Chrome accepts: each side 320 to 3840 pixels, the long side at most 2.3 times the short.
+    for (const side of [width, height]) {
+      expect(side).toBeGreaterThanOrEqual(320);
+      expect(side).toBeLessThanOrEqual(3840);
+    }
+    expect(Math.max(width, height) / Math.min(width, height)).toBeLessThanOrEqual(2.3);
+    expect(form === 'narrow' ? height > width : width > height).toBe(true);
+  });
+  it('keeps the screenshots out of the offline cache: only the install dialog fetches them', () => {
+    expect(screenshots.length).toBeGreaterThan(0);
+    const { pages, assets } = precache();
+    for (const { src } of screenshots) expect([...pages, ...assets]).not.toContain(src);
+    expect(read('sw.js')).not.toMatch(/screenshot/);
   });
   it('offers a hidden install button and the iPhone guide on every page', () => {
     for (const page of htmlFiles) {
@@ -102,6 +136,33 @@ describe.each(htmlFiles)('%s', (page) => {
     expect(html).toMatch(/<a [^>]*href="#main"[^>]*>Skip to content/);
     expect(html).toMatch(/<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: light\)"/i);
     expect(html).toMatch(/<meta name="theme-color" content="#[0-9a-f]{6}" media="\(prefers-color-scheme: dark\)"/i);
+  });
+});
+
+describe('notched phones', () => {
+  const html = read('index.html');
+  const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('');
+  /** A rule's declarations, with custom properties replaced by their values. */
+  const rule = (selector: string) => {
+    const escaped = selector.replace(/[.:]/g, '\\$&');
+    const body = css.match(new RegExp(`(?:^|\\})${escaped}(?:\\[data-astro-cid-\\w+\\])?\\{([^}]*)\\}`))?.[1] ?? '';
+    return body.replace(/var\((--[\w-]+)\)/g, (v, name) => css.match(new RegExp(`${name}:([^;}]+)`))?.[1] ?? v);
+  };
+
+  it('lets the page fill the screen around a notch', () => {
+    for (const page of htmlFiles) {
+      expect(read(page), page).toMatch(/<meta name="viewport" content="[^"]*\bviewport-fit=cover\b/);
+    }
+  });
+  it.each([
+    ['.site-header', ['top']],
+    ['.site-footer', ['bottom']],
+    ['.wrap', ['left', 'right']],
+    ['.update', ['left', 'right']],
+    ['.skip', ['left']],
+    ['.skip:focus', ['top']],
+  ])('keeps %s clear of the notch and rounded corners', (selector, sides) => {
+    for (const side of sides) expect(rule(selector)).toContain(`env(safe-area-inset-${side})`);
   });
 });
 

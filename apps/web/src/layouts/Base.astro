@@ -43,7 +43,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={pageUrl} />}
@@ -132,6 +132,8 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
 
 <style>
   .site-header {
+    /* Below the notch or status bar when the page fills the screen. */
+    padding-top: env(safe-area-inset-top);
     border-bottom: 1px solid var(--rule);
   }
   .bar {
@@ -181,7 +183,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     gap: 16px;
     align-items: center;
     justify-content: center;
-    padding: 10px 16px;
+    padding: 10px var(--gutter-right) 10px var(--gutter-left);
     background: var(--tint);
     border-bottom: 1px solid var(--rule);
   }
@@ -198,7 +200,8 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
   }
   .site-footer {
     margin-top: 48px;
-    padding-block: 20px 32px;
+    /* Above the home indicator when the page fills the screen. */
+    padding-block: 20px calc(32px + env(safe-area-inset-bottom));
     border-top: 1px solid var(--rule);
     color: var(--ink-2);
     font-size: 0.8125rem;
