@@ -4,7 +4,7 @@ game: 'strategy'
 kind: 'principle'
 level: 'intermediate'
 aliases: ['Position', 'Wait and see', 'First offer']
-summary: 'Deciding after the other side has shown its hand is an advantage when their move tells you something you lack. When you already know the value, moving first can be the edge.'
+summary: 'Moving second pays when the other side’s move tells you something you lack. When you already know the value, moving first can be the edge.'
 why: 'Acting last means acting on more facts. Acting first pays when it commits you or anchors the other side: a first number in a negotiation pulls the outcome towards it.'
 inLife: 'When you know little about what something is worth, find out before you name a number: ask, or research the market. When you know the market, a confident, well-justified first offer usually helps you.'
 skill: 'read-hidden'

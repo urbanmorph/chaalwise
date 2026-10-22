@@ -1,5 +1,5 @@
 ---
-import { lessonSchema } from '../../lib/seo';
+import { lessonSchema, withContext } from '../../lib/seo';
 import { SKILLS } from '@chaalwise/core/skills';
 import LessonShell from '../../components/LessonShell.astro';
 import Base from '../../layouts/Base.astro';
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { lesson } = Astro.props as { lesson: LessonEntry };
 ---
 
-<Base title={lesson.data.title} description={lesson.data.summary} schema={lessonSchema(lesson)} wide>
+<Base title={lesson.data.title} description={withContext(lesson.data.summary, 'A free work case.')} schema={lessonSchema(lesson)} wide>
   <LessonShell {lesson}>
     <p class="label" slot="crumb">
       <a href="/cases/">Work cases</a> · {CASE_GROUPS[lesson.data.stage]} ·{' '}

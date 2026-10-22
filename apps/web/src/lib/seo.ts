@@ -42,3 +42,7 @@ export function lessonSchema(lesson: { data: { title: string; summary: string; g
     provider: MAKER,
   };
 }
+
+/** Search results show about 160 characters of a description: add what kind of page this is when it fits. */
+export const withContext = (summary: string, context: string): string =>
+  summary.length + context.length + 1 <= 160 ? `${summary} ${context}` : summary;
