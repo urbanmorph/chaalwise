@@ -8,7 +8,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "wrangler dev",
-    "check": "astro check && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings && tsc -p src/sw",
+    "check": "astro check && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings && tsc -p src/sw && tsc -p src/worker",
     "budget": "node scripts/budget.mjs dist",
     "test:e2e": "playwright test"
   },

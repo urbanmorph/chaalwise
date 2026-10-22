@@ -1,5 +1,6 @@
 import { openProgress } from '@chaalwise/core/progress';
 import { addDone } from './done-lessons';
+import { count } from './count';
 
 /**
  * Record that the learner has met a game: played chess's first moves, or a lab.
@@ -12,6 +13,7 @@ export async function markMet(id: string): Promise<void> {
     const progress = await openProgress();
     await progress.recordLesson(id, {}, new Date());
     progress.close();
+    count(`played:${id}`);
   } catch (error) {
     console.error(error);
   }

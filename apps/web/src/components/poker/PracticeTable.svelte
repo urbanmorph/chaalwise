@@ -1,5 +1,6 @@
 <script lang="ts">
   import { playBots, type Style } from '@chaalwise/poker/bots';
+  import { count } from '../../lib/count';
   import { deck, shuffle } from '@chaalwise/poker/cards';
   import { act, legalMoves, MIN_POINTS, newHand, nextHand, STARTING_POINTS, type Move, type Table } from '@chaalwise/poker/table';
   import { tick } from 'svelte';
@@ -61,6 +62,7 @@
       decisions: tally.decisions + decisions.length,
       agreed: tally.agreed + decisions.filter((d) => d.agreed).length,
     };
+    count(`hand:practice/${style}`);
     if (tally.hands === 1) markMet('poker/practice').catch(console.error);
   }
 

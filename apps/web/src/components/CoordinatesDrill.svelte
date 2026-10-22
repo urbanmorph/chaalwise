@@ -1,5 +1,6 @@
 <script lang="ts">
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
+  import { count } from '../lib/count';
   import { onDestroy, onMount, tick } from 'svelte';
   import { EMPTY_BOARD } from '../lib/chess';
   import { logAttempt } from '../lib/attempts';
@@ -68,6 +69,7 @@
     resultText?.focus();
     const progress = await openProgress();
     await progress.recordDrill(drillId, final, new Date());
+    count(`drill:${drillId.toLowerCase()}`);
     records = await progress.drills();
     progress.close();
   }

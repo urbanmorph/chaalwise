@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { GradedStep, Step } from '@chaalwise/core/lesson';
+  import { count } from '../lib/count';
   import { isGraded, type Outcome } from '@chaalwise/core/player';
   import { isNewerVersionOpen, openProgress, requestPersistence } from '@chaalwise/core/progress';
   // Loaded with the page, not on demand: if a deploy lands mid-lesson, the
@@ -151,6 +152,7 @@
       await progress.recordLesson(lessonId, outcomes, new Date());
       progress.close();
       addDone(lessonId);
+      count(`finished:${lessonId}`);
       saved = 'saved';
       await requestPersistence();
     } catch (error) {

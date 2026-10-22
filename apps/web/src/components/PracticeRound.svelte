@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Outcome } from '@chaalwise/core/player';
+  import { count } from '../lib/count';
   import { isNewerVersionOpen, openProgress } from '@chaalwise/core/progress';
   import type { Snippet } from 'svelte';
   import { guessChance, logAttempt } from '../lib/attempts';
@@ -58,6 +59,7 @@
     try {
       await save(unsaved);
       unsaved = [];
+      count(`round:${source}`);
       saved = 'saved';
     } catch (error) {
       console.error(error);

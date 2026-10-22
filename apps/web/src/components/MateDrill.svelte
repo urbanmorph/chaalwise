@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { GradedStep } from '@chaalwise/core/lesson';
+  import { count } from '../lib/count';
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
   import { logAttempt } from '../lib/attempts';
@@ -36,6 +37,7 @@
     result = won ? `Mate in ${used} moves, with ${spare} to spare.` : 'No mate this time.';
     const progress = await openProgress();
     await progress.recordDrill(drillId, spare, new Date());
+    count(`drill:${drillId.toLowerCase()}`);
     records = await progress.drills();
     progress.close();
   }
