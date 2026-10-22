@@ -27,7 +27,7 @@ The canonical plan is the mdshare document `KQDNOxQ3lD`. `supporting-docs/plan.m
 
 - Chaalwise is a learning app, not a game: poker hands are worked examples. Practice points are free and can never be bought, sold, cashed out or exchanged for prizes. No links, ads or referrals to real-money sites. Say "points", not "chips".
 - Lichess code, puzzles and APIs are credited; the Lichess name and logo are never used as ours.
-- Learner progress never leaves the device.
+- Learner progress never leaves the device. The only thing sent is an anonymous count of what is finished (`lib/count.ts`, `src/worker`): a name matching `COUNT_KEY`, added to a daily total in D1. Never an ID, an answer, or anything about the learner or their device.
 - The offline service worker follows the plan's rules (network-first HTML, only content-hashed files cached, a tested tombstone worker ready), because of SaralCare's 10 June 2026 stale-cache incident.
 - Check both light and dark themes for any UI change.
 - Every question and text names its setting: the game or sport it uses, and any jargon explained, because practice shows questions on their own. Boards draw the attacks and moves their text describes (`arrows`). A build test checks life questions for game terms without the game's name.

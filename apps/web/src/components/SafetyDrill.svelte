@@ -1,5 +1,6 @@
 <script lang="ts">
   import { openProgress, type DrillRecord } from '@chaalwise/core/progress';
+  import { count } from '../lib/count';
   import { onMount, tick } from 'svelte';
   import { turnOf } from '../lib/chess';
   import type { SafetyItem } from '../lib/lessons';
@@ -53,6 +54,7 @@
     resultText?.focus();
     const progress = await openProgress();
     await progress.recordDrill('safety', score, new Date());
+    count('drill:safety');
     record = (await progress.drills()).safety;
     progress.close();
   }

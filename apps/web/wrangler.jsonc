@@ -1,9 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Static assets only: no Worker code. The account comes from CLOUDFLARE_ACCOUNT_ID
+  // Static pages, plus a small Worker for the anonymous counter. The account comes from CLOUDFLARE_ACCOUNT_ID
   // (the UrbanMorph account), set explicitly in .env or CI, never the ambient login.
   "name": "chaalwise",
   "compatibility_date": "2026-10-01",
+  // Runs only for addresses that are not a file: the anonymous counter at /api/count.
+  "main": "src/worker/index.ts",
   "routes": [
     { "pattern": "chaalwise.com", "custom_domain": true },
     { "pattern": "www.chaalwise.com", "custom_domain": true },
@@ -12,7 +14,16 @@
   "preview_urls": false,
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
   },
+  "d1_databases": [
+    {
+      "binding": "METRICS",
+      "database_name": "chaalwise-metrics",
+      "database_id": "877be107-5c32-44be-bc31-0289bc288885",
+      "migrations_dir": "migrations",
+    },
+  ],
 }
