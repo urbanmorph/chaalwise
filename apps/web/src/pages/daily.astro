@@ -1,0 +1,27 @@
+---
+import DailyPage from '../components/DailyPage.svelte';
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Today’s puzzle"
+  description="A new chess puzzle every day, the same for everyone, from real games. Two minutes, free, and it keeps your streak going."
+  wide
+>
+  <div class="wrap wide">
+    <h1>Today’s puzzle</h1>
+    <DailyPage client:load />
+    <p class="credit">
+      Puzzles from the <a href="https://database.lichess.org/#puzzles">Lichess puzzle database</a> (CC0). Your streak is kept on this device. Chaalwise is not
+      part of Lichess.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .credit {
+    margin-top: 32px;
+    color: var(--ink-2);
+    font-size: 0.9rem;
+  }
+</style>
