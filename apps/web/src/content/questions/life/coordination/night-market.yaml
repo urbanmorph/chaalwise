@@ -1,0 +1,14 @@
+card: reference/strategy/coordination/night-market
+kind: choice
+prompt: A town's night market draws a big late crowd only if all six stalls stay open late; a stall that closes early still takes its usual small sum. Last month two closed early and the crowd never came. You run one stall. What should you do?
+options:
+  - Stay open late, whatever the other stalls do
+  - Close early again, as the safer choice
+  - Agree a late night, each paying for the lights first
+answer: 2
+feedback:
+  - The big night needs all six. If even one stall closes early, the crowd does not come and you stayed open for nothing.
+  - It is safe, but if everyone plays safe, the market never gets the late crowd that would pay you all more.
+  - ''
+explanation: 'One stall closing early sinks the night for all. A commitment that costs something, like paying for the lights in advance, makes each stall more willing to stay open.'
+measures: cooperate

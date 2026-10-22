@@ -1,0 +1,14 @@
+card: reference/strategy/coordination/lost-at-the-festival
+kind: choice
+prompt: At a big outdoor music festival, you lose your friend in the crowd and both phones are dead. You never agreed where to meet. Where do you go?
+options:
+  - The food stalls, where you most wanted to be
+  - The main gate, where you both came in
+  - Keep walking the crowd looking for them
+answer: 1
+feedback:
+  - It is the best spot for you, but your friend has no reason to guess it. Pick the place you would both think of, not the one you like.
+  - ''
+  - Two people both searching a moving crowd can pass each other for hours. A fixed meeting point you both expect works far better.
+explanation: 'With no way to talk, you need a place that stands out to both of you: a focal point. The gate you both came through is the place each of you expects the other to think of.'
+measures: cooperate
