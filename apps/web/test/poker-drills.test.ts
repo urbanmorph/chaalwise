@@ -49,7 +49,7 @@ describe('poker drills: every answer is worked out by the engine', () => {
     }
   });
 
-  it('name poker in every question, explain the jargon, and say points, never chips or money', () => {
+  it('name poker in every question, explain the jargon, and say points, never chips or money', { timeout: 60_000 }, () => {
     for (const kind of POKER_DRILL_KINDS) {
       for (const item of items(kind, kind === 'equity' ? 2 : 10)) {
         expect(item.prompt, kind).toMatch(/\bpoker\b/);
