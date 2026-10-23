@@ -11,6 +11,8 @@ export async function getStaticPaths() {
 }
 
 const { lesson } = Astro.props as { lesson: LessonEntry };
+// Said once, for readers outside India: the amounts change to their way of writing numbers, not to their currency.
+const inRupees = JSON.stringify(lesson.data.steps).includes('₹');
 ---
 
 <Base title={lesson.data.title} description={withContext(lesson.data.summary, 'A free work case.')} schema={lessonSchema(lesson)} wide>
@@ -24,5 +26,10 @@ const { lesson } = Astro.props as { lesson: LessonEntry };
         </>
       ))}
     </p>
+    {inRupees && (
+      <p class="label" slot="crumb" data-testid="currency">
+        Set in India: amounts are in Indian rupees (₹)
+      </p>
+    )}
   </LessonShell>
 </Base>

@@ -57,6 +57,8 @@ export async function completeLesson(page: Page, slug: 'board' | 'hanging') {
   await page.goto(`/chess/${slug}/`);
   await hydrated(page);
   if (slug === 'board') {
+    // Meet the six pieces first.
+    for (let i = 0; i < 6; i++) await next(page);
     await choose(page, 'h1, a light square');
     await choose(page, 'd1');
     await typeMove(page, 'e4');

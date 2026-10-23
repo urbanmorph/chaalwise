@@ -19,6 +19,8 @@ const steps = await playedSteps(lesson);
 const firstChess = (await lessonPath()).find((l) => l.data.game === 'chess')!;
 // A strategy lesson with board questions: until chess is met, they are worked examples.
 const worked = lesson.data.game === 'strategy' && steps.some((s) => 'position' in s && s.position && s.kind !== 'read');
+// Any strategy lesson with a board writes chess moves, so it carries the key to them.
+const movesWritten = lesson.data.game === 'strategy' && steps.some((s) => 'position' in s && s.position);
 const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
 ---
 
@@ -59,6 +61,12 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
     if (!done.some((id) => id.startsWith('chess/'))) document.currentScript.previousElementSibling.hidden = false;
   })();
 </script>}
+{movesWritten && (
+  <p class="notation-key">
+    Chess moves are written short: K king, Q queen, R rook, B bishop, N knight, no letter for a pawn, then the square the piece moves to. x means it takes, +
+    means check. See <a href="/chess/notation/">how moves are written</a>.
+  </p>
+)}
 <div class="intro">
   <Content />
 </div>
@@ -97,6 +105,10 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
     border-radius: 0 var(--radius) var(--radius) 0;
   }
   .builds-on[hidden],
+  .notation-key {
+    color: var(--ink-2);
+    font-size: 0.9rem;
+  }
   .meet-chess[hidden] {
     display: none;
   }

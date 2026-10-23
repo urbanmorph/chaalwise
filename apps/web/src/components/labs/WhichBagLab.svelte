@@ -185,6 +185,7 @@
           )}, was {percent(chanceRed(a.round.draw))}
           in 100.
         </p>
+        <p data-testid="bag-score"><strong>{right} of {answers.length}</strong> right so far</p>
         <p class="lab-note">
           Why: picture {c.picks} random picks of a bag. A mostly-red bag gives this draw {c.red} times, and a mostly-blue bag gives it {c.blue} times. So this draw
           means a mostly-red bag {c.red} times in {c.red + c.blue}.

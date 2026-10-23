@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Step } from '@chaalwise/core/lesson';
   import { advance, answer, createPlayer, currentStep, giveUp, isGraded, jumpTo, showHint, type Outcome, type Response } from '@chaalwise/core/player';
-  import { tick, type Snippet } from 'svelte';
+  import { onMount, tick, type Snippet } from 'svelte';
   import { SvelteSet } from 'svelte/reactivity';
   import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
   import { squareHint } from '../lib/drills';
@@ -46,7 +46,17 @@
   /** Steps the learner has been through, for the step dots (read steps have no grade to show it). */
   const seen = new SvelteSet<number>();
 
-  const step = $derived(currentStep(lesson, player));
+  // Amounts as the page was built (the Indian way), then in the reader's own locale (lib/money, loaded once the page runs, as few steps have any).
+  let local = $state<(s: Step) => Step>();
+  onMount(async () => {
+    const { localStep, readerLocale } = await import('../lib/money');
+    const locale = readerLocale();
+    local = (s) => localStep(s, locale);
+  });
+  const step = $derived.by(() => {
+    const s = currentStep(lesson, player);
+    return s && local ? local(s) : s;
+  });
   // Options in a fresh order each time a question is shown, so where the answer sits gives nothing away.
   const order = $derived(step?.kind === 'choice' ? shuffle(step.options.map((_, i) => i)) : []);
   const total = $derived(lesson.steps.length);
