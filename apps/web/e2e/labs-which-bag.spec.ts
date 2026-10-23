@@ -11,6 +11,8 @@ test('Which bag?: eight draws, then a player to back after a lucky round, then t
   await expect(page.getByTestId('bag-round')).toBeFocused();
 
   const answer = page.getByRole('button', { name: 'Answer' });
+  // Every answer is "mostly red", so it is right whenever the bag was.
+  let right = 0;
   for (let round = 1; round <= 8; round++) {
     await expect(page.getByTestId('bag-round')).toHaveText(`Round ${round} of 8`);
     await expect(answer).toBeDisabled();
@@ -31,6 +33,8 @@ test('Which bag?: eight draws, then a player to back after a lucky round, then t
     const result = page.getByTestId('bag-result');
     await expect(result).toBeFocused();
     await expect(result).toContainText('You said mostly red, 70% sure. The chance it was mostly red');
+    if ((await result.textContent())!.includes('It was a mostly-red bag')) right++;
+    await expect(page.getByTestId('bag-score')).toHaveText(`${right} of ${round} right so far`);
     await page.getByRole('button', { name: round < 8 ? 'Next round' : 'On to part 2' }).click();
   }
 

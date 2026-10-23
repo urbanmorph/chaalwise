@@ -24,8 +24,11 @@ const GAMES = [
       <p class="today">
         <a href="/daily/">Today’s puzzles</a>: one chess, one poker, new every day.
       </p>
+      <p class="new-to-game">
+        New to the game? Start <a href="/chess/">chess</a> or <a href="/poker/">poker</a> from the beginning.
+      </p>
       <p class="who">
-        For people who run teams, people who want to, and students: see <a href="/start/">where to start</a>. Free, works offline, no account, no ads, no money.
+        For people who run teams, people who want to, and students: see <a href="/start/">where to start</a>. Free, offline, no account, no ads, no money.
       </p>
     </div>
 
@@ -41,7 +44,7 @@ const GAMES = [
           label="A chess position: White's knight jumps from d5 to c7, attacking Black's king on e8 and rook on a8 at once."
         />
         <figcaption>
-          <strong>In chess</strong> The knight attacks king and rook at once. Black must save the king, so the rook is lost.
+          <strong>In chess</strong> The knight attacks king and rook. Black saves the king and loses the rook.
         </figcaption>
       </figure>
       <div class="setting">
@@ -57,7 +60,9 @@ const GAMES = [
         </p>
       </div>
       <div class="setting">
-        <p class="note">“Our final offer is ₹40 lakh, valid until Friday.”</p>
+        <p class="note">
+          “Our final offer is <span class="amount">₹40 lakh</span>, valid until Friday.”
+        </p>
         <p>
           <strong>At work</strong> Before you send it: what will they say back?
         </p>
@@ -94,7 +99,7 @@ const GAMES = [
         <strong>Learn the idea</strong> A five-minute lesson names it.
       </li>
       <li>
-        <strong>See it in a game</strong> Chess, poker or a game-theory lab, against the computer. Then <a href="/play-elsewhere/">play it anywhere</a>.
+        <strong>See it in a game</strong> Chess, poker or a lab, against the computer. Then <a href="/play-elsewhere/">play it anywhere</a>.
       </li>
       <li>
         <strong>Use it</strong> On a decision of your own, at work or in study.
@@ -105,7 +110,7 @@ const GAMES = [
     </ol>
     <p class="why">
       Playing games on its own does little for general thinking. An idea is more likely to carry over when it is named and practised on your own decisions, so
-      every lesson does both: <a href="/transfer/">does this transfer?</a> Your progress stays on this device.
+      every lesson does both: <a href="/transfer/">does this transfer?</a>
     </p>
   </section>
 </Base>
@@ -304,3 +309,9 @@ const GAMES = [
     font-size: 0.95rem;
   }
 </style>
+
+<script>
+  // The quote's amount in the reader's way of writing numbers (lib/money).
+  import { localAmounts, readerLocale } from '../lib/money';
+  for (const el of document.querySelectorAll('.amount')) el.textContent = localAmounts(el.textContent ?? '', readerLocale());
+</script>

@@ -27,6 +27,9 @@ const starts = await Promise.all(STARTS.map(async (s) => ({ ...s, steps: await P
       Pick the path that sounds like you. Each path is five or six short lessons and labs, about an hour in all, done in any order you like. Then try the ideas
       together in a <a href="/cases/">work case</a>: a short story where each decision leads to the next.
     </p>
+    <p class="new-to-game">
+      Only want to learn a game? Start <a href="/chess/">chess from the first move</a> or <a href="/poker/">poker from the first hand</a>.
+    </p>
 
     {starts.map((start) => (
       <section id={start.id} aria-labelledby={`${start.id}-title`}>

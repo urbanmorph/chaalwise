@@ -34,9 +34,9 @@ test('missing a question in the check opens the lesson at that question, with th
   // The banner names the question missed, and the lesson opens there, not at the start.
   const missed = page.getByTestId('check-missed');
   await expect(missed).toContainText('2 of 3 right first time');
-  await expect(missed).toContainText('step 2, marked on the steps below');
-  await expect(page.getByText('Step 2 of 3', { exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Step 1, done' })).toBeVisible();
+  await expect(missed).toContainText('step 8, marked on the steps below');
+  await expect(page.getByText('Step 8 of 9', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Step 7, done' })).toBeVisible();
 
   // The missed question is asked again; the one right in the check can be passed.
   await expect(page.getByRole('button', { name: 'Continue' })).toHaveCount(0);
@@ -50,6 +50,8 @@ test('missing a question in the check opens the lesson at that question, with th
 test('after a missed check, the lesson can still start from the beginning', async ({ page }) => {
   await missTheQueen(page);
   await page.getByRole('button', { name: 'Start from the beginning' }).click();
-  await expect(page.getByText('Step 1 of 3', { exact: true })).toBeVisible();
+  await expect(page.getByText('Step 1 of 9', { exact: true })).toBeVisible();
+  // Past the six steps that meet the pieces, to the question right in the check.
+  for (let i = 0; i < 6; i++) await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await expect(page.getByText('You got this one right already')).toBeVisible();
 });

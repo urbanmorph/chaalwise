@@ -131,6 +131,8 @@ test('starting the coordinates drill puts the keyboard in the typed-square field
 test('once a choice is answered, the board highlights the square it was about', async ({ page }) => {
   await page.goto('/chess/board/');
   await hydrated(page);
+  // Past the six steps that meet the pieces, which light up where each one stands.
+  for (let i = 0; i < 6; i++) await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await expect(page.locator('cg-board square.highlight')).toHaveCount(0);
   await page.getByRole('button', { name: 'h1, a light square' }).click();
   // On a board seen from White, h1 is the bottom-right square.
@@ -173,7 +175,7 @@ test('clicking a piece picks that piece, even after something above the board pu
   await page.setViewportSize({ width: 390, height: 700 });
   await page.goto('/chess/board/');
   await hydrated(page);
-  for (const name of ['h1, a light square', 'Continue', 'd1', 'Continue'])
+  for (const name of [...Array(6).fill('Continue'), 'h1, a light square', 'Continue', 'd1', 'Continue'])
     await page.getByRole('button', { name, exact: true }).click();
   // Safari has no scroll anchoring, so content appearing above the board moves it without any scroll event.
   await page.evaluate(() => {

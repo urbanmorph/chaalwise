@@ -17,6 +17,9 @@ steps:
     text: 'The shared cards come in three steps: three at once (the flop), then a fourth (the turn), then a fifth (the river). For a quick estimate of your chance in percent, multiply your outs by four on the flop, with two cards to come. On the turn, with one card to come, multiply by two. Nine outs on the flop: about 36%. Nine outs on the turn: about 18%.'
   - ask: poker/outs-and-odds/open-ended
   - ask: poker/outs-and-odds/rule-of-four
+  - kind: read
+    id: pot-odds
+    text: 'Now compare your chance with the price. To call is to match a bet and stay in the hand. Say the pot holds 20 points, counting the bet just made, and a call costs 5. If you call, the pot becomes 25, and your 5 is a fifth of it: 20%. That is the price of the call. If your chance of winning is more than 20%, calling pays over many hands. If it is less, fold (give up the hand). Comparing the two is called pot odds.'
   - ask: poker/outs-and-odds/pot-odds
   - ask: poker/outs-and-odds/fold-the-draw
   - ask: poker/outs-and-odds/call-the-draw
