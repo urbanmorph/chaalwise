@@ -12,4 +12,4 @@ steps:
   - ask: chess/mate-stalemate/mate-in-one
 ---
 
-The goal of chess is checkmate: the king is attacked and has no way out. Stalemate looks similar and is a draw.
+The goal of chess is checkmate: the king is attacked and has no way out. Stalemate looks similar, but the king is not attacked and the player to move has no legal move. Stalemate is a draw: nobody wins.

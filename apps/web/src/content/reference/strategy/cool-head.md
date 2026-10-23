@@ -14,4 +14,4 @@ try:
   - chess/cool-head/steady
 ---
 
-A simple routine helps: after a mistake, breathe, name it, and do your normal blunder check on the next move instead of rushing to win it back.
+A simple routine helps. After a mistake, breathe and name it. Then do your normal blunder check on the next move, instead of rushing to win back what you lost.

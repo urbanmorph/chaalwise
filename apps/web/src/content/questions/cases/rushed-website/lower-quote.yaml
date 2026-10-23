@@ -1,5 +1,5 @@
 kind: choice
-prompt: A client pleased with your design studio's work asks for a 20% lower price, saying other studios quoted that much less. They do not show the quotes. How much should it move you?
+prompt: A client pleased with your design studio's work asks for a 20% lower price, saying other studios quoted that much less. They do not show the quotes. How much should their claim change your price?
 options:
   - A little, since saying it costs them nothing, true or not
   - A lot, since a client would not say it if it were untrue

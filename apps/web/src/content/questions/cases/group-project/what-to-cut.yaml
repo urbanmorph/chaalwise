@@ -1,5 +1,5 @@
 kind: choice
-prompt: 'Your student group has 24 hours left before a report is due, and 30 hours of work: 10 for the analysis, 12 for the writing, and 8 for an extra chapter. What do you do?'
+prompt: Your student group has 24 hours left before a report is due, and 30 hours of work. The analysis needs 10 hours, the writing 12, and an extra chapter 8. What do you do?
 options:
   - Drop the extra chapter, and do the analysis and writing well
   - Keep the extra chapter, since it is what will impress

@@ -72,7 +72,7 @@
   {#snippet summary(outcomes)}
     <div class="card" data-testid="round-done">
       <h2>Round done</h2>
-      <p>{summarise(outcomes)}. The ones you missed come back sooner.</p>
+      <p>{summarise(outcomes)}. The ones you missed come back for review sooner.</p>
       <SaveStatus status={saved} saved="Saved on this device." onretry={onfinish} />
       {@render after()}
     </div>

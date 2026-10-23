@@ -15,8 +15,8 @@ try:
   - life/regression-to-the-mean/worst-junction
 ---
 
-Francis Galton noticed it in 1886: tall parents had children who were tall on average, but less tall than their parents, and short parents had children taller than themselves. He called it regression towards mediocrity. Nothing pulls the children back; the parents were extreme partly by chance, and chance does not run in families.
+Francis Galton noticed it in 1886. Tall parents had children who were tall on average, but less tall than their parents. Short parents had children taller than themselves. He called it regression towards mediocrity. Nothing pulls the children back. The parents were extreme partly by chance, and chance does not run in families.
 
-Daniel Kahneman tells, in Thinking, Fast and Slow (2011), of flight instructors who were sure that praise made cadets worse and shouting made them better. Both were regression: an unusually good or bad landing is usually followed by a more ordinary one.
+In Thinking, Fast and Slow (2011), Daniel Kahneman tells of flight instructors who were sure of two things: praise made trainee pilots worse, and shouting made them better. Both were regression. An unusually good or bad landing is usually followed by a more ordinary one.
 
 Whenever results mix skill and luck, the most extreme ones are the luckiest or unluckiest. Expect them to fall back towards the average, and judge on more than one result before you praise, blame or change course.

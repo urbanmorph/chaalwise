@@ -1,5 +1,5 @@
 kind: choice
-prompt: 1.e4 c6, the Caro-Kann. Which family?
+prompt: The Caro-Kann chess opening starts 1.e4 c6. Which family does it belong to?
 position: 'moves: e4 c6'
 options:
   - Open games

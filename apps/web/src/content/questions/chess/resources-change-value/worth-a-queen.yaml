@@ -1,9 +1,9 @@
 card: strategy/resources-change-value/worth-a-queen
 kind: move
-prompt: With nothing else left, this pawn is worth a queen if it gets through. Only one move wins. Find it.
+prompt: In this chess ending, with nothing else left, your pawn becomes a queen if it reaches the last rank. Only one move wins. Find it.
 position: 8/8/6k1/8/1P6/8/8/6K1 w - - 0 1
 measures: endgame
 answers:
   - b4b5
-hint: Can Black's king catch the pawn? Use the square of the pawn.
+hint: Can Black's king catch the pawn? Picture a square from the pawn up to the last rank. A king that can step inside it catches the pawn.
 explanation: b5 leaves Black's king outside the square of the pawn. It is too far away to catch it, and the pawn queens. Any king move gives Black time to step into the square, and the game is drawn.

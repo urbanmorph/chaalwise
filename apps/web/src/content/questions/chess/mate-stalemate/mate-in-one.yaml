@@ -4,5 +4,5 @@ prompt: Give checkmate in one move.
 position: k7/8/1K6/8/8/8/7Q/8 w - - 0 1
 answers:
   - h2h8
-hint: Check along the back rank. Your king already covers a7 and b7.
-explanation: The queen checks along the back rank, and your king covers the two squares in front. The king has nowhere to go.
+hint: Give check along rank 8, the black king's edge row. Your king already guards a7 and b7.
+explanation: The queen gives check along rank 8, and your king guards a7 and b7, the two squares in front of the black king. The black king has nowhere to go.

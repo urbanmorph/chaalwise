@@ -15,6 +15,6 @@ lichess: 'fork'
 
 Knight to c7 checks the king on e8 and attacks the rook on a8. The king must move, and the rook falls.
 
-Knights fork most often, because their jump is hard to see coming, but every piece, even a pawn, can fork. When forking the king, the check takes away the choice.
+Knights fork most often, because their jump is hard to see coming, but every piece, even a pawn, can fork. When the fork includes the king, the check takes away the choice: the king must be saved first.
 
 A fork is the commonest double attack. A double attack is any one move that makes two threats, including a discovered attack.

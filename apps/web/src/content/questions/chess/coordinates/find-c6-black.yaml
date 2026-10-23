@@ -1,9 +1,9 @@
 kind: square
 practice: find-square-black
-prompt: You are Black, looking from the other side. Find c6.
+prompt: You play Black now, so the board is turned round. Pick the square c6.
 orientation: black
 answers:
   - c6
 hint: From Black's side the a-file is on your right, and rank 8 is nearest to you.
-explanation: From Black's side everything is turned round. c6 is three files from your right and three ranks up from your side.
+explanation: From Black's side everything is turned round. c6 is on the third file from your right and the third rank from your side.
 measures: board

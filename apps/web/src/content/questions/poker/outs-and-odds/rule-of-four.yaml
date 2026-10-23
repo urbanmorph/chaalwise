@@ -1,5 +1,5 @@
 kind: choice
-prompt: You have nine outs on the flop, with two cards to come. Roughly what is your chance of hitting one?
+prompt: You have nine outs (unseen cards that would make your hand), with two shared cards still to come. Roughly what is your chance that one of them comes?
 options:
   - About 36%
   - About 18%

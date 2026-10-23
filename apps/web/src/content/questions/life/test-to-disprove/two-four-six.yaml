@@ -1,6 +1,6 @@
 card: reference/strategy/test-to-disprove/two-four-six
 kind: choice
-prompt: You are told 2, 4, 6 fits a hidden rule, and you guess "numbers going up by 2". Which test tells you most about whether you are right?
+prompt: You are told 2, 4, 6 fits a hidden rule, and you guess "numbers going up by 2". You may try any three numbers and be told whether they fit. Which test tells you most about whether you are right?
 options:
   - 8, 10, 12
   - 1, 2, 3

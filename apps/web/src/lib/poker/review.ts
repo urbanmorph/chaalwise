@@ -42,7 +42,7 @@ export function suggestion({
   const price = toCall ? Math.round((100 * toCall) / (pot + toCall)) : 0;
   const can = (move: Move) => moves.includes(move);
   if (toCall) {
-    const cost = `${chance} A call costs ${toCall} to play for ${pot + toCall}: ${price}% of the pot.`;
+    const cost = `${chance} A call costs ${toCall} points to play for a pot of ${pot + toCall}, so its price is ${price}% of the pot.`;
     if (equity < price)
       return { equity, price, suggest: 'fold', why: `${cost} The chance is below the price, so the maths says fold.` };
     if (equity >= STRONG && can('raise'))
@@ -70,7 +70,7 @@ export function suggestion({
     equity,
     price,
     suggest: 'check',
-    why: `${chance} Checking is free, and this hand is not strong enough to bet for value against any two cards.`,
+    why: `${chance} Checking is free, and against any two cards this hand is not strong enough to bet and be paid by worse hands.`,
   };
 }
 

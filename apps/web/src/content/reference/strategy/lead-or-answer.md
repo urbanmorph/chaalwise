@@ -14,6 +14,6 @@ try:
   - chess/lead-or-answer/answer-it
 ---
 
-With White you usually start with the initiative; with Black you choose openings that answer it well. Both are good strategies. What fails is a move that neither threatens anything nor answers anything.
+In chess, White moves first, so usually starts with the initiative: the power to make threats. With Black, you choose openings that answer it well. Both are good strategies. What fails is a move that neither threatens anything nor answers anything.
 
 Whether to lead at all depends on what moving first does. Move first when your move commits you or anchors the other side; move second when their move tells you something you lack. Ask which is true here. See also: act with more information.

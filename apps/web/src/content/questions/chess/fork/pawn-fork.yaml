@@ -1,5 +1,5 @@
 kind: move
-prompt: Even a pawn can fork. Win a piece.
+prompt: Even a pawn can fork, attacking two pieces at once. Win a piece.
 position: 6k1/5ppp/2n1b3/8/3PP3/8/5PPP/6K1 w - - 0 1
 answers:
   - d4d5

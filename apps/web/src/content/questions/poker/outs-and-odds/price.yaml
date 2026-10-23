@@ -1,5 +1,5 @@
 kind: choice
-prompt: The pot holds 18 points and a call costs 6. How often must you win for the call to pay?
+prompt: The pot (the points bet so far) holds 18 points. To stay in, you must call (match the bet) for 6 points. How often must you win for the call to pay?
 cards:
   pot: 18
   toCall: 6

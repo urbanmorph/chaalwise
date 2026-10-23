@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your opponent folds to almost any bet once the shared cards look dangerous. What are your implied odds against them?
+prompt: Implied odds are the extra points you expect to win on later betting rounds if the card you need comes. Your opponent folds to almost any bet once the shared cards look dangerous. How large are your implied odds against them?
 options:
   - 'Small: they will not pay you when you hit'
   - 'Large: careful players pay big pots'

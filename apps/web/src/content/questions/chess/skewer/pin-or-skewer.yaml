@@ -1,5 +1,5 @@
 kind: choice
-prompt: After Bf3+ here, is it a pin, a skewer or a fork?
+prompt: White has just played Bf3+, giving check. Is this a pin, a skewer or a fork?
 position: q7/7p/8/3k4/8/5B2/6PP/6K1 b - - 0 1
 arrows: [f3a8]
 options:

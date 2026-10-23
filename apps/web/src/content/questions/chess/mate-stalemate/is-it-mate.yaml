@@ -1,5 +1,5 @@
 kind: choice
-prompt: It is Black to move. What is this?
+prompt: It is Black's turn to move. Is the black king checkmated, stalemated, or neither?
 position: k7/1Q6/1K6/8/8/8/8/8 b - - 0 1
 arrows: [b7a8]
 options:
@@ -10,8 +10,8 @@ answer: 0
 feedback:
   - ''
   - Stalemate means no legal move and no check. Here the queen on b7 gives check, so it is mate.
-  - The king seems able to take the queen, but your king on b6 guards her, and a7 and b8 are covered too.
-explanation: The king on a8 is in check from the queen. It cannot take her because your king guards her, and every square it could go to is covered. That is checkmate.
+  - The black king seems able to take the queen, but the white king on b6 guards her. The queen also attacks a7 and b8, so the black king has nowhere to go.
+explanation: The king on a8 is in check from the queen. It cannot take her, because the white king guards her, and every square it could move to is attacked. That is checkmate.
 highlight:
   - a8
 measures: board

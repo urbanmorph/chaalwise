@@ -1,6 +1,6 @@
 card: reference/strategy/incentives/rat-tails
 kind: choice
-prompt: In 1902 the rulers of Hanoi paid a bounty for each rat tail handed in, to cut the number of rats. What went wrong?
+prompt: In 1902 the rulers of Hanoi paid a small reward, a bounty, for each rat tail handed in, to cut the number of rats. What went wrong?
 options:
   - People cut off tails and let the rats go to breed
   - The bounty was too small for anyone to bother

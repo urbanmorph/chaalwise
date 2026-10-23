@@ -35,7 +35,7 @@ test('a strategy lesson plays like any other, then leads on along the path', asy
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Read it as they will, and ask what happens if it is forwarded' }).click();
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Plan B, by 600 over the two years' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
@@ -103,7 +103,7 @@ test('every lesson page has the whole path in a rail on the right, with this les
   await expect(rail.getByRole('link', { name: 'Name the squares' })).toHaveAttribute('href', '/chess/coordinates/');
   await expect(rail.getByRole('link', { name: 'The knight' })).toHaveAttribute('aria-current', 'page');
   // Other stages are folded; opening one shows its lessons, strategy lessons in place.
-  await rail.getByText("Stage 1 · Don't hang pieces").click();
+  await rail.getByText('Stage 1 · Keep your pieces safe').click();
   await expect(rail.getByRole('link', { name: 'The blunder check' })).toHaveAttribute('href', '/skills/blunder-check/');
   // To the right of the board, not below it.
   const board = (await page.locator('.board').boundingBox())!;

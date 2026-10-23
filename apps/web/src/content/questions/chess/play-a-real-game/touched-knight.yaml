@@ -1,5 +1,5 @@
 kind: choice
-prompt: Over the board, you pick up your knight, then see that every knight move is bad. What now?
+prompt: In a chess game at a real board, you pick up your knight, then see that every knight move is bad. What now?
 options:
   - You must move the knight somewhere
   - Put it back, as you have not let go

@@ -1,6 +1,6 @@
 card: strategy/look-at-three/three-candidates
 kind: move
-prompt: Three moves catch the eye, Rxa7, Nc5 and Nf6+. Only one wins. Compare them, then play it.
+prompt: 'Three moves catch the eye: Rxa7, Nc5 and Nf6+. Only one wins. Compare them, then play it.'
 position: 6k1/p2q4/8/8/4N3/8/8/R5K1 w - - 0 1
 measures: calculation
 answers:

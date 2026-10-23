@@ -12,4 +12,4 @@ try:
 related: ['strategy/cool-head', 'strategy/decisions-not-results']
 ---
 
-A big win can do the same: players often play looser after one, too (Smith, Levere and Kurtzman 2009). Tilt turns one result into many bad decisions. The cure is the same as in chess: notice it, pause, and go back to your routine before the next decision.
+A big win can do the same: players often play looser (more hands, bigger risks) after one, too (Smith, Levere and Kurtzman 2009). Tilt turns one result into many bad decisions. The cure is the same as in chess: notice it, pause, and go back to your routine before the next decision.

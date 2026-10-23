@@ -1,5 +1,5 @@
 kind: choice
-prompt: The same flush draw, one card to come. Now the pot holds 20 points and a call costs 2. Call or fold?
+prompt: 'You hold four hearts, so one more heart makes a flush (five of one suit): a flush draw. One shared card is still to come. The pot holds 20 points and a call (matching the bet) costs 2. Call, or fold (give up)?'
 cards:
   hole: [Ah, 5h]
   board: [Kh, 9h, 2c, 7s]

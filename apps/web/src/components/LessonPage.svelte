@@ -198,7 +198,7 @@
           checked.missed,
         )}, marked on the steps below. The lesson opens at {checked.start + 1 < checked.missed[0]!
           ? `step ${checked.start + 1}, the reading before it`
-          : `step ${checked.missed[0]}`}. The questions you got right count, so you can pass them.
+          : `step ${checked.missed[0]}`}. The questions you got right still count, so you can move past them.
       </p>
       {#if checked.start > 0}
         <button class="button" type="button" onclick={() => player?.resume(0, checked!.result, false)}>Start from the beginning</button>

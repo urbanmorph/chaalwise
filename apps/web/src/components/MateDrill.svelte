@@ -8,7 +8,7 @@
   import DrillScore from './DrillScore.svelte';
   import PlayOut from './PlayOut.svelte';
 
-  /** Basic mates against the clock: a random start; the score is the moves left over when you mate (more is better). */
+  /** Basic mates in few moves: a random start; the score is the moves left over when you mate (more is better). */
   let piece = $state<'queen' | 'rook'>('queen');
   let step = $state<Extract<GradedStep, { kind: 'play' }>>();
   let games = $state(0);
@@ -45,7 +45,7 @@
 
 <div class="mate">
   <fieldset>
-    <legend class="label">Mate with</legend>
+    <legend class="label">Checkmate with</legend>
     <label><input type="radio" bind:group={piece} value="queen" /> King and queen</label>
     <label><input type="radio" bind:group={piece} value="rook" /> King and rook</label>
   </fieldset>

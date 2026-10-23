@@ -14,6 +14,6 @@ try:
   - chess/shrink-the-problem/candidates
 ---
 
-Start with forcing moves (checks, captures, threats), then moves that improve your worst piece. Two or three candidates, examined well, beat ten examined badly.
+In chess, start with forcing moves (checks, captures, threats), then moves that improve your worst piece. Two or three candidates, examined well, beat ten examined badly.
 
 Off the board, first make sure you have more than one real option; then cut to the few worth comparing. More decisions go wrong from looking at too few options than too many.

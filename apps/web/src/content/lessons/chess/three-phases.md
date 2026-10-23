@@ -13,11 +13,11 @@ steps:
     highlight: [c4, c5, f3, c6, f6, g1]
   - kind: read
     id: middlegame
-    text: In the middlegame the pieces are out. Now each side makes a plan from the pawn structure, and attacks or defends. Most games are decided here.
+    text: In the middlegame the pieces are out. Now each side makes a plan, based on where the pawns stand, and attacks or defends. Most games are decided here.
     position: 'moves: e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6 Bb3 Ba7 Nbd2 Be6 Nf1 h6'
   - kind: read
     id: endgame
-    text: In the endgame few pieces are left. The king, hidden all game, becomes a fighting piece, and a pawn that can run to the last rank, a passed pawn, often decides.
+    text: In the endgame few pieces are left. The king, hidden all game, becomes a fighting piece. A passed pawn, one that no enemy pawn can stop on its way to the last rank, often decides the game.
     position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
     highlight: [b4]
   - ask: chess/three-phases/which-phase-1

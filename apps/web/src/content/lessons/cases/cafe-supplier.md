@@ -12,11 +12,11 @@ steps:
   - ask: cases/cafe-supplier/price-rise
   - kind: read
     id: quotes
-    text: You list four options and get two quotes. A new roaster across town offers the same kind of beans at ₹820 a kilo. That would save ₹100 a kilo, or ₹4,000 a month on 40 kilos. But you have never used them, and your customers know your coffee.
+    text: You look around for other suppliers. A new roaster across town offers the same kind of beans at ₹820 a kilo. That would save ₹100 a kilo, or ₹4,000 a month on 40 kilos. But you have never used them, and your customers know your coffee.
   - ask: cases/cafe-supplier/new-roaster
   - kind: read
     id: rival
-    text: The trial goes well. Nobody notices the change, and the beans arrive on time, so you move all 40 kilos to the new roaster. Then the café across the road cuts its price for a cup of coffee from ₹180 to ₹150. Some of your regulars mention it.
+    text: You try them with 10 kilos a month for two months. The trial goes well. Nobody notices the change, and the beans arrive on time, so you move all 40 kilos to the new roaster. Then the café across the road cuts its price for a cup of coffee from ₹180 to ₹150. Some of your regulars mention it.
   - ask: cases/cafe-supplier/rival-cut
   - kind: read
     id: contract

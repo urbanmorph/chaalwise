@@ -1,11 +1,11 @@
 card: strategy/count-it-through/compare
 kind: choice
-prompt: What do the captures on d5 and the phone offer share?
+prompt: In this chess position, White can take on d5, and Black can take back. What do these captures share with the phone offer?
 position: 4k3/8/4p3/3n4/4P3/8/8/4K3 w - - 0 1
 arrows: [e4d5, e6d5]
 alongside: A phone shop offers a free handset with a two-year contract.
 options:
-  - The first step looks good; only the end of the chain tells
+  - The first step looks good, but only the end of the chain tells
   - Both are a free gain that should be taken at once
   - Both are about counting what you have right now
 answer: 0

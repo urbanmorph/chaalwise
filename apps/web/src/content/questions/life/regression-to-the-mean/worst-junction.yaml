@@ -10,5 +10,5 @@ feedback:
   - The fall is real, but the junction was picked for its worst year. Some of that was bad luck, which would not repeat, camera or not.
   - Crashes moving elsewhere is worth a look, but it does not explain the fall. A junction picked for its worst year would likely improve anyway.
   - ''
-explanation: Picking the worst case and measuring again builds in regression to the mean. Compare with similar junctions that got no camera.
+explanation: An extreme year tends to be followed by a more ordinary one. This is called regression to the mean. Picking the worst junction and measuring again builds it in, so compare with similar junctions that got no camera.
 measures: weigh-odds

@@ -1,5 +1,5 @@
 kind: choice
-prompt: You just lost a large pot when the last card gave your opponent a lucky flush. Next hand you hold the seven of clubs and the two of diamonds, and can call cheaply. What should you do?
+prompt: You just lost a large pot (all the points bet in a hand) when the last shared card gave your opponent a lucky flush. Next hand you hold the seven of clubs and the two of diamonds, and can call (match the bet) cheaply. What should you do?
 cards:
   hole: [7c, 2d]
 options:

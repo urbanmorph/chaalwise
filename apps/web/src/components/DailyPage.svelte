@@ -25,7 +25,7 @@
       : ': solve one of today’s to keep it going'}.
     {#if record.streak && record.streak.best > current}<span class="best">Best: {record.streak.best} days.</span>{/if}
   {:else}
-    Solve one of today’s puzzles to start a streak. New ones come every day.
+    Solve one of today’s puzzles to start a streak: a count of the days in a row you solve one. New puzzles come every day.
   {/if}
 </p>
 
@@ -36,7 +36,9 @@
 
 <section aria-labelledby="poker-title">
   <h2 id="poker-title">Today’s poker puzzle</h2>
-  <p class="sub">One exercise from the <a href="/poker/drills/">poker drills</a>, worked out by the same odds the practice tables use. Practice points only.</p>
+  <p class="sub">
+    One question from the <a href="/poker/drills/">poker drills</a>, worked out with the same odds as the practice tables. It uses practice points only.
+  </p>
   <DailyPoker onfinished={(r) => (record = r)} />
 </section>
 

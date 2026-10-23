@@ -9,5 +9,5 @@ answers:
   - f2f3
   - f2f4
 hint: Give the king a square to step to off the back rank.
-explanation: A pawn move that gives the king a square is called luft, German for air. h3 is the usual choice. f3 and f4 also stop the back-rank mate, but they open the diagonal from a7 to g1 towards your king, and g3 leaves holes on f3 and h3.
+explanation: A pawn move that gives the king a square is called luft, German for air. h3 is the usual choice. f3 and f4 also stop the back-rank mate, but they open the diagonal from a7 to g1 towards your king. g3 leaves f3 and h3 as weak squares that no pawn can guard any more.
 measures: patterns

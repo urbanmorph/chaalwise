@@ -20,7 +20,7 @@ steps:
   - ask: cases/first-job/colleague-asks
   - kind: read
     id: estimate
-    text: Three months in, Priya asks how long a new monthly report will take you. It feels like a two-day job. But your last three estimates each ran about half as long again as you said.
+    text: Three months in, Priya asks how long a new monthly report will take you. It feels like a two-day job. But your last three jobs each took about one and a half times as long as you estimated.
   - ask: cases/first-job/how-long
   - kind: plan
     id: plan

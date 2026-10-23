@@ -6,4 +6,4 @@ measures: opening
 answers:
   - b1c3
 hint: Which knight can reach a square that attacks d5?
-explanation: Nc3 develops a knight and makes the queen move again, so White gains time. Bc4 also attacks the queen, but nothing guards the bishop, and ...Qxc4 takes it.
+explanation: Nc3 brings out a knight and makes the queen move again, so White gains time. Bc4 also attacks the queen, but nothing guards the bishop, and ...Qxc4 takes it.

@@ -52,7 +52,7 @@
         if (turn.reply) reply = `Their king went to ${turn.reply.slice(2, 4)}.`;
         if (turn.status === 'playing') return;
         over = true;
-        result = turn.status === 'won' ? 'Checkmate!' : REASONS[turn.reason!];
+        result = turn.status === 'won' ? 'Checkmate.' : REASONS[turn.reason!];
         onresult(turn.status === 'won', game.used);
         await tick();
         againButton?.focus();

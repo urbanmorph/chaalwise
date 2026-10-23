@@ -95,9 +95,9 @@ describe('strategy first', () => {
         .matchAll(/>([a-z]+)<\/a>/g),
     ].map((m) => m[1]);
 
-  it('leads every page with strategy: the games are found through the reference', () => {
+  it('leads every page with strategy, then the games for a beginner who wants only chess or poker', () => {
     for (const page of ['index.html', 'chess/index.html', 'reference/index.html'])
-      expect(nav(page)).toEqual(['strategy', 'daily', 'reference', 'review', 'progress']);
+      expect(nav(page)).toEqual(['strategy', 'chess', 'poker', 'daily', 'review', 'progress']);
   });
 
   it('starts a newcomer on a strategy lesson, not a chess one', () => {

@@ -9,7 +9,7 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, a pawn counts as one point and a knight as three. In the endgame that changes. If White had a knight here instead of the pawn, it could never win, because king and knight alone cannot mate. The b-pawn could become a queen. And the kings, which hid all game, are now fighters.
+    text: On the chessboard, a pawn counts as one point and a knight as three. In the endgame that changes. If White had a knight here instead of the pawn, it could never win, because king and knight alone cannot checkmate. The b-pawn could reach the far side and become a queen. And the kings, which hid for safety all game, now join the fight.
     position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
     highlight: [b4, e6, f2]
   - ask: chess/resources-change-value/worth-a-queen

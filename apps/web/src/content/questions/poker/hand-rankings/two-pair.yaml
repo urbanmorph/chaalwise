@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your ace and nine, with these shared cards. What is your best hand?
+prompt: You hold the ace and nine, with these shared cards. What is your best hand of five cards?
 cards:
   hole: [Ah, 9c]
   board: [9d, 5s, 5h, Kc, 2d]

@@ -1,5 +1,5 @@
 kind: choice
-prompt: Calling costs 4 points. If you win, you collect 16 points that were already in the pot; you win one time in four. On average, what does each call win or lose?
+prompt: To call (match a bet) costs you 4 points. If you win, you collect 16 points that were already in the pot; you win one time in four. On average, what does each call win or lose?
 options:
   - It wins 1 point on average
   - It loses 4 points on average

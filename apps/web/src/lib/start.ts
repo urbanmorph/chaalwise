@@ -14,7 +14,7 @@ export const STARTS: Start[] = [
   {
     id: 'run-a-team',
     who: 'You run a team or an organisation',
-    why: 'Most of your decisions meet another side: a client, a rival, your own people. Start with their reply, then trust, then bargaining.',
+    why: 'Most of your decisions involve another side: a client, a rival, your own people. Start with how they will reply, then trust, then bargaining.',
     steps: [
       'strategy/their-next-move',
       'strategy/blunder-check',

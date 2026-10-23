@@ -1,5 +1,5 @@
 kind: choice
-prompt: You hold the king and queen of diamonds; your opponent shows a pair of aces. With one card to come, how often do you win?
+prompt: "You hold the king and queen of diamonds, and you can see your opponent's cards: a pair of aces. One shared card is still to come. How often do you win?"
 cards:
   hole: [Kd, Qd]
   board: [Kh, 7c, 2d, 9s]

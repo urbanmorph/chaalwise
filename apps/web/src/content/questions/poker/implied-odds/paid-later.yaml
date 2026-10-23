@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your flush draw comes about one time in five on the river. The pot holds 10 points and a call costs 4. If the flush comes, you expect to win 8 more points from your opponent. Call or fold?
+prompt: You hold four hearts; one more heart, on the last shared card, makes a flush. That comes about one time in five. The pot holds 10 points and a call (matching the bet) costs 4. If the flush comes, you expect to win 8 more points from your opponent. Call or fold?
 cards:
   hole: [Ah, 5h]
   board: [Kh, 9h, 2c, 7s]

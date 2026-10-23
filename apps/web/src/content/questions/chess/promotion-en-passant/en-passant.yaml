@@ -1,8 +1,8 @@
 kind: move
-prompt: Black has just pushed the d-pawn two squares, past your pawn on e5. Take it en passant.
+prompt: Black has just moved the d-pawn two squares, from d7 to d5, so it stopped beside your pawn on e5. A special rule, en passant ("in passing"), lets your pawn take it as if it had moved only one square. Take it.
 position: 4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1
 answers:
   - e5d6
 hint: Capture as if the black pawn had moved only one square, onto d6.
-explanation: En passant is allowed only on the very next move after the two-square push. Wait, and the chance is gone.
+explanation: En passant is allowed only on the very next move after the two-square push. If you wait a move, the chance is gone.
 measures: board

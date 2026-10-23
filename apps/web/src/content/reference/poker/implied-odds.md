@@ -3,7 +3,7 @@ term: 'Implied odds'
 game: 'poker'
 kind: 'odds'
 level: 'advanced'
-summary: 'Pot odds plus what you expect to win in later rounds if you hit your hand.'
+summary: 'Pot odds plus what you expect to win in later betting rounds if you make the hand you are hoping for.'
 lesson: 'poker/implied-odds'
 try:
   - 'poker/implied-odds/paid-later'
@@ -11,4 +11,4 @@ try:
 related: ['poker/pot-odds', 'poker/expected-value']
 ---
 
-A call can be right even when the pot odds alone say no, if hitting your hand will win much more later. Be honest about how much more: the other player will not always pay you.
+A call can be right even when the pot odds alone say no, if making your hand will win you much more later. Be honest about how much more: the other player will not always pay you.

@@ -51,7 +51,7 @@ export const GUIDED: GuidedHand[] = [
     id: 'how-a-hand-runs',
     title: 'How a hand runs',
     intro:
-      'Each player gets two cards that only they can see. Five shared cards come face up in the middle, over three rounds. Your hand is the best five of your two and the shared five. Before the cards, two players put in a small forced bet, the blinds, so there is something to play for.',
+      'Each player gets two cards that only they can see. Then five shared cards are dealt face up in the middle: three at once (the flop), then a fourth (the turn), then a fifth (the river). Your hand is the best five cards from your two and the five shared. Before any cards, two players must put in a small bet, called the blinds, so there is something to win. All the points bet go into the pot. On your turn you can check (pass, if nobody has bet), bet, call (match a bet), raise (bet more) or fold (give up the hand).',
     you: ['As', 'Ks'],
     bot: ['Qd', 'Qc'],
     board: ['Kh', '7c', '2d', '9s', '4h'],
@@ -66,7 +66,7 @@ export const GUIDED: GuidedHand[] = [
       },
       flop: {
         notice:
-          'The flop: three shared cards. The king pairs your king, so you have a pair of kings, with an ace beside it.',
+          'The flop: the first three shared cards. One is a king, which pairs your king, so you have a pair of kings, with an ace beside it.',
         suggest: 'bet',
         why: 'A pair of kings is very likely the best hand here. Bet, so a worse hand pays to stay in.',
       },
@@ -78,11 +78,11 @@ export const GUIDED: GuidedHand[] = [
       river: {
         notice: 'The river: the last shared card. Your hand is now final: a pair of kings.',
         suggest: 'bet',
-        why: 'Bet once more. If the bot calls, both hands are shown, and the best five cards win the pot.',
+        why: 'Bet once more. If the bot calls, both hands are shown (the showdown), and the best five cards win the pot.',
       },
     },
     lesson:
-      'At the showdown your pair of kings beat the bot’s pair of queens: a higher pair wins. Every hand runs this way: blinds, two cards each, then betting before the flop, on the flop, the turn and the river.',
+      'At the showdown, when both hands were shown, your pair of kings beat the bot’s pair of queens: a higher pair wins. Every hand runs this way: blinds, two cards each, then a round of betting before the flop, after the flop, after the turn and after the river.',
   },
   {
     id: 'folding-is-a-move',
@@ -125,10 +125,10 @@ export const GUIDED: GuidedHand[] = [
       flop: {
         notice: (table) => {
           const o = outs(table.seats[LEARNER]!.cards, table.board);
-          return `You have four hearts. One more heart makes a flush. There are ${o.count} hearts left, your ${o.count} outs. By the rule of 2 and 4, the next card gives about ${ruleOf(o.count, 1)}% (outs × 2), and about ${ruleOf(o.count, 2)}% by the river if you see both cards (outs × 4). The bot bet ${toCall(table)} into a pot of ${table.pot - toCall(table)}.`;
+          return `You have four hearts. One more heart makes a flush (five of one suit). There are ${o.count} hearts left unseen: your ${o.count} outs, the cards that would make your hand. A quick rule: outs × 2 gives the chance on the next card, about ${ruleOf(o.count, 1)}%, and outs × 4 the chance over both cards still to come, about ${ruleOf(o.count, 2)}%. The bot bet ${toCall(table)} points into a pot of ${table.pot - toCall(table)}.`;
         },
         suggest: 'call',
-        why: 'Call. The price is a little more than the chance the next card gives. But if the flush comes, the bets still to come can win you much more. The bot probably has the king.',
+        why: 'Call. On the next card alone, your chance is below what the call costs as a share of the pot. But if the flush comes, the bets still to come can win you much more. The bot probably has the king.',
       },
       turn: {
         notice: 'The ace of hearts: your flush has come in. Five hearts beat a pair of kings.',
@@ -138,11 +138,11 @@ export const GUIDED: GuidedHand[] = [
       river: {
         notice: 'The three of spades changes nothing. You still have a flush.',
         suggest: 'bet',
-        why: 'Bet again for value: a pair of kings may well call.',
+        why: 'Bet again, to be paid: a pair of kings may well call.',
       },
     },
     lesson:
-      'Your flush beat the bot’s pair of kings. Counting outs tells you how likely a draw is; the rule of 2 and 4 turns outs into a rough chance. Compare that with what a call costs, and you know whether waiting is worth it.',
+      'Your flush beat the bot’s pair of kings. Counting outs tells you how likely your hand is to come in. The rule of 2 and 4 turns outs into a rough chance. Compare that with what a call costs, and you know whether waiting is worth it.',
   },
 ];
 
@@ -184,9 +184,13 @@ export function coachFor(table: Table, hand: GuidedHand): { notice: string; sugg
   const owe = toCall(table);
   return owe
     ? {
-        notice: `The bot raised. Calling costs ${owe} more points.`,
+        notice: `The bot put in more. Calling (matching it) costs ${owe} more points.`,
         suggest: 'call',
-        why: 'Call to see the hand through; with a strong hand you could raise again.',
+        why: 'Call to stay in the hand; with a strong hand you could raise (put in more) again.',
       }
-    : { notice: 'Nothing to call.', suggest: 'check', why: 'Checking is free: you stay in without putting more in.' };
+    : {
+        notice: 'Nobody has bet, so there is nothing to call.',
+        suggest: 'check',
+        why: 'Checking is free: you stay in without putting more in.',
+      };
 }

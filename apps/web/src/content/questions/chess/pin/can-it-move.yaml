@@ -10,8 +10,8 @@ answer: 0
 feedback:
   - ''
   - No move may leave your own king in check, so the move is not allowed at all.
-  - Jumping does not help. Once the knight leaves c6, the bishop sees the king.
-explanation: A pin to the king is absolute, so the pinned piece cannot legally move. A pin to anything else only costs material if the piece moves.
+  - Jumping does not help. Once the knight leaves c6, the bishop attacks the king.
+explanation: When the piece behind is the king, the pinned piece cannot legally move. When it is any other piece, the pinned piece may move, but then you lose the piece behind it.
 highlight:
   - c6
 measures: patterns

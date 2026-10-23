@@ -1,6 +1,6 @@
 card: reference/labs/winners-curse/personal
 kind: choice
-prompt: You bid for your grandmother's old painting, worth far more to you than to anyone else. Does the winner's curse apply?
+prompt: At an auction, you bid for your grandmother's old painting, worth far more to you than to anyone else. Does the winner's curse apply? (The winner's curse is when the winner of an auction paid too much, because they overestimated a value that is the same for everyone.)
 options:
   - 'No: its worth to you is not a guess at a shared value'
   - 'Yes: every auction winner has overestimated'

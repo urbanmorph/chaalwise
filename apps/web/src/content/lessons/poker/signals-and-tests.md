@@ -8,7 +8,7 @@ skills: [bluff]
 steps:
   - kind: read
     id: costly-to-fake
-    text: 'A signal tells you something when it would be costly to send falsely. A raise from a player who almost never raises is a strong signal; the same raise from a player who raises every hand says little. Every bet also works as a test: different hands answer it differently, so a call or a fold tells you something. Bet for value or as a bluff, and read the answer as a bonus, not the reason.'
+    text: 'A signal tells you something when it would be costly to send falsely. A raise (a bet bigger than the last) from a player who almost never raises is a strong signal. The same raise from a player who raises every hand says little. Every bet also works as a test. Different hands answer it differently, so a call or a fold tells you something. Bet to be paid by worse hands or to make better ones fold, and treat what you learn as a bonus, not the reason.'
   - ask: poker/signals-and-tests/rare-raise
   - ask: poker/signals-and-tests/cheap-raise
   - ask: poker/signals-and-tests/bet-as-test

@@ -1,5 +1,5 @@
 kind: choice
-prompt: You are last to act on the flop. Both other players check. What have you learned?
+prompt: 'The first three shared cards (the flop) are out, and you act last. Both other players check: they pass without betting. What have you learned?'
 cards:
   hole: [Jc, Td]
   board: [8s, 4h, 2d]

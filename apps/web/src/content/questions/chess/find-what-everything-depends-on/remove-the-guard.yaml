@@ -5,5 +5,5 @@ position: 3q1rk1/pp3ppp/5n2/3p2B1/3P4/3Q4/PP3PPP/1B4K1 w - - 0 1
 measures: calculation
 answers:
   - g5f6
-hint: What stops Qxh7 mate today?
+hint: What stops Qxh7 mate right now?
 explanation: The knight on f6 is the only guard of h7. Bxf6 removes it, and if Black takes back, Qxh7 is mate. Black must block with ...g6, and then the bishop takes the queen on d8 as well.

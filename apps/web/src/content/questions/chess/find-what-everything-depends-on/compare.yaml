@@ -1,6 +1,6 @@
 card: strategy/find-what-everything-depends-on/compare
 kind: choice
-prompt: What does the pinned knight share with the sales manager?
+prompt: "In this chess position, Black's knight on c6 guards the bishop on d4, but it is pinned: it cannot move without exposing the king behind it. What does the knight share with the sales manager?"
 position: 4k3/pp3ppp/2n5/1B6/3b4/8/PP3PPP/3R2K1 w - - 0 1
 arrows: [d1d4, c6d4, b5e8]
 alongside: All of a firm's sales depend on one manager, who holds every client contact.
@@ -13,5 +13,5 @@ feedback:
   - ''
   - The king and the manager are both at the top, but that is a surface likeness. What matters is the one piece the rest depends on.
   - The key piece is the one the rest stands on. Here it is a knight, worth far less than the king behind it.
-explanation: The bishop's safety rests on the pinned knight, and the firm's sales rest on one manager. Find that piece. In chess you strike it; in your own firm, you back it up.
+explanation: The bishop's safety rests on the pinned knight, and the firm's sales rest on one manager. Find that piece. In chess, you attack it. In your own firm, you back it up.
 measures: calculate

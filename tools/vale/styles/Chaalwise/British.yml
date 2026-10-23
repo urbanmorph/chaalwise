@@ -1,0 +1,18 @@
+extends: substitution
+message: "Use British spelling: '%s', not '%s'."
+level: error
+ignorecase: true
+swap:
+  colors?: colour
+  favorites?: favourite
+  behaviors?: behaviour
+  centers?: centre
+  analyz(?:e|es|ed|ing): analyse
+  organiz(?:e|es|ed|ing|ation|ations): organise
+  recogniz(?:e|es|ed|ing): recognise
+  realiz(?:e|es|ed|ing): realise
+  favor(?:s|ed|ing)?: favour
+  labor: labour
+  neighbors?: neighbour
+  defense: defence
+  offense: offence

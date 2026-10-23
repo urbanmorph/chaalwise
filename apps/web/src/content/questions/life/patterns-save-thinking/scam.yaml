@@ -2,7 +2,7 @@ card: strategy/patterns-save-thinking/scam
 kind: choice
 prompt: "A text says: 'Your bank account will be blocked today. Verify now at this link and tell us the code we send you.' Last month's scam text was about a parcel. What tells you most about this one?"
 options:
-  - Its shape, a rush, a link and a request for a code
+  - 'Its shape: a rush, a link and a request for a code'
   - It reads nothing like the parcel text you saw
   - It names your own bank, and the number looks real
 answer: 0

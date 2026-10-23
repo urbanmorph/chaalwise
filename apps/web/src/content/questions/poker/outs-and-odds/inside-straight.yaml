@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your nine and eight, with these shared cards. How many outs do you have to a straight?
+prompt: You hold a nine and an eight, with these shared cards. An out is an unseen card that would complete your hand. How many outs do you have to a straight (five cards in a row, any suits)?
 cards:
   hole: [9s, 8d]
   board: [6c, 5h, Kd]

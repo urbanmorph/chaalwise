@@ -8,7 +8,7 @@ skills: [plan-long]
 steps:
   - kind: read
     id: plan
-    text: The rook cuts the king off along a rank or a file. Walk your own king towards it. When the kings stand face to face, check with the rook to push the king back a rank. If the king attacks your rook, move the rook far away along the same line.
+    text: The rook cuts the king off along a rank or a file. Walk your own king towards it. When the kings stand face to face, with one square between them, check with the rook to push the king back a rank. If the king attacks your rook, move the rook far away along the same line.
   - ask: chess/rook-mate/mate-with-rook
 ---
 

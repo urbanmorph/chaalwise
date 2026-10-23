@@ -8,9 +8,10 @@ import { reviewSteps } from '../lib/lessons';
 const steps = await reviewSteps();
 ---
 
-<Base title="Review" description="Today's spaced-repetition review." wide noindex>
+<Base title="Review" description="Questions from your finished lessons, brought back just before you would forget them." wide noindex>
   <div class="wrap wide">
     <h1>Today's review</h1>
+    <p>Questions from lessons you have finished come back here on later days, just before you would forget them. Answer them to keep the ideas fresh.</p>
     <ReviewSession client:load {steps} />
     <MixedPractice client:idle {steps} />
     {/* Below the review, so it never pushes the questions down as it loads. */}

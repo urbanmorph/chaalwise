@@ -9,14 +9,14 @@ after: chess/middlegame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, White is a knight ahead. Black's rook is its only active piece, and it threatens ...Rxe1 mate. Rxe8+ Kxe8 answers the threat and trades off that rook. With nothing left to attack with, Black cannot stop the extra knight from deciding the game.
+    text: On the chessboard, White is a knight ahead. Black's rook is Black's only active piece, and it threatens to take White's rook with checkmate (...Rxe1). White answers the threat by trading rooks first, Rxe8+ Kxe8. With nothing left to attack with, Black cannot stop the extra knight from deciding the game.
     position: 4rk2/pp3ppp/8/8/8/2N5/PP3PPP/4R1K1 w - - 0 1
     highlight: [e1, e8]
     arrows: [e1e8]
   - ask: chess/simplify-when-ahead/trade-queens
   - kind: read
     id: off-the-board
-    text: Off the board, when you are ahead and a sure, modest win is worth more than a bigger, riskier one, remove what could still go wrong. Fewer moving parts, fewer surprises. This is not cashing in every gain early. It fits when you only need to finish, as with a deadline, a pass mark or a deal you only need to close.
+    text: Off the board, when you are ahead and a sure, modest win is worth more than a bigger, riskier one, remove what could still go wrong. Fewer moving parts, fewer surprises. This does not mean taking every small gain early. It fits when you only need to finish, as with a deadline, a pass mark or a deal you only need to close.
   - ask: life/simplify-when-ahead/contract
   - ask: life/simplify-when-ahead/deposit
   - ask: chess/simplify-when-ahead/compare

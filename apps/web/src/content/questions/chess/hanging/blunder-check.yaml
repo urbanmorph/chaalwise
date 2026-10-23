@@ -1,5 +1,5 @@
 kind: choice
-prompt: Before every move, what do you look for, for both sides?
+prompt: In chess, before every move, what should you look for, for both you and your opponent?
 options:
   - Checks, captures and threats
   - Pins, forks and skewers
@@ -9,5 +9,5 @@ feedback:
   - ''
   - Those tactics are worth knowing, but most pieces are lost to a simple check, capture or threat that was missed.
   - Good opening aims, but they do not tell you whether a piece is about to be taken.
-explanation: Checks, captures and threats, yours and your opponent's, before every move. This is the blunder check, and it is the habit that stops you leaving pieces hanging.
+explanation: Look for checks, captures and threats, yours and your opponent's, before every move. A blunder is a bad mistake, such as leaving a piece to be taken. This habit is called the blunder check, and it stops you leaving pieces hanging.
 measures: safety

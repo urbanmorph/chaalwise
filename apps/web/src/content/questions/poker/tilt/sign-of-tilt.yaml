@@ -1,5 +1,5 @@
 kind: choice
-prompt: Which of these is a sign of tilt?
+prompt: Tilt is playing worse after a painful loss. Which of these is a sign of tilt?
 options:
   - Calling bets you know are bad, to win back what you lost
   - Folding a weak hand after a loss

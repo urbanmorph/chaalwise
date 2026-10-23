@@ -1,5 +1,5 @@
 kind: choice
-prompt: A course costs 5,000. In your present job it would earn you about 2,000 more a year, but it also qualifies you for a kind of job you are likely to move to within two years, which pays far more. How should you judge it?
+prompt: A course costs 5,000. In your present job it would earn you about 2,000 more a year. It also qualifies you for a kind of job that pays far more, and you are likely to move to one within two years. How should you judge it?
 options:
   - Count the later pay too, as long as you will really make the move
   - 'Only by your present job: 2,000 a year'
@@ -11,5 +11,5 @@ feedback:
   - Judging only by today leaves out the larger gain that may come later.
   - Some of the best choices pay back later, not at once.
   - 'The price still matters: count the later gain only if it is likely.'
-explanation: Like implied odds in poker, count the gains still to come, but only those you can really expect.
+explanation: In poker, implied odds count the points you may win later in a hand, not only what is on the table now. Do the same here. Count the gains still to come, but only those you can really expect.
 measures: weigh-odds

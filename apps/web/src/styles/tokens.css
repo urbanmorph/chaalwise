@@ -33,7 +33,7 @@
   /* Saffron. Decorative and on felt only; on the page, text uses --accent-text. */
   --accent: #e8a13c;
   --accent-text: #8a4b00;
-  /* "You found it!", "one move late", "missed" */
+  /* "You found it.", "one move late", "missed" */
   --pass: #2e6b4f;
   --warn: #8a6114;
   --fail: #a33a2a;

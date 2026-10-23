@@ -13,9 +13,9 @@
   const MOVES = 12;
   /** Shown when a move needs no rule of its own: what to try next. */
   const TIPS = [
-    'You play White. Pawns move straight ahead, one square, or two on their first move, and take diagonally. Drag a pawn, or tap it and then its square.',
+    'You play White, the pieces nearest you. The aim of chess is to trap the black king. Start with a pawn, one of the small pieces in front: drag it, or tap it and then a square. Pawns move straight ahead, one square, or two on their first move. They take enemy pieces one square diagonally forward.',
     'Knights jump in an L: two squares one way, one square to the side. They are the only pieces that hop over others.',
-    'Bishops slide along diagonals, rooks along ranks and files, and the queen both ways. None of them can jump.',
+    'Bishops slide along diagonals. Rooks slide in straight lines, up, down or sideways. The queen moves both ways. None of them can jump over other pieces.',
     'The king moves one square in any direction. Keep it safe: if it is attacked and cannot escape, the game is lost.',
     'A good start: bring out your knights and bishops before the queen, and look at what Black could take after each move.',
   ];
@@ -58,7 +58,7 @@
       const said = coachNote(prior, reply);
       if (said) note = said;
       if (!gentleReply(fen, Math.random)) finish(said ?? 'The game is over.');
-      else if (played >= MOVES) finish('That is chess in motion: twelve moves.');
+      else if (played >= MOVES) finish('That was twelve moves of chess.');
     }, 500);
     return true;
   }

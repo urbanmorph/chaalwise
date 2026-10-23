@@ -9,7 +9,7 @@ after: chess/middlegame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, White offers the f-pawn in the King's Gambit. If Black takes, White aims to build a centre with d4 and use the half-open f-file. A pawn is given for time and space, and the trade is good only if White can use them.
+    text: On the chessboard, in the opening called the King's Gambit, White offers the f-pawn. A gambit means giving up a pawn early to get something else. Here Black has taken it. White now aims to build a centre with d4 and to use the f-file, the column that no White pawn now blocks. A pawn is given for time and space, and the trade is good only if White can use them.
     position: 'moves: e4 e5 f4 exf4'
     highlight: [e4, f4]
     arrows: [d2d4]

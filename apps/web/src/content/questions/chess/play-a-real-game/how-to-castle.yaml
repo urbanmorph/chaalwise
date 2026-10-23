@@ -1,5 +1,5 @@
 kind: choice
-prompt: Over the board, you want to castle. How do you do it?
+prompt: In a chess game at a real board, you want to castle. How do you do it?
 options:
   - Touch the king first, move it two squares, then the rook
   - Touch the rook first, then jump the king over it

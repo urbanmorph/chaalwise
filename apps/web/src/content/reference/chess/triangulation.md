@@ -7,4 +7,4 @@ summary: 'Losing a move with the king, by walking a triangle, to hand the other 
 related: ['chess/opposition', 'chess/zugzwang']
 ---
 
-If your king can move round three squares while the enemy king can only shuttle between two, you arrive back in the same position with the other side to move, which puts them in zugzwang.
+Suppose your king can walk round a triangle of three squares, while the enemy king can only shuttle between two. Then you arrive back in the same position with the other side to move. That puts them in zugzwang: any move they make weakens their position.

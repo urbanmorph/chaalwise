@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your weekly report at work is due in an hour, and you have found that two of its figures are counted in different ways. What do you do?
+prompt: Your weekly report at work is due in an hour. You find that one depot counts parcels delivered and the other counts van trips, so adding them together means nothing. What do you do?
 options:
   - Send it on time, with a note on the problem and what you checked
   - Send it as it is, since it is the format your manager asked for

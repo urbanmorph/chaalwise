@@ -13,4 +13,4 @@ lesson: 'chess/opening-map'
 lichess: 'Pirc_Defense'
 ---
 
-Black fianchettoes the bishop on g7 and waits. The idea is that a big centre can become a target. It needs accurate play: give White too much and the centre simply rolls forward.
+Black puts the bishop on g7 after moving the g-pawn (a fianchetto), and waits. The idea is that a big centre can become a target. It needs accurate play: give White too much and the centre simply rolls forward.

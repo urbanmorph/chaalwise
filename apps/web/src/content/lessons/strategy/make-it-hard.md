@@ -9,14 +9,14 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, being far behind is not the same as losing. Here Black is a queen for a pawn down, and many would resign. Yet Kb1 or Ka1 holds the draw, keeping the king in the corner by its pawn; any other king move loses. With Black's king on a1, in front of its pawn, a queen move that takes its last square without check is stalemate.
+    text: On the chessboard, being far behind is not the same as losing. Here Black has only a pawn against White's queen, and many players would resign (give up the game). Yet the king move Kb1 or Ka1 holds the draw, by keeping the king in the corner next to its pawn. Any other king move loses. With Black's king on a1, in front of its pawn, the pawn cannot move. So a queen move that takes the king's last free square without attacking it leaves Black no move at all. That is stalemate, a draw.
     position: 6K1/8/8/3Q4/8/8/pk6/8 b - - 0 1
     highlight: [a1, a2, b2]
     arrows: [b2b1, b2a1]
   - ask: chess/make-it-hard/hold-on
   - kind: read
     id: off-the-board
-    text: Off the board, when things go badly, the pull is to give in early, by taking the first offer, dropping the bid or leaving a hard answer blank. Instead, ask what would make the result hardest to lose, and do that. This is not refusing ever to stop. When something is truly lost, stop, but find out first.
+    text: Off the board, when things go badly, the pull is to give in early, by taking the first offer, dropping the bid or leaving a hard answer blank. Instead, ask what would make the result hardest to lose, and do that. This does not mean never stopping. When something is truly lost, stop, but check first that it is.
   - ask: life/make-it-hard/dearer-bid
   - ask: life/make-it-hard/last-question
   - ask: chess/make-it-hard/compare

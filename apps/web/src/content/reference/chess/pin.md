@@ -15,4 +15,4 @@ lichess: 'pin'
 
 Bishop to b5 pins the knight on c6 to the king on e8: the knight may not move, because that would expose the king. Black played ...d6, which opened the diagonal.
 
-A pin to the king is absolute: the pinned piece cannot legally move. A pin to anything else is relative: it can move, but it costs. Pile up on a pinned piece, because it cannot run.
+A pin to the king is absolute: the pinned piece cannot legally move. A pin to anything else is relative: it can move, but it costs. Attack a pinned piece with more of your pieces, because it cannot run.

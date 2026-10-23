@@ -1,10 +1,10 @@
 kind: play
 practice: mate-kq
-prompt: Mate the lone king.
+prompt: Checkmate the lone black king with your king and queen.
 position: 8/8/8/4k3/8/8/8/4KQ2 w - - 0 1
 goal: checkmate
 within: 20
 opponent: lone-king
 hint: Put the queen a knight's move from the king to make a box, then follow it as it shrinks.
-explanation: Box, shrink, bring the king, mate. With practice it takes ten moves or fewer.
+explanation: Box the king in, shrink the box, bring your king up, then mate. With practice it takes ten moves or fewer.
 measures: endgame

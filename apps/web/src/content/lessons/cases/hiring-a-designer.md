@@ -12,7 +12,7 @@ steps:
   - ask: cases/hiring-a-designer/check-candidate
   - kind: read
     id: before-pay
-    text: 'Her referees describe a hard project she rescued, and one habit to watch: she can be slow to share early drafts. You decide to go ahead. Before talking about pay, you note your other choice. The next candidate would take ₹14 lakh a year, but would need about three months more training. Your budget allows up to ₹18 lakh.'
+    text: 'Her referees, the people who vouch for her, describe a hard project she rescued, and one habit to watch: she can be slow to share early drafts. You decide to go ahead. Before talking about pay, you note your other choice. The next candidate would accept ₹14 lakh a year, but would need about three months more training. Your budget allows up to ₹18 lakh.'
   - ask: cases/hiring-a-designer/set-limit
   - kind: read
     id: first-goals-read
@@ -20,7 +20,7 @@ steps:
   - ask: cases/hiring-a-designer/first-goals
   - kind: read
     id: slow-start
-    text: Two months in, her first project is two weeks late. The client changed the brief halfway through, and she also kept her early drafts to herself for too long. Your manager asks whether hiring her was a mistake.
+    text: Two months in, her first project is two weeks late. The client changed the brief, what they asked for, halfway through, and she also kept her early drafts to herself for too long. Your manager asks whether hiring her was a mistake.
   - ask: cases/hiring-a-designer/judge-the-hire
   - kind: plan
     id: plan

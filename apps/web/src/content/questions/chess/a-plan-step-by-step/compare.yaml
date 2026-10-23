@@ -1,6 +1,6 @@
 card: strategy/a-plan-step-by-step/compare
 kind: choice
-prompt: White wants a knight on d5 and goes there through c3. What does that share with the shop?
+prompt: In this chess position, White wants a knight on d5 and gets it there in two moves, through c3. What does that share with the shop?
 position: 4r1k1/1p2bppp/p2p4/4p3/4P3/8/PPP2PPP/1N2R1K1 w - - 0 1
 arrows: [b1c3, c3d5]
 alongside: A manager wants a second shop open within a year.

@@ -2,7 +2,7 @@ card: strategy/find-what-everything-depends-on/one-mill
 kind: choice
 prompt: Your bakery sells 200 cakes a day. All its flour comes from one mill, which closed for a week last year. You have 50,000 to make the business safer. What do you spend it on?
 options:
-  - A second mill, and a week of flour in store
+  - A second mill to buy from, and a week of flour in store
   - A new oven, since the old one is the slowest
   - Advertising, to grow sales past 200 a day
 answer: 0

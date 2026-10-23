@@ -30,7 +30,7 @@ test('a finished lesson comes back for review on a later day', async ({ page }) 
     const prompt = await page.locator('.player').getByRole('heading', { level: 2 }).textContent();
     const [, answer] = ANSWERS.find(([pattern]) => pattern.test(prompt ?? ''))!;
     await answer(page);
-    await expect(page.getByText('You found it!')).toBeVisible();
+    await expect(page.getByText('You found it.')).toBeVisible();
     await page.getByRole('button', { name: /^(Continue|Finish)$/ }).click();
   }
   await expect(page.getByText('Round done')).toBeVisible();

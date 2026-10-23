@@ -14,7 +14,7 @@ test('a reference idea can be tried on the page, and the answers count towards i
 
   await choose(page, 'The bishop on c1');
   await typeMove(page, 'b3');
-  await expect(page.getByTestId('try-done')).toContainText('2 of 2 first try');
+  await expect(page.getByTestId('try-done')).toContainText('2 of 2 right first time');
 
   await page.goto('/skills/plan-long/');
   await expect(page.getByTestId('track-level')).toHaveText('Noticing');
@@ -82,7 +82,7 @@ test('saying how sure you are is optional, and the progress page shows how often
   await stage.getByRole('button', { name: 'Try it' }).click();
   await page.getByText('90%').click();
   await page.getByRole('button', { name: first!.options[first!.answer], exact: true }).click();
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
 
   // The answer is saved as it is given: wait until it has landed before leaving the page.
   await expect

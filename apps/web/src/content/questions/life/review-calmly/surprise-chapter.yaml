@@ -1,6 +1,6 @@
 card: strategy/review-calmly/surprise-chapter
 kind: choice
-prompt: You followed a good revision plan for a test but scored 55, because it covered a chapter the teacher had said would not be on it. What do you change for next time?
+prompt: You followed a good revision plan for a test but scored 55 out of 100, because it covered a chapter the teacher had said would not be on it. What do you change for next time?
 options:
   - Keep the plan, but check what the test covers in writing
   - Study twice as long, since the plan clearly failed

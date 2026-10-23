@@ -46,7 +46,10 @@
 <div class="lab card">
   <div class="lab-stage">
     {#if !rounds.length}
-      <p>Eight choices, each between plan A, a sure thing, and plan B, a gamble. There is no right answer. Pick the plan you would rather have.</p>
+      <p>
+        You will see eight choices. Each is between plan A, a sure result, and plan B, a gamble: a plan where chance decides the result. There is no right
+        answer. Press the plan you would rather have.
+      </p>
       <p class="lab-note">Answer as you would for real, and do not look back. The lab shows what your answers have in common at the end.</p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={start}>Start</button>
@@ -62,7 +65,8 @@
     {/if}
     {#if over}
       <p class="lab-status" tabindex="-1" bind:this={statusEl} aria-live="polite" data-testid="gl-status">
-        Done. You met each of four choices twice: once put as what is kept, once as what is lost. Your answer changed with the wording in {result.flipped} of 4.
+        Done. You saw four choices, each one twice: once put as what is kept, and once as what is lost. Your answer changed with the wording in {result.flipped} of
+        4.
       </p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={showDebrief} disabled={debrief}>See the debrief</button>
@@ -109,8 +113,8 @@
       <li>With gains, people tend to play safe; facing a sure loss, they tend to gamble to avoid it. That is why the wording can flip the choice.</li>
       <li>The wording sets what counts as a gain or a loss. Change the wording and the choice can change, though the facts have not.</li>
       <li>
-        Neither plan is wrong: each pair keeps the same on average. What is hard to defend is choosing differently because of the words. Before you decide, say
-        the choice the other way, or as plain end states, and see whether your answer holds.
+        Neither plan is wrong: in each choice, both plans keep the same amount on average. What is hard to defend is choosing differently because of the words.
+        Before you decide, say the choice the other way, or as plain results, and see whether your answer holds.
       </li>
       <li>The same pull shows after a setback: a loss you want to undo makes long shots look better than they are.</li>
     </ul>

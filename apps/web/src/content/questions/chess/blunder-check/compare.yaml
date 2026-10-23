@@ -1,6 +1,6 @@
 card: strategy/blunder-check/compare
 kind: choice
-prompt: The knight on c3 attacks the queen. What do the board and the email have in common?
+prompt: In this chess position, Black's knight on c3 attacks White's queen. What do the board and the email have in common?
 position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
 arrows: [c3d1]
 alongside: A colleague has written a sharp reply to a client and is about to press send.
@@ -13,5 +13,5 @@ feedback:
   - ''
   - Speed is the danger in both. The queen move and the send button reward a pause, not haste.
   - The queen is attacked, but the email is not yet. What they share is the check before you act.
-explanation: In both, the question is what your move lets the other side do. On the board it is the knight; at work it is the client's reply and who else reads it.
+explanation: In both, the question is what your move lets the other side do. On the board, that is the knight. At work, it is the client's reply, and who else reads it.
 measures: think-ahead

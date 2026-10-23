@@ -12,11 +12,11 @@ steps:
   - ask: cases/rushed-website/rushed-offer
   - kind: read
     id: counted
-    text: You count it through. Eight weeks would need ₹1.6 lakh of overtime, more than the ₹1 lakh bonus. Nine weeks would need ₹80,000. You offer nine weeks for the same bonus, and the client agrees. One worry is left. On past jobs, the client's marketing head has changed the brief late, after the work was done.
+    text: You count it through. Each week saved needs about ₹80,000 of overtime. Eight weeks, two weeks saved, would need ₹1.6 lakh, more than the ₹1 lakh bonus. Nine weeks would need ₹80,000. You offer nine weeks for the same bonus, and the client agrees. One worry is left. On past jobs, the client's marketing head has changed the brief, what they asked for, late, after the work was done.
   - ask: cases/rushed-website/late-changes
   - kind: read
     id: ahead
-    text: The sign-offs work. By week seven you are a week ahead. Then the client asks for an extra, moving pictures on the home page, “if there is time”. It is a kind of work your team has not built before.
+    text: You agree in writing who approves each stage, and it works. By week seven you are a week ahead. Then the client asks for an extra feature, moving pictures on the home page, “if there is time”. It is a kind of work your team has not built before.
   - ask: cases/rushed-website/extra-feature
   - kind: read
     id: next-job

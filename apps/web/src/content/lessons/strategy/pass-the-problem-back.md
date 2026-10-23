@@ -9,7 +9,7 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, kings cannot stand next to each other. When they face each other with one square between, the one that must move has to give way. Here Black is to move. Black's king must step aside, White's king walks forward, and the pawn queens. With White to move instead, it would be a draw. This is the opposition.
+    text: On the chessboard, kings cannot stand next to each other. When they face each other with one square between, the one that must move has to give way. Here Black is to move. Black's king must step aside, White's king walks forward, and the pawn reaches the far side and becomes a queen. With White to move instead, it would be a draw. Chess players call this the opposition.
     position: 8/4k3/8/4K3/4P3/8/8/8 b - - 0 1
     highlight: [e5, e7]
   - ask: chess/pass-the-problem-back/hand-it-back
@@ -29,4 +29,4 @@ steps:
     action: 'I will set out the real options and ask them to choose'
 ---
 
-Opposition and zugzwang are where chess makes this idea exact. Off the board, it becomes a habit only if you practise it there too, as this week's task asks.
+Opposition, and zugzwang (having to move when every move makes things worse), are where chess makes this idea exact. Off the board, it becomes a habit only if you practise it there too, as this week's task asks.

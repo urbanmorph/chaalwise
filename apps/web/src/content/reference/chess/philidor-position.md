@@ -4,7 +4,7 @@ game: 'chess'
 kind: 'endgame'
 level: 'advanced'
 aliases: ['Third-rank defence']
-summary: 'The key drawing method in rook endings: with your king on or in front of the queening square, keep the rook on the third rank until the pawn advances.'
+summary: 'The key way to draw a rook ending. With your king on or in front of the queening square, keep your rook on the third rank until the pawn advances.'
 related: ['chess/lucena-position']
 ---
 

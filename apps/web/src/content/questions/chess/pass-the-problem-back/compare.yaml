@@ -1,6 +1,6 @@
 card: strategy/pass-the-problem-back/compare
 kind: choice
-prompt: Black, to move, must give way. What does that share with the engineer's reply?
+prompt: In this chess ending, it is Black's turn, so the black king must step aside and let White's king through. What does that share with the engineer's reply?
 position: 8/4k3/8/4K3/4P3/8/8/8 b - - 0 1
 alongside: An engineer is asked to fit a fourth project into a month already full with three.
 options:

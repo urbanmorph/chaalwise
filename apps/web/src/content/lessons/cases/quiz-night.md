@@ -8,7 +8,7 @@ skills: [weigh-odds, value, unpredictable, read-hidden]
 steps:
   - kind: read
     id: intro
-    text: You run the quiz society at your college, and this year the big quiz night is your job. The society has ₹40,000 to spend. First you need the main hall. The college lets its best Friday to whichever society bids the most towards the hall fund, in sealed bids. Whoever wins sells tickets to the same Friday crowd, and nobody knows how big it will be. You think the night is worth about ₹12,000 to whoever holds it, but you are not sure.
+    text: You run the quiz society at your college, and this year the big quiz night is your job. The society has ₹40,000 to spend. First you need the main hall. The college gives its best Friday to the society that offers the most money to the hall fund. Each society makes one secret offer, called a sealed bid. Whichever society wins sells tickets to the same Friday crowd, and nobody knows how big it will be. You think the night is worth about ₹12,000 to whoever holds it, but you are not sure.
   - ask: cases/quiz-night/hall-bid
   - kind: read
     id: how-many

@@ -72,10 +72,16 @@
       </div>
     </dl>
     {#if !item}
-      <p>Each jar of coins is worth the same to every bidder, somewhere from {LOW} to {HIGH} points. Nobody knows exactly how much.</p>
       <p>
-        You and four bots each get an estimate, within {SPREAD} points of the true value either way. Everyone makes one sealed bid. The highest bid wins and pays
-        what it bid, so the winner's profit is the jar's value minus the bid. It can be negative.
+        Each jar of coins is worth the same to every bidder, somewhere from {LOW} to {HIGH} points. Nobody knows exactly how much until the bids are in.
+      </p>
+      <p>
+        For each jar, you and four bots each get an estimate of its value. Each estimate is off by up to {SPREAD} points, too high or too low. Then everyone makes
+        one sealed bid: a secret bid that nobody sees until all the bids are in.
+      </p>
+      <p>
+        The highest bid wins the jar and pays what it bid. The winner scores the jar's value minus the bid, and that can be less than zero. If you don't win,
+        you score nothing for that jar. Aim to end with as many points as you can.
       </p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={next}>Start with the first jar</button>
@@ -155,7 +161,7 @@
       </li>
       <li>
         With {BIDDERS} bidders and errors of up to {SPREAD} points, the highest estimate is about {Math.round(breakEvenShade(BIDDERS))} points too high on average.
-        Shade your bid by about that much just to break even when you win. With 10 bidders it would be about {Math.round(breakEvenShade(10))}.
+        To break even when you win, shade your bid: bid about that much below your estimate. With 10 bidders it would be about {Math.round(breakEvenShade(10))}.
       </li>
       <li>
         The more bidders and the rougher the estimates, the more you must shade just to break even. Real bidders often do the opposite, bidding harder when the

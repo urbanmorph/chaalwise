@@ -4,5 +4,5 @@ position: 4k3/3n4/8/8/r2Q4/8/8/4K3 w - - 0 1
 answers:
   - d4a4
 hint: Is either of them defended?
-explanation: The rook is worth 5 and nothing defends it. The knight is defended by the king, so Qxd7+ Kxd7 would give your queen for a knight.
+explanation: The rook is worth 5 and nothing defends it. The knight is defended by the black king. If your queen took the knight, the king would take your queen, and you would give 9 points for 3.
 measures: calculation

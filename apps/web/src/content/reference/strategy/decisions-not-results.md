@@ -15,6 +15,6 @@ try:
   - life/decisions-not-results/lucky-win
 ---
 
-Psychologists call the mistake outcome bias: judging a decision by how it turned out. Poker makes this vivid: the right call loses some of the time. Chess has it too: a sound move can lose to an opponent who found something rare.
+Psychologists call the mistake outcome bias: judging a decision by how it turned out. Poker makes this vivid: the right call (paying to stay in the hand) still loses some of the time. Chess has it too: a sound move can lose to an opponent who found something rare.
 
-Results still carry information. The task is to sort luck from judgement: ask what you knew, what you could have found out, and whether the result shows your estimate was wrong.
+Results still tell you something. The task is to separate luck from judgement. Ask what you knew, what you could have found out, and whether the result shows your estimate was wrong.

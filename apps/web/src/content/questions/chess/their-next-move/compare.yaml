@@ -1,6 +1,6 @@
 card: strategy/their-next-move/compare
 kind: choice
-prompt: Before answering Qh5, Black asks what White wants. What does that share with preparing for the meeting?
+prompt: In this chess opening, White has just played Qh5. Before replying, Black asks what White wants. What does that share with preparing for the meeting?
 position: 'moves: e4 e5 Qh5'
 alongside: Next week you will ask your manager for a raise.
 options:

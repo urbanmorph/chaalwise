@@ -1,5 +1,5 @@
 kind: choice
-prompt: Black to move. White threatens d5, attacking the pinned knight. Which move saves it?
+prompt: 'Black to move. The knight on c6 is pinned: it cannot move, because the bishop would then attack the king. White threatens d5, attacking the knight. Which move saves it?'
 position: 4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 b - - 0 1
 arrows: [b5e8, d4d5]
 options:

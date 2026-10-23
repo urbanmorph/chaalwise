@@ -65,7 +65,7 @@ export const CHESS_SKILLS: ChessSkill[] = [
     track: 'plan-long',
     name: 'Endgame technique',
     means: 'Turn an advantage into a win, starting with the basic mates.',
-    practise: { href: '/chess/drills/', label: 'Basic mates against the clock' },
+    practise: { href: '/chess/drills/', label: 'Basic mates in few moves' },
   },
   {
     id: 'opening',

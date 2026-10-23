@@ -1,6 +1,6 @@
 card: reference/strategy/information-advantage/last-to-act
 kind: choice
-prompt: In poker, why is acting last in a betting round worth so much?
+prompt: In poker, players take turns to bet in each betting round. Why is acting last in a round worth so much?
 options:
   - You see what the others did before you decide
   - You see more of the shared cards before you decide
@@ -10,5 +10,5 @@ feedback:
   - ''
   - It can feel that way, but the shared cards are turned over for everyone at once. What you see that others do not is what they did.
   - Going last can feel like having the final say, but the betting limits are the same for every seat.
-explanation: 'Acting last is the same advantage: everyone else has shown something, and you decide knowing it.'
+explanation: 'Acting last is an advantage at the table and away from it: everyone else has shown something, and you decide knowing it.'
 measures: read-hidden

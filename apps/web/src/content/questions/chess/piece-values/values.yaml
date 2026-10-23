@@ -7,7 +7,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - The knight moves only a short way, but it jumps and forks. It is worth about the same as a bishop, 3.
+  - The knight moves only a short way, but it jumps over pieces and can attack several at once. It is worth about the same as a bishop, 3.
   - Bishop and rook are swapped. A rook can reach every square of the board, so it is worth more, 5 to the bishop's 3.
-explanation: These rough values tell you whether a trade is good. Most players rate a bishop slightly above a knight, and the pair of bishops about half a pawn extra. The king is beyond price, because losing it loses the game.
+explanation: These rough values tell you whether a trade is good. Most players rate a bishop slightly above a knight, and having both bishops is worth about half a pawn extra. The king has no points value, because losing it loses the game.
 measures: calculation

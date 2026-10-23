@@ -1,5 +1,5 @@
 kind: choice
-prompt: A cautious player who has not raised all session raises now. What does it most likely tell you?
+prompt: A cautious player who has not raised (bet more than the last bet) all session raises now. What does it most likely tell you?
 options:
   - They most likely have a strong hand
   - They are bluffing, to change how they look

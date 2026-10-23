@@ -1,6 +1,6 @@
 card: strategy/give-a-little-get-more/compare
 kind: choice
-prompt: What does White's f-pawn share with the start-up's shares?
+prompt: In this chess opening, White offers the f-pawn and Black takes it. What does that share with the start-up giving up shares?
 position: 'moves: e4 e5 f4 exf4'
 alongside: A start-up gives up 10% of its shares for the money to hire three engineers.
 options:
@@ -12,5 +12,5 @@ feedback:
   - ''
   - 'Losing something is the surface. The point is the exchange: a pawn for time and space, shares for engineers.'
   - Boldness is not the test. The trade is good only if what comes back is worth more than what was given.
-explanation: White gives a pawn for time and the centre; the start-up gives shares for people. Each is right only if what it gets is worth more, and it can show how.
+explanation: White gives a pawn for time and the centre. The start-up gives shares for people. Each is right only if what it gets is worth more, and it can show how.
 measures: size-risk

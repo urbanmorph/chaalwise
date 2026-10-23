@@ -6,12 +6,12 @@ import { betSize, toCall, type Move, type Table } from '@chaalwise/poker/table';
 /** A number of practice points, in words: "1 point", "12 points". */
 export const pointsWord = (n: number) => `${n} ${n === 1 ? 'point' : 'points'}`;
 
-/** A move as its button says it, with what it costs: "Call 2", "Raise, 4 points". */
+/** A move as its button says it, with what it costs: "Call, 2 points", "Raise, 4 points". */
 export const moveLabel = (table: Table, move: Move) =>
   move === 'call'
-    ? `Call ${toCall(table)}`
+    ? `Call, ${pointsWord(toCall(table))}`
     : move === 'bet'
-      ? `Bet ${betSize(table.street)}`
+      ? `Bet, ${pointsWord(betSize(table.street))}`
       : move === 'raise'
         ? `Raise, ${toCall(table) + betSize(table.street)} points`
         : move === 'fold'

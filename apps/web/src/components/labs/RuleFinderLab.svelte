@@ -179,8 +179,8 @@
       </table>
     </div>
     <p data-testid="rf-summary">
-      You found {totals.found} of {totals.rounds} rules. {totals.disconfirming} of your {totals.tests} tests were ones your guess said should get a no: the only kind
-      that can show a guess is wrong when the rule is wider than it.
+      You found {totals.found} of {totals.rounds} rules. {totals.disconfirming} of your {totals.tests} tests were ones your guess said should get a no. Only that
+      kind of test can show your guess is wrong when the real rule is wider than your guess.
     </p>
     <h3>What it shows</h3>
     <ul class="lab-lesson">

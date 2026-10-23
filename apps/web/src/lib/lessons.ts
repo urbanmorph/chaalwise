@@ -80,7 +80,7 @@ export const GOING_DEEPER = 4;
 
 export const STAGES: Record<number, string> = {
   0: 'The board',
-  1: "Don't hang pieces",
+  1: 'Keep your pieces safe',
   2: 'Basic mates',
   3: 'Opening principles',
   4: 'Tactics',

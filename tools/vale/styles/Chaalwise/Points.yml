@@ -1,0 +1,9 @@
+extends: existence
+message: "Say 'points', not '%s': practice points are never money or gaming chips."
+level: error
+ignorecase: true
+tokens:
+  - chips?
+  - casino
+  - jackpot
+  - wagers?

@@ -1,0 +1,7 @@
+extends: existence
+message: 'No exclamation marks: say it plainly.'
+level: error
+nonword: true
+scope: sentence
+tokens:
+  - '\w!(?:\s|$)'

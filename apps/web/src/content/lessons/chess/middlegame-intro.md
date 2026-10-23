@@ -8,7 +8,7 @@ skills: [plan-long]
 steps:
   - kind: read
     id: the-question
-    text: In the middlegame the pieces are out and the kings are tucked away. The question changes from how to develop to what to aim for. Plans come from the pawns, which decide which squares are strong, which files can open and where to attack.
+    text: In the middlegame the pieces are out and the kings are safe. The question changes from how to bring pieces out to what to aim for. Plans come from the pawns, which decide which squares are strong, which files can open and where to attack.
     position: 'moves: e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6 Bb3 Ba7 Nbd2 Be6 Nf1 h6'
   - ask: chess/middlegame-intro/where-plans-come-from
   - kind: read

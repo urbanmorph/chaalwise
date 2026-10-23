@@ -8,7 +8,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Right corner, wrong colour. The square on your right is always light; if it is dark, the board is turned.
+  - Right corner, wrong colour. The corner square on your right is always light. If it is dark, the board is turned the wrong way.
   - a1 is a dark square, but it is on your left. Files run from a on your left to h on your right.
 hint: Look at the board. Your right-hand corner is the h-file and the first rank.
 explanation: 'Light on right: the corner square on your right is always light. If it is dark, the board is turned the wrong way.'

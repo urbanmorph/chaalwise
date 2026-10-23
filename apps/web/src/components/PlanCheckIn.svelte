@@ -46,7 +46,7 @@
       <div class="actions">
         <button class="button" type="button" onclick={() => answer('used')}>I used it</button>
         <button class="button" type="button" onclick={() => answer('forgot')}>I forgot</button>
-        <button class="button" type="button" onclick={() => answer('no-chance')}>No chance yet</button>
+        <button class="button" type="button" onclick={() => answer('no-chance')}>No chance to use it yet</button>
       </div>
     {/if}
   </section>

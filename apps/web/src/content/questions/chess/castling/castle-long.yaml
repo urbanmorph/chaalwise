@@ -1,5 +1,5 @@
 kind: move
-prompt: Castle on the queen's side.
+prompt: "Castle on the queen's side: the left side, where your queen started."
 position: r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1
 answers:
   - e1c1

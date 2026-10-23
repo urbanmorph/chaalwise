@@ -7,4 +7,4 @@ summary: "A game where one player's gain is exactly the other's loss, like chess
 related: ['labs/nash-equilibrium', 'labs/prisoners-dilemma']
 ---
 
-Chess and rock-paper-scissors are zero-sum. Much of life is not: trade and cooperation can leave both sides better off, which is why the Prisoner's Dilemma is a better model for many real situations.
+Chess and rock-paper-scissors are zero-sum. Much of life is not. Trade and cooperation can leave both sides better off. That is why the Prisoner's Dilemma, where both can gain by cooperating, is a better model for many real situations.

@@ -34,7 +34,7 @@ test('coming back to a lesson left part-way offers to carry on from that step, w
   await typeMove(page, 'dxe5');
   await choose(page, 'Checks, captures and threats');
   // All three questions count, the one answered before leaving among them.
-  await expect(page.getByTestId('lesson-done')).toContainText('3 of 3 first try');
+  await expect(page.getByTestId('lesson-done')).toContainText('3 of 3 right first time');
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');
 
   // Finished: nothing left to carry on.

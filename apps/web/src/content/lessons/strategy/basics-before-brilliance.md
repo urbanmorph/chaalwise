@@ -9,13 +9,13 @@ after: chess/three-phases
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, the opening rewards plain good moves. Bring out a piece, take the centre, castle. Here White brought the queen out early to aim at f7. Black met each threat with a useful move, ...g6 to make room for the bishop and ...Nf6 to develop. Now Black has both knights out, while White's queen has moved twice and is a target.
+    text: On the chessboard, the opening (the first few moves) rewards plain good moves. Bring out a piece, take the centre, castle your king to safety. Here White brought the queen out early to aim at f7. Black met each threat with a useful move. ...g6 makes room for the bishop, and ...Nf6 brings out a knight. Now Black has both knights out, while White's queen has moved twice and is a target.
     position: 'moves: e4 e5 Qh5 Nc6 Bc4 g6 Qf3 Nf6'
     highlight: [f3, c6, f6]
   - ask: chess/basics-before-brilliance/develop-with-time
   - kind: read
     id: off-the-board
-    text: Off the board, the same holds when you start something new. The plain steps, done well, beat clever shortcuts. A clever plan that skips the basics works only if nobody does the basics against you. Get the groundwork right first.
+    text: Off the board, the same holds when you start something new. The plain steps, done well, beat clever shortcuts. A clever plan that skips the basics works only against someone who skips them too. Get the groundwork right first.
   - ask: life/basics-before-brilliance/new-team
   - ask: life/basics-before-brilliance/mock-exam
   - ask: chess/basics-before-brilliance/compare

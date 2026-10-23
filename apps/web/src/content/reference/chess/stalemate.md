@@ -10,6 +10,6 @@ related: ['chess/check', 'chess/zugzwang']
 lesson: 'chess/mate-stalemate'
 ---
 
-Black to move: the king on h8 is not in check, but every square it could go to is attacked, and Black has nothing else. A draw, however far ahead White was.
+It is Black's move. The king on h8 is not in check, but every square it could go to is attacked, and Black has no other legal move. A draw, however far ahead White was.
 
 When you are winning, check before each move that the other side will still have a move.

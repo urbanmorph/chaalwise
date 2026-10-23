@@ -1,0 +1,15 @@
+# The prose in a question file. Keys most questions lack are optional (`?`).
+engine: dasel
+scopes:
+  - expr: prompt
+    type: md
+  - expr: explanation
+    type: md
+  - expr: property(alongside?)
+    type: md
+  - expr: property(hint?)
+    type: md
+  - expr: property(options?).all()
+    type: md
+  - expr: property(feedback?).all()
+    type: md

@@ -1,5 +1,5 @@
 kind: choice
-prompt: A careful player who raises only with strong hands raises. You hold the ace of spades and the four of diamonds. What is the main danger?
+prompt: Before any shared cards come, a careful player who raises (bets more) only with strong hands raises. You hold the ace of spades and the four of diamonds. What is the main danger?
 cards:
   hole: [As, 4d]
 options:
@@ -11,7 +11,7 @@ answer: 0
 feedback:
   - ''
   - A careful player who raises rarely holds two low cards.
-  - 'The four is the problem because it is low: it is the card that decides a tie on aces.'
+  - 'The four is the problem because it is low: if you both pair an ace, the second card decides.'
   - Different suits weaken a hand a little; the bigger danger is the other ace.
 explanation: If both hold an ace, the second card decides. A careful raiser's ace usually comes with a king, queen or jack, so your ace-four is beaten even when an ace comes. Folding is usually right. Against a player who raises many hands, ace-four is worth more.
 measures: starting-hands

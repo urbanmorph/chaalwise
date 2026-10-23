@@ -67,7 +67,7 @@
       <dd data-testid="track-level">{level}</dd>
     </div>
     <div>
-      <dt>In the games</dt>
+      <dt>In the games (chess and poker)</dt>
       <dd data-testid="track-board">{board}</dd>
     </div>
     <div>

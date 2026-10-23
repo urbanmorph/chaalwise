@@ -9,7 +9,7 @@ after: chess/rook-mate
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, strong players do not work out the back-rank mate each time. They know the pattern, a king boxed in by its own pawns, and see the answer at once.
+    text: On the chessboard, strong players do not work out the back-rank mate each time. They know the pattern, a king boxed in on its back row by its own pawns, where a rook on that row gives checkmate. They see the answer at once.
     position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
     highlight: [g8, f7, g7, h7]
     arrows: [d1d8]

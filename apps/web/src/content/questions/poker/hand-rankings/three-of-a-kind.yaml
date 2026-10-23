@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your two sixes, with these shared cards. The computer holds the ace and king of clubs. Who wins?
+prompt: You hold two sixes, with these shared cards. The computer holds the ace and king of clubs. Who wins?
 cards:
   hole: [6s, 6d]
   board: [6c, Ad, Kh, 9c, 2s]

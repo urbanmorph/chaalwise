@@ -87,9 +87,9 @@ test('the dashboard: tiles and radar for a period, a tooltip by keyboard, and th
   await expect(page.getByTestId('tile-rate')).toHaveText('100%');
 
   // The think-ahead point carries its figures for keyboard and screen-reader users, and shows the tooltip on focus.
-  const point = page.getByRole('img', { name: 'Think ahead: 100% first time, 3 of 3' });
+  const point = page.getByRole('img', { name: 'Think ahead: 100% right first time, 3 of 3' });
   await point.focus();
-  await expect(page.locator('.tooltip')).toContainText('100% first time');
+  await expect(page.locator('.tooltip')).toContainText('100% right first time');
 
   await page.getByText('Show as a table').click();
   await expect(page.getByRole('row', { name: 'Think ahead 3 100%' })).toBeVisible();

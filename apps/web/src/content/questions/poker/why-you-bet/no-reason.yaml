@@ -1,5 +1,5 @@
 kind: choice
-prompt: On the last round you hold the best possible hand, but your opponent has already folded every other time you bet. A bet now would win nothing more. What does that tell you about betting?
+prompt: All five shared cards are out. You hold the best possible hand, but your opponent has folded every other time you bet. A bet now would win nothing more. What does that tell you about betting?
 cards:
   hole: [Ad, Jd]
   board: [9d, Kd, 4d, 7c, 2s]

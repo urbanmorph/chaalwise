@@ -1,5 +1,5 @@
 kind: choice
-prompt: It is Black to move. What is this?
+prompt: It is Black's turn to move. Is the black king checkmated, stalemated, or neither?
 position: k7/8/1Q6/8/8/8/8/4K3 b - - 0 1
 options:
   - Checkmate
@@ -7,10 +7,10 @@ options:
   - Neither
 answer: 1
 feedback:
-  - Every square around the king is covered, but the king is not in check. Without check it is not mate.
+  - Every square around the king is attacked, but the king itself is not in check. Without check it is not mate.
   - ''
   - Black must move, and the king has no legal square. With no other black pieces, that is stalemate.
-explanation: The king is not in check, but it has no legal move. That is stalemate, and stalemate is a draw, however much material you have.
+explanation: The king is not in check, but it has no legal move. That is stalemate, and stalemate is a draw, however many pieces you have left.
 highlight:
   - a8
 measures: board

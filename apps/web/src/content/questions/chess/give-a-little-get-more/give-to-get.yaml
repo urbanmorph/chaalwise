@@ -1,6 +1,6 @@
 card: strategy/give-a-little-get-more/give-to-get
 kind: move
-prompt: Give a little to get more. Find the move that wins material.
+prompt: 'Give a little to get more: give up a piece first, and win more back. Find the move that wins material.'
 position: 6k1/pp3ppp/4q3/3N4/8/8/PP3PPP/2R3K1 w - - 0 1
 measures: calculation
 answers:

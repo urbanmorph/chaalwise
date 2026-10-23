@@ -9,7 +9,7 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, a queen up is a won game, until the last move. Here Qb7 is mate. Qb6, which looks just as strong, takes every square from Black's king without giving check. That is stalemate, and the game is a draw.
+    text: On the chessboard, being a queen ahead wins the game, but only if you finish it. Here the queen move Qb7 is checkmate, because Black's king is attacked and cannot escape. Qb6 looks just as strong. But it takes every square from Black's king without attacking it, and Black has no other move. That is stalemate, and the game is a draw.
     position: k7/8/2K5/8/8/8/8/1Q6 w - - 0 1
     highlight: [b6, b7]
     arrows: [b1b7]

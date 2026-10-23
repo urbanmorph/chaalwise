@@ -1,9 +1,9 @@
 card: strategy/make-it-hard/compare
 kind: choice
-prompt: A queen down, Black keeps the king in the corner and draws. What does that share with the bid?
+prompt: In this chess ending, Black has only a pawn against a queen, but keeps the king in the corner and draws. What does that share with the bid?
 position: 6K1/8/8/3Q4/8/8/pk6/8 b - - 0 1
 arrows: [b2b1, b2a1]
-alongside: A small firm, 15% dearer than a larger rival, has a week before the client decides.
+alongside: A small firm charges 15% more than a larger rival. It has a week before the client decides.
 options:
   - Behind is not lost, so make the other side prove it
   - Both are about holding on to the last of what you have
@@ -11,7 +11,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Holding on is the surface. The king does not cling to the pawn for its own sake; it picks the defence that is hardest to beat.
+  - Holding on is the surface. The king does not cling to the pawn for its own sake. It picks the defence that is hardest to beat.
   - Neither is hopeless. The position is a draw with care, and the bid can still be won on more than price.
 explanation: Black finds the defence that leaves White no way through. The firm makes the rival win on every point, not just price. In both, being behind is a reason to defend well, not to stop.
 measures: composure

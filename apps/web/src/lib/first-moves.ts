@@ -26,18 +26,18 @@ export function coachNote(before: string, uci: string): string | undefined {
   const after = play(pos, uci);
   if (after.isCheckmate())
     return you
-      ? 'Checkmate! The king is attacked and has no way out. That ends the game, and you have won it.'
+      ? 'Checkmate: the black king is attacked and has no way out. That ends the game, and you have won it.'
       : 'Checkmate: your king is attacked and has no way out, so Black has won this one. Every player loses games like this at first.';
   if (move.promotion)
-    return `Your pawn reached the far side and became a queen, the strongest piece.${after.isCheck() ? ' It gives check too.' : ''}`;
+    return `Your pawn reached the far side of the board and became a queen, the strongest piece.${after.isCheck() ? ' It gives check too.' : ''}`;
   if (after.isCheck())
     return you
-      ? 'Check: you are attacking the king. Black must deal with it at once.'
-      : 'You are in check: your king is attacked. You must get out of it now: move the king, block the line, or take the attacker.';
+      ? 'Check: you are attacking the black king. Black must get it out of danger on the very next move.'
+      : 'You are in check: your king is under attack. You must get out of it with this move. Move the king, block the line of attack, or take the attacking piece.';
   if (CASTLING.has(uci) && pos.board.get(move.from)?.role === 'king')
     return you
-      ? 'You castled: the king moved two squares and the rook jumped over it. It tucks the king away and brings the rook into play.'
-      : 'Black castled: the king moved two squares and the rook jumped over it.';
+      ? 'You castled, a special move: the king moved two squares sideways and the rook jumped over it. This keeps the king safer and brings the rook into play.'
+      : 'Black castled, a special move: the king moved two squares sideways and the rook jumped over it.';
   if (capturedPiece(pos, move))
     return you
       ? 'You took a piece: it leaves the board, and yours takes its square.'

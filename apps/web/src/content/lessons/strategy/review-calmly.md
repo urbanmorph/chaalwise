@@ -9,7 +9,7 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, a result can hide its mistakes. Here Black has just played Nf6, and Qxf7 is mate. Suppose White missed it, and Black went on to win. Judged by the result, Nf6 was fine. Judged by what Black could see when playing it, it was a blunder.
+    text: On the chessboard, a result can hide its mistakes. Here Black has just played Nf6, and now White's queen can take on f7 with checkmate (Qxf7). Suppose White missed it, and Black went on to win. Judged by the result, Nf6 was fine. Judged by what Black could see when playing it, it was a blunder, a bad mistake.
     position: 'moves: e4 e5 Qh5 Nc6 Bc4 Nf6'
     highlight: [c4, f7, h5]
     arrows: [h5f7]

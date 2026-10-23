@@ -8,7 +8,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Suited connectors are worth playing, but a high pair is far stronger.
+  - Two cards of one suit, next to each other in rank, are worth playing, but a high pair is far stronger.
   - The ace helps, but a low second card makes it weak.
   - This is usually called the weakest starting hand of all.
 explanation: 'A pair of queens is already a pair, and a high one: it starts ahead of all the others.'

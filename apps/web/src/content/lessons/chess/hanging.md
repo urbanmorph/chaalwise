@@ -8,7 +8,7 @@ skills: [think-ahead]
 steps:
   - kind: read
     id: what-hanging-means
-    text: A piece is hanging when it can be taken for free. Either nothing defends it, or it is attacked more times than it is defended.
+    text: A piece is hanging when it can be taken for free. Either nothing defends it, or it is attacked more times than it is defended. Taking pieces like this is called winning material.
   - ask: chess/hanging/free-knight
   - ask: chess/hanging/cheaper-attacker
   - ask: chess/hanging/blunder-check

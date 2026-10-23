@@ -8,8 +8,9 @@ const lab = LABS.find((l) => l.slug === 'rule-finder')!;
 
 <LabPage {lab}>
   <p>
-    A hidden rule says yes or no to any three whole numbers. You see three that fit it. Make a guess, then try your own numbers and see which fit. When you are
-    sure, say which rule it is. Three rounds, each with a different rule.
+    A hidden rule says yes or no to any three whole numbers. You see three numbers that fit it. First, pick the rule you think it is from the list. Then type
+    three numbers of your own and press Test to see if they fit. When you are sure, press "That is the rule". You score a rule found when your pick is right.
+    Three rounds, each with a different rule.
   </p>
   <RuleFinderLab client:load />
 </LabPage>

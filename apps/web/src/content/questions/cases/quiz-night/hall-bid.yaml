@@ -1,5 +1,5 @@
 kind: choice
-prompt: Several college societies are making sealed bids for the same hall on the same night. Whoever wins sells tickets to the same crowd, and nobody knows how big it will be. You think the night is worth about ₹12,000, but you are unsure. What do you bid?
+prompt: Several college societies each make one secret offer, a sealed bid, for the same hall on the same night, and the highest offer wins. Whoever wins sells tickets to the same crowd, and nobody knows how big it will be. You think the night is worth about ₹12,000, but you are unsure. What do you bid?
 options:
   - Somewhat below ₹12,000, in case your guess is too high
   - ₹12,000, exactly what you think it is worth

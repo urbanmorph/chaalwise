@@ -9,7 +9,11 @@ test('after a lesson, "Practise again" gives five new positions of the same idea
   const practice = page.getByRole('region', { name: 'Practice in new positions' });
   await expect(practice.getByRole('heading', { name: 'Practice: 5 new positions' })).toBeFocused();
   await expect(practice.getByRole('navigation', { name: 'Steps in this lesson' }).getByRole('button')).toHaveCount(5);
-  await expect(practice.getByRole('heading', { name: 'One black piece can be won. Win it.' })).toBeVisible();
+  await expect(
+    practice.getByRole('heading', {
+      name: "You play White. One of Black's pieces can be taken for free, or by a cheaper piece. Take it.",
+    }),
+  ).toBeVisible();
   // A new position, not the lesson's own: generated ones have six pieces, the lesson's three or four.
   await expect(practice.locator('cg-board piece')).toHaveCount(6);
 });
@@ -22,8 +26,12 @@ test('a due card comes back in a fresh position of the same idea', async ({ page
   await hydrated(page);
   await expect(page.getByText(/\d+ to review/)).toBeVisible();
   // The hanging-piece cards return as generated positions with six pieces, not the lesson's four- and five-piece ones.
-  const prompts = page.getByRole('heading', { name: 'One black piece can be won. Win it.' });
-  const choice = page.getByRole('heading', { name: 'Before every move, what do you look for, for both sides?' });
+  const prompts = page.getByRole('heading', {
+    name: "You play White. One of Black's pieces can be taken for free, or by a cheaper piece. Take it.",
+  });
+  const choice = page.getByRole('heading', {
+    name: 'In chess, before every move, what should you look for, for both you and your opponent?',
+  });
   await expect(prompts.or(choice)).toBeVisible();
 });
 
@@ -77,10 +85,10 @@ for (const [heading, prompt] of [
   });
 }
 
-test('basic mates against the clock start from a random position', async ({ page }) => {
+test('basic mates in few moves start from a random position', async ({ page }) => {
   await page.goto('/chess/drills/');
   await hydrated(page);
-  const drill = page.locator('section', { hasText: 'Basic mates against the clock' });
+  const drill = page.locator('section', { hasText: 'Basic mates in few moves' });
   await drill.getByRole('button', { name: 'Start' }).click();
   await expect(drill.getByText('20 moves left')).toBeVisible();
   await expect(drill.locator('cg-board piece')).toHaveCount(3);

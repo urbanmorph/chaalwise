@@ -1,5 +1,5 @@
 kind: choice
-prompt: What is a simple guard against tilt?
+prompt: Tilt is playing worse after a painful loss. What is a simple guard against it?
 options:
   - Set your rules before you play, and pause after a big loss
   - Play faster after a loss, to win the points back

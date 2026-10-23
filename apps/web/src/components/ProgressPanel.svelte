@@ -113,18 +113,18 @@
         <dd data-testid="lessons-finished">{stats?.lessons ?? '–'}</dd>
       </div>
       <div>
-        <dt>Review questions</dt>
+        <dt>Questions saved for review</dt>
         <dd>{stats?.cards ?? '–'}</dd>
       </div>
       <div>
-        <dt>Due today</dt>
+        <dt>Due for review today</dt>
         <dd>{stats?.due ?? '–'}</dd>
       </div>
     </dl>
     {#if !persisted}
       <p>
-        Your browser may clear this progress if you do not visit for a while (Safari does after seven days). Installing Chaalwise to your home screen, or
-        allowing storage, keeps it.
+        Your browser may delete this progress if you do not visit for a while (Safari does after seven days). To keep it, install Chaalwise on your home screen,
+        or press the button below to allow storage.
       </p>
       <button class="button" onclick={keep}>Keep my progress</button>
     {:else}
@@ -145,7 +145,7 @@
   </section>
 
   <section class="card">
-    <h2>Move it to another device</h2>
+    <h2>Move your progress to another device</h2>
     <p>Your progress never leaves this device on its own. Save it as a file, and load that file on another device.</p>
     <button class="button primary" onclick={exportFile}>Save progress to a file</button>
     <label class="file">

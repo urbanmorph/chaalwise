@@ -1,5 +1,5 @@
 kind: choice
-prompt: You and the computer both pair the king on the board. Who wins?
+prompt: 'One of the shared cards is a king, and you and the computer each hold a king too: a pair of kings each. Who wins?'
 cards:
   hole: [Ks, Qc]
   board: [Kd, 8s, 4c, 2h, 9d]

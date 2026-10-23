@@ -14,8 +14,8 @@ const puzzles = (theme: string, name: string): LichessLink => ({
   label: `${name} puzzles from real games`,
 });
 const COORDINATES = { href: `${L}/training/coordinate`, label: 'the coordinates trainer, against the clock' };
-const LEARN = { href: `${L}/learn`, label: 'Learn chess, step by step, with each piece' };
-const MATES = { href: `${L}/practice`, label: 'Practice: the basic checkmates, against the computer' };
+const LEARN = { href: `${L}/learn`, label: 'learn each piece step by step' };
+const MATES = { href: `${L}/practice`, label: 'the basic checkmates, against the computer' };
 
 /** By lesson id. Only the lesson that sends you off to play a full game has no entry. */
 export const LICHESS_LESSONS: Record<string, LichessLink> = {

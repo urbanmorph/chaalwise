@@ -1,6 +1,6 @@
 card: reference/strategy/their-next-move/stop-it
 kind: move
-prompt: White threatens Qxf7, checkmate. Stop it, without giving anything away.
+prompt: You play Black. White threatens Qxf7, checkmate. Stop it, without giving anything away.
 position: 'moves: e4 e5 Bc4 Nc6 Qh5'
 orientation: black
 answers:
