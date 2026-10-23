@@ -1,5 +1,5 @@
 kind: choice
-prompt: You hold the king and queen of diamonds, with one card to come. Your opponent holds either a pair of aces (you win 11%) or the king of spades and jack of clubs (you win 93%), each as often as the other. What is your equity?
+prompt: You hold the king and queen of diamonds, with one shared card to come. Your opponent holds either a pair of aces (you win 11%) or the king of spades and jack of clubs (you win 93%), each as often as the other. Your equity is the share of the pot you win on average. What is it?
 cards:
   hole: [Kd, Qd]
   board: [Kh, 7c, 2d, 9s]

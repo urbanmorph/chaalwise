@@ -8,8 +8,9 @@ const lab = LABS.find((l) => l.slug === 'rock-paper-scissors')!;
 
 <LabPage {lab}>
   <p>
-    Rock beats scissors, scissors beats paper, paper beats rock. The bot starts by throwing at random, and watches what you throw. Try to beat it over 30
-    rounds, and see how quickly it learns your habits.
+    Each round, you and the bot each pick rock, paper or scissors at the same time: that pick is your throw. Rock beats scissors, scissors beats paper, and
+    paper beats rock. The same throw is a draw. The bot starts by throwing at random, but it watches what you throw. There are 30 rounds. Try to win more of
+    them than the bot, and see how quickly it learns your habits.
   </p>
   <RpsLab client:load />
 </LabPage>

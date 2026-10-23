@@ -1,6 +1,6 @@
 card: reference/labs/winners-curse/who-wins
 kind: choice
-prompt: Five bidders estimate a jar of coins that is worth the same to all of them. Each estimate is off by up to 30 points. If everyone bids their estimate, who usually wins?
+prompt: In an auction, five bidders estimate a jar of coins that is worth the same to all of them. Each estimate is off by up to 30 points. If everyone bids their estimate, who usually wins?
 options:
   - The one whose estimate was nearest
   - The one who overestimated most

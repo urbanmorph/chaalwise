@@ -1,5 +1,5 @@
 kind: choice
-prompt: Why think about a range of hands instead of guessing the one hand an opponent holds?
+prompt: A range is the list of hands an opponent could hold. Why think about their range instead of guessing the one hand they hold?
 options:
   - A single guess is usually wrong
   - A range lets you see their cards early

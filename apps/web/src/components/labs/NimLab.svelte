@@ -173,11 +173,14 @@
     {#if over && last}
       <div class="look-back" data-testid="nim-review">
         <h3>Looking back</h3>
-        <p class="lab-note">Positions to leave the bot: {WINNING.join(', ')}. From any of them, whatever it takes, you can leave the next one.</p>
+        <p class="lab-note">
+          Positions to leave the bot: {WINNING.join(', ')}. Whatever the bot takes from one of these, you can take enough to leave the next one down.
+        </p>
         <ul class="lab-lesson">
           {#if last.pile % 4 === 0}
             <li>
-              The pile started at {last.pile}, a multiple of 4, so the player who goes first loses against perfect play. Here, letting the bot start wins.
+              The pile started at {last.pile}, a multiple of 4, so the player who goes first loses if the other side plays perfectly. Here, letting the bot
+              start is the winning choice.
             </li>
           {:else}
             <li>The pile started at {last.pile}, not a multiple of 4, so going first wins: take {last.pile % 4} to leave {last.pile - (last.pile % 4)}.</li>

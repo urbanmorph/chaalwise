@@ -26,14 +26,15 @@ const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href;
 const jsonLd = schema && JSON.stringify(schema['@graph'] ? schema : { ...schema, url: pageUrl });
-// Strategy first; the games, with their lessons and drills, are found through the reference.
+// Strategy first, then each game from its first lesson, for a beginner who only wants to learn chess or poker. A page marks the section it is in.
 const NAV = [
   ['/skills/', 'strategy'],
+  ['/chess/', 'chess'],
+  ['/poker/', 'poker'],
   ['/daily/', 'daily'],
-  ['/reference/', 'reference'],
   ['/review/', 'review'],
   ['/progress/', 'progress'],
-];
+] as const;
 const path = Astro.url.pathname;
 // The mark (a knight's move on a small board), the same artwork as the favicon, drawn inline beside the wordmark.
 const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focusable="false" ');
@@ -78,7 +79,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
         </a>
         <nav aria-label="Main">
           {NAV.map(([href, label]) => (
-            <a href={href} aria-current={path === href ? 'page' : undefined}>
+            <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>
               {label}
             </a>
           ))}
@@ -98,8 +99,8 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
       <div class:list={['wrap', { wide }]}>
         <p>Free, offline, and against the computer only. No money, no ratings. Your progress stays on this device.</p>
         <p>
-          <a href="https://github.com/urbanmorph/chaalwise/blob/main/CREDITS.md">credits</a> · <a href="https://github.com/urbanmorph/chaalwise">code</a>{' '}
-          (AGPL-3.0) · made by <a href="https://www.urbanmorph.com/">urbanmorph</a> ·{' '}
+          <a href="/reference/">reference</a> · <a href="https://github.com/urbanmorph/chaalwise/blob/main/CREDITS.md">credits</a> ·{' '}
+          <a href="https://github.com/urbanmorph/chaalwise">code</a> (AGPL-3.0) · made by <a href="https://www.urbanmorph.com/">urbanmorph</a> ·{' '}
           <a href="https://github.com/urbanmorph/chaalwise/blob/main/TERMS.md">terms</a>
         </p>
         <!-- Shown only where this browser can install Chaalwise (scripts/install-app.ts). -->

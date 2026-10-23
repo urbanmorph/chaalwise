@@ -73,12 +73,12 @@
   <div class="lab-stage">
     {#if !round}
       <p>
-        Each round shows a box of dots. You and a panel of {PANEL} bots each guess how many there are. Each bot is wrong by its own amount, some too high, some too
-        low.
+        Each round shows a box of dots. You and a panel (a group) of {PANEL} bots each type a guess of how many dots there are. Each bot is off by its own amount:
+        some guess too high, some too low.
       </p>
       <p>
-        In some rounds everyone guesses alone. In others, bot A speaks first and everyone hears its guess before making their own. Six boxes; after each, see
-        your guess, the panel's average and the true count.
+        In some rounds everyone guesses alone. In others, bot A speaks first, and everyone hears its guess before making their own. There are six boxes. After
+        each one, you see the true count, and how far off your guess and the panel's average were.
       </p>
       <p class="lab-note">
         Guess by eye: counting every dot is not the point. If you cannot see the picture, any number will do; the lesson is in the panel's averages.
@@ -113,8 +113,8 @@
           {#each r.guesses as g, i (i)}<li><span>Bot {NAMES[i]}</span> {g}</li>{/each}
         </ul>
         <p class="lab-status" tabindex="-1" bind:this={statusEl} aria-live="polite" data-testid="panel-result">
-          There were {r.dots} dots. You said {r.yours}, off by {pct(offBy(r.yours, r.dots))}. The panel's average was {avg}, off by {pct(offBy(avg, r.dots))};
-          {r.guesses.filter((g) => offBy(g, r.dots) > offBy(avg, r.dots)).length} of {PANEL} bots were further off than that.
+          There were {r.dots} dots. You said {r.yours}, off by {pct(offBy(r.yours, r.dots))}. The panel's average was {avg}, off by {pct(offBy(avg, r.dots))}.
+          {r.guesses.filter((g) => offBy(g, r.dots) > offBy(avg, r.dots)).length} of the {PANEL} bots were further off than the average.
         </p>
         <div class="lab-actions">
           {#if !over}
@@ -149,25 +149,25 @@
       </table>
     </div>
     <p data-testid="panel-summary">
-      Guessing alone, the panel's average was off by {pct(meanOff(split.alone, panelAvg))} on average; after hearing bot A first, by {pct(
+      Guessing alone, the panel's average was off by {pct(meanOff(split.alone, panelAvg))} on average. After hearing bot A first, it was off by {pct(
         meanOff(split.heard, panelAvg),
       )}. Your own guesses were off by {pct(meanOff(split.alone, (r) => r.yours))} when you guessed alone and {pct(meanOff(split.heard, (r) => r.yours))} after hearing
       bot A.
     </p>
     <p>
       Six boxes are few, and luck plays a part. Over thousands of replays of this panel, one bot on its own is off by about {pct(typical.one)}. The average of
-      eight bots guessing alone is off by about {pct(typical.alone)}. The average of eight who heard bot A first is off by about {pct(typical.heard)}: bot A's
-      error is in every guess, so it does not cancel.
+      eight bots guessing alone is off by about {pct(typical.alone)}. The average of eight who heard bot A first is off by about {pct(typical.heard)}. Bot A's
+      error is in every guess, so it does not cancel out.
     </p>
     <h3>What it shows</h3>
     <ul class="lab-lesson">
       <li>
-        Independent guesses are each wrong in their own way, so in an average the errors partly cancel. The average usually beats most of the people in it: the
-        wisdom of crowds.
+        Independent guesses, made without hearing anyone else, are each wrong in their own way. So in an average, the errors partly cancel out. The average
+        usually beats most of the people in it: this is called the wisdom of crowds.
       </li>
       <li>
-        Hearing a first number pulls every later guess towards it: anchoring. Its error is then repeated rather than cancelled, and the group feels surer than
-        it should.
+        Hearing a first number pulls every later guess towards it: this is called anchoring. The first number's error is then repeated rather than cancelled,
+        and the group feels surer than it should.
       </li>
       <li>
         In a meeting, have everyone write their estimate down before anyone speaks, then share them all at once. Hear the most senior person last, not first.

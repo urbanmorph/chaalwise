@@ -1,6 +1,6 @@
 card: strategy/shrink-the-problem/compare
 kind: choice
-prompt: What do boxing in the king and the essay share?
+prompt: In this chess ending, White's queen boxes in Black's king a little more with each move, before the mate. What does that share with the essay?
 position: 8/8/8/2k5/8/3Q4/8/4K3 w - - 0 1
 alongside: A student has three weeks for a long essay and has not started.
 options:

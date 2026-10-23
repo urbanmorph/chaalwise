@@ -1,5 +1,5 @@
 kind: move
-prompt: Skewer the king and the rook.
+prompt: 'Skewer the king and the rook: check the king so that it must step aside, and win the rook behind it.'
 position: 8/2k4r/8/8/8/8/5PPP/R5K1 w - - 0 1
 answers:
   - a1a7

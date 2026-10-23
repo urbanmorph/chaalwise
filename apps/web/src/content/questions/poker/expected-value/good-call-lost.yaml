@@ -1,5 +1,5 @@
 kind: choice
-prompt: You made a call that wins 1 point on average, and lost the hand. Was the call a mistake?
+prompt: You made a call (matched a bet) that wins 1 point on average over many hands. This time you lost the hand. Was the call a mistake?
 options:
   - 'No: a good choice can lose; judge it by its average, not this result'
   - 'Yes: it lost, so it was wrong'

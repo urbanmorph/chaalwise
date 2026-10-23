@@ -1,13 +1,13 @@
 kind: choice
-prompt: Where do middlegame plans mostly come from?
+prompt: In chess, where do middlegame plans mostly come from?
 options:
-  - The pawn structure
+  - 'The pawn structure: where the pawns stand'
   - The name of the opening you played
   - Which side has more pieces developed
 answer: 0
 feedback:
   - ''
-  - The opening gives you a start, but once play leaves the book, the pawns on the board decide what to do.
+  - The opening gives you a start, but once the game leaves the moves you know, the pawns on the board decide what to do.
   - That matters in the opening. In the middlegame both sides are out, and the pawns show where to play.
 explanation: Pawns move slowly and cannot go back, so they fix the shape of the game. Plans follow from that shape.
 measures: planning

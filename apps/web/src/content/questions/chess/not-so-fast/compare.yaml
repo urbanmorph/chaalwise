@@ -1,6 +1,6 @@
 card: strategy/not-so-fast/compare
 kind: choice
-prompt: What does ...Qe7 share with the firm's move?
+prompt: In this chess position, White's bishop is about to move away with check and let the rook on d1 attack Black's queen. Black moves the queen off the d-file first, with ...Qe7. What does that share with the firm's move?
 position: 3q2k1/5ppp/8/8/8/3B4/5PPP/3R2K1 b - - 0 1
 arrows: [d3h7, d1d8, d8e7]
 alongside: A firm signs up a second supplier before its only one can raise prices.
@@ -12,6 +12,6 @@ answer: 0
 feedback:
   - ''
   - 'Moving out of the way is the surface likeness. The point is when: before the other side can act.'
-  - Waiting lets the threat start. Once Bxh7+ comes, the queen is lost; once prices rise, they are hard to bring down.
+  - Waiting lets the threat start. Once Bxh7+ comes, the queen is lost. Once prices rise, they are hard to bring down.
 explanation: Black sees Bxh7+ coming and takes the queen off the line. The firm sees a price rise coming and finds a second supplier. Both act first, quietly.
 measures: think-ahead

@@ -55,11 +55,11 @@ test('The bonus rule: pay per ticket and see nothing solved, then pay for result
   for (const week of [2, 3, 4]) {
     await page.getByRole('button', { name: `Week ${week}` }).click();
     await expect(page.getByTestId('br-week')).toContainText(`${week}`);
-    await page.getByLabel(/and each repeat question a help page heads off$/).check();
+    await page.getByLabel(/and each repeat question a help page prevents$/).check();
     await set.click();
     await expect(page.getByTestId('br-did')).toContainText('properly');
   }
-  await expect(page.getByTestId('br-did')).toContainText('Help pages headed off');
+  await expect(page.getByTestId('br-did')).toContainText('Help pages prevented');
   await expect(page.getByTestId('br-helped')).not.toHaveText('0');
 
   await page.getByRole('button', { name: 'See the debrief' }).click();

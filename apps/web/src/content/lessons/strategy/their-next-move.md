@@ -9,7 +9,7 @@ after: chess/blunder-check
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, when you consider a move you ask, if I play this, what will they play? Their best reply, not the one you hope for. Here, if Black plays ...g6 to chase the queen, the queen simply takes on e5 with check.
+    text: On the chessboard, when you consider a move, ask what the other side will play if you make it. Look for their best reply, not the one you hope for. Here, if Black plays ...g6 to chase White's queen, the queen simply takes the pawn on e5 with check (Qxe5+).
     position: 'moves: e4 e5 Qh5'
     highlight: [h5, e5]
     arrows: [g7g6, h5e5]

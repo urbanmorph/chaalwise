@@ -1,12 +1,12 @@
 kind: choice
-prompt: You hold a pair of twos. Why is it weaker than it looks?
+prompt: Before any shared cards come, you hold a pair of twos. Why is it weaker than it looks?
 cards:
   hole: [2s, 2h]
 options:
   - Most shared cards can give others a bigger pair
   - A pair is the weakest hand in poker
   - Twos can never make a straight
-  - Pairs must be folded before the flop
+  - Pairs must be folded before any shared cards come
 answer: 0
 feedback:
   - ''

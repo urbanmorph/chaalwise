@@ -1,5 +1,5 @@
 kind: choice
-prompt: When is the opening over?
+prompt: In a chess game, when is the opening over?
 options:
   - When both sides have brought out their pieces and castled
   - After ten to fifteen moves, whatever is on the board
@@ -8,6 +8,6 @@ answer: 0
 feedback:
   - ''
   - That is how long it usually lasts, not what ends it. A slow opening can run longer.
-  - Captures often happen while pieces are still coming out. The opening ends when development is done.
-explanation: The phases are about what is happening on the board, not a move count. Once development is done, you need a plan, and that is the middlegame.
+  - Captures often happen while pieces are still coming out. The opening ends when development, bringing the pieces out, is done.
+explanation: The phases are about what is happening on the board, not a move count. Once your pieces are out, you need a plan, and that is the middlegame.
 measures: opening

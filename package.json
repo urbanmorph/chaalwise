@@ -12,6 +12,7 @@
     "build": "pnpm -r build",
     "check": "pnpm -r check",
     "lint": "prettier --check . && eslint .",
+    "lint:prose": "vale --config=vale.ini apps/web/src/content",
     "format": "prettier --write .",
     "test": "vitest run",
     "test:e2e": "pnpm --filter @chaalwise/web test:e2e",

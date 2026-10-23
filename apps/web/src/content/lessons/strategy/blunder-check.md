@@ -9,7 +9,7 @@ after: chess/blunder-check
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, before every move, you look at checks, captures and threats, theirs first. Here the knight on c3 attacks the queen. Missing that is how many games are lost.
+    text: On the chessboard, before every move, look at checks (attacks on the king), captures and threats, and look at the other side's first. Here Black's knight on c3 attacks White's queen. Missing a threat like that is how many games are lost.
     position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
     highlight: [c3, d1]
     arrows: [c3d1]

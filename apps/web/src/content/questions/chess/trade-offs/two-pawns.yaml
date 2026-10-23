@@ -10,12 +10,12 @@ answer: 0
 feedback:
   - ''
   - Counting only material makes it look lost. But Black has not moved a piece, and both White bishops already aim at the king side.
-  - Many gambits do win the pawn back, but nothing here forces it. The pawns pay for time, and White has to use it.
+  - Many gambits, openings that give up a pawn early, do win it back, but nothing here forces it. The pawns pay for time, and White has to use it.
 highlight:
   - c4
   - b2
 arrows:
   - c4f7
   - b2g7
-explanation: 'Two pawns bought two developed bishops, aimed at f7 and g7, while Black has nothing out. Whether that is enough depends on using the time before Black catches up: that is the trade.'
+explanation: 'Two pawns bought two bishops in play, aimed at f7 and g7, while Black has nothing out. Whether that is enough depends on using the time before Black catches up: that is the trade.'
 measures: size-risk

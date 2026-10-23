@@ -1,10 +1,10 @@
 card: strategy/fix-your-weakest-link/worst-piece
 kind: move
-prompt: Nothing is urgent. Find the piece doing least, and put it to work on the open file.
+prompt: In this chess position, nothing is urgent. Find your piece that is doing least, and put it to work on the open file, the one with no pawns.
 position: r4rk1/pp1n1ppp/2p5/2b1p3/2B1P3/2P2N2/PP3PPP/R4RK1 w - - 0 1
 measures: planning
 answers:
   - a1d1
   - f1d1
 hint: One file has no pawns on it. Which of your pieces has not moved, and can reach it?
-explanation: The rook on a1 has not moved and touches nothing. Rad1 puts it on the open d-file, where it presses into Black's position. Rfd1 brings the other idle rook instead, which works as well.
+explanation: The rook on a1 has not moved and does nothing. Rad1 puts it on the open d-file, where it presses into Black's position. Rfd1 brings the other idle rook instead, which works as well.

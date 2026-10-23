@@ -18,7 +18,7 @@
 
   let bot = new PatternBot();
   let rounds = $state<Played[]>([]);
-  let status = $state('Choose your first throw.');
+  let status = $state('Press Rock, Paper or Scissors for your first throw.');
   let debriefEl = $state<HTMLElement>();
   let actionsEl = $state<HTMLElement>();
 
@@ -48,7 +48,7 @@
   async function again() {
     bot = new PatternBot();
     rounds = [];
-    status = 'Choose your first throw.';
+    status = 'Press Rock, Paper or Scissors for your first throw.';
     await tick();
     actionsEl?.querySelector('button')?.focus();
   }
@@ -102,8 +102,8 @@
   <section class="lab-debrief" data-testid="rps-debrief">
     <h2 tabindex="-1" bind:this={debriefEl}>Debrief</h2>
     <p>
-      You won {count('win')}, the bot won {count('loss')}, and {count('draw')} were draws. The bot guessed your next throw right {guessed} times out of {ROUNDS};
-      guessing blind, it would get about 10.
+      You won {count('win')}, the bot won {count('loss')}, and {count('draw')} were draws. The bot guessed your next throw right {guessed} times out of {ROUNDS}.
+      Guessing at random, it would get about 10.
     </p>
     <h3>How predictable you were</h3>
     <ul class="lab-lesson">
@@ -128,8 +128,8 @@
         throws.
       </li>
       <li>
-        A truly random mix, each throw a third of the time, cannot be exploited: against any opponent, this bot included, it wins a third, loses a third and
-        draws a third on average. It cannot win much either; it simply leaves nothing to read.
+        A truly random mix, each throw a third of the time, cannot be exploited. Against any opponent, this bot included, it wins a third, loses a third and
+        draws a third on average. It cannot win much either, but it leaves nothing to read.
       </li>
       <li>Mix only where someone gains by reading you. Where people rely on you, such as your team or your customers, being predictable is a strength.</li>
     </ul>

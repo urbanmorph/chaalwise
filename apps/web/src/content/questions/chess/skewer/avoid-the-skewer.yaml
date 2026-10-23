@@ -1,5 +1,5 @@
 kind: choice
-prompt: Black to move. Which king move is safe from a skewer?
+prompt: Black to move. Which king move is safe from a skewer? In a skewer, a check forces the king aside, and the piece behind it on the same line is taken.
 position: 8/7p/3k4/7q/8/8/5PPP/R5K1 b - - 0 1
 options:
   - '...Ke6'

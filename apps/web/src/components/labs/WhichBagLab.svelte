@@ -130,14 +130,18 @@
       <h2>Part 1: which bag?</h2>
       {@render bagsRow()}
       <p>
-        There are {BAGS.red.count + BAGS.blue.count} bags of 10 balls. {BAGS.red.count} are mostly red: {BAGS.red.reds} red balls and {BAGS.red.blues} blue. {BAGS
-          .blue.count} are mostly blue: {BAGS.blue.reds} red and {BAGS.blue.blues} blue.
+        There are {BAGS.red.count + BAGS.blue.count} bags, each with 10 balls. {BAGS.red.count} bags hold mostly red balls ({BAGS.red.reds} red, {BAGS.red
+          .blues} blue).
+        {BAGS.blue.count} bags hold mostly blue balls ({BAGS.blue.reds} red, {BAGS.blue.blues} blue).
       </p>
       <p>
-        Each round a bag is picked at random, and one or two balls are drawn from it, each put back before the next. Say which kind of bag you think it was, and
-        how sure you are. Eight rounds.
+        Each round, one bag is picked at random where you can't see it. One or two balls are drawn from it, and each ball goes back before the next is drawn.
+        Say which kind of bag the balls came from, and how sure you are. Then you see which bag it really was. There are eight rounds.
       </p>
-      <p class="lab-note">Then part 2: ten players, one lucky round, and a pick for the next.</p>
+      <p>The point: a clue can mislead you if you forget how common each kind of bag is.</p>
+      <p class="lab-note">
+        Then part 2: ten players each play one round, where scores are part skill and part luck. You pick one player to back in the next round.
+      </p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={start}>Start part 1</button>
       </div>
@@ -182,7 +186,8 @@
           in 100.
         </p>
         <p class="lab-note">
-          Out of {c.picks} picks, this draw comes from a mostly-red bag {c.red} times and from a mostly-blue bag {c.blue} times: {c.red} in {c.red + c.blue}.
+          Why: picture {c.picks} random picks of a bag. A mostly-red bag gives this draw {c.red} times, and a mostly-blue bag gives it {c.blue} times. So this draw
+          means a mostly-red bag {c.red} times in {c.red + c.blue}.
         </p>
         <div class="lab-actions">
           <button class="button primary" type="button" onclick={next}>{answers.length < rounds.length ? 'Next round' : 'On to part 2'}</button>
@@ -191,8 +196,8 @@
     {:else}
       <h2 tabindex="-1" bind:this={headEl}>Part 2: back a player</h2>
       <p>
-        Each player's score is skill plus luck. Here is each one's average over their last {RECORD} games, and their score in round one. Back one player for round
-        two.
+        Ten players have just played round one. Each score is part skill and part luck. The table shows each player's average over their last {RECORD} games, and
+        their round-one score. Back one player: press Back next to the one you think will score highest in round two.
       </p>
       <div class="lab-scroll">
         <table class="lab-table">

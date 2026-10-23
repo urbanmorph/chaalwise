@@ -49,7 +49,11 @@ const list = (parts: string[]) =>
   parts.length < 2 ? parts.join('') : `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}`;
 const pick = <T>(items: readonly T[], random: Random): T => items[Math.floor(random() * items.length)]!;
 
-const DRAWING = { flush: 'a flush', straight: 'a straight', 'flush or straight': 'a flush or a straight' } as const;
+const DRAWING = {
+  flush: 'a flush (five cards of one suit)',
+  straight: 'a straight (five cards in a row)',
+  'flush or straight': 'a flush or a straight (five of one suit, or five in a row)',
+} as const;
 type Draw = Outs & { drawing: keyof typeof DRAWING };
 
 /** Two hole cards and a flop or turn with a flush or straight draw, and nothing that strong made yet. */
@@ -88,7 +92,7 @@ function outsItem(random: Random): PokerItem {
     prompt: `In poker, an out is an unseen card that would make your hand. With ${toCome === 2 ? 'two shared cards' : 'one shared card'} still to come, how many outs do you have to ${DRAWING[draw.drawing]}?`,
     cards: { hole, board },
     answer: draw.count,
-    explanation: `${plural(draw.count, 'out')}. ${outsWords(draw)} By the rule of ${toCome === 2 ? 'four' : 'two'}, that is about ${ruleOf(draw.count, toCome)}% to come; worked out exactly, ${percent(exactChance(draw.count, unseen, toCome))}.`,
+    explanation: `${plural(draw.count, 'out')}. ${outsWords(draw)} By the rule of ${toCome === 2 ? 'four (outs × 4, with two cards to come)' : 'two (outs × 2, with one card to come)'}, that is about ${ruleOf(draw.count, toCome)}% that one comes; worked out exactly, ${percent(exactChance(draw.count, unseen, toCome))}.`,
   };
 }
 
@@ -100,7 +104,7 @@ function potOddsItem(random: Random): PokerItem {
     const pot = 4 + Math.floor(random() * 37);
     const toCall = Math.max(1, Math.round(pot * pick(BET_SHARES, random)));
     const price = (100 * toCall) / (pot + toCall);
-    const pricing = `In poker, the pot holds ${pot} points and a call costs ${toCall}.`;
+    const pricing = `In poker, the pot holds ${pot} points, and a call (matching the bet to stay in) costs ${toCall}.`;
     let item: Pick<PokerItem, 'prompt' | 'cards'>;
     let chance: number;
     let chanceWords: string;
@@ -110,14 +114,14 @@ function potOddsItem(random: Random): PokerItem {
       chance = exactChance(draw.count, unseen, 1);
       chanceWords = `With ${plural(draw.count, 'out')} among ${unseen} unseen cards, one comes ${percent(chance)} of the time.`;
       item = {
-        prompt: `${pricing} One shared card is still to come, and ${draw.count} unseen cards (your outs) would give you ${DRAWING[draw.drawing]}, which you expect to win with. Call or fold?`,
+        prompt: `${pricing} One shared card is still to come, and ${draw.count} unseen cards (your outs) would give you ${DRAWING[draw.drawing]}, which you expect to win with. Call, or fold (give up the hand)?`,
         cards: { hole, board, pot, toCall },
       };
     } else {
       chance = 5 + Math.floor(random() * 56);
       chanceWords = `You win about ${chance}% of the time.`;
       item = {
-        prompt: `${pricing} You expect to win about ${chance}% of the time. Call or fold?`,
+        prompt: `${pricing} You expect to win about ${chance}% of the time. Call, or fold (give up the hand)?`,
         cards: { pot, toCall },
       };
     }
@@ -231,11 +235,11 @@ function preflopItem(random: Random): PokerItem {
     if (Math.abs(score - seat.play) < 1 || score >= seat.play !== wantPlay) continue;
     return {
       kind: 'preflop',
-      prompt: `In poker, before any shared cards come, you hold these two cards, against ${seat.label}. Play the hand (call or raise), or fold it?`,
+      prompt: `In poker, before any shared cards come, you hold these two cards, against ${seat.label}. Play the hand (call or raise, to stay in), or fold it (give it up)?`,
       cards: { hole },
       options: ['Play', 'Fold'],
       answer: wantPlay ? 0 : 1,
-      explanation: `${wantPlay ? 'Play' : 'Fold'}. ${capital(startingWords(hole))} scores ${score} on a simple count of starting hands (after Bill Chen: points for the higher card, doubled for a pair, more for one suit or close ranks, less for a gap). ${seat.why}. Here, play hands that score ${seat.play} or more.`,
+      explanation: `${wantPlay ? 'Play' : 'Fold'}. ${capital(startingWords(hole))} scores ${score} on a simple count of starting hands, after Bill Chen. It gives points for the higher card, doubles them for a pair, adds some for one suit or close ranks, and takes some off for a gap. ${seat.why}. Here, play hands that score ${seat.play} or more.`,
     };
   }
 }

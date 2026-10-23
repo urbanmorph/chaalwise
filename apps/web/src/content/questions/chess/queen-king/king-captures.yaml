@@ -4,5 +4,5 @@ position: 4k3/8/8/8/8/8/3r4/4K3 w - - 0 1
 answers:
   - e1d2
 hint: The king can capture one square away, like any other move.
-explanation: The king can capture, but only a piece that nothing defends. Otherwise it would be moving into check.
+explanation: The king can capture, but only a piece that nothing defends. Otherwise it would step onto an attacked square, which is never allowed.
 measures: board

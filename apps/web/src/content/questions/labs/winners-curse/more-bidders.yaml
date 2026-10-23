@@ -1,14 +1,14 @@
 card: reference/labs/winners-curse/more-bidders
 kind: choice
-prompt: Bidders estimate a jar of coins worth the same to each of them. If there are ten bidders instead of five, how should you change your bid?
+prompt: In a sealed-bid auction, each bidder estimates a jar of coins worth the same to all of them. If there are ten bidders instead of five, how should you change your bid?
 options:
-  - Shade it further below your estimate
-  - Shade it less, to have a chance of winning
-  - 'Keep the same margin: your estimate is the same'
+  - Bid further below your estimate
+  - Bid closer to your estimate, to have a chance of winning
+  - 'Keep the same gap below your estimate: your estimate is the same'
 answer: 0
 feedback:
   - ''
-  - More rivals feels like a reason to sharpen your price, and real bidders often do. But the more bidders, the further the winning estimate is above the truth.
+  - More rivals feels like a reason to bid harder, and real bidders often do. But the more bidders, the further the winning estimate is above the truth.
   - 'Your estimate is the same, but what winning tells you is not: against more bidders, winning means you were even more optimistic.'
-explanation: The more bidders, the bigger the overestimate behind the winning bid, so the more you shade.
+explanation: The more bidders, the bigger the overestimate behind the winning bid, so the further below your estimate you should bid.
 measures: value

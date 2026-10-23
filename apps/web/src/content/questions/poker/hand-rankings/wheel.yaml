@@ -1,12 +1,12 @@
 kind: choice
-prompt: Your ace and two, with these shared cards. What is your best hand?
+prompt: You hold the ace and two, with these shared cards. What is your best hand of five cards?
 cards:
   hole: [Ac, 2d]
   board: [3h, 4s, 5c, Jd, 9h]
 options:
   - A straight, five high
   - High card, ace high
-  - A pair of twos, ace kicker
+  - A pair of twos, with an ace
   - A straight, ace high
 answer: 0
 feedback:

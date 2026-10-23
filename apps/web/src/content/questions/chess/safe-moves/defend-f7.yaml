@@ -1,8 +1,8 @@
 kind: move
-prompt: Block the bishop's attack on f7 with a pawn, safely.
+prompt: You play Black. White's bishop on c4 and knight on g5 both attack f7. Block the bishop's line to f7 with a pawn, safely.
 position: 'moves: e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5'
 answers:
   - d7d5
 hint: A pawn in the middle can cut the bishop's line to f7.
-explanation: '...d5 shuts the bishop out. After exd5, Black usually plays ...Na5, attacking the bishop. Taking back with ...Nxd5 is the risky line, because Nxf7 (the Fried Liver attack) drags the king out.'
+explanation: ...d5 shuts the bishop out. After exd5, Black usually plays ...Na5, attacking the bishop. Taking back with ...Nxd5 is risky, because White can give up the knight with Nxf7 to pull the black king out into the open. That line is called the Fried Liver attack.
 measures: safety

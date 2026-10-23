@@ -1,8 +1,8 @@
 kind: square
 practice: find-square
-prompt: Find e4, without the letters and numbers on the edges.
+prompt: Pick the square e4. The letters and numbers on the edges are hidden now.
 answers:
   - e4
 hint: The e-file is the fifth from the left. Count four rows up from your side.
-explanation: e4 is in the centre, on the king's file. It is where the most common first move goes.
+explanation: e4 is in the centre, on the file where the white king starts. The most common first move in chess goes to e4.
 measures: board

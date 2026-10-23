@@ -1,5 +1,5 @@
 kind: choice
-prompt: 'Which of these two hands is better to play: nine and eight of hearts, or nine of hearts and eight of clubs?'
+prompt: 'Before any shared cards come, which of these two hands is better to play: nine and eight of hearts, or nine of hearts and eight of clubs?'
 cards:
   hole: [9h, 8h]
 options:
@@ -13,5 +13,5 @@ feedback:
   - Different suits take away the chance of a flush with both cards.
   - Suits never rank, but two of one suit can make a flush, which adds winning chances.
   - Both can be played in the right spot; the one of one suit is the better of the two.
-explanation: Suits never decide who wins, but two cards of one suit can make a flush. That adds a few winning chances, which is why players prize suited hands.
+explanation: Suits never decide who wins, but two cards of one suit can make a flush (five of one suit). That adds a few winning chances, which is why players prize hands of one suit.
 measures: starting-hands

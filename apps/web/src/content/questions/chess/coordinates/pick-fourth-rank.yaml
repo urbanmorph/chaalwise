@@ -1,5 +1,5 @@
 kind: square
-prompt: Click any square on the fourth rank.
+prompt: Pick any square on the fourth rank (the fourth row from White’s side).
 position: empty
 coordinates: true
 answers:

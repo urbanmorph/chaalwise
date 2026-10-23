@@ -12,7 +12,7 @@ try:
 related: ['poker/outs']
 ---
 
-A hand is the best five cards a player can make. The order comes from how rare each hand is among five-card hands: a flush, for example, turns up about half as often as a straight.
+A hand is the best five cards a player can make. The order comes from how rare each hand is among five-card hands. A flush, for example, turns up about half as often as a straight, so it ranks higher.
 
 With seven cards to choose from, as in Texas Hold'em, the frequencies shift. No pair at all (about 17% of seven-card hands) becomes rarer than one pair (44%) or two pair (23%). The order stays the same anyway, by convention.
 

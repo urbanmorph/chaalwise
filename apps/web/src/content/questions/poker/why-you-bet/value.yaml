@@ -1,5 +1,5 @@
 kind: choice
-prompt: On the last betting round you hold the best possible hand. Why bet?
+prompt: All five shared cards are out, and this is the last betting round. You hold the best possible hand. Why bet?
 cards:
   hole: [Ad, Jd]
   board: [9d, Kd, 4d, 7c, 2s]

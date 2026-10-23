@@ -1,7 +1,7 @@
 kind: choice
-prompt: When are your implied odds small?
+prompt: Implied odds are the extra points you expect to win on later betting rounds if the card you need comes. When are they small?
 options:
-  - When your draw is plain to see if it comes
+  - When the hand you are waiting for is plain to see if it comes
   - When the pot is already large before the call
   - When you have the best hand at the moment
   - When there is only one card still to come
@@ -10,6 +10,6 @@ feedback:
   - ''
   - A large pot gives better pot odds now; implied odds are about what comes later.
   - Implied odds are for draws; with the best hand now, you want to be paid now.
-  - One card to come still leaves the river betting, so implied odds can be large or small.
-explanation: If a fourth heart on the board shows everyone the flush, a sensible opponent stops paying. Implied odds need a hit the other player cannot see.
+  - One card to come still leaves a betting round after it, so implied odds can be large or small.
+explanation: If a fourth heart on the board shows everyone that a flush is possible, a sensible opponent stops paying. Implied odds need a hit the other player cannot see.
 measures: odds

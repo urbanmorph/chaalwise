@@ -3,7 +3,7 @@ term: "Queen's Indian Defence"
 game: 'chess'
 kind: 'opening'
 level: 'advanced'
-summary: "Black fianchettoes the queen's bishop to control e4 from a distance."
+summary: "Black puts the queen's bishop on b7, beside its pawns (a fianchetto), to control e4 from a distance."
 family: 'indian'
 position: 'moves: d4 Nf6 c4 e6 Nf3 b6'
 orientation: 'black'

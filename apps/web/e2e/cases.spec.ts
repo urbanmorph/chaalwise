@@ -59,7 +59,7 @@ test('a work case is reached from the strategy page, played through with no game
   await expect(page.getByTestId('question-context')).toHaveCount(0);
   for (let i = 0; i < DECISIONS.length; i++) {
     await page.getByRole('button', { name: answerFor(await prompt(page)), exact: true }).click();
-    await expect(page.getByText('You found it!')).toBeVisible();
+    await expect(page.getByText('You found it.')).toBeVisible();
     await next(page);
   }
   await expect(page.getByText('Round done')).toBeVisible();

@@ -31,6 +31,7 @@ pnpm build        # build to apps/web/dist
 pnpm test         # unit tests, plus tests that read the build (run pnpm build first)
 pnpm test:e2e     # Playwright: offline use, deploy A to B, tombstone, review
 pnpm lint         # Prettier and ESLint
+pnpm lint:prose   # plain-language checks on lessons, questions and the reference (needs Vale 3 on your PATH; rules in tools/vale)
 pnpm check        # type checks
 pnpm budget       # JavaScript budget per page
 ```

@@ -9,5 +9,5 @@ feedback:
   - ''
   - A knight helps only in rare cases, such as a check that wins. Most of the time a queen does far more.
   - You may choose any piece, even a second queen while your first is still on the board.
-explanation: A queen is the strongest piece. Very rarely another piece is better, a rook to avoid stalemate, or a knight to give check.
+explanation: 'A queen is the strongest piece. Very rarely another piece is better: a rook to avoid stalemate, or a knight to give check.'
 measures: board

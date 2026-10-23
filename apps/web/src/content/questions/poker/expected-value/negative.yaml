@@ -1,5 +1,5 @@
 kind: choice
-prompt: Calling costs 10 points. If you win, you collect 20 points already in the pot; you win one time in five. Is the call worth it?
+prompt: To call (match a bet) costs you 10 points. If you win, you collect 20 points already in the pot; you win one time in five. Is the call worth it?
 options:
   - 'No: it loses 4 points a call on average'
   - 'Yes: it wins 10 points a call on average'

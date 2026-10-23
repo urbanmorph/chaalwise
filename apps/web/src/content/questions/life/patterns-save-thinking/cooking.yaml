@@ -2,13 +2,13 @@ card: strategy/patterns-save-thinking/cooking
 kind: choice
 prompt: A new cook keeps burning onions, each time in a different recipe. What is the most useful thing for them to learn?
 options:
-  - Onions catch over high heat once soft, so turn it down then
+  - Onions start to burn over high heat once soft, so turn it down then
   - Follow each recipe's timings more closely
   - Watch the pan more closely every time they cook
 answer: 0
 feedback:
   - ''
   - Recipe timings help, but the recipes all differ and the onions burn in all of them. The cause is the same each time, so learn the cause.
-  - Watching harder works, but it costs full attention every time. Knowing the moment onions catch frees that attention for the rest of the dish.
+  - Watching harder works, but it costs full attention every time. Knowing the moment onions start to burn frees that attention for the rest of the dish.
 explanation: Once the cause is a pattern you recognise, you stop solving the same problem every time.
 measures: calculate

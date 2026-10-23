@@ -74,7 +74,7 @@
     const result =
       deal === undefined
         ? `No deal: you get your walk-away ${r.you} points, and ${name} its ${r.bot}.`
-        : `Deal: ${got.you} points to you, ${got.bot} to ${name}. That is ${signed(got.you - r.you)} on your walk-away.`;
+        : `Deal: ${got.you} points to you, ${got.bot} to ${name}. That is ${signed(got.you - r.you)} compared with your walk-away.`;
     const zone = dealZone(r.you, r.bot);
     const where = zone ? `the deal zone for you was ${zone.low} to ${zone.high}` : 'there was no deal zone';
     status = `${opening} ${result} Its walk-away was ${r.bot}, so ${where}.`;
@@ -122,10 +122,13 @@
     </dl>
     {#if !current}
       <p>
-        Each round you and a bot split {PIE} points. Offers go back and forth, {MAX_OFFERS} at most in all. Either side can accept the other's offer. If there is
-        no deal, each side gets its walk-away points instead: what it can get elsewhere.
+        Each round, you and a bot share {PIE} points. You take turns to make offers, {MAX_OFFERS} at most in all. An offer says how many points go to you; the bot
+        gets the rest. Either side can accept the other's offer. If there is no deal, each side gets its walk-away points instead: what it can get elsewhere.
       </p>
-      <p>You always know your own walk-away. In some rounds you also get a rough idea of the bot's.</p>
+      <p>
+        You always know your own walk-away. In some rounds you also get a rough idea of the bot's. The deal zone is the range of splits that give both sides at
+        least their walk-away points. Aim to end with more points than your walk-aways add up to.
+      </p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={start}>Start the first round</button>
       </div>

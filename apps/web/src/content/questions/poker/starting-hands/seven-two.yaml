@@ -1,5 +1,5 @@
 kind: choice
-prompt: You hold the seven of clubs and the two of diamonds, and are first to act. What should you do?
+prompt: Before any shared cards come, you hold the seven of clubs and the two of diamonds, and are first to act. Should you fold (give up the hand), call (match the bet) or raise (bet more)?
 cards:
   hole: [7c, 2d]
 options:

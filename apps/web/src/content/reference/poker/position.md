@@ -12,4 +12,4 @@ try:
 related: ['strategy/information-advantage', 'poker/bluff']
 ---
 
-Acting last means you see what everyone else did before you decide. That information is worth a lot, so players play more hands in late position and fewer in early position.
+Acting last means you see what everyone else did before you decide. That information is worth a lot, so players play more hands when they act late (late position) and fewer when they act early.

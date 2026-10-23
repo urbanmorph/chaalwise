@@ -1,5 +1,5 @@
 kind: square
-prompt: Click any square on the e-file.
+prompt: Pick any square on the e-file (the column marked e).
 position: empty
 coordinates: true
 answers:

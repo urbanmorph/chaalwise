@@ -9,7 +9,7 @@ after: chess/endgame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, strong players do not play the first good-looking move. They name a few candidates, then compare them. Here White might attack f7 with Ng5, open the centre with d4, or play the quiet d3. Each leads to a different game.
+    text: On the chessboard, strong players do not play the first good-looking move. They name a few possible moves, called candidates, then compare them. Here White might attack f7 with the knight (Ng5), open the centre with the pawn move d4, or play the quiet pawn move d3. Each leads to a different game.
     position: 'moves: e4 e5 Nf3 Nc6 Bc4 Nf6'
     highlight: [g5, d4, d3]
     arrows: [f3g5, d2d4, d2d3]

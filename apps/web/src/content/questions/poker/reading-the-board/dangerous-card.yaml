@@ -1,5 +1,5 @@
 kind: choice
-prompt: 'You hold the ace of clubs and the king of diamonds: a pair of aces, with the best second card. Which next card is the most dangerous for you?'
+prompt: 'You hold the ace of clubs and the king of diamonds: a pair of aces, with a king beside it. One shared card is still to come. Which of these would be the most dangerous for you?'
 cards:
   hole: [Ac, Kd]
   board: [Ah, 8h, 7h, 6c]
@@ -14,5 +14,5 @@ feedback:
   - A two makes no straight or flush here.
   - A king gives you two pair, aces and kings.
   - An ace gives you three aces.
-explanation: The four of hearts makes a fourth heart, so any one heart in a player's hand makes a flush, and it brings a straight close too. A pair of aces beats neither.
+explanation: The four of hearts makes a fourth heart on the board, so any player holding one heart has a flush. It also means a player holding just a five has a straight. A pair of aces beats neither.
 measures: hand-reading

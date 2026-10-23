@@ -1,6 +1,6 @@
 card: reference/strategy/be-unpredictable/always-bluff
 kind: choice
-prompt: In poker, a player bets big only when they have a weak hand. What does a watchful opponent do?
+prompt: In poker, to call is to match a bet and play on, and to fold is to give up the hand. One player bets big only when they have a weak hand. What does a watchful opponent do against them?
 options:
   - Call every big bet
   - Fold to big bets, as most players do

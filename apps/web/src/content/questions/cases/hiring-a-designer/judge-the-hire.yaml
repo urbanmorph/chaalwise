@@ -1,5 +1,5 @@
 kind: choice
-prompt: A designer you hired two months ago is two weeks late with her first project at work, after the client changed the brief. Your manager asks if hiring her was a mistake. How do you answer?
+prompt: A designer you hired two months ago is two weeks late with her first project at work, after the client changed what they asked for. Your manager asks if hiring her was a mistake. How do you answer?
 options:
   - Separate what the client's change caused from what she could fix
   - Agree it may have been, and start checking her work daily

@@ -93,6 +93,13 @@
   <div class="lab-stage">
     {#if !bot}
       <h2>Choose a bot</h2>
+      <p>
+        Pick a bot to play, or play all five in turn. Each round, you and the bot choose at the same time: cooperate (work together) or defect (act for yourself
+        at the other's cost). Your aim is to score as many points as you can.
+      </p>
+      <p class="lab-note">
+        Points each round: both cooperate, 3 each. One defects while the other cooperates: 5 to the defector, 0 to the other. Both defect, 1 each.
+      </p>
       <p class="lab-note">Each match lasts about ten rounds. You will not know which round is the last.</p>
       <div class="lab-actions">
         <button
@@ -162,7 +169,7 @@
           </tbody>
         </table>
       </div>
-      <p class="lab-note">Both cooperate: 3 each. You defect on a cooperator: 5 to you, 0 to them. Both defect: 1 each.</p>
+      <p class="lab-note">Both cooperate: 3 each. One defects while the other cooperates: 5 to the defector, 0 to the other. Both defect: 1 each.</p>
     {/if}
   </div>
 </div>
@@ -195,8 +202,8 @@
 
     <h3>What each style earns over many rounds</h3>
     <p class="lab-note">
-      Each bot played 200 matches against every bot, itself included. Then a population starts with equal numbers of each, and every generation each style grows
-      in proportion to its points.
+      Each bot style played 200 matches against every style, itself included. Then picture a crowd with equal numbers of each style. In each generation, every
+      style gains players in line with the points it scores. The table shows each style's share of the crowd after 10 and after 60 generations.
     </p>
     <div class="lab-scroll">
       <table class="lab-table">
@@ -227,13 +234,13 @@
         "about ten rounds".
       </li>
       <li>
-        Always selfish earns the most per round while there are pushovers to feed on, and grows at first. As the styles that do well spread, it runs out of
-        people to exploit and dies out.
+        Always selfish earns the most per round while there are easy targets, like Always kind, to take from, so it grows at first. As the styles that do well
+        spread, it runs out of players to exploit and dies out.
       </li>
       <li>Tit for tat never beats the player it faces: at best it ties. It does well overall because it gets others to cooperate.</li>
       <li>
-        Forgiveness helps when moves can be misread. When 1 move in 20 comes out wrong, two tit-for-tats average {per(noisy.titForTat)} points a round, as one slip
-        echoes back and forth; two forgiving players average {per(noisy.forgiving)}.
+        Forgiveness helps when moves can be misread. Say 1 move in 20 comes out wrong. Two tit-for-tat players then average {per(noisy.titForTat)} points a round,
+        because one slip echoes back and forth. Two forgiving players average {per(noisy.forgiving)}.
       </li>
     </ul>
   </section>

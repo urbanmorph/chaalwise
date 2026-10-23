@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your nine and eight of spades, with these shared cards. What is your best hand?
+prompt: You hold the nine and eight of spades. Your hand is the best five cards from your two and the five shared cards. What is your best hand?
 cards:
   hole: [9s, 8s]
   board: [7s, 6d, 5c, Ks, 2s]

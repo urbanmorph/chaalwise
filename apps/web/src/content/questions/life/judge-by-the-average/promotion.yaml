@@ -1,5 +1,5 @@
 kind: choice
-prompt: A shop owner can run a promotion for 2,000. About one in five brings a regular customer worth 15,000. The first three promotions brought nobody. What should the owner do?
+prompt: A shop owner can run a promotion for 2,000. About one promotion in five brings in a regular customer worth 15,000. The first three promotions brought nobody. What should the owner do?
 options:
   - 'Keep going: each promotion is worth about 1,000 on average'
   - 'Stop: three failures show it does not work'

@@ -9,11 +9,11 @@ related: ['chess/stalemate']
 lesson: 'chess/mate-stalemate'
 ---
 
-Threefold repetition: the same position three times, with the same side to move and the same castling and en passant rights. The three need not come one after another. Over the board you claim it; at five times the game is drawn on its own.
+Threefold repetition: the same position three times, with the same side to move and the same castling and en passant rights. The three need not come one after another. Over the board (in a game played face to face) you must claim it. If the position comes five times, the game is drawn on its own.
 
-Fifty-move rule: fifty moves each with no capture and no pawn move. You claim it; at seventy-five moves it is automatic.
+Fifty-move rule: fifty moves by each side with no capture and no pawn move. You claim it; at seventy-five moves it is automatic.
 
-Dead position: no series of legal moves can ever give mate, so the game is drawn at once. Examples are king against king, king and bishop or king and knight against king, and king and bishop against king and bishop with both bishops on the same colour. King and two knights against king is not dead: mate is possible, though it cannot be forced, so the game goes on.
+Dead position: no series of legal moves can ever give mate, so the game is drawn at once. Examples are king against king, and king and bishop (or king and knight) against king. Another is king and bishop against king and bishop, when both bishops move on squares of the same colour. King and two knights against king is not dead. Mate is possible, though it cannot be forced, so the game goes on.
 
 Running out of time loses, unless your opponent could not possibly mate you. Then it is a draw.
 

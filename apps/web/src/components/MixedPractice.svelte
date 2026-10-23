@@ -26,7 +26,9 @@
 
 <section class="mixed" aria-labelledby="mixed-title">
   <h2 id="mixed-title">Mixed practice</h2>
-  <p>{ROUND} questions from every skill, one idea after another. Working out which idea each one needs is part of the practice.</p>
+  <p>
+    {ROUND} questions mixed from all the skills, any time, whether due for review or not. Part of the practice is working out which idea each question needs.
+  </p>
   {#if !items}
     <button class="button" type="button" onclick={practise}>Practise a mix</button>
   {:else}

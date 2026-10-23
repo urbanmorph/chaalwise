@@ -13,4 +13,4 @@ lesson: 'chess/opening-map'
 lichess: 'Dutch_Defense'
 ---
 
-After 1.d4 f5, Black fights for e4 in an unbalanced way. It starts 1.d4 but not 1...Nf6, so the opening map counts it with the closed games, though it does not start 1...d5.
+After 1.d4 f5, Black fights for e4 in an unbalanced way. It starts 1.d4 but not 1...Nf6. So the opening map groups it with the closed games, even though it does not start 1...d5.

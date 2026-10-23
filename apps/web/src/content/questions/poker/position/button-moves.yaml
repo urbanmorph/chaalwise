@@ -1,5 +1,5 @@
 kind: choice
-prompt: Why does the dealer button move one seat each hand?
+prompt: In poker, a marker called the dealer button moves one seat round the table after each hand. Why does it move?
 options:
   - So every player takes turns acting last, the best seat
   - To decide who shuffles
@@ -8,7 +8,7 @@ options:
 answer: 0
 feedback:
   - ''
-  - Who shuffles is not what the button is for in these games.
+  - In a home game the player with the button may also deal, but that is not why it moves. It moves so that the best seat goes round.
   - The button rotates whoever is playing.
   - The button decides the order of play.
 explanation: Acting last is an advantage, so the button moves round the table and every player gets it in turn.

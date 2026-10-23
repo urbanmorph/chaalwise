@@ -1,6 +1,6 @@
 kind: move
 practice: win-hanging
-prompt: Black's rook on e5 is giving check. The pawn on f6 defends it, so it is not hanging, but there is still a good trade. Get out of check and win material.
+prompt: "Black's rook on e5 is giving check. The pawn on f6 defends the rook, so it is not hanging. You can still make a good trade. Get out of check and win material: more points than you give."
 position: 4k3/8/5p2/4r3/3P4/8/8/4K3 w - - 0 1
 answers:
   - d4e5

@@ -34,9 +34,9 @@ export const RULES = {
     measure: 'problems solved',
   },
   prevented: {
-    short: 'Solved or headed off',
-    text: 'A bonus for each problem still solved a month later, and each repeat question a help page heads off',
-    measure: 'problems solved or headed off',
+    short: 'Solved or prevented',
+    text: 'A bonus for each problem still solved a month later, and each repeat question a help page prevents',
+    measure: 'problems solved or prevented',
   },
 } satisfies Record<string, { short: string; text: string; measure: string }>;
 

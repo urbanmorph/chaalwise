@@ -1,6 +1,6 @@
 card: strategy/review-calmly/compare
 kind: choice
-prompt: Nf6 allowed mate, yet Black might still win. What does judging that move share with the launch review?
+prompt: In this chess game, Black's move Nf6 allows White to mate with Qxf7, yet Black might still win if White misses it. What does judging that move share with the launch review?
 position: 'moves: e4 e5 Qh5 Nc6 Bc4 Nf6'
 arrows: [h5f7]
 alongside: A team reviews a product launch that went badly after a supplier failed.
@@ -12,6 +12,6 @@ answer: 0
 feedback:
   - ''
   - The queen and the supplier both strike from outside, but that is the surface. What they share is how to judge the choice.
-  - That is outcome bias. A lucky win does not make Nf6 good, and a bad result does not make the launch a bad decision.
+  - 'That is outcome bias: judging a choice by how it turned out. A lucky win does not make Nf6 good, and a bad result does not make the launch a bad decision.'
 explanation: Nf6 was a mistake when it was played, whatever happened next. The launch may have been sound when it was made. In both, judge the choice by what was known and could have been found out.
 measures: composure

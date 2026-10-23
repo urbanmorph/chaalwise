@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your clock runs out. Your opponent has only a king left. What is the result?
+prompt: In a chess game, your clock runs out, but your opponent has only a king left. What is the result?
 options:
   - A draw, as a lone king cannot mate
   - A loss, as running out of time always loses
@@ -8,6 +8,6 @@ answer: 0
 feedback:
   - ''
   - Usually it does, but not when your opponent could never mate you. A lone king cannot.
-  - Material does not decide the game. Running out of time never wins.
+  - Having more pieces does not decide the game. Running out of time never wins.
 explanation: Running out of time loses, unless the opponent has no way at all to give mate. Then the game is drawn.
 measures: board

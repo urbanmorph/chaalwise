@@ -1,5 +1,5 @@
 kind: choice
-prompt: The five shared cards make a straight, ace high. You hold a two and a three; the computer holds a four and a five. Who wins?
+prompt: 'The five shared cards make a straight (five in a row) on their own: ace, king, queen, jack, ten. You hold a two and a three; the computer holds a four and a five. Who wins?'
 cards:
   hole: [2c, 3d]
   board: [Ac, Kc, Qd, Js, Th]

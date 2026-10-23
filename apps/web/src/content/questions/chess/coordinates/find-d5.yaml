@@ -1,6 +1,6 @@
 kind: square
 practice: find-square
-prompt: Find d5.
+prompt: Pick the square d5.
 answers:
   - d5
 hint: d is next to e, towards the a-file. Rank 5 is just over halfway up.

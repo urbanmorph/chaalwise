@@ -1,5 +1,5 @@
 kind: choice
-prompt: An extra warranty on a 10,000 phone costs 1,500. About one phone in twenty needs a repair in that time, and a repair costs 6,000. Is the warranty worth it?
+prompt: An extra warranty on a 10,000 phone costs 1,500. About one phone in twenty needs a repair while the warranty would last, and a repair costs 6,000. Is the warranty worth it?
 options:
   - 'No: on average it saves 300, and costs 1,500'
   - 'Yes: a repair costs four times the warranty'
@@ -11,5 +11,5 @@ feedback:
   - A repair costs more than the warranty, but it is needed only one time in twenty.
   - Paying for safety is a choice; the numbers say this price is five times what it is worth on average.
   - Phones do break, about one in twenty here. The question is the price.
-explanation: One time in twenty, 6,000 is 300 on average, against a price of 1,500. As with a call in poker, compare the chance with the price; insure only what you could not afford to lose.
+explanation: A 6,000 repair, needed one time in twenty, costs 300 on average, against a price of 1,500. In poker, a player deciding whether to match a bet compares the chance of winning with the price. Do the same here, and insure only what you could not afford to lose.
 measures: weigh-odds

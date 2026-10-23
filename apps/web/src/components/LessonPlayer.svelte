@@ -67,7 +67,7 @@
     const isNew = !(step.id in player.outcomes);
     const result = answer(lesson, player, response);
     player = result.state;
-    if (result.correct) feedback = { tone: 'pass', text: step.kind === 'play' ? 'Checkmate. Well played!' : 'You found it!' };
+    if (result.correct) feedback = { tone: 'pass', text: step.kind === 'play' ? 'Checkmate. Well played.' : 'You found it.' };
     else if (player.revealed) reveal();
     else feedback = { tone: 'warn', text: retryText(response) };
     if (player.revealed) graded(step.id, isNew);

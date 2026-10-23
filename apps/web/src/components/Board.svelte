@@ -141,7 +141,7 @@
       typedError = 'Wait for the reply, then move.';
     } else {
       const uci = parseMoveText(fen, text);
-      typedError = uci ? '' : `“${text}” is not a legal move here.`;
+      typedError = uci ? '' : `“${text}” is not a legal move here. Write a move like e4 or Nf3.`;
       if (uci) play(uci);
     }
     if (!typedError) typed = '';

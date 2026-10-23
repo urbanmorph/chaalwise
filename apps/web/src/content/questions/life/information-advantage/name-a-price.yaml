@@ -7,8 +7,8 @@ options:
   - Name a modest price, so as not to lose the deal
 answer: 1
 feedback:
-  - First numbers do anchor, but only if they are well grounded. Knowing nothing, your number may be far too low, or so high it ends the talk.
+  - A first number does pull the talk towards it, but only if it is well grounded. Knowing nothing, your number may be far too low, or so high it ends the talk.
   - ''
   - Keeping the deal alive feels safe, but a guess made to please them may leave much of the value on the table.
-explanation: When you know little about the value, close the gap before you anchor. Their answer, and the market, tell you what a first number of yours would give away.
+explanation: When you know little about the value, find out more before you name a number. Their answer, and the market, tell you what a first number of yours would give away.
 measures: read-hidden

@@ -1,5 +1,5 @@
 kind: choice
-prompt: Which is a good middlegame question to ask yourself?
+prompt: In a chess middlegame, which is a good question to ask yourself?
 options:
   - Which of my pieces is doing least, and how can it do more?
   - Which enemy piece can I attack right now?

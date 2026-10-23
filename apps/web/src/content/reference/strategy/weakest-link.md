@@ -5,7 +5,7 @@ kind: 'principle'
 level: 'intermediate'
 aliases: ['Improve your worst piece']
 summary: 'When there is nothing urgent, improve the part of your position that is doing least.'
-why: 'When the parts depend on each other, as the pieces in a position or the steps in a production line do, the weakest one sets the limit. Where one great result is enough, invest in your strongest instead.'
+why: 'When the parts depend on each other, like the pieces in a chess position or the steps in a production line, the weakest one sets the limit. Where one great result is enough, invest in your strongest instead.'
 inLife: 'When a project has no crisis, spend the time on the slowest step or the least-supported person.'
 skill: 'plan-long'
 related: ['strategy/prophylaxis', 'chess/development']

@@ -12,4 +12,4 @@ try:
 related: ['poker/equity', 'poker/bluff']
 ---
 
-You rarely know another player's exact cards, so you think about the set they could have, and narrow it as they act. Good players put others on ranges, not single hands.
+You rarely know another player's exact cards, so you think about the set they could have, and narrow it as they act. Good players think about another player's whole range, not one single hand.

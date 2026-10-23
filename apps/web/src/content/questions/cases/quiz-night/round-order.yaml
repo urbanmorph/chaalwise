@@ -1,7 +1,7 @@
 kind: choice
 prompt: Your college quiz always runs its rounds in the same order, with sport last. A strong team has noticed, and prepares for it. What do you do this year?
 options:
-  - Draw the order of the rounds by lot on the night
+  - Pick the order of the rounds at random on the night
   - Keep the order, since everyone knows it and it is fair
   - Put sport first this year, to catch them out
 answer: 0
@@ -9,5 +9,5 @@ feedback:
   - ''
   - It is the same for all, but it rewards the team that studies your pattern, not the one that knows the most.
   - A new fixed order is just as easy to learn. By next year they will expect it.
-explanation: This is Be unpredictable. If someone can predict you, they can use it. Drawing the order by lot means nobody can prepare for it, so the quiz tests what teams know.
+explanation: This is Be unpredictable. If someone can predict you, they can use it. Picking the order at random means nobody can prepare for it, so the quiz tests what teams know.
 measures: unpredictable

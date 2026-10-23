@@ -22,7 +22,9 @@ export function practiceStep(kind: PracticeKind, random: Random): GradedStep {
       return {
         kind: 'square',
         id: 'practice',
-        prompt: black ? `You are Black, looking from the other side. Find ${square}.` : `Find ${square}.`,
+        prompt: black
+          ? `You are Black, so the board is turned round. Pick the square ${square}.`
+          : `Pick the square ${square}.`,
         answers: [square],
         orientation: black ? 'black' : 'white',
         hint: `The ${square[0]}-file, then the ${ordinal(Number(square[1]))} rank.`,
@@ -34,7 +36,7 @@ export function practiceStep(kind: PracticeKind, random: Random): GradedStep {
       return {
         kind: 'square',
         id: 'practice',
-        prompt: `Click any square the ${drill.role} on ${drill.square} can move to.`,
+        prompt: `Pick any square the ${drill.role} on ${drill.square} can move to.`,
         position: drill.fen,
         coordinates: true,
         answers: drill.reachable,
@@ -47,7 +49,7 @@ export function practiceStep(kind: PracticeKind, random: Random): GradedStep {
       return {
         kind: 'move',
         id: 'practice',
-        prompt: 'One black piece can be won. Win it.',
+        prompt: "You play White. One of Black's pieces can be taken for free, or by a cheaper piece. Take it.",
         position: p.fen,
         answers: p.answers,
         hint: 'Look for a black piece that is undefended, or attacked by something cheaper.',
@@ -60,7 +62,7 @@ export function practiceStep(kind: PracticeKind, random: Random): GradedStep {
       return {
         kind: 'play',
         id: 'practice',
-        prompt: `Mate the lone king with your king and ${queen ? 'queen' : 'rook'}.`,
+        prompt: `Checkmate the lone king with your king and ${queen ? 'queen' : 'rook'}.`,
         position: mateStart(random, queen ? 'KQvK' : 'KRvK'),
         goal: 'checkmate',
         within: queen ? 20 : 30,
@@ -69,8 +71,8 @@ export function practiceStep(kind: PracticeKind, random: Random): GradedStep {
           ? 'Box the king in with the queen a knight’s move away, then bring your king.'
           : 'Cut the king off with the rook, then walk your king up.',
         explanation: queen
-          ? 'Box, shrink, bring the king, mate.'
-          : 'Cut off, walk the king up, check when the kings face each other.',
+          ? 'Box the king in, shrink the box, bring your king up, then mate.'
+          : 'Cut the king off with the rook, walk your king up, then check when the kings face each other.',
       };
     }
   }

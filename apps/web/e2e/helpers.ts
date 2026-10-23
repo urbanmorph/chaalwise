@@ -36,7 +36,7 @@ const next = (page: Page) => continueButton(page).click();
 
 /** After an answer, focus is on Continue, so keyboard users never lose their place. */
 const answered = async (page: Page) => {
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
   await expect(continueButton(page)).toBeFocused();
   await next(page);
 };

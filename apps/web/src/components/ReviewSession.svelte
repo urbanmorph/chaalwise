@@ -48,7 +48,7 @@
 {:else if items.length === 0}
   <div class="card" data-testid="review-empty">
     <h2>Nothing to review today</h2>
-    <p>Questions from finished lessons come back here on later days, just before you would forget them, chess ideas often in a new position.</p>
+    <p>Each lesson you finish adds its questions here, on later days. Chess questions often come back in a new position.</p>
     <a class="button primary" href="/skills/">Go to the lessons</a>
   </div>
 {:else}

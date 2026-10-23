@@ -1,5 +1,5 @@
 kind: choice
-prompt: You hold two sevens; the computer shows the ace and three of hearts. Who wins?
+prompt: You hold two sevens; the computer holds the ace and three of hearts. Each of you makes the best five cards from your own two and the five shared cards. Who wins?
 cards:
   hole: [7c, 7d]
   board: [7h, Kh, Ks, 9h, 2c]

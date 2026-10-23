@@ -16,6 +16,6 @@ related:
 lesson: 'chess/opening-map'
 ---
 
-Open games start 1.e4 e5 and are tactical. Semi-open games start 1.e4 and anything but 1...e5. Closed games start 1.d4 d5 and are slower; other 1.d4 replies that are not 1...Nf6, such as the Dutch, are counted with them. Indian games start 1.d4 Nf6. Flank openings start 1.c4, 1.Nf3 or 1.g3.
+Open games start 1.e4 e5 and are tactical. Semi-open games start 1.e4 and anything but 1...e5. Closed games start 1.d4 d5 and are slower. Other replies to 1.d4 that are not 1...Nf6, such as the Dutch, are counted with them. Indian games start 1.d4 Nf6. Flank openings start 1.c4, 1.Nf3 or 1.g3.
 
 Know the family and you know roughly what kind of middlegame to expect, even in an opening you have never seen.

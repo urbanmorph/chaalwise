@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your opponent has just moved. What do you ask first?
+prompt: In a chess game, your opponent has just moved. What do you ask first?
 options:
   - What does their move attack, and what did it stop guarding?
   - Which of my own pieces can I develop next?

@@ -9,7 +9,7 @@ after: chess/opening-map
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, players learn opening lines by heart, and opponents often leave them early. Here Black answers 1.e4 with ...a6, a move few repertoires cover. The memorised lines are no help now. The reasons behind them still are. Take the centre, bring out the pieces, castle.
+    text: On the chessboard, players learn opening lines by heart, and opponents often leave them early. Here Black answers 1.e4 with ...a6, a move few players prepare for. The memorised lines are no help now. The reasons behind them still are. Take the centre, bring out the pieces, castle.
     position: 'moves: e4 a6'
     highlight: [a6]
   - ask: chess/when-the-script-runs-out/reasons-not-lines

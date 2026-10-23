@@ -1,5 +1,5 @@
 kind: choice
-prompt: Your repertoire is the Italian as White, 1...e5 against 1.e4, and 1...d5 against 1.d4. Which families are those?
+prompt: In chess, you play the Italian as White. As Black, you answer 1.e4 with 1...e5, and 1.d4 with 1...d5. These openings are your repertoire. Which families are they?
 options:
   - Open games, and a closed game against 1.d4
   - Open games, and an Indian game against 1.d4

@@ -8,8 +8,8 @@ options:
 answer: 0
 feedback:
   - ''
-  - Cards are shown only at the showdown.
+  - Cards are shown only at the end, at the showdown.
   - A bet that is called wins nothing on the spot.
   - A bet does not change their skill, only the choice in front of them.
-explanation: 'A test works when different hands answer it differently. After your bet, a call tells you more than a check would have. Bet for value or as a bluff; what the answer tells you is a bonus, not the reason to bet.'
+explanation: A test works when different hands answer it differently. After your bet, a call tells you more than a check would have. Bet to be paid by worse hands or to make better ones fold; what the answer tells you is a bonus, not the reason to bet.
 measures: signals

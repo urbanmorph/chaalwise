@@ -1,6 +1,6 @@
 card: strategy/two-birds-one-stone/compare
 kind: choice
-prompt: What do the knight's move and the shop's move share?
+prompt: In this chess position, White's knight can jump to c7, checking the king and attacking the rook. What does that share with the shop's move?
 position: r3k3/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1
 arrows: [d5c7]
 alongside: A shop moves its counter to the station, where the rent is lower and more people pass.
@@ -12,6 +12,6 @@ answer: 0
 feedback:
   - ''
   - 'Moving is the surface likeness. The point is that one move pays twice: check and rook, lower rent and more buyers.'
-  - Spreading effort is the opposite. One move serves two aims; it does not add more moves.
+  - Spreading effort is the opposite. One move serves two aims. It does not add more moves.
 explanation: Nc7+ checks the king and attacks the rook. The shop cuts its rent and finds more buyers. In both, one action pays twice.
 measures: think-ahead

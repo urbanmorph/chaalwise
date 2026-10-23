@@ -10,7 +10,7 @@ feedback:
   - ''
   - Kings and pieces do not count, only pawns. The king may still catch it, but the pawn is passed.
   - A pawn can be passed anywhere on the board. What counts is that no enemy pawn stands ahead of it.
-explanation: Only pawns count. Whether the black king can still catch it is a matter of counting. Look up the square of the pawn in the reference.
+explanation: Only pawns count. Whether the black king can still catch it is a matter of counting squares. Look up "the square of the pawn", a counting trick, in the reference.
 highlight:
   - b4
 measures: endgame

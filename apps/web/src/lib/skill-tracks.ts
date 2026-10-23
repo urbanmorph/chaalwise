@@ -34,7 +34,13 @@ export const TRACKS: Track[] = [
   ),
   t('calculate', 'Work a plan through step by step before you commit to it.', 3, 1, 'Nim lab, Pallanguzhi'),
   t('plan-long', 'Know what you are trying to achieve, and make each step serve it.', 3, 1, 'Go'),
-  t('size-risk', 'Commit in proportion to your edge, so one bad outcome cannot ruin you.', 1, 3, 'Backgammon'),
+  t(
+    'size-risk',
+    'Commit in proportion to how far the odds favour you, so one bad outcome cannot ruin you.',
+    1,
+    3,
+    'Backgammon',
+  ),
   t(
     'composure',
     'Decide as well after a setback as before it, and judge decisions, not results.',

@@ -43,7 +43,7 @@ test('missing a question in the check opens the lesson at that question, with th
   await choose(page, 'd1');
   await expect(page.getByText('You got this one right already')).toBeVisible();
   await page.getByRole('button', { name: 'Finish' }).click();
-  await expect(page.getByTestId('lesson-done')).toContainText('2 of 3 first try');
+  await expect(page.getByTestId('lesson-done')).toContainText('2 of 3 right first time');
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');
 });
 

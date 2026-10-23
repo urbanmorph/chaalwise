@@ -12,4 +12,4 @@ lesson: 'chess/opening-map'
 lichess: 'Reti_Opening'
 ---
 
-After 1.Nf3 d5 2.c4, White invites Black to occupy the centre, then undermines it. Often reaches English or Queen's Gambit positions by another road.
+After 1.Nf3 d5 2.c4, White invites Black to occupy the centre, then undermines it. It often reaches English Opening or Queen's Gambit positions by a different order of moves.

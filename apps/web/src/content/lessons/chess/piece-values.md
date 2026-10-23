@@ -11,4 +11,4 @@ steps:
   - ask: chess/piece-values/take-the-most
 ---
 
-Some pieces are worth more than others. The values let you count a trade before you make it.
+Some pieces are worth more than others. In a trade, you take one of their pieces and they take one of yours. The values let you check whether a trade is good before you make it.

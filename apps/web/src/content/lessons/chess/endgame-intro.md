@@ -16,4 +16,4 @@ steps:
   - ask: chess/endgame-intro/push-it
 ---
 
-The endgame is where advantages become wins, and where the rules of thumb change.
+The endgame is where an advantage turns into a win, and where some of the usual rules change.

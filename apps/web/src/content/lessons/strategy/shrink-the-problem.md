@@ -9,7 +9,7 @@ after: chess/queen-mate
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, you do not mate a lone king in one go. Each queen move shrinks its box until it has nowhere left. Rush the last step and you give stalemate instead.
+    text: On the chessboard, you do not checkmate a lone king in one move. Each queen move shrinks the box the king can move in, until it has nowhere left. Rush the last step and you may give stalemate instead, where the king is not attacked but cannot move, and the game is a draw.
     position: 8/8/8/2k5/8/3Q4/8/4K3 w - - 0 1
     highlight: [a4, b4, c4, a5, b5, c5, a6, b6, c6, a7, b7, c7, a8, b8, c8]
   - kind: read

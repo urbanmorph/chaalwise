@@ -86,7 +86,7 @@
       <dd data-testid="tile-tries">{stats.tries}</dd>
     </div>
     <div>
-      <dt>First time</dt>
+      <dt>Right first time</dt>
       <dd data-testid="tile-rate">{percent(stats.firstTimeRate)}</dd>
     </div>
     <div>
@@ -97,8 +97,8 @@
 
   <figure class="radar">
     <figcaption>
-      <span class="label">First time, by skill</span>
-      <span class="lede">Further out is better. A skill not tried yet sits at the centre; a faded one is not measured yet.</span>
+      <span class="label">Right first time, by skill</span>
+      <span class="lede">Further out is better. A skill you have not tried yet sits at the centre. A faded skill is not measured yet.</span>
     </figcaption>
     <div class="plot">
       <svg
@@ -123,7 +123,7 @@
               class="point"
               tabindex="0"
               role="img"
-              aria-label="{s.name}: {percent(s.rate)} first time, {s.firstTry} of {s.tries}"
+              aria-label="{s.name}: {percent(s.rate)} right first time, {s.firstTry} of {s.tries}"
               onpointerenter={() => (active = s.id)}
               onpointerleave={() => (active = undefined)}
               onfocus={() => (active = s.id)}
@@ -137,7 +137,7 @@
       </svg>
       {#if tip && tipAt}
         <div class="tooltip" style="left: {50 + (tipAt.x / W) * 100}%; top: {50 + (tipAt.y / H) * 100}%" aria-hidden="true">
-          <strong>{percent(tip.rate)} first time</strong>
+          <strong>{percent(tip.rate)} right first time</strong>
           <span>{tip.name} · {tip.firstTry} of {tip.tries}</span>
         </div>
       {/if}
@@ -145,7 +145,7 @@
     <details>
       <summary>Show as a table</summary>
       <table>
-        <thead><tr><th scope="col">Skill</th><th scope="col">Tried</th><th scope="col">First time</th></tr></thead>
+        <thead><tr><th scope="col">Skill</th><th scope="col">Tried</th><th scope="col">Right first time</th></tr></thead>
         <tbody>
           {#each stats.skills as s (s.id)}
             <tr><th scope="row">{s.name}</th><td>{s.tries}</td><td>{percent(s.rate)}</td></tr>
@@ -159,7 +159,7 @@
 </section>
 
 <h2>Improvement areas</h2>
-<p class="lede">Train these next. Your next focus is first.</p>
+<p class="lede">Practise these next. The first one is your next focus.</p>
 <ul class="improve">
   {#each improve as { skill, assessment }, i (skill.id)}
     {@const s = statsFor(skill.id)}
@@ -176,7 +176,7 @@
           <dd>{s?.tries ?? 0}</dd>
         </div>
         <div>
-          <dt>First time</dt>
+          <dt>Right first time</dt>
           <dd>{percent(s?.rate)}</dd>
         </div>
       </dl>
@@ -187,9 +187,9 @@
 
 <h2 class="heading">Your strategy skills</h2>
 <p class="lede">
-  Each level shows how reliably you use the idea in these exercises, from your own last 20 answers off the board: Noticing, Applying, Reliable, Fluent. Answers
-  in chess and poker show beside it as in the games, because being good at a game is not proof of the skill elsewhere. Levels go down as well as up, and never
-  compare you with anyone else.
+  Each level shows how reliably you use the idea, from your last 20 answers to questions away from the games. The levels, lowest first, are Noticing, Applying,
+  Reliable and Fluent. Your answers in chess and poker show separately, as "In the games", because being good at a game does not prove you use the skill
+  elsewhere. Levels go down as well as up, and never compare you with anyone else.
 </p>
 <ul class="skills">
   {#each profile.skills.filter((s) => !s.skill.later) as { skill, assessment } (skill.id)}
@@ -220,8 +220,8 @@
 
 <h2 class="heading">In the games</h2>
 <p class="lede">
-  How well you know the games themselves. These answers show beside each strategy skill as in the games; board sense and reading poker hands are the games
-  alone.
+  How well you know the games themselves. Your answers in the games also show on each strategy skill above, as "In the games". Board sense and reading poker
+  hands belong to the games alone.
 </p>
 <table class="games">
   <thead><tr><th scope="col">Game skill</th><th scope="col">Level</th><th scope="col"><span class="sr-only">Where to practise it</span></th></tr></thead>
@@ -238,8 +238,8 @@
 
 <h2 class="heading">How sure you were</h2>
 <p class="lede">
-  In practice and review you can say how sure you are before you answer. Well judged, you are right about as often as you said: 9 in 10 at 90%. Many people are
-  right less often than they feel, which is worth knowing before a big decision.
+  In practice and review, you can say how sure you are before you answer. If you judge well, you are right about as often as you said: 9 times in 10 when you
+  said 90%. Many people are right less often than they feel, which is worth knowing before a big decision.
 </p>
 <table class="sureness" data-testid="calibration">
   <thead><tr><th scope="col">You said</th><th scope="col">Answers</th><th scope="col">Right first time</th></tr></thead>

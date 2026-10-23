@@ -1,5 +1,5 @@
 kind: move
-prompt: Black to move. Find the back-rank mate.
+prompt: "Black to move. Find the back-rank mate: checkmate along White's back rank, rank 1."
 position: 4r1k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1
 answers:
   - e8e1

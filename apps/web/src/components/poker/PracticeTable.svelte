@@ -19,7 +19,7 @@
   const OPPONENTS: { style: Style; name: string; plays: string }[] = [
     { style: 'cautious', name: 'Cautious', plays: 'plays only strong hands and rarely raises. When it bets, believe it.' },
     { style: 'steady', name: 'Steady', plays: 'raises strong hands and folds weak ones to a bet.' },
-    { style: 'bold', name: 'Bold', plays: 'plays many hands, bets often and sometimes bluffs. Call it down more lightly.' },
+    { style: 'bold', name: 'Bold', plays: 'plays many hands, bets often and sometimes bluffs (bets with a weak hand). Call its bets more often.' },
   ];
   const fresh = () => [
     { name: 'You', points: STARTING_POINTS, isBot: false },
@@ -66,7 +66,7 @@
     if (tally.hands === 1) markMet('poker/practice').catch(console.error);
   }
 
-  const STREET = { preflop: 'Before the flop', flop: 'Flop', turn: 'Turn', river: 'River', showdown: 'Showdown' };
+  const STREET = { preflop: 'Before the flop', flop: 'Flop (3 shared cards)', turn: 'Turn (4th card)', river: 'River (5th card)', showdown: 'Showdown' };
 </script>
 
 <div class="practice">
@@ -78,7 +78,8 @@
   </fieldset>
   <label class="maths"><input type="checkbox" bind:checked={showMaths} /> Show the maths before each decision</label>
   <p class="maths-note">
-    The maths uses your chance against any two cards. A bot that bets or raises usually holds better, so against a bet treat the chance as the most it could be.
+    The maths works out your chance of winning as if the bot held any two cards. A bot that bets or raises usually holds better cards, so against a bet treat
+    that chance as the most it could be.
   </p>
 
   {#if !table}
@@ -104,7 +105,11 @@
           <table class="review" data-testid="review">
             <caption>Your decisions, against the odds at the time</caption>
             <thead>
-              <tr><th scope="col">When</th><th scope="col">You</th><th scope="col">Chance</th><th scope="col">Price</th><th scope="col">The maths</th></tr>
+              <tr
+                ><th scope="col">When</th><th scope="col">You</th><th scope="col">Chance to win</th><th scope="col">Price of a call</th><th scope="col"
+                  >The maths</th
+                ></tr
+              >
             </thead>
             <tbody>
               {#each decisions as d, i (i)}

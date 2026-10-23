@@ -9,7 +9,7 @@ after: chess/middlegame-intro
 steps:
   - kind: read
     id: on-the-board
-    text: On the board, nothing is urgent here. White's bishop on c1 is shut in by its own pawns and touches nothing. The best plan is to give it a road, starting with b3, so it can come out to b2 or a3.
+    text: On the chessboard, nothing is urgent here. White's bishop on c1 is shut in by its own pawns and touches nothing. The best plan is to open a road for it, starting with the pawn move b3, so the bishop can come out to b2 or a3.
     position: 5rk1/pp3ppp/2pbpn2/3p4/3P4/2P1PN2/PP3PPP/2B2RK1 w - - 0 1
     highlight: [c1]
     arrows: [b2b3]

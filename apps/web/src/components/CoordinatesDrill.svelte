@@ -142,7 +142,7 @@
       <p class="hint" aria-live="polite">{hint}</p>
     {:else}
       <fieldset>
-        <legend class="label">Sit behind</legend>
+        <legend class="label">Play from the side of</legend>
         <label><input type="radio" bind:group={orientation} value="white" /> White</label>
         <label><input type="radio" bind:group={orientation} value="black" /> Black</label>
       </fieldset>

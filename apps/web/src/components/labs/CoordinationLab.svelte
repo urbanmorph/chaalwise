@@ -110,13 +110,13 @@
   <div class="lab-stage">
     {#if phase === 'intro'}
       <p>
-        Two parts. First, four meet-ups: you and a crowd of {CROWD} bots each choose from the same options, with no way to talk. You score one for every bot that
-        chose what you chose. The bots are trying to match you too.
+        This lab has two parts. First, four meet-ups. In each, you and a crowd of {CROWD} bots choose from the same options, with no way to talk. You score one point
+        for every bot that chose what you chose, and the bots are trying to match you too.
       </p>
       <p>
-        Then eight hunts, after Rousseau's story of the stag hunt. Five hunters, you and four bots: a stag feeds everyone well (6 points each), but only if all
-        five go for it. A hare can be caught alone (3 points, for sure). Before each hunt you can tell the others what you plan, or set out first where they can
-        see.
+        Then eight hunts, based on the philosopher Rousseau's story of the stag hunt. There are five hunters: you and four bots. A stag (a large deer) feeds
+        everyone well, 6 points each, but only if all five go for it. A hare (a kind of wild rabbit) can be caught alone, for 3 points for sure. Before each
+        hunt, you can tell the others what you plan, or set out first where they can see.
       </p>
       <p class="lab-note">Points only; nothing to win or buy. A few minutes in all.</p>
       <div class="lab-actions">
@@ -268,7 +268,7 @@
       </table>
     </div>
     <p data-testid="cw-summary">
-      You matched {meetTotal} of {MEETS.length * CROWD} bots in the meet-ups; picking what stands out each time matches about {focalExpected} on average, picking
+      You matched {meetTotal} of {MEETS.length * CROWD} bots in the meet-ups. Picking what stands out each time matches about {focalExpected} on average, and picking
       at random about {randomExpected}. In the hunt you scored {huntTotal} points. Always hunting a hare scores {HUNTS * 3} for sure; going first every time would
       have scored {(HUNTS - 1) * 6}, losing only the stag on the day {name('dev')} took a better offer (hunt {defectAt}).
     </p>
@@ -283,7 +283,8 @@
         hare hunter loses the stag for all.
       </li>
       <li>
-        Words reach the trusting, but not the burned. A commitment others can see, or a record of it working, does. Keep your word, or even words stop working.
+        Words persuade those who trust you, but not those who were let down before. A commitment they can see does, and so does a record of it working. Keep
+        your word, or even words stop working.
       </li>
       <li>After one person lets the group down, trust has to be rebuilt: go first again rather than assume the old record still holds.</li>
     </ul>

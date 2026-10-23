@@ -79,7 +79,7 @@
       <div aria-live="polite">
         {#if solved}
           <p class="feedback" class:pass={!missed} class:warn={missed} tabindex="-1" bind:this={status}>
-            {missed ? 'The answer is played on the board. Look for this idea next time.' : 'Solved!'}
+            {missed ? 'The answer is played on the board. Look for this idea next time.' : 'Solved.'}
           </p>
         {:else if missed}
           <p class="feedback warn">Not that one. Try again, or show the answer.</p>

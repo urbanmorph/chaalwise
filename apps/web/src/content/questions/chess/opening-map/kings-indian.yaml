@@ -1,5 +1,5 @@
 kind: choice
-prompt: 1.d4 Nf6 2.c4 g6. Which family?
+prompt: A chess game starts 1.d4 Nf6 2.c4 g6. Which opening family is it?
 position: 'moves: d4 Nf6 c4 g6'
 options:
   - Closed games

@@ -1,6 +1,6 @@
 ---
 title: Castling
-summary: Tuck the king away and bring a rook to the centre in one move, when the rules allow it.
+summary: Move the king to safety and bring a rook towards the centre in one move, when the rules allow it.
 game: chess
 stage: 0
 order: 10

@@ -1,6 +1,6 @@
 card: strategy/patterns-save-thinking/compare
 kind: choice
-prompt: What does spotting Rd8 mate share with the team lead's case?
+prompt: In this chess position, Rd8 is checkmate, because Black's king is boxed in by its own pawns. What does spotting that share with the team lead's case?
 position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
 arrows: [d1d8]
 alongside: A team lead sees a third project this year slip in the same final week of testing.

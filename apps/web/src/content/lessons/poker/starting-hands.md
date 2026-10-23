@@ -8,7 +8,7 @@ skills: [size-risk]
 steps:
   - kind: read
     id: most-hands-fold
-    text: 'Before any shared cards come, you see only your two. At a full table most hands are worth folding: a fold costs nothing more, while playing a weak hand costs points again and again. With one opponent, as at the practice table, you play many more hands, but the weakest are still worth folding. Pairs, and two high cards, are worth playing; two cards of one suit, or next to each other in rank, are better than the same cards without. Ace and king of one suit, here, is one of the best starting hands.'
+    text: 'Before any shared cards come, you see only your own two cards. Folding means giving up the hand. A fold costs nothing more than you have already put in, while playing a weak hand loses points again and again. So at a full table, with many players, most hands are worth folding. With one opponent, as at the practice table, you play many more hands, but the weakest are still worth folding. Pairs, and two high cards, are worth playing. Two cards of one suit, or next to each other in rank (such as nine and eight), are better than the same cards without. Ace and king of one suit, shown here, is one of the best starting hands.'
     cards:
       hole: [Ad, Kd]
   - ask: poker/starting-hands/seven-two

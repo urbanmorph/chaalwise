@@ -1,9 +1,9 @@
 card: reference/strategy/shrink-the-problem/candidates
 kind: move
-prompt: Too many moves to compare? Look at checks, captures and threats first. One check wins the queen.
+prompt: In this chess position, there are too many moves to compare. Look at checks, captures and threats first. One check wins the queen.
 position: 2q3k1/5ppp/8/3N4/8/8/5PPP/R5K1 w - - 0 1
 answers:
   - d5e7
-hint: A knight check that also hits c8.
-explanation: Ne7+ checks the king and attacks the queen, which falls next move. Starting from forcing moves cut thirty choices to three, and one of them won.
+hint: A knight check that also attacks the queen on c8.
+explanation: Ne7+ checks the king and attacks the queen, which falls next move. Starting with checks, captures and threats cut about thirty choices to three, and one of them won.
 measures: plan-long

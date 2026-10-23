@@ -1,0 +1,6 @@
+extends: occurrence
+message: 'Sentence of more than 30 words: split it, one idea to a sentence.'
+level: error
+scope: sentence
+max: 30
+token: \b(\w+)\b

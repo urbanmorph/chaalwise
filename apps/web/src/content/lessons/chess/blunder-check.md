@@ -8,7 +8,7 @@ skills: [think-ahead]
 steps:
   - kind: read
     id: the-habit
-    text: Before every move, look at checks, captures and threats. First theirs, asking what their last move does, then yours.
+    text: Before every move, look at checks, captures and threats. A threat is a move that sets up a capture or a mate for next time. Look at theirs first, asking what their last move does, then at yours.
   - ask: chess/blunder-check/last-move
   - ask: chess/blunder-check/take-the-attacker
   - ask: chess/blunder-check/checks-first

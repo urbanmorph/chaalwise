@@ -1,5 +1,5 @@
 kind: choice
-prompt: After the shared cards come, which seat has the advantage?
+prompt: Once the shared cards start to come, the player on the dealer button (a marker that moves one seat each hand) acts last in every betting round. Which seat has the advantage?
 options:
   - The player on the button, who acts last
   - The player who acts first, who sets the pace
@@ -11,5 +11,5 @@ feedback:
   - Acting first gives the others information before they decide, not you.
   - The size of a pile of points does not change the order of play.
   - Over many hands, information changes decisions, and decisions change results.
-explanation: Acting last, you know whether the others checked or bet before you choose. That information is worth points over many hands, which is why the same cards are easier to play on the button.
+explanation: Acting last, you know whether the others checked (passed) or bet before you choose. That information is worth points over many hands, which is why the same cards are easier to play on the button.
 measures: position

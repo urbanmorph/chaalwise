@@ -11,7 +11,7 @@ feedback:
   - ''
   - The squares are empty, but that is only one rule. The king would cross f1, which the rook on f8 attacks.
   - The landing square is safe, but the king may not pass through an attacked square either, and f1 is attacked.
-explanation: The king may not pass through an attacked square. The queen's side is still fine.
+explanation: The king may not pass through an attacked square. Castling on the queen's side is still allowed here.
 highlight:
   - f1
 measures: board

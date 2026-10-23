@@ -1,0 +1,27 @@
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: error
+ignorecase: true
+swap:
+  utilis(?:e|es|ed|ing): use
+  approximately: about
+  in order to: to
+  commenc(?:e|es|ed|ing): start
+  prior to: before
+  subsequently: later
+  facilitat(?:e|es|ed|ing): help
+  numerous: many
+  sufficient: enough
+  demonstrat(?:e|es|ed|ing): show
+  obtain(?:s|ed|ing)?: get
+  purchas(?:e|es|ed|ing): buy
+  assist(?:s|ed|ing)?: help
+  endeavou?r: try
+  ascertain: find out
+  in the event that: if
+  with regard to: about
+  a number of: some
+  the majority of: most
+  due to the fact that: because
+  is able to: can
+  are able to: can

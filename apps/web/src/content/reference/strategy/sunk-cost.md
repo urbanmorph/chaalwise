@@ -14,6 +14,6 @@ try:
   - life/sunk-cost/project
 ---
 
-In poker, folding a hand you have put points into is often right. Your earlier points are no longer yours: they are part of the pot. They make the price of calling look better, which is why pot odds count them, but they are not a reason in themselves to keep going.
+In poker, folding (giving up) a hand you have put points into is often right. Your earlier points are no longer yours: they are part of the pot, the points the winner takes. They make calling better value, which is why pot odds (the cost of calling against what you could win) count them. But on their own they are not a reason to keep going.
 
-In chess, giving up a plan you have spent moves on, once it stops working, is a strength. In organisations the same trap is called escalation of commitment: the more a team has put into a plan, the harder it is to stop.
+In chess, giving up a plan you have spent moves on, once it stops working, is a strength. In organisations the same trap is called escalation of commitment. The more a team has put into a plan, the harder it finds it to stop.

@@ -1,6 +1,6 @@
 card: reference/strategy/base-rates/rare-condition
 kind: choice
-prompt: 1 person in 100 has a condition. A test finds 9 in 10 people who have it, and wrongly flags 1 in 10 who do not. Someone tests positive. How likely is it they have it?
+prompt: 1 person in 100 has a medical condition. A test for it finds 9 in 10 of the people who have it. It also wrongly flags 1 in 10 of the people who do not. Someone tests positive. How likely is it that they have the condition?
 options:
   - About 90%
   - About 50%

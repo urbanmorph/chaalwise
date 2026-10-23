@@ -4,5 +4,5 @@ position: 4k3/8/8/8/8/8/8/R3K3 w - - 0 1
 answers:
   - a1a8
 hint: Straight up the a-file.
-explanation: Ra8 also gives check along the back rank. Rooks love open lines.
+explanation: From a8 the rook also attacks the black king along the top row. That is called check, and a later lesson covers it. Rooks are strongest on open lines, with nothing in the way.
 measures: board

@@ -25,6 +25,17 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
+      # Plain-language checks on lesson, question and reference text (vale.ini).
+      - name: Install Vale
+        env:
+          VALE: 3.25.1
+          SHA256: 4bf5c5176b682b1da0830f471584d3494f1c2e27ee3029e1ad6f6661d4962182
+        run: |
+          curl -fsSL -o vale.tar.gz "https://github.com/errata-ai/vale/releases/download/v${VALE}/vale_${VALE}_Linux_64-bit.tar.gz"
+          echo "${SHA256}  vale.tar.gz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/vale" && tar -xzf vale.tar.gz -C "$RUNNER_TEMP/vale" vale && rm vale.tar.gz
+          echo "$RUNNER_TEMP/vale" >> "$GITHUB_PATH"
+      - run: pnpm lint:prose
       - run: pnpm build
       - run: pnpm check
       # Unit tests, plus tests that read the built site (precache list, headers, budgets).

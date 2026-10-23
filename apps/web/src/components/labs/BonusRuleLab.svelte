@@ -46,7 +46,7 @@
       w.turnedAway && `turned ${plural(w.turnedAway, 'customer')} away before their problem was logged`,
     ].filter(Boolean);
     const list = parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : (parts[0] ?? 'did no work that counted');
-    return `The bots ${list}.${w.prevented ? ` Help pages headed off ${plural(w.prevented, 'problem')}.` : ''}`;
+    return `The bots ${list}.${w.prevented ? ` Help pages prevented ${plural(w.prevented, 'problem')}.` : ''}`;
   }
 
   const paidText = (w: Week) => (w.rule === 'flat' ? 'nothing extra' : `${paidFor(w)} ${RULES[w.rule].measure}`);
@@ -119,12 +119,12 @@
     </dl>
     {#if !demand.length}
       <p>
-        You run a support desk with four bots, 40 hours a week each. About {DEMAND} customers bring a problem each week. A proper fix takes 4 hours, so the team can
-        fix {TEAM_HOURS / 4} a week at most.
+        You run a support desk with four bots, 40 hours a week each. About {DEMAND} customers bring a problem each week, and each problem is logged as a ticket. A
+        proper fix takes 4 hours, so the team can fix {TEAM_HOURS / 4} a week at most.
       </p>
       <p>
-        What you want is customers' problems solved. Each week you choose the bots' bonus rule, and they do whatever earns the most under it. Four weeks; you
-        can change the rule each week.
+        What you want is customers' problems solved. Each week you pick a bonus rule: what the bots get extra pay for. They do whatever earns them the most
+        under that rule. Your score is the number of customers helped. There are four weeks, and you can change the rule each week.
       </p>
       <div class="lab-actions">
         <button class="button primary" type="button" onclick={start}>Start week 1</button>
@@ -146,7 +146,7 @@
         </form>
       {:else}
         <p class="lab-status" tabindex="-1" bind:this={statusEl} aria-live="polite" data-testid="br-status">
-          Week {weeks.length}, {RULES[last.rule].text.toLowerCase()}. You paid for {paidText(last)}. You wanted problems solved: {last.helped}
+          Week {weeks.length}, {RULES[last.rule].text.toLowerCase()}. You paid for {paidText(last)}. You wanted problems solved, and {last.helped}
           {last.helped === 1 ? 'customer was' : 'customers were'} helped.
         </p>
         <p data-testid="br-did">
@@ -212,7 +212,7 @@
     <p>
       Paying per ticket closed got the biggest number and helped nobody: a quick reply closes a ticket, and splitting one problem into three closes three.
       Paying for fewer tickets got fewer tickets, by turning customers away. Paying per hour got slower work: the same hours, fewer fixes. Paying for problems
-      solved, and for problems a help page heads off, starts slower, because the pages take time, but it pulls ahead once the pages cut the work.
+      solved, and for problems a help page prevents, starts slower, because the pages take time. But it pulls ahead once the pages cut the work.
     </p>
     <h3>What it shows</h3>
     <ul class="lab-lesson">
@@ -228,8 +228,8 @@
       <li>The best rule may look worse in its first week. Judge it over the time it is meant to work.</li>
     </ul>
     <p class="lab-note">
-      The bots here are simple and only follow the bonus. Real people also care about their work and their customers, so most game a rule less than these bots
-      do; but the pull is the same.
+      The bots here are simple and only follow the bonus. Real people also care about their work and their customers, so most bend a rule less than these bots
+      do. But the pull is the same.
     </p>
   </section>
 {/if}

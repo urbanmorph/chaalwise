@@ -1,5 +1,5 @@
 kind: choice
-prompt: A bold player raises for the third hand in a row. What does that raise tell you?
+prompt: A bold player raises (bets more than the last bet) for the third hand in a row. What does that raise tell you?
 options:
   - 'Little: they raise with many hands'
   - They have had three strong hands in a row

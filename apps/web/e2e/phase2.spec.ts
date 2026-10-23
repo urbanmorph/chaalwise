@@ -21,13 +21,13 @@ test('the coordinates lesson walks through files and ranks, with a hint for a wr
   await clickSquare(page, 'd3');
   await expect(page.getByText('d3 is on the d-file. Look for the e-file. Try again.')).toBeVisible();
   await clickSquare(page, 'e6');
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
   await page.getByRole('button', { name: 'Continue' }).click();
   // Then a rank, picked by typing this time.
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByLabel('Or type the square').fill('c4');
   await page.getByRole('button', { name: 'Pick' }).click();
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
 });
 
 test('the coordinates drill counts finds for thirty seconds and keeps the best score', async ({ page }) => {
@@ -83,7 +83,9 @@ test('a play-out against the lone king: a blunder, a nudge, a retry, then the id
   await expect(page.getByText('20 moves left')).toBeVisible();
 
   await blunder();
-  await expect(page.getByText('Box, shrink, bring the king, mate.', { exact: false })).toBeVisible();
+  await expect(
+    page.getByText('Box the king in, shrink the box, bring your king up, then mate.', { exact: false }),
+  ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Continue' })).toBeFocused();
 });
 
@@ -102,7 +104,7 @@ test('coordinates show while names are taught, and hide once the learner finds s
   await page.goto('/chess/coordinates/');
   await hydrated(page);
   await page.getByRole('button', { name: 'Continue' }).click();
-  await expect(page.getByText('Click any square on the e-file.')).toBeVisible();
+  await expect(page.getByText('Pick any square on the e-file (the column marked e).')).toBeVisible();
   await expect(page.locator('coords')).toHaveCount(2);
   const answer = async (square: string) => {
     await page.getByLabel('Or type the square').fill(square);
@@ -113,7 +115,9 @@ test('coordinates show while names are taught, and hide once the learner finds s
   await page.getByRole('button', { name: 'Continue' }).click();
   await answer('a4');
   await page.getByRole('button', { name: 'Continue' }).click();
-  await expect(page.getByText('Find e4, without the letters and numbers on the edges.')).toBeVisible();
+  await expect(
+    page.getByText('Pick the square e4. The letters and numbers on the edges are hidden now.'),
+  ).toBeVisible();
   await expect(page.locator('coords')).toHaveCount(0);
 });
 
@@ -194,5 +198,5 @@ test('clicking a piece picks that piece, even after something above the board pu
   );
   await tap('e2');
   await tap('e4');
-  await expect(page.getByText('You found it!')).toBeVisible();
+  await expect(page.getByText('You found it.')).toBeVisible();
 });

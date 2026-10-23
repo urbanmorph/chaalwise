@@ -41,14 +41,21 @@
 
   function freeCoach(t: Table): { notice: string; suggest?: Move; why: string } {
     const hole = t.seats[LEARNER]!.cards;
-    if (t.board.length < 3) return { notice: 'Before the flop: only your two cards so far.', why: 'Play strong or connected cards; fold weak ones.' };
+    if (t.board.length < 3)
+      return {
+        notice: 'Before the flop (the first three shared cards), you have only your two cards.',
+        why: 'Play strong cards, or cards next to each other in rank; fold weak ones.',
+      };
     const made = evaluate([...hole, ...t.board]).name;
     const draw = t.street === 'flop' || t.street === 'turn' ? outs(hole, t.board) : undefined;
     const drawing =
       draw && draw.count && draw.drawing !== 'pair or better'
-        ? ` You also have ${draw.count} outs to a ${draw.drawing}: about ${ruleOf(draw.count, t.street === 'flop' ? 2 : 1)}%.`
+        ? ` You also have ${draw.count} outs, unseen cards that would give you a ${draw.drawing}: about ${ruleOf(draw.count, t.street === 'flop' ? 2 : 1)}% that one comes.`
         : '';
-    return { notice: `You have ${made}.${drawing}`, why: toCall(t) ? `Calling costs ${toCall(t)} points.` : 'Nothing to call: checking is free.' };
+    return {
+      notice: `You have ${made}.${drawing}`,
+      why: toCall(t) ? `Calling costs ${toCall(t)} points.` : 'Nobody has bet, so checking (passing without betting) is free.',
+    };
   }
 
   async function deal() {

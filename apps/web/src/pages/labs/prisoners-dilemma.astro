@@ -8,9 +8,6 @@ const lab = LABS.find((l) => l.slug === 'prisoners-dilemma')!;
 ---
 
 <LabPage {lab}>
-  <p>
-    Each round, you and a bot each choose to cooperate or defect, at the same time. Defecting on a cooperator scores best for you in that round, but the game
-    goes on, and the bot remembers. Play one bot, or all five in turn, and see how many points you can make.
-  </p>
+  <p>Taking advantage of a bot that works with you scores the most in a single round. But the game goes on for many rounds, and the bot remembers.</p>
   <DilemmaLab client:load styles={styleTable()} noisy={noisyPair()} />
 </LabPage>

@@ -1,5 +1,5 @@
 kind: choice
-prompt: 'You hold the ace and jack of diamonds: an ace-high flush. The river pairs the board. What has changed?'
+prompt: 'You hold the ace and jack of diamonds: a flush (five diamonds), ace high. The last shared card is a second king, so the board now has a pair. What has changed?'
 cards:
   hole: [Ad, Jd]
   board: [9d, Kd, 4d, 7c, Ks]
