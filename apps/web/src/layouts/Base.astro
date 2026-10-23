@@ -77,12 +77,22 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
             chaal<span>wise</span>
           </span>
         </a>
-        <nav aria-label="Main">
+        <button class="menu-toggle" type="button" popovertarget="site-nav">
+          <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+          Menu
+        </button>
+        <nav aria-label="Main" id="site-nav" popover>
           {NAV.map(([href, label]) => (
             <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>
               {label}
             </a>
           ))}
+          <!-- Shown only where this browser can install Chaalwise (scripts/install-app.ts). -->
+          <button id="install-app" class="install" type="button" hidden>
+            Install app
+          </button>
         </nav>
       </div>
     </header>
@@ -103,10 +113,6 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
           <a href="https://github.com/urbanmorph/chaalwise">code</a> (AGPL-3.0) · made by <a href="https://www.urbanmorph.com/">urbanmorph</a> ·{' '}
           <a href="https://github.com/urbanmorph/chaalwise/blob/main/TERMS.md">terms</a>
         </p>
-        <!-- Shown only where this browser can install Chaalwise (scripts/install-app.ts). -->
-        <button id="install-app" class="install" type="button" hidden>
-          Install app
-        </button>
       </div>
     </footer>
     <dialog id="install-guide" class="install-guide" aria-labelledby="install-guide-title">
@@ -178,6 +184,65 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
   nav a:hover,
   nav a[aria-current='page'] {
     color: var(--ink);
+  }
+  nav .install {
+    margin-left: 8px;
+  }
+  /*
+   * On a phone the links fold behind a Menu button: the nav is a popover, so the
+   * browser opens and closes it, with Escape and a tap outside, and no script.
+   * Where popovers are not supported, the button stays hidden and every link shows.
+   */
+  .menu-toggle {
+    display: none;
+  }
+  nav[popover] {
+    position: static;
+    inset: auto;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    background: none;
+    color: inherit;
+  }
+  @media (max-width: 759px) {
+    @supports selector(:popover-open) {
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 14px;
+        border: 1px solid var(--rule-strong);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        font: 600 0.9375rem var(--sans);
+        cursor: pointer;
+      }
+      nav[popover]:not(:popover-open) {
+        display: none;
+      }
+      nav[popover]:popover-open {
+        position: fixed;
+        inset: calc(57px + env(safe-area-inset-top)) 0 auto;
+        flex-direction: column;
+        padding: 4px var(--gutter-right) 16px var(--gutter-left);
+        border-bottom: 1px solid var(--rule);
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+      nav[popover]:popover-open a {
+        padding: 0;
+      }
+      nav[popover]:popover-open .install {
+        align-self: flex-start;
+        margin: 8px 0 0;
+      }
+    }
   }
   .update {
     display: flex;
