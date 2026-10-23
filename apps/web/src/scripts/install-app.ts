@@ -1,4 +1,4 @@
-/** Shows the footer's "Install app" button where the browser can install Chaalwise (lib/install.ts). */
+/** Shows the menu's "Install app" button where the browser can install Chaalwise (lib/install.ts). */
 import { mountInstallButton } from '../lib/install';
 
 const button = document.getElementById('install-app');

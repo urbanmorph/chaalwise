@@ -50,7 +50,9 @@ test.describe('on a notched phone', () => {
       return {
         top: box('.site-header .bar').top,
         left: Math.min(box('main .wrap > *').left, box('.update span').left, box('.brand').left),
-        right: doc.clientWidth - Math.max(box('main .wrap > *').right, box('.site-header nav').right),
+        right:
+          doc.clientWidth -
+          Math.max(box('main .wrap > *').right, box('.site-header nav').right, box('.menu-toggle').right),
         bottom: doc.scrollHeight - (box('.site-footer p:last-of-type').bottom + window.scrollY),
       };
     });
