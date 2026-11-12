@@ -2,14 +2,15 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
+import { CANONICAL_ELSEWHERE } from '../lib/canonical';
 
 /** Pages that are the learner's own, or not a page at all: marked noindex, and left out of the sitemap. */
 export const PRIVATE_PAGES = ['progress/', 'review/', 'offline/', '404/'];
 
-/** The sitemap: every public page, by its full address. */
+/** The sitemap: every public page that is its own canonical address, by its full address. */
 export const sitemap = (site: string, paths: string[]): string =>
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths
-    .filter((p) => !PRIVATE_PAGES.includes(p))
+    .filter((p) => !PRIVATE_PAGES.includes(p) && !(`/${p}` in CANONICAL_ELSEWHERE))
     .sort()
     .map((p) => `  <url><loc>${new URL(p, site).href}</loc></url>\n`)
     .join('')}</urlset>\n`;

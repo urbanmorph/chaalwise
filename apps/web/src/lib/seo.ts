@@ -43,6 +43,13 @@ export function lessonSchema(lesson: { data: { title: string; summary: string; g
   };
 }
 
+/** Questions and their answers as a schema.org FAQPage; the page shows the same words. */
+export const faqSchema = (faq: { q: string; a: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+});
+
 /** Search results show about 160 characters of a description: add what kind of page this is when it fits. */
 export const withContext = (summary: string, context: string): string =>
   summary.length + context.length + 1 <= 160 ? `${summary} ${context}` : summary;

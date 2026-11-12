@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { CANONICAL_ELSEWHERE } from '../src/lib/canonical';
 
 const DIST = new URL('../dist/', import.meta.url).pathname;
 const read = (file: string) => readFileSync(join(DIST, file), 'utf8');
@@ -17,23 +18,27 @@ function pages(dir = DIST): string[] {
 const html = (page: string) => read(page.endsWith('.html') ? page : `${page}index.html`);
 const PRIVATE = ['/progress/', '/review/', '/offline/', '/404.html'];
 const indexable = pages().filter((p) => !PRIVATE.includes(p));
+/** Pages in the sitemap: public pages that are their own canonical address. */
+const listed = indexable.filter((p) => !(p in CANONICAL_ELSEWHERE));
 const jsonLd = (page: string) =>
   [...html(page).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]!));
 
 describe('what search engines are told', () => {
   it('lists every public page in the sitemap, and no private one', () => {
     const urls = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    expect(urls.sort()).toEqual(indexable.map((p) => `${SITE}${p}`).sort());
+    expect(urls.sort()).toEqual(listed.map((p) => `${SITE}${p}`).sort());
   });
 
   it('points to the sitemap from robots.txt', () => {
     expect(read('robots.txt')).toContain(`Sitemap: ${SITE}/sitemap.xml`);
   });
 
-  it('gives every public page one canonical address on chaalwise.com, the same as its share address', () => {
+  it('gives every public page one canonical address on chaalwise.com: its own, or the page that covers its topic', () => {
     for (const page of indexable) {
       const h = html(page);
-      expect(h.match(/<link rel="canonical" href="([^"]+)"/)?.[1], page).toBe(`${SITE}${page}`);
+      const own = CANONICAL_ELSEWHERE[page] ?? page;
+      expect(h.match(/<link rel="canonical" href="([^"]+)"/)?.[1], page).toBe(`${SITE}${own}`);
+      expect(h.match(/<meta property="og:url" content="([^"]+)"/)?.[1], page).toBe(`${SITE}${page}`);
       expect(h, page).not.toContain('name="robots"');
     }
   });

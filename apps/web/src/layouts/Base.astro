@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../components/poker/poker.css';
 import favicon from '../../public/favicon.svg?raw';
+import { CANONICAL_ELSEWHERE } from '../lib/canonical';
 
 interface Props {
   title: string;
@@ -24,6 +25,8 @@ const {
 const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
 // What a link preview shows: the page's own title and description, on one share card for the site (scripts/og-image.mjs).
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+// A lesson on an idea the reference covers points search at the entry; shares still open the lesson.
+const canonical = new URL(CANONICAL_ELSEWHERE[Astro.url.pathname] ?? Astro.url.pathname, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href;
 const jsonLd = schema && JSON.stringify(schema['@graph'] ? schema : { ...schema, url: pageUrl });
 // Strategy first, then each game from its first lesson, for a beginner who only wants to learn chess or poker. A page marks the section it is in.
@@ -47,7 +50,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={pageUrl} />}
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Chaalwise" />
     <meta property="og:title" content={fullTitle} />
