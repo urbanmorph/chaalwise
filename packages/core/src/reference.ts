@@ -49,6 +49,10 @@ export const referenceSchema = z
     aliases: z.array(z.string().min(1)).default([]),
     /** One sentence, shown in search results. */
     summary: z.string().min(1),
+    /** The page title in search results, in the words people search, such as "Outs in poker: what they are and how to count them". Defaults to the term. */
+    title: z.string().min(1).optional(),
+    /** Questions people search for, each with a plain answer: shown on the page and given to search engines as FAQPage data. */
+    faq: z.array(z.object({ q: z.string().endsWith('?'), a: z.string().min(1) })).optional(),
     /** Strategy entries: why the idea matters. */
     why: z.string().optional(),
     /** Strategy entries: where it shows up away from the game. */

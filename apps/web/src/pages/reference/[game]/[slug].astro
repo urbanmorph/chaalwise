@@ -1,5 +1,5 @@
 ---
-import { withContext } from '../../../lib/seo';
+import { faqSchema, withContext } from '../../../lib/seo';
 import { THEMES } from '../../../lib/puzzles';
 import { FAMILY_NAMES, GAME_NAMES, KIND_NAMES } from '@chaalwise/core/reference';
 import { SKILLS } from '@chaalwise/core/skills';
@@ -39,8 +39,9 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
 ---
 
 <Base
-  title={`${data.term} · ${GAME_NAMES[data.game]} reference`}
+  title={data.title ?? `${data.term} · ${GAME_NAMES[data.game]} reference`}
   description={withContext(data.summary, `From the Chaalwise ${GAME_NAMES[data.game].toLowerCase()} reference.`)}
+  schema={data.faq && faqSchema(data.faq)}
 >
   <article class="wrap entry">
     <p class="crumb">
@@ -67,6 +68,17 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
           <section>
             <h2>Away from the game</h2>
             <p>{data.inLife}</p>
+          </section>
+        )}
+        {data.faq && (
+          <section class="faq">
+            <h2>Questions people ask</h2>
+            {data.faq.map(({ q, a }) => (
+              <>
+                <h3>{q}</h3>
+                <p>{a}</p>
+              </>
+            ))}
           </section>
         )}
       </div>
@@ -183,6 +195,33 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
   }
   h2 {
     font-size: 1.2rem;
+  }
+  .faq h3 {
+    font-size: 1.05rem;
+    margin: 20px 0 4px;
+  }
+  /* A grid item grows to its widest child unless told otherwise: keep a wide table from widening the page. */
+  .text {
+    min-width: 0;
+  }
+  /* Charts in an entry, such as the poker hand rankings: scroll sideways inside the table on a narrow screen, never the page. */
+  .text :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .text :global(th),
+  .text :global(td) {
+    text-align: left;
+    vertical-align: top;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .text :global(td:last-child) {
+    white-space: nowrap;
   }
   .learn ul,
   .related ul {
