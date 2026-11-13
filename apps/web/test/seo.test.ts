@@ -29,6 +29,17 @@ describe('what search engines are told', () => {
     expect(urls.sort()).toEqual(listed.map((p) => `${SITE}${p}`).sort());
   });
 
+  it('tells AI agents what the site is and links every reference entry and section in llms.txt', () => {
+    const llms = read('llms.txt');
+    expect(llms).toMatch(/^# Chaalwise\n\n> /);
+    const entries = indexable.filter((p) => /^\/reference\/[^/]+\/[^/]+\/$/.test(p));
+    expect(entries.length).toBeGreaterThan(50);
+    for (const p of entries) expect(llms).toContain(`(${SITE}${p})`);
+    for (const p of ['/chess/', '/poker/', '/labs/', '/skills/', '/cases/', '/reference/', '/daily/'])
+      expect(llms).toContain(`(${SITE}${p})`);
+    expect(llms).toContain(`${SITE}/sitemap.xml`);
+  });
+
   it('points to the sitemap from robots.txt', () => {
     expect(read('robots.txt')).toContain(`Sitemap: ${SITE}/sitemap.xml`);
   });
