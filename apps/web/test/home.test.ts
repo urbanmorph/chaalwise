@@ -1,5 +1,5 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { HERO, pieceImages } from '../src/lib/diagram';
 import { PROFILE_SKILLS } from '../src/lib/profile-skills';
@@ -174,10 +174,13 @@ describe('the footer', () => {
 });
 
 describe('analytics', () => {
-  it('loads the Cloudflare beacon, with its token, only on the live site', async () => {
-    const { BEACON_TOKEN, LIVE_HOST } = await import('../src/lib/analytics');
-    const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
-    expect(html).toMatch(new RegExp(`location\\.host===?[\`"']${LIVE_HOST.replaceAll('.', '\\.')}`));
-    expect(html).toContain(BEACON_TOKEN);
+  // Cloudflare's auto-install injects the Web Analytics beacon into every page of chaalwise.com.
+  // A second, hand-added one counted the same visits under another site, and the ops dashboard
+  // read that one: 20 page views in 30 days against the auto-installed site's 140 (Nov 2026).
+  it('leaves the beacon to Cloudflare: the built pages and scripts add none of their own', () => {
+    const dist = new URL('../dist/', import.meta.url);
+    const files = readdirSync(dist, { recursive: true, encoding: 'utf8' }).filter((f) => /\.(html|js)$/.test(f));
+    expect(files.length).toBeGreaterThan(10);
+    for (const f of files) expect(readFileSync(new URL(f, dist), 'utf8'), f).not.toContain('cloudflareinsights.com');
   });
 });

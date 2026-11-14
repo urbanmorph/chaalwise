@@ -4,7 +4,6 @@
  * tab where they accept it reloads. Other open tabs keep their lesson and say
  * the update happened elsewhere.
  */
-import { BEACON_TOKEN, LIVE_HOST } from '../lib/analytics';
 import { isChunkLoadError, shouldReload } from '../lib/stale-chunk';
 
 document.documentElement.dataset.build = __BUILD_ID__;
@@ -32,14 +31,6 @@ window.addEventListener('astro:hydration-error', (event) => {
 window.addEventListener('unhandledrejection', (event) => {
   if (isChunkLoadError(event.reason)) reloadForNewVersion();
 });
-
-// Cloudflare Web Analytics, on the live site only: no cookies, and nothing about learners.
-if (location.host === LIVE_HOST) {
-  const beacon = document.createElement('script');
-  beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-  beacon.dataset.cfBeacon = `{"token":"${BEACON_TOKEN}"}`;
-  document.body.append(beacon);
-}
 
 if ('serviceWorker' in navigator && __TOMBSTONE__) {
   // Never register here: the tombstone reloads the tab after removing itself, and
