@@ -20,6 +20,14 @@ steps:
   - ask: poker/hand-rankings/kicker
   - ask: poker/hand-rankings/board-plays
   - ask: poker/hand-rankings/two-pair
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you rank your options before you choose?'
+    situations:
+      - 'I compare two or more offers, products or plans'
+      - 'I pick which task to do first'
+      - 'I choose between options that are each strong in a different way'
+    action: 'I will put them in order of what matters most, then pick from the top'
 ---
 
 Every poker decision starts with knowing what beats what. Find your best five cards, from your two and the five shared, in every hand.

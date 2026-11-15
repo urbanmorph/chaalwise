@@ -16,6 +16,14 @@ steps:
   - ask: poker/starting-hands/small-pair
   - ask: poker/starting-hands/dominated
   - ask: life/choose-your-chances/offers
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you say no to a weak start?'
+    situations:
+      - 'someone offers me a new project or commitment'
+      - 'I am tempted to start something only because I am bored'
+      - 'I choose which jobs, courses or chances to apply for'
+    action: 'I will take it on only if it is worth the time it will cost'
 ---
 
 A fold costs nothing. Choosing well which hands to play is the first way to size a risk in poker.

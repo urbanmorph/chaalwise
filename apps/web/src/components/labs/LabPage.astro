@@ -5,13 +5,17 @@ import Base from '../../layouts/Base.astro';
 import { entryHref } from '../../lib/reference';
 import { referenceEntries } from '../../lib/reference-entries';
 import type { Lab } from '../../lib/labs/labs';
+import { LAB_PLANS } from '../../lib/labs/plans';
 import { ask } from '../../lib/questions';
+import { labLessons, lessonHref } from '../../lib/lessons';
 import TryIt from '../TryIt.astro';
+import LabPlan from './LabPlan.svelte';
 import './labs.css';
 
 /**
  * A game-theory lab: the idea, the game (the slot, an island), then the
- * debrief questions from the lab's reference entry and where to read more.
+ * debrief questions from the lab's reference entry, a plan to use the idea this
+ * week, the lessons on its skill and where to read more.
  */
 interface Props {
   lab: Lab;
@@ -29,6 +33,9 @@ const read = [entry, ...lab.read.map(find)];
 if (!entry.data.try) throw new Error(`lab ${lab.slug}: ${lab.entry} has no questions to try`);
 const steps = await ask(entry.data.try);
 const track = SKILLS[lab.track];
+const lessons = await labLessons(lab);
+const plan = LAB_PLANS[lab.slug];
+if (!plan) throw new Error(`lab ${lab.slug}: no plan in LAB_PLANS`);
 ---
 
 <Base title={`${lab.title} lab`} description={withContext(lab.idea, 'A five-minute lab against the computer.')}>
@@ -41,6 +48,27 @@ const track = SKILLS[lab.track];
     <p class="label">5 minutes · trains {track} · points only, never money</p>
     <slot />
     <TryIt {steps} more={{ href: `/skills/${lab.track}/`, label: `Practise ${track}` }} />
+    <section class="plan" aria-labelledby="plan-title" data-testid="lab-plan">
+      <h2 id="plan-title">Use it this week</h2>
+      <p class="prompt">{plan.prompt}</p>
+      <LabPlan client:idle slug={lab.slug} track={lab.track} {plan} />
+    </section>
+    {lessons.length > 0 && (
+      <section class="lessons" aria-labelledby="lessons-title">
+        <h2 id="lessons-title">Lessons on this skill</h2>
+        <ul>
+          {lessons.map((l) => (
+            <li>
+              <a href={lessonHref(l)}>{l.data.title}</a>{' '}
+              <span>
+                {l.data.game === 'poker' ? 'Poker lesson. ' : ''}
+                {l.data.summary}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
     <section class="read">
       <h2>Read more</h2>
       <ul>
@@ -64,15 +92,28 @@ const track = SKILLS[lab.track];
   .idea {
     font-size: 1.2rem;
   }
+  .plan,
+  .lessons,
   .read {
     margin-top: 32px;
   }
+  .plan {
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+  }
+  .plan .prompt {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .lessons ul,
   .read ul {
     padding-left: 1.2em;
   }
+  .lessons li,
   .read li {
     margin-bottom: 6px;
   }
+  .lessons span,
   .read span {
     color: var(--ink-2);
   }

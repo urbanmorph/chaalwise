@@ -8,7 +8,6 @@
   import { shuffle } from '../lib/random';
   import { CONFIDENCE } from '@chaalwise/core/calibration';
   import Board, { type Mark } from './Board.svelte';
-  import PlanStep from './PlanStep.svelte';
   import PlayOut from './PlayOut.svelte';
   import TableCards from './poker/TableCards.svelte';
 
@@ -45,6 +44,12 @@
   let hintText = $state<HTMLElement>();
   /** Steps the learner has been through, for the step dots (read steps have no grade to show it). */
   const seen = new SvelteSet<number>();
+
+  // The plan step loads after the page, as it comes last in a lesson: a lesson's first paint needs none of it.
+  let PlanStep = $state<typeof import('./PlanStep.svelte').default>();
+  onMount(() => {
+    if (onplan && lesson.steps.some((s) => s.kind === 'plan')) import('./PlanStep.svelte').then((m) => (PlanStep = m.default)).catch(console.error);
+  });
 
   // Amounts as the page was built (the Indian way), then in the reader's own locale (lib/money, loaded once the page runs, as few steps have any).
   let local = $state<(s: Step) => Step>();
@@ -261,7 +266,7 @@
             </div>
           </fieldset>
         {/if}
-        {#if step.kind === 'plan' && onplan}
+        {#if step.kind === 'plan' && onplan && PlanStep}
           {#key player.index}
             <PlanStep situations={step.situations} action={step.action} onsave={(text) => onplan(step.id, text)} />
           {/key}

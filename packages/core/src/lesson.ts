@@ -203,8 +203,14 @@ export const lessonSchema = z
     stage: z.number().int().nonnegative(),
     order: z.number().int().nonnegative(),
     skills: z.array(z.enum(SKILL_IDS)),
-    /** For a strategy lesson: the lesson it follows on the path, e.g. `chess/blunder-check`. */
-    after: z.string().optional(),
+    /**
+     * For a strategy lesson: what it follows, where its game moment comes from. A chess or poker lesson
+     * (`chess/blunder-check`, `poker/outs-and-odds`), another strategy lesson, or a lab (`labs/which-bag`).
+     */
+    after: z
+      .string()
+      .regex(/^(chess|poker|strategy|labs)\/[a-z0-9-]+$/, 'after names a lesson or a lab, such as poker/outs-and-odds')
+      .optional(),
     steps: z.array(authoredStep).min(1),
   })
   .superRefine((lesson, ctx) => {

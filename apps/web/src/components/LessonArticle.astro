@@ -6,6 +6,9 @@ import { RESUME_KEY } from '../lib/resume';
 import LessonPage from './LessonPage.svelte';
 import MoreOnLichess from './MoreOnLichess.astro';
 import { LICHESS_LESSONS } from '../lib/lichess';
+import { meetFirst } from '../lib/games';
+import { labHref, LABS, labsForLesson } from '../lib/labs/labs';
+import TryTheLab from './TryTheLab.astro';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
 interface Props {
@@ -17,8 +20,10 @@ const { Content } = await render(lesson);
 const { next, buildsOn } = await pathContext(lesson);
 const steps = await playedSteps(lesson);
 const firstChess = (await lessonPath()).find((l) => l.data.game === 'chess')!;
-// A strategy lesson with board questions: until chess is met, they are worked examples.
-const worked = lesson.data.game === 'strategy' && steps.some((s) => 'position' in s && s.position && s.kind !== 'read');
+// Meet the game first: a strategy lesson's chess, poker and lab questions are worked examples until that game is met.
+const meet = meetFirst(lesson.data, steps);
+const firstLab = LABS.find((l) => meet.includes(`labs/${l.slug}`));
+const { game, skills } = lesson.data;
 // Any strategy lesson with a board writes chess moves, so it carries the key to them.
 const movesWritten = lesson.data.game === 'strategy' && steps.some((s) => 'position' in s && s.position);
 const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.data.title }));
@@ -43,14 +48,26 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   })();
 </script>
 <h1>{lesson.data.title}</h1>
-{worked && (
-  <p class="meet-chess" data-testid="meet-chess" hidden>
+{meet.includes('chess') && (
+  <p class="meet" data-meet="chess" data-testid="meet-chess" hidden>
     This lesson uses chess positions. Until you have played a little, its board questions are worked examples to read. New to chess?{' '}
     <a href="/chess/first-moves/">Play your first moves</a> (five minutes), then <a href={lessonHref(firstChess)}>learn it from the beginning</a>.
   </p>
 )}
-{/* Inline, so it shows before the first paint and the lesson never jumps. */}
-{worked && <script is:inline define:vars={{ key: DONE_KEY }}>
+{meet.includes('poker') && (
+  <p class="meet" data-meet="poker" data-testid="meet-poker" hidden>
+    This lesson uses poker hands. Until you have played a few, its poker questions are worked examples to read. New to poker?{' '}
+    <a href="/poker/first-hands/">Play your first hands</a>, with a coach at every decision. Practice points only.
+  </p>
+)}
+{firstLab && (
+  <p class="meet" data-meet={`labs/${firstLab.slug}`} data-testid="meet-lab" hidden>
+    This lesson starts from the {firstLab.title} lab, a game of about five minutes against the computer. Until you have played it, its questions about the lab
+    are worked examples to read. <a href={labHref(firstLab)}>Play the {firstLab.title} lab first</a>.
+  </p>
+)}
+{/* Inline, so the notes show before the first paint and the lesson never jumps. A game is met as in lib/games (gamesMet). */}
+{meet.length > 0 && <script is:inline define:vars={{ key: DONE_KEY }}>
   (() => {
     let done = [];
     try {
@@ -58,7 +75,10 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
     } catch {
       // Storage can be blocked: treat it as a new learner.
     }
-    if (!done.some((id) => id.startsWith('chess/'))) document.currentScript.previousElementSibling.hidden = false;
+    for (const note of document.querySelectorAll('[data-meet]')) {
+      const game = note.dataset.meet;
+      note.hidden = game.startsWith('labs/') ? done.includes(game) : done.some((id) => id.startsWith(`${game}/`));
+    }
   })();
 </script>}
 {movesWritten && (
@@ -75,11 +95,12 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   lesson={{ steps }}
   lessonId={lesson.id}
   next={next && { href: lessonHref(next), title: next.data.title }}
-  track={lesson.data.game === 'strategy' || lesson.data.game === 'case' ? lesson.data.skills[0] : undefined}
+  track={game === 'chess' ? undefined : skills[0]}
   all={COURSE_HOME[courseOf(lesson)]}
-  checkable={lesson.data.game === 'chess'}
-  workedUntilMet={worked}
+  checkable={game === 'chess'}
+  meetFirst={meet}
 />
+<TryTheLab labs={labsForLesson(lesson.data)} />
 <MoreOnLichess link={LICHESS_LESSONS[lesson.id]} />
 {/* Inline, so the offer to carry on shows before the first paint and the lesson never jumps. LessonPage checks the place again (readResume). */}
 <script is:inline define:vars={{ key: RESUME_KEY, id: lesson.id, ids: steps.map((s) => s.id) }}>
@@ -109,10 +130,10 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
     color: var(--ink-2);
     font-size: 0.9rem;
   }
-  .meet-chess[hidden] {
+  .meet[hidden] {
     display: none;
   }
-  .meet-chess {
+  .meet {
     padding: 10px 14px;
     border-left: 3px solid var(--accent);
     background: var(--tint);

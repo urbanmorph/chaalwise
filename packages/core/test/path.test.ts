@@ -32,6 +32,14 @@ describe('the learning path', () => {
     );
   });
 
+  it('starts the lessons that follow something off the path (a lab) after the rest, in the order of those anchors', () => {
+    const path = learningPath(
+      [strategy('b1', 'labs/b'), strategy('a2', 'labs/a', 2), strategy('a1', 'labs/a', 1), strategy('a3', 'a1')],
+      ['labs/a', 'labs/b', 'labs/c'],
+    );
+    expect(path.map((l) => l.id)).toEqual(['a1', 'a3', 'a2', 'b1']);
+  });
+
   it('refuses a strategy lesson that follows a lesson that does not exist', () => {
     expect(() => learningPath([chess('x', 0, 1), strategy('s1', 'nope')])).toThrow(
       /s1 comes after nope, which does not exist/,

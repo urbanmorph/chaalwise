@@ -15,6 +15,14 @@ steps:
   - ask: poker/tilt/guard
   - ask: life/after-a-bad-loss/next-bid
   - ask: life/decisions-not-results/good-chance
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you keep your next decision as good as the last?'
+    situations:
+      - 'something has just gone badly and I am upset'
+      - 'I want to win back a loss straight away'
+      - 'I am about to reply to a message while angry'
+    action: 'I will stop, take a breath, and decide the next thing as if the last had not happened'
 ---
 
 A loss changes how you feel, not the odds of what comes next. Keep the next decision as good as the last.

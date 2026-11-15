@@ -24,6 +24,14 @@ steps:
   - ask: poker/outs-and-odds/fold-the-draw
   - ask: poker/outs-and-odds/call-the-draw
   - ask: life/price-and-chance/warranty
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you weigh a chance against its price?'
+    situations:
+      - 'I decide whether a course, a ticket or an exam fee is worth paying'
+      - 'I decide whether to keep trying for something unlikely'
+      - 'I am asked to pay now for a chance of something later'
+    action: 'I will put a rough number on the chance and compare it with the price'
 ---
 
 Weighing odds is comparing a chance with a price. Poker makes both into numbers you can count.

@@ -12,7 +12,7 @@ import {
 } from '../src/lib/labs/dilemma';
 import { counter, describePattern, outcome, PatternBot, type Throw } from '../src/lib/labs/rock-paper-scissors';
 import { BIDDERS, breakEvenShade, drawItem, settle, simulateAuctions, SPREAD } from '../src/lib/labs/auction';
-import { LABS } from '../src/lib/labs/labs';
+import { LABS, labsForLesson } from '../src/lib/labs/labs';
 import { seeded } from '../src/lib/labs/seeded';
 import { TRACKS } from '../src/lib/skill-tracks';
 
@@ -247,5 +247,24 @@ describe('the labs', () => {
 
   it('are named on the skill map under each track they train', () => {
     for (const lab of LABS) expect(TRACKS.find((t) => t.id === lab.track)!.also, lab.slug).toContain(lab.title);
+  });
+});
+
+describe('the labs a lesson offers at its end', () => {
+  const slugs = (lesson: Parameters<typeof labsForLesson>[0]) => labsForLesson(lesson).map((l) => l.slug);
+
+  it('offers the labs that train a strategy or poker lesson’s skill, and none to a chess lesson or a case', () => {
+    expect(slugs({ game: 'poker', skills: ['read-hidden'] })).toEqual(['rule-finder', 'ask-the-panel']);
+    expect(slugs({ game: 'strategy', skills: ['composure'], after: 'chess/endgame-intro' })).toEqual(['gain-or-loss']);
+    expect(slugs({ game: 'poker', skills: [] })).toEqual([]);
+    expect(slugs({ game: 'chess', skills: ['calculate'] })).toEqual([]);
+    expect(slugs({ game: 'case', skills: ['value'] })).toEqual([]);
+  });
+
+  it('puts the lab a lesson follows first', () => {
+    expect(slugs({ game: 'strategy', skills: ['cooperate'], after: 'labs/pick-the-same' })).toEqual([
+      'pick-the-same',
+      'prisoners-dilemma',
+    ]);
   });
 });

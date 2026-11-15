@@ -15,6 +15,14 @@ steps:
   - ask: life/model-the-opponent/cheap-claim
   - ask: life/model-the-opponent/rival-sale
   - ask: life/be-unpredictable/always-bluff
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you check the reason for a move?'
+    situations:
+      - 'I am about to raise a point in a meeting or a debate'
+      - 'I am about to push for something in a negotiation'
+      - 'I am about to make a claim to win an argument'
+    action: 'I will name what I want the other side to do in reply before I act'
 ---
 
 Every bet should have a reason you can say: to be called by worse, or to make better fold. Bluffs are part of the second, used less often than value bets. A bet with a draw, a hand that one more card could make strong, does both: it may make better hands fold, and it can still win if called. That is a semi-bluff.

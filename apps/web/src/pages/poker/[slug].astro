@@ -6,7 +6,10 @@ import Base from '../../layouts/Base.astro';
 import { lessonPath, POKER_STAGES, type LessonEntry } from '../../lib/lessons';
 
 export async function getStaticPaths() {
-  return (await lessonPath('poker')).map((lesson) => ({ params: { slug: lesson.id.replace(/^poker\//, '') }, props: { lesson } }));
+  // Strategy lessons after poker lessons are on the poker path, and live under /skills/.
+  return (await lessonPath('poker'))
+    .filter((l) => l.data.game === 'poker')
+    .map((lesson) => ({ params: { slug: lesson.id.replace(/^poker\//, '') }, props: { lesson } }));
 }
 
 const { lesson } = Astro.props as { lesson: LessonEntry };
