@@ -31,6 +31,17 @@ describe('pages that explain an idea through chess', () => {
     }
   });
 
+  it("offer a poker-based strategy lesson's newcomer their first hands instead, and no chess", () => {
+    for (const lesson of lessonsIn('strategy').filter(({ data }) => data.after!.startsWith('poker/'))) {
+      const id = lesson.file.replace('.md', '');
+      const html = dist(`skills/${id}/index.html`);
+      const note = html.match(/<p class="meet" data-meet="poker"[\s\S]*?<\/p>/)?.[0] ?? '';
+      expect(note, id).toContain('href="/poker/first-hands/"');
+      expect(html, id).not.toContain('data-meet="chess"');
+      expect(offersStart(html), id).toBe(false);
+    }
+  });
+
   it('offer it on every course that shows or practises chess, and only those', () => {
     for (const id of SKILL_IDS) {
       const html = dist(`skills/${id}/index.html`);

@@ -31,7 +31,7 @@ describe('a beginner who only wants chess or poker', () => {
     expect(ids.indexOf('pot-odds')).toBeLessThan(ids.indexOf('poker/outs-and-odds/pot-odds'));
   });
 
-  it('gets a key to chess notation on every strategy lesson that shows chess moves, and none on those after a lab', () => {
+  it('gets a key to chess notation on every strategy lesson that shows chess moves, and none on those after a lab or a poker lesson', () => {
     const lessons = lessonsIn('strategy');
     expect(lessons.filter(showsChess).length).toBeGreaterThan(20);
     for (const lesson of lessons) {

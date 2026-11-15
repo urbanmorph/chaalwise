@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'Shopping online, you look at a ₹1,200 kurta. The page says "Only 2 left!", and it has said so every day for a week. How much should the message count?'
+options:
+  - 'Little: it is free to show, and it has not changed in a week'
+  - 'A lot: buy it now, before the last two are gone'
+  - 'None: report the shop for lying'
+  - Wait until it says "Only 1 left!", then buy
+answer: 0
+feedback:
+  - ''
+  - The message is cheap to show whether it is true or not, and its story has not changed in a week. It is not a reason to hurry.
+  - It may be careless rather than a lie; the shop may restock. Just give it little weight.
+  - '"Only 1 left" would cost the shop just as little to show. Decide on the kurta and its price, not on the message.'
+explanation: 'In poker, a bet tells a story, and so does a message from a shop: check the story. A message that costs nothing to show deserves little weight. One that says the same thing every day for a week does not fit the story it tells. Decide whether the kurta is worth ₹1,200 to you, and ignore the countdown.'
+measures: bluff

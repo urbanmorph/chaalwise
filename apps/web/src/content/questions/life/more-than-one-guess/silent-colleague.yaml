@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'At work, you present a plan in a team meeting. A colleague who usually has plenty to say stays silent the whole time. What do you do with the silence?'
+options:
+  - List what it could mean, and ask them one to one
+  - Take it as agreement and go ahead
+  - Take it as quiet opposition and change the plan
+  - Ignore it, since you cannot know what they think
+answer: 0
+feedback:
+  - ''
+  - Agreement is one reason among several. If they had doubts, you would find out only after the plan is under way.
+  - That is one guess too. Changing a plan for a reason you have only imagined may fix a problem that is not there.
+  - You cannot know for sure, but you can list the likely reasons, and one short talk will tell them apart.
+explanation: 'Think in ranges, not one guess: a range is every reason they could have. A silence fits several reasons: agreement, doubts they would rather not voice in front of everyone, or a busy day. A quiet word afterwards, such as "You were quiet today. Any doubts about the plan?", works whichever is true, and the answer crosses most of them out.'
+measures: read-hidden

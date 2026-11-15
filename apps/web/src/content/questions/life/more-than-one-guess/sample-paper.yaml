@@ -1,0 +1,15 @@
+kind: choice
+prompt: "You are revising for a college exam. Last year's paper was mostly short questions. This year's sample paper, just released, has two long essay questions. How should you prepare?"
+options:
+  - Prepare for both kinds, with more time on essays than you planned
+  - 'Short questions only: that is what last year had'
+  - 'Essays only: the sample paper settles it'
+  - Do not change anything until you see the real paper
+answer: 0
+feedback:
+  - ''
+  - That holds on to the old guess and ignores the new fact. The sample paper is a strong sign that the style has changed.
+  - The sample is good evidence, but it is one paper. The real one may still mix short questions with essays, so drop neither.
+  - By the time you see the real paper, it is too late to prepare. Update on the evidence you have now.
+explanation: 'Think in ranges, not one guess: a range is every outcome that fits what you know. Keep each likely style of paper in mind, weighted by the evidence. The sample paper makes essays more likely, so shift your time towards them, without dropping the short questions.'
+measures: read-hidden

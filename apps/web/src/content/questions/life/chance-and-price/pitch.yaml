@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'At work, your small design studio is asked to pitch for a contract (show a client your ideas and price). Four studios are pitching, and yours is about as good as the others. Preparing the pitch costs about ₹40,000 in staff time. The contract would bring ₹3 lakh in profit. Should you pitch?'
+options:
+  - 'Yes: one chance in four at ₹3 lakh is worth about ₹75,000, more than the ₹40,000 it costs'
+  - 'No: you will most likely lose, three times in four'
+  - 'Yes: ₹3 lakh is far more than ₹40,000, whatever the chance'
+  - 'No: only pitch when you are sure of winning'
+answer: 0
+feedback:
+  - ''
+  - Losing more often than you win is fine when the prize is big enough. What matters is the chance times the prize, against the price.
+  - The chance matters too. Against twenty studios, one chance in twenty at ₹3 lakh would be worth only ₹15,000, less than the pitch costs.
+  - You are almost never sure. Waiting for certainty would mean never pitching, and missing every contract worth the risk.
+explanation: 'Weigh the chance against the price. A quarter of ₹3 lakh is ₹75,000: what the pitch is worth on average. It costs ₹40,000, so pitch. If ten studios were pitching, a tenth of ₹3 lakh, ₹30,000, would no longer cover the cost.'
+measures: weigh-odds

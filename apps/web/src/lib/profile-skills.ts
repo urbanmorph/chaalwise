@@ -181,6 +181,8 @@ export const LESSON_TRACKS: SkillId[] = [
   'cooperate',
   'value',
   'unpredictable',
+  'read-hidden',
+  'bluff',
 ];
 
 /** The strategy tracks, in the home page's order. A track is measured once a chess skill, a lab or a strategy lesson gives evidence for it. */
