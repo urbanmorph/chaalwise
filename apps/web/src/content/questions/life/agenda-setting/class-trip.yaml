@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your class in Kolkata, in three groups of equal size, votes on a trip two places at a time: first Darjeeling against Puri, then the winner against the Sundarbans. Your group likes Darjeeling most, then Puri, then the Sundarbans. The second group likes Puri most, then the Sundarbans, then Darjeeling. The third likes the Sundarbans most, then Darjeeling, then Puri. Each group votes together. How should your group vote in the first round?'
+options:
+  - For Darjeeling, your favourite
+  - For Puri, your second choice
+  - It makes no difference to the result
+answer: 1
+feedback:
+  - Darjeeling would win the first round, with the third group’s votes, then lose to the Sundarbans, your last choice, in the second.
+  - ''
+  - 'It does. Voting for Darjeeling ends with the Sundarbans. Voting for Puri ends with Puri, since the second group and yours both prefer Puri to the Sundarbans.'
+explanation: 'Look ahead to the last vote. Darjeeling cannot beat the Sundarbans, but Puri can. A vote for your second choice in the first round, a strategic vote, stops your last choice from winning. In the last vote itself, vote for the place you like more.'
+measures: think-ahead

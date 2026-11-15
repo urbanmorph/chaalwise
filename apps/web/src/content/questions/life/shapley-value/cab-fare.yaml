@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Three colleagues in Bengaluru share a cab home along one road. Alone, a cab would cost Meena ₹90 to her stop, Ravi ₹210 to his, and Sara ₹360 to hers, the last stop. Shared, the cab costs ₹360. Which split is fairest?'
+options:
+  - '₹120 each'
+  - Meena ₹30, Ravi ₹90 and Sara ₹240
+  - Sara pays all ₹360, since the cab goes to her stop anyway
+answer: 1
+feedback:
+  - Meena would pay more than a cab of her own would cost, ₹90, so she would do better riding alone.
+  - ''
+  - Meena and Ravi would ride for nothing, and Sara would save nothing by sharing, so she has no reason to share.
+explanation: 'Share each stretch of road among those who ride it. All three ride the first stretch, worth ₹90: ₹30 each. Ravi and Sara ride the next, worth ₹120: ₹60 each. Sara alone rides the last ₹150. This is the Shapley split: what each person adds to the fare, on average, over every order in which they could have joined the cab.'
+measures: value

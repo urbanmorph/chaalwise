@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the Fair shares lab, Asha, Bilal and Chitra run a food stall at a college fest that makes 90 points. What Chitra adds depends on who is already there: 6 points if she starts alone, 18 if she joins Asha and Bilal. Over the six orders in which the three could join, she adds 18, 24, 18, 24, 6 and 6. What is her share by the Shapley value?'
+options:
+  - '30, a third of the 90'
+  - 18, what she adds when she joins the other two
+  - 16, the average of what she adds over the six orders
+answer: 2
+feedback:
+  - An equal third ignores what she adds. Asha and Bilal make 72 without her, so with 30 for her they would get only 60, and they would do better without her.
+  - That is what she adds in two of the six orders only. The Shapley value takes every order into account.
+  - ''
+explanation: 'The Shapley value is each person’s average of what they add, over every order of joining. Chitra adds 96 points in all over the six orders, so her share is 96 ÷ 6 = 16.'
+measures: value

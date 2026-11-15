@@ -102,4 +102,14 @@ export const LAB_ABOUT: Record<Lab['slug'], LabAbout> = {
     plays:
       'Twenty weeks as a sweet shop facing four rival shops, each week pushing for the customers or giving way, against rivals with different habits.',
   },
+  'who-sets-the-agenda': {
+    idea: 'A group’s majorities can go round in a circle, so the order of the votes can decide the winner. Check who set the order, and look ahead to the last vote.',
+    plays:
+      'Chair a college fest committee and choose the order of its votes, then speak for one group while others set the order.',
+  },
+  'fair-shares': {
+    idea: 'Split what a group makes by what each person adds, not equally and not by who pushes hardest. And check that no one, and no pair, would do better on their own.',
+    plays:
+      'Propose splits for a fest food stall and a shared cab; three bots each object if they would do better without the rest.',
+  },
 };

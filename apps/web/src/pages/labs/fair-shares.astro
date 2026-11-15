@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import FairSharesLab from '../../components/labs/FairSharesLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'fair-shares')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Three people make something together that none could make as well alone. Propose how to split it, so that nobody would do better on their own, then see the
+    split by what each person adds.
+  </p>
+  <FairSharesLab client:load />
+</LabPage>

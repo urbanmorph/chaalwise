@@ -157,6 +157,20 @@ export const LABS: Lab[] = [
     entry: 'labs/hawk-dove',
     read: ['labs/credible-threats', 'labs/mixed-strategy'],
   },
+  {
+    slug: 'who-sets-the-agenda',
+    title: 'Who sets the agenda?',
+    track: 'think-ahead',
+    entry: 'labs/agenda-setting',
+    read: ['strategy/framing', 'strategy/their-next-move'],
+  },
+  {
+    slug: 'fair-shares',
+    title: 'Fair shares',
+    track: 'value',
+    entry: 'labs/shapley-value',
+    read: ['labs/fairness-and-trust', 'strategy/walk-away-point'],
+  },
 ];
 
 /** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */

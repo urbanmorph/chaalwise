@@ -254,6 +254,8 @@ describe('the labs', () => {
       ['follow-the-queue', 'read-hidden', 'strategy/information-cascades'],
       ['shared-fund', 'cooperate', 'labs/public-goods'],
       ['who-backs-down', 'size-risk', 'labs/hawk-dove'],
+      ['who-sets-the-agenda', 'think-ahead', 'labs/agenda-setting'],
+      ['fair-shares', 'value', 'labs/shapley-value'],
     ]);
   });
 

@@ -197,4 +197,24 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     action:
       'I will compare what the fight would cost us both with what is at stake, and offer a way out that lets either side give way without losing face',
   },
+  'who-sets-the-agenda': {
+    prompt: 'When will you check who set the order of the votes before you vote?',
+    situations: [
+      'a committee, a society or a club votes on several options, two at a time',
+      'a panel draws up a shortlist for a hire or an award',
+      'my family or friends choose a holiday or a plan from several ideas',
+    ],
+    action:
+      'I will ask who chose the order and the shortlist, what would win in another order, and how the last vote will go before I cast the first',
+  },
+  'fair-shares': {
+    prompt: 'When will you split by what each person adds?',
+    situations: [
+      'I share a cab or an auto with people getting off at different stops',
+      'a team I am in splits a bonus, a prize or the credit for a project',
+      'friends and I split a delivery charge on a joint order',
+    ],
+    action:
+      'I will work out what each person adds, check that no one and no pair would do better on their own, and propose that split',
+  },
 };

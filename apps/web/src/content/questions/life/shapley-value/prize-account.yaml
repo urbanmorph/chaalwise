@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Three students in Kochi build an app together and win a ₹45,000 prize in a college contest. Anu wrote the code, Bala designed the screens and Cyril presented it to the judges. The prize is paid into Bala’s account, and he says he should take half, since he holds the money. How should they split it?'
+options:
+  - Bala takes half, since the money is in his account
+  - By what each part added, judged by how the app would have done without it
+  - Equally, ₹15,000 each, whatever each part added
+answer: 1
+feedback:
+  - Holding the money gives Bala power in the talk, not a bigger part in the work. A split by power rewards whoever holds what the others need.
+  - ''
+  - An equal split is right only if each part added about the same. Check first, or the person whose part mattered most has a reason to work with others next time.
+explanation: 'Split by what each person adds, not by who holds the money or pushes hardest. Ask how the app would have done with each part missing, and share in line with what each part made possible.'
+measures: value
