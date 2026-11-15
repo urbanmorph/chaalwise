@@ -19,9 +19,12 @@
     /** Where the answers come from, for the skill profile. */
     source: 'review' | 'practice';
     after: Snippet;
+    /** A calibration round: "how sure are you?" first, and each answer passed on for the round's score. */
+    requireConfidence?: boolean;
+    onanswer?: (outcome: Outcome, confidence: number | undefined) => void;
   }
 
-  let { items, source, after }: Props = $props();
+  let { items, source, after, requireConfidence = false, onanswer }: Props = $props();
 
   // Step ids must be unique within a round; the card id is kept alongside.
   const round = $derived({ steps: items.map((item, i) => ({ ...item.step, id: `item-${i}` })) });
@@ -45,6 +48,7 @@
   function onstep(stepId: string, outcome: Outcome, confidence?: number) {
     const { cardId, step } = itemFor(stepId);
     logAttempt(step.measures, outcome, source, { item: cardId, chance: guessChance(step), confidence });
+    onanswer?.(outcome, confidence);
     saving = saving.then(() =>
       save([[stepId, outcome]]).catch((error) => {
         console.error(error);
@@ -68,7 +72,7 @@
   }
 </script>
 
-<Round steps={round.steps} contexts={items.map((item) => item.context)} {onfinish} {onstep}>
+<Round steps={round.steps} contexts={items.map((item) => item.context)} {onfinish} {onstep} {requireConfidence}>
   {#snippet summary(outcomes)}
     <div class="card" data-testid="round-done">
       <h2>Round done</h2>

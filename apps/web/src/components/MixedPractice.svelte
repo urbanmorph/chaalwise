@@ -7,12 +7,16 @@
   import { mixedIds, roundItems, type RoundItem } from '../lib/round-items';
   import PracticeRound from './PracticeRound.svelte';
 
-  /** Practice across every skill in mixed order, any time, due or not; and "Which idea fits?" rounds once three strategy lessons are done. */
+  /**
+   * Practice across every skill in mixed order, any time, due or not; "Which idea fits?" rounds once three strategy lessons
+   * are done; and calibration rounds, with "how sure are you?" required (loaded when asked for).
+   */
   let { steps, fits }: { steps: Record<string, GradedStep>; fits: FitsBank } = $props();
   const ROUND = 8;
   let items = $state<RoundItem[]>();
   /** Which round is showing. */
-  let kind = $state<'mix' | 'fits'>('mix');
+  let kind = $state<'mix' | 'fits' | 'sure'>('mix');
+  let CalibrationRound = $state<typeof import('./CalibrationRound.svelte').default>();
   let rounds = $state(0);
   let heading = $state<HTMLElement>();
   /** Loaded once the page runs, as are the lessons finished on this device, which are not known while it is built. */
@@ -20,13 +24,18 @@
   const canFit = $derived(!!lib?.fitsOpen(fits, readDone()));
   onMount(() => import('../lib/fits').then((m) => (lib = m)).catch(console.error));
 
-  async function practise(next: 'mix' | 'fits') {
+  async function practise(next: 'mix' | 'fits' | 'sure') {
     const { withFits, fitsIds, FITS_ROUND } = lib ?? (await import('../lib/fits'));
     const done = readDone();
     // Meet the game first: only questions about games played on this device, and about life.
     const met = gamesMet(done);
     const open = withFits(Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met))), fits, done, Math.random);
-    const ids = next === 'fits' ? fitsIds(fits, done, FITS_ROUND, Math.random) : mixedIds(open, ROUND, Math.random);
+    let ids: string[];
+    if (next === 'sure') {
+      const round = await import('./CalibrationRound.svelte');
+      CalibrationRound = round.default;
+      ids = round.calibrationIds(open, round.CALIBRATION_ROUND, Math.random);
+    } else ids = next === 'fits' ? fitsIds(fits, done, FITS_ROUND, Math.random) : mixedIds(open, ROUND, Math.random);
     items = await roundItems(ids, open);
     kind = next;
     rounds++;
@@ -45,6 +54,7 @@
     {#if canFit}
       <button class="button" type="button" onclick={() => practise('fits')}>Which idea fits?</button>
     {/if}
+    <button class="button" type="button" onclick={() => practise('sure')}>How sure? A calibration round</button>
   </div>
   {#if lib}
     <p class="note" data-testid="fits-note">
@@ -57,12 +67,22 @@
   {/if}
   {#if items}
     {#key rounds}
-      <h3 tabindex="-1" bind:this={heading}>{kind === 'fits' ? `Which idea fits? ${items.length} situations` : `A mix of ${items.length}`}</h3>
-      <PracticeRound {items} source="practice">
-        {#snippet after()}
-          <button class="button primary" type="button" onclick={() => practise(kind)}>{kind === 'fits' ? 'More situations' : 'Another mix'}</button>
-        {/snippet}
-      </PracticeRound>
+      <h3 tabindex="-1" bind:this={heading}>
+        {kind === 'fits'
+          ? `Which idea fits? ${items.length} situations`
+          : kind === 'sure'
+            ? `Calibration round: ${items.length} questions`
+            : `A mix of ${items.length}`}
+      </h3>
+      {#if kind === 'sure' && CalibrationRound}
+        <CalibrationRound {items} again={() => practise('sure')} />
+      {:else}
+        <PracticeRound {items} source="practice">
+          {#snippet after()}
+            <button class="button primary" type="button" onclick={() => practise(kind)}>{kind === 'fits' ? 'More situations' : 'Another mix'}</button>
+          {/snippet}
+        </PracticeRound>
+      {/if}
     {/key}
   {/if}
 </section>

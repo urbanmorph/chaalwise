@@ -101,6 +101,9 @@ test('saying how sure you are is optional, and the progress page shows how often
     )
     .toBe(1);
   await page.goto('/progress/');
+  // The chart's figures, as a table: the chart loads once the record is read.
+  await expect(page.getByTestId('calibration-settings')).toBeVisible();
+  await page.getByText('Show as a table').last().click();
   await expect(page.getByTestId('calibration').getByRole('row', { name: /90% sure/ })).toHaveText(/1\s*100%/);
 });
 

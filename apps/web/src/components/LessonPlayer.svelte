@@ -17,8 +17,8 @@
     onfinish: (outcomes: Record<string, Outcome>) => void;
     /** Called as each step is graded, so a long session is saved as it goes, with how sure the learner said they were. */
     onstep?: (stepId: string, outcome: Outcome, confidence?: number) => void;
-    /** Offer "how sure are you?" before each answer (practice and review, not first lessons). */
-    askConfidence?: boolean;
+    /** Offer "how sure are you?" before each answer (practice and review, not first lessons); a calibration round requires it. */
+    askConfidence?: boolean | 'required';
     /** Where each step comes from, such as "In chess", for rounds that mix lessons. */
     contexts?: (string | undefined)[];
     finished: Snippet<[Record<string, Outcome>]>;
@@ -259,7 +259,7 @@
       <div class="rest">
         {#if askConfidence && isGraded(step) && !player.revealed}
           <fieldset class="sure" disabled={player.attempts > 0}>
-            <legend>How sure are you? <span class="optional">Optional</span></legend>
+            <legend>How sure are you? <span class="optional">{askConfidence === 'required' ? 'Pick one, then answer' : 'Optional'}</span></legend>
             <div class="choices">
               {#each CONFIDENCE as level (level)}
                 <label><input type="radio" name="sure-{player.index}" value={level} bind:group={sure} /> {level * 100}%</label>
@@ -285,7 +285,7 @@
                 class="button option"
                 class:correct={player.revealed && i === step.answer}
                 class:wrong={picked === i && i !== step.answer}
-                disabled={player.revealed}
+                disabled={player.revealed || (askConfidence === 'required' && sure === undefined)}
                 onclick={() => choose(i)}>{step.options[i]}</button
               >
             {/each}

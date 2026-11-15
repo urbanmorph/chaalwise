@@ -93,7 +93,8 @@ test('the dashboard: tiles and radar for a period, a tooltip by keyboard, and th
   await point.focus();
   await expect(page.locator('.tooltip')).toContainText('100% right first time');
 
-  await page.getByText('Show as a table').click();
+  // The radar's table; the calibration chart further down has its own.
+  await page.getByText('Show as a table').first().click();
   await expect(page.getByRole('row', { name: 'Think ahead 3 100%' })).toBeVisible();
 
   // A month later the 7-day view is empty; all time still counts them.

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { calibration } from '@chaalwise/core/calibration';
+  import type { Setting } from '@chaalwise/core/calibration-score';
   import { LEVELS, levelName } from '@chaalwise/core/profile';
   import { openProgress, type AttemptRecord } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
@@ -13,7 +13,8 @@
    * record. It starts from the
    * empty record, so the page is laid out in full from the first paint.
    */
-  let { cardIds }: { cardIds: string[] } = $props();
+  /** Every review card, with the setting it is in (chess, poker, labs or life), for calibration by setting. */
+  let { settings }: { settings: Record<string, Setting> } = $props();
 
   const PERIODS = [
     { days: 7, label: '7 days' },
@@ -28,7 +29,8 @@
   let active = $state<string>();
 
   const profile = $derived(buildProfile(attempts));
-  const sureness = $derived(calibration(Object.values(attempts).flat()));
+  // The calibration scores load once the record is read: they sit at the foot of the page.
+  let CalibrationScores = $state<typeof import('./CalibrationScores.svelte').default>();
   const stats = $derived(dashboard(attempts, period));
   const percent = (rate: number | undefined) => (rate === undefined ? '–' : `${Math.round(rate * 100)}%`);
 
@@ -39,7 +41,8 @@
     try {
       const progress = await openProgress();
       attempts = await progress.attemptsBySkill();
-      const known = new Set(cardIds);
+      import('./CalibrationScores.svelte').then((m) => (CalibrationScores = m.default)).catch(console.error);
+      const known = new Set(Object.keys(settings));
       due = (await progress.dueCards(new Date())).filter((c) => known.has(c.id)).length;
       progress.close();
     } catch (error) {
@@ -238,37 +241,16 @@
 
 <h2 class="heading">How sure you were</h2>
 <p class="lede">
-  In practice and review, you can say how sure you are before you answer. If you judge well, you are right about as often as you said: 9 times in 10 when you
-  said 90%. Many people are right less often than they feel, which is worth knowing before a big decision.
+  In practice and review, you can say how sure you are before you answer; a calibration round in review asks every time. If you judge well, you are right about
+  as often as you said: 9 times in 10 when you said 90%. Many people are right less often than they feel, which is worth knowing before a big decision. Judging
+  how sure to be is one skill, on a chessboard, at a poker table or at work, so your score shows for each setting.
 </p>
-<table class="sureness" data-testid="calibration">
-  <thead><tr><th scope="col">You said</th><th scope="col">Answers</th><th scope="col">Right first time</th></tr></thead>
-  <tbody>
-    {#each sureness as row (row.confidence)}
-      <tr>
-        <th scope="row">{row.confidence * 100}% sure</th>
-        <td>{row.answers}</td>
-        <td>{row.answers ? percent(row.right / row.answers) : '–'}</td>
-      </tr>
-    {/each}
-  </tbody>
-</table>
+<p class="lede">The score (a Brier score) is how close your sureness was to what happened: 0 is perfect, lower is better, and always saying 50% scores 0.25.</p>
+{#if CalibrationScores}
+  <CalibrationScores attempts={Object.values(attempts).flat()} {settings} />
+{/if}
 
 <style>
-  .sureness {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .sureness th,
-  .sureness td {
-    text-align: left;
-    padding: 8px 12px 8px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .sureness thead th {
-    font-size: 0.9rem;
-    color: var(--ink-2);
-  }
   .choices {
     margin-bottom: 12px;
   }
