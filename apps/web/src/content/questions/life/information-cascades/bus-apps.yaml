@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two apps help you plan bus routes in Chennai. One has 50,000 downloads and the other 2,000. The app store lists the popular one first, so most people try it first. Which would tell you most about which app is better?'
+options:
+  - 'The number of downloads, since more people chose it'
+  - 'Reviews from people who tried both apps'
+  - 'Which app the store lists first'
+answer: 1
+feedback:
+  - 'Downloads grow partly because an app is already popular: it is listed first, so people pick it first. The count shows how many chose it, not why.'
+  - ''
+  - 'The store lists the popular app first because it is popular. That repeats the download count; it adds no new evidence.'
+explanation: 'A choice that people make after seeing what others chose says little about quality. Look for opinions formed on their own, such as from people who compared both apps.'
+measures: read-hidden

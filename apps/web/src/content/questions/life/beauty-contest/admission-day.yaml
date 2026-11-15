@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your college in Delhi takes forms for hostel rooms over five days, first come, first served at the counter. Last year, everyone rushed on day one, so the counter was quiet on day two. This year the whole class knows that. Which question helps you most to choose a day?'
+options:
+  - 'Which day was quietest last year, so I can go on that day again?'
+  - 'How many classmates will act on last year’s story, and on which day?'
+  - 'Which day suits my own timetable best, whatever the others do?'
+answer: 1
+feedback:
+  - 'Everyone has heard about last year, so many will now pick day two. Last year’s quiet day may be this year’s rush.'
+  - ''
+  - 'Your timetable matters, but it says nothing about where the queue will be. The rush depends on what the others choose.'
+explanation: 'When everyone knows the same story, they change their plans because of it. Guess how many will move, and where to, then pick one step beyond that.'
+measures: think-ahead

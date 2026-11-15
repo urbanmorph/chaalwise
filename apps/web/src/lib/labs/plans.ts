@@ -159,4 +159,22 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     ],
     action: 'I will pay for a check, or ask for a promise that would cost them if they were wrong, such as a warranty',
   },
+  'guess-two-thirds': {
+    prompt: 'When will you ask how far ahead the others are thinking?',
+    situations: [
+      'I set a price and my rivals may answer it',
+      'I choose a day or a time that many others are choosing too',
+      'everyone has heard the same tip, such as which day is quietest',
+    ],
+    action: 'I will guess what most of them will do, then go one step beyond that, not all the way',
+  },
+  'follow-the-queue': {
+    prompt: 'When will you ask why the crowd chose what it chose?',
+    situations: [
+      'I pick a restaurant, a course or a product because many others have',
+      'a group agrees one after another, each after hearing the ones before',
+      'my own evidence points one way and the crowd goes the other',
+    ],
+    action: 'I will ask a few people why they chose, count only the reasons of their own, and add my evidence to them',
+  },
 };

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the Guess two-thirds lab, everyone picks a number from 0 to 100, and the winner is closest to two-thirds of the average. You play a crowd of first-timers. You expect some to pick at random (about 50 on average), many to pick about 33 (two-thirds of 50), and a few to go further. Which guess is most likely to win?'
+options:
+  - '0, since logic says no one should pick more than 0 in the end'
+  - 'About 22, one step beyond most of the crowd'
+  - '50, the middle of the range'
+answer: 1
+feedback:
+  - 'Logic leads to 0 only if everyone follows it all the way. These first-timers stop much sooner, so the average stays in the 30s and two-thirds of it is in the 20s. 0 is far from that.'
+  - ''
+  - '50 is where a random crowd averages, but you win near two-thirds of the average, not the average itself. Even a crowd of random pickers makes the target about 33.'
+explanation: 'With an average in the 30s, two-thirds of it is in the low 20s. Winning means guessing how far the others think, and going one step further: here, about 22.'
+measures: think-ahead

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You sell handmade soap at a weekend market in Jaipur. Three other stalls sell similar soap at ₹120 a bar. You want more customers. What should you think through before you change your price?'
+options:
+  - 'Nothing more: cut to ₹100, since the cheapest stall always wins'
+  - 'How the other stalls are likely to answer a cut, and what your price is worth after they do'
+  - 'Cut straight to ₹60, so low that no one can go below you'
+answer: 1
+feedback:
+  - 'This thinks no steps ahead. Once the others see your ₹100, some may cut too, and then you have a lower price and no more customers.'
+  - ''
+  - 'This goes all the way to the bottom and loses money on every bar. The other stalls may not even cut, so you would have given up far more than you needed to.'
+explanation: 'Your result depends on what the other stalls do next. Guess how far they think: will they match, ignore you or undercut? Then choose one step beyond that, not the most extreme price.'
+measures: think-ahead

@@ -45,13 +45,14 @@ export const TRACKS: Track[] = [
  * skill profile, so naming a new lab here adds nothing to any page's JavaScript.
  */
 export const TRACK_ALSO: Record<SkillId, string> = {
-  'think-ahead': 'The bonus rule and Who moves first labs, Connect Four, Go, Bagh-Chal',
+  'think-ahead': 'The bonus rule, Who moves first and Guess two-thirds labs, Connect Four, Go, Bagh-Chal',
   calculate: 'Nim lab, Pallanguzhi',
   'plan-long': 'Go',
   'size-risk': 'Backgammon',
   composure: 'Gain or loss? lab',
   'weigh-odds': "Which bag? lab, Backgammon, Liar's Dice",
-  'read-hidden': "Rule finder, Ask the panel, First number wins? and Used scooters labs, Liar's Dice, Mastermind",
+  'read-hidden':
+    "Rule finder, Ask the panel, First number wins?, Used scooters and Follow the queue? labs, Liar's Dice, Mastermind",
   bluff: "Liar's Dice",
   cooperate: "Prisoner's Dilemma, Pick the same and Split it fairly? labs",
   unpredictable: 'Rock-paper-scissors lab',
