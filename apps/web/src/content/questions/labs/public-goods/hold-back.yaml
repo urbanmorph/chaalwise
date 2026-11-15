@@ -1,0 +1,13 @@
+kind: choice
+prompt: "In The shared fund lab, five neighbours each have 10 points a month for a housing society's maintenance fund. The fund is doubled, then shared equally among all five. When you put 1 point in, how much of it comes back to you?"
+options:
+  - '2 points, since the fund is doubled'
+  - '1 point: you get back what you put in'
+  - '0.4 of a point, since your doubled point is shared by five'
+answer: 2
+feedback:
+  - 'The 2 points are shared by all five neighbours, so most of them go to the others.'
+  - 'Your point becomes 2, and those 2 are shared by five. You get back less than you put in.'
+  - ''
+explanation: 'Each point you put in brings you back only 0.4, so holding back always pays you more. But it brings the group 2 in all, so if everyone puts in all 10, each ends the month with 20; if nobody does, with 10.'
+measures: cooperate

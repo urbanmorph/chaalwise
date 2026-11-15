@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two brothers in a village near Madurai both want to farm the family plot this season. Each says he will not give way. A court case would take years and cost more than several seasons of crops. What is the best way out?'
+options:
+  - 'Take turns: one farms this season and the other the next, with an elder both respect to decide who starts'
+  - File a court case at once, to show you are serious
+  - Both farm half of the plot each season, even if neither half is big enough to pay
+answer: 0
+feedback:
+  - ''
+  - A court case is the fight itself. It costs both brothers more than the plot earns, and a name for never backing down will not stop the other from fighting.
+  - 'It avoids a fight, but if neither half pays, both lose every season. Sharing works only when the shares are worth having.'
+explanation: 'When both sides push, both lose more than the prize is worth. Taking turns gives each brother the whole prize half the time, and an elder deciding who starts lets either one give way first without losing face.'
+measures: size-risk

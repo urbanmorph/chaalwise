@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two photocopy shops stand opposite a university in Indore. The other shop has just cut its price from ₹2 to ₹1 a page. At ₹1, both shops lose money on every page. The owner did the same last year, and went back to ₹2 after two weeks. What is the best reply?'
+options:
+  - 'Cut to 80 paise a page, to show the other shop you never back down'
+  - 'Close for two weeks until the other shop gives up'
+  - 'Keep ₹2 and wait, since the cut costs the other shop on every page'
+answer: 2
+feedback:
+  - 'Then both shops lose money on every page, and the other owner has a reason to dig in. A price war costs you both more than the customers are worth.'
+  - 'Closing hands the other shop all your customers, and some may not come back.'
+  - ''
+explanation: 'A price war is a fight that costs both sides more than the prize. Against a rival who is pushing, giving way for a while costs less than fighting back, and a cut that loses money on every page cannot last.'
+measures: size-risk

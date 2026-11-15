@@ -143,6 +143,20 @@ export const LABS: Lab[] = [
     entry: 'strategy/information-cascades',
     read: ['strategy/independent-estimates', 'strategy/base-rates'],
   },
+  {
+    slug: 'shared-fund',
+    title: 'The shared fund',
+    track: 'cooperate',
+    entry: 'labs/public-goods',
+    read: ['labs/prisoners-dilemma', 'labs/fairness-and-trust'],
+  },
+  {
+    slug: 'who-backs-down',
+    title: 'Who backs down?',
+    track: 'size-risk',
+    entry: 'labs/hawk-dove',
+    read: ['labs/credible-threats', 'labs/mixed-strategy'],
+  },
 ];
 
 /** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */

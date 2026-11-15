@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You and a classmate in Kolkata must hand in a joint report at 9 a.m. tomorrow. The formatting and the reference list are left, about three hours of work. It is 10 p.m., and each of you is waiting for the other to give in and do it. What is going on, and what should you do?'
+options:
+  - 'Keep waiting: whoever waits longer wins, and you are more patient'
+  - 'It is a stand-off whose risk grows every hour. Offer now to split the work, half each'
+  - "Do nothing and hand in the report unformatted, since it is the other person's fault"
+answer: 1
+feedback:
+  - 'Each hour you both wait, the risk of a late or rushed report grows, and it falls on you both. You may win the stand-off and still lose the marks.'
+  - ''
+  - 'You both get the same mark, so you lose as much as your classmate. Blame does not change the cost.'
+explanation: 'Holding on while a shared risk grows is brinkmanship: it pays only if the other side gives way first, and the cost falls on both. Offering a fair split early ends the stand-off before the risk catches up with you.'
+measures: size-risk

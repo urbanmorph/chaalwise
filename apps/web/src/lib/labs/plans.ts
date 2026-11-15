@@ -177,4 +177,24 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     ],
     action: 'I will ask a few people why they chose, count only the reasons of their own, and add my evidence to them',
   },
+  'shared-fund': {
+    prompt: 'When will you help a group keep a shared thing going?',
+    situations: [
+      'a group project has members who do little of the work',
+      'a group chat splits shared bills, such as a trip or a party',
+      'a common area, such as a kitchen at work or a hostel corridor, is left in a mess',
+    ],
+    action:
+      'I will make what each person gives easy to see, give first myself, and ask the group to agree a simple rule with a small cost for breaking it',
+  },
+  'who-backs-down': {
+    prompt: 'When will you weigh a stand-off before you dig in?',
+    situations: [
+      'two teams claim the same meeting room, budget or deadline',
+      'a rival shop or firm starts a price war',
+      'a family or flat dispute over a shared room, car or plot drags on',
+    ],
+    action:
+      'I will compare what the fight would cost us both with what is at stake, and offer a way out that lets either side give way without losing face',
+  },
 };

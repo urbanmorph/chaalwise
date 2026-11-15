@@ -48,13 +48,13 @@ export const TRACK_ALSO: Record<SkillId, string> = {
   'think-ahead': 'The bonus rule, Who moves first and Guess two-thirds labs, Connect Four, Go, Bagh-Chal',
   calculate: 'Nim lab, Pallanguzhi',
   'plan-long': 'Go',
-  'size-risk': 'Backgammon',
+  'size-risk': 'Who backs down? lab, Backgammon',
   composure: 'Gain or loss? lab',
   'weigh-odds': "Which bag? lab, Backgammon, Liar's Dice",
   'read-hidden':
     "Rule finder, Ask the panel, First number wins?, Used scooters and Follow the queue? labs, Liar's Dice, Mastermind",
   bluff: "Liar's Dice",
-  cooperate: "Prisoner's Dilemma, Pick the same and Split it fairly? labs",
+  cooperate: "Prisoner's Dilemma, Pick the same, Split it fairly? and The shared fund labs",
   unpredictable: 'Rock-paper-scissors lab',
   value: 'Sealed-bid auction, Split the pie and Trade what matters less labs',
 };

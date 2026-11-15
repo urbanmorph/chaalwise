@@ -252,6 +252,8 @@ describe('the labs', () => {
       ['used-scooters', 'read-hidden', 'labs/market-for-lemons'],
       ['guess-two-thirds', 'think-ahead', 'labs/beauty-contest'],
       ['follow-the-queue', 'read-hidden', 'strategy/information-cascades'],
+      ['shared-fund', 'cooperate', 'labs/public-goods'],
+      ['who-backs-down', 'size-risk', 'labs/hawk-dove'],
     ]);
   });
 
@@ -283,6 +285,7 @@ describe('the labs a lesson offers at its end', () => {
       'follow-the-queue',
     ]);
     expect(slugs({ game: 'strategy', skills: ['composure'], after: 'chess/endgame-intro' })).toEqual(['gain-or-loss']);
+    expect(slugs({ game: 'strategy', skills: ['size-risk'] })).toEqual(['who-backs-down']);
     expect(slugs({ game: 'poker', skills: [] })).toEqual([]);
     expect(slugs({ game: 'chess', skills: ['calculate'] })).toEqual([]);
     expect(slugs({ game: 'case', skills: ['value'] })).toEqual([]);
@@ -293,6 +296,7 @@ describe('the labs a lesson offers at its end', () => {
       'pick-the-same',
       'prisoners-dilemma',
       'split-it-fairly',
+      'shared-fund',
     ]);
   });
 });

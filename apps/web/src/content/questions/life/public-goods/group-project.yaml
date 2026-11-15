@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You are in a group of five for a college project in Chennai. Everyone gets the same mark, whoever did the work. After two weeks, one member has done almost nothing, and two others have started doing less too. What is most likely to keep the project going?'
+options:
+  - Do the missing work yourself, quietly, so the mark does not suffer
+  - Put every task and its owner on a shared sheet, with a rule the group agrees
+  - Wait until the end, then tell the teacher who did nothing
+answer: 1
+feedback:
+  - 'It saves this mark, but the others see that holding back costs them nothing, so they give less, and you carry more each week.'
+  - ''
+  - By the end the work is already short. A complaint after the event does not make anyone give more while it still matters.
+explanation: 'Most people give if others do, but a little less, so one member who holds back pulls the rest down. A record everyone can see and a rule the group agrees itself make holding back show, and give each member a reason to keep giving.'
+measures: cooperate

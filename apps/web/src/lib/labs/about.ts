@@ -92,4 +92,14 @@ export const LAB_ABOUT: Record<Lab['slug'], LabAbout> = {
     plays:
       'Six streets with two new restaurants side by side. You get a friend’s tip and see where the people ahead of you went; then you choose.',
   },
+  'shared-fund': {
+    idea: 'Each gains by holding back from a shared fund; all lose if all do. A record all can see and rules the group enforces keep it going.',
+    plays:
+      'Twelve months putting points into a housing society’s fund with four neighbours: first with only the total posted, then with every amount on the notice board and fines.',
+  },
+  'who-backs-down': {
+    idea: 'When a fight costs more than the prize, push only against those who give way. A name for never backing down pays until it meets its match.',
+    plays:
+      'Twenty weeks as a sweet shop facing four rival shops, each week pushing for the customers or giving way, against rivals with different habits.',
+  },
 };
