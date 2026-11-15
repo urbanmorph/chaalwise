@@ -16,7 +16,11 @@ export function sourceOf(cardId: string, step: GradedStep): { game?: string; lab
   const parts = cardId.split('/');
   const [game, idea] = parts[0] === 'reference' ? parts.slice(1) : parts;
   if (game === 'chess' || game === 'poker') return { game };
-  const lab = LABS.find((l) => l.entry === `${game}/${idea}` || (game === 'labs' && l.slug === idea));
+  // A game-theory idea with no lab of its own, such as tit for tat, is met in the first lab that teaches it.
+  const id = `${game}/${idea}`;
+  const lab =
+    LABS.find((l) => l.entry === id || (game === 'labs' && l.slug === idea)) ??
+    (game === 'labs' ? LABS.find((l) => l.read.includes(id)) : undefined);
   if (lab) return { game: 'labs', lab };
   if (game === 'labs') return { game: 'labs' };
   return step.position || step.kind === 'move' ? { game: 'chess' } : {};

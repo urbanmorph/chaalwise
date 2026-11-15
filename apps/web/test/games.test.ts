@@ -18,6 +18,9 @@ describe('which game a question needs', () => {
     expect(needs('reference/labs/prisoners-dilemma/repeat', choice())).toBe('labs/prisoners-dilemma');
     expect(needs('reference/strategy/test-to-disprove/two-four-six', choice())).toBe('labs/rule-finder');
     expect(needs('poker/outs/count', choice())).toBe('poker');
+    // A game-theory idea with no lab of its own needs the lab that teaches it.
+    expect(needs('labs/tit-for-tat/flatmates', choice())).toBe('labs/prisoners-dilemma');
+    expect(needs('labs/zero-sum-game/which-one', choice())).toBe('labs/rock-paper-scissors');
   });
 });
 
