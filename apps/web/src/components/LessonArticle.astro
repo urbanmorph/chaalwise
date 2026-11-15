@@ -94,6 +94,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   client:load
   lesson={{ steps }}
   lessonId={lesson.id}
+  title={lesson.data.title}
   next={next && { href: lessonHref(next), title: next.data.title }}
   track={game === 'chess' ? undefined : skills[0]}
   all={COURSE_HOME[courseOf(lesson)]}

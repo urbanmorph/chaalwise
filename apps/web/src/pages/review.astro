@@ -1,4 +1,5 @@
 ---
+import LookBack from '../components/LookBack.svelte';
 import MixedPractice from '../components/MixedPractice.svelte';
 import PlanCheckIn from '../components/PlanCheckIn.svelte';
 import ReviewSession from '../components/ReviewSession.svelte';
@@ -16,5 +17,6 @@ const steps = await reviewSteps();
     <MixedPractice client:idle {steps} />
     {/* Below the review, so it never pushes the questions down as it loads. */}
     <PlanCheckIn client:idle />
+    <LookBack client:idle />
   </div>
 </Base>

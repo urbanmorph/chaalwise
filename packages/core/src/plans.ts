@@ -5,7 +5,14 @@
  * (Gollwitzer and Sheeran 2006); asking afterwards closes the loop.
  */
 
-export type CheckInResult = 'used' | 'forgot' | 'no-chance';
+/**
+ * A check-in asks first whether the moment came and was noticed (missing it is the
+ * usual failure: Babadimas et al. 2019), then whether the plan was acted on.
+ * `noticed` is noticed but not acted on. Earlier check-ins asked only "did you
+ * use it?" and are kept as they were: `used` and `forgot`.
+ */
+export const CHECK_IN_RESULTS = ['acted', 'noticed', 'not-noticed', 'no-chance', 'used', 'forgot'] as const;
+export type CheckInResult = (typeof CHECK_IN_RESULTS)[number];
 
 export interface PlanRecord {
   /** The plan step, as `strategy/blunder-check/plan`: one plan per step, rewritten in place. */
@@ -24,6 +31,12 @@ const clean = (text: string) => text.trim().replace(/[.\s]+$/, '');
 
 /** "When <situation>, <action>." */
 export const planSentence = (situation: string, action: string) => `When ${clean(situation)}, ${clean(action)}.`;
+
+/** A plan sentence split back into its "When …" part and its action, or none if it is not one. */
+export function splitPlan(text: string): { situation: string; action: string } | undefined {
+  const parts = /^When (.+), (I will .+?)\.?$/.exec(text);
+  return parts ? { situation: parts[1]!, action: parts[2]! } : undefined;
+}
 
 /** The plan to ask about now, the oldest first, or none. */
 export function planToAsk(plans: readonly PlanRecord[], now: Date): PlanRecord | undefined {

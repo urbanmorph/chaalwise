@@ -23,6 +23,8 @@
   interface Props {
     lesson: { steps: Step[] };
     lessonId: string;
+    /** The lesson's title, for a reflection kept in the journal. */
+    title?: string;
     next?: { href: string; title: string } | undefined;
     /** The strategy track a plan made in this lesson belongs to. */
     track?: string | undefined;
@@ -37,6 +39,7 @@
   let {
     lesson,
     lessonId,
+    title = '',
     next,
     track,
     checkable = false,
@@ -135,7 +138,12 @@
     practiceStart?.focus();
   }
 
+  // Lessons with a plan step end with an optional reflection, loaded as the lesson ends: the lesson's first paint needs none of it.
+  let Reflection = $state<typeof import('./Reflection.svelte').default>();
+  const reflects = $derived(lesson.steps.some((s) => s.kind === 'plan'));
+
   async function onfinish(result: Record<string, Outcome>) {
+    if (reflects) import('./Reflection.svelte').then((m) => (Reflection = m.default)).catch(console.error);
     outcomes = result;
     saved = 'saving';
     clearResume(lessonId);
@@ -212,6 +220,7 @@
           {/if}
           <a class="button" href={all.href}>{all.label}</a>
         </div>
+        {#if Reflection}<Reflection from={lessonId} {title} />{/if}
       </div>
     {/snippet}
   </LessonPlayer>

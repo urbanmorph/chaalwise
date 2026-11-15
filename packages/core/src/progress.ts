@@ -1,4 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
+import type { JournalEntry } from './journal';
 import type { CheckInResult, PlanRecord } from './plans';
 import type { Outcome } from './player';
 import type { ProgressExport } from './progress-file';
@@ -51,9 +52,10 @@ interface ProgressDB extends DBSchema {
   drills: { key: string; value: DrillRecord };
   attempts: { key: number; value: AttemptRecord };
   plans: { key: string; value: PlanRecord };
+  journal: { key: string; value: JournalEntry };
 }
 
-const STORES = ['lessons', 'cards', 'drills', 'attempts', 'plans'] as const;
+const STORES = ['lessons', 'cards', 'drills', 'attempts', 'plans', 'journal'] as const;
 
 export type { ProgressExport };
 
@@ -67,7 +69,7 @@ export type ProgressStore = Awaited<ReturnType<typeof openProgress>>;
 
 export async function openProgress(name = 'chaalwise') {
   // Each version only adds stores, so a device on any older version upgrades without losing anything.
-  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 4, {
+  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 5, {
     upgrade(db, oldVersion) {
       if (oldVersion < 1) {
         db.createObjectStore('lessons', { keyPath: 'lessonId' });
@@ -76,6 +78,7 @@ export async function openProgress(name = 'chaalwise') {
       if (oldVersion < 2) db.createObjectStore('drills', { keyPath: 'drillId' });
       if (oldVersion < 3) db.createObjectStore('attempts', { autoIncrement: true });
       if (oldVersion < 4) db.createObjectStore('plans', { keyPath: 'id' });
+      if (oldVersion < 5) db.createObjectStore('journal', { keyPath: 'id' });
     },
     // A newer version of the app, open in another tab, needs to upgrade: get out of its way.
     blocking() {
@@ -179,8 +182,30 @@ export async function openProgress(name = 'chaalwise') {
       await tx.done;
     },
 
+    /** The answer to a check-in's second question changes its first: noticed, then acted. */
+    async amendCheckIn(id: string, result: CheckInResult) {
+      const tx = db.transaction('plans', 'readwrite');
+      const plan = await tx.store.get(id);
+      const last = plan?.checkIns.at(-1);
+      if (plan && last) await tx.store.put({ ...plan, checkIns: [...plan.checkIns.slice(0, -1), { ...last, result }] });
+      await tx.done;
+    },
+
     async plans(): Promise<PlanRecord[]> {
       return db.getAll('plans');
+    },
+
+    /** Write a journal entry, or rewrite it (a decision once looked back on). */
+    async writeJournal(entry: JournalEntry) {
+      await db.put('journal', entry);
+    },
+
+    async journal(): Promise<JournalEntry[]> {
+      return db.getAll('journal');
+    },
+
+    async deleteJournal(id: string) {
+      await db.delete('journal', id);
     },
 
     async exportData(now: Date): Promise<ProgressExport> {
@@ -193,6 +218,7 @@ export async function openProgress(name = 'chaalwise') {
         drills: await db.getAll('drills'),
         attempts: await db.getAll('attempts'),
         plans: await db.getAll('plans'),
+        journal: await db.getAll('journal'),
       };
     },
 
@@ -211,6 +237,7 @@ export async function openProgress(name = 'chaalwise') {
         ...parsed.drills.map((d) => tx.objectStore('drills').put(d)),
         ...parsed.attempts.map((a) => tx.objectStore('attempts').add(a)),
         ...parsed.plans.map((p) => tx.objectStore('plans').put(p)),
+        ...parsed.journal.map((e) => tx.objectStore('journal').put(e)),
         tx.done,
       ]);
     },

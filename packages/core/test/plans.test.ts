@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { lessonSchema } from '../src/lesson';
 import { advance, createPlayer, giveUp } from '../src/player';
-import { planSentence, planToAsk, type PlanRecord } from '../src/plans';
+import { planSentence, planToAsk, splitPlan, type PlanRecord } from '../src/plans';
 import { authored, lesson } from './fixtures';
 
 const day = 86_400_000;
@@ -43,6 +43,14 @@ describe('a plan to use the idea', () => {
     expect(planSentence(' I agree to a deadline. ', 'I will count it through.')).toBe(
       'When I agree to a deadline, I will count it through.',
     );
+  });
+
+  it('splits back into its "When …" part and its action, so the moment can be changed on its own', () => {
+    expect(splitPlan('When I agree to a deadline, a fee or a date, I will count it through.')).toEqual({
+      situation: 'I agree to a deadline, a fee or a date',
+      action: 'I will count it through',
+    });
+    expect(splitPlan('Something else entirely.')).toBeUndefined();
   });
 });
 

@@ -53,6 +53,12 @@ describe('counting a finish, anonymously', () => {
     ])
       expect(key).toMatch(COUNT_KEY);
   });
+
+  it('counts plan check-ins by their answer alone: noticed, acted, not noticed, and no other name', () => {
+    for (const key of ['checkin:noticed', 'checkin:acted', 'checkin:not-noticed']) expect(key).toMatch(COUNT_KEY);
+    for (const key of ['checkin:no-chance', 'checkin:strategy/blunder-check', 'checkin:', 'checkin:acted/think-ahead'])
+      expect(key).not.toMatch(COUNT_KEY);
+  });
 });
 
 /** A D1 database that records what it is asked to run. */
@@ -77,6 +83,20 @@ describe('the counter', () => {
     const { sql, args } = e.METRICS.runs[0]!;
     expect(sql).toMatch(/INSERT INTO daily \(day, key, n\)/);
     expect(args).toEqual([new Date().toISOString().slice(0, 10), 'played:labs/nim']);
+  });
+
+  it('adds plan check-ins to the daily total like finishes', async () => {
+    const e = env();
+    for (const body of ['checkin:noticed', 'checkin:acted', 'checkin:not-noticed']) {
+      const res = await worker.fetch(new Request('https://chaalwise.com/api/count', { method: 'POST', body }), e);
+      expect(res.status).toBe(204);
+    }
+    expect(e.METRICS.runs.map((r) => r.args[1])).toEqual(['checkin:noticed', 'checkin:acted', 'checkin:not-noticed']);
+    const bad = await worker.fetch(
+      new Request('https://chaalwise.com/api/count', { method: 'POST', body: 'checkin:When I reply to a client' }),
+      e,
+    );
+    expect(bad.status).toBe(400);
   });
 
   it('refuses anything else, and counts nothing', async () => {

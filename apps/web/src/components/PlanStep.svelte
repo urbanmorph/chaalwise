@@ -56,6 +56,10 @@
         : 'Kept on this device only.'}
   </p>
 </div>
+<p class="journal">
+  A decision coming up? Write down what you expect before you make it, in your <a href="/progress/#journal">decision journal</a>. Later, you can judge it by
+  what you knew then, not by how it turned out.
+</p>
 
 <style>
   .plan {
@@ -94,8 +98,12 @@
     align-items: center;
     gap: 8px 16px;
   }
-  .status {
+  .status,
+  .journal {
     color: var(--ink-2);
     margin: 0;
+  }
+  .journal {
+    margin-top: 16px;
   }
 </style>
