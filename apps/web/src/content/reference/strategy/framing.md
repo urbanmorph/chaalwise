@@ -6,7 +6,7 @@ level: 'intermediate'
 aliases: ['Framing effect', 'Loss aversion', 'Prospect theory', 'Gain and loss frames']
 summary: 'The same choice, put as what you keep or as what you lose, gets different answers. Restate it the other way before you decide.'
 why: 'Each extra gain pleases a little less than the last, and each extra loss hurts a little less than the last. So with a sure gain people play safe, and facing a sure loss they gamble to avoid it. The facts have not changed; only the words have.'
-inLife: 'When an offer, a plan or a price is put to you as a gain ("saves 200") or as a loss ("400 lost"), say it the other way before you answer. If your answer changes, the wording was deciding, not you. The same holds after a setback: a loss you want to escape pulls you towards long shots.'
+inLife: 'An offer, a plan or a price can be put to you as a gain ("saves 200") or as a loss ("400 lost"). Say it the other way before you answer. If your answer changes, the wording was deciding, not you. The same holds after a setback: a loss you want to escape pulls you towards long shots.'
 skill: 'composure'
 related: ['strategy/sunk-cost', 'strategy/cool-head', 'strategy/decisions-not-results', 'poker/tilt']
 try:

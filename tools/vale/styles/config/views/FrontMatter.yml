@@ -1,0 +1,33 @@
+# The prose in the front matter of lessons, reference entries and tracks. Vale lints a Markdown file's `title` itself.
+engine: dasel
+scopes:
+  # Lessons and reference entries
+  - expr: property(summary?)
+    type: md
+  # Lesson steps: reading, and plans
+  - expr: property(steps?).all().property(text?)
+    type: md
+  - expr: property(steps?).all().property(prompt?)
+    type: md
+  - expr: property(steps?).all().property(situations?).all()
+    type: md
+  - expr: property(steps?).all().property(action?)
+    type: md
+  # Reference entries
+  - expr: property(faq?).all().property(q?)
+    type: md
+  - expr: property(faq?).all().property(a?)
+    type: md
+  - expr: property(why?)
+    type: md
+  - expr: property(inLife?)
+    type: md
+  # Tracks
+  - expr: property(idea?)
+    type: md
+  - expr: property(atWork?)
+    type: md
+  - expr: property(inStudy?)
+    type: md
+  - expr: property(habit?)
+    type: md
