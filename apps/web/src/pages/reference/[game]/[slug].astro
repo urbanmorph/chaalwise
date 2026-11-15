@@ -11,7 +11,7 @@ import TryIt from '../../../components/TryIt.astro';
 import Base from '../../../layouts/Base.astro';
 import { toFen } from '../../../lib/chess';
 import { allLessons, lessonHref } from '../../../lib/lessons';
-import { labHref, LABS } from '../../../lib/labs/labs';
+import { labHref, LABS, theLab } from '../../../lib/labs/labs';
 import { referenceMeasures } from '../../../lib/profile-skills';
 import { ask } from '../../../lib/questions';
 import { entryHref, numberedMoves } from '../../../lib/reference';
@@ -103,7 +103,7 @@ const opening = data.position?.startsWith('moves:') ? numberedMoves(data.positio
 
     {lab && (
       <p class="elsewhere">
-        Play it out: <a href={labHref(lab)}>the {lab.title} lab</a>, about five minutes against computer players.
+        Play it out: <a href={labHref(lab)}>{theLab(lab)}</a>, about five minutes against computer players.
       </p>
     )}
 

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the ultimatum game, a classroom game, one person offers how to split 100 points and the other can accept, or refuse so that both get nothing. Offers under 20 points are often refused. Why do people refuse them, when refusing leaves them with less?'
+options:
+  - They care about fairness, and will pay to punish an unfair offer
+  - They work out the numbers wrong under pressure
+  - They expect a better offer to follow if they wait
+answer: 0
+feedback:
+  - ''
+  - The sums are easy, and people who refuse know they will get nothing. They choose it anyway.
+  - In this game there is no second offer, and the players are told so. They refuse knowing the game ends there.
+explanation: 'Fairness is a real force. People will give up something to refuse an offer that treats them as a fool. So the offer that does best is not the smallest one, but one the other side sees as fair.'
+measures: cooperate

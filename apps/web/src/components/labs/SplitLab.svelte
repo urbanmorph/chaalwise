@@ -165,7 +165,18 @@
           <form class="offer" onsubmit={offer}>
             <label for="split-ask">Your offer: points for you</label>
             <div class="lab-actions">
-              <input id="split-ask" type="number" inputmode="numeric" min="0" max={PIE} step="1" required bind:value={ask} bind:this={inputEl} />
+              <input
+                id="split-ask"
+                class="lab-number"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max={PIE}
+                step="1"
+                required
+                bind:value={ask}
+                bind:this={inputEl}
+              />
               <button class="button primary" type="submit">Offer</button>
             </div>
           </form>
@@ -246,11 +257,6 @@
   .lab-stage {
     min-height: 30rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   .against {
     margin: 0;
     font-size: 1.2rem;
@@ -270,15 +276,5 @@
     display: block;
     font-weight: 600;
     margin-bottom: 6px;
-  }
-  input {
-    width: 8em;
-    min-height: 44px;
-    padding: 8px 12px;
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--paper);
-    color: var(--ink);
-    font: 600 1.1rem var(--sans);
   }
 </style>

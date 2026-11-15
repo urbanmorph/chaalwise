@@ -75,8 +75,8 @@ describe('the labs pages', () => {
         expect(html).toContain(`href="/skills/${lab.track}/"`);
       });
 
-      it('says points, never chips or money', () => {
-        const text = html.replace(/<script[\s\S]*?<\/script>|<[^>]+>/g, ' ');
+      it('says points, never chips or money, in the lab itself (its questions about life may name rupees)', () => {
+        const text = html.replace(/<section class="try[\s\S]*?<\/section>|<script[\s\S]*?<\/script>|<[^>]+>/g, ' ');
         expect(text).not.toMatch(/\bchips?\b|₹|\$\d|rupees?/i);
       });
 

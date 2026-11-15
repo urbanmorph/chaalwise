@@ -92,7 +92,7 @@
       <form class="bid" onsubmit={place}>
         <label for="bid">Your sealed bid, in points</label>
         <div class="lab-actions">
-          <input id="bid" type="number" inputmode="numeric" min="0" max="400" step="1" required bind:value={bid} bind:this={inputEl} />
+          <input id="bid" class="lab-number" type="number" inputmode="numeric" min="0" max="400" step="1" required bind:value={bid} bind:this={inputEl} />
           <button class="button primary" type="submit">Place bid</button>
         </div>
       </form>
@@ -179,11 +179,6 @@
   .lab-stage {
     min-height: 24rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   .estimate {
     font-size: 1.3rem;
     margin: 0;
@@ -192,16 +187,6 @@
     display: block;
     font-weight: 600;
     margin-bottom: 6px;
-  }
-  input {
-    width: 8em;
-    min-height: 44px;
-    padding: 8px 12px;
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--paper);
-    color: var(--ink);
-    font: 600 1.1rem var(--sans);
   }
   .you {
     font-weight: 700;

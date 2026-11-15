@@ -1,0 +1,13 @@
+kind: choice
+prompt: You run a small grocery in Nashik and plan to open a second shop across town. A large supermarket chain says it will cut its prices there if you do. Which fact would make its threat most believable?
+options:
+  - It has just signed a ten-year lease on a big store there
+  - Its manager repeats the threat in the local paper
+  - The chain is many times bigger than your shop
+answer: 0
+feedback:
+  - ''
+  - Words in a paper cost little to say and little to drop. They do not change what a price war would cost the chain.
+  - Size alone does not say whether a price war would pay the chain. A big store loses more on every sale it makes cheaper.
+explanation: 'A threat is believable when carrying it out pays. A long lease on a big store is a commitment: the chain needs crowds to cover the rent, so cutting prices to win every shopper becomes its best move.'
+measures: think-ahead

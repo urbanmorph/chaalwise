@@ -157,11 +157,16 @@ export async function safetyDrill(): Promise<SafetyItem[]> {
   });
 }
 
-/** Where a strategy lesson starts, as the strategy page labels it: the lab or poker lesson it follows, or its chess stage. */
-export function startsFrom({ data: { after, stage } }: LessonEntry): string {
+/**
+ * Where a strategy lesson starts, as the strategy page labels it: the lab or poker lesson it follows, by name (looked
+ * up in `poker`), or its chess stage. The name comes last, so any title reads well, such as "After a lab: Which bag?".
+ */
+export function startsFrom({ data: { after, stage } }: LessonEntry, poker: readonly LessonEntry[] = []): string {
   const lab = LABS.find((l) => after === `labs/${l.slug}`);
-  if (lab) return `After the ${lab.title} lab`;
-  return after?.startsWith('poker/') ? 'After a poker lesson' : `Chess · stage ${stage}`;
+  if (lab) return `After a lab: ${lab.title}`;
+  if (!after?.startsWith('poker/')) return `Chess · stage ${stage}`;
+  const lesson = poker.find((l) => l.id === after);
+  return lesson ? `After a poker lesson: ${lesson.data.title}` : 'After a poker lesson';
 }
 
 /**

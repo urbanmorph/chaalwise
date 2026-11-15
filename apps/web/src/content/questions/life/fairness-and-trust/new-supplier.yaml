@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are fitting out a new shop in Indore. A supplier you have never used offers shelves at a better price than anyone else, for an order of ₹2,00,000 paid in advance. What is a sensible first step?
+options:
+  - Pay the full ₹2,00,000 in advance for the better price
+  - Place a small first order, and order more once it arrives as promised
+  - Refuse, since you cannot trust anyone you have not used before
+answer: 1
+feedback:
+  - You would be trusting a stranger with everything at once. If they do not deliver, there is no way to get it back.
+  - ''
+  - Refusing everyone new means you never find a better supplier. A small first order tests them at little cost.
+explanation: 'Trust pays with people who pay it back, and with a stranger you do not yet know which kind they are. Trust in small steps: their record on the first order tells you how far to trust them with the next.'
+measures: cooperate

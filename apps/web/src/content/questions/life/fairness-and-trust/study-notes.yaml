@@ -1,0 +1,13 @@
+kind: choice
+prompt: In your college study group of four, one member has used everyone's notes for two weeks but never shared his own. Now he asks for yours before the exam. What do you do?
+options:
+  - Offer to swap notes, as you do with those who share
+  - Share anyway, since being generous always pays
+  - Stop sharing with anyone in the group
+answer: 0
+feedback:
+  - ''
+  - Trust pays with people who return it. Giving to someone who keeps everything teaches him that taking works.
+  - The other two shared their notes, and they would lose out for what one person did. Answer each person by how they treated you.
+explanation: 'Reciprocity, answering trust with trust, is what keeps a group sharing. Make it clear that you return what you get, and leave a way back for him to share too.'
+measures: cooperate

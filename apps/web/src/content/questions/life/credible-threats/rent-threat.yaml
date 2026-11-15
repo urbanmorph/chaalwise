@@ -1,0 +1,13 @@
+kind: choice
+prompt: You rent a flat in Pune for ₹25,000 a month. Your landlord says he will raise the rent by ₹2,000 a month unless you sign for two more years today. Flats like yours stand empty for about three months before a new tenant moves in. How should you read his threat?
+options:
+  - Believe it, since he said it plainly and firmly
+  - Sign today, so that you are safe whatever he does
+  - Ask what carrying it out would cost him
+answer: 2
+feedback:
+  - Saying it costs him nothing. What matters is what he would do if you said no and left.
+  - You may give up a better deal because of a threat he would not want to carry out. Check first what carrying it out would cost him.
+  - ''
+explanation: 'A threat is believable only if carrying it out pays the one who made it. If you leave, three empty months cost him ₹75,000, far more than the extra ₹24,000 a year he hoped for. So he may well keep the rent as it is.'
+measures: think-ahead

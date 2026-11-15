@@ -1,8 +1,8 @@
 ---
 import { SKILL_IDS, SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, lessonsFor, STAGES, startsFrom, trackLessons } from '../../lib/lessons';
-import { labHref, LABS } from '../../lib/labs/labs';
+import { lessonHref, lessonPath, lessonsFor, STAGES, startsFrom, trackLessons } from '../../lib/lessons';
+import { labHref, LABS, theLab } from '../../lib/labs/labs';
 
 const tracks = await Promise.all(
   SKILL_IDS.map(async (id) => ({
@@ -14,6 +14,7 @@ const tracks = await Promise.all(
     labs: LABS.filter((l) => l.track === id),
   })),
 );
+const pokerLessons = await lessonPath('poker');
 ---
 
 <Base title="Strategy" description="The strategy skills Chaalwise trains, for work, study and life, each shown in a game and practised in minutes.">
@@ -38,7 +39,7 @@ const tracks = await Promise.all(
             {track.lessons.map(({ title, stage, lesson }) => (
               <li class:list={['card', { planned: !lesson }]}>
                 {lesson ? <a href={lessonHref(lesson)}>{title}</a> : <span class="title">{title}</span>}
-                <p class="label">{lesson ? startsFrom(lesson) : `Coming in chess stage ${stage}: ${STAGES[stage]}`}</p>
+                <p class="label">{lesson ? startsFrom(lesson, pokerLessons) : `Coming in chess stage ${stage}: ${STAGES[stage]}`}</p>
                 {lesson && <p>{lesson.data.summary}</p>}
               </li>
             ))}
@@ -49,7 +50,7 @@ const tracks = await Promise.all(
             Play it out:{' '}
             {track.labs.map((lab, i) => (
               <>
-                <a href={labHref(lab)}>the {lab.title} lab</a>
+                <a href={labHref(lab)}>{theLab(lab)}</a>
                 {i < track.labs.length - 1 && (i === track.labs.length - 2 ? ' or ' : ', ')}
               </>
             ))}

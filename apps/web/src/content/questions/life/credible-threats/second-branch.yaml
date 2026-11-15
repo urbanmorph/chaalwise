@@ -1,0 +1,13 @@
+kind: choice
+prompt: Two coaching centres are each thinking of opening a branch in a small town in Rajasthan that has students enough for only one. Centre A has signed a three-year lease there and is fitting out classrooms. You run Centre B. What should you do?
+options:
+  - Open there anyway, to show you will not be pushed around
+  - Look for another town
+  - Wait to see whether Centre A gives up
+answer: 1
+feedback:
+  - With students for only one centre, both would lose money, and Centre A cannot leave its lease. You would be starting a fight that you both lose.
+  - ''
+  - Centre A has paid for its lease, so staying costs it less than leaving. It is unlikely to give up, and the wait costs you a year.
+explanation: 'Centre A moved first and tied its hands with the lease. Whatever you do, it will stay. Moving first with a commitment others can see is how it claimed the town.'
+measures: think-ahead

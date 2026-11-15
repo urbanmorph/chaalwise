@@ -1,0 +1,13 @@
+kind: choice
+prompt: At your office in Bengaluru, you and a colleague earned a ₹20,000 bonus for a project you did together. Your manager asks you to propose the split. Your colleague can accept it, or refuse, and then the bonus goes back to the team fund and neither of you gets any. What do you propose?
+options:
+  - '₹18,000 to you and ₹2,000 to her, as ₹2,000 beats nothing'
+  - All of it to her, to keep the peace
+  - About ₹10,000 each, in line with the work each did
+answer: 2
+feedback:
+  - Counting only money, she should accept. But many people refuse an offer that low, even at a cost to themselves, and she will remember it.
+  - You give up your fair share for nothing. An offer she sees as fair is enough to be accepted.
+  - ''
+explanation: 'In the ultimatum game, a lab game where one person offers a split and the other can only accept or refuse, people often refuse low offers. A split the other side sees as fair is accepted, and keeps the working relationship.'
+measures: cooperate

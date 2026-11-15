@@ -1,0 +1,15 @@
+---
+import FairnessLab from '../../components/labs/FairnessLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'split-it-fairly')!;
+---
+
+<LabPage {lab}>
+  <p>
+    How much should you offer someone who can say no? How far should you trust a partner? Split 100 points with four bots who each have their own idea of fair,
+    then send points to two partners and see what comes back. Last, a bot trusts you, and you decide what to send back.
+  </p>
+  <FairnessLab client:load />
+</LabPage>
