@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your bakery in Lucknow has bought flour from the same supplier for eight years. Two other suppliers now say they offer the same quality, with the same delivery, for 10% less. What do you do?'
+options:
+  - 'Stay: the supplier has always been fine to work with'
+  - Get the quotes, and ask if you would pick yours today
+  - Switch at once to whichever supplier is cheapest
+answer: 1
+feedback:
+  - Always being fine is why you stayed, not a reason to stay now. You have not compared suppliers in eight years.
+  - ''
+  - A fresh look counts everything, including eight years of reliable delivery. Check the claims first, then choose.
+explanation: Judge your supplier as if choosing today, with the facts you can get now. You may stay, but on purpose. If you would not pick them today, change.
+measures: plan-long

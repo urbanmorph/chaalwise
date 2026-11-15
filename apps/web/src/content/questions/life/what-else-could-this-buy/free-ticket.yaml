@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'A colleague in Mumbai gives you a free ticket to a film on Saturday evening. The same evening is a friend’s farewell dinner, which you would enjoy more. What does the free ticket cost you?'
+options:
+  - 'Nothing: it is free'
+  - The farewell dinner, if you go to the film
+  - 'The ticket price, which your colleague paid'
+answer: 1
+feedback:
+  - The ticket costs no money, but the evening can be spent only once. Going to the film means missing the dinner.
+  - ''
+  - Your colleague's money is already spent, and it is not yours. Your cost is the evening you would give up.
+explanation: Free things still cost what you give up to use them. Here that is the dinner you would enjoy more, so the free ticket is the dearer choice.
+measures: value

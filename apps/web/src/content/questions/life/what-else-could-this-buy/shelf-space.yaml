@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You run a kirana shop, a small grocery, in Indore. One shelf by the counter holds biscuits that earn you ₹1,500 a month. A juice company offers to stock that shelf, and its juice would earn you ₹3,500 a month there. Keeping the biscuits, how much less does the shelf earn than it could?'
+options:
+  - 'Nothing: the biscuits already earn a profit'
+  - '₹1,500: what the biscuits earn each month'
+  - '₹2,000: the juice’s ₹3,500 less ₹1,500'
+answer: 2
+feedback:
+  - Making a profit is not the test. The shelf could earn more, and the gap is a real cost, even though no money leaves your pocket.
+  - That is what the shelf earns now, not what it gives up. The cost of the biscuits is the juice the shelf could hold instead.
+  - ''
+explanation: The best use given up is the juice at ₹3,500. Against it, the biscuits fall ₹2,000 a month short. A choice that makes a profit can still cost you money.
+measures: value

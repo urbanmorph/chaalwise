@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You have had the same mobile plan for four years, at ₹599 a month. You now use about a third of its data, and plans with that much cost less. What is the first question to ask?'
+options:
+  - How much have I paid on this plan so far?
+  - If I were choosing a plan today, would I pick this one?
+  - Is changing worth the trouble of a phone call?
+answer: 1
+feedback:
+  - What you have paid is gone, whatever you do next. It cannot tell you which plan suits you now.
+  - ''
+  - The trouble comes once, while the extra cost comes every month. Ask first whether you would choose this plan today.
+explanation: Staying on a plan is a choice you make every month. Ask whether you would pick it today. If not, the one call to change it is likely worth it.
+measures: plan-long

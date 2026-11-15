@@ -1,0 +1,16 @@
+kind: choice
+prompt: "In this chess middlegame, White's rook has stayed on a1, its starting square, while the d-file opened. What does that share with the shop's opening hours?"
+position: r4rk1/ppp2ppp/2n5/4p3/4P3/2N2N2/PPP2PPP/R4RK1 w - - 0 1
+arrows: [a1d1]
+alongside: 'A chemist’s shop in Kochi has opened at 10 a.m. for twelve years. Most of its customers now come before work, at about 8.'
+options:
+  - Judge staying as you are like any other choice, as if starting fresh
+  - Keep what has worked so far, since change brings risk
+  - Change anything that has stayed the same for a long time
+answer: 0
+feedback:
+  - ''
+  - Staying put has risks too. The rook does nothing, and the shop misses its morning customers every day.
+  - Age is not the test either. Keep what you would choose today, and change only what you would not.
+explanation: The rook and the opening hours both stayed because that is how things started. Starting fresh, nobody would choose either. Ask that question, then keep or change on purpose.
+measures: plan-long

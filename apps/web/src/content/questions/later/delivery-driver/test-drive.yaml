@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Is a 20-minute test drive with Ravi, on your real delivery route, worth doing before you hire him?'
+options:
+  - 'No: a clean licence already shows he can drive'
+  - 'Yes: a bad drive would change your choice, and it takes only 20 minutes'
+  - 'No: he did well in the interview, so he will drive well'
+answer: 1
+feedback:
+  - A licence shows he passed a test once. It does not show how he handles your van on busy roads with trays of sweets.
+  - ''
+  - An interview shows how someone talks. Driving is the job, and you have not seen it yet.
+explanation: The test drive is worth it because one result, a careless drive, would change whom you hire. Twenty minutes is cheap next to a van of broken sweets in Diwali week.

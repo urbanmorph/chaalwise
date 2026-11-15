@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do about the Monday meeting?'
+options:
+  - 'Keep it as it is: it has always been held'
+  - 'Cancel it: anything set up years ago should go'
+  - 'Ask what meeting you would set up today, and keep only that'
+answer: 2
+feedback:
+  - Always being held is why it carries on, not a reason to keep it. It costs 40 hours of staff time every week.
+  - Old is not the test either. Some say it helps with deadlines, so a fresh look may keep part of it.
+  - ''
+explanation: 'Starting fresh, would you call 20 people for two hours every Monday? Perhaps you would hold 30 minutes on the week’s deadlines. Keep what you would choose today, on purpose, and drop the rest.'

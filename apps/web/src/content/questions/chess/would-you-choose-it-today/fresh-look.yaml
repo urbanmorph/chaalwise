@@ -1,0 +1,16 @@
+kind: choice
+prompt: "In this chess middlegame, White's rook on a1 has stood there since the game began, reaching nothing beyond White's back row. The d-file is open: no pawns stand on it. Which move does a fresh look suggest?"
+position: r4rk1/ppp2ppp/2n5/4p3/4P3/2N2N2/PPP2PPP/R4RK1 w - - 0 1
+arrows: [a1d1]
+options:
+  - 'Rad1: put the rook where you would choose it today, on the open file'
+  - 'Leave the rook: it has been safe on a1 all game'
+  - 'a3: a small pawn move, keeping everything else as it is'
+answer: 0
+feedback:
+  - ''
+  - Safe, but doing nothing. Being where it has always been is not a reason to stay.
+  - The pawn move changes little, and the rook still reaches nothing. Small moves around what is already there can hide the bigger question.
+highlight: [d1, d8]
+explanation: 'Set up fresh, nobody would put a rook in a corner behind its pawns. On d1 it holds the open file all the way to d8. Looking at every piece as if placing it today finds moves like this.'
+measures: plan-long

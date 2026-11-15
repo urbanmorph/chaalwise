@@ -1,0 +1,6 @@
+prompt: 'A garage in Pune says your old scooter needs an engine repair for ₹25,000. You had planned to sell it next year for about ₹20,000. Another garage can look at it tomorrow for ₹300.'
+explanation: 'A second opinion is worth getting when its answer could change your choice and costs little next to a wrong one. Here it could decide between repairing and selling, for ₹300.'
+feedback:
+  estimate-it: You do not need to build a number from parts. One fact from another garage could change what you do.
+  count-it-through: There is no long chain of consequences to follow. The question is whether one more fact is worth ₹300.
+  know-when-to-stop: Nothing spent so far is pulling you on. The choice ahead turns on a fact you can get cheaply.

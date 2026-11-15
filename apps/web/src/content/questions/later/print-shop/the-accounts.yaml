@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do about the accounts?'
+options:
+  - 'Keep doing them: an accountant would cost ₹5,000 a month'
+  - 'Hire the accountant: the evenings could bring ₹12,000, so you gain about ₹7,000 a month'
+  - 'Keep doing them: you know the shop’s figures best'
+answer: 1
+feedback:
+  - The ₹5,000 is easy to see. The ₹12,000 of orders you miss on those evenings is a bigger cost, only harder to see.
+  - ''
+  - Knowing your figures matters, and you can still check the accountant’s work. It does not make up for ₹12,000 of missed orders.
+explanation: 'Doing the accounts yourself looks free, but it costs the best other use of those evenings: about ₹12,000 of orders. Paying ₹5,000 to win them back leaves you about ₹7,000 a month ahead, if your guess about walk-ins is right.'

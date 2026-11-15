@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You run a small accounts firm in Hyderabad and are about to hire an accountant who will handle clients’ money. Her interview went well. Her last employer has offered to take a ten-minute phone call. Is the call worth making?'
+options:
+  - 'No: her interview went well, so you know enough'
+  - 'No: past employers almost always say good things'
+  - 'Yes: a warning would change your choice, and the call is cheap'
+answer: 2
+feedback:
+  - An interview shows how someone talks, not how they handled money for two years. The call can tell you something the interview could not.
+  - Most do, which is why a hesitant answer or a warning stands out. Either would change your choice.
+  - ''
+explanation: The call is worth making because one answer, a warning, would change whom you hire. A bad hire handling clients’ money costs far more than ten minutes.
+measures: calculate

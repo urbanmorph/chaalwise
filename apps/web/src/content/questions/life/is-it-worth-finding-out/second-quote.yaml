@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'A mechanic in Pune says your scooter needs new brake pads, for ₹600 fitted. Another garage across town might quote a little less, but getting there takes a morning. Do you get a second quote?'
+options:
+  - 'Yes: always get two quotes before you pay'
+  - 'No: at most it would save a little, and a morning is worth more'
+  - 'Yes: you will feel surer about the price'
+answer: 1
+feedback:
+  - Two quotes are worth it when the price is large. On ₹600, the most a second quote could save is less than the morning it costs.
+  - ''
+  - Feeling surer is pleasant, but it does not change what you do. You would fit the pads either way.
+explanation: Ask what a second quote could change. At best it saves a hundred rupees or so, and you would fit the brakes either way. On a ₹25,000 engine repair, where a second opinion might say sell the scooter instead, it would be worth the morning.
+measures: calculate

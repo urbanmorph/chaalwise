@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Which question should you ask first about the internet?'
+options:
+  - 'If we were choosing a provider today, would we pick this one?'
+  - 'We have been with them seven years: do we owe them loyalty?'
+  - 'Switching takes a day of setting up: is it worth the trouble?'
+answer: 0
+feedback:
+  - ''
+  - Seven years is how long you have stayed, not a reason to stay. A provider is a service you choose again every month.
+  - The day of setting up is a fair cost to weigh, but only after you know whether you would choose this provider today.
+explanation: 'Judge staying as a choice like any other. Ask whether you would pick this provider today, given the drops. If not, then weigh what switching costs against the hours lost every week.'

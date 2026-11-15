@@ -1,0 +1,7 @@
+from: life/what-else-could-this-buy/free-ticket
+prompt: 'A colleague gives you a free ticket to a film on Saturday evening. The same evening is a friend’s farewell dinner, which you would enjoy more.'
+explanation: Free things still cost what you give up to use them. The ticket costs the dinner you would enjoy more.
+feedback:
+  know-when-to-stop: Nothing has been spent, and nothing is pulling you to carry on. The cost is the evening the film would take.
+  give-a-little-get-more: No trade is on offer. The free ticket only hides what it would cost you.
+  how-long-does-this-deserve: The choice is quick either way. The point is to see the cost of the free option.
