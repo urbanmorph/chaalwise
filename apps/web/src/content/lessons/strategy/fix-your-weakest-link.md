@@ -14,12 +14,12 @@ steps:
     highlight: [c1]
     arrows: [b2b3]
   - ask: chess/fix-your-weakest-link/worst-piece
+  - ask: chess/fix-your-weakest-link/compare
   - kind: read
     id: off-the-board
-    text: Off the board, when nothing is urgent, spend the time on the part doing least. This works when the parts depend on each other, like the steps of a process or subjects you must all pass. The weakest one sets the limit. Where one great result is enough, invest in your strongest instead.
+    text: 'What both share has a name: fix your weakest link. When nothing is urgent, spend the time on the part doing least. This works when the parts depend on each other, like the steps of a process or subjects you must all pass. The weakest one sets the limit. Where one great result is enough, invest in your strongest instead.'
   - ask: life/fix-your-weakest-link/three-steps
   - ask: life/fix-your-weakest-link/three-subjects
-  - ask: chess/fix-your-weakest-link/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you fix your weakest link?'

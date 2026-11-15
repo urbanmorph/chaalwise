@@ -13,12 +13,12 @@ steps:
     position: 4k3/8/8/8/8/2n5/8/3QK3 w - - 0 1
     highlight: [c3, d1]
     arrows: [c3d1]
+  - ask: chess/blunder-check/compare
   - kind: read
     id: off-the-board
-    text: Off the board it is the same habit. Before you act, ask what could go wrong. Look first at what the other side, or the situation, can do to you, and only then at what you want to do.
+    text: 'What both share has a name: the blunder check, where a blunder is a bad mistake. Before you act, ask what could go wrong. Look first at what the other side, or the situation, can do to you, and only then at what you want to do.'
   - ask: life/blunder-check/angry-email
   - ask: life/blunder-check/phone-plan
-  - ask: chess/blunder-check/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you pause before acting?'

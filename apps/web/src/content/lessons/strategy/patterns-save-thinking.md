@@ -13,12 +13,12 @@ steps:
     position: 6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1
     highlight: [g8, f7, g7, h7]
     arrows: [d1d8]
+  - ask: chess/patterns-save-thinking/compare
   - kind: read
     id: off-the-board
-    text: Off the board, every field has its patterns. Learn the common shapes by heart, so the obvious answers are instant and your effort goes to what is new.
+    text: 'What both share has a name: patterns save thinking. Every field has its patterns. Learn the common shapes by heart, so the obvious answers are instant and your effort goes to what is new.'
   - ask: life/patterns-save-thinking/scam
   - ask: life/patterns-save-thinking/cooking
-  - ask: chess/patterns-save-thinking/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you look for the pattern?'

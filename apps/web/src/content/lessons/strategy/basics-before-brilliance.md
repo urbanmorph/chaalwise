@@ -13,12 +13,12 @@ steps:
     position: 'moves: e4 e5 Qh5 Nc6 Bc4 g6 Qf3 Nf6'
     highlight: [f3, c6, f6]
   - ask: chess/basics-before-brilliance/develop-with-time
+  - ask: chess/basics-before-brilliance/compare
   - kind: read
     id: off-the-board
-    text: Off the board, the same holds when you start something new. The plain steps, done well, beat clever shortcuts. A clever plan that skips the basics works only against someone who skips them too. Get the groundwork right first.
+    text: 'What both share has a name: basics before brilliance. When you start something new, the plain steps, done well, beat clever shortcuts. A clever plan that skips the basics works only against someone who skips them too. Get the groundwork right first.'
   - ask: life/basics-before-brilliance/new-team
   - ask: life/basics-before-brilliance/mock-exam
-  - ask: chess/basics-before-brilliance/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you do the basics first?'

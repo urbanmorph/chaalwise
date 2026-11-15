@@ -14,12 +14,12 @@ steps:
     highlight: [d1, d8]
     arrows: [d1d8]
   - ask: chess/spend-effort-where-it-matters/slow-down
+  - ask: chess/spend-effort-where-it-matters/compare
   - kind: read
     id: off-the-board
-    text: Off the board, attention is your clock. Most choices are small, or easy to undo, so make them quickly. Save your time for the few that are large and hard to reverse. Giving the same care to everything leaves too little for what matters.
+    text: 'What both share has a name: spend effort where it matters. Attention works like a chess clock: time spent now is gone for later. Most choices are small, or easy to undo, so make them quickly. Save your time for the few that are large and hard to reverse. Giving the same care to everything leaves too little for what matters.'
   - ask: life/spend-effort-where-it-matters/lease
   - ask: life/spend-effort-where-it-matters/stuck-question
-  - ask: chess/spend-effort-where-it-matters/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you spend your effort where it matters?'

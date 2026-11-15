@@ -14,12 +14,12 @@ steps:
     highlight: [c7, e8, a8]
     arrows: [d5c7]
   - ask: chess/two-birds-one-stone/one-move-two-jobs
+  - ask: chess/two-birds-one-stone/compare
   - kind: read
     id: off-the-board
-    text: Off the board, look for the one action that serves two aims at once. Against someone, it gives them two problems and time to answer one. In your own plans, it gets two results from the same effort.
+    text: 'What both share has a name: two birds, one stone. Look for the one action that serves two aims at once. Against someone, it gives them two problems and time to answer one. In your own plans, it gets two results from the same effort.'
   - ask: life/two-birds-one-stone/new-hire
   - ask: life/two-birds-one-stone/commute
-  - ask: chess/two-birds-one-stone/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you look for one move with two aims?'

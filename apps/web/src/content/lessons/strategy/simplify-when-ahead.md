@@ -14,12 +14,12 @@ steps:
     highlight: [e1, e8]
     arrows: [e1e8]
   - ask: chess/simplify-when-ahead/trade-queens
+  - ask: chess/simplify-when-ahead/compare
   - kind: read
     id: off-the-board
-    text: Off the board, when you are ahead and a sure, modest win is worth more than a bigger, riskier one, remove what could still go wrong. Fewer moving parts, fewer surprises. This does not mean taking every small gain early. It fits when you only need to finish, as with a deadline, a pass mark or a deal you only need to close.
+    text: 'What both share has a name: simplify when ahead. When you are ahead and a sure, modest win is worth more than a bigger, riskier one, remove what could still go wrong. Fewer moving parts, fewer surprises. This does not mean taking every small gain early. It fits when you only need to finish, as with a deadline, a pass mark or a deal you only need to close.'
   - ask: life/simplify-when-ahead/contract
   - ask: life/simplify-when-ahead/deposit
-  - ask: chess/simplify-when-ahead/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you simplify?'

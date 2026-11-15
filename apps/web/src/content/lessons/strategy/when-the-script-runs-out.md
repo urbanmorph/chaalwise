@@ -13,12 +13,12 @@ steps:
     position: 'moves: e4 a6'
     highlight: [a6]
   - ask: chess/when-the-script-runs-out/reasons-not-lines
+  - ask: chess/when-the-script-runs-out/compare
   - kind: read
     id: off-the-board
-    text: Off the board, scripts are prepared lines. A sales pitch, a model answer, the way it was done last time. They work while things go as expected. When the other side does something new, do not force the script. Ask what it was for, and act on that reason.
+    text: 'What both share has a name: when the script runs out. Scripts are prepared lines, such as a sales pitch, a model answer or the way it was done last time. They work while things go as expected. When the other side does something new, do not force the script. Ask what it was for, and act on that reason.'
   - ask: life/when-the-script-runs-out/pitch
   - ask: life/when-the-script-runs-out/exam-question
-  - ask: chess/when-the-script-runs-out/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you go back to the reason?'

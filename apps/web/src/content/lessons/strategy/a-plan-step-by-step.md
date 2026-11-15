@@ -14,12 +14,12 @@ steps:
     highlight: [b1, c3, d5]
     arrows: [b1c3, c3d5]
   - ask: chess/a-plan-step-by-step/first-step
+  - ask: chess/a-plan-step-by-step/compare
   - kind: read
     id: off-the-board
-    text: Off the board, a goal is not yet a plan. Break it into steps you can take one at a time, each worth having even if the rest changes. After each step, look again, because the situation moves too.
+    text: 'What both share has a name: a plan, step by step. A goal is not yet a plan. Break it into steps you can take one at a time, each worth having even if the rest changes. After each step, look again, because the situation moves too.'
   - ask: life/a-plan-step-by-step/month-end
   - ask: life/a-plan-step-by-step/exam-weeks
-  - ask: chess/a-plan-step-by-step/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you turn a goal into steps?'

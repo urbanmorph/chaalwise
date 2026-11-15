@@ -13,12 +13,12 @@ steps:
     position: 4k3/8/4p3/3n4/4P3/8/8/4K3 w - - 0 1
     highlight: [d5]
     arrows: [e4d5, e6d5]
+  - ask: chess/count-it-through/compare
   - kind: read
     id: off-the-board
-    text: Off the board, many offers look good at the first step, such as a free first month. Count every step that follows, to the end, before you agree.
+    text: 'What both share has a name: count it through. Many offers look good at the first step, such as a free first month. Count every step that follows, to the end, before you agree.'
   - ask: life/count-it-through/gym
   - ask: life/count-it-through/bulk-offer
-  - ask: chess/count-it-through/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you count a chain through?'

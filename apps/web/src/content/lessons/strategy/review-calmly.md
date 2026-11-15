@@ -14,12 +14,12 @@ steps:
     highlight: [c4, f7, h5]
     arrows: [h5f7]
   - ask: chess/review-calmly/missed-mate
+  - ask: chess/review-calmly/compare
   - kind: read
     id: off-the-board
-    text: Off the board, it is tempting to judge a choice by how it turned out, so a win means it was good and a loss means it was bad. But luck plays a part. Review calmly. What did you know, what could you reasonably have found out, and was the choice sound given that? Then ask whether the result shows something you missed.
+    text: 'What both share has a name: review calmly, judging decisions, not results. It is tempting to judge a choice by how it turned out, so a win means it was good and a loss means it was bad. But luck plays a part. Ask what you knew, what you could reasonably have found out, and whether the choice was sound given that. Then ask whether the result shows something you missed.'
   - ask: life/review-calmly/launch
   - ask: life/review-calmly/surprise-chapter
-  - ask: chess/review-calmly/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you review a decision calmly?'

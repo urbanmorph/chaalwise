@@ -14,12 +14,12 @@ steps:
     highlight: [c6, d4]
     arrows: [d1d4, c6d4, b5e8]
   - ask: chess/find-what-everything-depends-on/remove-the-guard
+  - ask: chess/find-what-everything-depends-on/compare
   - kind: read
     id: off-the-board
-    text: Off the board, plans, teams and deals often rest on one part, such as a single supplier, the one person who knows the system, or one assumption. Find it before you act. If it is theirs, that is where to press. If it is yours, back it up before someone else finds it.
+    text: 'What both share has a name: find what everything depends on. Plans, teams and deals often rest on one part, such as a single supplier, the one person who knows the system, or one assumption. Find it before you act. If it is theirs, that is where to press. If it is yours, back it up before someone else finds it.'
   - ask: life/find-what-everything-depends-on/one-mill
   - ask: life/find-what-everything-depends-on/group-report
-  - ask: chess/find-what-everything-depends-on/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you look for what everything depends on?'
