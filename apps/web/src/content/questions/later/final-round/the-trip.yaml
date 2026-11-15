@@ -1,0 +1,12 @@
+kind: choice
+prompt: "The trip to Mumbai costs ₹6,000 in train fares and a night's stay, and the firm pays nothing towards it. Counting only the first year's extra pay, is it worth going?"
+options:
+  - 'Yes: 1 in 4 × ₹2 lakh is about ₹50,000, far more than ₹6,000'
+  - 'No: three times in four you spend ₹6,000 for nothing'
+  - 'Only if you are sure you will be the best of the four'
+answer: 0
+feedback:
+  - ''
+  - 'You will probably not get the job. But when you do, it pays ₹2 lakh more in the first year alone, and one chance in four of that is worth about ₹50,000.'
+  - 'You cannot know that, and you do not need to. At about one chance in four, the trip is worth far more than it costs.'
+explanation: 'Multiply the chance by what you would gain, and compare it with the cost. One chance in four of ₹2 lakh is worth about ₹50,000, against ₹6,000 for the trip. A long shot can be worth it when it is cheap.'

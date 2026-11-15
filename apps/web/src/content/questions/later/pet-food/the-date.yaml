@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do?'
+options:
+  - 'Stop, as your rule says: you set it calmly, for just this moment'
+  - 'Give it three more months: 110 is close to 150'
+  - 'Go on: with ₹11 lakh in, stopping now wastes even more'
+answer: 0
+feedback:
+  - ''
+  - 'Close was always going to feel like a reason to go on. That is why you set the rule beforehand, while you were calm.'
+  - 'The ₹11 lakh is spent either way, and three more months would add ₹1.5 lakh. Counting what is gone makes it harder to stop the more you put in.'
+explanation: 'Set a stopping point before you start, then keep to it. When the date comes, what you have put in and how close you feel both push you to go on.'

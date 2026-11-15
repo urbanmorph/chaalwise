@@ -1,0 +1,12 @@
+kind: choice
+prompt: "Counting the first year's extra pay again, is the course worth ₹40,000?"
+options:
+  - 'No: it adds only 1 in 12 × ₹2 lakh, about ₹17,000'
+  - 'Yes: it lifts your chance, and the job pays ₹2 lakh more'
+  - 'Yes: you are spending ₹6,000 on the trip anyway, so make it count'
+answer: 0
+feedback:
+  - ''
+  - 'The course does not win you the ₹2 lakh. It adds only the gap between 1 in 3 and 1 in 4, which is 1 in 12. That is worth about ₹17,000, less than ₹40,000.'
+  - 'The ₹6,000 is spent either way. Judge the course only by what it adds, about ₹17,000, against what it costs, ₹40,000.'
+explanation: 'Price what a choice adds, not the whole prize. Going from 1 in 4 to 1 in 3 adds 1 in 12 × ₹2 lakh, about ₹17,000. Even over two years, about ₹33,000, it is less than ₹40,000.'

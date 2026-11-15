@@ -1,0 +1,12 @@
+kind: choice
+prompt: "In your second week, Meera asks you to write her part of the report this Friday, the day of her sister's wedding. What do you do?"
+options:
+  - 'Write it, and say you would be glad of the same help one day'
+  - 'Say no: if you do her work once, she will expect it every week'
+  - 'Agree, but only if she writes your part for the next two weeks'
+answer: 0
+feedback:
+  - ''
+  - 'One favour for a wedding is not a habit. Over two years you will need help too, and refusing at the start sets the tone for every week after.'
+  - 'Asking for payment up front treats two years of working together like a one-off trade. Start by helping, and say what you hope for in return.'
+explanation: 'When you will deal with someone again and again, start by cooperating, and be clear about what you expect. What you do now is answered over the next two years.'

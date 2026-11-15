@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do?'
+options:
+  - 'Tell her plainly, in private, that it was yours, then carry on working well together'
+  - 'Say nothing, to keep the peace for the year you still share'
+  - 'Stop sharing your drafts with her, so it cannot happen again'
+answer: 0
+feedback:
+  - ''
+  - 'A grab that costs nothing tends to be repeated. Saying it plainly, once, gives it a price without starting a quarrel.'
+  - 'Never forgiving one slip turns a bad moment into a year of worse work for you both, and for the client.'
+explanation: 'Answer a grab so that it has a price, then forgive it if it stops. Be clear about what you expect, so she can see that working fairly with you pays.'

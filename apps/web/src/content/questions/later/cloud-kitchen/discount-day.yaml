@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'How do you choose your discount day from now on?'
+options:
+  - 'Pick it at random each week from the five weekdays'
+  - 'Move it to Thursday every week, when the rival has no discount'
+  - 'Never use the same day two weeks running'
+answer: 0
+feedback:
+  - ''
+  - 'A new fixed day is a new habit. The rival will spot it within a few weeks and move its discount too.'
+  - 'That rule is itself a pattern. Once the rival sees it, it knows which day your discount cannot fall on.'
+explanation: 'The rival gains by predicting your discount day, so give it nothing to read. A day drawn at random from the five weekdays cannot be predicted, so the rival cannot plan around it.'

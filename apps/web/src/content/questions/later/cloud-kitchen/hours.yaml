@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Do you vary your opening hours too?'
+options:
+  - 'No: office customers plan lunch around your hours, and the rival gains little from them'
+  - 'Yes: the more of your business you vary, the harder you are to read'
+  - "Yes, and post the day's opening time each morning on the delivery app"
+answer: 0
+feedback:
+  - ''
+  - 'Mixing helps only where someone gains by reading you. The people who read your hours are your customers, and they need the hours to be steady.'
+  - 'A time posted each morning still leaves office workers unable to plan ahead. And it does nothing to the rival, which does not depend on your hours.'
+explanation: 'Mix your choices only where the other side is guessing against you. Where people rely on you, as your lunch customers rely on your hours, being predictable is a strength.'

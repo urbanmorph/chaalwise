@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do?'
+options:
+  - 'Stop at ₹2 lakh, as you decided before the bidding began'
+  - 'Go a little higher: with only one rival left, you are close to winning'
+  - 'Keep going this time, since you lost the last box'
+answer: 0
+feedback:
+  - ''
+  - 'Being close to winning does not make the box worth more. Five bidders have dropped out, which suggests they guessed lower than you, so if anything it is worth less.'
+  - 'Losing the last box is no reason to pay more for this one. Judge each bid by what the box is worth to you.'
+explanation: 'Set your walk-away price before you bid, and keep to it however the bidding goes. Others dropping out hints that the box is worth less than you guessed, not more.'

@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'How do you make your case so that the buyer believes it?'
+options:
+  - 'Promise in writing to replace any late or stale delivery at your own cost'
+  - 'Tell her your cookies are the best quality in the market'
+  - 'Cut your price by 5%, to show goodwill'
+answer: 0
+feedback:
+  - ''
+  - 'Every supplier says that, and it costs nothing to say, so the buyer will weigh it lightly.'
+  - 'A small cut shows you will bend on price, not that your cookies are worth it. It invites the buyer to ask for more.'
+explanation: 'Send signals that would cost you dearly if they were false. A written promise to replace late or stale deliveries costs a reliable supplier little and an unreliable one a lot, so the buyer can believe it.'

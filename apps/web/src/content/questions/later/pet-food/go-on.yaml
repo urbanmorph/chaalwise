@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'A relative says: "You have put ₹9 lakh in. You cannot stop now." What should decide whether you go on?'
+options:
+  - 'What the coming months are likely to bring, against the jobs you could go back to'
+  - 'The ₹9 lakh: stopping now would waste everything you have put in'
+  - 'How far you have come: eight months is too long to give up on'
+answer: 0
+feedback:
+  - ''
+  - 'The ₹9 lakh is spent whether you stop or go on. Only what you spend and earn from now on can change.'
+  - 'The eight months are gone either way. The more people have put in, the harder they find it to stop, even when stopping is better.'
+explanation: 'What is already spent is gone whatever you choose. Decide on what comes next: the likely customers and costs from here, against your other options.'
