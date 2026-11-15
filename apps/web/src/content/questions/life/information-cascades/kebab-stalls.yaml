@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'On a food street in Lucknow, two kebab stalls stand side by side. One has a queue of fifteen people; the other has two. A friend who eats there every week told you the quiet one is better. What is the best way to decide?'
+options:
+  - 'Join the long queue, since fifteen people cannot all be wrong about the food'
+  - 'Ask a few in the long queue why they chose it, then weigh that against the tip'
+  - 'Go to the quiet stall, since a queue that long is just people following others'
+answer: 1
+feedback:
+  - 'They can, if most of them joined only because a queue was already there. Then fifteen people may stand on the tips of the first two or three.'
+  - ''
+  - 'Some in this queue may know the food well. Ignoring them throws away evidence, just as following them blindly does.'
+explanation: 'A queue counts for only as much as the reasons behind it. If most say "it was busy", it may rest on a couple of early choices. If they say "I come every week", it is real evidence. Then add your friend’s tip and decide.'
+measures: read-hidden

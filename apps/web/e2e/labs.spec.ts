@@ -31,6 +31,8 @@ test('the labs index leads to every lab', async ({ page }) => {
     'First number wins?',
     'Trade what matters less',
     'Used scooters',
+    'Guess two-thirds',
+    'Follow the queue?',
   ]) {
     await expect(page.getByRole('link', { name, exact: true })).toBeVisible();
   }

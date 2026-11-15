@@ -82,4 +82,14 @@ export const LAB_ABOUT: Record<Lab['slug'], LabAbout> = {
     plays:
       'Nine days buying used scooters from sellers who know which are good: on price alone, then with a mechanic’s check, then with warranties.',
   },
+  'guess-two-thirds': {
+    idea: 'To beat a crowd, guess how far ahead the others think, and go one step further. Thinking no steps ahead loses, and so does thinking all the way.',
+    plays:
+      'Four rounds of picking a number from 0 to 100 against crowds of bots, each round won by the number closest to two-thirds of the average.',
+  },
+  'follow-the-queue': {
+    idea: 'A long queue may rest on the tips of the first two or three people, with everyone after them just following. Ask why people chose, and weigh your own evidence.',
+    plays:
+      'Six streets with two new restaurants side by side. You get a friend’s tip and see where the people ahead of you went; then you choose.',
+  },
 };

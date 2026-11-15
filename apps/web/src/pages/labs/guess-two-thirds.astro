@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import TwoThirdsLab from '../../components/labs/TwoThirdsLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'guess-two-thirds')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Four rounds of picking a number from 0 to 100 against crowds of bots. The winner is closest to two-thirds of the average, so you have to guess what the
+    others will pick, and what they think you will pick. Try to win as many rounds as you can.
+  </p>
+  <TwoThirdsLab client:load />
+</LabPage>

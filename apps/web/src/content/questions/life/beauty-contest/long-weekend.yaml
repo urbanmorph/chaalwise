@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You plan to drive from Bengaluru to Mysuru for a long weekend. The radio says traffic on the highway is worst from 4 pm to 8 pm on Friday. Most people in your office plan to leave at 2 pm to beat it. When are you most likely to have a clear road?'
+options:
+  - 'At 2 pm, as the radio advice suggests'
+  - 'Late on Friday night, or early on Saturday, when few people who heard the advice will go'
+  - 'At 5 pm, since the radio says the worst traffic is then'
+answer: 1
+feedback:
+  - 'Everyone heard the same advice, so 2 pm is where the crowd has moved. Your office alone shows how many will leave then.'
+  - ''
+  - 'That is the time the radio warned about. Some people will have moved away from it, but it is still the busiest time.'
+explanation: 'Advice that everyone hears changes what everyone does. Guess where the crowd will move, and go one step beyond them.'
+measures: think-ahead

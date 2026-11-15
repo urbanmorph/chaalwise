@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At your engineering college in Pune, students pick an elective (an optional course) on a shared sheet that everyone can see. The first three names went to the AI course, and now most of your year has followed. You read both outlines, and the robotics course fits your plans better. What is the best next step?'
+options:
+  - 'Pick AI: most of the year cannot be wrong about it'
+  - 'Ask a few who signed early why they chose AI, then weigh that against what you read'
+  - 'Pick robotics without asking, since a popular choice must be a poor one'
+answer: 1
+feedback:
+  - 'Most of the year saw the same sheet. Many may have added their names because others did, so the list may rest on the first three.'
+  - ''
+  - 'Being popular does not make a course poor either. The early choosers may know something useful, so ask before you decide.'
+explanation: 'A list that people fill in one after another shows choices, not reasons. Ask the early names why, count only reasons of their own, and add your own reading of the outlines.'
+measures: read-hidden

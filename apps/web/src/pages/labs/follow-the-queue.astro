@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import QueueLab from '../../components/labs/QueueLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'follow-the-queue')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Six streets, each with two new restaurants side by side. You have a friend's tip and you can see where the people ahead of you went. Try to pick the better
+    restaurant each time, and notice when the queue knows less than it seems to.
+  </p>
+  <QueueLab client:load />
+</LabPage>

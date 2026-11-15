@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At your office in Mumbai, a new supplier of printer paper needs four sign-offs. Three managers have signed one after another, each after seeing the earlier signatures. When you test the samples, the paper jams your printer twice. What should you do?'
+options:
+  - 'Sign too: three managers have already approved it'
+  - 'Raise the jams, and ask the others what they checked before signing'
+  - 'Sign, but quietly order from someone else later'
+answer: 1
+feedback:
+  - 'Each manager may have signed because the ones before did. Three signatures can rest on a single check, or on none.'
+  - ''
+  - 'This hides your evidence from everyone after you. The next team will see four signatures and no problem.'
+explanation: 'Your test is evidence of your own. Approvals given in turn, each after seeing the last, may hold much less. Ask what each person checked, and add what you found.'
+measures: read-hidden

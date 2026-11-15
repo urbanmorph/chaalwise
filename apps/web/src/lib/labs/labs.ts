@@ -129,6 +129,20 @@ export const LABS: Lab[] = [
     entry: 'labs/market-for-lemons',
     read: ['strategy/costly-signals', 'strategy/information-advantage'],
   },
+  {
+    slug: 'guess-two-thirds',
+    title: 'Guess two-thirds',
+    track: 'think-ahead',
+    entry: 'labs/beauty-contest',
+    read: ['strategy/their-next-move'],
+  },
+  {
+    slug: 'follow-the-queue',
+    title: 'Follow the queue?',
+    track: 'read-hidden',
+    entry: 'strategy/information-cascades',
+    read: ['strategy/independent-estimates', 'strategy/base-rates'],
+  },
 ];
 
 /** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */
