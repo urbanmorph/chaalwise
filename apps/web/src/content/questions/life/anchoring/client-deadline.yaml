@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At work in Hyderabad, your manager opens a planning meeting: "The client hopes this app update will take four weeks. How long will it really take?" Your team''s last three updates like it took 9, 10 and 12 weeks. What is the best way to start your estimate?'
+options:
+  - Start from the client's four weeks, and add time for the hard parts
+  - Start from the past updates, about 10 weeks, then ask what could make this one faster or slower
+  - Say seven weeks, between the client's hope and your record, so that everyone is happy
+answer: 1
+feedback:
+  - 'Adding to their number feels careful, but it is how a first number pulls you: people stop adding too soon, and end too close to four weeks.'
+  - ''
+  - Meeting halfway sounds fair, but it lets the client's hope set half the answer. Nothing about the work points to seven weeks.
+explanation: "The client's four weeks is an anchor: a first number that pulls later estimates towards it. It tells you what the client wants, not how long the work takes. Start from how long similar work took, then give one reason this job could take less and one it could take more."
+measures: read-hidden

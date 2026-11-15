@@ -1,0 +1,15 @@
+---
+import FirstNumberLab from '../../components/labs/FirstNumberLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'first-number')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Estimate the rent of a flat, the crowd at a college festival and the length of a project, each just after someone else names a number. Then estimate them
+    again after arguing with that number, and see how far it moved you each time.
+  </p>
+  <FirstNumberLab client:load />
+</LabPage>

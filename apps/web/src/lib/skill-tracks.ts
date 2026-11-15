@@ -60,7 +60,7 @@ export const TRACKS: Track[] = [
     'Reason from incomplete evidence, and update as more arrives.',
     0,
     3,
-    "Rule finder and Ask the panel labs, Liar's Dice, Mastermind",
+    "Rule finder, Ask the panel and First number wins? labs, Liar's Dice, Mastermind",
   ),
   t('bluff', 'Understand how others see you, and how that shapes what they do.', 0, 3, "Liar's Dice"),
   t(

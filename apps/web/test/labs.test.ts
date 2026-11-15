@@ -242,6 +242,7 @@ describe('the labs', () => {
       ['bonus-rule', 'think-ahead', 'strategy/incentives'],
       ['ask-the-panel', 'read-hidden', 'strategy/independent-estimates'],
       ['pick-the-same', 'cooperate', 'strategy/coordination'],
+      ['first-number', 'read-hidden', 'strategy/anchoring'],
     ]);
   });
 
@@ -254,7 +255,7 @@ describe('the labs a lesson offers at its end', () => {
   const slugs = (lesson: Parameters<typeof labsForLesson>[0]) => labsForLesson(lesson).map((l) => l.slug);
 
   it('offers the labs that train a strategy or poker lesson’s skill, and none to a chess lesson or a case', () => {
-    expect(slugs({ game: 'poker', skills: ['read-hidden'] })).toEqual(['rule-finder', 'ask-the-panel']);
+    expect(slugs({ game: 'poker', skills: ['read-hidden'] })).toEqual(['rule-finder', 'ask-the-panel', 'first-number']);
     expect(slugs({ game: 'strategy', skills: ['composure'], after: 'chess/endgame-intro' })).toEqual(['gain-or-loss']);
     expect(slugs({ game: 'poker', skills: [] })).toEqual([]);
     expect(slugs({ game: 'chess', skills: ['calculate'] })).toEqual([]);

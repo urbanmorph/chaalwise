@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You want to buy a two-year-old phone from a seller in Delhi. The listing says: "₹18,000, bought new for ₹60,000." Phones like it, of the same age, sell for ₹12,000 to ₹15,000. How do you decide what to offer?'
+options:
+  - Start from what phones like it, of that age, sell for
+  - Start from the ₹60,000 it cost new, since ₹18,000 is already a big discount
+  - Offer ₹16,000, a little under the asking price, so the seller is not put off
+answer: 0
+feedback:
+  - ''
+  - The price when new is an anchor. It makes ₹18,000 look cheap, but it says little about what a two-year-old phone is worth today.
+  - A little under the asking price still starts from the seller's number. The prices of phones like it are the better place to start.
+explanation: 'The listing gives two first numbers, ₹60,000 and ₹18,000, and both pull your offer towards them. Start from what similar phones sell for, then name your own number with your reasons.'
+measures: read-hidden

@@ -150,6 +150,7 @@ describe('lessons link to the lab for their skill', () => {
     const hidden = tryLab('poker/position/');
     expect(hidden).toContain('href="/labs/rule-finder/"');
     expect(hidden).toContain('href="/labs/ask-the-panel/"');
+    expect(hidden).toContain('href="/labs/first-number/"');
     expect(tryLab('poker/hand-rankings/')).toBe('');
     expect(tryLab('chess/fork/')).toBe('');
   });
