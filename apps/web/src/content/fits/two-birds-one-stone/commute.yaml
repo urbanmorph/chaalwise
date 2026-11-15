@@ -1,0 +1,7 @@
+from: life/two-birds-one-stone/commute
+prompt: You want to get fitter, and the bus to college costs you 60 a day. College is 5 km away on a safe road.
+explanation: Look for one move that serves both aims. Cycling or walking to college gets you fitter and saves the bus fare.
+feedback:
+  give-a-little-get-more: 'There is no trade here: you give nothing up to get the other. One choice serves two aims at once.'
+  look-at-three: Comparing options helps, but one option already serves both aims, and that is what to notice.
+  basics-before-brilliance: Nothing basic is left undone. The point is one move that does two jobs.

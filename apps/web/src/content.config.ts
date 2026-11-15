@@ -1,4 +1,4 @@
-import { lessonSchema, questionSchema } from '@chaalwise/core/lesson';
+import { laterCaseSchema, lessonSchema, questionId, questionSchema } from '@chaalwise/core/lesson';
 import { referenceSchema } from '@chaalwise/core/reference';
 import { trackSchema } from '@chaalwise/core/track';
 import { file, glob } from 'astro/loaders';
@@ -65,4 +65,50 @@ const questions = defineCollection({
   }),
 });
 
-export const collections = { lessons, safetyDrills, reference, tracks, questions };
+const slug = z.string().regex(/^[a-z0-9-]+$/, 'a strategy lesson, by its file name');
+
+/**
+ * "Which idea fits?" situations: one file each, at `<idea>/<name>.yaml`, where `<idea>` is the strategy lesson whose
+ * idea the situation calls for. The keys match a question's, so the prose checks read them the same way.
+ */
+const fits = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/fits' }),
+  schema: z
+    .object({
+      /** The life question the situation was written from, if any. */
+      from: questionId.optional(),
+      /** The situation, naming no idea. */
+      prompt: z.string().min(1),
+      /** Why the idea fits. */
+      explanation: z.string().min(1),
+      /** Look-alike ideas, by lesson file name, each with why it does not fit here. */
+      feedback: z
+        .record(slug, z.string().min(1))
+        .refine((n) => Object.keys(n).length >= 2, 'name two near misses or more'),
+      /** Ideas that fit as well, never offered as wrong answers. */
+      alsoFits: z.array(slug).optional(),
+      /** The look-alike situation that calls for another idea, as `<idea>/<name>`. */
+      pair: z
+        .string()
+        .regex(/^[a-z0-9-]+\/[a-z0-9-]+$/)
+        .optional(),
+    })
+    .strict(),
+});
+
+/** Cases a week later: one Markdown file each, its decisions in the corpus under `later/<case>/`. */
+const later = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/later' }),
+  schema: laterCaseSchema.superRefine((c, ctx) =>
+    c.steps.forEach((step, i) => {
+      if ('ask' in step && !step.ask.startsWith('later/'))
+        ctx.addIssue({
+          code: 'custom',
+          message: 'a case a week later asks only its own, unseen decisions',
+          path: ['steps', i],
+        });
+    }),
+  ),
+});
+
+export const collections = { lessons, safetyDrills, reference, tracks, questions, fits, later };

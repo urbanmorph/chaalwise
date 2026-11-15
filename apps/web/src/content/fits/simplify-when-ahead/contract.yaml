@@ -1,0 +1,8 @@
+from: life/simplify-when-ahead/contract
+prompt: A client has agreed to sign your contract for 1,000,000 next week. Your team suggests adding a feature you have never built, which would raise it to 1,200,000. A late delivery would let the client cancel.
+explanation: 'You are ahead, and a sure win is what you need. Turn down the new feature: it adds a part that could go wrong and let the client cancel.'
+feedback:
+  finish-the-job: Finishing with care matters, but the danger here is a new risk being added. The move is to keep it out.
+  give-a-little-get-more: The extra 200,000 looks like getting more, but the risk to the whole 1,000,000 is the larger cost.
+  two-birds-one-stone: The feature serves no second aim. It only adds risk to a deal already won.
+pair: finish-the-job/contract

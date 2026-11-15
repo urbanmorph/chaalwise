@@ -1,0 +1,7 @@
+from: life/estimate-it/tea-stall
+prompt: You want to know how many cups of tea a stall at a busy bus stand sells in a day. It is open 16 hours. In the 4 rush hours it sells about one cup a minute, and in the other 12 hours about one every 4 minutes.
+explanation: 'Break the number into parts you can count: 4 × 60 = 240 cups in the rush hours, plus 12 × 15 = 180 in the rest, about 420 a day.'
+feedback:
+  count-it-through: That is about following a chain of consequences to its end. Here you build a number from its parts.
+  fix-your-weakest-link: No part is slow and holding the rest back. You are only estimating a total.
+  basics-before-brilliance: No clever idea is tempting you away from the basics. You need an estimate, built in parts.

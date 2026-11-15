@@ -1,0 +1,9 @@
+from: life/count-it-through/bulk-offer
+prompt: A bottle of sauce costs 120, or you can have three for the price of two. You will finish one bottle before the others go off.
+explanation: 'Follow it to the end: you pay 240 for three, use one, and throw two away. One bottle for 120 is cheaper.'
+feedback:
+  look-at-three: There are only two choices, and both are plain. The catch is in where the offer ends, not in finding more options.
+  give-a-little-get-more: The offer looks like a fair trade, but counted through you pay more and get nothing extra you can use.
+  blunder-check: Nobody is acting against you. The cost is in your own sum.
+alsoFits:
+  - patterns-save-thinking

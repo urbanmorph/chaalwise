@@ -1,0 +1,7 @@
+from: life/not-so-fast/supplier
+prompt: Your café's best supplier mentions that a hotel chain wants to buy their whole harvest next season at a higher price. Your contract renews in six months.
+explanation: Before you push on with your own plans, see what the hotel chain wants and stop it early. Talk to your supplier about renewing now, while there is time.
+feedback:
+  blunder-check: You are not about to do anything risky. Someone else is building a plan that hurts you, and it needs an answer before it lands.
+  finish-the-job: Nothing of yours is nearly done. The threat is months away, which is when it is cheapest to stop.
+  count-it-through: There is no offer to add up. The danger is the hotel chain's plan, not a sum.

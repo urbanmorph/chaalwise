@@ -1,0 +1,7 @@
+from: life/chance-and-price/scholarship
+prompt: At college, you can apply for a scholarship worth ₹1 lakh. Applying costs a ₹500 fee and an afternoon writing an essay. About one applicant in 50 wins it.
+explanation: Weigh how likely it is to pay off against what it costs. One chance in 50 at ₹1 lakh is worth about ₹2,000, more than the fee, if an afternoon is worth less than ₹1,500 to you.
+feedback:
+  spend-effort-where-it-matters: The effort is small and fixed. The question is whether the chance of winning is worth the fee and the afternoon.
+  basics-before-brilliance: Nothing basic is being skipped. It is a small price for a small chance at a large prize.
+  commit-in-stages: You cannot apply a little at a time. It is one price paid for one chance.

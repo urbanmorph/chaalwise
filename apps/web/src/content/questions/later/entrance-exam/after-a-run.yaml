@@ -1,0 +1,12 @@
+kind: choice
+prompt: On the next question you can rule out two options. Do you guess?
+options:
+  - 'Yes: the last four guesses do not change the chances on this one'
+  - 'No: your guesses are going badly today'
+  - Yes, and guess on every question left, to win the marks back
+answer: 0
+feedback:
+  - ''
+  - Bad luck on the last four does not make the next one worse. It is still worth 1.5 marks over many questions.
+  - Guessing blind everywhere to win marks back is chasing losses. Guess where it pays, as before.
+explanation: Judge each choice by what it earns over many tries, not by recent results. Four wrong guesses are bad luck; a guess between two is still worth 1.5 marks.

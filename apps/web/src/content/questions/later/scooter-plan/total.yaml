@@ -1,0 +1,12 @@
+kind: choice
+prompt: What does the zero-down plan cost in all, against paying cash?
+options:
+  - ₹1.08 lakh, which is ₹18,000 more than cash
+  - ₹90,000, the same as cash, since nothing is paid at the start
+  - ₹4,500, as that is all you pay now
+answer: 0
+feedback:
+  - ''
+  - Paying nothing at the start does not mean paying nothing extra. 24 payments of ₹4,500 come to ₹1.08 lakh.
+  - ₹4,500 is only the first step. The plan commits you to 24 of them.
+explanation: 'Follow the payments to the end: 24 × ₹4,500 = ₹1.08 lakh. The plan costs ₹18,000 more than cash, a fifth on top.'

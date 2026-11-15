@@ -1,0 +1,7 @@
+prompt: Your print shop's old machine keeps breaking. At the team meeting, the first idea is to buy the newest model, and someone asks for a vote on it now.
+explanation: Before you choose, name at least three options. Repairing, leasing or buying a used machine may beat the first idea, and nobody has looked at them yet.
+feedback:
+  count-it-through: Counting the costs comes later. First you need more than one option to count.
+  two-birds-one-stone: No single move serves two aims here. The gap is that only one option is on the table.
+  fix-your-weakest-link: The machine may be the weak part, but the question now is how to replace it, and only one way is on the table.
+pair: count-it-through/new-machine-lease

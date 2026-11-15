@@ -1,0 +1,7 @@
+from: life/fix-your-weakest-link/three-subjects
+prompt: To get into your course, you need 60 or more out of 100 in each of three subjects. Your practice exam marks are maths 78, physics 74 and chemistry 41. You have 10 hours of revision left this week.
+explanation: Improve the part doing least. The weakest subject decides whether you get in, so the hours go to chemistry.
+feedback:
+  find-what-everything-depends-on: No one part holds the others up; each subject is marked on its own. The weakest one is what needs raising.
+  basics-before-brilliance: No clever idea is tempting you away. The question is which subject gets the hours.
+  spend-effort-where-it-matters: That is about how long to think over a choice. Here the choice is where to put revision hours, and the weakest subject decides.

@@ -1,0 +1,12 @@
+kind: choice
+prompt: On one question you can rule out two options for sure, but cannot choose between the other two. Do you answer it?
+options:
+  - 'Yes: a guess between two earns 1.5 marks a question over many questions'
+  - 'No: a wrong answer loses a mark, so leave it blank'
+  - Only if you feel lucky about one of them
+answer: 0
+feedback:
+  - ''
+  - A wrong answer does cost a mark, but you gain 4 half the time and lose 1 half the time. Over many questions that is 1.5 marks each.
+  - How lucky you feel does not change the chance. Half the time you gain 4, and half the time you lose 1.
+explanation: 'Judge each guess by what it earns over many tries: ½ × 4 − ½ × 1 = 1.5 marks. One wrong guess hurts, but the habit pays.'

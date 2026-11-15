@@ -1,0 +1,7 @@
+from: life/when-the-script-runs-out/pitch
+prompt: You prepared a pitch for a client's finance head, built around cutting their costs by 20%. Ten minutes in, she says costs are fine; their problem is that staff keep leaving.
+explanation: 'Prepared plans run out. When yours does, act on the reason behind it: you came to solve her problem, so ask about the staff.'
+feedback:
+  resources-change-value: Nothing you hold has changed in value. Your prepared plan has stopped fitting, in the middle of the meeting.
+  their-next-move: She has already answered. The question is what you do now the plan does not fit.
+  patterns-save-thinking: No known pattern fits this. You have to reason from why you came.

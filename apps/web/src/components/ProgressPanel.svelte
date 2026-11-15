@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { usedShare } from '@chaalwise/core/later';
   import { openProgress, requestPersistence } from '@chaalwise/core/progress';
   import { onMount } from 'svelte';
   import { exportDaily, importDaily } from '../lib/streak';
@@ -14,7 +15,7 @@
   let { cardIds }: Props = $props();
   const known = $derived(new Set(cardIds));
 
-  let stats = $state<{ lessons: number; cards: number; due: number } | undefined>();
+  let stats = $state<{ lessons: number; cards: number; due: number; used: { used: number; of: number } } | undefined>();
   // Every lab from the start, "Not yet" until the record is read, so nothing shifts.
   let labs = $state(labsPlayed([]));
   // Assumed not yet kept, so the warning is laid out from the start and nothing shifts.
@@ -30,7 +31,12 @@
       const data = await progress.exportData(now);
       const due = (await progress.dueCards(now)).filter((c) => known.has(c.id));
       // Playing a lab is kept as a finished record, to remember the game is met; it is not a lesson.
-      stats = { lessons: data.lessons.filter((l) => !l.lessonId.startsWith('labs/')).length, cards: data.cards.length, due: due.length };
+      stats = {
+        lessons: data.lessons.filter((l) => !l.lessonId.startsWith('labs/')).length,
+        cards: data.cards.length,
+        due: due.length,
+        used: usedShare(data.later),
+      };
       labs = labsPlayed(data.lessons);
     } finally {
       progress.close();
@@ -127,6 +133,10 @@
         <dt>Due for review today</dt>
         <dd>{stats?.due ?? '–'}</dd>
       </div>
+      <div>
+        <dt>Used the idea unprompted, a week after its lesson</dt>
+        <dd data-testid="used-unprompted">{stats ? (stats.used.of ? `${stats.used.used} of ${stats.used.of}` : 'None yet') : '–'}</dd>
+      </div>
     </dl>
     {#if !persisted}
       <p>
@@ -195,6 +205,7 @@
   }
   dd {
     margin: 0;
+    white-space: nowrap;
     font: 600 1.1rem var(--mono);
   }
   dd.when {

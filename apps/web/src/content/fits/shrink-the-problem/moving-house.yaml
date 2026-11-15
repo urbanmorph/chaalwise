@@ -1,0 +1,9 @@
+from: life/shrink-the-problem/moving-house
+prompt: You are moving house in two weeks and have a whole flat to pack.
+explanation: Each step should leave fewer ways for things to go wrong. Pack one room fully, label it and close it, before you start the next.
+feedback:
+  finish-the-job: Moving day is not close yet, and nothing is nearly won. The point is how each step is done.
+  two-birds-one-stone: No one move serves two aims here. The point is to make each step stick.
+  basics-before-brilliance: Nothing clever is tempting you away from the basics. The question is the order and state of each step.
+alsoFits:
+  - a-plan-step-by-step

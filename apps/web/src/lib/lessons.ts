@@ -121,9 +121,17 @@ export async function playedSteps(lesson: LessonEntry): Promise<Step[]> {
   return Promise.all(lesson.data.steps.map(async (step) => ('ask' in step ? (await ask([step.ask]))[0]! : step)));
 }
 
-/** Every question in the corpus, keyed by its review card, for review and practice. */
+/**
+ * Every question in the corpus, keyed by its review card, for review and practice. The decisions of the cases a
+ * week later are left out: they must be new when their case comes (see later-cases.ts).
+ */
 export async function reviewSteps(): Promise<Record<string, GradedStep>> {
-  return Object.fromEntries([...(await corpus()).values()].map(asStep).map((step) => [step.id, step]));
+  return Object.fromEntries(
+    [...(await corpus()).values()]
+      .filter((q) => !q.id.startsWith('later/'))
+      .map(asStep)
+      .map((step) => [step.id, step]),
+  );
 }
 
 /** Every question that trains a strategy track, keyed by card id: its strategy lessons, and the chess lessons whose skill feeds it. */

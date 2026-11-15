@@ -1,0 +1,7 @@
+from: life/resources-change-value/new-exams
+prompt: At school you earned top marks by learning facts quickly. At university, the exams let you bring your notes and ask you to argue a case. You have one extra hour a day to study.
+explanation: When the situation changes, value what you hold again. Fast recall was worth a lot at school; with notes allowed, arguing a case is worth more.
+feedback:
+  when-the-script-runs-out: Close, but no plan has failed in the middle of the action. The setting has changed, so old strengths are worth less.
+  patterns-save-thinking: Learning facts by heart is the old strength here, and it is worth less now.
+  basics-before-brilliance: This is not plain steps against clever ones. It is old strengths against new needs.

@@ -1,0 +1,12 @@
+kind: choice
+prompt: What do you do before you sign?
+options:
+  - Ask to move the due date to after the 7th, or keep one payment spare in the bank
+  - 'Sign: one late fee of ₹500 is small'
+  - Sign, and pay a few days late each month, since the salary comes soon after
+answer: 0
+feedback:
+  - ''
+  - One fee looks small, but these dates mean it could come every month, with 2% a month on top.
+  - Paying late each month starts the fee and the 2% every time. Followed through, that adds thousands over two years.
+explanation: 'Follow the chain: a due date before payday means a late fee, then 2% a month on what is left, month after month. Fix the date before you sign.'

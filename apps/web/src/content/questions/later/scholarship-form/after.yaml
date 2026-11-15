@@ -1,0 +1,12 @@
+kind: choice
+prompt: What do you do next?
+options:
+  - Save the receipt, and check the status before verification ends
+  - 'Nothing more: the form is submitted, so the job is done'
+  - Submit a second form as well, just to be safe
+answer: 0
+feedback:
+  - ''
+  - Submitted is not yet approved. A form waiting for verification can still be turned down for a missing paper.
+  - A second form can confuse the office or count as a duplicate. Follow the first one through instead.
+explanation: Keep going until it is truly done. Save the receipt and check the status, so a question from the office does not go unanswered.

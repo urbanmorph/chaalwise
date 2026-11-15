@@ -1,0 +1,8 @@
+from: life/spend-effort-where-it-matters/stuck-question
+prompt: In a two-hour exam, you have spent 20 minutes on a 2-mark question you cannot crack. There are 60 marks still to answer.
+explanation: 'Spend your time where it matters. Move on: 60 marks are waiting, and 2 marks are not worth the minutes.'
+feedback:
+  make-it-hard: Not giving up matters when the marks at stake are large. Here they are small, and bigger marks wait elsewhere.
+  finish-the-job: This question is not nearly won. Leave it and come back if there is time.
+  basics-before-brilliance: This is not plain against clever. It is 2 marks against 60.
+pair: make-it-hard/last-question

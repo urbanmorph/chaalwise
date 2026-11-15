@@ -1,0 +1,7 @@
+from: life/more-than-one-guess/silent-colleague
+prompt: At work, you present a plan in a team meeting. A colleague who usually has plenty to say stays silent the whole time.
+explanation: Silence could mean agreement, doubt, or something else on their mind. Keep all of them in view, and ask them one to one before you act on any.
+feedback:
+  their-next-move: Their response is what you are trying to read, but you cannot see it yet. List what the silence could mean first.
+  review-calmly: There is no result to judge yet. The question is what the silence could mean.
+  pass-the-problem-back: There is no hard choice to hand back. The point is not to settle on one meaning too soon.

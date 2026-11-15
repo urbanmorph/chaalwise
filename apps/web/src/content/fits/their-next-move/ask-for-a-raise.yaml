@@ -1,0 +1,7 @@
+from: life/their-next-move/ask-for-a-raise
+prompt: You plan to ask for a raise next week. Last week you missed an important deadline.
+explanation: Think how your manager will answer, as they see it. The missed deadline will be on their mind, so prepare for it rather than hope it is forgotten.
+feedback:
+  blunder-check: 'That is a quick look before one move. This needs more: a picture of how your manager sees things, built before you ask.'
+  lead-or-answer: 'Who moves first is settled: you are asking. What matters is how they will reply.'
+  review-calmly: Looking back at the deadline calmly helps, but the moment is about next week and how your manager will take your request.

@@ -1,0 +1,7 @@
+from: life/review-calmly/launch
+prompt: Your team launched a product after testing it with 200 customers, 80% of whom liked it. A month later, a supplier failure delayed every order, and sales were poor. The team meets to review it.
+explanation: Judge the decision by what you knew, and could have found out, at the time. The test was sound; ask whether the supplier risk could have been seen.
+feedback:
+  make-it-hard: The launch is over, and nobody is behind in a contest. The task is to judge it fairly.
+  fix-your-weakest-link: No part needs raising right now. The task is judging a past choice.
+  blunder-check: The choice was made a month ago. Looking back calmly is the job now.

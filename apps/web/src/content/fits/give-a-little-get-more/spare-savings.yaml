@@ -1,0 +1,7 @@
+prompt: You have 290,000 saved for a flat you plan to buy in eight years. Your bank pays 3% a year. A fixed deposit at another bank pays 7%, but you cannot touch the money for five years.
+explanation: Give up one thing only for more of another, counted in the same units. You give up five years of easy access, which you will not need, for 4% more a year.
+feedback:
+  simplify-when-ahead: There is no goal close at hand to protect, and the money is not at risk. It is a plain trade of access for interest.
+  count-it-through: The sums are short. The point is weighing what you give up against what you get.
+  look-at-three: There are already two clear options. The question is whether the trade between them is worth it.
+pair: simplify-when-ahead/deposit

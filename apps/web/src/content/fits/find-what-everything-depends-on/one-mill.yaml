@@ -1,0 +1,7 @@
+from: life/find-what-everything-depends-on/one-mill
+prompt: Your bakery sells 200 cakes a day. All its flour comes from one mill, which closed for a week last year. You have 50,000 to make the business safer.
+explanation: 'Find the one part everything depends on: the single mill. Back it up with a second supplier or a store of flour before anything else.'
+feedback:
+  fix-your-weakest-link: The mill does its job well most of the time; it is not the slowest part. The danger is that everything stops if it fails.
+  blunder-check: You are not about to make a move that could go wrong. The risk is built into how the bakery works.
+  simplify-when-ahead: Nothing is close to being won. The aim is to make the whole business harder to stop.

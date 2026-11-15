@@ -1,0 +1,12 @@
+kind: choice
+prompt: What do you do with the three hours left?
+options:
+  - Check every upload and detail against the list, then submit
+  - Submit now and go to bed, since the hard part is done
+  - Rewrite your statement to make it sound more impressive
+answer: 0
+feedback:
+  - ''
+  - The form is nearly won, and that is when a missing upload or a wrong bank account number loses it.
+  - Polishing the statement feels useful, but it uses the time you need to check what could still make the form fail.
+explanation: A form filled in is not a form accepted. The last steps need as much care as the first, so check every document and number before you submit.

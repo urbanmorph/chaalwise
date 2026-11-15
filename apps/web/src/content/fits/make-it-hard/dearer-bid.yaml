@@ -1,0 +1,7 @@
+from: life/make-it-hard/dearer-bid
+prompt: Your firm is bidding for a contract against a larger rival, and the client says your price is 15% higher. They will decide in a week.
+explanation: 'When you are behind, do not give in early. Make the rival work for it: show what your price buys that theirs does not.'
+feedback:
+  lead-or-answer: The rival's price is known, and you are answering it. The point is to keep fighting, not who moves first.
+  simplify-when-ahead: You are behind, not ahead. Removing risk is not what you need.
+  review-calmly: Looking back can wait. The decision is still a week off.

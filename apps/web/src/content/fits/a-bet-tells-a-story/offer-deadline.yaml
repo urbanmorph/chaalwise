@@ -1,0 +1,7 @@
+from: life/a-bet-tells-a-story/offer-deadline
+prompt: At work, a company offers you a job and says you must accept within 48 hours, or the offer goes to someone else. You are waiting to hear from another firm next week.
+explanation: Believe a signal when it fits everything else and would cost the sender to fake. Ask whether there really is another candidate, and what the firm loses if you walk away.
+feedback:
+  their-next-move: How they will answer your reply matters, but first judge whether the deadline itself is real or cheap to say.
+  lead-or-answer: 'Who moves first is settled: they have. The question is how much their deadline should count.'
+  pass-the-problem-back: Asking for more time may help, but first decide whether the deadline is a signal worth believing.

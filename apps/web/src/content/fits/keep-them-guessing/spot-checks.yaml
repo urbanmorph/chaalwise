@@ -1,0 +1,7 @@
+from: life/keep-them-guessing/spot-checks
+prompt: 'You lead a team in Hyderabad that files expense claims. You want to check a few claims each month for padding: costs made to look bigger than they were.'
+explanation: When someone gains by predicting you, mix your choices at random. Checks on fixed dates are easy to work around; checks at random leave nothing to read.
+feedback:
+  patterns-save-thinking: Knowing the usual kinds of padding helps, but the question is when to check, and a pattern in your checks is what to avoid.
+  find-what-everything-depends-on: No single part holds everything up. The point is that people can plan around checks they can see coming.
+  blunder-check: You are not about to make a risky move. The issue is checks that others can predict.

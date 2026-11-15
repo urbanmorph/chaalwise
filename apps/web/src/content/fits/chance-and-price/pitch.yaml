@@ -1,0 +1,7 @@
+from: life/chance-and-price/pitch
+prompt: 'At work, your small design studio is asked to pitch for a contract: to show a client your ideas and price. Four studios are pitching, and yours is about as good as the others. Preparing the pitch costs about ₹40,000 in staff time, and the contract would bring ₹3 lakh in profit.'
+explanation: Compare how likely it is to pay off with what it costs. One chance in four at ₹3 lakh is worth about ₹75,000, more than the ₹40,000 it costs to try.
+feedback:
+  estimate-it: 'The chance is easy to see here: one in four. The point is to weigh it against the price of pitching.'
+  give-a-little-get-more: This is not a sure trade of one thing for more of another. You pay for certain, and the reward may not come.
+  count-it-through: There is no chain of later steps to follow. It is one chance, weighed once against its price.

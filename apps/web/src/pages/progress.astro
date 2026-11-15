@@ -2,9 +2,10 @@
 import ProgressPanel from '../components/ProgressPanel.svelte';
 import SkillProfile from '../components/SkillProfile.svelte';
 import Base from '../layouts/Base.astro';
+import { fitsBank } from '../lib/fits-bank';
 import { reviewSteps } from '../lib/lessons';
 
-const cardIds = Object.keys(await reviewSteps());
+const cardIds = [...Object.keys(await reviewSteps()), ...Object.keys((await fitsBank()).items)];
 ---
 
 <Base title="Progress" description="Your skill profile and progress, kept on this device." noindex>

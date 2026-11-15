@@ -1,0 +1,12 @@
+kind: choice
+prompt: Where should your Friday evening go?
+options:
+  - Reading both agreements, above all how and when the deposit is paid back
+  - Finding the best restaurant for the team lunch, as everyone will notice
+  - Asking friends which flat they would choose
+answer: 0
+feedback:
+  - ''
+  - A poor lunch is forgotten by Monday. A deposit of more than ₹1 lakh that is hard to get back is not.
+  - Friends answer quickly, but they have not read the agreements. The deposit terms are where the money is.
+explanation: Spend your effort where it counts. A deposit of ₹1.15 lakh to ₹2.2 lakh, and how it comes back, outweighs a lunch you can forget by Monday.

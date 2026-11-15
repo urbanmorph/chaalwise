@@ -1,0 +1,9 @@
+from: life/basics-before-brilliance/mock-exam
+prompt: Your maths exam is in six weeks. In a practice exam, you lost 30 of 100 marks to slips with fractions and signs, and 10 on the two hardest questions.
+explanation: Get the plain steps right first. The slips cost three times the marks of the hard questions, and they are easier to fix.
+feedback:
+  a-plan-step-by-step: A plan helps, but the real choice is what to put first, and the plain steps win.
+  make-it-hard: You are not behind in a contest with someone. You are choosing what to practise.
+  spend-effort-where-it-matters: This is not a small choice against a large one. It is plain marks against clever ones.
+alsoFits:
+  - fix-your-weakest-link

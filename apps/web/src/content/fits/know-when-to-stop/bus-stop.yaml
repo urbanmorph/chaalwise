@@ -1,0 +1,7 @@
+from: life/know-when-to-stop/bus-stop
+prompt: You have waited 25 minutes at a bus stop in Chennai for a bus that usually comes every 10 minutes, and there is no sign of it. An auto-rickshaw offers to get you there on time for ₹120.
+explanation: 'The 25 minutes are gone whatever you do. Decide on what comes next: whether arriving on time is worth ₹120.'
+feedback:
+  spend-effort-where-it-matters: This is not about how long to think over a choice. It is whether the time already waited should keep you waiting.
+  count-it-through: The sum is short. The trap is letting the minutes already spent decide.
+  make-it-hard: There is no contest to keep fighting. Waiting longer is not a defence.

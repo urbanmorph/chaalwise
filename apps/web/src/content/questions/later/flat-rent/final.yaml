@@ -1,0 +1,12 @@
+kind: choice
+prompt: What do you do?
+options:
+  - Say ₹20,500 is your best, and be ready to take the other flat
+  - 'Agree to ₹21,000: you have come this far, and it is close'
+  - Meet in the middle at ₹20,750, which sounds fair to both
+answer: 0
+feedback:
+  - ''
+  - Time spent bargaining is no reason to pay more than the flat is worth to you. ₹21,000 is past your limit.
+  - Meeting in the middle still crosses your limit. A fair-sounding middle is not a good deal if walking away does better.
+explanation: Keep to the limit you set before the talk. Above ₹20,500 the other flat is the better deal, so walking away is real, and saying so often brings the price down.

@@ -1,5 +1,6 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import type { JournalEntry } from './journal';
+import type { LaterRecord } from './later';
 import type { CheckInResult, PlanRecord } from './plans';
 import type { Outcome } from './player';
 import type { ProgressExport } from './progress-file';
@@ -46,16 +47,15 @@ export interface AttemptRecord {
   confidence?: number | undefined;
 }
 
-interface ProgressDB extends DBSchema {
+export interface ProgressDB extends DBSchema {
   lessons: { key: string; value: LessonRecord };
   cards: { key: string; value: CardRecord };
   drills: { key: string; value: DrillRecord };
   attempts: { key: number; value: AttemptRecord };
   plans: { key: string; value: PlanRecord };
   journal: { key: string; value: JournalEntry };
+  later: { key: string; value: LaterRecord };
 }
-
-const STORES = ['lessons', 'cards', 'drills', 'attempts', 'plans', 'journal'] as const;
 
 export type { ProgressExport };
 
@@ -64,12 +64,14 @@ export type { ProgressExport };
  * read progress (the lesson list, the progress page) do not download it.
  */
 const scheduler = () => import('./srs');
+/** The progress file's round trip, likewise loaded only by the progress page. */
+const io = () => import('./progress-io');
 
 export type ProgressStore = Awaited<ReturnType<typeof openProgress>>;
 
 export async function openProgress(name = 'chaalwise') {
   // Each version only adds stores, so a device on any older version upgrades without losing anything.
-  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 5, {
+  const db: IDBPDatabase<ProgressDB> = await openDB<ProgressDB>(name, 6, {
     upgrade(db, oldVersion) {
       if (oldVersion < 1) {
         db.createObjectStore('lessons', { keyPath: 'lessonId' });
@@ -79,6 +81,7 @@ export async function openProgress(name = 'chaalwise') {
       if (oldVersion < 3) db.createObjectStore('attempts', { autoIncrement: true });
       if (oldVersion < 4) db.createObjectStore('plans', { keyPath: 'id' });
       if (oldVersion < 5) db.createObjectStore('journal', { keyPath: 'id' });
+      if (oldVersion < 6) db.createObjectStore('later', { keyPath: 'caseId' });
     },
     // A newer version of the app, open in another tab, needs to upgrade: get out of its way.
     blocking() {
@@ -208,38 +211,23 @@ export async function openProgress(name = 'chaalwise') {
       await db.delete('journal', id);
     },
 
+    /** A case a week later, done: whether the learner used its idea unprompted. Review offers each case once. */
+    async recordLater(record: LaterRecord) {
+      await db.put('later', record);
+    },
+
+    /** Every record in a store: the finished lessons (with when), or the cases a week later. */
+    records<S extends 'lessons' | 'later'>(store: S) {
+      return db.getAll(store);
+    },
+
     async exportData(now: Date): Promise<ProgressExport> {
-      return {
-        app: 'chaalwise',
-        version: 1,
-        exportedAt: now,
-        lessons: await db.getAll('lessons'),
-        cards: await db.getAll('cards'),
-        drills: await db.getAll('drills'),
-        attempts: await db.getAll('attempts'),
-        plans: await db.getAll('plans'),
-        journal: await db.getAll('journal'),
-      };
+      return (await io()).exportFrom(db, now);
     },
 
     /** Replaces everything on this device with the file's contents. */
     async importData(data: unknown) {
-      // The validator loads only when needed, keeping zod out of every page's bundle.
-      const { exportSchema } = await import('./progress-file');
-      const parsed = exportSchema.parse(data);
-      const tx = db.transaction(STORES, 'readwrite');
-      // One wait for every request and the commit, so a failed write cannot go unhandled;
-      // requests in one transaction run in order, so the clears happen before the puts.
-      await Promise.all([
-        ...STORES.map((store) => tx.objectStore(store).clear()),
-        ...parsed.lessons.map((l) => tx.objectStore('lessons').put(l)),
-        ...parsed.cards.map((c) => tx.objectStore('cards').put(c)),
-        ...parsed.drills.map((d) => tx.objectStore('drills').put(d)),
-        ...parsed.attempts.map((a) => tx.objectStore('attempts').add(a)),
-        ...parsed.plans.map((p) => tx.objectStore('plans').put(p)),
-        ...parsed.journal.map((e) => tx.objectStore('journal').put(e)),
-        tx.done,
-      ]);
+      await (await io()).importInto(db, data);
     },
   };
 }

@@ -72,6 +72,19 @@ export const exportSchema = z.object({
       ]),
     )
     .default([]),
+  // Added with the cases a week later in November 2026; earlier files have none.
+  later: z
+    .array(
+      z.object({
+        caseId: z.string(),
+        idea: z.string(),
+        used: z.boolean(),
+        right: z.number().int().nonnegative(),
+        of: z.number().int().positive(),
+        at: date,
+      }),
+    )
+    .default([]),
   drills: z
     .array(
       z.object({

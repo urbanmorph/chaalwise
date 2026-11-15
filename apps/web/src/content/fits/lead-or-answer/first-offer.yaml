@@ -1,0 +1,7 @@
+from: life/lead-or-answer/first-offer
+prompt: You are selling your bicycle. Ones like it sell for about 8,000. A buyer opens at 4,000.
+explanation: They moved first, and their low number tells you little. Answer on purpose with your own figure near the market price, not halfway to theirs.
+feedback:
+  their-next-move: Their move is made. The question is how you answer it.
+  make-it-hard: You are not losing. You have a fair price and a low opening to answer.
+  pass-the-problem-back: Asking them for another number lets their low start stand. Answer it with yours.

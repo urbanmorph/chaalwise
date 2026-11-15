@@ -1,0 +1,7 @@
+prompt: 'You are about to accept a job offer by email. The offer letter mentions a bond: leave within two years and you repay the training costs. No amount is given.'
+explanation: Before you commit, ask what could go wrong. A bond with no amount could cost far more than you expect, so ask for the figure in writing first.
+feedback:
+  their-next-move: Nobody is about to answer a move of yours. The employer has made its offer; what matters is the trap in it, before you accept.
+  finish-the-job: This is the start of something, not the last step of a win nearly made.
+  look-at-three: You are not choosing between options yet. The question is whether this one hides a trap.
+pair: their-next-move/supplier-discount

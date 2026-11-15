@@ -1,0 +1,7 @@
+from: life/review-calmly/rained-out
+prompt: You organised an outdoor college event after checking a forecast that gave a 10% chance of rain. It rained hard, and half the guests left early. A friend says it was a bad decision.
+explanation: Judge the choice by what you knew when you made it, not only by how it turned out. A 10% chance of rain was a fair risk; the rain was bad luck.
+feedback:
+  make-it-hard: Nothing is still to play for. The event is over.
+  blunder-check: Checking the forecast was the check. Now the question is how to judge the choice.
+  spend-effort-where-it-matters: The choice is behind you. The question is how to judge it, not how much effort to give it.

@@ -4,18 +4,22 @@ import MixedPractice from '../components/MixedPractice.svelte';
 import PlanCheckIn from '../components/PlanCheckIn.svelte';
 import ReviewSession from '../components/ReviewSession.svelte';
 import Base from '../layouts/Base.astro';
+import { fitsBank } from '../lib/fits-bank';
+import { laterCases } from '../lib/later-cases';
 import { reviewSteps } from '../lib/lessons';
 
 const steps = await reviewSteps();
+const fits = await fitsBank();
+const cases = await laterCases();
 ---
 
 <Base title="Review" description="Questions from your finished lessons, brought back just before you would forget them." wide noindex>
   <div class="wrap wide">
     <h1>Today's review</h1>
     <p>Questions from lessons you have finished come back here on later days, just before you would forget them. Answer them to keep the ideas fresh.</p>
-    <ReviewSession client:load {steps} />
-    <MixedPractice client:idle {steps} />
+    <ReviewSession client:load {steps} {fits} {cases} />
     {/* Below the review, so it never pushes the questions down as it loads. */}
+    <MixedPractice client:idle {steps} {fits} />
     <PlanCheckIn client:idle />
     <LookBack client:idle />
   </div>

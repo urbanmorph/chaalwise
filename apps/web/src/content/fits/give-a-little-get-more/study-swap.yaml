@@ -1,0 +1,7 @@
+from: life/give-a-little-get-more/study-swap
+prompt: A friend offers a swap. You spend 3 hours helping with her coding assignment, and she teaches you the statistics you are stuck on, which would take you about 8 hours alone. Your own deadline is in a week.
+explanation: 'Give a little to get more. Three hours buys you about eight, and both are counted in the same units: hours.'
+feedback:
+  two-birds-one-stone: These are two tasks, not one move that serves two aims. You give time to get time.
+  pass-the-problem-back: Nothing is being handed back. It is a fair trade of hours.
+  spend-effort-where-it-matters: The question is not how much thought a choice deserves, but whether three hours for eight is a good trade.

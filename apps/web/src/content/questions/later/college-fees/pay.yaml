@@ -1,0 +1,12 @@
+kind: choice
+prompt: Which way of paying suits you best?
+options:
+  - 'Pay in one go now: ₹4.9 lakh, which you have, with nothing left to go wrong'
+  - Pay in two parts, and keep the rest in shares in the meantime
+  - Wait until term starts to decide
+answer: 0
+feedback:
+  - ''
+  - Two parts leave a payment months away, with time for something to go wrong, and give up the ₹10,000 off.
+  - Waiting keeps open a decision you can close today, and loses the ₹10,000 off.
+explanation: You are ahead and can settle it now. Paying in one go removes the parts that could still go wrong, and saves ₹10,000 as well.

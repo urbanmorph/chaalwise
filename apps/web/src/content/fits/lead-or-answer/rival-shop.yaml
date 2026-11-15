@@ -1,0 +1,9 @@
+from: life/lead-or-answer/rival-shop
+prompt: A large chain opens next door to your small hardware shop. It sells the same items for 15% less, and it can afford low prices for longer than you can.
+explanation: Answer on purpose, not by copying. Do not race it on price; answer with what a chain cannot match, such as advice, repairs or delivery.
+feedback:
+  their-next-move: The chain has moved already. The question is how you answer it.
+  two-birds-one-stone: A move that does two jobs would be nice, but the key is to answer on your own terms, not theirs.
+  count-it-through: 'Counting matters, but first decide the kind of answer: on price, or on something else.'
+alsoFits:
+  - make-it-hard

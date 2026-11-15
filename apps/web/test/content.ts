@@ -51,7 +51,7 @@ export const entriesIn = (game: string) =>
     return { file, data, questions: (data.try ?? []).map(question) };
   });
 
-/** Every question id that a lesson asks or a reference entry tries. */
+/** Every question id that a lesson, a reference entry or a case a week later asks. */
 export const askedIds = (): string[] => [
   ...['chess', 'strategy', 'cases'].flatMap((folder) =>
     readdirSync(new URL(`lessons/${folder}/`, CONTENT)).flatMap((file) =>
@@ -59,4 +59,25 @@ export const askedIds = (): string[] => [
     ),
   ),
   ...['strategy', 'chess', 'poker', 'labs'].flatMap((game) => entriesIn(game).flatMap(({ data }) => data.try ?? [])),
+  ...readdirSync(new URL('later/', CONTENT)).flatMap((file) =>
+    (frontmatter(`later/${file}`) as Lesson).steps.flatMap((step) => ('ask' in step ? [step.ask] : [])),
+  ),
+];
+
+/**
+ * Terms that belong to one game or sport, with little everyday meaning of their own.
+ * A question about life that uses one must say which game it means: mixed practice
+ * and review show it alone, with no lesson around it to say so.
+ */
+export const GAMES: [name: RegExp, terms: RegExp][] = [
+  [
+    /\bchess\b/i,
+    /\b(knight|bishop|rook|pawn|checkmate|stalemate|castling|en passant|back rank|sicilian|recapture)s?\b/i,
+  ],
+  [/\bpoker\b/i, /\b(the flop|river card|turn card|big blind|pot odds|check-raise|hole cards|all-in)\b/i],
+  [/\b(football|soccer)\b/i, /\b(penalty kick|penalty taker|goalkeeper|offside|free kick|corner kick)s?\b/i],
+  [/\bcricket\b/i, /\b(wicket|innings|bowler|batsman|lbw)s?\b/i],
+  [/\btennis\b/i, /\b(deuce|double fault|tiebreak|break point)s?\b/i],
+  [/\bgolf\b/i, /\b(birdie|bogey|putt)s?\b/i],
+  [/\bbasketball\b/i, /\b(free throw|three-pointer)s?\b/i],
 ];

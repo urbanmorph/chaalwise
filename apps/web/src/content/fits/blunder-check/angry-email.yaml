@@ -1,0 +1,9 @@
+from: life/blunder-check/angry-email
+prompt: A colleague took credit for your work in the team chat. You have written a sharp reply to everyone, and your finger is on Send.
+explanation: Before you act, ask what could go wrong. Read the message as they will, and think of who it could be forwarded to.
+feedback:
+  not-so-fast: That is for stopping a plan the other side is building. Nobody is building anything here; the danger is in your own message.
+  count-it-through: There is no chain of costs or steps to add up. The danger is one message, sent in a hurry.
+  review-calmly: Nothing has happened yet to look back on. The moment calls for a check before you act, not a review after.
+alsoFits:
+  - their-next-move

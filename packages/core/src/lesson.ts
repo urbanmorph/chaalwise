@@ -82,6 +82,8 @@ const choiceStep = z
       .regex(/^[a-z0-9-]+$/, "a lab's slug, such as prisoners-dilemma")
       .optional(),
     cards,
+    /** A page to go back to, shown with the explanation, such as the lesson that teaches the idea. */
+    link: z.object({ href: z.string().regex(/^\//, 'a path on this site'), text: z.string().min(1) }).optional(),
   })
   .refine((s) => s.answer < s.options.length, {
     message: 'answer must be the index of one of the options',
@@ -249,5 +251,22 @@ export const lessonSchema = z
   });
 
 export type Lesson = z.infer<typeof lessonSchema>;
+
+/**
+ * A case a week later (see later.ts): reading and two or three decisions from
+ * the corpus, and the idea it tests, which the learner is told only afterwards.
+ * The idea is a strategy or poker lesson, or a lab: something finished, with a page to go back to.
+ */
+export const laterCaseSchema = z
+  .object({
+    title: z.string().min(1),
+    idea: z.string().regex(/^(strategy|poker|labs)\/[a-z0-9-]+$/, 'the idea is a strategy or poker lesson, or a lab'),
+    steps: z.array(authoredStep).min(1),
+  })
+  .refine((c) => [2, 3].includes(c.steps.filter((s) => 'ask' in s).length), {
+    message: 'a case a week later has two or three decisions',
+    path: ['steps'],
+  });
+export type LaterCase = z.infer<typeof laterCaseSchema>;
 export type Step = z.infer<typeof stepSchema>;
 export type GradedStep = Exclude<Step, { kind: 'read' } | { kind: 'plan' }>;

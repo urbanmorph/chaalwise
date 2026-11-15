@@ -1,0 +1,7 @@
+prompt: 'Your print shop has compared four ways to replace its old machine and likes a lease best. It costs nothing for three months, then 9,000 a month for three years, and cannot be ended early.'
+explanation: Follow the chain to the end before you agree. The free months lead to 36 payments of 9,000, or 324,000, and you cannot stop if work dries up.
+feedback:
+  look-at-three: The options have been compared already. What is left is seeing where this one leads.
+  blunder-check: Nobody is about to act against you. The cost is written in the lease, once you add it up.
+  give-a-little-get-more: Nothing is being traded for more of something else. The lease's cost is in its later payments.
+pair: look-at-three/new-machine
