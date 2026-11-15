@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Kavya, Arjun and Nisha, a team at a software firm in Noida, win a ₹30,000 bonus for a project. Kavya and Arjun could have done a smaller version of it without Nisha, for a ₹24,000 bonus. Nisha suggests splitting the bonus equally, ₹10,000 each. What is the problem with that?'
+options:
+  - None, if all three worked the same hours
+  - Kavya and Arjun would do better as a pair, without Nisha
+  - Nisha should get more, since she suggested the split
+answer: 1
+feedback:
+  - Hours are not what each person adds. Together, Kavya and Arjun would get ₹20,000, less than the ₹24,000 they could earn as a pair.
+  - ''
+  - Suggesting a split adds nothing to the project. What counts is what each person adds to it.
+explanation: 'Check that no one, and no pair, would do better on their own. Kavya and Arjun can earn ₹24,000 without Nisha, so a split that lasts gives them at least that between them, and Nisha at most ₹6,000. Otherwise the pair has a reason to leave.'
+measures: value

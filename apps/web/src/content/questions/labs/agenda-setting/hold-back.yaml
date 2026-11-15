@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the Who sets the agenda? lab, a college fest committee of three equal groups chooses a band night, a comedy show or a dance contest. Between any two, a majority prefers one: the band beats comedy, comedy beats the dance contest, and the dance contest beats the band. Each group votes for the option it likes more. As chair, you want the dance contest. Which order of votes do you set?'
+options:
+  - The band against comedy first, then the winner against the dance contest
+  - The dance contest against the band first, then the winner against comedy
+  - The dance contest against comedy first, then the winner against the band
+answer: 0
+feedback:
+  - ''
+  - The dance contest beats the band in the first vote, then loses to comedy in the second.
+  - Comedy beats the dance contest in the first vote, then loses to the band in the second.
+explanation: 'Hold back the option you want to the last vote. The band beats comedy first, then the dance contest beats the band. In this committee, the option held back always wins, so the chair can choose any of the three.'
+measures: think-ahead

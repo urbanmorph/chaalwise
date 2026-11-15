@@ -365,16 +365,6 @@
     font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
-  .step {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  .step legend {
-    margin-bottom: 6px;
-    padding: 0;
-    font-weight: 600;
-  }
   .button[aria-pressed='true'] {
     outline: 3px solid var(--focus);
     outline-offset: 2px;

@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import AgendaLab from '../../components/labs/AgendaLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'who-sets-the-agenda')!;
+---
+
+<LabPage {lab}>
+  <p>
+    A college fest committee of three groups chooses its main event by majority vote, two options at a time. First you chair it and choose the order of the
+    votes; then a bot chairs, and you speak for one group. See how far the order decides the winner.
+  </p>
+  <AgendaLab client:load />
+</LabPage>

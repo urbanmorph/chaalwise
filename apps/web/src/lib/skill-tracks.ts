@@ -45,7 +45,8 @@ export const TRACKS: Track[] = [
  * skill profile, so naming a new lab here adds nothing to any page's JavaScript.
  */
 export const TRACK_ALSO: Record<SkillId, string> = {
-  'think-ahead': 'The bonus rule, Who moves first and Guess two-thirds labs, Connect Four, Go, Bagh-Chal',
+  'think-ahead':
+    'The bonus rule, Who moves first, Guess two-thirds and Who sets the agenda? labs, Connect Four, Go, Bagh-Chal',
   calculate: 'Nim lab, Pallanguzhi',
   'plan-long': 'Go',
   'size-risk': 'Who backs down? lab, Backgammon',
@@ -56,7 +57,7 @@ export const TRACK_ALSO: Record<SkillId, string> = {
   bluff: "Liar's Dice",
   cooperate: "Prisoner's Dilemma, Pick the same, Split it fairly? and The shared fund labs",
   unpredictable: 'Rock-paper-scissors lab',
-  value: 'Sealed-bid auction, Split the pie and Trade what matters less labs',
+  value: 'Sealed-bid auction, Split the pie, Trade what matters less and Fair shares labs',
 };
 
 /** The game that trains a skill best, for the home page: chess or poker where it is strongest, otherwise the game-theory labs. */

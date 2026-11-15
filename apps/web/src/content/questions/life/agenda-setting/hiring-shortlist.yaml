@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'A hiring panel of three managers at a firm in Hyderabad must choose one of three candidates: Anil, Bhavna or Charu. Between any two, a majority of the panel prefers one, but the preferences go round in a circle. Two of the three prefer Anil to Bhavna, two prefer Bhavna to Charu, and two prefer Charu to Anil. The HR team will send the panel a shortlist of two names. Who really chooses the hire?'
+options:
+  - The panel, by majority vote
+  - Whoever draws up the shortlist
+  - The candidate who does best on the day
+answer: 1
+feedback:
+  - The panel votes, but with two names on the list, the result is known before it starts. Anil beats Bhavna, Bhavna beats Charu and Charu beats Anil, so each shortlist has its own winner.
+  - ''
+  - The managers’ preferences are already set. With these preferences, each possible shortlist of two has a winner known in advance.
+explanation: 'Leave one name off the shortlist and the vote between the other two is decided before it starts. When majorities go round in a circle, whoever sets the shortlist can pick any of the three. Ask how the shortlist was made.'
+measures: think-ahead

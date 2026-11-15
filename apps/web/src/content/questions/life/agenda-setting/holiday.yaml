@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your family in Lucknow is choosing a holiday: Goa, Ooty or Jaipur. Put any two to a vote and a majority picks one, but the choices go round in a circle: Goa beats Ooty, Ooty beats Jaipur, and Jaipur beats Goa. Your uncle, who wants Jaipur, proposes a vote on Goa against Ooty first, then the winner against Jaipur. What should you notice?'
+options:
+  - The order he chose makes Jaipur win
+  - It is fair, because every place gets a vote
+  - Nothing, since a majority decides each vote
+answer: 0
+feedback:
+  - ''
+  - Every place is voted on, but not on equal terms. Jaipur faces only one vote, against Goa, which it beats. In another order, another place would win.
+  - A majority decides each vote, but the majorities go round in a circle. So the order decides which place wins, and your uncle chose the order.
+explanation: 'When a group’s majorities go round in a circle, the option held back to the last vote wins. Goa beats Ooty, then Jaipur beats Goa. Ask who set the order, and what would win in another order, or ask everyone to rank all three.'
+measures: think-ahead
