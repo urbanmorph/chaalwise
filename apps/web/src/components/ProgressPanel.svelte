@@ -37,7 +37,13 @@
     }
   }
 
+  // The journal loads after the page, as it sits at the end: the dashboard's first paint needs none of it.
+  let Journal = $state<typeof import('./Journal.svelte').default>();
+  // Shown afresh after a file is loaded, as the file replaces the journal too.
+  let imported = $state(0);
+
   onMount(async () => {
+    import('./Journal.svelte').then((m) => (Journal = m.default)).catch(console.error);
     try {
       await load();
     } catch (error) {
@@ -91,6 +97,7 @@
         progress.close();
       }
       message = `Progress loaded from ${name}.`;
+      imported++;
       await load();
     } catch {
       message = 'That file is not a Chaalwise progress file. Nothing was changed.';
@@ -160,6 +167,15 @@
   </section>
 </div>
 
+<section id="journal" class="journal" aria-labelledby="journal-title">
+  <h2 id="journal-title">Decision journal</h2>
+  <p>
+    Write a decision down before you know how it turns out. Once the result is in, memory quietly rewrites what you expected (hindsight bias). The journal keeps
+    the record, so you can judge the decision by what you knew then. It stays on this device, and goes into your progress file.
+  </p>
+  {#if Journal}{#key imported}<Journal />{/key}{/if}
+</section>
+
 <style>
   .grid {
     display: grid;
@@ -183,6 +199,9 @@
   }
   dd.when {
     font-size: 0.95rem;
+  }
+  .journal {
+    margin-top: 40px;
   }
   .file {
     display: grid;

@@ -7,7 +7,8 @@ export const COUNT_HOST = 'chaalwise.com';
 
 /**
  * Anonymous counts of what is finished: a lesson, a lab played to the end, a drill,
- * a practice hand, a review or practice round. Each sends only its name, such as
+ * a practice hand, a review or practice round, and the answer to a plan check-in
+ * (`checkin:noticed`, `checkin:acted`, `checkin:not-noticed`). Each sends only its name, such as
  * `played:labs/nim`; the counter adds one to that name's total for the day. No
  * ID, cookie or anything about the learner is sent, and progress stays on the
  * device. Only on the live site, and silently dropped when offline.

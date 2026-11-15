@@ -26,7 +26,11 @@ test('a strategy lesson ends with a plan you keep, and the review asks a day lat
   await page.goto('/review/');
   const card = page.getByTestId('plan-check-in');
   await expect(card).toContainText('Your plan: When I reply to a client');
-  await card.getByRole('button', { name: 'I used it' }).click();
+  // Noticing comes first: it is the usual failure. Only then, whether the plan was acted on.
+  await expect(card.getByRole('heading')).toHaveText('Did the moment come up, and did you notice it?');
+  await card.getByRole('button', { name: 'Yes, I noticed it' }).click();
+  await expect(card).toContainText('Did you act on your plan?');
+  await card.getByRole('button', { name: 'Yes, I did' }).click();
   await expect(card).toContainText('Was it a good decision, whatever the result?');
 
   // Answered: not asked again for a week.

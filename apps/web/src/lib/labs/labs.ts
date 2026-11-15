@@ -1,4 +1,5 @@
 import type { SkillId } from '@chaalwise/core/skills';
+import { shortDate } from '../short-date';
 
 export interface Lab {
   slug: string;
@@ -147,6 +148,4 @@ export function labsPlayed(records: { lessonId: string; completedAt: Date; times
 
 /** When a lab was last played: one short line, like "Not yet", so the list does not move as it loads. */
 export const playedLabel = (at: Date | undefined, times: number): string =>
-  !at
-    ? 'Not yet'
-    : `${at.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}${times > 1 ? `, ${times} times` : ''}`;
+  !at ? 'Not yet' : `${shortDate(at)}${times > 1 ? `, ${times} times` : ''}`;

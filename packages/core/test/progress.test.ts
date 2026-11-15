@@ -205,6 +205,74 @@ describe('attempts for the skill profile', () => {
     other.close();
   });
 
+  it('changes the latest check-in once the second question is answered: noticed, then acted', async () => {
+    await fresh();
+    await store.savePlan({ id: 'p', track: 'think-ahead', text: 'When I send, I will check.', createdAt: now });
+    await store.checkInPlan('p', 'noticed', later);
+    await store.amendCheckIn('p', 'acted');
+    expect((await store.plans())[0]!.checkIns).toEqual([{ at: later, result: 'acted' }]);
+  });
+
+  it('keeps a journal on the device, carries it through an export, and deletes an entry when asked', async () => {
+    await fresh();
+    const entry = {
+      id: 'decision-1',
+      kind: 'decision' as const,
+      createdAt: now,
+      deciding: 'Which offer to accept',
+      expect: 'The smaller firm teaches me more',
+      sure: 60,
+      lookBackOn: later,
+    };
+    await store.writeJournal(entry);
+    await store.writeJournal({ ...entry, lookedBack: { at: later, happened: 'It did', judged: 'sound' } });
+    await store.writeJournal({
+      id: 'reflection-1',
+      kind: 'reflection',
+      createdAt: now,
+      from: 'labs/nim',
+      title: 'Nim',
+      same: 'a',
+      change: 'b',
+    });
+    expect(await store.journal()).toHaveLength(2);
+
+    const exported = JSON.parse(JSON.stringify(await store.exportData(now)));
+    const other = await openProgress(`test-${++n}`);
+    await other.importData(exported);
+    expect((await other.journal()).find((e) => e.id === 'decision-1')).toMatchObject({
+      sure: 60,
+      lookedBack: { judged: 'sound' },
+    });
+    await other.deleteJournal('decision-1');
+    expect((await other.journal()).map((e) => e.id)).toEqual(['reflection-1']);
+    other.close();
+  });
+
+  it('upgrades a version 4 device and keeps its plans', async () => {
+    const name = `test-${++n}`;
+    const v4 = await openDB(name, 4, {
+      upgrade(db) {
+        for (const store of ['lessons', 'cards', 'drills', 'plans'])
+          db.createObjectStore(store, {
+            keyPath: store === 'lessons' ? 'lessonId' : store === 'drills' ? 'drillId' : 'id',
+          });
+        db.createObjectStore('attempts', { autoIncrement: true });
+      },
+    });
+    await v4.put('plans', {
+      id: 'p',
+      track: 't',
+      text: 'When a, I will b.',
+      createdAt: now,
+      checkIns: [{ at: now, result: 'used' }],
+    });
+    v4.close();
+    store = await openProgress(name);
+    expect((await store.plans())[0]!.checkIns).toEqual([{ at: now, result: 'used' }]);
+    expect(await store.journal()).toEqual([]);
+  });
+
   it('upgrades a version 2 device without losing anything', async () => {
     const name = `test-${++n}`;
     const v2 = await openDB(name, 2, {

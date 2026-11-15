@@ -8,6 +8,7 @@ import type { Lab } from '../../lib/labs/labs';
 import { LAB_PLANS } from '../../lib/labs/plans';
 import { ask } from '../../lib/questions';
 import { labLessons, lessonHref } from '../../lib/lessons';
+import Reflection from '../Reflection.svelte';
 import TryIt from '../TryIt.astro';
 import LabPlan from './LabPlan.svelte';
 import './labs.css';
@@ -15,7 +16,7 @@ import './labs.css';
 /**
  * A game-theory lab: the idea, the game (the slot, an island), then the
  * debrief questions from the lab's reference entry, a plan to use the idea this
- * week, the lessons on its skill and where to read more.
+ * week and an optional reflection, the lessons on its skill and where to read more.
  */
 interface Props {
   lab: Lab;
@@ -52,6 +53,7 @@ if (!plan) throw new Error(`lab ${lab.slug}: no plan in LAB_PLANS`);
       <h2 id="plan-title">Use it this week</h2>
       <p class="prompt">{plan.prompt}</p>
       <LabPlan client:idle slug={lab.slug} track={lab.track} {plan} />
+      <Reflection client:idle from={`labs/${lab.slug}`} title={lab.title} />
     </section>
     {lessons.length > 0 && (
       <section class="lessons" aria-labelledby="lessons-title">

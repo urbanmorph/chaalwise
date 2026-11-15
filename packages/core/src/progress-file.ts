@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { JUDGEMENTS } from './journal';
+import { CHECK_IN_RESULTS } from './plans';
 import { State } from './srs';
 
 /** The progress export file. Checked strictly on import: it replaces everything on the device. */
@@ -40,8 +42,34 @@ export const exportSchema = z.object({
         track: z.string(),
         text: z.string(),
         createdAt: date,
-        checkIns: z.array(z.object({ at: date, result: z.enum(['used', 'forgot', 'no-chance']) })),
+        checkIns: z.array(z.object({ at: date, result: z.enum(CHECK_IN_RESULTS) })),
       }),
+    )
+    .default([]),
+  // Added with the decision journal in November 2026; earlier files have none.
+  journal: z
+    .array(
+      z.discriminatedUnion('kind', [
+        z.object({
+          id: z.string(),
+          kind: z.literal('decision'),
+          createdAt: date,
+          deciding: z.string(),
+          expect: z.string(),
+          sure: z.number().min(0).max(100),
+          lookBackOn: date,
+          lookedBack: z.object({ at: date, happened: z.string(), judged: z.enum(JUDGEMENTS) }).optional(),
+        }),
+        z.object({
+          id: z.string(),
+          kind: z.literal('reflection'),
+          createdAt: date,
+          from: z.string(),
+          title: z.string(),
+          same: z.string(),
+          change: z.string(),
+        }),
+      ]),
     )
     .default([]),
   drills: z
