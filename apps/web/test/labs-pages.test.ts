@@ -56,11 +56,11 @@ describe('the labs pages', () => {
         for (const s of LAB_PLANS[lab.slug]!.situations) expect(plan).toContain(`When ${s.replaceAll("'", '&#39;')}`);
       });
 
-      it('lists every strategy and poker lesson that trains its skill', () => {
+      it('lists every strategy and poker lesson that trains its skill, and any lesson that follows it', () => {
         const section = html.match(/<section class="lessons"[\s\S]*?<\/section>/)?.[0] ?? '';
         const hrefs = [...section.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
-        const training = [...lessonsIn('strategy'), ...lessonsIn('poker')].filter(({ data }) =>
-          data.skills.includes(lab.track),
+        const training = [...lessonsIn('strategy'), ...lessonsIn('poker')].filter(
+          ({ data }) => data.skills.includes(lab.track) || data.after === `labs/${lab.slug}`,
         );
         expect(hrefs.sort()).toEqual(
           training

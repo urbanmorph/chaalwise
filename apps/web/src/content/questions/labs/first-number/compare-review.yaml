@@ -1,0 +1,15 @@
+kind: choice
+lab: first-number
+prompt: "In the First number wins? lab, you saw the wheel's pull in your friend's 8,000 at once, and nearly missed it in your own 7,000. The range was 4,000 to 6,000, and the wheel stopped at 9,000. What does that share with the budget review?"
+alongside: "At a software firm in Pune, Kavya reviews a colleague's budget and points out three places where its guesses are too hopeful. Her own budget, sent the same day, makes the same kind of hopeful guesses, and she does not see them."
+options:
+  - "Each spots a bias in someone else's work and misses it in their own"
+  - 'Both show that some people are simply more biased than others'
+  - 'Both are about numbers, and more careful sums would have caught them'
+answer: 0
+feedback:
+  - ''
+  - 'Here the same person sees the bias in one place and misses it in another. What changes is whose work it is, not who is looking.'
+  - 'The sums were not wrong. The guesses behind them leaned one way, and checking the arithmetic does not catch that.'
+explanation: "In both, the bias was easy to see from outside and hard to see from inside. Others' work is judged by what it shows, and our own by what we meant. The fix is the same check on both: in the lab, one reason each way; for Kavya, the review she gave her colleague."
+measures: composure

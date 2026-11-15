@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { deck, type Card } from '@chaalwise/poker/cards';
 import { compare, evaluate } from '@chaalwise/poker/evaluate';
 import { equity, exactChance, outs } from '@chaalwise/poker/odds';
+import { botMove } from '@chaalwise/poker/bots';
+import { seeded } from '@chaalwise/poker/random';
+import { act, newHand, stackDeck, type Table } from '@chaalwise/poker/table';
 import { cardIssues, type StepCards } from '../src/lib/poker/step-cards';
 import { corpus, lessonsIn } from './content';
 
@@ -179,11 +182,67 @@ describe('what the poker lessons claim', () => {
     expect(flushes).toEqual(twoHearts);
   });
 
+  it('explains Ravi’s calls by his cards and the price in the strategy lesson on blaming the situation first', () => {
+    const { board = [], others = [] } = cardsOf('blame-the-situation-first/ravis-call');
+    const ravi = others[0]!.cards as Card[];
+    const turn = board.slice(0, 4) as Card[];
+    // Before the last card Ravi had no pair: only four cards in a row, waiting for a king or an eight.
+    expect(evaluate([...ravi, ...turn]).category).toBe('high-card');
+    expect(outs(ravi, turn)).toMatchObject({ count: 8, drawing: 'straight' });
+    // From his seat, 46 cards are unseen: the straight comes about 17% of the time.
+    expect(Math.round(exactChance(8, 46, 1))).toBe(17);
+    // Your bet of 4 made the pot 24, so his call cost 4 to play for 28: about 14%, less than his chance.
+    expect(Math.round((100 * 4) / 28)).toBe(14);
+    expect((100 * 4) / 28).toBeLessThan(exactChance(8, 46, 1));
+    // The eight came: his straight beats your two aces.
+    expect(board[4]).toMatch(/^8/);
+    expect(evaluate([...ravi, ...board] as Card[]).category).toBe('straight');
+    expect(hand('blame-the-situation-first/ravis-call').name).toBe('a pair of aces');
+    expect(
+      compare(evaluate([...ravi, ...board] as Card[]), hand('blame-the-situation-first/ravis-call')),
+    ).toBeGreaterThan(0);
+  });
+
+  it('shows that a steady player calls a bluff with any pair in the strategy lesson on what others want', () => {
+    const { hole = [], board = [] } = cardsOf('they-dont-want-what-you-want/bluff-meena');
+    const mine = evaluate([...hole, ...board] as Card[]);
+    // Your two spades found two more on the board, one short of a flush: no pair, no flush.
+    expect([...hole, ...board].filter((c) => c.endsWith('s'))).toHaveLength(4);
+    expect(mine.category).toBe('high-card');
+    const pairs = holdings([...hole, ...board]).filter(
+      (h) => evaluate([...h, ...board] as Card[]).category !== 'high-card',
+    );
+    expect(pairs.length).toBeGreaterThan(400);
+    // Heads-up, you are the dealer (on the button) and act last after the flop; Meena checks each round, you check too, and on the last card you bet.
+    const river = (theirs: Card[]): Table => {
+      let t = newHand(
+        [
+          { name: 'You', points: 200, isBot: false },
+          { name: 'Meena', points: 200, isBot: true },
+        ],
+        0,
+        stackDeck([hole as Card[], theirs], board as Card[], 0),
+      );
+      t = act(act(t, 'call'), 'check');
+      for (let street = 0; street < 2; street++) t = act(act(t, 'check'), 'check');
+      expect(t.street).toBe('river');
+      return act(act(t, 'check'), 'bet');
+    };
+    for (const theirs of pairs) {
+      // Every pair beats your hand, and the steady player never folds one to your bet.
+      expect(compare(evaluate([...theirs, ...board] as Card[]), mine)).toBeGreaterThan(0);
+      const t = river(theirs);
+      for (let seed = 1; seed <= 3; seed++) expect(botMove(t, 1, 'steady', seeded(seed))).not.toBe('fold');
+    }
+  });
+
   it('shows the same cards on each strategy lesson’s poker moment, its question and its comparison', () => {
     const moments = {
       'chance-and-price': 'flush-draw',
       'more-than-one-guess': 'careful-raise',
       'a-bet-tells-a-story': 'third-heart',
+      'blame-the-situation-first': 'ravis-call',
+      'they-dont-want-what-you-want': 'bluff-meena',
     };
     const strategy = lessonsIn('strategy');
     for (const [lesson, question] of Object.entries(moments)) {

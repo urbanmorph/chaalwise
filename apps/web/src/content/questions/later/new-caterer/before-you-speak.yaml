@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'On the canteen committee in Hyderabad, one caterer is run by your old college friend. Before you give your view, what do you do?'
+options:
+  - 'Say you know him, and score all three on the agreed terms before giving a view'
+  - 'Give your view: you know you are fair, and his food really is good'
+  - 'Say nothing about the friendship, since you know it does not sway you'
+answer: 0
+feedback:
+  - ''
+  - "Your colleague felt fair about his cousin's firm too. Feeling fair is not a check: a pull like this works without being felt."
+  - 'You would not accept that from your colleague last month. Hold yourself to the same rule, and let the scores speak.'
+explanation: 'You spotted the pull on your colleague from outside. From inside, your own pull feels like good taste. Run the same check on yourself that you ran on him: declare the link, score on the agreed terms, and have someone argue the other side.'

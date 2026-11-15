@@ -13,6 +13,7 @@ import {
   type Estimate,
 } from '../src/lib/labs/anchoring';
 import { seeded } from '../src/lib/labs/seeded';
+import { corpus } from './content';
 
 const item = (id: string) => ITEMS.find((i) => i.id === id)!;
 
@@ -209,5 +210,31 @@ describe('first number wins?: before and after giving reasons', () => {
     expect(aboveText(0.2)).toBe('20% above the lab’s value');
     expect(aboveText(-0.15)).toBe('15% below the lab’s value');
     expect(aboveText(0.001)).toBe('right on the lab’s value');
+  });
+});
+
+describe('first number wins?: the strategy lesson that follows it', () => {
+  // "Your own blind spot" retells one round of the lab; the lab's own items and first numbers decide what it may claim.
+  it('tells a Lucknow fest round the lab can deal: its range, a wheel at 9,000, and estimates of 7,000 and 8,000 on the wheel’s side', () => {
+    const fest = item('fest-lucknow');
+    expect(fest.range).toEqual([4000, 6000]);
+    expect(fest.value).toBe(5000);
+    // A high first number for this item falls between 8,000 and 10,000, in steps of 500: 9,000 can come up.
+    const highs = new Set<number>();
+    for (let seed = 1; seed <= 400; seed++)
+      for (const r of anchorRounds(seeded(seed))) if (r.item.id === fest.id && r.side === 'high') highs.add(r.anchor);
+    expect(highs.has(9000)).toBe(true);
+    expect(Math.min(...highs)).toBeGreaterThanOrEqual(8000);
+    expect(Math.max(...highs)).toBeLessThanOrEqual(10000);
+    expect(fest.source.high).toContain('wheel');
+    // Your 7,000 and the friend's 8,000 both sit above the range, pulled towards the wheel.
+    for (const estimate of [7000, 8000]) {
+      expect(estimate).toBeGreaterThan(fest.range[1]);
+      expect(pull(estimate, fest.value, 9000)).toBeGreaterThan(0);
+    }
+    const text = JSON.stringify(
+      ['wheel-pull', 'compare-review'].map((name) => corpus.get(`labs/first-number/${name}`)),
+    );
+    for (const n of ['4,000', '6,000', '9,000', '7,000', '8,000']) expect(text).toContain(n);
   });
 });

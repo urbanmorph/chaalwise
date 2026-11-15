@@ -1,0 +1,7 @@
+from: life/your-own-blind-spot/own-proposal
+prompt: At a software firm in Chennai, you are known as the toughest reviewer of other people's code, and you often catch their missed checks. Tonight you are releasing a change of your own, late, and nobody else is free to review it.
+explanation: You catch others' mistakes because you look for them. Your own work feels right from inside, so give it the same review you would give a colleague's, or wait for someone else to.
+feedback:
+  blunder-check: A last look before you release helps, but the point here is that you give others' work a test you are about to skip on your own.
+  review-calmly: There is no result to review yet. The check has to come before the release.
+  spend-effort-where-it-matters: Effort is not the issue. You know how to review; the risk is not doing it to your own work.

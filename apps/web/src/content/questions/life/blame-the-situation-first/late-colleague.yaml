@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'At work in Pune, your colleague Anjali reaches a 10 a.m. client meeting 40 minutes late, and you have to start without her. In two years she has never been late before. What do you do first?'
+options:
+  - 'Ask her what happened before you decide anything about her'
+  - 'Tell your manager she cannot be trusted with clients'
+  - 'Say nothing, but stop asking her to client meetings'
+  - 'Take it that she did not think the meeting mattered'
+answer: 0
+feedback:
+  - ''
+  - 'One late morning in two years says little about her and a lot about that morning. Telling your manager first could hurt someone reliable over a cancelled bus.'
+  - 'Quietly dropping her punishes her for something you have not checked. She will not know why, and you lose a good colleague at meetings.'
+  - 'That guesses at her attitude from one slip. Two years of being on time say the meeting mattered to her, so look at what got in her way.'
+explanation: "In poker, Ravi's call made sense once you saw his cards and the price. Here, a first slip from someone always on time points to the situation: a cancelled bus, a sick child, a traffic jam. Ask what happened first. If it keeps happening whatever the morning brings, then it may be about her."
+measures: read-hidden

@@ -94,6 +94,29 @@ describe('the poker skills complete the transfer loop', () => {
   });
 });
 
+describe('the three biases trained in the debiasing experiments', () => {
+  // Morewedge et al. (2015) cut the bias blind spot, the fundamental attribution error and projection bias with a game:
+  // make the mistake in play, then have it named, with feedback. Each gets a lesson that starts from play.
+  const sourcesOf = (id: string) =>
+    (frontmatter(`lessons/strategy/${id}.md`) as { sources?: { title: string }[] }).sources?.map((s) => s.title) ?? [];
+
+  it.each([
+    ['blame-the-situation-first', 'read-hidden', 'poker/', ['Ross', 'Jones', 'Morewedge']],
+    ['they-dont-want-what-you-want', 'read-hidden', 'poker/', ['Ross, David Greene and Pamela House', 'Morewedge']],
+    ['your-own-blind-spot', 'composure', 'labs/', ['Pronin', 'Morewedge']],
+  ])('teaches %s (%s) after %s, citing its research', (id, skill, from, cited) => {
+    const lesson = lessons.find((l) => l.id === id);
+    expect(lesson, id).toBeDefined();
+    expect(lesson!.skills, id).toEqual([skill]);
+    expect(lesson!.after, id).toMatch(new RegExp(`^${from}`));
+    for (const name of cited) expect(sourcesOf(id).join(' | '), id).toContain(name);
+    // Four to eight steps, with at least three questions about life.
+    expect(lesson!.steps.length, id).toBeGreaterThanOrEqual(4);
+    expect(lesson!.steps.length, id).toBeLessThanOrEqual(8);
+    expect(lesson!.asks.filter((a) => a?.startsWith('life/')).length, id).toBeGreaterThanOrEqual(3);
+  });
+});
+
 /** A plan's situations complete "When …" and its action completes the sentence, as the plan step shows them. */
 const wellFormed = (where: string, { situations, action }: { situations?: string[]; action?: string }) => {
   expect(situations!.length, where).toBeGreaterThanOrEqual(3);

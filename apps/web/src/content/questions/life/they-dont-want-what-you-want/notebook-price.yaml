@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At work, you make handmade notebooks in Jaipur and sell them online. You would gladly pay ₹600 for one, so you price them at ₹600. In two months you sell 12. How should you set the price now?'
+options:
+  - 'Find out what buyers pay: ask some, or try two prices and compare'
+  - 'Keep ₹600: if you would pay it, others will too, given time'
+  - 'Halve it to ₹300, so that it is sure to sell'
+answer: 0
+feedback:
+  - ''
+  - "Twelve sales in two months is the buyers telling you something. What you would pay is one view, and yours is not the buyers' view."
+  - 'That is still a guess, only a lower one. It may give away money, or still not sell. Find out what buyers pay before you choose.'
+explanation: 'You priced for yourself, as someone who loves notebooks. Buyers may value them less, or may just compare them with cheaper ones. Ask them, look at what sells, or test two prices. Then set the price on what they do.'
+measures: read-hidden

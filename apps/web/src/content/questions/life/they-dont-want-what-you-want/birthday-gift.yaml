@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At home in Kochi, your grandmother turns 75 next week. You love gadgets, so you plan to give her a smart speaker that answers questions aloud. What is the best way to choose her gift?'
+options:
+  - 'Think about what she has enjoyed and asked for, or ask someone who sees her often'
+  - 'Give the speaker: you would love one, so she will too'
+  - 'Give the most expensive gift you can afford, so she knows you care'
+answer: 0
+feedback:
+  - ''
+  - 'You would love it. Whether she would is the question, and what she has enjoyed before is the best guide.'
+  - 'Price is not what she wants either. A costly gift she does not use shows care less than one she does.'
+explanation: 'A gift chosen by your own taste tells her what you like. Look at what she has done and said: what she uses, what she has asked for. If you are unsure, ask someone who knows her day.'
+measures: read-hidden

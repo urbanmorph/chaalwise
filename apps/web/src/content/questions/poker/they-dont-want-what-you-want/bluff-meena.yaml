@@ -1,0 +1,18 @@
+kind: choice
+prompt: 'In this poker hand you act last, and you have no pair. Meena has called every bet tonight with any pair, and now she checks (passes) to you on the last card. You would fold a small pair to a bet here. Do you bluff (bet to make a better hand fold), or check?'
+cards:
+  hole: [7s, 6s]
+  board: [Kd, 9s, 4s, 2c, Jh]
+options:
+  - 'Check: she calls with any pair, and any pair beats you, so a bluff only loses more points'
+  - 'Bluff: you would fold a small pair here, so she will too'
+  - 'Bluff: acting last means a bet always wins the pot'
+  - 'Bluff: her check shows she has nothing'
+answer: 0
+feedback:
+  - ''
+  - 'What you would fold says nothing about what Meena folds. She has called with any pair all evening, and any pair beats you.'
+  - 'Acting last lets you see her check before you choose. It does not make her fold. A player who calls with any pair still calls.'
+  - 'A check shows she chose not to bet, not that she has nothing. Players who call with any pair often check one and wait.'
+explanation: 'A bluff works only if the other player folds. What you would do in her seat is no evidence of what she will do; what she has done is. Meena has called with any pair all evening, and every pair beats your hand. Check, and lose nothing more.'
+measures: position

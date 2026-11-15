@@ -1,0 +1,15 @@
+kind: choice
+prompt: "In the First number wins? lab, the Lucknow fest round says fests like it draw 4,000 to 6,000 visitors. The wheel stops at 9,000. Your friend answered 8,000, and you saw the wheel's pull on her at once. You answered 7,000. What is the fairest reading of your answer?"
+options:
+  - "The wheel probably pulled me too: 7,000 is above the range, on the wheel's side, as hers was"
+  - 'It did not pull me: I knew the wheel meant nothing'
+  - 'It did not pull me: 7,000 is nearer the range than her 8,000, so mine was reasoned'
+  - 'It pulled me only if I felt pulled at the time'
+answer: 0
+feedback:
+  - ''
+  - 'Your friend knew the wheel meant nothing too. Knowing a number is meaningless does not stop it pulling: that is what the lab shows.'
+  - 'A smaller pull is still a pull. Both answers sit above the 4,000 to 6,000 the lab gave, and both lean towards 9,000.'
+  - 'A first number pulls without being felt. If feeling it were the test, your friend would pass it too.'
+explanation: "The lab gave 4,000 to 6,000, with 5,000 in the middle. Your 7,000 sits above the range, towards the 9,000 on the wheel, just as your friend's 8,000 did. You saw her pull from outside, by her answer. You judged your own from inside, by how it felt. Judge both by the answer."
+measures: composure

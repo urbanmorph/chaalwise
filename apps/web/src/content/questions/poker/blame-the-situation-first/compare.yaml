@@ -1,0 +1,20 @@
+kind: choice
+prompt: "In this poker hand, Ravi's call looked reckless until you saw his cards and the price. What does that share with the new colleague?"
+cards:
+  hole: [As, Ad]
+  board: [Qc, Jd, 4h, 2s, 8h]
+  others:
+    - name: Ravi
+      cards: [Th, 9s]
+alongside: 'A new colleague in your Hyderabad office leaves at 5:30 sharp every day, while the rest of the team stays late. Some say he is lazy. His manager knows he collects his young daughter from school, and logs in again from home after nine.'
+options:
+  - 'Each looked like a flaw in the person, and the situation explained it'
+  - 'Both show that first impressions of people are usually right'
+  - 'Both are about luck: Ravi got his eight, and the colleague got a kind manager'
+answer: 0
+feedback:
+  - ''
+  - 'Here both first impressions were wrong. Ravi was not reckless, and the colleague is not lazy. Each was judged before the situation was known.'
+  - 'Luck decided whether the eight came, but not whether calling was sound. The colleague works the same hours as others, at a different time. Neither is about luck.'
+explanation: 'In both, what looked like a flaw had a reason in the situation: a fair price for a chance at a straight, a child to collect from school. Seen from outside, the person stands out and the situation is hidden. So ask about the situation first.'
+measures: read-hidden
