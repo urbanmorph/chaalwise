@@ -13,12 +13,12 @@ steps:
     position: 'moves: e4 e5 Qh5'
     highlight: [h5, e5]
     arrows: [g7g6, h5e5]
+  - ask: chess/their-next-move/compare
   - kind: read
     id: off-the-board
-    text: Off the board, before you act, think through how the other side will respond. Picture their best reply from where they stand, then decide.
+    text: 'What both share has a name: their next move. Before you act, think through how the other side will respond. Picture their best reply from where they stand, then decide.'
   - ask: life/their-next-move/ask-for-a-raise
   - ask: life/their-next-move/price-cut
-  - ask: chess/their-next-move/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you think about their reply?'

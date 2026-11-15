@@ -13,12 +13,12 @@ steps:
     position: 8/4k3/8/4K3/4P3/8/8/8 b - - 0 1
     highlight: [e5, e7]
   - ask: chess/pass-the-problem-back/hand-it-back
+  - ask: chess/pass-the-problem-back/compare
   - kind: read
     id: off-the-board
-    text: Off the board, some choices are hard for whoever has to make them. When a choice belongs to someone else, do not quietly take it on yourself. Make the move that hands it back, clearly and fairly, so the person who owns it has to make it.
+    text: 'What both share has a name: pass the problem back. Some choices are hard for whoever has to make them. When a choice belongs to someone else, do not quietly take it on yourself. Make the move that hands it back, clearly and fairly, so the person who owns it has to make it.'
   - ask: life/pass-the-problem-back/fourth-project
   - ask: life/pass-the-problem-back/group-split
-  - ask: chess/pass-the-problem-back/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you pass the problem back?'

@@ -13,12 +13,12 @@ steps:
     position: 8/8/4k3/8/1P6/8/5K2/8 w - - 0 1
     highlight: [b4, e6, f2]
   - ask: chess/resources-change-value/worth-a-queen
+  - ask: chess/resources-change-value/compare
   - kind: read
     id: off-the-board
-    text: Off the board, nothing has a fixed value. A skill, a product or a contact can be worth a lot in one situation and little in the next. When the situation changes, value what you hold again, instead of going by what it used to be worth.
+    text: 'What both share has a name: resources change value. Nothing has a fixed value. A skill, a product or a contact can be worth a lot in one situation and little in the next. When the situation changes, value what you hold again, instead of going by what it used to be worth.'
   - ask: life/resources-change-value/next-hire
   - ask: life/resources-change-value/new-exams
-  - ask: chess/resources-change-value/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you value what you hold again?'

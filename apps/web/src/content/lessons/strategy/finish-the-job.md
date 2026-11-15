@@ -14,12 +14,12 @@ steps:
     highlight: [b6, b7]
     arrows: [b1b7]
   - ask: chess/finish-the-job/last-step
+  - ask: chess/finish-the-job/compare
   - kind: read
     id: off-the-board
-    text: Off the board, work that is nearly done is the easiest to spoil. The last steps, such as checking the figures, sending the right version or getting the signature, are where people relax. Keep the same care to the end, and before each last step, ask what could still go wrong.
+    text: 'What both share has a name: finish the job. Work that is nearly done is the easiest to spoil. The last steps, such as checking the figures, sending the right version or getting the signature, are where people relax. Keep the same care to the end, and before each last step, ask what could still go wrong.'
   - ask: life/finish-the-job/contract
   - ask: life/finish-the-job/essay
-  - ask: chess/finish-the-job/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you finish the job with care?'

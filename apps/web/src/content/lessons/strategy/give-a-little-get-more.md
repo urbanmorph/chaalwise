@@ -14,12 +14,12 @@ steps:
     highlight: [e4, f4]
     arrows: [d2d4]
   - ask: chess/give-a-little-get-more/give-to-get
+  - ask: chess/give-a-little-get-more/compare
   - kind: read
     id: off-the-board
-    text: Off the board, most real choices are trades, not free wins. Money, time and position can be swapped for one another. Give one up only for more of another, and count both in the same units. What you give up is the cost, even when no money changes hands.
+    text: 'What both share has a name: give a little, get more. Most real choices are trades, not free wins. Money, time and position can be swapped for one another. Give one up only for more of another, and count both in the same units. What you give up is the cost, even when no money changes hands.'
   - ask: life/give-a-little-get-more/data-entry
   - ask: life/give-a-little-get-more/study-swap
-  - ask: chess/give-a-little-get-more/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you weigh a trade?'

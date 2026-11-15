@@ -14,12 +14,12 @@ steps:
     highlight: [a1, a2, b2]
     arrows: [b2b1, b2a1]
   - ask: chess/make-it-hard/hold-on
+  - ask: chess/make-it-hard/compare
   - kind: read
     id: off-the-board
-    text: Off the board, when things go badly, the pull is to give in early, by taking the first offer, dropping the bid or leaving a hard answer blank. Instead, ask what would make the result hardest to lose, and do that. This does not mean never stopping. When something is truly lost, stop, but check first that it is.
+    text: 'What both share has a name: make it hard. When things go badly, the pull is to give in early, by taking the first offer, dropping the bid or leaving a hard answer blank. Instead, ask what would make the result hardest to lose, and do that. This does not mean never stopping. When something is truly lost, stop, but check first that it is.'
   - ask: life/make-it-hard/dearer-bid
   - ask: life/make-it-hard/last-question
-  - ask: chess/make-it-hard/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you make it hard?'

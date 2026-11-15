@@ -4,13 +4,13 @@ prompt: In this chess opening, White plays 1.e4 and Black answers with c5, rathe
 position: 'moves: e4 c5'
 alongside: A supplier opens a negotiation with a firm price for the year.
 options:
-  - Decide whether to match it, or change its shape, before replying
+  - 'Choose on purpose how to answer: keep it level, or change the terms'
   - Copy what the other side did, to stay even
   - Accept that the first mover keeps the advantage
 answer: 0
 feedback:
   - ''
-  - Copying hands the other side the lead. Black chose c5 to change the shape of the game, not to mirror it.
+  - Copying hands the other side the lead. Black chose c5 to make the game unbalanced, not to mirror it.
   - Moving first gives a small edge, not the result. The answer decides how much it is worth.
-explanation: The other side moved first in both. You decide, before replying, whether to answer it as it is or change its shape, as Black does with c5 and you can with a counter-offer.
+explanation: The other side moved first in both. Before replying, you choose whether to keep it level or change the terms, as Black does with c5 and you can with a counter-offer.
 measures: plan-long

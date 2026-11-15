@@ -24,7 +24,8 @@ const ideas = lessons.map((lesson) => {
     idea,
     title: lesson.data.title,
     summary: lesson.data.summary,
-    text: offBoard && 'text' in offBoard ? offBoard.text : undefined,
+    // In a lesson the idea follows the comparison, so it opens by naming what the board and the case share; on paper the title names it.
+    text: offBoard && 'text' in offBoard ? offBoard.text.replace(/^What both share has a name: [^.]*\.\s*/, '') : undefined,
     situations: plan && 'situations' in plan ? plan.situations : [],
     questions,
   };

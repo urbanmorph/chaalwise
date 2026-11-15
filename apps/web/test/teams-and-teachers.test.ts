@@ -68,6 +68,11 @@ describe('the printable pack', () => {
     }
   });
 
+  it('states each idea on its own, without the lesson’s link back to the board and case it follows', () => {
+    expect(html.includes('Before you act, ask what could go wrong.')).toBe(true);
+    expect(html.includes('What both share')).toBe(false);
+  });
+
   it('prints one idea to a page, without the site around it', () => {
     expect(html).toMatch(/@media print/);
     expect(html).toMatch(/break-before:\s*page/);

@@ -3,10 +3,8 @@ import { deploy, hydrated } from './helpers';
 
 test.beforeEach(async ({ page }) => deploy(page, 'A'));
 
-const toStep = async (page: import('@playwright/test').Page, fromEnd: number) => {
-  const dots = page.getByRole('navigation', { name: 'Steps in this lesson' }).getByRole('button');
-  await dots.nth((await dots.count()) - fromEnd).click();
-};
+const toStep = (page: import('@playwright/test').Page, index: number) =>
+  page.getByRole('navigation', { name: 'Steps in this lesson' }).getByRole('button').nth(index).click();
 
 test('a newcomer to chess sees a strategy lesson’s board questions worked through, until they meet chess', async ({
   page,
@@ -14,7 +12,7 @@ test('a newcomer to chess sees a strategy lesson’s board questions worked thro
   await page.goto('/skills/blunder-check/');
   await hydrated(page);
   await expect(page.getByTestId('meet-chess')).toContainText('Play your first moves');
-  await toStep(page, 2); // the compare step, on a board
+  await toStep(page, 1); // the compare step, on a board
   await expect(page.locator('.player h2')).toContainText('Worked example.');
   await expect(page.locator('.options button')).toHaveCount(0);
 
@@ -26,7 +24,7 @@ test('a newcomer to chess sees a strategy lesson’s board questions worked thro
   await page.goto('/skills/blunder-check/');
   await hydrated(page);
   await expect(page.getByTestId('meet-chess')).toBeHidden();
-  await toStep(page, 2);
+  await toStep(page, 1);
   await expect(page.locator('.options button')).toHaveCount(3);
 });
 
@@ -58,7 +56,7 @@ test('a board in a lesson draws the attack its text describes, and a worked exam
   await hydrated(page);
   // The first step: the knight on c3 attacks the queen on d1.
   await expect(page.locator('.player svg.arrows polyline')).toHaveCount(1);
-  await toStep(page, 2); // the compare question, a worked example for a newcomer
+  await toStep(page, 1); // the compare question, a worked example for a newcomer
   await expect(page.locator('.player h2')).toContainText('Worked example.');
   await expect(page.locator('.player svg.arrows polyline')).toHaveCount(1);
 });

@@ -14,12 +14,12 @@ steps:
     highlight: [g5, d4, d3]
     arrows: [f3g5, d2d4, d2d3]
   - ask: chess/look-at-three/three-candidates
+  - ask: chess/look-at-three/compare
   - kind: read
     id: off-the-board
-    text: Off the board, decisions often arrive as a yes or a no, take the offer or not. Before you choose, name at least three options, including one you had not first thought of. Then compare them on the same points. Decisions weighed as a single yes or no go wrong more often than those with several options.
+    text: 'What both share has a name: look at three before choosing. Decisions often arrive as a yes or a no, take the offer or not. Before you choose, name at least three options, including one you had not first thought of. Then compare them on the same points. Decisions weighed as a single yes or no go wrong more often than those with several options.'
   - ask: life/look-at-three/key-engineer
   - ask: life/look-at-three/summer-project
-  - ask: chess/look-at-three/compare
   - kind: plan
     id: plan
     prompt: 'Use it this week. When will you look at three?'
