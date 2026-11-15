@@ -1,0 +1,14 @@
+card: strategy/commit-in-stages/new-snack
+kind: choice
+prompt: You run a café in Kochi and want to sell a new snack, masala buns. A bakery sells them in trays of 40 at ₹800 a tray, and they keep for two days. You have never sold them before. What is a sensible first order?
+options:
+  - 2 trays, then order more once you see what sells
+  - '10 trays: the bakery gives 10% off on 10 or more'
+  - None until you are sure customers want them
+answer: 0
+feedback:
+  - ''
+  - The discount saves ₹800 on 10 trays. But if only 2 trays sell, you have spent ₹7,200 instead of ₹1,600, and the rest goes stale in two days.
+  - You cannot be sure without trying. Two trays cost ₹1,600, a small price for finding out.
+explanation: Start small, learn what sells, then add more. A small first order costs little if the snack fails, and if it is a hit you lose only a few days before ordering more.
+measures: size-risk

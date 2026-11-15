@@ -1,0 +1,14 @@
+card: strategy/estimate-it/tea-stall
+kind: choice
+prompt: You want to estimate how many cups of tea a stall at a busy bus stand sells in a day. It is open 16 hours. In the 4 rush hours it sells about one cup a minute, and in the other 12 hours about one every 4 minutes. About how many cups a day?
+options:
+  - 'About 960: a cup a minute all day'
+  - 'About 420: 240 in rush hours, 180 after'
+  - 'About 100: it is only one small stall'
+answer: 1
+feedback:
+  - That uses the rush-hour rate for all 16 hours. The quiet hours sell a quarter as much, so count the day in two parts.
+  - ''
+  - A feeling about size skips the count. The parts you were given add up to four times this.
+explanation: 'Break it into parts: 4 × 60 = 240 cups in the rush hours, and 12 × 15 = 180 in the rest, 420 in all. Each part is easy to check by watching the stall for an hour.'
+measures: weigh-odds

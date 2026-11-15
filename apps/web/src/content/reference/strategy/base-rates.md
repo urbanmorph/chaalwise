@@ -8,6 +8,7 @@ summary: 'Before judging one case, ask how often cases like it turn out each way
 why: 'Vivid evidence about one case crowds out how common things are. People often ignore base rates (how common each outcome is), even when they are told them. This happens most when the rates are given as percentages rather than counts, and so people overrate rare explanations.'
 inLife: 'The planning fallacy: asked how long their own project will take, people picture it going to plan. First ask how long similar projects took: this is called the outside view. Then adjust for what really differs about yours.'
 skill: 'weigh-odds'
+lesson: 'strategy/estimate-it'
 related: ['strategy/regression-to-the-mean', 'strategy/decisions-not-results', 'poker/expected-value']
 try:
   - life/base-rates/rare-condition

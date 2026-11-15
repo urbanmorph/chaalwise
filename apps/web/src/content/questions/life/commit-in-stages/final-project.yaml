@@ -1,0 +1,14 @@
+card: strategy/commit-in-stages/final-project
+kind: choice
+prompt: Your final-year college project counts for 40% of your grade. You have an ambitious idea that might not work in time. What is the best way to take it on?
+options:
+  - Build a simple version that works, then add the ambitious part
+  - Go all out on the ambitious idea from the start
+  - Pick a safe topic and leave the idea out
+answer: 0
+feedback:
+  - ''
+  - If the ambitious part fails late, nothing works by the deadline, and 40% of the grade goes with it.
+  - The safe topic gives up what the idea could bring. A working simple version lets you try the idea without risking the grade.
+explanation: Make a version that works first, then put the time left into the ambitious part. If that part fails, you still hand in something that works.
+measures: size-risk

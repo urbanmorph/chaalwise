@@ -1,0 +1,14 @@
+card: strategy/estimate-it/revision-hours
+kind: choice
+prompt: You have 12 chapters to revise for your exams, and you feel each will take about 2 hours. Last term, chapters like these took you about 3 hours each, and past papers took 6 hours more. How long should you plan for?
+options:
+  - '24 hours: 12 chapters at 2 hours each'
+  - '42 hours: 12 at 3 hours, plus 6 for past papers'
+  - '36 hours: 12 chapters at 3 hours each'
+answer: 1
+feedback:
+  - Two hours is how it feels from the inside. Last term is the outside view, and chapters like these took 3 hours, so start there.
+  - ''
+  - The rate is right now, but one part is missing. Past papers took 6 hours last term, and the count needs every part.
+explanation: 'Start from how it went last time, 3 hours a chapter, then count every part: 12 × 3 + 6 = 42 hours. Then adjust for what is really different, such as chapters you already know well.'
+measures: weigh-odds

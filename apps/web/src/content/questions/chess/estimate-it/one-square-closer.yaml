@@ -1,0 +1,17 @@
+card: strategy/estimate-it/one-square-closer
+kind: choice
+prompt: "In this chess endgame, Black's king starts one square closer, on f5, and White moves first again. Count both parts: can the king catch the pawn?"
+position: 8/8/8/5k2/1P6/8/7K/8 w - - 0 1
+arrows: [b4b8, f5c7]
+options:
+  - 'No: the pawn still needs only four moves'
+  - 'Yes: the king reaches c7 in three moves, in time'
+  - 'It is too close to call without playing it out'
+answer: 1
+feedback:
+  - Four pawn moves is only one part of the count. From f5 the king needs three moves to reach c7, so it arrives as the pawn reaches b7.
+  - ''
+  - 'Counting each part settles it: three king moves against four pawn moves, with White moving first. The king is on c7 in time to take the new queen.'
+highlight: [c7]
+explanation: 'b5 Ke6, b6 Kd7, b7 Kc7, then b8=Q+ Kxb8, and the game is a draw. One square changes the result, and only counting the parts shows it. Chess players call this the rule of the square.'
+measures: calculation

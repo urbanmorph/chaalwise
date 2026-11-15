@@ -1,0 +1,17 @@
+card: strategy/estimate-it/compare
+kind: choice
+prompt: "In this chess endgame, the race was judged by counting the pawn's moves and the king's moves separately. What does that share with the caterer's estimate?"
+position: 8/8/8/6k1/1P6/8/7K/8 w - - 0 1
+arrows: [b4b8, g5c7]
+alongside: 'A wedding caterer works out how much rice to cook: 400 guests at about 150 grams each comes to 60 kilos.'
+options:
+  - A hard number is easier to judge in parts you can count
+  - Both are guesses, so neither can be trusted
+  - Both come out exact if you count carefully
+answer: 0
+feedback:
+  - ''
+  - A guess built from parts can be checked part by part. It is far better than a number picked in one go.
+  - The chess count is exact, but 150 grams a guest is still a guess. Parts make a guess better, not certain.
+explanation: Neither number is easy to see at once. Each becomes easy once broken into parts you can count, here moves, guests and grams.
+measures: weigh-odds

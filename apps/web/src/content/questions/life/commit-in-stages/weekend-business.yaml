@@ -1,0 +1,14 @@
+card: strategy/commit-in-stages/weekend-business
+kind: choice
+prompt: You work full time and want to start a weekend business making scented candles. Nobody has bought one yet. How much should you put into it at first?
+options:
+  - Leave your job to give it all your time
+  - About six hours a weekend for three months, then decide
+  - Nothing until you are sure it will work
+answer: 1
+feedback:
+  - Going all in means one failed idea costs your income too. Nothing yet tells you the candles will sell.
+  - ''
+  - You will not be sure without trying, and waiting teaches you nothing. A few hours a weekend tests the idea at a cost you can recover from.
+explanation: Give the idea a share of your time that you can recover from, and set a point to decide. If people buy the candles, put in more. If they do not, you have lost some weekends, not your job.
+measures: size-risk

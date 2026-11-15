@@ -1,0 +1,17 @@
+card: strategy/commit-in-stages/one-piece-attack
+kind: choice
+prompt: In this chess position, White plays Bxh7+, giving up the bishop for a pawn to attack the king, and Black takes with the king (Kxh7). Where does that leave White?
+position: r1bq1rk1/ppp2ppp/2n1p3/3p4/3P4/1QNBP3/PPP2PPP/R4RK1 w - - 0 1
+arrows: [d3h7, g8h7]
+options:
+  - Two points down, with no check to give
+  - 'Even: a bishop for the pawn that shielded the king'
+  - 'Winning: the king has come out, so it must fall'
+answer: 0
+feedback:
+  - ''
+  - A bishop is worth three points and a pawn one. The pawn shielded the king, but that matters only if White can follow up.
+  - An open king falls only if pieces can reach it. After Kxh7, no White move even gives check.
+highlight: [h7]
+explanation: 'Bxh7+ Kxh7 leaves White a bishop (3) for a pawn (1), two points down, with only one piece in the attack. Giving up material like this pays only when enough pieces are ready to follow it up. Here, if it fails, White cannot get the bishop back.'
+measures: size-risk

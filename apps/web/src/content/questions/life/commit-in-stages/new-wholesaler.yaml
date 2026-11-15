@@ -1,0 +1,14 @@
+card: strategy/commit-in-stages/new-wholesaler
+kind: choice
+prompt: You run a kirana shop, a small neighbourhood grocery, and sell about 300 kilos of rice a month. A new wholesaler offers rice at ₹4 a kilo less than your usual one, but you have never bought from them. What do you do?
+options:
+  - Move all 300 kilos to the new wholesaler at once
+  - Order 50 kilos first, check quality and delivery, then decide
+  - 'Stay with your usual wholesaler: a change is risky'
+answer: 1
+feedback:
+  - That saves ₹1,200 a month if all goes well. But if the rice is poor or comes late, your whole stock and your customers are at risk.
+  - ''
+  - Staying put gives up ₹1,200 a month without finding anything out. A small order tests the new wholesaler at little cost.
+explanation: A trial order of 50 kilos costs little if it goes wrong, and it shows you the quality and the delivery. Move more once it works.
+measures: size-risk

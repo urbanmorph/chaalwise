@@ -171,7 +171,14 @@ const SHORT: Record<SkillId, string> = {
  * The tracks the built strategy lessons train. Kept here, not read from the
  * content, because the profile runs in the browser; a test keeps it in step.
  */
-export const LESSON_TRACKS: SkillId[] = ['think-ahead', 'calculate', 'plan-long', 'size-risk', 'composure'];
+export const LESSON_TRACKS: SkillId[] = [
+  'think-ahead',
+  'calculate',
+  'plan-long',
+  'size-risk',
+  'composure',
+  'weigh-odds',
+];
 
 /** The strategy tracks, in the home page's order. A track is measured once a chess skill, a lab or a strategy lesson gives evidence for it. */
 export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
