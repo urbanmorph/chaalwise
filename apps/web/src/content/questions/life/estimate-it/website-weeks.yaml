@@ -1,0 +1,14 @@
+card: strategy/estimate-it/website-weeks
+kind: choice
+prompt: "A web design firm in Bengaluru plans to build a client's website in 6 weeks. Its last five websites of the same kind were each planned for about 6 weeks, and took 9, 10, 12, 10 and 14 weeks. What is the best first estimate for this one?"
+options:
+  - '6 weeks: this one has a careful plan'
+  - '8 weeks: the plan, with 2 weeks of slack'
+  - '11 weeks, then adjust for real differences'
+answer: 2
+feedback:
+  - The plan is the inside view, the firm's own picture of its work. The last five had careful plans too, and every one ran over.
+  - Some slack feels careful, but 2 weeks is less than any of the last five ran over by. Start from the record, not the plan.
+  - ''
+explanation: 'The last five websites took 11 weeks on average: (9 + 10 + 12 + 10 + 14) ÷ 5 = 11. Start there, the outside view, then adjust only for what really differs, such as a smaller site.'
+measures: weigh-odds

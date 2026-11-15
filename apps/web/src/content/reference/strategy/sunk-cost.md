@@ -8,6 +8,7 @@ summary: 'What you have already spent is gone. Decide on what happens next, not 
 why: 'Throwing good after bad is one of the most common and costly mistakes people make.'
 inLife: 'A failing project, a bad investment or a long queue: the time already spent is not a reason to spend more.'
 skill: 'size-risk'
+lesson: 'strategy/know-when-to-stop'
 related: ['poker/pot-odds', 'strategy/decisions-not-results']
 try:
   - life/sunk-cost/knight

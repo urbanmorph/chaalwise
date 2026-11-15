@@ -1,0 +1,14 @@
+card: strategy/know-when-to-stop/coaching-fees
+kind: choice
+prompt: You paid ₹45,000, which cannot be refunded, for a year of weekend coaching classes for an entrance exam. Three months in, your mock test scores have not moved, and working through past papers on your own has helped more. What should decide whether you keep going to the classes?
+options:
+  - "The ₹45,000: it is paid, so get your money's worth"
+  - What the classes will add from here, against your weekends
+  - How it will look to your family if you stop
+answer: 1
+feedback:
+  - "The fees are gone whether you go or not. Going to get your money's worth spends your weekends too, on top of the money."
+  - ''
+  - What others think can matter, but it is not the main test. Ask what the next nine months of classes give you, and explain that.
+explanation: The ₹45,000 is a sunk cost, spent whichever way you decide. Weigh only what is still to come, the classes against your weekends. If past papers teach you more, the weekends are better spent on them.
+measures: composure

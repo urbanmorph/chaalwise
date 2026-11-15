@@ -1,0 +1,17 @@
+card: strategy/commit-in-stages/compare
+kind: choice
+prompt: In this chess position, White could give up a bishop for one pawn to attack the king. What does that share with the café's first order?
+position: r1bq1rk1/ppp2ppp/2n1p3/3p4/3P4/1QNBP3/PPP2PPP/R4RK1 w - - 0 1
+arrows: [d3h7, g8h7]
+alongside: A café orders 300 packets of a new snack for its first week, before selling a single one.
+options:
+  - Both put in more than they can get back if it fails
+  - Both are bold, and bold moves pay off
+  - Both are about spending as little as possible
+answer: 0
+feedback:
+  - ''
+  - Boldness is not the test. If the attack fails or the snack does not sell, both are left with a loss they cannot undo.
+  - Spending little is not the point either. The point is how much depends on one try that nobody has tested.
+explanation: White puts a whole bishop into an attack with one piece in it. The café puts a week of stock into a snack nobody has tried. Both could start smaller, see what happens, and add more once it works.
+measures: size-risk

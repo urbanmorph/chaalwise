@@ -1,0 +1,14 @@
+card: strategy/know-when-to-stop/stopping-rule
+kind: choice
+prompt: You are starting a weekend tiffin service, cooking packed lunches for office workers. Before you begin, you set a rule for when to stop. Which rule will tell you clearly?
+options:
+  - If it stops feeling worth it, I will stop
+  - Fewer than 30 regulars by 31 March, and I stop
+  - Once I have tried everything, I will stop
+answer: 1
+feedback:
+  - A feeling is easy to talk yourself out of, most of all after months of work. It gives you no fixed point to check.
+  - ''
+  - There is always one more thing to try, so this point never comes. It is how escalation of commitment carries on.
+explanation: "A good stopping rule names a state and a date. 'If [this has not happened] by [this date], I will stop.' Set it while you are calm, before the money and the months pile up. Then checking it is easy."
+measures: composure

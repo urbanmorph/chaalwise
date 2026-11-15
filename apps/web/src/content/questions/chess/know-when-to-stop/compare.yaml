@@ -1,0 +1,17 @@
+card: strategy/know-when-to-stop/compare
+kind: choice
+prompt: "In this chess endgame, White's king walked over to guard the a-pawn, but now the h-pawn is the danger. What does White's choice share with the app team's?"
+position: 8/1k6/8/P6p/2K5/8/8/8 w - - 0 1
+arrows: [c4b5, c4d4]
+alongside: "A team has spent eight months building an app that few people use. Someone says: 'We have come too far to stop now.'"
+options:
+  - What is already spent should not decide the next step
+  - Both should finish what they started, whatever it costs
+  - Both should save as much as they can
+answer: 0
+feedback:
+  - ''
+  - Finishing is right only if what is still to come is worth it. The king's walk and the eight months are spent either way.
+  - 'Saving everything is the trap: White saves the a-pawn and loses the game. The question is what each next step brings.'
+explanation: The king's moves and the team's months are gone, whatever comes next. Judge each choice by what it brings from here.
+measures: composure

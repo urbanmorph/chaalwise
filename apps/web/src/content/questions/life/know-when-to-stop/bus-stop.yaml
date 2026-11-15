@@ -1,0 +1,14 @@
+card: strategy/know-when-to-stop/bus-stop
+kind: choice
+prompt: You have waited 25 minutes at a bus stop in Chennai for a bus that usually comes every 10 minutes, and there is no sign of it. An auto-rickshaw offers to take you for ₹120, and you would arrive on time. What should decide whether you take it?
+options:
+  - The 25 minutes you have already spent waiting
+  - Whether arriving on time is worth ₹120 to you
+  - That after so long the bus must be close
+answer: 1
+feedback:
+  - The 25 minutes are gone whichever you choose. Leaving now does not waste them, and staying does not get them back.
+  - ''
+  - Perhaps, but a wait far longer than usual can also mean the bus is not coming. Hoping it is close is how a sunk wait keeps growing.
+explanation: The wait is sunk. The choice is between more waiting, with no idea how long, and ₹120 to arrive on time. Decide on that alone.
+measures: composure
