@@ -2,8 +2,7 @@ import type { SettingScore } from '@chaalwise/core/calibration-score';
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { describe, expect, it } from 'vitest';
 import { across, advice, apart, scoreLine } from '../src/lib/calibration';
-import { CALIBRATION_ROUND, calibrationIds } from '../src/lib/round-items';
-import { settingOf } from '../src/lib/games';
+import { CALIBRATION_ROUND, calibrationIds, settingOf } from '../src/lib/calibration-round';
 
 const choice = (fields: Partial<GradedStep> = {}) =>
   ({

@@ -24,10 +24,8 @@ describe('calibration on the built site', () => {
     expect(settings).toContain('"fits/blunder-check/angry-email":[0,"life"]');
   });
 
-  it('offers a calibration round with mixed practice in review, and explains it', () => {
-    const review = read('review/index.html');
-    expect(review).toContain('How sure? A calibration round');
-    expect(review).toContain('10 questions mixed from chess, poker, the labs and life');
+  it('offers a calibration round with mixed practice in review', () => {
+    expect(read('review/index.html')).toContain('How sure? A calibration round');
   });
 
   it('explains the score in plain words on the progress page', () => {

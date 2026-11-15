@@ -4,7 +4,7 @@
   import { readDone } from '../lib/done-lessons';
   import type { FitsBank } from '../lib/fits';
   import { askable, gamesMet } from '../lib/games';
-  import { CALIBRATION_ROUND, calibrationIds, mixedIds, roundItems, type RoundItem } from '../lib/round-items';
+  import { mixedIds, roundItems, type RoundItem } from '../lib/round-items';
   import PracticeRound from './PracticeRound.svelte';
 
   /**
@@ -32,8 +32,9 @@
     const open = withFits(Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met))), fits, done, Math.random);
     let ids: string[];
     if (next === 'sure') {
-      CalibrationRound = (await import('./CalibrationRound.svelte')).default;
-      ids = calibrationIds(open, CALIBRATION_ROUND, Math.random);
+      const round = await import('./CalibrationRound.svelte');
+      CalibrationRound = round.default;
+      ids = round.calibrationIds(open, round.CALIBRATION_ROUND, Math.random);
     } else ids = next === 'fits' ? fitsIds(fits, done, FITS_ROUND, Math.random) : mixedIds(open, ROUND, Math.random);
     items = await roundItems(ids, open);
     kind = next;
@@ -64,10 +65,6 @@
       {/if}
     </p>
   {/if}
-  <p class="note">
-    How sure? 10 questions mixed from chess, poker, the labs and life, from the games you have played. Say how sure you are before each answer, then see how
-    well your sureness matched your results.
-  </p>
   {#if items}
     {#key rounds}
       <h3 tabindex="-1" bind:this={heading}>

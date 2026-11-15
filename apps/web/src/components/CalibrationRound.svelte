@@ -1,3 +1,8 @@
+<script lang="ts" module>
+  // The round's questions load with the round, so review's first load carries none of it.
+  export { CALIBRATION_ROUND, calibrationIds } from '../lib/calibration-round';
+</script>
+
 <script lang="ts">
   import { calibration } from '@chaalwise/core/calibration';
   import { score, verdict } from '@chaalwise/core/calibration-score';
@@ -17,6 +22,10 @@
   const result = $derived(score(answers));
 </script>
 
+<p class="note" data-testid="calibration-intro">
+  Before each answer, say how sure you are: 50, 70 or 90%. The questions mix chess, poker, the labs and life, from the games you have played, because judging
+  how sure to be is one skill wherever you are. Your score comes at the end.
+</p>
 <PracticeRound {items} source="practice" requireConfidence onanswer={(outcome, confidence) => answers.push({ skill: '', outcome, at: new Date(), confidence })}>
   {#snippet after()}
     <div class="score" data-testid="calibration-score">

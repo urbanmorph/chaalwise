@@ -1,4 +1,3 @@
-import type { Setting } from '@chaalwise/core/calibration-score';
 import type { GradedStep, Step } from '@chaalwise/core/lesson';
 import { isGraded } from '@chaalwise/core/player';
 import { toFen, toSan } from './chess';
@@ -25,12 +24,6 @@ export function sourceOf(cardId: string, step: GradedStep): { game?: string; lab
   if (lab) return { game: 'labs', lab };
   if (game === 'labs') return { game: 'labs' };
   return step.position || step.kind === 'move' ? { game: 'chess' } : {};
-}
-
-/** Where a question is set, for calibration by setting: its game, or life off the board (work, study, everyday). */
-export function settingOf(cardId: string, step: GradedStep): Setting {
-  const { game } = sourceOf(cardId, step);
-  return game === 'chess' || game === 'poker' || game === 'labs' ? game : 'life';
 }
 
 /** The game a question needs met first: `chess`, `poker`, `labs/<slug>`, or nothing. */

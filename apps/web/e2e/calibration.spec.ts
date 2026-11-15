@@ -24,6 +24,9 @@ test('a calibration round asks how sure you are before every answer, then scores
   await hydrated(page);
   await page.getByRole('button', { name: 'How sure? A calibration round' }).click();
   await expect(page.getByRole('heading', { name: 'Calibration round: 10 questions' })).toBeFocused();
+  await expect(page.getByTestId('calibration-intro')).toContainText(
+    'The questions mix chess, poker, the labs and life',
+  );
 
   for (let i = 0; i < 10; i++) {
     const options = page.locator('.option');

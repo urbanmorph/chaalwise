@@ -1,6 +1,5 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
-import type { Setting } from '@chaalwise/core/calibration-score';
-import { settingOf, sourceOf } from './games';
+import { sourceOf } from './games';
 import { theLab } from './labs/labs';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
@@ -44,24 +43,6 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
     if (track) byTrack.set(track, [...(byTrack.get(track) ?? []), id]);
   }
   return deal([...byTrack.values()], count, random);
-}
-
-/** Questions in a calibration round. */
-export const CALIBRATION_ROUND = 10;
-
-/**
- * A calibration round: questions with options (a sureness fits a pick among
- * options, not a move to find), that count towards a skill so the answer is
- * kept, dealt from each setting in turn.
- */
-export function calibrationIds(steps: Record<string, GradedStep>, count: number, random: () => number): string[] {
-  const bySetting = new Map<Setting, string[]>();
-  for (const [id, step] of Object.entries(steps)) {
-    if (step.kind !== 'choice' || !step.measures) continue;
-    const setting = settingOf(id, step);
-    bySetting.set(setting, [...(bySetting.get(setting) ?? []), id]);
-  }
-  return deal([...bySetting.values()], count, random);
 }
 
 /**
