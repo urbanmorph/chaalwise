@@ -244,11 +244,6 @@
   .lab-stage {
     min-height: 22rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   .pile {
     display: flex;
     flex-wrap: wrap;

@@ -121,4 +121,23 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     action:
       'I will give one reason the number could be too high and one it could be too low, then name my own number and why',
   },
+  'who-moves-first': {
+    prompt: 'When will you check whether a threat would really be carried out?',
+    situations: [
+      'someone says they will walk away, quit or go elsewhere if I do not agree',
+      'a rival business says it will cut prices if I start selling near it',
+      'I am about to warn someone what I will do if they do not change',
+    ],
+    action: 'I will ask whether doing it would pay them, or me, when the time comes, and believe it only if it would',
+  },
+  'split-it-fairly': {
+    prompt: 'When will you make an offer the other side will see as fair?',
+    situations: [
+      'I split work, credit or money with someone who can say no',
+      'someone I will deal with again trusts me with something',
+      'I decide how far to trust a new partner, colleague or tenant',
+    ],
+    action:
+      'I will offer a share they can accept with pride, and trust in small steps, giving more to those who pay it back',
+  },
 };

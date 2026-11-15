@@ -7,7 +7,7 @@ import LessonPage from './LessonPage.svelte';
 import MoreOnLichess from './MoreOnLichess.astro';
 import { LICHESS_LESSONS } from '../lib/lichess';
 import { meetFirst } from '../lib/games';
-import { labHref, LABS, labsForLesson } from '../lib/labs/labs';
+import { labHref, LABS, labsForLesson, theLab } from '../lib/labs/labs';
 import TryTheLab from './TryTheLab.astro';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
@@ -62,8 +62,8 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
 )}
 {firstLab && (
   <p class="meet" data-meet={`labs/${firstLab.slug}`} data-testid="meet-lab" hidden>
-    This lesson starts from the {firstLab.title} lab, a game of about five minutes against the computer. Until you have played it, its questions about the lab
-    are worked examples to read. <a href={labHref(firstLab)}>Play the {firstLab.title} lab first</a>.
+    This lesson starts from {theLab(firstLab)}, a game of about five minutes against the computer. Until you have played it, its questions about the lab are
+    worked examples to read. <a href={labHref(firstLab)}>Play {theLab(firstLab)} first</a>.
   </p>
 )}
 {/* Inline, so the notes show before the first paint and the lesson never jumps. A game is met as in lib/games (gamesMet). */}

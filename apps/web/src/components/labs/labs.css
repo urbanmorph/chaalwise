@@ -27,6 +27,22 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+.lab-score .of {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+/* A number to type in: an offer, a bid or points to send. */
+.lab-number {
+  width: 8em;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 1.1rem var(--sans);
+}
 .lab-actions {
   display: flex;
   flex-wrap: wrap;

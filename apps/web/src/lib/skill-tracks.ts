@@ -30,7 +30,7 @@ export const TRACKS: Track[] = [
     'See how others will respond before you act: in a negotiation, against a competitor, at the family table.',
     3,
     2,
-    'The bonus rule lab, Connect Four, Go, Bagh-Chal',
+    'The bonus rule and Who moves first labs, Connect Four, Go, Bagh-Chal',
   ),
   t('calculate', 'Work a plan through step by step before you commit to it.', 3, 1, 'Nim lab, Pallanguzhi'),
   t('plan-long', 'Know what you are trying to achieve, and make each step serve it.', 3, 1, 'Go'),
@@ -68,7 +68,7 @@ export const TRACKS: Track[] = [
     'Know when to trust, when to protect yourself, and how reputation builds.',
     0,
     1,
-    "Prisoner's Dilemma and Pick the same labs",
+    "Prisoner's Dilemma, Pick the same and Split it fairly? labs",
   ),
   t('unpredictable', 'Stop being predictable where someone can take advantage of it.', 0, 2, 'Rock-paper-scissors lab'),
   t(

@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
 import { chessLessonsFor, lessonHref, lessonsFor, STAGES, trackLessons, trackSteps } from '../lib/lessons';
-import { labHref, LABS } from '../lib/labs/labs';
+import { labHref, LABS, theLab } from '../lib/labs/labs';
 import NewToChess from './NewToChess.astro';
 import NewToPoker from './NewToPoker.astro';
 import TrackPractice from './TrackPractice.svelte';
@@ -94,7 +94,7 @@ const { idea, why, atWork, inStudy, habit } = course.data;
         Practise it in a game, about five minutes against the computer:{' '}
         {labs.map((lab, i) => (
           <>
-            <a href={labHref(lab)}>the {lab.title} lab</a>
+            <a href={labHref(lab)}>{theLab(lab)}</a>
             {i < labs.length - 1 && (i === labs.length - 2 ? ' or ' : ', ')}
           </>
         ))}

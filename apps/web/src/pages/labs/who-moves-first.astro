@@ -1,0 +1,15 @@
+---
+import CommitmentLab from '../../components/labs/CommitmentLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'who-moves-first')!;
+---
+
+<LabPage {lab}>
+  <p>
+    A threat costs nothing to make. Will it be carried out? First, decide whether to open a tea stall beside three owners who each threaten a price war: selling
+    cheaply until you close. Then the stall is yours, and you choose a first move before two rivals decide whether to open beside you.
+  </p>
+  <CommitmentLab client:load />
+</LabPage>

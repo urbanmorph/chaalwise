@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { LAB_ABOUT } from '../lib/labs/about';
 import { labHref, LABS } from '../lib/labs/labs';
 import { lessonHref } from '../lib/lessons';
 import { STARTS } from '../lib/start';
@@ -10,7 +11,7 @@ async function resolve(id: string) {
   if (id.startsWith('labs/')) {
     const lab = LABS.find((l) => `labs/${l.slug}` === id);
     if (!lab) throw new Error(`no lab ${id}`);
-    return { href: labHref(lab), title: `${lab.title} lab`, line: lab.idea };
+    return { href: labHref(lab), title: `${lab.title} lab`, line: LAB_ABOUT[lab.slug]!.idea };
   }
   const lesson = await getEntry('lessons', id);
   if (!lesson) throw new Error(`no lesson ${id}`);

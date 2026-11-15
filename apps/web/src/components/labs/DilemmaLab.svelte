@@ -266,11 +266,6 @@
   .lab-stage {
     min-height: 25rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   .moves {
     width: auto;
     min-height: 4.5em;

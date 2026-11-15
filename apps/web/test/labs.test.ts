@@ -12,7 +12,8 @@ import {
 } from '../src/lib/labs/dilemma';
 import { counter, describePattern, outcome, PatternBot, type Throw } from '../src/lib/labs/rock-paper-scissors';
 import { BIDDERS, breakEvenShade, drawItem, settle, simulateAuctions, SPREAD } from '../src/lib/labs/auction';
-import { LABS, labsForLesson } from '../src/lib/labs/labs';
+import { LAB_ABOUT } from '../src/lib/labs/about';
+import { LABS, labsForLesson, theLab } from '../src/lib/labs/labs';
 import { seeded } from '../src/lib/labs/seeded';
 import { TRACKS } from '../src/lib/skill-tracks';
 
@@ -243,7 +244,19 @@ describe('the labs', () => {
       ['ask-the-panel', 'read-hidden', 'strategy/independent-estimates'],
       ['pick-the-same', 'cooperate', 'strategy/coordination'],
       ['first-number', 'read-hidden', 'strategy/anchoring'],
+      ['who-moves-first', 'think-ahead', 'labs/credible-threats'],
+      ['split-it-fairly', 'cooperate', 'labs/fairness-and-trust'],
     ]);
+  });
+
+  it('each say, apart from the list lesson pages load, the idea they teach and how they play', () => {
+    expect(Object.keys(LAB_ABOUT)).toEqual(LABS.map((l) => l.slug));
+    for (const { idea, plays } of Object.values(LAB_ABOUT)) expect(idea && plays).toBeTruthy();
+  });
+
+  it('are named in a sentence as "the … lab", without "the The"', () => {
+    expect(theLab({ title: 'Nim' })).toBe('the Nim lab');
+    expect(theLab({ title: 'The bonus rule' })).toBe('the bonus rule lab');
   });
 
   it('are named on the skill map under each track they train', () => {
@@ -266,6 +279,7 @@ describe('the labs a lesson offers at its end', () => {
     expect(slugs({ game: 'strategy', skills: ['cooperate'], after: 'labs/pick-the-same' })).toEqual([
       'pick-the-same',
       'prisoners-dilemma',
+      'split-it-fairly',
     ]);
   });
 });

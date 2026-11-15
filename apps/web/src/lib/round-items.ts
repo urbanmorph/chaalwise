@@ -1,5 +1,6 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { sourceOf } from './games';
+import { theLab } from './labs/labs';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
 import { deal } from './deal';
@@ -51,6 +52,6 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
  */
 export function contextOf(cardId: string, step: GradedStep): string | undefined {
   const { game, lab } = sourceOf(cardId, step);
-  if (lab) return `In the ${lab.title} lab`;
+  if (lab) return `In ${theLab(lab)}`;
   return game === 'chess' ? 'In chess' : game === 'poker' ? 'In poker' : game === 'labs' ? 'In game theory' : undefined;
 }

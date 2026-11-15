@@ -1,6 +1,7 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { LABS } from '../src/lib/labs/labs';
 import { PLANNED } from '../src/lib/planned-skills';
 import { PROFILE_SKILLS, trackOf } from '../src/lib/profile-skills';
 import { lessonsIn } from './content';
@@ -114,11 +115,24 @@ describe('lesson names', () => {
       expect(planned).toContain(lesson.title);
   });
 
-  it('labels each strategy lesson on the strategy page by where it starts: a chess stage, or the lab it follows', () => {
+  it('labels each strategy lesson on the strategy page by where it starts: a chess stage, or the lab or poker lesson it follows, by name', () => {
     const index = dist('skills/index.html');
     const label = (slug: string) =>
-      index.match(new RegExp(`href="/skills/${slug}/"[^]*?<p class="label"[^>]*>([^<]*)</p>`))![1];
+      index
+        .match(new RegExp(`href="/skills/${slug}/"[^]*?<p class="label"[^>]*>([^<]*)</p>`))![1]!
+        .replaceAll('&#39;', "'");
+    const followed = (slug: string) => lessonsIn('strategy').find(({ file }) => file === `${slug}.md`)!.data.after!;
     expect(label('blunder-check')).toBe('Chess · stage 1');
-    for (const slug of after('labs')) expect(label(slug), slug).toMatch(/^After the .+ lab$/);
+    for (const slug of after('labs')) {
+      const lab = LABS.find((l) => `labs/${l.slug}` === followed(slug))!;
+      expect(label(slug), slug).toBe(`After a lab: ${lab.title}`);
+    }
+    // Titles that start with "The" read well too: not "the The bonus rule lab".
+    expect(index).not.toMatch(/the The /);
+    const poker = lessonsIn('poker');
+    for (const slug of after('poker')) {
+      const lesson = poker.find(({ file }) => `poker/${file.replace('.md', '')}` === followed(slug))!;
+      expect(label(slug), slug).toBe(`After a poker lesson: ${lesson.data.title}`);
+    }
   });
 });

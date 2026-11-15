@@ -1,6 +1,7 @@
 ---
 import { SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
+import { LAB_ABOUT } from '../../lib/labs/about';
 import { labHref, LABS } from '../../lib/labs/labs';
 ---
 
@@ -10,8 +11,8 @@ import { labHref, LABS } from '../../lib/labs/labs';
     <p>
       Short exercises against the computer, each built around one idea from game theory or decision-making: when to trust, when to be unpredictable, how not to
       overpay, how to work back from a goal, how to test an idea, where a deal lies, how to weigh what you see, how wording sways a choice, what a rule rewards,
-      how a group should estimate, how to choose the same as others, and how a first number pulls an estimate. Each takes about five minutes and ends with a
-      debrief of what happened and why. Points only, never money.
+      how a group should estimate, how to choose the same as others, how a first number pulls an estimate, when a threat is believable, and what fairness and
+      trust are worth. Each takes about five minutes and ends with a debrief of what happened and why. Points only, never money.
     </p>
     <ul class="labs">
       {LABS.map((lab) => (
@@ -22,8 +23,8 @@ import { labHref, LABS } from '../../lib/labs/labs';
           <p class="label">
             5 minutes · trains <a href={`/skills/${lab.track}/`}>{SKILLS[lab.track]}</a>
           </p>
-          <p class="idea">{lab.idea}</p>
-          <p class="plays">{lab.plays}</p>
+          <p class="idea">{LAB_ABOUT[lab.slug]!.idea}</p>
+          <p class="plays">{LAB_ABOUT[lab.slug]!.plays}</p>
         </li>
       ))}
     </ul>

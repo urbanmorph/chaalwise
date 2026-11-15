@@ -102,7 +102,18 @@
         <form class="guess" onsubmit={submit}>
           <label for="panel-guess">Your guess: how many dots?</label>
           <div class="lab-actions">
-            <input id="panel-guess" type="number" inputmode="numeric" min="1" max="5000" step="1" required bind:value={guess} bind:this={inputEl} />
+            <input
+              id="panel-guess"
+              class="lab-number"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="5000"
+              step="1"
+              required
+              bind:value={guess}
+              bind:this={inputEl}
+            />
             <button class="button primary" type="submit">Guess</button>
           </div>
         </form>
@@ -202,16 +213,6 @@
     display: block;
     font-weight: 600;
     margin-bottom: 6px;
-  }
-  input {
-    width: 8em;
-    min-height: 44px;
-    padding: 8px 12px;
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--paper);
-    color: var(--ink);
-    font: 600 1.1rem var(--sans);
   }
   .panel {
     display: flex;

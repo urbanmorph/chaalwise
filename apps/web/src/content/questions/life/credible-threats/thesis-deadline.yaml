@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are writing a master's thesis and keep putting off the first draft. You want to finish it by 30 June. Which step is most likely to make you keep that promise to yourself?
+options:
+  - Tell yourself firmly that this time you will finish
+  - Plan to work longer hours every day in June
+  - Book a hard-to-cancel slot to present it on 1 July
+answer: 2
+feedback:
+  - A promise to yourself can be broken at no cost, and that is why the draft keeps slipping.
+  - A plan to work harder is still a promise you can drop when June comes. Nothing changes if you do.
+  - ''
+explanation: 'A commitment works by making the easy way out costly. Once others expect your talk on 1 July, finishing the draft becomes your best choice when June comes, not just a good intention.'
+measures: think-ahead
