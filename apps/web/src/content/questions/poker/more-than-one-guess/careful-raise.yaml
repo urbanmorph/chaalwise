@@ -1,0 +1,18 @@
+kind: choice
+prompt: 'In this poker hand you have a pair of kings, with the queen beside it. A careful opponent has raised (bet more than you did). From how they play, they could hold a pair of eights (three eights with the board), an ace and a king, or a king and a jack. Which of these hands do you beat now?'
+cards:
+  hole: [Kh, Qc]
+  board: [Ks, 8h, 3c, 2d]
+options:
+  - Only the king and jack
+  - 'All three: a pair of kings is strong'
+  - The ace and king, and the king and jack
+  - None of them
+answer: 0
+feedback:
+  - ''
+  - Three eights beat any pair. The ace and king make the same pair as you, and the ace beats your queen as the side card that breaks the tie (the kicker).
+  - Against the ace and king you both have a pair of kings. Their ace beats your queen as the kicker, the side card that breaks the tie.
+  - The king and jack make a pair of kings too, but your queen beats their jack as the kicker.
+explanation: 'You beat one hand of the three. Against each, with one card to come, you win about 0%, 7% and 93% of the time. If each is as likely as the others, you win about a third of the time on average. Settling on any one of them would make you sure of losing or sure of winning, when the truth is about one time in three.'
+measures: ranges

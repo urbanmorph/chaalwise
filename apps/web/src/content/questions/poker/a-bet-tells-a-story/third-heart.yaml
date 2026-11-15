@@ -1,0 +1,18 @@
+kind: choice
+prompt: 'In this poker hand you have a pair of kings. Your opponent only called (matched) your bets while two hearts showed, then bet big when a third heart came last. What story does their play tell?'
+cards:
+  hole: [As, Kd]
+  board: [Kh, 9h, 4c, 7d, 2h]
+options:
+  - 'Two hearts and a flush that has just come: a story that fits'
+  - 'A bluff: big bets on the last card usually are'
+  - 'Nothing: only the cards matter, not how they were played'
+  - Exactly the ace and queen of hearts
+answer: 0
+feedback:
+  - ''
+  - Some big bets are bluffs, but this one fits every earlier move. A bluff that is called loses a lot, so a bet this size is costly to fake.
+  - You cannot see their cards, so how they played is the only evidence you have. Every call and bet is part of the story.
+  - That is one guess. Any two hearts tell the same story, and 45 pairs of hearts are left that make a flush.
+explanation: 'Calling while the hearts came, then betting big when the third one landed, is how a player with two hearts would play. 45 pairs of hearts make a flush that beats your kings. The story fits and is costly to fake, so give it real weight before you call.'
+measures: signals

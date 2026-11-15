@@ -1,0 +1,19 @@
+kind: choice
+prompt: 'In this poker hand, a call of 10 points plays for 40, and the flush that would win comes about one time in five. What does deciding on that call share with the student deciding on one more application?'
+cards:
+  hole: [As, 7s]
+  board: [9s, 4s, Kd, 2c]
+  pot: 30
+  toCall: 10
+alongside: 'A student wonders whether to pay a ₹2,000 fee for one more college application, for a place she has perhaps one chance in ten of getting.'
+options:
+  - Each pays a known price for an uncertain chance, so compare the two
+  - Both are long shots, so both are best skipped
+  - Both come down to luck, so thinking it through does not help
+answer: 0
+feedback:
+  - ''
+  - A long shot can still be worth it when it is cheap enough. The same flush would be worth a call of 5 points, and the application may be worth its fee.
+  - Luck decides how one hand or one application turns out. Whether the price is worth the chance can be worked out before you pay.
+explanation: 'Both decisions set a price you pay for certain against a chance of a prize. In poker the call costs a quarter of the pot, and the flush comes only a fifth of the time, so fold. The student can do the same sum: one chance in ten of a place she values far above ₹20,000 is worth a ₹2,000 fee.'
+measures: weigh-odds

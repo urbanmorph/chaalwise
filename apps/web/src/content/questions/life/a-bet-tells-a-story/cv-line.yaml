@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'You are a college student writing your CV for a summer internship. You want to show that you are good with data. Which line will a recruiter believe most?'
+options:
+  - "Analysed two years of the canteen's sales for the student council; the report is linked"
+  - Expert in data analysis
+  - Passionate about data, and a quick learner
+  - 'Skills: Excel, Python, SQL, R, Tableau, Power BI and more'
+answer: 0
+feedback:
+  - ''
+  - Anyone can write "expert", so it costs nothing and proves nothing. A recruiter weighs it lightly.
+  - Passion is free to claim, and almost every CV claims it. It tells the recruiter nothing they can check.
+  - A long list costs only typing. In the interview, you may be asked to use any of them, so list what you can back.
+explanation: 'In poker, a bet tells a story, and so does a CV: make yours one that holds up. A linked report shows real work that would take weeks to fake, and it fits what you will say in the interview. Claims that cost nothing to write get little weight.'
+measures: bluff

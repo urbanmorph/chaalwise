@@ -3,7 +3,7 @@ import { deck, type Card } from '@chaalwise/poker/cards';
 import { compare, evaluate } from '@chaalwise/poker/evaluate';
 import { equity, exactChance, outs } from '@chaalwise/poker/odds';
 import { cardIssues, type StepCards } from '../src/lib/poker/step-cards';
-import { corpus } from './content';
+import { corpus, lessonsIn } from './content';
 
 describe('cards on a step', () => {
   it('passes a table where every card is dealt once', () => {
@@ -134,5 +134,62 @@ describe('what the poker lessons claim', () => {
   it('counts the implied odds the lesson gives', () => {
     const { pot = 0, toCall = 0 } = cardsOf('implied-odds/paid-later');
     expect(Math.round((100 * toCall) / (pot + toCall + 8))).toBe(18);
+  });
+
+  it('counts the outs and the price in the strategy lesson on weighing a chance against its price', () => {
+    const { hole = [], board = [], pot = 0, toCall = 0 } = cardsOf('chance-and-price/flush-draw');
+    expect(outs(hole as Card[], board as Card[])).toMatchObject({ count: 9, drawing: 'flush' });
+    // Nine spades among the 46 cards you cannot see: about one time in five.
+    expect(Math.round(exactChance(9, 46, 1))).toBe(20);
+    // A call of 10 into a pot of 30 plays for 40: a quarter.
+    expect([pot, toCall]).toEqual([30, 10]);
+    expect(toCall / (pot + toCall)).toBe(0.25);
+    expect(100 * (toCall / (pot + toCall))).toBeGreaterThan(exactChance(9, 46, 1));
+    // The feedback says a call of 5 would be worth it: 5 of 35, about 14%, is less than the flush's chance.
+    expect(100 * (5 / (pot + 5))).toBeLessThan(exactChance(9, 46, 1));
+  });
+
+  it('works out the strategy lesson on ranges: which of the three hands you beat, and your share against all three', () => {
+    const { hole = [], board = [] } = cardsOf('more-than-one-guess/careful-raise');
+    const mine = evaluate([...hole, ...board] as Card[]);
+    const range: Card[][] = [
+      ['8s', '8c'],
+      ['Ad', 'Kc'],
+      ['Kd', 'Jd'],
+    ];
+    for (const hand of range) expect(hand.some((c) => [...hole, ...board].includes(c))).toBe(false);
+    const beaten = range.map((hand) => compare(mine, evaluate([...hand, ...board] as Card[])) > 0);
+    expect(beaten).toEqual([false, false, true]);
+    expect(evaluate([...range[0]!, ...board] as Card[]).category).toBe('three-of-a-kind');
+    const shares = range.map((against) => equity(hole as Card[], board as Card[], { against }));
+    expect(shares.every((e) => e.exact)).toBe(true);
+    expect(shares.map((e) => Math.round(e.share))).toEqual([0, 7, 93]);
+    expect(Math.round(shares.reduce((sum, e) => sum + e.share, 0) / 3)).toBe(33);
+  });
+
+  it('counts the hands that tell the story of the third heart in the strategy lesson on signals', () => {
+    const { hole = [], board = [] } = cardsOf('a-bet-tells-a-story/third-heart');
+    expect(hand('a-bet-tells-a-story/third-heart').name).toBe('a pair of kings');
+    // Two hearts showed on the flop and the turn; the river brings the third.
+    expect(board.slice(0, 4).filter((c) => c.endsWith('h'))).toHaveLength(2);
+    expect(board[4]!.endsWith('h')).toBe(true);
+    const twoHearts = holdings([...hole, ...board]).filter((h) => h.every((c) => c.endsWith('h')));
+    expect(twoHearts).toHaveLength(45);
+    const flushes = beating(hole, board).filter((h) => evaluate([...h, ...board] as Card[]).category === 'flush');
+    expect(flushes).toEqual(twoHearts);
+  });
+
+  it('shows the same cards on each strategy lesson’s poker moment, its question and its comparison', () => {
+    const moments = {
+      'chance-and-price': 'flush-draw',
+      'more-than-one-guess': 'careful-raise',
+      'a-bet-tells-a-story': 'third-heart',
+    };
+    const strategy = lessonsIn('strategy');
+    for (const [lesson, question] of Object.entries(moments)) {
+      const read = strategy.find((l) => l.file === `${lesson}.md`)!.data.steps[0] as { cards?: StepCards };
+      expect(read.cards, lesson).toEqual(cardsOf(`${lesson}/${question}`));
+      expect(cardsOf(`${lesson}/compare`), lesson).toEqual(cardsOf(`${lesson}/${question}`));
+    }
   });
 });

@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'At work, a company offers you a job and says you must accept within 48 hours, or the offer goes to someone else. You are waiting to hear from another firm next week. What best tells you whether the deadline is real?'
+options:
+  - 'Ask what the date depends on: a real deadline fits the rest of their story'
+  - How firmly they say it
+  - 'Nothing: every deadline like this is a bluff, so ignore it'
+  - Whether the offer letter is printed on headed paper
+answer: 0
+feedback:
+  - ''
+  - Firm words cost nothing, and a firm that wants a quick yes will sound firm either way.
+  - Some deadlines are real. If this one is, ignoring it loses the offer. Weigh it, do not dismiss it.
+  - Headed paper is cheap for any firm. It says the offer is real, not that the deadline is.
+explanation: 'In poker, a bet tells a story, and so does a deadline: check it. A deadline is believable when it fits the rest of what you know, such as a project starting on a fixed date or a second candidate waiting. It is also believable when keeping it would cost them something. Asking "What does the date depend on?" tests the story. A real reason has a ready answer, and a pressure tactic often bends.'
+measures: bluff

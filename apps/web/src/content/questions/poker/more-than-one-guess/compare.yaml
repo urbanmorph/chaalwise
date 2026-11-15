@@ -1,0 +1,17 @@
+kind: choice
+prompt: 'In this poker hand, a careful opponent could hold three hands: one you beat and two that beat you. You weigh all three instead of betting on one. What does that share with reading the supplier who has gone quiet?'
+cards:
+  hole: [Kh, Qc]
+  board: [Ks, 8h, 3c, 2d]
+alongside: 'You asked a supplier for a lower price, and their sales manager has not replied for three days. They could be checking with their boss, getting ready to say no, or talking to another buyer.'
+options:
+  - List what it could mean, and choose what works across the list
+  - Assume the worst, so nothing can surprise you
+  - Wait and see, since a guess about hidden things is worthless
+answer: 0
+feedback:
+  - ''
+  - Planning only for the worst case gives up too much. In poker, you would fold a hand that wins a third of the time; with the supplier, you might give up a deal that was coming.
+  - You cannot see their cards or the manager's inbox, but you can weigh what fits the facts. Waiting means acting on no list at all.
+explanation: 'In both, what the other side holds is hidden, but the possibilities can be listed and weighed. In poker, a third of the time you are ahead. With the supplier, a short message such as "Shall we talk this week?" works whatever the reason, and the reply will narrow the list.'
+measures: read-hidden

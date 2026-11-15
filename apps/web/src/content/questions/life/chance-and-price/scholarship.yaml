@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'At college, you can apply for a scholarship worth ₹1 lakh. Applying costs a ₹500 fee and an afternoon writing an essay. About one applicant in 50 wins it. Is applying worth it?'
+options:
+  - 'Yes: one chance in 50 at ₹1 lakh is worth about ₹2,000, four times the fee'
+  - 'No: 49 applicants in 50 get nothing'
+  - 'No: a fee for a long shot is wasted money'
+  - 'Yes: you should apply for everything that is free to win'
+answer: 0
+feedback:
+  - ''
+  - Most applicants losing is what makes it a long shot. It is still worth trying when the prize is large and the price small.
+  - The fee is wasted only when the chance times the prize is less than the fee. Here it is four times as much.
+  - Nothing here is free to enter. Every application costs a fee and an afternoon, so weigh each one.
+explanation: 'Weigh the chance against the price. One fiftieth of ₹1 lakh is ₹2,000: what applying is worth on average. Against a ₹500 fee and an afternoon, that is worth it. A strong essay would raise your chance, and its value with it.'
+measures: weigh-odds

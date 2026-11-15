@@ -1,0 +1,20 @@
+kind: choice
+prompt: 'In this poker hand you hold four spades, so one more spade makes a flush (five of one suit). It comes about one time in five, with one shared card to come. The pot (the points bet so far) holds 30 points, and a call (matching the bet) costs 10. Call, or fold (give up the hand)?'
+cards:
+  hole: [As, 7s]
+  board: [9s, 4s, Kd, 2c]
+  pot: 30
+  toCall: 10
+options:
+  - 'Fold: the call is a quarter of the 40 you play for, and the flush comes only about 20%'
+  - 'Call: nine outs (cards that would make your hand) is a strong draw'
+  - 'Call: the 30 points already in the pot are too many to give up'
+  - 'Fold: you should never call while you are behind'
+answer: 0
+feedback:
+  - ''
+  - Nine outs is a good draw, but whether it is worth a call depends on the price. At 10 to play for 40, it is not.
+  - Points already in the pot are not yours any more. Only the next 10 points are your choice, and they buy too little chance.
+  - Being behind is fine when the call is cheap. If the call cost 5, the flush would be worth chasing.
+explanation: 'A call of 10 plays for 40: the 30 in the pot and your own 10. So you need to win more than one time in four, 25%. Nine spades among 46 unseen cards come about 20% of the time. The chance is smaller than the price: fold.'
+measures: odds

@@ -1,0 +1,17 @@
+kind: choice
+prompt: 'In this poker hand, the opponent called while two hearts showed, then bet big when the third came. The story fits, and the bet costs a lot if it is a bluff. What does that share with the job candidate?'
+cards:
+  hole: [As, Kd]
+  board: [Kh, 9h, 4c, 7d, 2h]
+alongside: "A job candidate's CV says she led a team of ten. In the interview she answers every detailed question about it with ease: who did what, what went wrong, and what she changed."
+options:
+  - Each tells a story that fits all the other evidence and would be hard to fake
+  - Both are probably bluffs, since claims cost nothing
+  - Both are about confidence, and the surer one usually tells the truth
+answer: 0
+feedback:
+  - ''
+  - A claim on its own costs nothing. A story that holds up under every check, or a big bet that loses a lot if called, does cost something to fake.
+  - Confidence is cheap to put on, and good bluffers practise it. What counts is whether the story fits the evidence.
+explanation: 'In both, one claim is backed by everything around it. The opponent played the whole hand the way a flush would, and the candidate knows the details only someone who led the team would know. A story that fits and costs dearly to fake deserves belief.'
+measures: bluff

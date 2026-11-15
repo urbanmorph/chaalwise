@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'You are booking a train ticket for a family visit next month. A flexible ticket, which you can change for free, costs ₹1,500 more. Changing a normal ticket costs ₹3,000. You think there is about one chance in three that your plans change. Which ticket?'
+options:
+  - 'The normal one: a one-in-three chance of ₹3,000 averages ₹1,000'
+  - 'The flexible one: ₹3,000 to change is twice the extra price'
+  - 'The flexible one: it is always better to be safe'
+  - 'The normal one: plans rarely change'
+answer: 0
+feedback:
+  - ''
+  - A change costs twice as much, but you expect to need one only one time in three. On average, that comes to ₹1,000.
+  - Safety has a price. Here it costs ₹1,500 for cover worth about ₹1,000 on average. It is worth paying only if ₹3,000 would hurt far more than it costs.
+  - You said one chance in three, which is not rare. The sum still favours the normal ticket, but only just.
+explanation: 'Weigh the chance against the price. One chance in three of a ₹3,000 fee costs ₹1,000 on average, against ₹1,500 for the flexible ticket. Buy the normal one. If the chance were one in two, the two would cost the same.'
+measures: weigh-odds

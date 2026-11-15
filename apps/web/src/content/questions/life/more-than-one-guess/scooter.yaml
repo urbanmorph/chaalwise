@@ -1,0 +1,15 @@
+kind: choice
+prompt: 'You are buying a used scooter. The seller drops the price from ₹45,000 to ₹38,000 the moment you hesitate. That could mean they need money fast, they priced it high to start with, or the scooter has a fault. Then the seller will not let your mechanic look at it. What now?'
+options:
+  - 'A hidden fault now fits best: walk away, or insist on the check'
+  - 'Buy it: they need money fast, so it is a bargain'
+  - 'Nothing has changed: the price drop already told you everything'
+  - Offer ₹30,000, since they will clearly take less
+answer: 0
+feedback:
+  - ''
+  - A seller who needs money fast would gladly let a mechanic look. Refusing the check fits that reason poorly.
+  - The refusal is new evidence. It fits a hidden fault far better than the other reasons, so the weights should change.
+  - A lower price does not help if the scooter has a fault that costs more to fix. Find out what you are buying first.
+explanation: 'Think in ranges, not one guess: list every reason that fits, and update as facts come in. The price drop fitted three reasons. Refusing a check fits a hidden fault much better than the others, so that reason now leads. Walk away unless the check happens.'
+measures: read-hidden

@@ -10,11 +10,13 @@ type Shown = {
   situations?: string[];
   alongside?: string;
   position?: string;
+  cards?: object;
   lab?: string;
 };
 const lessons = lessonsIn('strategy').map(({ file, data }) => ({
   id: file.replace('.md', ''),
   after: data.after!,
+  skills: data.skills as string[],
   steps: data.steps as Shown[],
   /** Each step's question id as the lesson asks it, such as `life/review-calmly/launch`; none for reading and plans. */
   asks: (frontmatter(`lessons/strategy/${file}`) as { steps: { ask?: string }[] }).steps.map((s) => s.ask),
@@ -59,13 +61,35 @@ describe('every strategy lesson names its idea after the comparison, not before'
 });
 
 describe('every strategy lesson compares its game with a case off it', () => {
-  it('sets a work or study case beside the chess position, or the round of the lab it follows, and asks what the two share', () => {
+  it('sets a work or study case beside the chess position, the poker cards, or the round of the lab it follows, and asks what the two share', () => {
     for (const { id, after, steps } of lessons) {
       const compares = steps.filter((s) => s.kind === 'choice' && s.alongside);
       expect(compares, id).toHaveLength(1);
       const [compare] = compares;
       if (after.startsWith('labs/')) expect(`labs/${compare!.lab}`, id).toBe(after);
+      else if (after.startsWith('poker/')) expect(compare!.cards, id).toBeTruthy();
       else expect(compare!.position, id).toBeTruthy();
+    }
+  });
+});
+
+describe('the poker skills complete the transfer loop', () => {
+  // Poker teaches these three skills, and only a strategy lesson carries them away from the table:
+  // a hand, a case to compare it with, life questions and a plan (content strategy, priority 1).
+  const dist = (path: string) => readFileSync(new URL(`../dist/${path}`, import.meta.url), 'utf8');
+
+  it.each(['weigh-odds', 'read-hidden', 'bluff'])('gives %s a strategy lesson after a poker lesson on it', (skill) => {
+    const bridges = lessons.filter((l) => l.skills.includes(skill) && l.after.startsWith('poker/'));
+    expect(bridges.length, skill).toBeGreaterThan(0);
+    for (const { id, after } of bridges) {
+      const poker = frontmatter(`lessons/${after}.md`) as { skills: string[] };
+      expect(poker.skills, id).toContain(skill);
+      // The poker lesson leads on to it as its next lesson (the rail lists every lesson anyway), and the skill's course lists it.
+      const next = dist(`${after}/index.html`).match(
+        /&quot;next&quot;:\[0,\{&quot;href&quot;:\[0,&quot;([^&]+)&quot;/,
+      )?.[1];
+      expect(next, id).toBe(`/skills/${id}/`);
+      expect(dist(`skills/${skill}/index.html`), id).toContain(`href="/skills/${id}/"`);
     }
   });
 });
