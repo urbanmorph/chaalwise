@@ -60,7 +60,7 @@ export const TRACKS: Track[] = [
     'Reason from incomplete evidence, and update as more arrives.',
     0,
     3,
-    "Rule finder, Ask the panel and First number wins? labs, Liar's Dice, Mastermind",
+    "Rule finder, Ask the panel, First number wins? and Used scooters labs, Liar's Dice, Mastermind",
   ),
   t('bluff', 'Understand how others see you, and how that shapes what they do.', 0, 3, "Liar's Dice"),
   t(
@@ -76,7 +76,7 @@ export const TRACKS: Track[] = [
     'Price things fairly, and avoid overpaying when you win.',
     0,
     2,
-    'Sealed-bid auction and Split the pie labs',
+    'Sealed-bid auction, Split the pie and Trade what matters less labs',
   ),
 ];
 

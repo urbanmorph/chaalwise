@@ -1,0 +1,13 @@
+kind: choice
+prompt: In the Used scooters lab, a good scooter is worth 130 points to you and a poor one 30. Half are good, so an average scooter is worth 80. Sellers know which they have; you cannot tell. Owners of good scooters will not sell for less than 85. You offer 75 for any scooter. What do you get?
+options:
+  - A mix of good and poor scooters, worth about what you paid on average
+  - Only poor scooters, so you lose 45 points each time
+  - Mostly good scooters, since 75 is close to what they are worth
+answer: 1
+feedback:
+  - The average is worth 80, but at 75 the owners of good scooters keep them. You are not buying from an average seller.
+  - ''
+  - A good scooter is worth 130 to you, but its owner will not sell for less than 85, so at 75 no good scooter is for sale.
+explanation: 'At a price that is fair for an average scooter, only sellers of poor ones sell: you pay 75 for a scooter worth 30. To buy a good one at all you must offer 85 or more. Then half are good and half poor, worth 80 on average, so you still lose. This is adverse selection.'
+measures: read-hidden

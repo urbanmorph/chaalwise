@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You have a job offer from a firm in Bengaluru, with a pay band of ₹6,00,000 to ₹7,20,000 a year. You asked why they want you to join within two weeks: a client project starts then. You care most about working from home three days a week, because you look after a parent. What is your best next offer?'
+options:
+  - Join in two weeks, in return for three days a week at home
+  - 'Meet in the middle on everything: four weeks, two days at home, and the middle of the pay band'
+  - Hold out for six weeks and three days at home, since they clearly need you
+answer: 0
+feedback:
+  - ''
+  - Meeting halfway on each issue sounds fair, but it gives them a late start they need badly and gives you fewer days at home than you need. Both lose what matters most.
+  - Pushing on the date they care most about risks the whole offer, and the date matters less to you than the days at home.
+explanation: 'Their interest is the start date; yours is the days at home. Give way on what matters less to you and more to them, in return for what matters more to you. A trade across issues leaves both better off than splitting each one.'
+measures: value

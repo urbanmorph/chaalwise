@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import ScootersLab from '../../components/labs/ScootersLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'used-scooters')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Nine days buying used scooters from sellers who know which ones are good, while you see only the price. First on price alone, then with a mechanic's check
+    you pay for, then with warranties. Try to end with good scooters and more points than you started with.
+  </p>
+  <ScootersLab client:load />
+</LabPage>

@@ -112,6 +112,20 @@ export const LABS: Lab[] = [
     entry: 'labs/fairness-and-trust',
     read: ['labs/tit-for-tat', 'strategy/cooperate-or-defend'],
   },
+  {
+    slug: 'trade-what-matters-less',
+    title: 'Trade what matters less',
+    track: 'value',
+    entry: 'labs/logrolling',
+    read: ['strategy/walk-away-point'],
+  },
+  {
+    slug: 'used-scooters',
+    title: 'Used scooters',
+    track: 'read-hidden',
+    entry: 'labs/market-for-lemons',
+    read: ['strategy/costly-signals', 'strategy/information-advantage'],
+  },
 ];
 
 export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You are hiring a junior accountant for an office in Lucknow. Every applicant''s CV says "good with Excel", the spreadsheet program. You cannot tell from the CVs who really is. What is the best way to find out?'
+options:
+  - Ask each applicant to rate their own Excel skills from 1 to 10
+  - Give each applicant a short spreadsheet task to do at the interview
+  - Hire the applicant who sounds most confident about Excel
+answer: 1
+feedback:
+  - A rating costs nothing to give, true or false, so everyone says 8 or 9. It sorts nobody.
+  - ''
+  - Confidence is free to put on, and an applicant who cannot use Excel has the most reason to sound sure.
+explanation: 'A short task screens: it costs you a little time, and it shows what the CV cannot. When the other side knows more than you, pay to find out, or set a test that only the right people pass.'
+measures: read-hidden

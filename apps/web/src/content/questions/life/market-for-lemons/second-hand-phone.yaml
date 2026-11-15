@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You want a second-hand phone from a resale site in Hyderabad. Phones of this model sell for ₹8,000 to ₹15,000, depending on their condition. The sellers know the condition; from the photos, you cannot tell. You decide to offer ₹11,500, the middle, to every seller. Who is most likely to accept?'
+options:
+  - A fair mix of sellers, since you offered a fair average price
+  - Sellers of phones in poor condition
+  - Sellers of the best phones, since ₹11,500 is a generous offer
+answer: 1
+feedback:
+  - A price that is fair for an average phone is too low for a good one, so owners of good phones say no. The mix that accepts is worse than average.
+  - ''
+  - Owners of phones in top condition can get ₹15,000 elsewhere, so ₹11,500 is too little for them.
+explanation: "Ask who would accept your price. A middle price attracts the sellers whose goods are worth less than it, and turns away the rest. Pay for a check, such as a shop's test of the battery and screen. Or ask the seller for a promise that would cost them if the phone were poor."
+measures: read-hidden

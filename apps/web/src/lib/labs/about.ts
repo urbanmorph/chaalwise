@@ -72,4 +72,14 @@ export const LAB_ABOUT: Record<Lab['slug'], LabAbout> = {
     plays:
       'Offer a share of 100 points to four bots who can say no, then send points that are tripled to two partners, then decide what to send back.',
   },
+  'trade-what-matters-less': {
+    idea: 'Give way on what matters less to you and more to them, and ask what they care about. Splitting every issue down the middle leaves points on the table.',
+    plays:
+      'Two job-offer talks over four issues at once (salary, joining date, days at home, training), against bots with hidden scoring sheets.',
+  },
+  'used-scooters': {
+    idea: 'When the seller knows more, a fair average price drives good sellers away. Check for yourself, or ask for a promise that would cost a cheat dearly.',
+    plays:
+      'Nine days buying used scooters from sellers who know which are good: on price alone, then with a mechanic’s check, then with warranties.',
+  },
 };

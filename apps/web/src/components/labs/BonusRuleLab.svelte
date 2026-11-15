@@ -238,11 +238,6 @@
   .lab-stage {
     min-height: 30rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   fieldset {
     margin: 0 0 12px;
     padding: 0;

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two coaching centres in Kota offer the same course for the CAT, the entrance test for Indian business schools, at ₹40,000. One says its teaching is "the best in the city". The other promises the full fee back if you leave in the first month. Which tells you more about the teaching?'
+options:
+  - The claim to be the best in the city, since it is the bolder one
+  - 'Neither: both are just ways to sell the course'
+  - The refund promise, since it would cost a poor centre a lot
+answer: 2
+feedback:
+  - A bold claim costs nothing to make, true or false, so a poor centre can make it as easily as a good one.
+  - Both want to sell, but only one has made a promise it pays for if the teaching is poor. That difference tells you something.
+  - ''
+explanation: 'A poor centre would lose many fees to refunds, so it cannot afford the promise. A good one loses few. A promise that costs the sender dearly if it is false is a signal you can believe; a claim that costs nothing is cheap talk.'
+measures: read-hidden

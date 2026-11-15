@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import TradeLab from '../../components/labs/TradeLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'trade-what-matters-less')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Two talks over a job offer, each with four issues at once, against bots whose scoring sheets you cannot see. Try to end with more points than splitting
+    every issue down the middle would give you.
+  </p>
+  <TradeLab client:load />
+</LabPage>
