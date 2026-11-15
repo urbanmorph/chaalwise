@@ -1,0 +1,12 @@
+kind: choice
+prompt: A cousin says gold has risen 18% this year, and urges you to move the savings into gold before the fees are due. What do you do?
+options:
+  - Keep the money where it is safe, and save the last ₹20,000 from your income
+  - Move it all into gold, for a chance of a bigger sum
+  - Move half into gold, to share the gain and the risk
+answer: 0
+feedback:
+  - ''
+  - Gold could rise again, but it could also fall in four months. A 10% fall would leave you ₹68,000 short when the fees are due.
+  - Half in gold still puts the fees at risk. What you need is a sure ₹5 lakh, not a chance of more.
+explanation: 'You are nearly there, and a sure result is what you need. Keep the savings safe: a fall could cost you the fees, and a rise only adds money you do not need.'

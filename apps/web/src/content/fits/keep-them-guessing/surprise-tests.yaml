@@ -1,0 +1,7 @@
+from: life/keep-them-guessing/surprise-tests
+prompt: You teach a coaching class in Kota and want students to revise every week, not only the night before a test.
+explanation: Short tests on random days leave students nothing to predict, so revising every week becomes the only safe plan.
+feedback:
+  a-plan-step-by-step: A route of steps is for reaching a goal yourself. Here the point is that students should not be able to guess the test day.
+  basics-before-brilliance: 'Weekly revision is basic, but the question is how to get students to do it: by not letting them predict the tests.'
+  lead-or-answer: Moving first or second does not matter here. Being hard to predict does.

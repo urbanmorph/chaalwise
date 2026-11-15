@@ -1,0 +1,12 @@
+kind: choice
+prompt: You have ₹15,000 to make the stall faster. Where does it go?
+options:
+  - A payment QR code, and a second person at the counter at rush hour
+  - A second griddle, so the cook can make more dosas
+  - Better packing boxes
+answer: 0
+feedback:
+  - ''
+  - More dosas an hour add nothing while orders come in at 40 an hour. The cook is not what holds things back.
+  - Packing already runs at 90 an hour, faster than anything else. Better boxes do not move the queue.
+explanation: 'The stall serves only as fast as its slowest part: the counter, at 40 an hour. Raise that first, as nothing else helps until you do.'

@@ -1,0 +1,7 @@
+from: life/their-next-move/price-cut
+prompt: You and the tea stall across the road each sell 100 cups a day at 20 a cup. You plan to cut your price to 18 to win their customers.
+explanation: Think how the other stall will answer. They will most likely cut too, and then you both sell the same tea for less.
+feedback:
+  count-it-through: The sum is easy once you see their reply. The step that matters is asking what the other stall does the next day.
+  give-a-little-get-more: You would give up 2 a cup, but their reply means you get nothing back for it. Seeing that starts with their answer.
+  lead-or-answer: Moving first is the plan here. Whether it pays depends on how they respond, and that is the question to ask.

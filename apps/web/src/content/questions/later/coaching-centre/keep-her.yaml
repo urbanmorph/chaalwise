@@ -1,0 +1,12 @@
+kind: choice
+prompt: Your first thought is to match the offer. What do you do before deciding?
+options:
+  - List several ways to keep her, such as fewer hours or a senior role, and compare them
+  - Match the ₹15,000 at once, before she has time to accept the offer
+  - Let her go, and hire a new teacher who costs less than she does
+answer: 0
+feedback:
+  - ''
+  - Matching may turn out right, but it is the first thing you thought of. You have not compared it with anything yet.
+  - Letting her go is a second option, but it is chosen without looking at others. Your best students may follow her.
+explanation: 'Before you choose, list at least three options, including one you had not first thought of. Ask her what she wants, too: it may not be money.'

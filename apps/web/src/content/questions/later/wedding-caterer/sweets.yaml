@@ -1,0 +1,12 @@
+kind: choice
+prompt: Before you say yes to your uncle, what do you check?
+options:
+  - Whether the caterer's agreement lets another cook serve, and what it costs if not
+  - 'Nothing: free sweets save money, so say yes to your uncle at once'
+  - Whether the guests will like his sweets more than the caterer's
+answer: 0
+feedback:
+  - ''
+  - Free help feels like pure gain, but a clause in the agreement could make it cost you, or start a row on the day.
+  - Taste matters, but it is not the risk. The danger is in what the caterer can do if the agreement is broken.
+explanation: Ask what could go wrong before you act. Many caterers bar outside food in their agreements, and some charge a fee for it. One question now saves a dispute at the wedding.

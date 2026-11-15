@@ -1,0 +1,7 @@
+from: life/a-bet-tells-a-story/last-two-left
+prompt: Shopping online, you look at a ₹1,200 kurta. The page says "Only 2 left", and it has said so every day for a week.
+explanation: A message that costs nothing to show, and that does not fit what you have seen, tells you little. Decide on the kurta as if the message were not there.
+feedback:
+  patterns-save-thinking: 'Knowing the trick helps, but the point is to judge the message: it costs the seller nothing, and a week of the same "2 left" does not fit.'
+  blunder-check: There is no risky move to check. The question is how much a cheap message should count.
+  spend-effort-where-it-matters: The choice is small, but the point is how far to believe what the page tells you.

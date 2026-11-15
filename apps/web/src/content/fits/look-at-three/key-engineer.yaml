@@ -1,0 +1,7 @@
+from: life/look-at-three/key-engineer
+prompt: Your best engineer has an offer from a rival paying 20% more. Your first thought is to match it.
+explanation: Before you choose, name at least three options. You could also offer a new role, more flexible hours, or a raise with a review in six months.
+feedback:
+  their-next-move: How the engineer will answer matters, but first you need more than one offer to make.
+  count-it-through: The sum is simple. The gap is that only one option is on the table.
+  make-it-hard: You are not losing a contest. You have a choice to make, and only one option to make it with.

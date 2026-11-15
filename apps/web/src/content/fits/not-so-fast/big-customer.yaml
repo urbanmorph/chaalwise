@@ -1,0 +1,9 @@
+from: life/not-so-fast/big-customer
+prompt: Your firm's biggest customer, a quarter of your sales, renews its contract in eight months. You hear a rival has been meeting their buyers. Your own plan this quarter is to win new customers.
+explanation: 'The rival wants your biggest customer. Before you push on with your own plan, deal with theirs: visit the customer now, not in month seven.'
+feedback:
+  their-next-move: That is about how someone will answer a move you make. Here the rival has moved already, and you must stop their plan before it works.
+  look-at-three: There may be several answers, but the first thing to see is the rival's plan. Without that, you would compare the wrong options.
+  spend-effort-where-it-matters: That is about how long to think over a choice. The trigger here is a rival at work on your customer.
+alsoFits:
+  - find-what-everything-depends-on

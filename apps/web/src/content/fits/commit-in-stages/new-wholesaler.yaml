@@ -1,0 +1,7 @@
+from: life/commit-in-stages/new-wholesaler
+prompt: You run a kirana shop, a small neighbourhood grocery, and sell about 300 kilos of rice a month. A new wholesaler offers rice at ₹4 a kilo less than your usual one, but you have never bought from them.
+explanation: Commit a little at a time. Try a small order first, say 50 kilos, and move more only once the rice and the deliveries prove good.
+feedback:
+  give-a-little-get-more: The saving is real, but the question is how much to risk on a supplier you have not tried, not whether the trade is worth it.
+  simplify-when-ahead: Nothing is close to won. You are deciding how big a first step to take.
+  look-at-three: The choice is already clear. The point is how much to commit at first.

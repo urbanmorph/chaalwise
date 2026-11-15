@@ -1,0 +1,12 @@
+kind: choice
+prompt: The caterer asks for half in advance today, by bank transfer to a personal account, "to lock the date". There is no written agreement yet. What do you do first?
+options:
+  - Ask for a signed agreement, and a receipt in the firm's name, before you pay
+  - Pay today, since good caterers book up fast in the wedding season
+  - Check that ₹1.35 lakh is half the quote, then pay
+answer: 0
+feedback:
+  - ''
+  - Speed feels safe in the wedding season, but money paid with nothing signed leaves you no answer if the date goes to someone else.
+  - Getting the sum right checks only your own move. The risk is in what the payment lets the caterer do next.
+explanation: Before you pay, ask what could go wrong and what the payment lets them do. With no agreement and a personal account, the money could vanish, or be used to push the price up.

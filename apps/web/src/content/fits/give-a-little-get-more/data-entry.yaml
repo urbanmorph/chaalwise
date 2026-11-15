@@ -1,0 +1,7 @@
+from: life/give-a-little-get-more/data-entry
+prompt: Your team spends 10 hours a week on manual data entry. A tool costing 60,000 a year would cut that to 2 hours. An hour of the team's time costs the firm 500.
+explanation: Give up one thing only for more of another, and count both in the same units. The tool costs 60,000 and saves 8 hours a week, about 200,000 a year.
+feedback:
+  two-birds-one-stone: 'The tool serves one aim, saving time. The point is the trade: money for hours, counted in one unit.'
+  count-it-through: There is no chain of later steps here. It is one trade, weighed once in money.
+  simplify-when-ahead: Nothing is close to being won. It is a trade to weigh.

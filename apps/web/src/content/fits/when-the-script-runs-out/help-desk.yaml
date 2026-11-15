@@ -1,0 +1,7 @@
+from: life/when-the-script-runs-out/help-desk
+prompt: At a shop's help desk, you follow set steps for refund requests. A caller says she does not want a refund. She wants to swap the item for another size before her daughter's birthday on Saturday, and the steps say nothing about swaps.
+explanation: When the prepared steps run out, act on the reasons behind them. Refund steps exist to keep customers happy, and a quick swap does that.
+feedback:
+  patterns-save-thinking: There is no known shape to follow; the request is new. You reason from what the steps are for.
+  pass-the-problem-back: Sending the caller away to start again will not help. You can work out the answer yourself.
+  basics-before-brilliance: No clever idea is competing with the basics. The prepared steps simply do not cover this.

@@ -1,0 +1,7 @@
+from: life/patterns-save-thinking/report-errors
+prompt: A new accountant checks monthly reports. She keeps finding the same few kinds of error, such as a total that leaves out a row, and each takes her an hour to track down.
+explanation: Learn the common shapes by heart. A list of the few usual errors, checked first, would find most of them in minutes and leave her time for the rare ones.
+feedback:
+  blunder-check: She is not about to make a risky move. She is spending an hour on errors she has seen many times before.
+  fix-your-weakest-link: No single part of the work holds the rest back. The same few errors keep coming back, and that is a shape to learn.
+  when-the-script-runs-out: The errors are familiar, not new. A known answer fits them; there is no need to reason from scratch.

@@ -1,0 +1,9 @@
+from: life/blunder-check/holding-deposit
+prompt: You have found a flat you like. The owner asks you to transfer two months' rent today "to hold it", before you have seen the rental agreement.
+explanation: Before you pay, ask what could go wrong and what the payment lets the owner do. Money paid before an agreement can be kept, or used to push for new terms.
+feedback:
+  finish-the-job: That is for the last steps of something nearly won. Nothing is agreed yet; the question is whether the first step is safe.
+  count-it-through: There is no chain of payments to follow to the end. The risk is one payment made before anything is signed.
+  lead-or-answer: Who moves first matters when your move sets a starting point, such as a price. Here the danger is what the money lets them do.
+alsoFits:
+  - their-next-move

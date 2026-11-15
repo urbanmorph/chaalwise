@@ -1,0 +1,7 @@
+from: life/know-your-limit/projector
+prompt: Your college society is buying a second-hand projector for its events. A new one costs ₹30,000, and hiring one costs ₹2,000 an event. A seller asks ₹22,000.
+explanation: Decide what it is worth to you, and your walk-away price, before you bargain. Compare it with a new one and with hiring, then set your limit.
+feedback:
+  give-a-little-get-more: There is a trade, but the first step is your own limit, set before the talk starts.
+  lead-or-answer: Who names a number first matters less than knowing yours before you start.
+  count-it-through: Some counting helps, but the point is a walk-away price fixed before you bargain.

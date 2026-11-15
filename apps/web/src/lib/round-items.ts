@@ -2,7 +2,7 @@ import type { GradedStep } from '@chaalwise/core/lesson';
 import { sourceOf } from './games';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
-import { shuffle } from './random';
+import { deal } from './deal';
 
 /** A question in a round, with the review card it counts towards and where it comes from. */
 export type RoundItem = { cardId: string; step: GradedStep; context?: string | undefined };
@@ -41,11 +41,7 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
     const track = trackOf(step.measures);
     if (track) byTrack.set(track, [...(byTrack.get(track) ?? []), id]);
   }
-  const piles = shuffle([...byTrack.values()], random).map((ids) => shuffle(ids, random));
-  const ids: string[] = [];
-  while (ids.length < count && piles.some((p) => p.length))
-    for (const pile of piles) if (pile.length && ids.length < count) ids.push(pile.pop()!);
-  return ids;
+  return deal([...byTrack.values()], count, random);
 }
 
 /**

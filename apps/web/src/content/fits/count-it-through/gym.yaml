@@ -1,0 +1,7 @@
+from: life/count-it-through/gym
+prompt: A gym gives you the first month free if you then sign a 12-month contract at 1,500 a month, which cannot be ended early. You expect to stop going after about three months.
+explanation: Follow the chain to the end before you take the first step. The free month commits you to 18,000, most of it for months you will not use.
+feedback:
+  blunder-check: Nobody is about to act against you. The cost sits in plain sight in the contract, once you add it up.
+  give-a-little-get-more: You are not trading one thing for more of another. You are taking a free first step that leads to a long bill.
+  simplify-when-ahead: You are not ahead with something to protect. The question is where a chain of payments ends.

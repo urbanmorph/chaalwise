@@ -1,0 +1,10 @@
+from: life/finish-the-job/contract
+prompt: After three months, a client has agreed every term of a large contract by phone. The signed copy is due on Friday. It is Thursday afternoon.
+explanation: A win is not a win until it is finished. Get the contract signed, check the details, and do not relax until it is back.
+feedback:
+  simplify-when-ahead: You are ahead, but nobody is adding risk that you need to remove. The last step simply has to be done with care.
+  blunder-check: There is no risky move to check. The job is to get the last step done.
+  make-it-hard: You are winning, not behind.
+alsoFits:
+  - shrink-the-problem
+pair: simplify-when-ahead/contract

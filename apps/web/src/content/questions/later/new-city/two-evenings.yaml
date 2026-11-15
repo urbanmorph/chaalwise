@@ -1,0 +1,12 @@
+kind: choice
+prompt: You have two free evenings this week. How do you split them?
+options:
+  - Pick the data plan in a few minutes, and spend both evenings seeing flats and reading the agreements
+  - Compare every data plan carefully first, then look at flats with the time left
+  - Give each choice one evening
+answer: 0
+feedback:
+  - ''
+  - A data plan can be changed next month at no cost. Careful study there takes time from the choice you cannot undo.
+  - Equal time treats the two choices as equal. The flat ties up months of rent and a large deposit; the data plan ties up nothing.
+explanation: Decide small choices you can undo quickly, and spend your effort on the few that are large and final. The flat is both.

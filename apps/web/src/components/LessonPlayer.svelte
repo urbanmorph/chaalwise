@@ -302,6 +302,7 @@
           {/if}
           {#if player.revealed && isGraded(step)}<p class="explanation">
               {step.explanation}
+              {#if step.kind === 'choice' && step.link}<a href={step.link.href}>{step.link.text}</a>{/if}
             </p>{/if}
         </div>
 

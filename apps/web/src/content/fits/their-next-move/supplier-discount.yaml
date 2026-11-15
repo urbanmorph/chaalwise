@@ -1,0 +1,8 @@
+from: life/their-next-move/empty-threat
+prompt: You plan to tell your supplier you will switch to a rival unless they cut their price by a tenth. They know the rival has a three-month waiting list for new customers.
+explanation: Think how the supplier will see your threat. They know you cannot switch soon, so they will most likely say no. A threat they do not believe gives you nothing.
+feedback:
+  blunder-check: There is no trap hidden in a message or a contract. The question is how the supplier will read your threat, from where they stand.
+  pass-the-problem-back: You are trying to hand them a hard choice, but it only works if they believe it. Seeing it as they do comes first.
+  lead-or-answer: You are moving first either way. The point is how they will answer.
+pair: blunder-check/before-signing

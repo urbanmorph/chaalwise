@@ -1,0 +1,7 @@
+prompt: A small restaurant's kitchen and waiters keep up on busy nights. But only the head chef knows the recipes for the three dishes most people order, and she has been off sick for two weeks this year.
+explanation: Find the one part everything depends on. Write down the recipes and train a second cook, so a week without her does not stop the kitchen.
+feedback:
+  fix-your-weakest-link: 'No part is slow: the kitchen keeps up. The danger is that it all stops if one person is away.'
+  review-calmly: There is nothing to look back on and judge. The risk is still ahead.
+  basics-before-brilliance: The basics run well. What is missing is a back-up for the one person they rest on.
+pair: fix-your-weakest-link/kitchen

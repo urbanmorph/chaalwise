@@ -1,0 +1,8 @@
+from: life/simplify-when-ahead/deposit
+prompt: You have saved 290,000 of the 300,000 deposit you need for a flat in six months. A friend suggests moving the savings into shares, which might rise 20% by then, or fall as much.
+explanation: 'You are almost there, and a sure result is what you need. Keep the savings safe: a 20% fall would cost you the flat.'
+feedback:
+  give-a-little-get-more: The possible gain is real, but it is not worth the chance of losing a goal you have nearly reached.
+  finish-the-job: The saving is nearly done, but the real question is whether to take on a new risk. Keep it out.
+  make-it-hard: You are ahead, not behind. The aim is to stay there.
+pair: give-a-little-get-more/spare-savings

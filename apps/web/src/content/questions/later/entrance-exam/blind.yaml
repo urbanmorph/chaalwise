@@ -1,0 +1,12 @@
+kind: choice
+prompt: On another question you cannot rule out any option. Is a blind guess worth it?
+options:
+  - 'Yes, just: ¼ × 4 − ¾ × 1 = 0.25 marks a question over many questions'
+  - 'No: three times out of four you lose a mark'
+  - 'Yes: a guess always beats a blank'
+answer: 0
+feedback:
+  - ''
+  - You do lose a mark three times in four, but the one right answer in four earns 4. Over many questions that is a small gain.
+  - Not always. If a wrong answer cost 2 marks, a blind guess would lose 0.5 marks a question over many questions.
+explanation: Count what it earns over many tries. With four options, a blind guess is worth 0.25 marks, so it pays a little. Rule out even one option and it pays far more.

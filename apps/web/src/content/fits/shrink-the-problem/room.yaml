@@ -1,0 +1,7 @@
+from: life/shrink-the-problem/room
+prompt: You have one weekend to clear a garage packed to the roof, and you will not finish it.
+explanation: Make each step leave fewer ways for things to go wrong. Clear one corner fully and keep it clear, rather than half-sort everything.
+feedback:
+  a-plan-step-by-step: There is no far goal to plan a route to. The aim is that each step leaves the garage in a better, settled state.
+  finish-the-job: The job will not be finished this weekend. The point is the state you leave it in.
+  fix-your-weakest-link: No part is holding the rest back. The point is to make each step stick.

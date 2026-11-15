@@ -1,0 +1,7 @@
+from: life/look-at-three/summer-project
+prompt: You must choose a summer project. Your tutor has offered one, and a friend wants you to join theirs.
+explanation: Two options are not enough. Name a third, such as a project of your own, before you compare them.
+feedback:
+  pass-the-problem-back: The choice is yours. Nobody else can or should make it for you.
+  two-birds-one-stone: A project that serves two aims would be good to find, but first you need more than two to choose from.
+  count-it-through: There is nothing to add up yet. The first step is a wider set of options.

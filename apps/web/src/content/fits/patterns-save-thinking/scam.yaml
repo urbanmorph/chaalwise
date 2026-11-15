@@ -1,0 +1,7 @@
+from: life/patterns-save-thinking/scam
+prompt: A text says your bank account will be blocked today unless you verify at a link and share the code they send. Last month's scam text was about a parcel.
+explanation: 'Learn the common shapes by heart. These scams share one shape: a rush, a link, and a request for a code. Spot the shape and you need not study the details.'
+feedback:
+  blunder-check: A check before acting helps, but you do not need to think it through. The message has a shape you can know at a glance.
+  when-the-script-runs-out: 'This is the opposite: the known answer still works. The message fits a pattern you have seen before.'
+  their-next-move: You do not need to work out what the sender will do. The shape of the message tells you.

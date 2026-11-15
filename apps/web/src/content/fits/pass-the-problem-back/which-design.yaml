@@ -1,0 +1,7 @@
+from: life/pass-the-problem-back/which-design
+prompt: A client asks you to pick between two designs for their website. Both work well. The choice depends on how they want their brand to feel, which only they can say.
+explanation: The decision belongs with the client. Set out what each design says about the brand, and hand the choice back to them.
+feedback:
+  look-at-three: There are already two good options. A third would not help; the client needs to make the call.
+  lead-or-answer: You are not deciding when to move. You are deciding whose decision it is.
+  their-next-move: Guessing how the client will react to your pick misses the point. They are the only ones who can pick.

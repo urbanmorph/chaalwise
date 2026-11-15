@@ -1,0 +1,9 @@
+from: life/finish-the-job/essay
+prompt: Your essay is written, two hours before the deadline. Last time you lost 10 marks for a missing reference list.
+explanation: The last steps need as much care as the first. Use the time to check the reference list and the details that lost marks last time.
+feedback:
+  review-calmly: 'Looking back at last time is useful, but the moment calls for action now: finishing well.'
+  simplify-when-ahead: Nothing risky needs to be removed. The work is done; the finish is what is left.
+  make-it-hard: You are not behind. You are nearly done.
+alsoFits:
+  - shrink-the-problem

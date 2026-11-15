@@ -1,0 +1,12 @@
+kind: choice
+prompt: Where should the next improvement go?
+options:
+  - The cooking, now the slowest part at 60 dosas an hour
+  - The counter again, to take orders faster still
+  - Packing, as it was the next-slowest part before
+answer: 0
+feedback:
+  - ''
+  - The counter is no longer the slowest part. Faster orders would only make the wait for food longer.
+  - Packing runs at 90 an hour, faster than the cook. It is not what keeps people waiting.
+explanation: Once the slowest part is fixed, another becomes the slowest. Now the cook, at 60 an hour, sets the pace, so the next spending goes there.

@@ -1,0 +1,7 @@
+from: life/more-than-one-guess/scooter
+prompt: You are buying a used scooter. The seller drops the price from ₹45,000 to ₹38,000 the moment you hesitate. That could mean they need money fast, priced it high to start with, or know of a fault. Then the seller will not let your mechanic look at it.
+explanation: List what could be true, and cross out what new facts rule out. Refusing a mechanic fits a fault far better than a need for money, so treat a fault as likely.
+feedback:
+  blunder-check: Checking before you pay helps, but the key is to weigh the three explanations against the new fact.
+  know-your-limit: Your limit matters, but first work out what the seller is hiding, because that changes what the scooter is worth.
+  their-next-move: The seller has already moved twice. The point is what those moves say about what you cannot see.

@@ -1,0 +1,7 @@
+from: life/know-your-limit/translation-quote
+prompt: You are a freelance translator. A firm asks five translators to quote for a 40-page technical manual, and the lowest quote wins. You have never translated a manual like this one.
+explanation: When everyone is guessing the same cost, whoever wins most likely guessed too low. Allow for that in your quote, so winning does not mean losing money.
+feedback:
+  estimate-it: 'A careful estimate helps, but there is more here: beating four others means your estimate was probably the lowest, and too low.'
+  blunder-check: Checking for mistakes helps, but the trap is built into how the lowest quote wins.
+  commit-in-stages: You cannot take this job a little at a time. The question is what your quote should allow for.

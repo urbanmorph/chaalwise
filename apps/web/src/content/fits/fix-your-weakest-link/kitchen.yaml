@@ -1,0 +1,8 @@
+from: life/fix-your-weakest-link/kitchen
+prompt: A small restaurant's kitchen can cook 60 meals an hour and its waiters can serve 80, but the one dishwasher can clean plates for only 35. On busy nights, orders wait.
+explanation: Improve the part doing least. The dishwasher holds the whole kitchen to 35 meals an hour, so a faster cook or more waiters would add nothing.
+feedback:
+  find-what-everything-depends-on: The dishwasher is slow, not a single point that could fail and stop everything. The fix is to raise the slowest part.
+  basics-before-brilliance: Nothing basic is being skipped. One stage is simply slower than the others.
+  spend-effort-where-it-matters: That is about how much thought a choice deserves. This is about which part of the kitchen to improve.
+pair: find-what-everything-depends-on/one-chef

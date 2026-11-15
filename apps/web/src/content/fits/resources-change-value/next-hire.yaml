@@ -1,0 +1,9 @@
+from: life/resources-change-value/next-hire
+prompt: A small firm has five sales staff and one web developer. Two years ago, one order in five came through the website. Now four in five do. There is money for one new hire.
+explanation: What a thing is worth depends on the situation. The website now brings most orders, so a second developer is worth more than a sixth salesperson.
+feedback:
+  when-the-script-runs-out: No prepared plan has run out in the middle of the action. What has changed is what each role is worth.
+  basics-before-brilliance: This is not plain steps against clever ones. It is the old mix of staff against what the firm needs now.
+  look-at-three: The options are already clear. The point is to value them again now things have changed.
+alsoFits:
+  - fix-your-weakest-link

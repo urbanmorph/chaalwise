@@ -1,0 +1,7 @@
+from: life/two-birds-one-stone/new-hire
+prompt: This week you must train a new hire and clear 40 overdue customer queries. Training takes about 10 hours, the queries about 12, and you have 15 free hours.
+explanation: 'One move can serve both aims: train the new hire by working through the queries together. Each query teaches them something, and the queue gets shorter.'
+feedback:
+  spend-effort-where-it-matters: There are not enough hours for both jobs one after the other, but dropping one is not the answer. One task can do both.
+  give-a-little-get-more: No trade is needed. You do not have to give up either aim.
+  fix-your-weakest-link: No single part is holding the rest back. The answer is to join two jobs into one.

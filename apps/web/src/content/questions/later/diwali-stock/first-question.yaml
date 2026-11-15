@@ -1,0 +1,12 @@
+kind: choice
+prompt: Your brother says buying that much stock was a mistake. What do you ask first?
+options:
+  - What did we know when we ordered, and could we have known about the rain?
+  - How much did we lose, so we never order that much stock again?
+  - Who pushed for the big order, and why did nobody stop it?
+answer: 0
+feedback:
+  - ''
+  - The loss is real, but rain nobody could plan for caused it. Cutting the order for good would judge the choice by one bad result.
+  - Blame does not tell you whether the choice was sound. Ask what was known when it was made.
+explanation: Judge a choice by what you knew, and could have found out, when you made it. Three years of sales was good evidence; the rain was bad luck.

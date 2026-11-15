@@ -1,0 +1,8 @@
+from: life/make-it-hard/last-question
+prompt: With 15 minutes left in a maths exam, you see that you cannot fully solve the last question, worth 20 marks.
+explanation: Do not give up when you are behind. Write every step you can, since partial working usually earns marks.
+feedback:
+  spend-effort-where-it-matters: There is nothing bigger left to spend the time on. This question is worth 20 marks, so keep at it.
+  finish-the-job: You are not ahead and closing out a win. You are behind on this question, and every mark counts.
+  simplify-when-ahead: Nothing is close to won, so cutting risk is not the aim.
+pair: spend-effort-where-it-matters/stuck-question

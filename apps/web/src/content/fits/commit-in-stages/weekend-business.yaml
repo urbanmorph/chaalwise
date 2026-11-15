@@ -1,0 +1,9 @@
+from: life/commit-in-stages/weekend-business
+prompt: You work full time and want to start a weekend business making scented candles. Nobody has bought one yet.
+explanation: Commit in proportion to what you know. With no sales yet, start with a small batch, and put in more only as orders come.
+feedback:
+  basics-before-brilliance: Getting the basics right matters, but the bigger question is how much to put in before anyone has bought one.
+  a-plan-step-by-step: A plan helps, but the key is sizing the first stake so that one bad month cannot sink you.
+  two-birds-one-stone: No single move serves two aims here. The question is how much to risk at first.
+alsoFits:
+  - know-when-to-stop

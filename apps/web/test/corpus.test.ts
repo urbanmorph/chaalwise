@@ -1,11 +1,12 @@
 import { readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { askedIds, corpus } from './content';
+import { GAMES, askedIds, corpus } from './content';
 
 describe('the question corpus', () => {
   it('holds every question once, each under its game and idea', () => {
     expect(corpus.size).toBeGreaterThan(200);
-    for (const id of corpus.keys()) expect(id, id).toMatch(/^(chess|poker|labs|life|cases)\/[a-z0-9-]+\/[a-z0-9-]+$/);
+    for (const id of corpus.keys())
+      expect(id, id).toMatch(/^(chess|poker|labs|life|cases|later)\/[a-z0-9-]+\/[a-z0-9-]+$/);
   });
 
   it('gives every question its own review card', () => {
@@ -56,26 +57,8 @@ describe('every strategy idea', () => {
 });
 
 describe('every question names its setting', () => {
-  /**
-   * Terms that belong to one game or sport, with little everyday meaning of their own.
-   * A question about life that uses one must say which game it means: mixed practice
-   * and review show it alone, with no lesson around it to say so.
-   */
-  const GAMES: [name: RegExp, terms: RegExp][] = [
-    [
-      /\bchess\b/i,
-      /\b(knight|bishop|rook|pawn|checkmate|stalemate|castling|en passant|back rank|sicilian|recapture)s?\b/i,
-    ],
-    [/\bpoker\b/i, /\b(the flop|river card|turn card|big blind|pot odds|check-raise|hole cards|all-in)\b/i],
-    [/\b(football|soccer)\b/i, /\b(penalty kick|penalty taker|goalkeeper|offside|free kick|corner kick)s?\b/i],
-    [/\bcricket\b/i, /\b(wicket|innings|bowler|batsman|lbw)s?\b/i],
-    [/\btennis\b/i, /\b(deuce|double fault|tiebreak|break point)s?\b/i],
-    [/\bgolf\b/i, /\b(birdie|bogey|putt)s?\b/i],
-    [/\bbasketball\b/i, /\b(free throw|three-pointer)s?\b/i],
-  ];
-
-  /** Questions about life off the board: the life questions, and the decisions in the work cases. */
-  const offBoard = [...corpus].filter(([id]) => id.startsWith('life/') || id.startsWith('cases/'));
+  /** Questions about life off the board: the life questions, and the decisions in the work cases and the cases a week later. */
+  const offBoard = [...corpus].filter(([id]) => /^(life|cases|later)\//.test(id));
 
   it('names the game whenever a question about life uses its terms', () => {
     const unnamed = offBoard.flatMap(([id, data]) => {

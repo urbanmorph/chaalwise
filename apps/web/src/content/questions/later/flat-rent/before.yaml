@@ -1,0 +1,12 @@
+kind: choice
+prompt: Before you meet the owner of the flat you like most, what do you settle?
+options:
+  - "The most you will pay: ₹19,500, plus what this flat's extras are worth to you"
+  - 'Nothing yet: wait and see what the owner asks for first'
+  - Your opening offer, which should be as low as you dare
+answer: 0
+feedback:
+  - ''
+  - Without a limit set beforehand, the owner's first number becomes your guide, and a friendly talk can carry you past what the flat is worth to you.
+  - An opening offer matters, but it comes second. First you need the point at which you would walk away.
+explanation: 'Know the most you will pay before you bargain: the best deal you can get elsewhere, here the ₹19,500 flat, plus what this one adds. Above that, you do better walking away.'

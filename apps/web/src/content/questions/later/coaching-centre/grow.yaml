@@ -1,0 +1,12 @@
+kind: choice
+prompt: You want to take more students without her teaching more. How do you choose the way to do it?
+options:
+  - Set out several ways, such as a Sunday batch or a second room, and compare them
+  - Open a Sunday batch with a new teacher, the way the bigger centre does
+  - Raise the fees, since 40 students are waiting for a place
+answer: 0
+feedback:
+  - ''
+  - Copying a rival is one option, and it may not suit you. Compare it with at least two others first.
+  - Higher fees may help, but that is the first plan to hand, not a choice made between several.
+explanation: Again, list at least three options and compare them. The waiting list gives you room to pick the best way to grow, not the first one.

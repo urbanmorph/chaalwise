@@ -1,0 +1,7 @@
+from: life/estimate-it/website-weeks
+prompt: A web design firm in Bengaluru plans to build a client's website in 6 weeks. Its last five websites of the same kind were each planned for about 6 weeks, and took 9, 10, 12, 10 and 14 weeks.
+explanation: Start from how similar cases usually turn out. Past sites took about 11 weeks, so begin there, not at the hopeful 6, then adjust for what is different.
+feedback:
+  review-calmly: Looking back at past projects helps, but the task is a number for this one, built from how they turned out.
+  a-plan-step-by-step: A route of steps comes later. First you need an honest estimate of how long it will take.
+  patterns-save-thinking: Something does repeat, but the point is to turn it into a number to start from, not a quick answer known by heart.

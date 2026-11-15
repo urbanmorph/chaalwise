@@ -1,0 +1,7 @@
+from: life/meet-again/flatmate
+prompt: You share a flat in Bengaluru, and the lease has two more years to run. Your flatmate has skipped their turn to clean the kitchen twice this month.
+explanation: 'You will live together for two more years, so be clear and fair. Raise it calmly, answer it if it goes on, and forgive a slip once it is put right.'
+feedback:
+  pass-the-problem-back: Handing the choice to them is not enough. Over two years, how you answer each other is what counts.
+  make-it-hard: This is not a contest to win. You will share the flat for two more years.
+  their-next-move: How they will respond matters, but the bigger point is that you will deal with each other again and again.

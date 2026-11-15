@@ -1,0 +1,12 @@
+kind: choice
+prompt: What do you change for next year's Diwali order?
+options:
+  - Keep the way you order, and ask whether unsold boxes can be returned
+  - Order half as much next year, to be on the safe side
+  - Stop stocking up for Diwali at all, as it is too risky
+answer: 0
+feedback:
+  - ''
+  - Halving the order judges the plan by one rainy year. In a normal year you would run out and lose sales.
+  - One bad year does not make a good season a bad bet. Stopping would give up your best weeks.
+explanation: The decision was sound; the result was bad luck. Keep what worked, and add something that limits the damage if bad luck comes again.
