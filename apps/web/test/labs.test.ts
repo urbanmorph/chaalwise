@@ -14,6 +14,7 @@ import { counter, describePattern, outcome, PatternBot, type Throw } from '../sr
 import { BIDDERS, breakEvenShade, drawItem, settle, simulateAuctions, SPREAD } from '../src/lib/labs/auction';
 import { LAB_ABOUT } from '../src/lib/labs/about';
 import { LABS, labsForLesson, theLab } from '../src/lib/labs/labs';
+import { LAB_PLANS } from '../src/lib/labs/plans';
 import { seeded } from '../src/lib/labs/seeded';
 import { TRACKS } from '../src/lib/skill-tracks';
 
@@ -246,11 +247,14 @@ describe('the labs', () => {
       ['first-number', 'read-hidden', 'strategy/anchoring'],
       ['who-moves-first', 'think-ahead', 'labs/credible-threats'],
       ['split-it-fairly', 'cooperate', 'labs/fairness-and-trust'],
+      ['trade-what-matters-less', 'value', 'labs/logrolling'],
+      ['used-scooters', 'read-hidden', 'labs/market-for-lemons'],
     ]);
   });
 
   it('each say, apart from the list lesson pages load, the idea they teach and how they play', () => {
     expect(Object.keys(LAB_ABOUT)).toEqual(LABS.map((l) => l.slug));
+    expect(Object.keys(LAB_PLANS).sort()).toEqual(LABS.map((l) => l.slug).sort());
     for (const { idea, plays } of Object.values(LAB_ABOUT)) expect(idea && plays).toBeTruthy();
   });
 
@@ -268,7 +272,12 @@ describe('the labs a lesson offers at its end', () => {
   const slugs = (lesson: Parameters<typeof labsForLesson>[0]) => labsForLesson(lesson).map((l) => l.slug);
 
   it('offers the labs that train a strategy or poker lesson’s skill, and none to a chess lesson or a case', () => {
-    expect(slugs({ game: 'poker', skills: ['read-hidden'] })).toEqual(['rule-finder', 'ask-the-panel', 'first-number']);
+    expect(slugs({ game: 'poker', skills: ['read-hidden'] })).toEqual([
+      'rule-finder',
+      'ask-the-panel',
+      'first-number',
+      'used-scooters',
+    ]);
     expect(slugs({ game: 'strategy', skills: ['composure'], after: 'chess/endgame-intro' })).toEqual(['gain-or-loss']);
     expect(slugs({ game: 'poker', skills: [] })).toEqual([]);
     expect(slugs({ game: 'chess', skills: ['calculate'] })).toEqual([]);

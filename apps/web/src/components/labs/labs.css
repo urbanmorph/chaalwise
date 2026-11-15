@@ -27,6 +27,7 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+/* "of 5" after a count in the score line. */
 .lab-score .of {
   font-size: 0.9rem;
   font-weight: 400;
@@ -42,6 +43,16 @@
   background: var(--paper);
   color: var(--ink);
   font: 600 1.1rem var(--sans);
+}
+/* Who you play against, with a line about them. */
+.lab .against {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.lab .against .lab-note {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 .lab-actions {
   display: flex;

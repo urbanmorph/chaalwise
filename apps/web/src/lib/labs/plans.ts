@@ -140,4 +140,23 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     action:
       'I will offer a share they can accept with pride, and trust in small steps, giving more to those who pay it back',
   },
+  'trade-what-matters-less': {
+    prompt: 'When will you trade across issues instead of splitting each one?',
+    situations: [
+      'I talk through a job offer, a joining date or a raise',
+      'I agree a deal with a supplier or a client that has several parts',
+      'I share out chores, shifts or tasks with others',
+    ],
+    action:
+      'I will ask what matters most to them, and give way on what matters less to me in return for what matters more',
+  },
+  'used-scooters': {
+    prompt: 'When will you check what the other side knows and you do not?',
+    situations: [
+      'I buy something second-hand, from a phone to a scooter',
+      'I hire someone or choose a supplier I have not used before',
+      'a deal looks cheap and the seller knows more about it than I do',
+    ],
+    action: 'I will pay for a check, or ask for a promise that would cost them if they were wrong, such as a warranty',
+  },
 };

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In a college group project in Chennai, two members, Aisha and Rohan, both insist on leading. Asked why, Aisha says she wants to present the work, for a line on her CV before placement interviews. Rohan says he wants to set the timetable, because he has two exams that month. You are the third member. What do you suggest?'
+options:
+  - Take turns leading, a week each
+  - Hold a vote, and the loser accepts it
+  - Aisha presents the work; Rohan sets the timetable
+answer: 2
+feedback:
+  - Taking turns splits the position, the title of leader, down the middle. Aisha presents only half the time and Rohan controls the timetable only half the time, so neither gets what they need.
+  - A vote picks a winner and a loser, though both could get what they want. It settles the positions and ignores the interests.
+  - ''
+explanation: 'Their positions clash: both want to lead. Their interests do not: one wants to present, the other wants control of the dates. Ask why someone wants what they ask for, and you may find a trade that gives both what matters most to them.'
+measures: value

@@ -1,0 +1,13 @@
+kind: choice
+prompt: In the Trade what matters less lab, you and a bot negotiate a job offer over four issues at once. Each side's issues are worth up to 100 points to it in all, and splitting every issue down the middle gives each side 50. Meera, the bot, cares most about the joining date; you care most about salary. How can a deal give you both more than 50?
+options:
+  - Each gives way on an issue it cares little about and the other cares a lot about
+  - 'It cannot: 100 points are shared, so a gain for one side is a loss for the other'
+  - By splitting the difference on every issue, but faster
+answer: 0
+feedback:
+  - ''
+  - 'The total is not fixed. The joining date is worth 48 points to Meera and 12 to you, so the deal makes more points in all if she gets it. She can pay for it with an issue worth more to you.'
+  - Splitting every issue down the middle is exactly what gives 50 each. Speed does not change the share.
+explanation: 'When two sides value the issues differently, giving each issue to the side it is worth more to makes the deal bigger. In the lab, Meera can have the earliest joining date, and you the training budget and days at home. That gives her 60 points and you 68, against 50 each in the middle.'
+measures: value

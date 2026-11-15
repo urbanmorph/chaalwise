@@ -1,0 +1,13 @@
+kind: choice
+prompt: "You run a bakery in Pune and buy flour from a mill at ₹38 a kilo, paying 30 days after delivery. You want a lower price. When you ask the mill's manager what worries them, she says cash is tight this quarter, because customers take too long to pay. Your bakery has cash to spare. What do you offer?"
+options:
+  - Ask for ₹36 a kilo and offer to pay in 15 days, halfway on both
+  - Offer to pay within 7 days, in return for ₹34 a kilo
+  - Insist on ₹34 a kilo and 30 days, since they need your custom
+answer: 1
+feedback:
+  - Halfway on both issues leaves value on the table. Paying early costs you little, and it is what the mill needs most, so trade it in full.
+  - ''
+  - Holding firm on both ignores what the mill needs. They may walk away, or give way now and look for another buyer later.
+explanation: 'Paying early costs you little, since you have cash to spare, and it is worth a lot to a mill that is short of cash. Give them that in full, and ask for the price you care about in return.'
+measures: value

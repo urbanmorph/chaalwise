@@ -257,15 +257,6 @@
   .lab-stage {
     min-height: 30rem;
   }
-  .against {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  .against .lab-note {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 400;
-  }
   .facts {
     margin: 0;
   }

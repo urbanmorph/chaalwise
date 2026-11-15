@@ -141,11 +141,6 @@
   .lab-stage {
     min-height: 17rem;
   }
-  .of {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--ink-2);
-  }
   .lab-actions .button {
     min-width: 7.5em;
     justify-content: center;
