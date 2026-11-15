@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Twelve people share a kitchen in an office in Gurugram, and each puts ₹200 a month into a tea and snacks fund. Over three months, fewer people pay, and the dishes pile up. Most of the team says they would pay and clean if the others did. Which step is most likely to help?'
+options:
+  - 'A manager sends an email asking everyone to be more responsible'
+  - Stop the fund, since some people will always take without paying
+  - 'The team agrees a rota and a paid list on the fridge, with a small cost for missing a turn'
+answer: 2
+feedback:
+  - 'A request costs nothing to ignore, and nobody can see who answers it, so those who hold back keep holding back.'
+  - 'Most of the team would pay if the others did. Ending the fund throws away what they all gain from sharing.'
+  - ''
+explanation: 'People who give if others do need to see that others give. A list everyone can see, a rule the group made itself and a small cost for breaking it keep a shared thing going.'
+measures: cooperate

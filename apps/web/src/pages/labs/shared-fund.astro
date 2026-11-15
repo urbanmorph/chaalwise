@@ -1,0 +1,15 @@
+---
+import LabPage from '../../components/labs/LabPage.astro';
+import SharedFundLab from '../../components/labs/SharedFundLab.svelte';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'shared-fund')!;
+---
+
+<LabPage {lab}>
+  <p>
+    A housing society's maintenance fund pays for what everyone uses, whoever paid in. Each month, choose how many of your points to put in alongside four
+    neighbours, and watch what happens to the fund. Then the society puts every amount on the notice board, and the fund runs again.
+  </p>
+  <SharedFundLab client:load />
+</LabPage>

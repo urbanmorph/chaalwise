@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the Who backs down? lab, two sweet shops each choose to push or give way each week. Both give way: 5 points each. One pushes and the other gives way: 10 to the one who pushed, 0 to the other. Both push, a price war: −10 each. A rival pushes one week in three, at random. Which pays you more on average?'
+options:
+  - 'Pushing, since it wins 10 whenever the rival gives way'
+  - 'Giving way, since it never loses you any points'
+  - 'Neither: both earn about 3.3 a week against this rival'
+answer: 2
+feedback:
+  - 'Pushing wins 10 two weeks in three, but a price war costs 10 the other week. That averages about 3.3.'
+  - 'Giving way never loses, but it earns 5 only when the rival also gives way, two weeks in three. That also averages about 3.3.'
+  - ''
+explanation: 'Pushing: two thirds of 10, less one third of 10, is about 3.3. Giving way: two thirds of 5 is also about 3.3. When a rival pushes at this rate, neither move can beat them, which is why a crowd settles at one push in three.'
+measures: size-risk

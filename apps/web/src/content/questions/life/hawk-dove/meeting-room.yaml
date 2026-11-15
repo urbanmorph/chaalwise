@@ -1,0 +1,13 @@
+kind: choice
+prompt: "Your team and another both want the one big meeting room in your Bengaluru office for Thursday afternoon. The other team's lead has told everyone she never gives up a booking. If you both refuse to give way, the head of department will have to decide, which wastes a day for both teams. The room is useful, but another room would do. What is the best move?"
+options:
+  - Hold firm, since giving way now will make your team look weak
+  - Take another room for Thursday, and ask for the big room next time in return
+  - Take it to the head of department straight away, to settle it
+answer: 1
+feedback:
+  - Against someone who never gives way, holding firm only means the fight. The lost day costs both teams more than the room is worth.
+  - ''
+  - Going to the head of department is the fight itself. It costs both teams the day you were trying to save.
+explanation: 'When a fight costs more than the prize, give way to someone who will not, and push only against those who give way. Asking for the room next time in return turns a stand-off into taking turns, which leaves both teams better off than a fight.'
+measures: size-risk

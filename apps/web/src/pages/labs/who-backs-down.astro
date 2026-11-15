@@ -1,0 +1,15 @@
+---
+import HawkDoveLab from '../../components/labs/HawkDoveLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'who-backs-down')!;
+---
+
+<LabPage {lab}>
+  <p>
+    Two sweet shops face each other across a market lane. Each week, each can push for the customers or give way and share them, and a price war hurts both.
+    Play five weeks against each of four rival shops, and find out when to stand firm and when to give way.
+  </p>
+  <HawkDoveLab client:load />
+</LabPage>

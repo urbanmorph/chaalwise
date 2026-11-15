@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Six friends plan a trip to Goa and keep a group chat on WhatsApp, the messaging app, for shared costs such as the taxi and the stay. On the last trip, some paid for things and others never did, and the ones who paid ended up ₹4,000 down each. What should the group do this time?'
+options:
+  - 'Agree before the trip: every shared cost on one list all can see, settled within a week'
+  - Let whoever is most generous pay, since it all evens out over the years
+  - Each person pays only for their own things, and nothing is shared
+answer: 0
+feedback:
+  - ''
+  - 'It did not even out last time. When some pay and others do not, the ones who pay give up, and the shared plans stop.'
+  - 'It avoids free riders, but a shared taxi or room costs each person far less than paying alone. You lose what sharing gains.'
+explanation: 'Sharing makes things cheaper for everyone, but only if all pay their part. A list everyone can see and a rule agreed before the trip make it plain who has paid, so nobody can hold back unseen.'
+measures: cooperate
