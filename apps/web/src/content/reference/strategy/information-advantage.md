@@ -8,7 +8,7 @@ summary: 'Moving second pays when the other side’s move tells you something yo
 why: 'Acting last means acting on more facts. Acting first pays when it commits you or anchors the other side: a first number in a negotiation pulls the outcome towards it.'
 inLife: 'When you know little about what something is worth, find out before you name a number: ask, or research the market. When you know the market, a confident, well-justified first offer usually helps you.'
 skill: 'read-hidden'
-related: ['poker/position', 'strategy/lead-or-answer']
+related: ['poker/position', 'strategy/lead-or-answer', 'strategy/anchoring']
 try:
   - life/information-advantage/name-a-price
   - life/information-advantage/know-the-market

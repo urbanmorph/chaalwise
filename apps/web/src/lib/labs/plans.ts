@@ -111,4 +111,14 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     ],
     action: 'I will choose the option everyone would notice, or go first where all can see',
   },
+  'first-number': {
+    prompt: 'When will you question the first number you hear?',
+    situations: [
+      'someone names a price, a rent or a salary before I have worked out mine',
+      'a team plans a job from the date someone hopes it will be done',
+      'a form or a budget shows an example figure before I fill in my own',
+    ],
+    action:
+      'I will give one reason the number could be too high and one it could be too low, then name my own number and why',
+  },
 };

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At your college in Pune, a form asks each final-year group how many hours its project will need. The box shows an example answer in grey: "10 hours". Last term, a smaller project took your group about 40 hours. What do you write?'
+options:
+  - About 15 hours, a little above the example, since projects often run over
+  - 10 hours, since the college must know what such projects need
+  - About 40 hours or more, from last term, after asking what is different this time
+answer: 2
+feedback:
+  - Going a little above the example still starts from it. The grey figure only shows how to fill in the box; your own record is the better place to start.
+  - The example shows the format of an answer, not the size of your project. Nothing suggests the college worked it out for your group.
+  - ''
+explanation: 'An example figure on a form is an anchor: a number that pulls your answer towards it, though it says nothing about your case. Start from your own record, then give one reason it could be too high and one it could be too low.'
+measures: read-hidden

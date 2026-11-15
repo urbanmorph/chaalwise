@@ -119,6 +119,16 @@ export const LABS: Lab[] = [
     entry: 'strategy/coordination',
     read: ['strategy/cooperate-or-defend', 'labs/nash-equilibrium'],
   },
+  {
+    slug: 'first-number',
+    title: 'First number wins?',
+    idea: 'A first number pulls your estimate towards it, even one that means nothing. So first give one reason it could be too high and one it could be too low.',
+    plays:
+      'Six estimates of rents, crowds and deadlines, each just after someone else’s first number. Then the same six again, after a reason each way.',
+    track: 'read-hidden',
+    entry: 'strategy/anchoring',
+    read: ['strategy/information-advantage', 'strategy/independent-estimates'],
+  },
 ];
 
 export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;

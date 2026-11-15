@@ -3,12 +3,12 @@ term: 'Estimate alone, then pool'
 game: 'strategy'
 kind: 'principle'
 level: 'intermediate'
-aliases: ['Wisdom of crowds', 'Anchoring', 'Noise', 'Groupthink', 'Independent judgements']
+aliases: ['Wisdom of crowds', 'Noise', 'Groupthink', 'Independent judgements']
 summary: 'Have everyone estimate alone before anyone speaks. Averaged, independent guesses cancel each other’s errors; guesses that follow the first voice do not.'
 why: 'Each person’s guess is wrong in its own way, and in an average the errors partly cancel. Once people hear a first number, they lean towards it, so its error is repeated in every guess and survives the average.'
 inLife: 'Before a meeting that has to estimate a cost, a date or a candidate’s score, ask everyone to write their figure down first, then share them all at once. Hear the most senior person last, not first.'
 skill: 'read-hidden'
-related: ['strategy/base-rates', 'strategy/test-to-disprove', 'strategy/decisions-not-results']
+related: ['strategy/anchoring', 'strategy/base-rates', 'strategy/test-to-disprove', 'strategy/decisions-not-results']
 try:
   - life/independent-estimates/before-the-meeting
   - life/independent-estimates/ox-at-the-fair

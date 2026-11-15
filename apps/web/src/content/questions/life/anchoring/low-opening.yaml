@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You are letting a 2BHK flat (two bedrooms, a hall and a kitchen) in Kochi. Flats like it on the same road rent for ₹15,000 to ₹18,000 a month. The first person to see it says: "I can pay ₹9,000." What do you say?'
+options:
+  - Offer to meet them in the middle, at ₹13,000, to keep things friendly
+  - Name your own figure, about ₹17,000, with the road's rents as your reason
+  - Say nothing yet, and wait for them to raise their offer first
+answer: 1
+feedback:
+  - Meeting in the middle feels fair, but their low first number set the middle. Nothing about the flat points to ₹13,000.
+  - ''
+  - Waiting leaves ₹9,000 as the only number on the table, so the talk keeps moving around it.
+explanation: 'Their ₹9,000 is an anchor: a first number that pulls the talk towards it. Do not bargain from it. Put your own number on the table, with the reasons behind it, so the talk moves around a figure you can defend.'
+measures: read-hidden
