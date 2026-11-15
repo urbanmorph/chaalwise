@@ -7,6 +7,7 @@
   import '@chaalwise/core/srs';
   import { readDone } from '../lib/done-lessons';
   import { askable, gamesMet } from '../lib/games';
+  import type { LabIndex } from '../lib/labs/lab-ref';
   import { buildProfile } from '../lib/profile';
   import { shuffle } from '../lib/random';
   import { roundItems, type RoundItem } from '../lib/round-items';
@@ -22,12 +23,14 @@
     track: { id: string; name: string };
     /** Every question that trains the track, keyed by card id. */
     steps: Record<string, GradedStep>;
+    /** The labs those questions are met in (labIndex). */
+    labs: LabIndex;
   }
 
-  let { track, steps }: Props = $props();
+  let { track, steps, labs }: Props = $props();
   // Meet the game first: practise only questions about games played on this device, and about life. On the server, all.
   const met = typeof localStorage === 'undefined' ? undefined : gamesMet(readDone());
-  const open = $derived(met ? Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met))) : steps);
+  const open = $derived(met ? Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met, labs))) : steps);
   /** A short round: enough to practise, short enough to fit in a break. */
   const ROUND = $derived(Math.min(8, Object.keys(open).length));
   let level = $state('Not started');
@@ -53,7 +56,7 @@
   });
 
   async function practise() {
-    items = await roundItems(shuffle(Object.keys(open)).slice(0, ROUND), open);
+    items = await roundItems(shuffle(Object.keys(open)).slice(0, ROUND), open, labs);
     rounds++;
     await tick();
     heading?.focus();

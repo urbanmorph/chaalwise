@@ -1,7 +1,7 @@
 import type { GradedStep, Step } from '@chaalwise/core/lesson';
 import { isGraded } from '@chaalwise/core/player';
 import { toFen, toSan } from './chess';
-import { LABS, type Lab } from './labs/labs';
+import { ideaOf, type LabIndex, type LabRef } from './labs/lab-ref';
 
 /**
  * Meet the game first: a question about a game is asked only once the learner
@@ -10,25 +10,20 @@ import { LABS, type Lab } from './labs/labs';
  * guided hands, a lab by playing it. Questions about life off the board need nothing.
  */
 
-/** Where a question comes from: its game, and its lab if it is a lab's. */
-export function sourceOf(cardId: string, step: GradedStep): { game?: string; lab?: Lab } {
-  // Cards saved before the corpus began are `reference/<game>/<entry>/<name>`; corpus ids are `<game>/<idea>/<name>`.
-  const parts = cardId.split('/');
-  const [game, idea] = parts[0] === 'reference' ? parts.slice(1) : parts;
+/** Where a question comes from: its game, and its lab if it is a lab's. `labs` holds the labs its idea may be met in (labIndex in labs.ts). */
+export function sourceOf(cardId: string, step: GradedStep, labs: LabIndex): { game?: string; lab?: LabRef } {
+  const idea = ideaOf(cardId);
+  const game = idea.split('/')[0];
   if (game === 'chess' || game === 'poker') return { game };
-  // A game-theory idea with no lab of its own, such as tit for tat, is met in the first lab that teaches it.
-  const id = `${game}/${idea}`;
-  const lab =
-    LABS.find((l) => l.entry === id || (game === 'labs' && l.slug === idea)) ??
-    (game === 'labs' ? LABS.find((l) => l.read.includes(id)) : undefined);
+  const lab = labs[idea];
   if (lab) return { game: 'labs', lab };
   if (game === 'labs') return { game: 'labs' };
   return step.position || step.kind === 'move' ? { game: 'chess' } : {};
 }
 
 /** The game a question needs met first: `chess`, `poker`, `labs/<slug>`, or nothing. */
-export function needs(cardId: string, step: GradedStep): string | undefined {
-  const { game, lab } = sourceOf(cardId, step);
+export function needs(cardId: string, step: GradedStep, labs: LabIndex): string | undefined {
+  const { game, lab } = sourceOf(cardId, step, labs);
   return lab ? `labs/${lab.slug}` : game === 'labs' ? undefined : game;
 }
 
@@ -40,8 +35,8 @@ export const gamesMet = (done: ReadonlySet<string>): Set<string> =>
     ),
   );
 
-export const askable = (cardId: string, step: GradedStep, met: ReadonlySet<string>): boolean => {
-  const game = needs(cardId, step);
+export const askable = (cardId: string, step: GradedStep, met: ReadonlySet<string>, labs: LabIndex): boolean => {
+  const game = needs(cardId, step, labs);
   return !game || met.has(game);
 };
 
@@ -50,17 +45,26 @@ export const askable = (cardId: string, step: GradedStep, met: ReadonlySet<strin
  * the learner has met them: chess, poker, and the lab the lesson follows.
  * Game lessons are the way in, so they ask every question.
  */
-export function meetFirst(lesson: { game: string; after?: string | undefined }, steps: readonly Step[]): string[] {
+export function meetFirst(
+  lesson: { game: string; after?: string | undefined },
+  steps: readonly Step[],
+  labs: LabIndex,
+): string[] {
   if (lesson.game !== 'strategy') return [];
-  const games = steps.filter(isGraded).map((s) => needs(s.id, s));
+  const games = steps.filter(isGraded).map((s) => needs(s.id, s, labs));
   return [...new Set(games)].filter((g): g is string => g === 'chess' || g === 'poker' || g === lesson.after);
 }
 
 /** A lesson's steps as the learner sees them: a question about a game in `games` not yet met is a worked example. */
-export const asMet = (steps: readonly Step[], games: readonly string[], met: ReadonlySet<string>): Step[] =>
+export const asMet = (
+  steps: readonly Step[],
+  games: readonly string[],
+  met: ReadonlySet<string>,
+  labs: LabIndex,
+): Step[] =>
   steps.map((s) => {
     if (!isGraded(s)) return s;
-    const game = needs(s.id, s);
+    const game = needs(s.id, s, labs);
     return game && games.includes(game) && !met.has(game) ? workedExample(s) : s;
   });
 

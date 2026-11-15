@@ -13,10 +13,11 @@ import {
 import { counter, describePattern, outcome, PatternBot, type Throw } from '../src/lib/labs/rock-paper-scissors';
 import { BIDDERS, breakEvenShade, drawItem, settle, simulateAuctions, SPREAD } from '../src/lib/labs/auction';
 import { LAB_ABOUT } from '../src/lib/labs/about';
-import { LABS, labsForLesson, theLab } from '../src/lib/labs/labs';
+import { labIndex, LABS, labsForLesson, theLab } from '../src/lib/labs/labs';
 import { LAB_PLANS } from '../src/lib/labs/plans';
 import { seeded } from '../src/lib/labs/seeded';
-import { TRACKS } from '../src/lib/skill-tracks';
+import { PROFILE_SKILLS } from '../src/lib/profile-skills';
+import { TRACK_ALSO } from '../src/lib/skill-tracks';
 
 describe('a seeded random', () => {
   it('gives the same numbers for the same seed, and different ones for another', () => {
@@ -264,7 +265,7 @@ describe('the labs', () => {
   });
 
   it('are named on the skill map under each track they train', () => {
-    for (const lab of LABS) expect(TRACKS.find((t) => t.id === lab.track)!.also, lab.slug).toContain(lab.title);
+    for (const lab of LABS) expect(TRACK_ALSO[lab.track], lab.slug).toContain(lab.title);
   });
 });
 
@@ -290,5 +291,30 @@ describe('the labs a lesson offers at its end', () => {
       'prisoners-dilemma',
       'split-it-fairly',
     ]);
+  });
+});
+
+describe('the labs a page sends to the browser (labIndex)', () => {
+  it('finds a lab by its debrief entry, by its own slug, and by a game-theory idea it teaches', () => {
+    const index = labIndex();
+    expect(index['labs/winners-curse']).toEqual({ slug: 'sealed-bid-auction', title: 'Sealed-bid auction' });
+    expect(index['strategy/test-to-disprove']).toEqual({ slug: 'rule-finder', title: 'Rule finder' });
+    expect(index['labs/nim']).toEqual({ slug: 'nim', title: 'Nim' });
+    // Tit for tat has no lab of its own: it is met in the first lab that teaches it.
+    expect(index['labs/tit-for-tat']?.slug).toBe('prisoners-dilemma');
+    // A strategy idea a lab only suggests reading is not the lab's.
+    expect(index['strategy/cooperate-or-defend']).toBeUndefined();
+  });
+
+  it('keeps only the ideas the given questions ask about', () => {
+    expect(labIndex(['reference/labs/prisoners-dilemma/repeat', 'chess/fork/find', 'on-the-board'])).toEqual({
+      'labs/prisoners-dilemma': { slug: 'prisoners-dilemma', title: "Prisoner's Dilemma" },
+    });
+    expect(labIndex([])).toEqual({});
+  });
+
+  it('gives each lab a track the skill profile measures, as the profile does not read the labs list', () => {
+    const measured = PROFILE_SKILLS.filter((s) => !s.later).map((s) => s.id);
+    for (const lab of LABS) expect(measured, lab.slug).toContain(lab.track);
   });
 });

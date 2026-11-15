@@ -11,6 +11,7 @@
   import { afterCheck } from '../lib/check-result';
   import { addDone, readDone } from '../lib/done-lessons';
   import { asMet, gamesMet } from '../lib/games';
+  import type { LabIndex } from '../lib/labs/lab-ref';
   import { keepPlan } from '../lib/plans';
   import { isPracticeKind } from '../lib/practice-kinds';
   import { clearResume, readResume, saveResume } from '../lib/resume';
@@ -32,6 +33,8 @@
     checkable?: boolean;
     /** A strategy lesson: the games (chess, poker, its lab) whose questions are worked examples to read until met. */
     meetFirst?: string[];
+    /** The labs this lesson's questions are met in (labIndex), so the page carries no list of every lab. */
+    labs?: LabIndex;
     /** Where all the lessons of this course are listed. */
     all?: { href: string; label: string; done: string };
   }
@@ -44,6 +47,7 @@
     track,
     checkable = false,
     meetFirst = [],
+    labs = {},
     all = { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' },
   }: Props = $props();
 
@@ -74,7 +78,7 @@
 
   // Meet the game first. Read from the quick copy, so the lesson is right from the start; on the server, every question shows.
   const met = typeof localStorage === 'undefined' ? undefined : gamesMet(readDone());
-  const played = $derived(met && meetFirst.length ? { steps: asMet(lesson.steps, meetFirst, met) } : lesson);
+  const played = $derived(met && meetFirst.length ? { steps: asMet(lesson.steps, meetFirst, met, labs) } : lesson);
 
   /**
    * The check: the lesson's questions without the reading, in fresh positions
@@ -90,6 +94,7 @@
     const items = await roundItems(
       graded.map((s) => s.id),
       Object.fromEntries(graded.map((s) => [s.id, s])),
+      labs,
     );
     check = items.map(({ cardId, step }) => ({ ...step, id: cardId }));
     mode = 'check';

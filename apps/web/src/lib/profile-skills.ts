@@ -1,5 +1,4 @@
 import { SKILL_IDS, type SkillId } from '@chaalwise/core/skills';
-import { LABS } from './labs/labs';
 import { TRACKS } from './skill-tracks';
 
 /**
@@ -185,12 +184,9 @@ export const LESSON_TRACKS: SkillId[] = [
   'bluff',
 ];
 
-/** The strategy tracks, in the home page's order. A track is measured once a chess skill, a lab or a strategy lesson gives evidence for it. */
+/** The strategy tracks, in the home page's order. A track is measured once a chess skill or a strategy lesson gives evidence for it (a test checks each lab trains a measured track). */
 export const PROFILE_SKILLS: ProfileSkill[] = TRACKS.map((track) => {
-  const measured =
-    GAME_SKILLS.some((s) => s.track === track.id) ||
-    LABS.some((l) => l.track === track.id) ||
-    LESSON_TRACKS.includes(track.id);
+  const measured = GAME_SKILLS.some((s) => s.track === track.id) || LESSON_TRACKS.includes(track.id);
   return {
     id: track.id,
     name: track.name,

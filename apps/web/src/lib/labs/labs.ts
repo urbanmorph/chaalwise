@@ -1,10 +1,13 @@
 import type { SkillId } from '@chaalwise/core/skills';
-import { shortDate } from '../short-date';
+import { ideaOf, type LabIndex, type LabRef } from './lab-ref';
 
-/** A lab as the site's pages and the lesson player know it. What it teaches and how it plays are in about.ts. */
-export interface Lab {
-  slug: string;
-  title: string;
+export { labHref, theLab } from './lab-ref';
+
+/**
+ * A lab as the site's pages know it, at build time. What it teaches and how it plays are in about.ts. Code in the
+ * browser never imports this list: it gets the labs it needs as data (lab-ref.ts).
+ */
+export interface Lab extends LabRef {
   /** The strategy track it trains. */
   track: SkillId;
   /** The reference entry whose questions make the debrief. */
@@ -128,11 +131,6 @@ export const LABS: Lab[] = [
   },
 ];
 
-export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;
-
-/** A lab named in a sentence, such as "the Nim lab"; a title that starts with "The" drops it: "the bonus rule lab". */
-export const theLab = (lab: Pick<Lab, 'title'>): string => `the ${lab.title.replace(/^The /, '')} lab`;
-
 /** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */
 export function labsForLesson({
   game,
@@ -148,14 +146,16 @@ export function labsForLesson({
   return [...LABS.filter(follows), ...LABS.filter((l) => !follows(l) && skills.includes(l.track))];
 }
 
-/** Each lab, with when it was last played to the end on this device and how often, from the finished records. */
-export function labsPlayed(records: { lessonId: string; completedAt: Date; times: number }[]) {
-  return LABS.map(({ slug, title }) => {
-    const record = records.find((r) => r.lessonId === `labs/${slug}`);
-    return { slug, title, at: record?.completedAt, times: record?.times ?? 0 };
-  });
+/**
+ * The lab each idea is met in: a lab's own debrief entry and its `labs/<slug>`, then a game-theory idea with no lab
+ * of its own, such as tit for tat, in the first lab that teaches it. Given card ids, only the ideas they ask about.
+ */
+export function labIndex(cardIds?: Iterable<string>): LabIndex {
+  const index: LabIndex = {};
+  const add = (idea: string, { slug, title }: Lab) => (index[idea] ??= { slug, title });
+  for (const lab of LABS) [lab.entry, `labs/${lab.slug}`].forEach((idea) => add(idea, lab));
+  for (const lab of LABS) lab.read.filter((idea) => idea.startsWith('labs/')).forEach((idea) => add(idea, lab));
+  if (!cardIds) return index;
+  const asked = new Set([...cardIds].map(ideaOf));
+  return Object.fromEntries(Object.entries(index).filter(([idea]) => asked.has(idea)));
 }
-
-/** When a lab was last played: one short line, like "Not yet", so the list does not move as it loads. */
-export const playedLabel = (at: Date | undefined, times: number): string =>
-  !at ? 'Not yet' : `${shortDate(at)}${times > 1 ? `, ${times} times` : ''}`;

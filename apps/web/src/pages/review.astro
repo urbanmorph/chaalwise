@@ -5,21 +5,24 @@ import PlanCheckIn from '../components/PlanCheckIn.svelte';
 import ReviewSession from '../components/ReviewSession.svelte';
 import Base from '../layouts/Base.astro';
 import { fitsBank } from '../lib/fits-bank';
+import { labIndex } from '../lib/labs/labs';
 import { laterCases } from '../lib/later-cases';
 import { reviewSteps } from '../lib/lessons';
 
 const steps = await reviewSteps();
 const fits = await fitsBank();
 const cases = await laterCases();
+// Only the labs the questions are met in go to the browser, not the list of every lab.
+const labs = labIndex(Object.keys(steps));
 ---
 
 <Base title="Review" description="Questions from your finished lessons, brought back just before you would forget them." wide noindex>
   <div class="wrap wide">
     <h1>Today's review</h1>
     <p>Questions from lessons you have finished come back here on later days, just before you would forget them. Answer them to keep the ideas fresh.</p>
-    <ReviewSession client:load {steps} {fits} {cases} />
+    <ReviewSession client:load {steps} {fits} {cases} {labs} />
     {/* Below the review, so it never pushes the questions down as it loads. */}
-    <MixedPractice client:idle {steps} {fits} />
+    <MixedPractice client:idle {steps} {fits} {labs} />
     <PlanCheckIn client:idle />
     <LookBack client:idle />
   </div>

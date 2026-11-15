@@ -2,7 +2,11 @@ import type { SettingScore } from '@chaalwise/core/calibration-score';
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { describe, expect, it } from 'vitest';
 import { across, advice, apart, scoreLine } from '../src/lib/calibration';
-import { CALIBRATION_ROUND, calibrationIds, settingOf } from '../src/lib/calibration-round';
+import { CALIBRATION_ROUND, calibrationIds, settingOf as settingIn } from '../src/lib/calibration-round';
+import { labIndex } from '../src/lib/labs/labs';
+
+const labs = labIndex();
+const settingOf = (cardId: string, step: GradedStep) => settingIn(cardId, step, labs);
 
 const choice = (fields: Partial<GradedStep> = {}) =>
   ({
@@ -39,7 +43,7 @@ describe('a calibration round', () => {
   ]);
 
   it(`deals ${CALIBRATION_ROUND} questions from each setting in turn`, () => {
-    const ids = calibrationIds(steps, CALIBRATION_ROUND, () => 0.4);
+    const ids = calibrationIds(steps, labs, CALIBRATION_ROUND, () => 0.4);
     expect(ids).toHaveLength(CALIBRATION_ROUND);
     expect(new Set(ids).size).toBe(CALIBRATION_ROUND);
     const settings = ids.map((id) => id.split('/')[0]);
@@ -49,7 +53,7 @@ describe('a calibration round', () => {
   });
 
   it('asks only questions with options, which a sureness fits, and that count towards a skill, so the answer is kept', () => {
-    const ids = calibrationIds(steps, 30, Math.random);
+    const ids = calibrationIds(steps, labs, 30, Math.random);
     expect(ids).not.toContain('chess/x/move');
     expect(ids).not.toContain('life/x/unmeasured');
     expect(ids).toHaveLength(20);

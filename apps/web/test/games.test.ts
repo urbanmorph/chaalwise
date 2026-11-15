@@ -1,6 +1,10 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { describe, expect, it } from 'vitest';
-import { askable, asMet, gamesMet, meetFirst, needs, workedExample } from '../src/lib/games';
+import { askable, asMet, gamesMet, meetFirst, needs as needsIn, workedExample } from '../src/lib/games';
+import { labIndex } from '../src/lib/labs/labs';
+
+const labs = labIndex();
+const needs = (cardId: string, step: GradedStep) => needsIn(cardId, step, labs);
 
 const choice = (fields: Partial<GradedStep> = {}) =>
   ({ kind: 'choice', id: 'q', prompt: 'p', options: ['a', 'b'], answer: 0, explanation: 'e', ...fields }) as GradedStep;
@@ -34,9 +38,9 @@ describe('the games a learner has met, from what is done on this device', () => 
 
   it('asks a question only once its game is met; life questions always', () => {
     const met = gamesMet(new Set(['labs/nim']));
-    expect(askable('chess/hanging/free-knight', choice(), met)).toBe(false);
-    expect(askable('reference/labs/backward-induction/nim-eleven', choice(), met)).toBe(true);
-    expect(askable('strategy/blunder-check/angry-email', choice(), met)).toBe(true);
+    expect(askable('chess/hanging/free-knight', choice(), met, labs)).toBe(false);
+    expect(askable('reference/labs/backward-induction/nim-eleven', choice(), met, labs)).toBe(true);
+    expect(askable('strategy/blunder-check/angry-email', choice(), met, labs)).toBe(true);
   });
 });
 
@@ -88,24 +92,24 @@ describe('meet the game first, in a strategy lesson', () => {
 
   it('turns chess and poker questions into worked examples, and the lab it follows; never in a game lesson', () => {
     const steps = [read, life, chessQ, pokerQ, labQ];
-    expect(meetFirst({ game: 'strategy', after: 'poker/outs-and-odds' }, steps)).toEqual(['chess', 'poker']);
-    expect(meetFirst({ game: 'strategy', after: 'labs/prisoners-dilemma' }, steps)).toEqual([
+    expect(meetFirst({ game: 'strategy', after: 'poker/outs-and-odds' }, steps, labs)).toEqual(['chess', 'poker']);
+    expect(meetFirst({ game: 'strategy', after: 'labs/prisoners-dilemma' }, steps, labs)).toEqual([
       'chess',
       'poker',
       'labs/prisoners-dilemma',
     ]);
-    expect(meetFirst({ game: 'strategy', after: 'chess/fork' }, [read, life])).toEqual([]);
-    expect(meetFirst({ game: 'poker' }, steps)).toEqual([]);
+    expect(meetFirst({ game: 'strategy', after: 'chess/fork' }, [read, life], labs)).toEqual([]);
+    expect(meetFirst({ game: 'poker' }, steps, labs)).toEqual([]);
   });
 
   it('shows a question as a worked example until its game is met; reading and life questions as they are', () => {
     const steps = [read, life, chessQ, pokerQ, labQ];
     const games = ['chess', 'poker', 'labs/prisoners-dilemma'];
-    const fresh = asMet(steps, games, new Set());
+    const fresh = asMet(steps, games, new Set(), labs);
     expect(fresh.map((s) => s.kind)).toEqual(['read', 'choice', 'read', 'read', 'read']);
-    expect(asMet(steps, games, new Set(['poker']))[3]).toBe(pokerQ);
-    expect(asMet(steps, games, new Set(['labs/prisoners-dilemma']))[4]).toBe(labQ);
-    expect(asMet(steps, ['chess'], new Set())[3]).toBe(pokerQ);
+    expect(asMet(steps, games, new Set(['poker']), labs)[3]).toBe(pokerQ);
+    expect(asMet(steps, games, new Set(['labs/prisoners-dilemma']), labs)[4]).toBe(labQ);
+    expect(asMet(steps, ['chess'], new Set(), labs)[3]).toBe(pokerQ);
   });
 
   it('keeps a poker question’s cards on its worked example, with the case set away from the table', () => {
