@@ -20,7 +20,7 @@ steps:
   - ask: cases/cafe-supplier/rival-cut
   - kind: read
     id: contract
-    text: 'You keep your price at ₹180 and start a loyalty card. Most regulars stay. Two months on, the new roaster makes an offer: ₹780 a kilo if you sign for a year and take 40 kilos every month, or ₹820 a kilo month by month as now. Signing would save ₹1,600 a month, or ₹19,200 over the year.'
+    text: 'You keep your price at ₹180 and start a loyalty card. Most regulars stay. Two months on, the new roaster makes an offer. Sign for a year and take 40 kilos every month, and you pay ₹780 a kilo. Or stay month by month at ₹820 a kilo, as now. Signing would save ₹1,600 a month, or ₹19,200 over the year.'
   - ask: cases/cafe-supplier/sign-for-a-year
   - kind: plan
     id: plan
