@@ -1,6 +1,6 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { sourceOf } from './games';
-import { theLab } from './labs/labs';
+import { theLab, type LabIndex } from './labs/lab-ref';
 import { isPracticeKind } from './practice-kinds';
 import { trackOf } from './profile-skills';
 import { deal } from './deal';
@@ -16,7 +16,11 @@ export const practiceOf = (step: GradedStep) => ('practice' in step ? step.pract
  * practice comes back as a fresh position of the same idea; the generators load
  * only when a round needs them.
  */
-export async function roundItems(ids: string[], steps: Record<string, GradedStep>): Promise<RoundItem[]> {
+export async function roundItems(
+  ids: string[],
+  steps: Record<string, GradedStep>,
+  labs: LabIndex,
+): Promise<RoundItem[]> {
   const needsPractice = ids.some((id) => practiceOf(steps[id]!));
   const { practiceStep } = needsPractice ? await import('./practice') : { practiceStep: undefined };
   return ids.map((cardId) => {
@@ -26,7 +30,7 @@ export async function roundItems(ids: string[], steps: Record<string, GradedStep
       kind && isPracticeKind(kind) && practiceStep
         ? { ...practiceStep(kind, Math.random), measures: step.measures }
         : step;
-    return { cardId, step: fresh, context: contextOf(cardId, step) };
+    return { cardId, step: fresh, context: contextOf(cardId, step, labs) };
   });
 }
 
@@ -50,8 +54,8 @@ export function mixedIds(steps: Record<string, GradedStep>, count: number, rando
  * the game for game questions, the lab for its debrief, chess for a strategy
  * question set on a board, and nothing for one about life off the board.
  */
-export function contextOf(cardId: string, step: GradedStep): string | undefined {
-  const { game, lab } = sourceOf(cardId, step);
+export function contextOf(cardId: string, step: GradedStep, labs: LabIndex): string | undefined {
+  const { game, lab } = sourceOf(cardId, step, labs);
   if (lab) return `In ${theLab(lab)}`;
   return game === 'chess' ? 'In chess' : game === 'poker' ? 'In poker' : game === 'labs' ? 'In game theory' : undefined;
 }

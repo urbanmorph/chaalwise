@@ -7,7 +7,7 @@ import LessonPage from './LessonPage.svelte';
 import MoreOnLichess from './MoreOnLichess.astro';
 import { LICHESS_LESSONS } from '../lib/lichess';
 import { meetFirst } from '../lib/games';
-import { labHref, LABS, labsForLesson, theLab } from '../lib/labs/labs';
+import { labHref, labIndex, LABS, labsForLesson, theLab } from '../lib/labs/labs';
 import TryTheLab from './TryTheLab.astro';
 
 /** A lesson page's body, shared by chess and strategy lessons: intro, player, and a note if it builds on unfinished earlier stages. */
@@ -21,7 +21,9 @@ const { next, buildsOn } = await pathContext(lesson);
 const steps = await playedSteps(lesson);
 const firstChess = (await lessonPath()).find((l) => l.data.game === 'chess')!;
 // Meet the game first: a strategy lesson's chess, poker and lab questions are worked examples until that game is met.
-const meet = meetFirst(lesson.data, steps);
+// Only the labs its questions are met in go to the browser, so a new lab adds nothing to a lesson page.
+const labs = labIndex(steps.map((s) => s.id));
+const meet = meetFirst(lesson.data, steps, labs);
 const firstLab = LABS.find((l) => meet.includes(`labs/${l.slug}`));
 const { game, skills } = lesson.data;
 // Any strategy lesson with a board writes chess moves, so it carries the key to them.
@@ -100,6 +102,7 @@ const earlier = buildsOn.map((l) => ({ id: l.id, href: lessonHref(l), title: l.d
   all={COURSE_HOME[courseOf(lesson)]}
   checkable={game === 'chess'}
   meetFirst={meet}
+  {labs}
 />
 <TryTheLab labs={labsForLesson(lesson.data)} />
 <MoreOnLichess link={LICHESS_LESSONS[lesson.id]} />

@@ -4,14 +4,16 @@
   import { readDone } from '../lib/done-lessons';
   import type { FitsBank } from '../lib/fits';
   import { askable, gamesMet } from '../lib/games';
+  import type { LabIndex } from '../lib/labs/lab-ref';
   import { mixedIds, roundItems, type RoundItem } from '../lib/round-items';
   import PracticeRound from './PracticeRound.svelte';
 
   /**
    * Practice across every skill in mixed order, any time, due or not; "Which idea fits?" rounds once three strategy lessons
-   * are done; and calibration rounds, with "how sure are you?" required (loaded when asked for).
+   * are done; and calibration rounds, with "how sure are you?" required (loaded when asked for). `labs` holds the labs
+   * its questions are met in (labIndex).
    */
-  let { steps, fits }: { steps: Record<string, GradedStep>; fits: FitsBank } = $props();
+  let { steps, fits, labs }: { steps: Record<string, GradedStep>; fits: FitsBank; labs: LabIndex } = $props();
   const ROUND = 8;
   let items = $state<RoundItem[]>();
   /** Which round is showing. */
@@ -29,14 +31,14 @@
     const done = readDone();
     // Meet the game first: only questions about games played on this device, and about life.
     const met = gamesMet(done);
-    const open = withFits(Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met))), fits, done, Math.random);
+    const open = withFits(Object.fromEntries(Object.entries(steps).filter(([id, step]) => askable(id, step, met, labs))), fits, done, Math.random);
     let ids: string[];
     if (next === 'sure') {
       const round = await import('./CalibrationRound.svelte');
       CalibrationRound = round.default;
-      ids = round.calibrationIds(open, round.CALIBRATION_ROUND, Math.random);
+      ids = round.calibrationIds(open, labs, round.CALIBRATION_ROUND, Math.random);
     } else ids = next === 'fits' ? fitsIds(fits, done, FITS_ROUND, Math.random) : mixedIds(open, ROUND, Math.random);
-    items = await roundItems(ids, open);
+    items = await roundItems(ids, open, labs);
     kind = next;
     rounds++;
     await tick();

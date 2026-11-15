@@ -1,6 +1,9 @@
 import type { GradedStep } from '@chaalwise/core/lesson';
 import { describe, expect, it } from 'vitest';
-import { contextOf, mixedIds } from '../src/lib/round-items';
+import { labIndex } from '../src/lib/labs/labs';
+import { contextOf as contextIn, mixedIds } from '../src/lib/round-items';
+
+const contextOf = (cardId: string, step: GradedStep) => contextIn(cardId, step, labIndex());
 
 const q = (measures: string): GradedStep => ({
   kind: 'choice',

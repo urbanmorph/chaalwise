@@ -8,6 +8,7 @@
   import type { FitsBank } from '../lib/fits';
   import { PROFILE_SKILLS, trackOf } from '../lib/profile-skills';
   import { shuffle } from '../lib/random';
+  import type { LabIndex } from '../lib/labs/lab-ref';
   import { roundItems, type RoundItem } from '../lib/round-items';
   import type { LaterCaseData } from '../lib/later-cases';
   import PracticeRound from './PracticeRound.svelte';
@@ -19,9 +20,11 @@
     fits: FitsBank;
     /** The cases a week later, one offered below the review when its time comes. */
     cases: LaterCaseData[];
+    /** The labs its questions are met in (labIndex), to say where each question comes from. */
+    labs: LabIndex;
   }
 
-  let { steps, fits, cases }: Props = $props();
+  let { steps, fits, cases, labs }: Props = $props();
   let items = $state<RoundItem[] | undefined>();
   /** A review of one strategy track's questions, from the track's course page (`?track=`). */
   let track = $state<string | null>(null);
@@ -41,7 +44,7 @@
       const all = due.some((c) => c.id.startsWith('fits/')) ? (await import('../lib/fits')).withFits(steps, fits, readDone(), Math.random) : steps;
       // Mixed order: interleaving beats reviewing one lesson's questions in a block.
       const ids = shuffle(due.map((c) => c.id).filter((id) => id in all && (!track || trackOf(all[id]!.measures) === track)));
-      items = await roundItems(ids, all);
+      items = await roundItems(ids, all, labs);
     } catch (error) {
       console.error(error);
       failed = true;

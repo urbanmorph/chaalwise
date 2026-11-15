@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import { entryHref } from '../lib/reference';
 import { referenceEntries } from '../lib/reference-entries';
 import { chessLessonsFor, lessonHref, lessonsFor, STAGES, trackLessons, trackSteps } from '../lib/lessons';
-import { labHref, LABS, theLab } from '../lib/labs/labs';
+import { labHref, labIndex, LABS, theLab } from '../lib/labs/labs';
 import NewToChess from './NewToChess.astro';
 import NewToPoker from './NewToPoker.astro';
 import TrackPractice from './TrackPractice.svelte';
@@ -121,7 +121,7 @@ const { idea, why, atWork, inStudy, habit } = course.data;
     <section aria-labelledby="practise">
       <h2 id="practise">Practise and review</h2>
       <p class="also">Questions from every lesson above, in mixed order. You do not need to finish a lesson first.</p>
-      <TrackPractice client:load track={{ id, name }} {steps} />
+      <TrackPractice client:load track={{ id, name }} {steps} labs={labIndex(Object.keys(steps))} />
     </section>
   )}
 

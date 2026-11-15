@@ -4,20 +4,23 @@
   import { onMount } from 'svelte';
   import { exportDaily, importDaily } from '../lib/streak';
   import { saveDone } from '../lib/done-lessons';
-  import { labHref, labsPlayed, playedLabel } from '../lib/labs/labs';
+  import { labHref, labsPlayed, playedLabel, type LabRef } from '../lib/labs/lab-ref';
   import { exportResume, importResume } from '../lib/resume';
 
   interface Props {
     /** Review questions the site still has; any others (from changed lessons) are not counted. */
     cardIds: string[];
+    /** Every lab, as data: the page's script carries no list of the labs. */
+    labs: LabRef[];
   }
 
-  let { cardIds }: Props = $props();
+  let { cardIds, labs }: Props = $props();
   const known = $derived(new Set(cardIds));
 
   let stats = $state<{ lessons: number; cards: number; due: number; used: { used: number; of: number } } | undefined>();
   // Every lab from the start, "Not yet" until the record is read, so nothing shifts.
-  let labs = $state(labsPlayed([]));
+  let finished = $state<Parameters<typeof labsPlayed>[1]>([]);
+  const played = $derived(labsPlayed(labs, finished));
   // Assumed not yet kept, so the warning is laid out from the start and nothing shifts.
   let persisted = $state(false);
   let pending = $state<{ name: string; data: unknown } | undefined>();
@@ -37,7 +40,7 @@
         due: due.length,
         used: usedShare(data.later),
       };
-      labs = labsPlayed(data.lessons);
+      finished = data.lessons;
     } finally {
       progress.close();
     }
@@ -152,7 +155,7 @@
   <section class="card">
     <h2>Labs played</h2>
     <dl aria-busy={!stats}>
-      {#each labs as lab (lab.slug)}
+      {#each played as lab (lab.slug)}
         <div data-testid="lab-played-{lab.slug}">
           <dt><a href={labHref(lab)}>{lab.title}</a></dt>
           <dd class="when">{playedLabel(lab.at, lab.times)}</dd>

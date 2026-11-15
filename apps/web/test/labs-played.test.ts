@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { LABS, labsPlayed, playedLabel } from '../src/lib/labs/labs';
+import { labsPlayed, playedLabel } from '../src/lib/labs/lab-ref';
+import { LABS } from '../src/lib/labs/labs';
 
 describe('which labs have been played on this device', () => {
   const at = new Date('2026-10-20T09:00:00Z');
 
   it('lists every lab, with when it was last played and how often, from the finished records', () => {
-    const played = labsPlayed([
+    const played = labsPlayed(LABS, [
       { lessonId: 'labs/nim', completedAt: at, times: 2 },
       { lessonId: 'chess/fork', completedAt: at, times: 1 },
     ]);
