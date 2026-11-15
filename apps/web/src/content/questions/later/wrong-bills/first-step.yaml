@@ -1,0 +1,12 @@
+kind: choice
+prompt: "At your accounts office in Patna, three of Rohit's client bills had the tax wrong this week. What do you do first?"
+options:
+  - 'Ask him to walk you through one bill, and check what he was working from'
+  - 'Warn him that one more wrong bill will go on his record'
+  - 'Quietly move the client bills to someone more careful'
+answer: 0
+feedback:
+  - ''
+  - 'A warning assumes the fault is his. If something in his work set-up caused the errors, it will keep causing them, and a new person learns to hide mistakes.'
+  - 'That decides he is careless without checking. If the cause is in the work itself, the next person will make the same errors.'
+explanation: 'Three of the same error in one week often has one cause. Before deciding it is the person, look at what he was working with: the sheet, the rates, how he was shown the task. A walk through one bill shows it fast.'

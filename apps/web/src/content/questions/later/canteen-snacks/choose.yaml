@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'At the college canteen in Ahmedabad, how do you choose the two evening snacks?'
+options:
+  - "Find out what students buy: a poll at the counter, or a week's trial of four snacks"
+  - 'Go with the two you love: good food sells itself'
+  - 'Choose the two cheapest to make, so that a snack nobody buys costs you little'
+answer: 0
+feedback:
+  - ''
+  - 'Good food to you may not be what tired students want at 5 p.m. Your taste is one data point, and you are not the customer.'
+  - 'Low cost limits the loss, but it still leaves the choice to a guess. Finding out what students buy costs a week.'
+explanation: 'Your favourites tell you what you like. A short poll or a week of selling a few snacks tells you what the students will buy. Choose on what they do.'

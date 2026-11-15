@@ -1,0 +1,12 @@
+kind: choice
+prompt: "Your friend's caterer comes second: ₹95 a plate against ₹80, with the same inspection grade and tasting score. What now?"
+options:
+  - 'Back the first caterer, as the scores say'
+  - "Back your friend's: your sense that it is better is worth ₹15 a plate"
+  - 'Ask for another tasting, in case the first one was off'
+answer: 0
+feedback:
+  - ''
+  - 'The blind tasting found no difference. Your sense that his is better is the very pull you named in your colleague.'
+  - 'You would call that moving the goalposts if your colleague asked for it. The tasting was blind and fair.'
+explanation: 'The scores were set before anyone knew how they would come out, and they favour the first caterer. Backing your friend now would be what you called out in your colleague. Back the scores.'

@@ -1,0 +1,6 @@
+prompt: You run a small online shop in Indore. The courier who has delivered your parcels on time for a year has been a day late three times this week. This week, the main road to his depot is dug up for a new metro line.
+explanation: Before deciding he has become careless, look at what he is up against. A dug-up road would make any courier late. Judge him on his deliveries once the road reopens.
+feedback:
+  more-than-one-guess: Listing what could explain it helps, but one fact here already explains it. The habit to use is to look at his situation before you judge him.
+  meet-again: You may well keep using him, but first ask why he is late. That decides whether there is anything to forgive.
+  review-calmly: Review calmly judges your own decision by what you knew. Here you are judging someone else's slip.

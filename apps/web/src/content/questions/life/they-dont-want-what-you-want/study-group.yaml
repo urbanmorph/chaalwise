@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At college in Kolkata, you run a study group of five for the statistics exam. You learn best by doing past papers alone in silence, so every session is silent past papers. After three weeks, two members have stopped coming. What do you do?'
+options:
+  - 'Ask the group how each of them likes to study, and change the sessions to fit'
+  - 'Keep the plan: past papers work, so they will work for everyone'
+  - 'Let the two go: they were not serious about the exam'
+answer: 0
+feedback:
+  - ''
+  - 'Past papers work for you. Others may learn better by talking a problem through, or by being taught a topic first. Two empty chairs suggest they do.'
+  - 'That blames the people before checking the plan. They may be serious and simply not learn the way you do.'
+explanation: 'You planned the sessions you would want. The two who left have shown, by leaving, that it does not suit everyone. Ask how each person learns, and mix the sessions: some silent practice, some talking through problems.'
+measures: read-hidden

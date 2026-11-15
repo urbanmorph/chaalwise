@@ -1,0 +1,13 @@
+kind: choice
+prompt: "At college in Lucknow, a classmate who topped every test last year scores 38 out of 100 in this term's mid-term exam. A friend says she has stopped caring. You share a study group with her. What is the fairest first thought?"
+options:
+  - 'Something in her life may have changed this term, such as illness or a job'
+  - 'She has stopped caring about her studies, as the friend says'
+  - 'She was never as able as her marks last year made her look'
+answer: 0
+feedback:
+  - ''
+  - "A friend's guess is not evidence. A sudden drop from someone who topped every test is more often about what changed around her than about who she is."
+  - 'A whole year of top marks says otherwise. One low score is weak evidence against a long record, and her situation may explain it.'
+explanation: 'A sharp change in someone with a long record points to a change in their situation. Before you decide she has stopped caring, ask what this term holds for her. In the study group, asking how she is doing helps either way.'
+measures: read-hidden

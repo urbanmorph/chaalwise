@@ -1,0 +1,21 @@
+kind: choice
+prompt: 'In this poker hand, Ravi called your bet of 4 points on the fourth shared card with only a ten and a nine, no pair. Your bet made the pot (the points bet so far) 24, so his call cost 4 to play for 28. What best explains his call?'
+cards:
+  hole: [As, Ad]
+  board: [Qc, Jd, 4h, 2s, 8h]
+  others:
+    - name: Ravi
+      cards: [Th, 9s]
+options:
+  - 'His cards and the price: a king or an eight would make his straight, about 17%, and the call cost about 14%'
+  - 'He is reckless: careful players never call without a pair'
+  - 'He was angry after losing the hand before, and called to win his points back'
+  - 'He guessed you were bluffing (betting with a weak hand)'
+answer: 0
+feedback:
+  - ''
+  - 'He has played carefully all evening. One call is weak evidence about a person, and here his cards and the price explain it.'
+  - 'Nothing in the hand shows he was angry. His cards and the price already explain the call, with no need to guess at his mood.'
+  - 'He did not need to think you were bluffing. With eight cards that would make his straight, calling at that price was sound whatever you held.'
+explanation: 'With the queen and jack showing, his ten and nine needed a king or an eight for five in a row. That is eight cards among the 46 he could not see: about 17%. The call cost 4 to play for 28, about 14%. A careful player calls there. Before you judge the player, check their situation: their cards, their seat and the price.'
+measures: ranges

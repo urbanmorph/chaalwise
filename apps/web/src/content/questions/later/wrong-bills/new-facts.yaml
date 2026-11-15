@@ -1,0 +1,12 @@
+kind: choice
+prompt: "The errors came from an old tax rate on the billing sheet everyone uses, and two older colleagues' bills were wrong too. What now?"
+options:
+  - 'Fix the sheet, tell the whole office, and judge Rohit by his bills from here'
+  - 'Still warn Rohit: he should have spotted the old rate'
+  - 'Fix the sheet, but keep Rohit off client bills for now, to be safe'
+answer: 0
+feedback:
+  - ''
+  - 'Two experienced colleagues missed it too. Blaming the newest person for a fault in the sheet everyone used is unfair, and it leaves the real cause unnamed.'
+  - 'The facts now show the cause was the sheet, not Rohit. Keeping him off bills punishes him for it, and sends the office the wrong message.'
+explanation: 'What looked like one careless person was a situation that tripped everyone. Fix the cause and tell everyone who used it. Then judge Rohit on his own work, now that the sheet is right.'

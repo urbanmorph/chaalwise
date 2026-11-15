@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Vada pav and noodles sold three times as many plates as your favourites, and students want something quick before labs. What do you do?'
+options:
+  - 'Put vada pav and noodles on the menu, and try one favourite as a weekly special'
+  - 'Keep your favourites: the students will come round to them'
+  - 'Run the trial for another month to be sure'
+answer: 0
+feedback:
+  - ''
+  - 'Three times the plates is a clear answer. Waiting for students to change their taste costs you sales every evening.'
+  - 'A week with a gap that large is enough to act on. Another month costs sales and tells you little more.'
+explanation: 'The students have shown what they want by what they bought. Follow that, and give your favourites a smaller trial, such as one evening a week, and let the plates sold decide.'

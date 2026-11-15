@@ -1,0 +1,13 @@
+kind: choice
+prompt: "At work in Bengaluru, you review a colleague's proposal and find it rests on one hopeful sales figure. Your own proposal, due on Friday, also rests on a sales guess. What do you do before sending it?"
+options:
+  - 'Run the same check on yours, and have a colleague argue against your figure'
+  - 'Send it: you know your own reasoning, so you would notice a bias'
+  - 'Send it, and look again only if the sales figure turns out wrong'
+answer: 0
+feedback:
+  - ''
+  - 'Knowing your reasoning is exactly what hides the bias. You know what you meant, so the hopeful guess looks fair from inside.'
+  - 'By then the decision is made on your figure. A check costs little now, and a wrong figure costs a lot later.'
+explanation: "You found the weak figure in your colleague's proposal because you looked for it. Look for it in yours the same way. Give one reason your figure could be too high and one it could be too low, or ask someone to argue the other side."
+measures: composure

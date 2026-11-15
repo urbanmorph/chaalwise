@@ -1,0 +1,6 @@
+prompt: You are planning an outing for your team of eight in Mumbai. You love early-morning treks, so you have booked a 6 a.m. trek in the hills for Saturday and are about to send the invite.
+explanation: You planned the outing you would enjoy. Ask the team what they would like, or offer two or three choices to vote on, before you book.
+feedback:
+  commit-in-stages: Booking in stages would limit the cost, but the real problem is whose taste the plan follows.
+  know-your-limit: This is not about how much to pay. It is about what the others want.
+  blame-the-situation-first: Nobody has done anything odd yet. The risk is assuming they want what you want.

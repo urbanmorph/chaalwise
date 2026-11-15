@@ -1,0 +1,17 @@
+kind: choice
+prompt: 'In this poker hand, a bluff was tempting because you would fold a small pair, though Meena calls with any pair. What does that share with the lunch-box service?'
+cards:
+  hole: [7s, 6s]
+  board: [Kd, 9s, 4s, 2c, Jh]
+alongside: 'Arjun starts a lunch-box service for office workers in Bengaluru. He loves rich, spicy food, so every box is rich and spicy. Few customers order twice. Those who stop say they want a light meal they can eat at a desk.'
+options:
+  - 'Each planned on what they would want or do, not on what the other side does'
+  - 'Both were unlucky: the cards and the customers could have gone either way'
+  - 'Both gave up too soon, and should have kept going for longer'
+answer: 0
+feedback:
+  - ''
+  - 'Neither was bad luck. Meena had shown all evening that she calls, and the customers said what they want. The evidence was there.'
+  - 'Keeping going would make things worse. More bluffs lose more points, and more spicy boxes lose more customers.'
+explanation: 'In both, the plan rested on one''s own taste: "I would fold", "I love spicy food". The other side had already shown what it does: Meena calls, and the customers want light meals. Look at what they do, not at what you would do.'
+measures: read-hidden

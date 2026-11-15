@@ -1,0 +1,13 @@
+kind: choice
+prompt: "At college in Delhi, you mark a classmate's practice essay and notice it quotes only sources that agree with it. Your own essay is due next week. What do you do with yours?"
+options:
+  - 'Read it as you read hers: list the sources that disagree with you, and check you have answered them'
+  - 'Nothing: you spotted the problem in hers, so you would not make it'
+  - 'Ask her to check yours, and keep only the comments you agree with'
+answer: 0
+feedback:
+  - ''
+  - 'Spotting a mistake in others does not protect you from it. People who see a bias in others readily are often no better at seeing it in themselves.'
+  - 'Asking her is a good start, but keeping only the comments you like brings the bias back in.'
+explanation: 'You caught her one-sided sources because you read her essay as an outsider. Read yours the same way. List the strongest sources against your view, and check your essay answers them.'
+measures: composure

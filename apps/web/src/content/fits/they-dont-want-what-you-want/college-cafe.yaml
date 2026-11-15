@@ -1,0 +1,6 @@
+prompt: You open a small café beside a college in Kochi. You drink only strong black coffee, so the menu has strong black coffee, at ₹60 a cup. After a month, most students walk past to the juice stall next door.
+explanation: The menu follows your taste, and the students have shown theirs by where they buy. Ask some of them, or look at what sells next door, and change the menu.
+feedback:
+  estimate-it: An estimate of how many students might come helps, but first find out what they want to drink.
+  know-when-to-stop: It is too soon to close. Change the menu to what the students want first.
+  a-bet-tells-a-story: The students are not sending a signal to test. Where they buy simply shows what they want.

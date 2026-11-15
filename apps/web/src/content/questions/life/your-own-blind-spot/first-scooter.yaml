@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At home in Hyderabad, last month you told your cousin she rushed into renting a flat after seeing only one other. Now you are buying a second-hand scooter, and you love the first one you saw. What do you do?'
+options:
+  - 'Take your own advice: see two more, and list what you dislike about the first'
+  - 'Buy it: you know scooters, so your case is different'
+  - 'Buy it today, before someone else does'
+answer: 0
+feedback:
+  - ''
+  - 'Your cousin felt her case was different too. Knowing a subject does not stop you falling for the first one you see.'
+  - 'Hurry is how your cousin rushed. One more day to see two others costs little.'
+explanation: "You saw your cousin's rush at once from outside. From inside, your own rush feels like good judgement. Hold yourself to the advice you gave her: see more than one, and look for what is wrong with the one you love."
+measures: composure

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At your neighbourhood grocery shop in Chennai, the owner, usually cheerful, snaps at you when you ask for change for a ₹500 note. A queue is waiting behind you. Do you stop shopping there?'
+options:
+  - 'Not on one bad moment: think what his day might hold, and see how he is next time'
+  - 'Yes: how people act under pressure shows who they really are'
+  - 'Yes, and tell the neighbours he has become rude'
+answer: 0
+feedback:
+  - ''
+  - 'One moment under pressure shows his day more than his nature. Years of being cheerful are better evidence of who he is.'
+  - 'That spreads a judgement made from one moment. A long queue and a shortage of change would make many people short.'
+explanation: 'A long queue, a shortage of change, or bad news at home would make a reasonable person short-tempered for a moment. Before you judge the person, ask what about their situation would make anyone act like that. If he is rude every time, that is a different matter.'
+measures: read-hidden
