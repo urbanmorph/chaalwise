@@ -11,6 +11,11 @@ highlight: ['c6', 'e8']
 related: ['chess/skewer', 'chess/fork', 'chess/nimzo-indian-defence']
 lesson: 'chess/pin'
 lichess: 'pin'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Bishop to b5 pins the knight on c6 to the king on e8: the knight may not move, because that would expose the king. Black played ...d6, which opened the diagonal.

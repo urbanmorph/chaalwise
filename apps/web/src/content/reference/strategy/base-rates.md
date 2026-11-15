@@ -13,6 +13,13 @@ try:
   - life/base-rates/rare-condition
   - life/base-rates/project-time
   - life/base-rates/which-bag
+sources:
+  - title: 'Daniel Kahneman and Amos Tversky, On the psychology of prediction (1973)'
+    licence: cited-idea
+  - title: 'Daniel Kahneman and Dan Lovallo, Timid choices and bold forecasts (1993)'
+    licence: cited-idea
+  - title: 'Roger Buehler, Dale Griffin and Michael Ross, Exploring the planning fallacy (1994)'
+    licence: cited-idea
 ---
 
 In 1973 Daniel Kahneman and Amos Tversky showed that people judge how likely something is by how well a case fits a picture. They largely ignore how common each possibility is. Given a description that sounded like an engineer, people guessed "engineer" whether they were told the group was 30% or 70% engineers.

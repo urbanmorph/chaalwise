@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../components/poker/poker.css';
 import favicon from '../../public/favicon.svg?raw';
 import { CANONICAL_ELSEWHERE } from '../lib/canonical';
+import { PROMISE } from '../lib/promise';
 
 interface Props {
   title: string;
@@ -20,7 +21,7 @@ const {
   wide = false,
   noindex = false,
   schema,
-  description = 'Free, short lessons in strategy and decision-making, shown in chess and poker and used at work and in study. Offline, with no account and no money.',
+  description = 'Short lessons in strategy and decision-making, shown in chess and poker and used at work and in study. Free to learn, offline, no account, no ads.',
 } = Astro.props;
 const fullTitle = title === 'Chaalwise' ? title : `${title} · Chaalwise`;
 // What a link preview shows: the page's own title and description, on one share card for the site (scripts/og-image.mjs).
@@ -110,7 +111,7 @@ const mark = favicon.replace('<svg ', '<svg class="mark" aria-hidden="true" focu
     </main>
     <footer class="site-footer">
       <div class:list={['wrap', { wide }]}>
-        <p>Free, offline, and against the computer only. No money, no ratings. Your progress stays on this device.</p>
+        <p>{PROMISE} Against the computer only, with no ratings. Your progress stays on this device.</p>
         <p>
           <a href="/reference/">reference</a> · <a href="https://github.com/urbanmorph/chaalwise/blob/main/CREDITS.md">credits</a> ·{' '}
           <a href="https://github.com/urbanmorph/chaalwise">code</a> (AGPL-3.0) · made by <a href="https://www.urbanmorph.com/">urbanmorph</a> ·{' '}

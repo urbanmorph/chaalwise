@@ -12,3 +12,6 @@ feedback:
   - 'The grim version is no truer: it is the same 10 in 100. It only makes the risk feel larger.'
 explanation: 'Both descriptions give the same figures. McNeil and colleagues (1982) found that the wording changed choices of patients and doctors alike, so say it both ways and decide on the numbers.'
 measures: composure
+sources:
+  - title: 'Barbara McNeil and colleagues, On the elicitation of preferences for alternative therapies (1982)'
+    licence: cited-idea

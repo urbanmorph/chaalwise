@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { SKILL_IDS } from './skills';
+import { checkLicences, provenance } from './sources';
 
 /**
  * The lesson format, stored as data. It is game-neutral: a position and its
@@ -176,13 +177,15 @@ export const questionId = z
  * id is its file's path; `card` keeps the review card it was saved under
  * before the corpus existed, so learners' progress carries over.
  */
-export const questionSchema = z.intersection(
-  z.preprocess(
-    (value) => (value && typeof value === 'object' ? { ...value, id: 'question' } : value),
-    z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep, playStep]),
-  ),
-  z.object({ card: z.string().min(1).optional() }),
-);
+export const questionSchema = z
+  .intersection(
+    z.preprocess(
+      (value) => (value && typeof value === 'object' ? { ...value, id: 'question' } : value),
+      z.discriminatedUnion('kind', [choiceStep, moveStep, squareStep, playStep]),
+    ),
+    z.object({ card: z.string().min(1).optional(), ...provenance }),
+  )
+  .superRefine(checkLicences);
 export type Question = z.infer<typeof questionSchema>;
 
 /** A lesson step that asks a question from the corpus. */
@@ -212,8 +215,10 @@ export const lessonSchema = z
       .regex(/^(chess|poker|strategy|labs)\/[a-z0-9-]+$/, 'after names a lesson or a lab, such as poker/outs-and-odds')
       .optional(),
     steps: z.array(authoredStep).min(1),
+    ...provenance,
   })
   .superRefine((lesson, ctx) => {
+    checkLicences(lesson, ctx);
     if (lesson.game === 'strategy') {
       if (!lesson.after)
         ctx.addIssue({

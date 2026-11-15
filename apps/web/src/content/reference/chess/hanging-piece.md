@@ -8,6 +8,11 @@ summary: 'A piece that can be taken for free: nothing defends it, or it is attac
 related: ['strategy/blunder-check', 'chess/piece-values']
 lesson: 'chess/hanging'
 lichess: 'hangingPiece'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Most games between beginners are decided by a hanging piece. Before every move, check that you are not leaving one, and look for one the other side has left.

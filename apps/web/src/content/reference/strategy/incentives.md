@@ -14,6 +14,15 @@ try:
   - life/incentives/calls-answered
   - life/incentives/rat-tails
   - life/incentives/before-the-bonus
+sources:
+  - title: 'Steven Kerr, On the folly of rewarding A, while hoping for B (1975)'
+    licence: cited-idea
+  - title: 'Charles Goodhart, on monetary targets (1975)'
+    licence: cited-idea
+  - title: 'Marilyn Strathern, Improving ratings: audit in the British university system (1997)'
+    licence: cited-idea
+  - title: 'Michael Vann, Of rats, rice, and race: the Great Hanoi Rat Massacre (2003)'
+    licence: cited-idea
 ---
 
 In 1975 Steven Kerr wrote a paper called "On the folly of rewarding A, while hoping for B". He collected cases from business, government, universities and medicine. In each, an organisation rewarded one thing while hoping for another, then was surprised to get what it rewarded. His point was not that people cheat. It was that the reward system, not the speeches about the goal, tells them what counts.

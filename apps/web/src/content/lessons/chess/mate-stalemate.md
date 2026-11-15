@@ -4,7 +4,7 @@ summary: How games are won, and the draws that catch beginners out.
 game: chess
 stage: 0
 order: 9
-skills: [think-ahead]
+skills: [calculate]
 steps:
   - ask: chess/mate-stalemate/is-it-mate
   - ask: chess/mate-stalemate/is-it-stalemate

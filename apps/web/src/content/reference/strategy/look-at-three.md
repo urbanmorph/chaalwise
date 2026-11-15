@@ -1,10 +1,10 @@
 ---
-term: 'Shrink the problem'
+term: 'Look at three before choosing'
 game: 'strategy'
 kind: 'principle'
 level: 'intermediate'
-aliases: ['Candidate moves', 'Narrow the options']
-summary: 'When there are too many options, cut them to a few good candidates, then compare those properly.'
+aliases: ['Shrink the problem', 'Candidate moves', 'Narrow the options']
+summary: 'Before you choose, find a few real options, about three, and compare those properly: not just one, and not twenty.'
 why: 'Nobody can examine everything. Choosing what to examine is itself the skill.'
 inLife: 'Before comparing twenty suppliers or job offers in detail, cut the list to the few worth a close look. Keep the cutting rules few, because one hard rule can throw out the best option on a single point.'
 skill: 'plan-long'

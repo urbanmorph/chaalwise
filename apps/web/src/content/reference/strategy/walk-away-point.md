@@ -13,6 +13,11 @@ try:
   - life/walk-away-point/below-walk-away
   - life/walk-away-point/deal-zone
   - life/walk-away-point/best-lever
+sources:
+  - title: 'Roger Fisher and William Ury, Getting to Yes (1981)'
+    licence: cited-idea
+  - title: 'Howard Raiffa, The Art and Science of Negotiation (1982)'
+    licence: cited-idea
 ---
 
 Roger Fisher and William Ury, in Getting to Yes (1981), call it your BATNA: your best alternative to a negotiated agreement. It is the standard any offer must beat. They argue that the better your BATNA, the stronger your position. So the most useful work is often done before the talks: finding and improving your other options.

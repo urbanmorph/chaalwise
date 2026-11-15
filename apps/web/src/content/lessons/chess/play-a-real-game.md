@@ -4,7 +4,7 @@ summary: The rules and manners you need for a full game over the board or online
 game: chess
 stage: 3
 order: 9
-skills: [composure]
+skills: []
 steps:
   - kind: read
     id: touch-move

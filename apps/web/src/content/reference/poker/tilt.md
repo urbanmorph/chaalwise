@@ -10,6 +10,9 @@ try:
   - 'poker/tilt/next-hand'
   - 'poker/tilt/sign-of-tilt'
 related: ['strategy/cool-head', 'strategy/decisions-not-results']
+sources:
+  - title: 'Gary Smith, Michael Levere and Robert Kurtzman, Poker player behavior after big wins and big losses (2009)'
+    licence: cited-idea
 ---
 
 A big win can do the same: players often play looser (more hands, bigger risks) after one, too (Smith, Levere and Kurtzman 2009). Tilt turns one result into many bad decisions. The cure is the same as in chess: notice it, pause, and go back to your routine before the next decision.

@@ -13,6 +13,15 @@ try:
   - life/framing/flood-plan
   - life/framing/operation
   - life/framing/points-down
+sources:
+  - title: 'Amos Tversky and Daniel Kahneman, The framing of decisions and the psychology of choice (1981)'
+    licence: cited-idea
+  - title: 'Daniel Kahneman and Amos Tversky, Prospect theory (1979)'
+    licence: cited-idea
+  - title: 'Amos Tversky and Daniel Kahneman, Advances in prospect theory (1992)'
+    licence: cited-idea
+  - title: 'Barbara McNeil and colleagues, On the elicitation of preferences for alternative therapies (1982)'
+    licence: cited-idea
 ---
 
 Amos Tversky and Daniel Kahneman (1981) asked people to choose between two plans against a disease expected to kill 600 people. Put as lives saved, plan A saves 200 for sure. Plan B has a 1 in 3 chance of saving all 600, and a 2 in 3 chance of saving none. 72% chose the sure plan. Put as deaths, plan A means 400 die for sure. Plan B has a 1 in 3 chance that nobody dies, and a 2 in 3 chance that all 600 die. Now 78% chose the gamble. The plans were the same; only the description changed.

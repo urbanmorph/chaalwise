@@ -49,6 +49,24 @@ describe('the reference', () => {
     }
   });
 
+  it('never names an entry after one lesson while pointing to another', () => {
+    for (const { id, data } of entries) if (data.lesson && lessonIds.has(id)) expect(data.lesson, id).toBe(id);
+  });
+
+  it('gives every strategy and game-theory idea questions to try, counted towards its track', () => {
+    for (const { id, data } of entries.filter((e) => e.data.game === 'strategy' || e.data.game === 'labs')) {
+      expect(data.try?.length, id).toBeGreaterThan(0);
+      expect(data.skill, id).toBeDefined();
+    }
+  });
+
+  it('explains bluffing away from the table, from the poker lesson on signals, with questions off the table', () => {
+    const bluff = entries.filter((e) => e.data.game === 'strategy' && e.data.skill === 'bluff');
+    expect(bluff.map((e) => e.id)).toEqual(['strategy/costly-signals']);
+    expect(bluff[0]!.data.lesson).toBe('poker/signals-and-tests');
+    for (const q of bluff[0]!.data.try!) expect(q).toMatch(/^life\//);
+  });
+
   it('draws only legal positions and moves', () => {
     for (const { id, data } of entries) expect(referenceIssues(data), id).toEqual([]);
   });

@@ -1,0 +1,13 @@
+kind: choice
+prompt: Two people apply for a job writing software, and both say they love programming. One also shows the apps she has built in her spare time over two years. Why does her work say more than the claim?
+options:
+  - Someone who did not care would not spend two years on it
+  - Written proof always counts for more than words
+  - 'It does not: both told you the same thing'
+answer: 0
+feedback:
+  - ''
+  - A document can be as cheap to fake as a sentence. What counts is how much the proof would cost someone for whom the claim is false.
+  - Anyone can say they love programming, true or not. Two years of spare-time work would be costly to fake.
+explanation: A signal is believable when it would cost a lot to send if it were false. Saying you love the work is free; two years of spare-time apps is not.
+measures: bluff

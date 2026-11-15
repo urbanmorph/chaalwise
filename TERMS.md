@@ -1,10 +1,10 @@
 # Terms
 
-These terms cover [Chaalwise](https://chaalwise.com), a free learning app made by [UrbanMorph](https://www.urbanmorph.com/). By using it, you agree to them. Last changed on 20 October 2026; every change is in this file's history.
+These terms cover [Chaalwise](https://chaalwise.com), a free learning app made by [UrbanMorph](https://www.urbanmorph.com/). By using it, you agree to them. Last changed on 15 November 2026; every change is in this file's history.
 
 ## What Chaalwise is
 
-Chaalwise teaches thinking skills: thinking ahead, weighing odds, sizing a risk, keeping a cool head, and more, for work, study and everyday life. Games are its teaching material. A chess position, a poker hand or a short game-theory exercise shows an idea, and the learner practises it in a few questions. Learners practise against the computer only, in short guided hands and exercises that are each reviewed for what they teach; there are no matches against other people, and Chaalwise points learners elsewhere to play the games themselves. It is free, works offline once loaded, and needs no account.
+Chaalwise teaches thinking skills: thinking ahead, weighing odds, sizing a risk, keeping a cool head, and more, for work, study and everyday life. Games are its teaching material. A chess position, a poker hand or a short game-theory exercise shows an idea, and the learner practises it in a few questions. Learners practise against the computer only, in short guided hands and exercises that are each reviewed for what they teach; there are no matches against other people, and Chaalwise points learners elsewhere to play the games themselves. Free to learn, offline, no account, no ads. Points are never for sale.
 
 ## A learning app, not a game
 
@@ -12,7 +12,7 @@ Chaalwise is an educational app. It is not an online game, an online gaming serv
 
 Whatever the label, these rules hold for everything in Chaalwise:
 
-- **No money, ever.** There are no fees, deposits, stakes, prizes or winnings of any kind, and nothing to buy.
+- **Never a money game.** Nothing in Chaalwise is played for money: there are no deposits, stakes, prizes or winnings of any kind.
 - **Practice points are only a way of keeping score.** The points used in poker examples and the exercises are free and unlimited. They can never be bought, sold, transferred, cashed out or exchanged for anything, and they have no value outside Chaalwise.
 - **No real-money games are promoted.** Chaalwise carries no advertising, links or referrals for any real-money game, card or betting site, directly or indirectly.
 

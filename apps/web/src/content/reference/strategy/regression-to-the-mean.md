@@ -13,6 +13,11 @@ try:
   - life/regression-to-the-mean/record-month
   - life/regression-to-the-mean/praise-and-blame
   - life/regression-to-the-mean/worst-junction
+sources:
+  - title: 'Francis Galton, Regression towards mediocrity in hereditary stature (1886)'
+    licence: cited-idea
+  - title: 'Daniel Kahneman, Thinking, Fast and Slow (2011)'
+    licence: cited-idea
 ---
 
 Francis Galton noticed it in 1886. Tall parents had children who were tall on average, but less tall than their parents. Short parents had children taller than themselves. He called it regression towards mediocrity. Nothing pulls the children back. The parents were extreme partly by chance, and chance does not run in families.

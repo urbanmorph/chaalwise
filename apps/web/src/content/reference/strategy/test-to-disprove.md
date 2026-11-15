@@ -13,6 +13,11 @@ try:
   - life/test-to-disprove/two-four-six
   - life/test-to-disprove/onboarding
   - life/test-to-disprove/before-backing
+sources:
+  - title: 'Peter Wason, On the failure to eliminate hypotheses in a conceptual task (1960)'
+    licence: cited-idea
+  - title: 'Raymond Nickerson, Confirmation bias: a ubiquitous phenomenon in many guises (1998)'
+    licence: cited-idea
 ---
 
 People test ideas with cases they expect to fit. In Wason's 2-4-6 task (1960), people were told that the numbers 2, 4, 6 fit a rule. They had to find the rule by trying their own sets of three numbers. Most guessed "numbers going up by 2" and tried 8, 10, 12 and 20, 22, 24. Every test got a yes, so they grew sure, and announced the wrong rule. The real rule was "any three numbers going up". Only about one in five found it at the first try.

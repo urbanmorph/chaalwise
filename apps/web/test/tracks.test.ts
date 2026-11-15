@@ -1,5 +1,5 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { PLANNED } from '../src/lib/planned-skills';
 import { PROFILE_SKILLS, trackOf } from '../src/lib/profile-skills';
@@ -32,6 +32,13 @@ describe('each strategy track is a course', () => {
   it('draws practice from the strategy lessons and the chess lessons that train it', () => {
     const count = Number(course('think-ahead').match(/data-practice-count="(\d+)"/)![1]);
     expect(count).toBeGreaterThanOrEqual(8);
+  });
+
+  it('lists the bluff track’s reference entry, which links both poker lessons on bluffing', () => {
+    expect(course('bluff')).toContain('href="/reference/strategy/costly-signals/"');
+    const entry = dist('reference/strategy/costly-signals/index.html');
+    for (const lesson of ['why-you-bet', 'signals-and-tests'])
+      expect(entry, lesson).toContain(`href="/poker/${lesson}/"`);
   });
 
   it('gives the tracks poker trains practice of their own, off the table as well as at it', () => {
@@ -79,11 +86,10 @@ describe('lesson names', () => {
     }),
   );
 
-  it('names the step-by-step lesson apart from the "Shrink the problem" entry, which is about cutting options', () => {
+  it('keeps the step-by-step lesson apart from the entry on looking at a few options, which has its lesson’s name', () => {
     expect(title(dist('skills/shrink-the-problem/index.html'))).toBe('Small steps that stick');
-    expect(dist('reference/strategy/shrink-the-problem/index.html')).toContain(
-      'Lesson: <a href="/skills/look-at-three/"',
-    );
+    expect(dist('reference/strategy/look-at-three/index.html')).toContain('Lesson: <a href="/skills/look-at-three/"');
+    expect(existsSync(new URL('../dist/reference/strategy/shrink-the-problem/', import.meta.url))).toBe(false);
   });
 
   it('shares a name between a lesson and a reference entry only when the entry is that lesson’s idea', () => {

@@ -1,0 +1,13 @@
+kind: choice
+prompt: You run a small printing shop and promise a client their order by Friday. Every printer in town promises Friday. What would make your promise believable?
+options:
+  - Offer money off for each day it is late
+  - Say it more firmly, and in writing
+  - Promise Thursday instead of Friday
+answer: 0
+feedback:
+  - ''
+  - Firm words cost nothing, and every printer can write "Friday". A promise is believed when breaking it would cost you.
+  - An earlier date is just another free promise, and a harder one to keep. It gives the client no more reason to believe you.
+explanation: A promise you lose by breaking is a costly signal. Money off for lateness costs you only if you are late, so only a printer who expects to deliver on time can afford to offer it.
+measures: bluff

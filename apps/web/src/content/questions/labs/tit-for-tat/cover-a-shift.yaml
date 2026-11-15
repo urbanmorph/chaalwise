@@ -1,0 +1,13 @@
+kind: choice
+prompt: "Two colleagues cover each other's shifts when asked. You follow tit for tat: help the first time, then do whatever the other did last time. Last week your colleague refused to cover you. Now they ask you to cover them. What does tit for tat say?"
+options:
+  - Refuse this once, and help again once they do
+  - Cover them anyway, to show goodwill
+  - Refuse every time from now on
+answer: 0
+feedback:
+  - ''
+  - Always helping teaches them that refusing costs nothing. Tit for tat answers a refusal, so that refusing has a price.
+  - That is a grudge, not tit for tat. Tit for tat forgives as soon as the other helps again, so the swapping can start again.
+explanation: Tit for tat copies the other's last move. It answers a refusal once, which makes refusing cost something, and goes back to helping as soon as the other does.
+measures: cooperate
