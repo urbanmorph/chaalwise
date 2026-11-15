@@ -1,0 +1,6 @@
+prompt: 'A manager who left three years ago set up a two-hour meeting every Monday for 20 people. It still runs. Nobody has asked whether it is needed, and half the team say they would not miss it.'
+explanation: Things that carry on by default deserve a fresh look. Ask whether you would set up this meeting today, then keep, shorten or stop it on purpose.
+feedback:
+  know-when-to-stop: Nobody is holding on because of what they have put in. The meeting runs because nobody has asked about it.
+  spend-effort-where-it-matters: Time is wasted, but the first step is not sharing it out better. It is asking whether the meeting should exist.
+  resources-change-value: Nothing about the team has clearly changed. The meeting has simply never been looked at again.

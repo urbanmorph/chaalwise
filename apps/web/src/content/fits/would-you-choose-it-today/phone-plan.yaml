@@ -1,0 +1,7 @@
+from: life/would-you-choose-it-today/phone-plan
+prompt: 'You have had the same mobile plan for four years, at ₹599 a month. You now use about a third of its data, and plans with that much cost less.'
+explanation: Staying on the plan is a choice you make every month. Ask whether you would pick it if you were choosing today.
+feedback:
+  know-when-to-stop: Nothing you have already paid is keeping you there. The plan simply carries on unless you act.
+  fix-your-weakest-link: There is no slow part holding the rest back. The question is whether you would choose this plan today.
+  resources-change-value: Little has changed, except prices. The trouble is that nobody has looked at the plan since you chose it.

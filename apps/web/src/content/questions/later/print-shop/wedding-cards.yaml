@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What does taking the wedding cards really cost you?'
+options:
+  - 'Nothing: the ₹9,000 is all profit, after paper and ink'
+  - 'Only the paper and ink the cards would use'
+  - 'The ₹15,000 job you turn down, so you are ₹6,000 short'
+answer: 2
+feedback:
+  - The ₹9,000 is real, but the printer could earn more that day. The gap is a cost, even though no money leaves the shop.
+  - The paper and ink cost about the same for both jobs, so they do not decide it. The job you give up does.
+  - ''
+explanation: 'The printer can do one job on Saturday, so the real cost of the wedding cards is the best job given up: ₹15,000 of test papers. A regular customer may still be worth keeping, but now you know the price: ₹6,000.'

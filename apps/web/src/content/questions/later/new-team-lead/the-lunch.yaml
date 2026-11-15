@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'How long should the lunch choice take?'
+options:
+  - 'A minute: both are liked, and it will not matter next month'
+  - 'A day: ask each person to vote, so the first lunch goes well'
+  - 'Leave it until Thursday, so the contract gets your full attention first'
+answer: 0
+feedback:
+  - ''
+  - Both caterers are liked, so a vote can only pick between two good options. A day of asking is more than the choice deserves.
+  - Leaving it means coming back to it later. A one-minute choice is quicker done now than carried for three days.
+explanation: 'Ask whether it will matter in a year. Two well-liked caterers for one lunch will not, so choose now and keep your time for choices that last.'

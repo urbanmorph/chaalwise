@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two years ago in Delhi, you signed up for weekend French classes, and they renew each term unless you cancel. You enjoy them less now, and would rather spend weekends learning spreadsheets for work. The next term starts in a month. What do you do?'
+options:
+  - 'Let it renew: you always have'
+  - Ask whether you would sign up for French today, and cancel if not
+  - 'Let it renew: you have put two years into it'
+answer: 1
+feedback:
+  - Renewing because you always have is staying put by default. It is a choice, so make it on purpose.
+  - ''
+  - The two years are gone whatever you choose, and you keep what you learned. The question is what the next term is worth.
+explanation: Something that renews on its own still deserves a fresh look. Starting today, would you pick French or spreadsheets? Choose that, whichever it is.
+measures: plan-long

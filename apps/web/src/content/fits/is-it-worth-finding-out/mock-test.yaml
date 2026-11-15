@@ -1,0 +1,7 @@
+from: life/is-it-worth-finding-out/mock-test
+prompt: 'Your board exams are two weeks away. Four maths mock tests gave you 78, 80, 79 and 81, each time losing most marks on probability. You have one free afternoon, and you are thinking of taking a fifth mock.'
+explanation: Find out more only if an answer could change your choice. After four mocks that agree, a fifth almost surely cannot, so spend the afternoon on probability.
+feedback:
+  estimate-it: You do not need to build a number in parts. Four tests already give it. The question is whether a fifth could change your plan.
+  look-at-three: You have enough options. The question is whether more facts would change which one you pick.
+  fix-your-weakest-link: Working on probability is the right use of the afternoon, but the trap here is the fifth test, more facts that cannot change anything.

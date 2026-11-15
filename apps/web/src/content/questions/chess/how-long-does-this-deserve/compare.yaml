@@ -1,0 +1,16 @@
+kind: choice
+prompt: 'In this chess game, White must take back on d1, the only legal move, but could still spend minutes on it. What does that share with the team choosing lunch?'
+position: 'moves: d4 d5 c4 dxc4 e4 e5 dxe5 Qxd1+'
+arrows: [e1d1]
+alongside: 'A team of eight in an office spends 25 minutes choosing between two places for a Friday lunch, both fine, both about ₹250 a head.'
+options:
+  - The time a choice gets should match how much it can change
+  - Every choice deserves careful thought
+  - Quick choices are always the better ones
+answer: 0
+feedback:
+  - ''
+  - Careful thought costs time, and the clock and the working day both run out. Here more thought cannot change anything that matters.
+  - Some choices deserve hours, such as a move that decides the game or a contract you cannot undo. Speed is right only when little is at stake.
+explanation: The recapture has no options, and the two lunches are close and will not matter next month. In both, more time buys nothing, so the right amount is very little.
+measures: composure

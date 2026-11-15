@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your college in Chennai asks you to pick one elective for next term, from photography, public speaking and basic coding. You can switch in the first two weeks. How much time should the choice get?'
+options:
+  - 'An evening: it matters for a term, and you can switch if it is wrong'
+  - 'Weeks of asking around: it goes on your marksheet'
+  - 'None: pick one at random, it never matters'
+answer: 0
+feedback:
+  - ''
+  - Weeks of thought suit a choice you cannot undo. This one you can change in the first two weeks, which is a quicker way to find out.
+  - A term of study is worth an evening's thought. Random is for choices that will not matter at all.
+explanation: Match the time to how long the choice lasts and how hard it is to undo. One term, with two weeks to switch, deserves an evening, not weeks and not nothing.
+measures: composure

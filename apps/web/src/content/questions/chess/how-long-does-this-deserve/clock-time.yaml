@@ -1,0 +1,16 @@
+kind: choice
+prompt: "In this chess game, Black has just taken White's queen on d1, with check. The king taking back (Kxd1) is White's only legal move. How much of White's clock should this move take?"
+position: 'moves: d4 d5 c4 dxc4 e4 e5 dxe5 Qxd1+'
+arrows: [e1d1]
+options:
+  - 'A few seconds: there is nothing to choose'
+  - 'A few minutes: losing the queens changes the whole game'
+  - 'About as long as the last move, to keep a steady pace'
+answer: 0
+feedback:
+  - ''
+  - It does change the game, but White has no say in it. Thinking about the new position can wait for a move where White has a choice.
+  - A steady pace sounds sensible, but moves are not equal. Time spent where there is no choice is taken from moves where there is.
+highlight: [d1]
+explanation: 'A move with only one option deserves almost no time, however big it feels. White plays Kxd1 at once and keeps the minutes for the moves that will decide the game.'
+measures: composure

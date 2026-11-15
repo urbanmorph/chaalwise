@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your board exams in Lucknow are two weeks away. You have taken four maths mock tests and scored 78, 80, 79 and 81 out of 100. Each time, you lost most marks on probability. You have one free afternoon. How should you use it?'
+options:
+  - Take a fifth mock test, to be sure where you stand
+  - Study probability, the chapter every mock points to
+  - Take a fifth mock test, in case it shows a new weak spot
+answer: 1
+feedback:
+  - Four tests already say about 80. A fifth would very likely say the same, and would not change what you do next.
+  - ''
+  - Four tests in a row have found the same weak spot. Another one is unlikely to find a new one, and the afternoon is gone either way.
+explanation: A fifth mock is worth taking only if its result could change your plan. After four that agree, it almost surely cannot. The afternoon is worth more spent on probability.
+measures: calculate

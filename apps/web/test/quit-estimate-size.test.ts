@@ -1,12 +1,11 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { checks } from '@chaalwise/teach/forcing';
-import { fromFen, play, VALUE } from '@chaalwise/teach/position';
-import type { Chess } from 'chessops/chess';
-import type { Color } from 'chessops/types';
+import { fromFen, play } from '@chaalwise/teach/position';
 import { parseSquare, squareFile, squareRank } from 'chessops/util';
 import { describe, expect, it } from 'vitest';
 import { toFen } from '../src/lib/chess';
-import { corpus, frontmatter, lessonsIn } from './content';
+import { corpus, frontmatter } from './content';
+import { board, lesson, material } from './strategy-boards';
 
 /**
  * Three strategy lessons: know when to stop (quitting rules), estimate it (Fermi
@@ -18,17 +17,6 @@ import { corpus, frontmatter, lessonsIn } from './content';
  * - 8/8/8/6k1/1P6/8/7K/8 w (Black's king on g5): b5 wins.
  * - 8/8/8/5k2/1P6/8/7K/8 w (Black's king on f5): b5 only draws.
  */
-const strategy = new Map(lessonsIn('strategy').map(({ file, data }) => [file.replace('.md', ''), data]));
-const lesson = (id: string) => {
-  const data = strategy.get(id);
-  if (!data) throw new Error(`no strategy lesson ${id}`);
-  return data;
-};
-const board = (id: string, step: string) => {
-  const s = lesson(id).steps.find((st) => 'id' in st && st.id === step);
-  if (!s || !('position' in s) || !s.position) throw new Error(`${id} ${step}: no board`);
-  return { fen: toFen(s.position), arrows: ('arrows' in s ? s.arrows : undefined) ?? [] };
-};
 const question = (id: string) => corpus.get(id) as { position: string; arrows?: string[]; measures: string };
 
 /** Kings move one square in any direction, so their distance is the larger of the file and rank gaps. */
@@ -37,11 +25,6 @@ const distance = (a: string, b: string) => {
   return Math.max(Math.abs(squareFile(x) - squareFile(y)), Math.abs(squareRank(x) - squareRank(y)));
 };
 const playAll = (fen: string, line: string[]) => line.reduce((pos, uci) => play(pos, uci), fromFen(fen));
-const material = (pos: Chess, color: Color) =>
-  (['pawn', 'knight', 'bishop', 'rook', 'queen'] as const).reduce(
-    (sum, role) => sum + pos.board.pieces(color, role).size() * VALUE[role],
-    0,
-  );
 
 describe('know when to stop: the king lets the a-pawn go', () => {
   const { fen, arrows } = board('know-when-to-stop', 'on-the-board');

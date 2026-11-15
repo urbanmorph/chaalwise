@@ -111,15 +111,22 @@ describe('cases a week later', () => {
   /** A case's reading and decisions as one text. */
   const caseText = (c: (typeof later)[number]) => JSON.stringify([c.data, ...asks(c).map((id) => corpus.get(id))]);
 
-  it('test one idea each: every lesson that follows poker or a lab, stopping, estimating and committing in stages, and every skill track', () => {
+  it('test one idea each: every lesson that follows poker or a lab, the lessons on quitting, estimating, committing and setting up a decision, and every skill track', () => {
     const tested = new Set(later.map((c) => c.data.idea));
     expect(tested.size).toBe(later.length);
     const bridges = strategy.filter((s) =>
       /^(poker|labs)\//.test((frontmatter(`lessons/strategy/${s}.md`) as { after: string }).after),
     );
-    const untested = [...bridges, 'know-when-to-stop', 'estimate-it', 'commit-in-stages'].filter(
-      (s) => !tested.has(`strategy/${s}`),
-    );
+    const untested = [
+      ...bridges,
+      'know-when-to-stop',
+      'estimate-it',
+      'commit-in-stages',
+      'is-it-worth-finding-out',
+      'how-long-does-this-deserve',
+      'what-else-could-this-buy',
+      'would-you-choose-it-today',
+    ].filter((s) => !tested.has(`strategy/${s}`));
     expect(untested).toEqual([]);
     const skills = new Set(
       later.map((c) => (c.data.idea.startsWith('labs/') ? labField(c.data.idea, 'track') : skillOf(c.data.idea))),
@@ -209,6 +216,16 @@ describe('cases a week later', () => {
       expect(t).toContain(rupees(year / 5));
       expect(t).toContain(rupees((year * 4) / 5));
       expect(t).toContain(rupees(5 * 1_500));
+    });
+
+    it('the print shop: what the wedding cards give up, and what the evenings could bring', () => {
+      const t = text('print-shop');
+      expect(t).toContain(rupees(15_000 - 9_000));
+      expect(t).toContain(rupees(12_000 - 5_000));
+    });
+
+    it('the office routine: 20 people for two hours a week', () => {
+      expect(text('office-routine')).toContain(`${20 * 2} hours of staff time every week`);
     });
   });
 });

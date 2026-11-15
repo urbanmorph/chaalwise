@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do with the contract?'
+options:
+  - 'Decide it now, as fast as the lunch, to clear your desk'
+  - 'Give it real time before Friday: it lasts three years and is hard to undo'
+  - 'Put it off past Friday, until you know the team better'
+answer: 1
+feedback:
+  - Speed suited the lunch because it would not matter next month. This contract will matter for three years.
+  - ''
+  - Missing the date is also a choice, and may lose the client. Take the time you have, and ask for more if you need it.
+explanation: 'Time should match how long a choice lasts and how hard it is to undo. The lunch deserved a minute. The contract ties up a third of your team for three years, so it deserves your careful hours this week.'

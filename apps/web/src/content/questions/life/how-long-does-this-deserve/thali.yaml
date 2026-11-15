@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'At a restaurant in Kolkata with friends, you have spent ten minutes choosing between a fish thali at ₹300 and a vegetable thali at ₹260. You would enjoy either, and everyone is waiting. What do you do?'
+options:
+  - Ask the waiter to describe both again
+  - 'Pick either now: it will not matter next week, let alone next year'
+  - Order whatever your friend orders, to be safe
+answer: 1
+feedback:
+  - More detail on two dishes you would both enjoy cannot change much. It only adds to the wait.
+  - ''
+  - There is nothing to be safe from, since either dish is fine. Copying is just another way of putting off a choice that does not matter.
+explanation: 'Ask: will this matter in a year? A meal you would enjoy either way will not. When the options are close and the stakes are small, the best use of time is to choose now.'
+measures: composure

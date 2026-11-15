@@ -1,0 +1,7 @@
+from: life/how-long-does-this-deserve/thali
+prompt: 'At a restaurant with friends, you have spent ten minutes choosing between a fish thali at ₹300 and a vegetable thali at ₹260. You would enjoy either, and everyone is waiting.'
+explanation: 'Ask whether it will matter in a year. A meal you would enjoy either way will not, so choose now.'
+feedback:
+  look-at-three: More options would only make a small choice longer. Two good ones are plenty here.
+  spend-effort-where-it-matters: That is about sharing your effort across many choices. Here there is one small choice, and the test is whether it will matter in a year.
+  is-it-worth-finding-out: No fact is missing. You know both dishes and like both, so the only cost left is the waiting.

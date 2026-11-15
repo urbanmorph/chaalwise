@@ -1,0 +1,16 @@
+kind: choice
+prompt: "In this chess opening, White's queen can win a pawn with Qxe5+, or mate with Qxf7. What does that share with the shop's shelf?"
+position: 'moves: e4 e5 Bc4 Bc5 Qh5 Nf6'
+arrows: [h5e5, h5f7]
+alongside: 'A shop in Jaipur fills its best shelf with a snack that makes ₹2,000 a month. A brand offers to pay ₹5,000 a month for the same shelf.'
+options:
+  - A gain still costs the best thing it gives up
+  - Any gain is good, so take it
+  - Always wait for a bigger offer
+answer: 0
+feedback:
+  - ''
+  - The pawn and the ₹2,000 are both gains, yet each gives up something larger. A gain is good only next to the alternative.
+  - Waiting is not the point, and it has a cost too. The mate and the ₹5,000 are already on offer now.
+explanation: The queen's move and the shelf can each be used once. Winning the pawn costs the mate, and keeping the snack costs ₹5,000 a month. Count what you give up, not only what you get.
+measures: value

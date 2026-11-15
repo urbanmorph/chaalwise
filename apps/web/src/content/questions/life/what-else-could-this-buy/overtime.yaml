@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Your firm in Chennai offers you paid overtime this weekend, for ₹4,000. The same weekend is the last chance this year to take a two-day course that would qualify you for a better role. What is the real cost of the overtime?'
+options:
+  - 'Nothing: you are paid for the time'
+  - The course, the best thing the weekend could buy instead
+  - Your rest, since every weekend of work has a cost
+answer: 1
+feedback:
+  - You are paid ₹4,000, but the weekend can be used only once. What it would have bought instead is the cost.
+  - ''
+  - Rest is a cost too, but it is not the best thing you give up. That is the course, and the role it could lead to.
+explanation: 'The real cost of a choice is the best thing you give up for it. Here that is the course. Compare ₹4,000 now with what the better role is worth to you, then choose.'
+measures: value

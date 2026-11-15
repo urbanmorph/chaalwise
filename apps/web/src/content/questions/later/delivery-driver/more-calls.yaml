@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do about your brother’s ten calls?'
+options:
+  - Make all ten calls first, since more facts are always safer
+  - Choose now, since the calls are unlikely to change anything and would cost two weeks
+  - Hire both drivers, so you need not choose
+answer: 1
+feedback:
+  - More facts are safer only if one could change your choice. After two good drives and two good references, ten calls almost surely cannot, and two weeks before Diwali is a lot.
+  - ''
+  - Two drivers for one van costs a second wage for nothing. The choice between two good drivers is a small one.
+explanation: Ask what answer could change your choice. Both drivers have passed every check that matters, so either will do. Pick one now and use the two weeks to get ready for Diwali.

@@ -17,4 +17,4 @@ try:
 
 In chess, a gambit gives up a pawn to gain time. A sacrifice gives up a piece for an attack. Both are good only if what you get is worth more than what you give, and you can show how.
 
-What you give up is the cost, even when no money changes hands. Economists call it opportunity cost: the value of the best thing you could have done instead.
+What you give up is the cost, even when no money changes hands. Economists call it opportunity cost: the value of the best thing you could have done instead. The lesson [What else could this buy?](/skills/what-else-could-this-buy/) practises asking it.

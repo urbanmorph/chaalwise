@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You are revising for exams in Kota. You have one free hour tonight. You could rewrite your notes neatly in colour, or do past paper questions, which your mock tests show you need. What does the hour of neat notes cost you?'
+options:
+  - 'Nothing: neat notes help a little'
+  - The price of the coloured pens
+  - The hour of past papers you give up
+answer: 2
+feedback:
+  - Helping a little is not the test. The hour could help a lot more spent elsewhere, and that gap is the cost.
+  - The pens cost a few rupees. The real cost is the hour, and what else it could have done.
+  - ''
+explanation: An hour can be spent only once. Its cost is the best thing it could have bought, here the past papers your mocks say you need.
+measures: value

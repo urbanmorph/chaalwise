@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'A company in Bengaluru invites second-year students to apply for a paid summer internship. The form takes 20 minutes. If you are turned down, you lose nothing. You have been thinking about it for a week. What should you do?'
+options:
+  - Wait until you are sure you would get it
+  - Keep thinking it over, since an internship is a big step
+  - Apply today, since there is a real upside and no real downside
+answer: 2
+feedback:
+  - You cannot know until you apply, and being turned down costs nothing. Waiting only risks missing the date.
+  - Taking the internship would be a big step, but applying is not. You can weigh an offer when you have one.
+  - ''
+explanation: A choice with a real upside and almost no downside deserves almost no thought. Apply now. The big decision, whether to accept, comes later, if there is an offer.
+measures: composure
