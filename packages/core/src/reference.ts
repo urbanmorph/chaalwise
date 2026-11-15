@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { questionId } from './lesson';
 import { SKILL_IDS } from './skills';
+import { checkLicences, provenance } from './sources';
 
 /**
  * The reference: a searchable dictionary at two levels. Strategy entries
@@ -79,8 +80,10 @@ export const referenceSchema = z
       .optional(),
     /** One to three questions to try the idea on the page. */
     try: z.array(questionId).min(1).max(3).optional(),
+    ...provenance,
   })
   .superRefine((entry, ctx) => {
+    checkLicences(entry, ctx);
     const need = (field: keyof typeof entry, why: string) => {
       if (entry[field] === undefined) ctx.addIssue({ code: 'custom', path: [field], message: why });
     };

@@ -10,6 +10,11 @@ highlight: ['e5', 'e2']
 related: ['chess/pin', 'chess/fork']
 lesson: 'chess/skewer'
 lichess: 'skewer'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Rook to e8 checks the king on e5. The king has to step off the e-file, and the rook then takes the queen on e2.

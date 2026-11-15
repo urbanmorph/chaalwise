@@ -1,0 +1,13 @@
+kind: choice
+prompt: "In tournaments of the repeated Prisoner's Dilemma, players each choose to cooperate or betray, round after round. Tit for tat cooperates first, then copies the other's last move. It scored well overall, yet never beat the player it faced. How?"
+options:
+  - It got the others to cooperate, so both sides scored well
+  - It betrayed at just the right moments to win big
+  - It was the cleverest and most complicated rule
+answer: 0
+feedback:
+  - ''
+  - Tit for tat never betrays first, so it can never score more than the player it faces. Its points came from rounds where both cooperated.
+  - It was one of the simplest rules. Being easy to read helped the others see that cooperating with it paid.
+explanation: Tit for tat ties or loses each match by a little, but it draws others into cooperating, and cooperation scores well for both. Doing well overall is not the same as beating each opponent.
+measures: cooperate

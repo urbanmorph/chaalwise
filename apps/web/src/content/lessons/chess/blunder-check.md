@@ -4,7 +4,7 @@ summary: The blunder check, for both sides, before every move.
 game: chess
 stage: 1
 order: 4
-skills: [think-ahead]
+skills: [think-ahead, calculate]
 steps:
   - kind: read
     id: the-habit

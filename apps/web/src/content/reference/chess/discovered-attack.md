@@ -11,6 +11,11 @@ highlight: ['h7', 'e8']
 related: ['chess/fork', 'chess/double-check']
 lesson: 'chess/discovered-attack'
 lichess: 'discoveredAttack'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Knight to g5 checks the king on h7. By moving, the knight also uncovers the rook on e1, which now attacks the queen on e8. The knight does not touch the queen; the rook does. Black must answer the check, and the rook takes the queen.

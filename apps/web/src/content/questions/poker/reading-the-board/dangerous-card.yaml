@@ -15,4 +15,4 @@ feedback:
   - A king gives you two pair, aces and kings.
   - An ace gives you three aces.
 explanation: The four of hearts makes a fourth heart on the board, so any player holding one heart has a flush. It also means a player holding just a five has a straight. A pair of aces beats neither.
-measures: hand-reading
+measures: ranges

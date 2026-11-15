@@ -3,8 +3,8 @@ import { backRankWeak } from '@chaalwise/teach/endgame';
 import { moveSafety } from '@chaalwise/teach/safety';
 import { fromFen, play } from '@chaalwise/teach/position';
 import { describe, expect, it } from 'vitest';
-import { CHESS_SKILLS } from '../src/lib/profile-skills';
-import { lessonsIn } from './content';
+import { CHESS_SKILLS, DRILL_SKILL, trackOf } from '../src/lib/profile-skills';
+import { corpus, lessonsIn } from './content';
 import { parseMoveText, toFen } from '../src/lib/chess';
 import { safetyVerdict } from '../src/lib/drills';
 
@@ -125,5 +125,22 @@ describe('what a lesson answer is evidence for', () => {
           `${file}: ${skill}`,
         ).toBe(true);
     }
+  });
+});
+
+describe('the skills a game lesson names', () => {
+  it('are the tracks its answers count towards, so a track lists only the lessons that train it', () => {
+    const tracks = (list: string[]) => [...new Set(list)].sort().join(', ');
+    const disagree = [...lessons, ...lessonsIn('poker')].flatMap(({ file, data }) => {
+      const counted = tracks(data.steps.flatMap((step) => ('measures' in step && trackOf(step.measures)) || []));
+      return tracks(data.skills) === counted ? [] : [`${file}: names [${tracks(data.skills)}], counts [${counted}]`];
+    });
+    expect(disagree).toEqual([]);
+  });
+
+  it('counts reading the board in poker as reading hidden information, as the nuts drill does', () => {
+    const board = [...corpus].filter(([id]) => id.startsWith('poker/reading-the-board/'));
+    expect(board.length).toBeGreaterThan(0);
+    for (const [id, data] of board) expect(data.measures, id).toBe(DRILL_SKILL['poker-nuts']);
   });
 });

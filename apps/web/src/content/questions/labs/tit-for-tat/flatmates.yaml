@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two flatmates each put their share into the shared shopping every week. Both follow tit for tat: pay the first week, then copy what the other did the week before. One week, one of them forgets by mistake. If both keep strictly to tit for tat, what happens?'
+options:
+  - They take turns holding back until one lets it go
+  - Things go back to normal the next week
+  - Both stop paying for good
+answer: 0
+feedback:
+  - ''
+  - The other holds back next week in reply, and the first then copies that. The slip echoes back and forth.
+  - Tit for tat copies only the last week, so each week one pays and one holds back. The echo goes on, but it never stops both.
+explanation: When moves can be misread, strict tit for tat turns one slip into a long run of payback. Forgiving now and then breaks the echo, as the Prisoner's Dilemma lab shows.
+measures: cooperate

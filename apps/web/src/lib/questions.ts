@@ -13,9 +13,14 @@ export type QuestionEntry = CollectionEntry<'questions'>;
 const counted = (measures: string | undefined) =>
   PROFILE_SKILLS.some((s) => s.id === measures && s.later) ? undefined : measures;
 
-/** A question as the player shows it: its id is its review card, the one it was saved under before the corpus if it has one. */
+/**
+ * A question as the player shows it: its id is its review card, the one it was saved under before the corpus if it has one.
+ * Its tier and sources are for the authors, so they stay out of the page.
+ */
 export function asStep({ id, data }: QuestionEntry): GradedStep {
   const { card, ...step } = data;
+  delete step.tier;
+  delete step.sources;
   return { ...step, id: card ?? id, measures: counted(step.measures) } as GradedStep;
 }
 

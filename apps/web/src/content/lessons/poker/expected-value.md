@@ -4,7 +4,7 @@ summary: Judge a choice by what it wins on average over many tries, not by one r
 game: poker
 stage: 2
 order: 2
-skills: [weigh-odds]
+skills: [weigh-odds, composure]
 steps:
   - kind: read
     id: average

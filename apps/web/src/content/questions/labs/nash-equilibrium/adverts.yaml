@@ -1,0 +1,13 @@
+kind: choice
+prompt: Two phone shops on one street each spend a lot on adverts. The adverts mostly pull customers from one shop to the other, so both would earn more if both stopped. Why do they keep spending?
+options:
+  - Whatever the other does, each earns more by advertising
+  - The adverts bring many new customers to the street
+  - They have not worked out that both would earn more
+answer: 0
+feedback:
+  - ''
+  - The adverts mostly move customers between the two shops, so few new ones arrive. That is why both would earn more if both stopped.
+  - Even a shop that sees it cannot stop alone, or its customers go next door. Seeing the better outcome is not enough; each needs to trust the other to stop too.
+explanation: "Both advertising is a Nash equilibrium, a set of choices where nobody gains by changing only their own. Yet both do worse than if both stopped. It is the same trap as the Prisoner's Dilemma."
+measures: cooperate

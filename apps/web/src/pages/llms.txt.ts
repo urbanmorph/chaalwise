@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { GAME_NAMES, REFERENCE_GAMES } from '@chaalwise/core/reference';
+import { PROMISE } from '../lib/promise';
 import { referenceEntries } from '../lib/reference-entries';
 
 /** llms.txt: what Chaalwise is, for AI agents and answer engines, with a link to every
@@ -25,7 +26,7 @@ export const GET: APIRoute = async ({ site }) => {
   });
   const body = `# Chaalwise
 
-> Free, short lessons in strategy and decision-making, each skill shown in chess, poker or a game-theory lab, used on work and study cases, and brought back by spaced review. Against the computer only. Poker uses free practice points that can never be bought, sold or cashed out. No money, no multiplayer, no account; progress stays on the learner's device.
+> Free, short lessons in strategy and decision-making, each skill shown in chess, poker or a game-theory lab, used on work and study cases, and brought back by spaced review. Against the computer only, with no multiplayer. ${PROMISE} Practice points can never be bought, sold or cashed out, and progress stays on the learner's device.
 
 ## Sections
 

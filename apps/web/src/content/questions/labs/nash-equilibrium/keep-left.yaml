@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In India, drivers keep to the left of the road. In game theory, a Nash equilibrium is a set of choices where nobody gains by changing only their own. Is everyone keeping left one?'
+options:
+  - Yes, since a driver who alone keeps right does worse
+  - No, since keeping right would work just as well
+  - No, since the law and not a choice keeps people left
+answer: 0
+feedback:
+  - ''
+  - 'Everyone keeping right would be an equilibrium too: a game can have more than one. What makes this one stable is that nobody gains by switching alone.'
+  - The law helps, but it is not what holds it in place. With no law at all, a driver who alone switched sides would still do far worse.
+explanation: Each driver's best choice is to do what the others do, so nobody gains by switching alone. Keeping left and keeping right are both equilibria. Which one a country lands on is history, not which is better.
+measures: cooperate

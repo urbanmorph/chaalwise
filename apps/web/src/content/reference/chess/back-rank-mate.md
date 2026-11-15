@@ -11,6 +11,11 @@ highlight: ['g8']
 related: ['chess/luft', 'strategy/patterns-save-thinking']
 lesson: 'chess/back-rank'
 lichess: 'backRankMate'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Rook to a8 is mate. The pawns on f7, g7 and h7, meant to shelter the king, also stop it escaping.

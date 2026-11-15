@@ -29,7 +29,8 @@ export const question = (id: string) => {
   return step as unknown as Step;
 };
 
-const frontmatter = (path: string) => parse(readFileSync(new URL(path, CONTENT), 'utf8').split(/^---$/m)[1]!);
+/** A content file's front matter, by its path under `src/content/`. */
+export const frontmatter = (path: string) => parse(readFileSync(new URL(path, CONTENT), 'utf8').split(/^---$/m)[1]!);
 
 /** The lessons in a folder (`chess`, `strategy` or `cases`), each with its questions looked up. */
 export const lessonsIn = (folder: string) =>

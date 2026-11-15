@@ -4,7 +4,7 @@ summary: When your king is attacked you must get out of check at once. There are
 game: chess
 stage: 0
 order: 8
-skills: [think-ahead]
+skills: []
 steps:
   - kind: read
     id: three-ways

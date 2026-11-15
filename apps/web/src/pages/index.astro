@@ -4,6 +4,7 @@ import NextFocus from '../components/NextFocus.astro';
 import PlayingCard from '../components/poker/PlayingCard.svelte';
 import Base from '../layouts/Base.astro';
 import { HERO } from '../lib/diagram';
+import { PROMISE } from '../lib/promise';
 import { SITE_SCHEMA } from '../lib/seo';
 import { bestIn, TRACKS } from '../lib/skill-tracks';
 
@@ -19,7 +20,7 @@ const GAMES = [
   <section class="hero wrap">
     <div class="pitch">
       <h1>Think a move ahead.</h1>
-      <p class="lead">Short, free lessons in strategy. Each idea is shown in chess or poker, then used at work and in study.</p>
+      <p class="lead">Short strategy lessons, each shown in chess or poker, then used at work and in study.</p>
       <NextFocus />
       <p class="today">
         <a href="/daily/">Today’s puzzles</a>: one chess, one poker, new every day.
@@ -28,7 +29,7 @@ const GAMES = [
         New to the game? Start <a href="/chess/">chess</a> or <a href="/poker/">poker</a> from the beginning.
       </p>
       <p class="who">
-        For people who run teams, people who want to, and students: see <a href="/start/">where to start</a>. Free, offline, no account, no ads, no money.
+        For people who run teams, people who want to, and students: <a href="/start/">start here</a>. {PROMISE}
       </p>
     </div>
 

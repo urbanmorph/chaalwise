@@ -13,6 +13,19 @@ try:
   - life/independent-estimates/before-the-meeting
   - life/independent-estimates/ox-at-the-fair
   - life/independent-estimates/interview-panel
+sources:
+  - title: 'Francis Galton, Vox populi (1907)'
+    licence: cited-idea
+  - title: 'Amos Tversky and Daniel Kahneman, Judgment under uncertainty: heuristics and biases (1974)'
+    licence: cited-idea
+  - title: 'Jan Lorenz and colleagues, How social influence can undermine the wisdom of crowd effect (2011)'
+    licence: cited-idea
+  - title: 'Joshua Becker and colleagues, Network dynamics of social influence in the wisdom of crowds (2017)'
+    licence: cited-idea
+  - title: 'Daniel Kahneman, Olivier Sibony and Cass Sunstein, Noise (2021)'
+    licence: cited-idea
+  - title: 'Irving Janis, Groupthink (1982)'
+    licence: cited-idea
 ---
 
 In 1907 Francis Galton studied a contest at a country fair. Each person paid to guess the weight of an ox once it was slaughtered and prepared as meat. He looked at 787 of the tickets. The middle guess was 1,207 pounds, and the true weight was 1,198. The crowd, taken together, was within 1% of the truth, closer than most of the people in it. This is called the wisdom of crowds. It works best when the guesses are independent, made without hearing each other. Then each person's error is their own, so the errors pull different ways and cancel.

@@ -20,6 +20,8 @@ export const REDIRECTS: Redirect[] = [
   { from: '/chess/check-and-mate/', to: '/chess/mate-stalemate/' },
   { from: '/chess/pieces/', to: '/chess/rook-bishop/' },
   { from: '/chess/special-moves/', to: '/chess/castling/' },
+  // The entry on looking at a few options took its lesson's name, apart from the lesson "Small steps that stick".
+  { from: '/reference/strategy/shrink-the-problem/', to: '/reference/strategy/look-at-three/' },
   // The credits page became CREDITS.md, linked from the footer (da5c194).
   { from: '/credits/', to: 'https://github.com/urbanmorph/chaalwise/blob/main/CREDITS.md' },
 ];

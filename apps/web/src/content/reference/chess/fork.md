@@ -11,6 +11,11 @@ highlight: ['e8', 'a8']
 related: ['chess/pin', 'chess/skewer', 'strategy/blunder-check']
 lesson: 'chess/fork'
 lichess: 'fork'
+sources:
+  - title: 'Lichess puzzle database'
+    url: 'https://database.lichess.org/#puzzles'
+    licence: 'CC0'
+    credit: 'Puzzles from the Lichess puzzle database, public domain (CC0)'
 ---
 
 Knight to c7 checks the king on e8 and attacks the rook on a8. The king must move, and the rook falls.

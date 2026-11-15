@@ -4,7 +4,7 @@ summary: Before you let go of a piece, check that they cannot win something or m
 game: chess
 stage: 1
 order: 6
-skills: [think-ahead, calculate]
+skills: [think-ahead]
 steps:
   - kind: read
     id: the-question

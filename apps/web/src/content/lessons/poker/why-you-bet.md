@@ -4,7 +4,7 @@ summary: 'Bet for a reason: to be paid by worse hands, or to make better hands f
 game: poker
 stage: 3
 order: 2
-skills: [bluff]
+skills: [bluff, unpredictable]
 steps:
   - kind: read
     id: two-reasons

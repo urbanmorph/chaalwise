@@ -1,0 +1,13 @@
+kind: choice
+prompt: In a pay talk, a job candidate says another firm has offered more. The employer cannot check. When is the claim most believable?
+options:
+  - When the candidate offers to show the written offer
+  - When the candidate says it calmly and with confidence
+  - When the other offer is a very high one
+answer: 0
+feedback:
+  - ''
+  - Calm and confidence are free to put on, and anyone bluffing practises them. They tell you little about the offer.
+  - A big number is no harder to make up than a small one. If anything, it should make you ask for proof.
+explanation: Offering to show the letter would be costly if the offer were made up, so it is believable. A claim that costs nothing to make, true or false, is cheap talk, and deserves little weight.
+measures: bluff

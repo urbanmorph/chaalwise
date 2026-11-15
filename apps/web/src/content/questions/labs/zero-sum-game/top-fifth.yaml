@@ -1,0 +1,13 @@
+kind: choice
+prompt: A manager ranks a team against each other, and only the top fifth get a bonus. A zero-sum game is one where one side's gain is exactly the other's loss. What does the bonus rule turn the team's work into?
+options:
+  - A zero-sum contest, where helping a colleague can cost you
+  - A shared goal, where all gain when the team does well
+  - Nothing new, since good staff help each other anyway
+answer: 0
+feedback:
+  - ''
+  - With a fixed share at the top, one person's rise is another's fall. The team doing well does not change who gets the bonus.
+  - Some still will, but the rule now charges them for it. Expect less help, and watch for it.
+explanation: A fixed number of places at the top makes colleagues rivals. Where the work needs people to help each other, reward the team's result as well, so that helping does not cost anyone.
+measures: cooperate

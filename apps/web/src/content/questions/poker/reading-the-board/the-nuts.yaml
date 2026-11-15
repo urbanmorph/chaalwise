@@ -14,4 +14,4 @@ feedback:
   - 'A straight from ace to ten needs an ace, a jack and a ten from one player: three cards, and each player holds only two.'
   - Four of a kind needs a pair on the board, and there is none.
 explanation: Three spades on the board make a flush possible; no straight or full house is. The best flush holds the ace of spades.
-measures: hand-reading
+measures: ranges

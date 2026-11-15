@@ -1,0 +1,13 @@
+kind: choice
+prompt: "You are agreeing the terms of a job offer. You treat it as zero-sum, where one side's gain is exactly the other's loss: every rupee more for you is a rupee less for them. What might you miss?"
+options:
+  - Terms worth more to you than they cost them
+  - 'Nothing, since pay is all that can be traded'
+  - That asking for more pay always fails
+answer: 0
+feedback:
+  - ''
+  - A start date, training or working from home can be worth more to one side than it costs the other. Those trades help both.
+  - Asking for more is fine. The trouble is that seeing only pay hides the trades that leave both sides better off.
+explanation: Most deals are not zero-sum. Look for terms that matter more to you than they cost the other side, and offer ones that matter more to them than they cost you.
+measures: cooperate

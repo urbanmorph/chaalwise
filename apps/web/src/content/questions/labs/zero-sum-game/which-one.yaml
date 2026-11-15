@@ -1,0 +1,13 @@
+kind: choice
+prompt: "A zero-sum game is one where one side's gain is exactly the other's loss. Which of these is zero-sum?"
+options:
+  - A game of chess
+  - A farmer selling rice to a shop
+  - Two friends revising together for an exam
+answer: 0
+feedback:
+  - ''
+  - Trade usually leaves both better off. The shop wants the rice more than the money, and the farmer wants the money more than the rice.
+  - Both can gain. One friend understanding more takes nothing from the other.
+explanation: In chess, one player's win is the other's loss, so the total never changes. Trade and working together are not like that, which is why treating them as zero-sum leaves gains on the table.
+measures: cooperate

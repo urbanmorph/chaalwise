@@ -4,7 +4,7 @@ summary: A king trapped behind its own pawns can be mated along its back rank. H
 game: chess
 stage: 2
 order: 2
-skills: [think-ahead]
+skills: [calculate]
 steps:
   - ask: chess/back-rank/rook-mates
   - ask: chess/back-rank/black-mates

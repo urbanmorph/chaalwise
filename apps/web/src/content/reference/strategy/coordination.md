@@ -13,6 +13,19 @@ try:
   - life/coordination/lost-at-the-festival
   - life/coordination/new-system
   - life/coordination/night-market
+sources:
+  - title: 'Thomas Schelling, The Strategy of Conflict (1960)'
+    licence: cited-idea
+  - title: 'Judith Mehta, Chris Starmer and Robert Sugden, The nature of salience (1994)'
+    licence: cited-idea
+  - title: 'Jean-Jacques Rousseau, Discourse on Inequality (1755)'
+    licence: cited-idea
+  - title: 'Brian Skyrms, The Stag Hunt and the Evolution of Social Structure (2004)'
+    licence: cited-idea
+  - title: 'John Van Huyck, Raymond Battalio and Richard Beil, Tacit coordination games, strategic uncertainty, and coordination failure (1990)'
+    licence: cited-idea
+  - title: 'Russell Cooper and colleagues, Communication in coordination games (1992)'
+    licence: cited-idea
 ---
 
 In The Strategy of Conflict (1960), Thomas Schelling set people problems they could win only by matching a partner they could not talk to. Told to name heads or tails, 36 of his 42 respondents said heads. He also asked students where and when to meet someone in New York, with no plan agreed. Most chose the information booth at Grand Central Station, at noon. Those answers were no better in themselves. They simply stood out, and each person expected the other to expect them. Schelling called such an answer a focal point.

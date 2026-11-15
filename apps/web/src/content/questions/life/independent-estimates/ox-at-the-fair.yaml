@@ -12,3 +12,6 @@ feedback:
   - ''
 explanation: 'When Galton studied such a contest (1907), the middle of 787 guesses was within 1% of the true weight. Each guess was wrong in its own way, and the errors cancelled.'
 measures: read-hidden
+sources:
+  - title: 'Francis Galton, Vox populi (1907)'
+    licence: cited-idea

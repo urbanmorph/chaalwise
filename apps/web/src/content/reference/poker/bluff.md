@@ -8,7 +8,7 @@ summary: 'Betting with a weak hand to make a stronger hand give up.'
 lesson: 'poker/why-you-bet'
 try:
   - 'poker/why-you-bet/bluff'
-related: ['poker/position', 'poker/range', 'strategy/be-unpredictable']
+related: ['poker/position', 'poker/range', 'strategy/be-unpredictable', 'strategy/costly-signals']
 ---
 
 A bluff works when the story your bets tell is believable and the other player can fold (give up the hand). A semi-bluff is a bluff with outs: cards still to come that would make your hand strong. If the other player calls (matches the bet), your hand can still improve.

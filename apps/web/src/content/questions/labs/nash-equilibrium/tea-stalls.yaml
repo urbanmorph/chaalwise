@@ -1,0 +1,13 @@
+kind: choice
+prompt: "Two tea stalls stand side by side. Both used to charge 20 a cup, but each cut to 15 to win the other's customers, and now neither can go lower without a loss. In game theory, a Nash equilibrium is a set of choices where nobody gains by changing only their own. Why is both at 15 one?"
+options:
+  - Neither stall gains by going back to 20 alone
+  - It earns both stalls the most they can make
+  - The two owners agreed on 15 together
+answer: 0
+feedback:
+  - ''
+  - Both earned more at 20. An equilibrium need not be good for anyone; it is only a place where nobody gains by moving alone.
+  - Nobody agreed on anything. Each owner chose the best reply to the other's price, and that is where they ended up.
+explanation: 'At 15 each, a stall that goes back to 20 alone loses its customers to the other, and neither can go lower. So neither gains by changing only its own price: a Nash equilibrium, though both did better at 20.'
+measures: cooperate

@@ -18,6 +18,7 @@ describe('old lesson and page addresses', () => {
       ['/chess/check-and-mate/', '/chess/mate-stalemate/'],
       ['/chess/pieces/', '/chess/rook-bishop/'],
       ['/chess/special-moves/', '/chess/castling/'],
+      ['/reference/strategy/shrink-the-problem/', '/reference/strategy/look-at-three/'],
       ['/credits/', 'https://github.com/urbanmorph/chaalwise/blob/main/CREDITS.md'],
     ]) {
       expect(map[from!], from).toBe(to);
