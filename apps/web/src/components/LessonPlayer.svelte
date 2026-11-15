@@ -5,6 +5,7 @@
   import { SvelteSet } from 'svelte/reactivity';
   import { EMPTY_BOARD, playUci, toFen, toSan } from '../lib/chess';
   import { squareHint } from '../lib/drills';
+  import { awayFrom } from '../lib/games';
   import { shuffle } from '../lib/random';
   import { CONFIDENCE } from '@chaalwise/core/calibration';
   import Board, { type Mark } from './Board.svelte';
@@ -273,7 +274,7 @@
         {/if}
         {#if step.kind === 'choice' && step.alongside}
           <div class="alongside">
-            <p class="label">{cards ? 'Away from the table' : 'Off the board'}</p>
+            <p class="label">{awayFrom(step)}</p>
             <p>{step.alongside}</p>
           </div>
         {/if}

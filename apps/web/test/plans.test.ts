@@ -2,11 +2,22 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { LABS } from '../src/lib/labs/labs';
 import { LAB_PLANS } from '../src/lib/labs/plans';
-import { lessonsIn } from './content';
+import { frontmatter, lessonsIn } from './content';
 
+type Shown = {
+  kind: string;
+  text?: string;
+  situations?: string[];
+  alongside?: string;
+  position?: string;
+  lab?: string;
+};
 const lessons = lessonsIn('strategy').map(({ file, data }) => ({
   id: file.replace('.md', ''),
-  steps: data.steps as { kind: string; text?: string; situations?: string[]; alongside?: string; position?: string }[],
+  after: data.after!,
+  steps: data.steps as Shown[],
+  /** Each step's question id as the lesson asks it, such as `life/review-calmly/launch`; none for reading and plans. */
+  asks: (frontmatter(`lessons/strategy/${file}`) as { steps: { ask?: string }[] }).steps.map((s) => s.ask),
 }));
 
 describe('every strategy lesson ends with a plan to use the idea', () => {
@@ -26,34 +37,36 @@ describe('every strategy lesson names its idea after the comparison, not before'
   const stepIds = (html: string) =>
     [...html.matchAll(/&quot;id&quot;:\[0,&quot;([a-z0-9/-]+)&quot;/g)].map((m) => m[1]!);
 
-  it('shows the board, asks what it shares with a case off it, then names the idea, then asks about life', () => {
-    for (const { id, steps } of lessons) {
+  it('shows the game, asks what it shares with a case off it, then names the idea, then asks about life', () => {
+    for (const { id, steps, asks } of lessons) {
       const ids = stepIds(built(id));
-      const compare = ids.indexOf(`strategy/${id}/compare`);
+      const compare = steps.findIndex((s) => s.alongside);
       const named = ids.indexOf('off-the-board');
       expect(ids[0], id).toBe('on-the-board');
       expect(compare, id).toBeGreaterThan(0);
       expect(named, id).toBe(compare + 1);
       expect(ids.at(-1), id).toBe('plan');
       expect(steps[named]!.text, id).toMatch(/^What both share has a name: /);
-      // The board questions come before the comparison, the questions away from the board after the idea.
+      // The game's questions come before the comparison, the questions about life after the idea.
       expect(ids.length, id).toBe(steps.length);
-      steps.forEach((s, i) => {
-        if (s.kind === 'read' || s.kind === 'plan' || i === compare) return;
-        if (s.position) expect(i, id).toBeLessThan(compare);
-        else expect(i, id).toBeGreaterThan(named);
+      asks.forEach((ask, i) => {
+        if (!ask || i === compare) return;
+        if (ask.startsWith('life/')) expect(i, id).toBeGreaterThan(named);
+        else expect(i, id).toBeLessThan(compare);
       });
     }
   });
 });
 
-describe('every strategy lesson compares its board with a case off it', () => {
-  it('sets a work or study case beside the chess position, and asks what the two share', () => {
-    for (const { id, steps } of lessons)
-      expect(
-        steps.some((s) => s.kind === 'choice' && s.alongside && s.position),
-        id,
-      ).toBe(true);
+describe('every strategy lesson compares its game with a case off it', () => {
+  it('sets a work or study case beside the chess position, or the round of the lab it follows, and asks what the two share', () => {
+    for (const { id, after, steps } of lessons) {
+      const compares = steps.filter((s) => s.kind === 'choice' && s.alongside);
+      expect(compares, id).toHaveLength(1);
+      const [compare] = compares;
+      if (after.startsWith('labs/')) expect(`labs/${compare!.lab}`, id).toBe(after);
+      else expect(compare!.position, id).toBeTruthy();
+    }
   });
 });
 

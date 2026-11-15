@@ -1,0 +1,15 @@
+kind: choice
+lab: prisoners-dilemma
+prompt: "In the Prisoner's Dilemma lab, defecting means acting for yourself at the other's cost. Against the tit-for-tat bot, it wins you 2 extra points once, and then the bot defects back. What does that share with the supplier?"
+alongside: A packaging firm supplies a sweet shop in Jaipur every week and hopes to for years. It could send cheaper, weaker boxes with one big order, and the shop might not notice at first.
+options:
+  - A grab now is paid for later, as they will meet again
+  - Both are one-off chances to take what you can
+  - Both stay honest only if the other side is kind
+answer: 0
+feedback:
+  - ''
+  - 'Neither is one-off: a lab match lasts about ten rounds, and the supplier wants years of orders. That is what makes the grab costly.'
+  - "The tit-for-tat bot is not kind: it answers. The supplier's reason to stay honest is next week's order, not the shop's kindness."
+explanation: 'In both, the other side answers later: the bot by defecting next round, the shop by ordering elsewhere. When you will meet again, what one grab gains is less than what it costs you afterwards.'
+measures: cooperate

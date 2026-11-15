@@ -1,0 +1,13 @@
+kind: choice
+prompt: Your start-up wants to hire a software engineer who has offers from four other firms, and whoever pays most will probably get her. Each firm is guessing how good she will be. If you win her, what is the risk?
+options:
+  - You rated her higher than the others did, and paid too much
+  - 'None: four other offers prove she is worth it'
+  - She will ask for more every year to stay
+answer: 0
+feedback:
+  - ''
+  - The offers show that others like her, but each firm is guessing too. You won because your guess was the highest, and the highest guess is the likeliest to be too high.
+  - That may happen, but it is not the risk of winning. The risk is paying more than her work is worth, because your guess was the most hopeful.
+explanation: When many bid for the same uncertain worth, the winner is usually the most hopeful guesser. Check your guess first, with a work test or references. Then set your limit from what the role is worth to you, and keep to it.
+measures: value

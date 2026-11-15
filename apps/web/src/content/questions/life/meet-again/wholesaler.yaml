@@ -1,0 +1,13 @@
+kind: choice
+prompt: You run a small catering firm in Pune and have bought vegetables from the same wholesaler for three years. This week, for the first time, they delivered a day late, and buying elsewhere cost you ₹3,000 more. What do you do?
+options:
+  - Tell them what it cost you, and keep ordering as before
+  - Say nothing, and quietly move half your orders elsewhere
+  - Say nothing, to keep the relationship good
+answer: 0
+feedback:
+  - ''
+  - A silent punishment is not clear. They cannot tell why the orders fell, so it cannot change what they do. After three good years, one slip may also be bad luck.
+  - "Saying nothing tells them a late delivery costs them nothing. In the Prisoner's Dilemma lab, a game of repeated rounds, the bot that cooperates whatever you do earns the least."
+explanation: Be clear, and forgive once. Saying what the delay cost you puts a price on a slip. Ordering as before keeps three good years going. If it happens again, answer it then.
+measures: cooperate

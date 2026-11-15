@@ -1,0 +1,13 @@
+kind: choice
+prompt: You want to rent a flat in Pune that five other people are after, and the owner will take the highest rent offered. Being near your work, it is worth up to ₹28,000 a month to you. The asking rent is ₹25,000. What do you do before you make an offer?
+options:
+  - Fix ₹28,000 as your limit, and offer no more than that
+  - Plan to offer whatever it takes to win, and find the money later
+  - 'Fix ₹25,000 as your limit: paying above the asking rent is foolish'
+answer: 0
+feedback:
+  - ''
+  - In a contest, the pull to win grows as others bid. Without a limit set beforehand, you may pay more than living there is worth to you.
+  - The asking rent is the owner's figure, not what the flat is worth to you. Stopping there may lose you a flat worth ₹3,000 a month more to you than that.
+explanation: 'Here the worth is your own: what living near your work is worth to you. Decide that limit before anyone bids. Then offer below it if you can, and never above it.'
+measures: value

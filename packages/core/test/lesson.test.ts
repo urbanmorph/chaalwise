@@ -152,6 +152,12 @@ describe('a question in the corpus', () => {
     expect(() => questionSchema.parse({ ...compare, position: undefined })).toThrow(/alongside/);
   });
 
+  it('lets a choice compare a round of a lab, told in its prompt, with no board or cards', () => {
+    const compare = { ...choice, lab: 'prisoners-dilemma', alongside: 'A supplier you will use for years.' };
+    expect(questionSchema.parse(compare)).toMatchObject({ lab: 'prisoners-dilemma' });
+    expect(() => questionSchema.parse({ ...compare, lab: 'Prisoners Dilemma' })).toThrow();
+  });
+
   it('names a practice generator for fresh positions, and the skill its answers count towards', () => {
     const square = {
       kind: 'square',

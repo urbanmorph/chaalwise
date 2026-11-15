@@ -1,0 +1,13 @@
+kind: choice
+prompt: "In the Prisoner's Dilemma lab, each round you and a bot choose to cooperate (work together) or defect (act for yourself at the other's cost). You have cooperated with the tit-for-tat bot, which copies your last move, for six rounds at 3 points each. If you defect now, what happens?"
+options:
+  - You get 5 now, and it defects back next round
+  - You get 5, and it lets one defection go
+  - You get 5, and it keeps cooperating after six good rounds
+answer: 0
+feedback:
+  - ''
+  - That is the forgiving bot, which lets a defection go 1 time in 3. Tit for tat copies your last move every time.
+  - Tit for tat looks only at your last move, not at the six before it. A defection is answered in the next round.
+explanation: 'Defecting earns 5 instead of 3 this round. Next round tit for tat defects back: cooperate then and you get 0, so the two rounds bring you 5 instead of 6. Keep defecting, and you both get 1 a round.'
+measures: cooperate

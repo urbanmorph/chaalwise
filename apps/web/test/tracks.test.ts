@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { PLANNED } from '../src/lib/planned-skills';
 import { PROFILE_SKILLS, trackOf } from '../src/lib/profile-skills';
+import { lessonsIn } from './content';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
 const course = (id: string) => dist(`skills/${id}/index.html`);
@@ -98,8 +99,26 @@ describe('lesson names', () => {
         expect(entry.html, `${entry.id} and ${lesson.href}`).toContain(`Lesson: <a href="${lesson.href}"`);
   });
 
-  it('lists every built strategy lesson in the curriculum under its own title', () => {
+  /** Strategy lessons that start from a lab or a poker lesson: off the chess curriculum, listed after it. */
+  const after = (game: string) =>
+    lessonsIn('strategy')
+      .filter(({ data }) => data.after!.startsWith(`${game}/`))
+      .map(({ file }) => file.replace('.md', ''));
+  const offPath = [...after('labs'), ...after('poker')];
+
+  it('lists every built strategy lesson on the chess path in the curriculum under its own title', () => {
     const planned = PLANNED.map((p) => p.title);
-    for (const lesson of lessons.filter((l) => l.href.startsWith('/skills/'))) expect(planned).toContain(lesson.title);
+    for (const lesson of lessons.filter(
+      (l) => l.href.startsWith('/skills/') && !offPath.includes(l.href.split('/')[2]!),
+    ))
+      expect(planned).toContain(lesson.title);
+  });
+
+  it('labels each strategy lesson on the strategy page by where it starts: a chess stage, or the lab it follows', () => {
+    const index = dist('skills/index.html');
+    const label = (slug: string) =>
+      index.match(new RegExp(`href="/skills/${slug}/"[^]*?<p class="label"[^>]*>([^<]*)</p>`))![1];
+    expect(label('blunder-check')).toBe('Chess · stage 1');
+    for (const slug of after('labs')) expect(label(slug), slug).toMatch(/^After the .+ lab$/);
   });
 });

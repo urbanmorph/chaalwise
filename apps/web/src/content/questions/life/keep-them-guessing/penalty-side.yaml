@@ -1,0 +1,13 @@
+kind: choice
+prompt: In football, a penalty kick is a free shot at goal with only the goalkeeper to beat. One penalty taker scores more often when shooting to their stronger side. Where should they shoot?
+options:
+  - Mostly to the stronger side, sometimes the other, at random
+  - 'Always to the stronger side: it scores more'
+  - Half to each side, so the goalkeeper cannot guess
+answer: 0
+feedback:
+  - ''
+  - A goalkeeper who knows will dive that way every time, and the stronger side stops paying.
+  - The goalkeeper cannot guess, but an even split wastes the stronger side. The right mix leans towards it, just enough that the goalkeeper gains nothing by diving either way.
+explanation: A mix need not be half and half. Lean towards your strength, but at random, and only so far that the goalkeeper gains nothing by guessing either side.
+measures: unpredictable

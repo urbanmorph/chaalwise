@@ -1,0 +1,13 @@
+kind: choice
+prompt: You call your elderly father every evening at 8, and he waits by the phone for it. A friend says routines get dull, and you should vary the time. Should you?
+options:
+  - 'No: here, being predictable helps him'
+  - 'Yes: being predictable lets others exploit you'
+  - Now and then, to keep things fresh
+answer: 0
+feedback:
+  - ''
+  - Being read costs you only when someone gains at your cost. Your father is not working against you. He relies on the pattern.
+  - A surprise time gains you nothing, and it costs him the comfort of knowing when you will call.
+explanation: 'Mix only where someone gains by reading you. Where people rely on you, a routine is a strength: it builds trust and lets them plan.'
+measures: unpredictable

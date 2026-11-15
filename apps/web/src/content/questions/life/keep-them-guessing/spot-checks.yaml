@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You lead a team in Hyderabad that files expense claims. You want to check a few claims each month for padding: costs made to look bigger than they were. When do you check?'
+options:
+  - On days picked at random, a few claims at a time
+  - On the last day of each month, so everyone knows
+  - Never on the same weekday twice in a row
+answer: 0
+feedback:
+  - ''
+  - A known check day tells anyone padding claims exactly when to be careful, and when they are safe.
+  - 'That rule is itself a pattern: once someone spots it, they know which days are safe.'
+explanation: Someone who pads claims gains by knowing when you check. Random days leave them nothing to read, so any claim might be the one you check.
+measures: unpredictable

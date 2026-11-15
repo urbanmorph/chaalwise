@@ -1,0 +1,13 @@
+kind: choice
+prompt: You teach a coaching class in Kota and want students to revise every week, not only the night before a test. When do you give short tests?
+options:
+  - On days the students cannot predict
+  - Every Monday, so they can plan their week
+  - Never on the day after the last test
+answer: 0
+feedback:
+  - ''
+  - A fixed test day lets students revise only the night before, which is what you wanted to avoid.
+  - 'That rule is itself a pattern: once students spot it, they know which day is safe.'
+explanation: Students gain by knowing when a test comes, as they can cram just before it. Days they cannot predict make weekly revision their best plan. Here the mix serves your aim, not a contest.
+measures: unpredictable

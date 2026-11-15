@@ -108,6 +108,29 @@ describe('the labs, linked where learners look', () => {
   });
 });
 
+describe('the skills the labs teach', () => {
+  const strategy = lessonsIn('strategy');
+
+  it('each have a strategy lesson that starts from one of their labs: cooperate, value and unpredictable', () => {
+    for (const skill of ['cooperate', 'value', 'unpredictable'] as const) {
+      const labs = LABS.filter((l) => l.track === skill).map((l) => `labs/${l.slug}`);
+      const lessons = strategy.filter(({ data }) => data.skills.includes(skill) && labs.includes(data.after!));
+      expect(lessons.length, skill).toBeGreaterThan(0);
+    }
+  });
+
+  it('list each lesson that starts from a lab first on that lab’s page, and the lesson sends learners to play the lab first', () => {
+    for (const { file, data } of strategy.filter(({ data }) => data.after?.startsWith('labs/'))) {
+      const slug = file.replace('.md', '');
+      const lab = LABS.find((l) => `labs/${l.slug}` === data.after)!;
+      const section = page(`labs/${lab.slug}/`).match(/<section class="lessons"[\s\S]*?<\/section>/)![0];
+      expect(section.match(/href="([^"]+)"/)![1], slug).toBe(`/skills/${slug}/`);
+      const meet = page(`skills/${slug}/`).match(/<p class="meet"[^>]*data-testid="meet-lab"[\s\S]*?<\/p>/)![0];
+      expect(meet, slug).toContain(`href="/labs/${lab.slug}/"`);
+    }
+  });
+});
+
 describe('every lab, from its skill', () => {
   it('is linked from its skill’s course page and from the strategy page, where a skill has two labs', () => {
     for (const lab of LABS) {

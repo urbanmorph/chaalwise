@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are a freelance translator. A firm asks five translators to quote for a 40-page technical manual, and the lowest quote wins. You have never translated a manual like this one. What should your quote allow for?
+options:
+  - More hours than your first guess
+  - Fewer hours than your first guess, so you win
+  - Exactly your first guess, as your honest view
+answer: 0
+feedback:
+  - ''
+  - Winning on a low guess means working hours nobody pays for. The lowest of five quotes usually comes from whoever guessed the work smallest.
+  - 'Your guess is honest, but winning would tell you more: of five translators, yours was probably the lowest guess of the work, so likely too low.'
+explanation: In a contest won by the lowest quote, the winner is usually whoever most underestimated the work. Allow for that before you quote, more so on work you have not done before.
+measures: value
