@@ -13,6 +13,14 @@ steps:
   - ask: poker/position/checked-to-you
   - ask: poker/position/first-to-act
   - ask: life/information-advantage/name-a-price
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you let others speak first?'
+    situations:
+      - 'a meeting or a group is about to discuss a decision'
+      - 'I am asked to name a price or a number first'
+      - 'I can choose the order in which people give their views'
+    action: 'I will hear what the others say before I commit, when waiting costs me nothing'
 ---
 
 Information before you act is an advantage, at the card table and away from it.

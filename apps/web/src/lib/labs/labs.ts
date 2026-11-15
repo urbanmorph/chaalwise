@@ -122,6 +122,21 @@ export const LABS: Lab[] = [
 
 export const labHref = (lab: Pick<Lab, 'slug'>): string => `/labs/${lab.slug}/`;
 
+/** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */
+export function labsForLesson({
+  game,
+  after,
+  skills,
+}: {
+  game: string;
+  after?: string | undefined;
+  skills: string[];
+}): Lab[] {
+  if (game !== 'strategy' && game !== 'poker') return [];
+  const follows = (lab: Lab) => after === `labs/${lab.slug}`;
+  return [...LABS.filter(follows), ...LABS.filter((l) => !follows(l) && skills.includes(l.track))];
+}
+
 /** Each lab, with when it was last played to the end on this device and how often, from the finished records. */
 export function labsPlayed(records: { lessonId: string; completedAt: Date; times: number }[]) {
   return LABS.map(({ slug, title }) => {

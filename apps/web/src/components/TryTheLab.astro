@@ -1,0 +1,29 @@
+---
+import { labHref, type Lab } from '../lib/labs/labs';
+
+/** One line at the end of a lesson: the labs that train its skill, short games against the computer. */
+interface Props {
+  labs: Lab[];
+}
+const { labs } = Astro.props;
+---
+
+{labs.length > 0 && (
+  <p class="try-lab" data-testid="try-the-lab">
+    Try the lab:{' '}
+    {labs.map((lab, i) => (
+      <>
+        <a href={labHref(lab)}>{lab.title}</a>
+        {i < labs.length - 1 && ' or '}
+      </>
+    ))}
+    , a game of about five minutes against the computer, for points only.
+  </p>
+)}
+
+<style>
+  .try-lab {
+    margin-top: 16px;
+    color: var(--ink-2);
+  }
+</style>

@@ -55,6 +55,14 @@ describe('a lesson', () => {
     expect(() => lessonSchema.parse({ ...story, after: 'chess/board' })).toThrow(/path/);
   });
 
+  it('lets a strategy lesson follow a chess or poker lesson, another strategy lesson, or a lab', () => {
+    const strategy = { ...authored, game: 'strategy', skills: ['weigh-odds'] };
+    for (const after of ['chess/fork', 'poker/outs-and-odds', 'strategy/blunder-check', 'labs/which-bag'])
+      expect(lessonSchema.parse({ ...strategy, after }).after).toBe(after);
+    for (const after of ['outs-and-odds', 'cases/first-job', 'labs/Which Bag', 'poker/'])
+      expect(() => lessonSchema.parse({ ...strategy, after }), after).toThrow(/after/);
+  });
+
   it('requires a strategy lesson to say which lesson it follows, and which skill it trains', () => {
     expect(() => lessonSchema.parse({ ...authored, game: 'strategy', skills: ['think-ahead'] })).toThrow(/after/);
     expect(() => lessonSchema.parse({ ...authored, game: 'strategy', skills: [], after: 'chess/x' })).toThrow(/skill/);

@@ -8,20 +8,35 @@ import { safetyVerdict } from './drills';
 import { PLANNED } from './planned-skills';
 import { trackOf } from './profile-skills';
 import { ask, asStep, corpus } from './questions';
+import { LABS } from './labs/labs';
 
 export type LessonEntry = CollectionEntry<'lessons'>;
 
-/** A course of lessons: chess, with the strategy lessons where they fall; poker; or the work cases, on no game's path. */
-export type Course = 'chess' | 'poker' | 'case';
-export const courseOf = ({ data: { game } }: LessonEntry): Course =>
-  game === 'poker' || game === 'case' ? game : 'chess';
+/**
+ * A course of lessons: chess or poker, each with the strategy lessons that follow its lessons; the strategy
+ * lessons that follow a lab; or the work cases, on no game's path. A strategy lesson is on the course of what it
+ * follows (one that follows another strategy lesson is on the chess path).
+ */
+export type Course = 'chess' | 'poker' | 'labs' | 'case';
+export const courseOf = ({ data: { game, after } }: LessonEntry): Course =>
+  game === 'poker' || game === 'case'
+    ? game
+    : after?.startsWith('poker/')
+      ? 'poker'
+      : after?.startsWith('labs/')
+        ? 'labs'
+        : 'chess';
 
 /** Where each course's lessons are all listed. */
 export const COURSE_HOME: Record<Course, { href: string; label: string; done: string }> = {
   chess: { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' },
   poker: { href: '/poker/', label: 'All poker lessons', done: 'Lesson complete' },
+  labs: { href: '/labs/', label: 'All labs', done: 'Lesson complete' },
   case: { href: '/cases/', label: 'All work cases', done: 'Case complete' },
 };
+
+/** What a lesson may follow off the path: each lab, in the order the labs page lists them. */
+const LAB_ANCHORS = LABS.map((lab) => `labs/${lab.slug}`);
 
 /** A course's lessons in the recommended order (see learningPath): by default chess, with the strategy lessons. */
 export async function lessonPath(course: Course = 'chess'): Promise<LessonEntry[]> {
@@ -34,7 +49,13 @@ export async function lessonPath(course: Course = 'chess'): Promise<LessonEntry[
     after: entry.data.after,
     entry,
   }));
-  return learningPath(entries).map((e) => e.entry);
+  return learningPath(entries, course === 'labs' ? LAB_ANCHORS : []).map((e) => e.entry);
+}
+
+/** Every strategy lesson, on whichever path it falls: after chess lessons, poker lessons or labs. */
+export async function strategyLessons(): Promise<LessonEntry[]> {
+  const paths = await Promise.all((['chess', 'poker', 'labs'] as const).map((course) => lessonPath(course)));
+  return paths.flat().filter((l) => l.data.game === 'strategy');
 }
 
 /** Chess lessons only, in curriculum order. */
@@ -44,20 +65,26 @@ export async function chessLessons(): Promise<LessonEntry[]> {
 
 export { lessonHref } from './lesson-href';
 
-/** The lesson after this one on the path, and the earlier-stage lessons it builds on (work cases stand alone, and build on none). */
+/**
+ * The lesson after this one on the path, and the earlier-stage lessons it builds on. Work cases stand alone and
+ * build on none; a lesson after a lab builds on the lab, and the next lab's lesson does not follow from it.
+ */
 export async function pathContext(
   lesson: LessonEntry,
 ): Promise<{ next: LessonEntry | undefined; buildsOn: LessonEntry[] }> {
-  const path = await lessonPath(courseOf(lesson));
+  const course = courseOf(lesson);
+  if (course === 'labs') return { next: undefined, buildsOn: [] };
+  const path = await lessonPath(course);
   const at = path.findIndex((l) => l.id === lesson.id);
-  const buildsOn = courseOf(lesson) === 'case' ? [] : path.slice(0, at).filter((l) => l.data.stage < lesson.data.stage);
+  const buildsOn = course === 'case' ? [] : path.slice(0, at).filter((l) => l.data.stage < lesson.data.stage);
   return { next: path[at + 1], buildsOn };
 }
 
-/** Every lesson, both courses, for looking one up by id. */
+/** Every lesson on a game's path, and those after labs, for looking one up by id. */
 export const allLessons = async (): Promise<LessonEntry[]> => [
   ...(await lessonPath('chess')),
   ...(await lessonPath('poker')),
+  ...(await lessonPath('labs')),
 ];
 
 export const POKER_STAGES: Record<number, string> = {
@@ -122,18 +149,36 @@ export async function safetyDrill(): Promise<SafetyItem[]> {
   });
 }
 
-/** A track's strategy lessons in curriculum order: each built one with its lesson, each planned one with its stage. */
+/**
+ * A track's strategy lessons: the planned ones in curriculum order, each built one with its lesson, then the built
+ * ones the plan did not list (such as those after poker lessons and labs), in path order.
+ */
 export async function trackLessons(track: SkillId): Promise<{ title: string; stage: number; lesson?: LessonEntry }[]> {
-  const built = (await lessonPath()).filter((l) => l.data.game === 'strategy');
-  return PLANNED.filter((p) => p.skill === track).map((p) => ({
+  const built = (await strategyLessons()).filter((l) => l.data.skills.includes(track));
+  const planned = PLANNED.filter((p) => p.skill === track).map((p) => ({
     ...p,
     lesson: built.find((l) => l.data.title === p.title),
   }));
+  const unplanned = built
+    .filter((l) => !planned.some((p) => p.lesson === l))
+    .map((lesson) => ({ title: lesson.data.title, stage: lesson.data.stage, lesson }));
+  return [...planned, ...unplanned];
+}
+
+/** The strategy and poker lessons that train a track, and those that follow a lab: what a lab page offers next. */
+export async function labLessons(lab: { slug: string; track: SkillId }): Promise<LessonEntry[]> {
+  const after = (l: LessonEntry) => l.data.after === `labs/${lab.slug}`;
+  const strategy = await strategyLessons();
+  return [
+    ...strategy.filter(after),
+    ...strategy.filter((l) => !after(l) && l.data.skills.includes(lab.track)),
+    ...(await lessonsFor('poker', lab.track)),
+  ];
 }
 
 /** The poker lessons, or the work cases, that train a track. */
 export async function lessonsFor(course: 'poker' | 'case', track: SkillId): Promise<LessonEntry[]> {
-  return (await lessonPath(course)).filter((l) => l.data.skills.includes(track));
+  return (await lessonPath(course)).filter((l) => l.data.game === course && l.data.skills.includes(track));
 }
 
 /** The chess lessons whose answers count towards a track. */

@@ -13,6 +13,14 @@ steps:
   - ask: poker/reading-the-board/dangerous-card
   - ask: poker/reading-the-board/paired-board
   - ask: life/what-others-could-hold/tender
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you check what the shared facts make possible?'
+    situations:
+      - 'everyone in a group sees the same news or results'
+      - 'a rival or another buyer knows what I know'
+      - 'I plan around a situation that others can see too'
+    action: 'I will ask what the facts everyone sees let the others have or do, not only me'
 ---
 
 The shared cards say what anyone could hold. Reading them is seeing the hidden hands the board allows.

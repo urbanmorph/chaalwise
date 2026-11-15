@@ -34,3 +34,34 @@ test('a strategy lesson ends with a plan you keep, and the review asks a day lat
   await hydrated(page);
   await expect(page.getByTestId('plan-check-in')).toHaveCount(0);
 });
+
+test('a lab ends with a plan after its debrief, kept and asked about in review like a lesson’s', async ({ page }) => {
+  await page.clock.install({ time: new Date('2026-10-20T09:00:00') });
+  await page.goto('/labs/ask-the-panel/');
+  await hydrated(page);
+  const plan = page.getByTestId('lab-plan');
+  await plan.getByText('When a group estimates a cost, a time or a number', { exact: true }).click();
+  await expect(plan).toContainText(
+    'When a group estimates a cost, a time or a number, I will ask each person to write down their own answer first, then compare them.',
+  );
+  await plan.getByRole('button', { name: 'Save my plan' }).click();
+  await expect(plan.getByText('Saved on this device.')).toBeVisible();
+
+  await page.clock.setSystemTime(new Date('2026-10-21T10:00:00'));
+  await page.goto('/review/');
+  await expect(page.getByTestId('plan-check-in')).toContainText('Your plan: When a group estimates a cost');
+});
+
+test('a poker lesson ends with a plan for its skill away from the table, and links to the lab for it', async ({
+  page,
+}) => {
+  await page.goto('/poker/tilt/');
+  await hydrated(page);
+  await expect(page.getByTestId('try-the-lab').getByRole('link', { name: 'Gain or loss?' })).toBeVisible();
+  const dots = page.getByRole('navigation', { name: 'Steps in this lesson' }).getByRole('button');
+  await dots.last().click();
+  await expect(page.getByText('Use it away from the table this week.')).toBeVisible();
+  await page.getByText('When I am about to reply to a message while angry', { exact: true }).click();
+  await page.getByRole('button', { name: 'Save my plan' }).click();
+  await expect(page.getByText('Saved on this device.')).toBeVisible();
+});

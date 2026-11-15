@@ -14,6 +14,14 @@ steps:
   - ask: poker/ranges-and-equity/both-hands
   - ask: poker/ranges-and-equity/why-ranges
   - ask: life/what-could-explain-it/price-cut
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you think of every reason someone could have?'
+    situations:
+      - 'a message or a reply could be read more than one way'
+      - 'I guess what a rival or a seller will do next'
+      - 'I judge someone from a single action'
+    action: 'I will list the likely reasons, not one guess, and choose what works against most of them'
 ---
 
 A range is every hand the other side could hold. Equity is how your hand does against all of them, on average.

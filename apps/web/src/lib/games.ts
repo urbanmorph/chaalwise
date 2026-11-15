@@ -1,4 +1,5 @@
 import type { GradedStep, Step } from '@chaalwise/core/lesson';
+import { isGraded } from '@chaalwise/core/player';
 import { toFen, toSan } from './chess';
 import { LABS, type Lab } from './labs/labs';
 
@@ -41,8 +42,27 @@ export const askable = (cardId: string, step: GradedStep, met: ReadonlySet<strin
 };
 
 /**
- * A board question shown as a worked example, for a learner who has not met
- * chess: the position, the answer and why, to read rather than to guess
+ * The games whose questions a strategy lesson shows as worked examples until
+ * the learner has met them: chess, poker, and the lab the lesson follows.
+ * Game lessons are the way in, so they ask every question.
+ */
+export function meetFirst(lesson: { game: string; after?: string | undefined }, steps: readonly Step[]): string[] {
+  if (lesson.game !== 'strategy') return [];
+  const games = steps.filter(isGraded).map((s) => needs(s.id, s));
+  return [...new Set(games)].filter((g): g is string => g === 'chess' || g === 'poker' || g === lesson.after);
+}
+
+/** A lesson's steps as the learner sees them: a question about a game in `games` not yet met is a worked example. */
+export const asMet = (steps: readonly Step[], games: readonly string[], met: ReadonlySet<string>): Step[] =>
+  steps.map((s) => {
+    if (!isGraded(s)) return s;
+    const game = needs(s.id, s);
+    return game && games.includes(game) && !met.has(game) ? workedExample(s) : s;
+  });
+
+/**
+ * A question shown as a worked example, for a learner who has not met its
+ * game: the board or cards, the answer and why, to read rather than to guess
  * (worked examples help newcomers most: the expertise reversal effect).
  */
 export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }> {
@@ -57,7 +77,7 @@ export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }>
     };
   }
   if (step.kind === 'choice') {
-    const beside = step.alongside ? `Off the board: ${step.alongside} ` : '';
+    const beside = step.alongside ? `${step.cards ? 'Away from the table' : 'Off the board'}: ${step.alongside} ` : '';
     return {
       ...board,
       text: `Worked example. ${beside}${step.prompt} The answer: “${step.options[step.answer]}”. ${step.explanation}`,

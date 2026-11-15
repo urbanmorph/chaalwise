@@ -5,13 +5,11 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import LessonShell from '../../components/LessonShell.astro';
 import TrackCourse from '../../components/TrackCourse.astro';
 import Base from '../../layouts/Base.astro';
-import { lessonPath, type LessonEntry } from '../../lib/lessons';
+import { strategyLessons, type LessonEntry } from '../../lib/lessons';
 
 /** Under /skills/: each strategy track's course (`/skills/think-ahead/`) and each strategy lesson (`/skills/blunder-check/`). */
 export async function getStaticPaths() {
-  const lessons = (await lessonPath())
-    .filter((l) => l.data.game === 'strategy')
-    .map((lesson) => ({ params: { slug: lesson.id.replace(/^strategy\//, '') }, props: { lesson } }));
+  const lessons = (await strategyLessons()).map((lesson) => ({ params: { slug: lesson.id.replace(/^strategy\//, '') }, props: { lesson } }));
   const courses = (await getCollection('tracks')).map((course) => ({ params: { slug: course.id }, props: { course } }));
   return [...lessons, ...courses];
 }

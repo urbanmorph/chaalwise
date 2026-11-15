@@ -14,35 +14,39 @@ interface Props {
 const { current, course = 'chess' } = Astro.props;
 const path = await lessonPath(course);
 const names = course === 'poker' ? POKER_STAGES : course === 'case' ? CASE_GROUPS : STAGES;
-// Work cases are grouped by who they are for, not by stage.
+// Work cases are grouped by who they are for, not by stage; the lessons after labs are one group.
 const heading = (stage: number) => (course === 'case' ? names[stage] : `Stage ${stage} · ${names[stage]}`);
-const stages = [...new Set(path.map((l) => l.data.stage))];
+const groups =
+  course === 'labs'
+    ? [{ heading: 'After the labs', stage: undefined, lessons: path }]
+    : [...new Set(path.map((l) => l.data.stage))].map((stage) => ({
+        heading: heading(stage),
+        stage,
+        lessons: path.filter((l) => l.data.stage === stage),
+      }));
 ---
 
 <nav class="rail" aria-label={course === 'case' ? 'All work cases' : 'All lessons'}>
-  {stages.map((stage) => {
-    const lessons = path.filter((l) => l.data.stage === stage);
-    return (
-      <>
-        {course === 'chess' && stage === GOING_DEEPER && <p class="deeper">Going deeper: after your first games</p>}
-        <details open={lessons.some((l) => l.id === current)}>
-          <summary>
-            <span class="label">{heading(stage)}</span>
-            <span class="count">{lessons.length}</span>
-          </summary>
-          <ol>
-            {lessons.map((l) => (
-              <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
-                <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
-                  {l.data.title}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </details>
-      </>
-    );
-  })}
+  {groups.map(({ heading, stage, lessons }) => (
+    <>
+      {course === 'chess' && stage === GOING_DEEPER && <p class="deeper">Going deeper: after your first games</p>}
+      <details open={lessons.some((l) => l.id === current)}>
+        <summary>
+          <span class="label">{heading}</span>
+          <span class="count">{lessons.length}</span>
+        </summary>
+        <ol>
+          {lessons.map((l) => (
+            <li data-lesson={l.id} class:list={{ strategy: l.data.game === 'strategy' }}>
+              <a href={lessonHref(l)} aria-current={l.id === current ? 'page' : undefined}>
+                {l.data.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </>
+  ))}
 </nav>
 
 <script>

@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { LABS } from '../src/lib/labs/labs';
+import { LAB_PLANS } from '../src/lib/labs/plans';
 import { lessonsIn } from './content';
 
 const lessons = lessonsIn('strategy').map(({ file, data }) => ({
@@ -52,5 +54,34 @@ describe('every strategy lesson compares its board with a case off it', () => {
         steps.some((s) => s.kind === 'choice' && s.alongside && s.position),
         id,
       ).toBe(true);
+  });
+});
+
+/** A plan's situations complete "When …" and its action completes the sentence, as the plan step shows them. */
+const wellFormed = (where: string, { situations, action }: { situations?: string[]; action?: string }) => {
+  expect(situations!.length, where).toBeGreaterThanOrEqual(3);
+  for (const s of situations!) expect(s, where).toMatch(/^(I |[a-z])/);
+  expect(action, where).toMatch(/^I will /);
+};
+
+describe('every poker lesson ends with a plan to use its skill away from the table', () => {
+  it('asks the learner when they will use it, with situations from life, not from poker', () => {
+    for (const { file, data } of lessonsIn('poker')) {
+      const last = data.steps.at(-1) as { kind: string; prompt?: string; situations?: string[]; action?: string };
+      expect(last.kind, file).toBe('plan');
+      expect(last.prompt, file).toMatch(/away from the (card )?table/);
+      wellFormed(file, last);
+      for (const s of last.situations!) expect(s, file).not.toMatch(/\b(poker|pot|fold|bet|chips?|cards?)\b/i);
+    }
+  });
+});
+
+describe('every lab offers a plan after its debrief', () => {
+  it('names the moment and the action in plain words, away from the game', () => {
+    for (const lab of LABS) {
+      const plan = LAB_PLANS[lab.slug]!;
+      expect(plan.prompt, lab.slug).toMatch(/^When will you .+\?$/);
+      wellFormed(lab.slug, plan);
+    }
   });
 });

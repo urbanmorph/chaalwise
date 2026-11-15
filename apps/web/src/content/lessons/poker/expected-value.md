@@ -14,6 +14,14 @@ steps:
   - ask: poker/expected-value/good-call-lost
   - ask: life/judge-by-the-average/promotion
   - ask: life/decisions-not-results/good-chance
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you judge a choice by its average?'
+    situations:
+      - 'a good decision has just turned out badly'
+      - 'I choose between a sure thing and a risk'
+      - 'I make the same choice again and again, such as a daily habit'
+    action: 'I will judge it by its average over many tries, not by the last result'
 ---
 
 Expected value is the habit of judging a choice by its average over many tries. It keeps a run of bad luck from changing good decisions.

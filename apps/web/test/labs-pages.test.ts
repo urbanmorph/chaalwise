@@ -2,6 +2,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { measure } from '../scripts/budget.mjs';
 import { LABS } from '../src/lib/labs/labs';
+import { LAB_PLANS } from '../src/lib/labs/plans';
+import { lessonsIn } from './content';
 
 /** These tests read the built site, not the source. Run `pnpm build` first. */
 const DIST = new URL('../dist/', import.meta.url).pathname;
@@ -44,6 +46,27 @@ describe('the labs pages', () => {
         );
         expect(steps.length).toBeGreaterThan(0);
         for (const step of steps) expect(step.measures).toBe(lab.track);
+      });
+
+      it('ends with a plan to use the idea this week, after the debrief, saved like a lesson’s', () => {
+        const at = html.indexOf('data-testid="lab-plan"');
+        expect(at).toBeGreaterThan(html.indexOf('Try it yourself'));
+        const plan = html.slice(at);
+        expect(plan).toContain(LAB_PLANS[lab.slug]!.prompt.replaceAll("'", '&#39;'));
+        for (const s of LAB_PLANS[lab.slug]!.situations) expect(plan).toContain(`When ${s.replaceAll("'", '&#39;')}`);
+      });
+
+      it('lists every strategy and poker lesson that trains its skill', () => {
+        const section = html.match(/<section class="lessons"[\s\S]*?<\/section>/)?.[0] ?? '';
+        const hrefs = [...section.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+        const training = [...lessonsIn('strategy'), ...lessonsIn('poker')].filter(({ data }) =>
+          data.skills.includes(lab.track),
+        );
+        expect(hrefs.sort()).toEqual(
+          training
+            .map(({ file, data }) => `/${data.game === 'poker' ? 'poker' : 'skills'}/${file.replace('.md', '')}/`)
+            .sort(),
+        );
       });
 
       it('links to its reference entries and its track course', () => {
@@ -92,5 +115,19 @@ describe('every lab, from its skill', () => {
       const section = page('skills/').match(new RegExp(`<section id="${lab.track}"[\\s\\S]*?</section>`))![0];
       expect(section, lab.slug).toContain(`href="/labs/${lab.slug}/"`);
     }
+  });
+});
+
+describe('lessons link to the lab for their skill', () => {
+  it('a strategy or poker lesson on a skill with a lab says "Try the lab" at its end; a chess lesson does not', () => {
+    const tryLab = (path: string) => page(path).match(/<p class="try-lab"[\s\S]*?<\/p>/)?.[0] ?? '';
+    expect(tryLab('skills/review-calmly/')).toContain('href="/labs/gain-or-loss/"');
+    expect(tryLab('skills/count-it-through/')).toContain('href="/labs/nim/"');
+    expect(tryLab('poker/outs-and-odds/')).toContain('href="/labs/which-bag/"');
+    const hidden = tryLab('poker/position/');
+    expect(hidden).toContain('href="/labs/rule-finder/"');
+    expect(hidden).toContain('href="/labs/ask-the-panel/"');
+    expect(tryLab('poker/hand-rankings/')).toBe('');
+    expect(tryLab('chess/fork/')).toBe('');
   });
 });

@@ -18,6 +18,14 @@ steps:
   - ask: poker/implied-odds/obvious-draw
   - ask: poker/implied-odds/careful-opponent
   - ask: life/odds-for-later/course
+  - kind: plan
+    id: plan
+    prompt: 'Use it away from the table this week. When will you count what could come later?'
+    situations:
+      - 'I decide whether to take a small first step that could lead to more'
+      - 'someone promises more work or business later if I agree now'
+      - 'I weigh a low-paid start against where it could lead'
+    action: 'I will count the later gain only if they are likely to deliver it'
 ---
 
 Implied odds are the later winnings a hit can bring. Count them only when the other side will really pay.

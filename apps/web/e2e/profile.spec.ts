@@ -51,6 +51,8 @@ test('poker answers show beside the track they train, as in the games', async ({
     'Call every big bet',
   ])
     await choose(page, option);
+  // The plan for the week comes last, and needs no answer.
+  await page.getByRole('button', { name: 'Finish' }).click();
   await expect(page.getByTestId('lesson-done')).toContainText('Saved on this device');
   await page.goto('/progress/');
   await hydrated(page);

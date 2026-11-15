@@ -11,9 +11,11 @@ export interface PathEntry {
 /**
  * The recommended order: game lessons by stage and order, each followed by the
  * strategy lessons that come after it (which may themselves be followed by others).
+ * Anchors are things off the path a lesson may follow, such as labs: the lessons
+ * after them come last, in the anchors' order.
  */
-export function learningPath<T extends PathEntry>(lessons: readonly T[]): T[] {
-  const ids = new Set(lessons.map((l) => l.id));
+export function learningPath<T extends PathEntry>(lessons: readonly T[], anchors: readonly string[] = []): T[] {
+  const ids = new Set([...lessons.map((l) => l.id), ...anchors]);
   const following = new Map<string, T[]>();
   for (const lesson of lessons) {
     if (lesson.after === undefined) continue;
@@ -32,6 +34,7 @@ export function learningPath<T extends PathEntry>(lessons: readonly T[]): T[] {
     .filter((l) => l.after === undefined)
     .sort((a, b) => a.stage - b.stage || a.order - b.order)
     .forEach(visit);
+  for (const anchor of anchors) following.get(anchor)?.forEach(visit);
   if (path.length < lessons.length) {
     const reached = new Set(path.map((l) => l.id));
     const lost = lessons.filter((l) => !reached.has(l.id)).map((l) => l.id);

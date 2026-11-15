@@ -10,7 +10,8 @@
   import { guessChance, logAttempt } from '../lib/attempts';
   import { afterCheck } from '../lib/check-result';
   import { addDone, readDone } from '../lib/done-lessons';
-  import { gamesMet, needs, workedExample } from '../lib/games';
+  import { asMet, gamesMet } from '../lib/games';
+  import { keepPlan } from '../lib/plans';
   import { isPracticeKind } from '../lib/practice-kinds';
   import { clearResume, readResume, saveResume } from '../lib/resume';
   import { practiceOf, roundItems } from '../lib/round-items';
@@ -27,8 +28,8 @@
     track?: string | undefined;
     /** Offer "already know this?": a check of the questions only, for learners who know the game. */
     checkable?: boolean;
-    /** A strategy lesson: until chess is met, its board questions are worked examples to read. */
-    workedUntilMet?: boolean;
+    /** A strategy lesson: the games (chess, poker, its lab) whose questions are worked examples to read until met. */
+    meetFirst?: string[];
     /** Where all the lessons of this course are listed. */
     all?: { href: string; label: string; done: string };
   }
@@ -39,7 +40,7 @@
     next,
     track,
     checkable = false,
-    workedUntilMet = false,
+    meetFirst = [],
     all = { href: '/chess/', label: 'All chess lessons', done: 'Lesson complete' },
   }: Props = $props();
 
@@ -69,10 +70,8 @@
   }
 
   // Meet the game first. Read from the quick copy, so the lesson is right from the start; on the server, every question shows.
-  const chessMet = typeof localStorage === 'undefined' || gamesMet(readDone()).has('chess');
-  const played = $derived(
-    workedUntilMet && !chessMet ? { steps: lesson.steps.map((s) => (isGraded(s) && needs(s.id, s) === 'chess' ? workedExample(s) : s)) } : lesson,
-  );
+  const met = typeof localStorage === 'undefined' ? undefined : gamesMet(readDone());
+  const played = $derived(met && meetFirst.length ? { steps: asMet(lesson.steps, meetFirst, met) } : lesson);
 
   /**
    * The check: the lesson's questions without the reading, in fresh positions
@@ -107,14 +106,7 @@
 
   const stepList = (steps: number[]) => (steps.length === 1 ? `step ${steps[0]}` : `steps ${steps.slice(0, -1).join(', ')} and ${steps.at(-1)}`);
 
-  async function savePlan(stepId: string, text: string) {
-    const progress = await openProgress();
-    try {
-      await progress.savePlan({ id: `${lessonId}/${stepId}`, track: track ?? '', text, createdAt: new Date() });
-    } finally {
-      progress.close();
-    }
-  }
+  const savePlan = (stepId: string, text: string) => keepPlan(`${lessonId}/${stepId}`, track ?? '', text);
   let saved = $state<SaveState>('saving');
   let outcomes: Record<string, Outcome> = {};
 
