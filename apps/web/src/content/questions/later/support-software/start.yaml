@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Nobody on your team has used the software. How do you start?'
+options:
+  - 'Try it with one group of five for a month, at the monthly price'
+  - 'Sign up all 30 for a year: the 20% off saves over ₹1 lakh'
+  - 'Move everyone over one weekend, so there is only one system to run'
+answer: 0
+feedback:
+  - ''
+  - 'The saving is real, ₹1.08 lakh, but it ties you to ₹4.32 lakh of software nobody has tried. If it does not suit your team, the whole year is stuck with it.'
+  - 'If the software fails, all 30 people and every customer feel it at once, with no old system to fall back on.'
+explanation: 'How well the software will work is only a guess, so commit a little first. A month with five people costs ₹7,500, and shows whether it works before you commit the whole team.'

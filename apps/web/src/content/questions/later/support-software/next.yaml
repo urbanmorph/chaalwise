@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do next?'
+options:
+  - 'Move ten more people over, and keep the old system until the larger group runs smoothly'
+  - 'Keep it to the five for another six months, to be quite sure'
+  - 'Move the other 25 at once, and close the old system the same day'
+answer: 0
+feedback:
+  - ''
+  - 'The trial has shown it works, so holding back for six months wastes most of what it offers. Put in more once it works.'
+  - 'A month with five people does not show the software can carry 30 people in the busy season. Keep a way back until it has.'
+explanation: 'Once a small trial works, put in more, but keep each step small enough that a failure does not stop the whole team. Grow step by step as each one works.'

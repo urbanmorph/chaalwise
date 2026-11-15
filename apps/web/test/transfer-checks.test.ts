@@ -108,14 +108,24 @@ describe('cases a week later', () => {
   }));
   const asks = (c: (typeof later)[number]) => c.data.steps.flatMap((s) => ('ask' in s ? [s.ask] : []));
 
-  it('cover at least eight ideas and six skills', () => {
-    const ideas = new Set(later.map((c) => c.data.idea));
-    expect(ideas.size).toBe(later.length);
-    expect(ideas.size).toBeGreaterThanOrEqual(8);
+  /** A case's reading and decisions as one text. */
+  const caseText = (c: (typeof later)[number]) => JSON.stringify([c.data, ...asks(c).map((id) => corpus.get(id))]);
+
+  it('test one idea each: every lesson that follows poker or a lab, stopping, estimating and committing in stages, and every skill track', () => {
+    const tested = new Set(later.map((c) => c.data.idea));
+    expect(tested.size).toBe(later.length);
+    const bridges = strategy.filter((s) =>
+      /^(poker|labs)\//.test((frontmatter(`lessons/strategy/${s}.md`) as { after: string }).after),
+    );
+    const untested = [...bridges, 'know-when-to-stop', 'estimate-it', 'commit-in-stages'].filter(
+      (s) => !tested.has(`strategy/${s}`),
+    );
+    expect(untested).toEqual([]);
     const skills = new Set(
       later.map((c) => (c.data.idea.startsWith('labs/') ? labField(c.data.idea, 'track') : skillOf(c.data.idea))),
     );
-    expect(skills.size, [...skills].join()).toBeGreaterThanOrEqual(6);
+    const tracks = readdirSync(new URL('tracks/', CONTENT)).map((f) => f.replace('.md', ''));
+    expect(tracks.filter((t) => !skills.has(t))).toEqual([]);
   });
 
   it('ask two or three decisions each, found in the corpus under the case, and asked nowhere else', () => {
@@ -145,12 +155,61 @@ describe('cases a week later', () => {
     const PLACES =
       /\b(Ahmedabad|Bengaluru|Chennai|Delhi|Hyderabad|Indore|Jaipur|Kochi|Kolkata|Kota|Lucknow|Mumbai|Patna|Pune)\b/;
     for (const c of later) {
-      const text = JSON.stringify([c.data, ...asks(c).map((id) => corpus.get(id))]);
+      const text = caseText(c);
       expect(text, c.file).toMatch(PLACES);
       expect(text, c.file).not.toMatch(/₹\d{1,3},\d{3},\d{3}|₹\d{3},\d{3}|Rs\.?\s?\d|INR/);
       for (const [, digits] of text.matchAll(/₹([\d,]+)(?! (?:lakh|crore))/g))
         expect(Number(digits!.replaceAll(',', '')), `${c.file}: ₹${digits}`).toBeLessThan(100_000);
     }
+  });
+
+  describe('do their sums right', () => {
+    const text = (slug: string) => caseText(later.find((l) => l.file === `${slug}.md`)!);
+    /** Rupees as the cases write them: lakh from ₹1 lakh up, Indian commas below. */
+    const rupees = (n: number) => (n >= 100_000 ? `₹${n / 100_000} lakh` : `₹${n.toLocaleString('en-IN')}`);
+    const thousands = (n: number) => Math.round(n / 1000) * 1000;
+
+    it('the final round: one chance in four of ₹2 lakh, and what the course adds', () => {
+      const t = text('final-round');
+      const extra = 800_000 - 600_000;
+      expect(t).toContain(rupees(extra));
+      expect(t).toContain(rupees(extra / 4));
+      const course = (1 / 3 - 1 / 4) * extra;
+      expect(t).toContain(rupees(thousands(course)));
+      expect(t).toContain(rupees(thousands(2 * course)));
+      expect(2 * course).toBeLessThan(40_000);
+    });
+
+    it('the box of phones: worth the resale less the repairs, and the bid below it', () => {
+      const t = text('box-of-phones');
+      expect(t).toContain(rupees(300_000 - 50_000));
+      expect(t).toContain(`say ${rupees(200_000)}`);
+    });
+
+    it('the pet food business: four more months, then three, at ₹50,000 a month', () => {
+      const t = text('pet-food');
+      expect(t).toContain(rupees(900_000 + 4 * 50_000));
+      expect(t).toContain(rupees(3 * 50_000));
+    });
+
+    it('the college fest: the past average, and the water in cans', () => {
+      const t = text('college-fest');
+      expect((1_800 + 2_100 + 2_400) / 3).toBe(2_100);
+      const litres = 2_500 * 4 * 0.5;
+      expect(t).toContain(`is ${litres.toLocaleString('en-IN')} litres`);
+      expect(t).toContain(`About ${litres / 20}:`);
+      // The wrong answers: a litre a person all evening, and a litre an hour.
+      expect(t).toContain(`About ${(2_500 * 1) / 20}:`);
+      expect(t).toContain(`About ${(2_500 * 4 * 1) / 20}:`);
+    });
+
+    it('the support software: the year for 30 people, its discount, and a month for five', () => {
+      const t = text('support-software');
+      const year = 30 * 1_500 * 12;
+      expect(t).toContain(rupees(year / 5));
+      expect(t).toContain(rupees((year * 4) / 5));
+      expect(t).toContain(rupees(5 * 1_500));
+    });
   });
 });
 

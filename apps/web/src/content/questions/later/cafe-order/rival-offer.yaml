@@ -1,0 +1,12 @@
+kind: choice
+prompt: "Which of these would best tell you that the rival's offer is real?"
+options:
+  - 'The chain has already moved two of its cafés to the rival for a trial month'
+  - 'The buyer repeats the claim firmly in a second email, copying her manager'
+  - "The rival's website says it is the cheapest bakery in Rajasthan"
+answer: 0
+feedback:
+  - ''
+  - 'Saying it twice costs the buyer nothing, so a firm tone tells you little. Look at what they have done, not what they say.'
+  - 'A claim on a website costs nothing to make, and says nothing about this deal. It is not an offer to the chain.'
+explanation: "Believe a signal that would cost the sender dearly if it were false. If the rival's offer did not exist, the chain could not have moved two cafés to it. Words alone cost nothing."

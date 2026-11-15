@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'About how many cans of water do you order?'
+options:
+  - 'About 250: 2,500 × 4 hours × ½ litre is 5,000 litres'
+  - 'About 125: one litre for each of 2,500 people'
+  - 'About 500: a litre an hour for each of 2,500 people'
+answer: 0
+feedback:
+  - ''
+  - 'That counts one litre a person for the whole evening. At half a litre an hour for 4 hours, each person drinks about 2 litres.'
+  - 'That doubles the rate. Half a litre an hour, not a litre, gives 5,000 litres, or 250 cans.'
+explanation: 'Break the number into parts you can count: 2,500 people × 4 hours × ½ litre an hour is 5,000 litres, and 5,000 ÷ 20 is 250 cans.'

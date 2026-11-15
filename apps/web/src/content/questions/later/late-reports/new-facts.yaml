@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you do now?'
+options:
+  - 'Cross out the reasons these facts rule out, and offer her training on the new software'
+  - 'Keep your first worry: staying late can be a way to look busy while job hunting'
+  - 'Treat every reason as just as likely as before, and wait for more facts'
+answer: 0
+feedback:
+  - ''
+  - 'Staying late, and a slip that began with the new software, fit a gap in training far better. Holding on to a first guess ignores what the new facts say.'
+  - 'The new facts make some reasons much less likely. Weigh them again, and act on what now looks likeliest.'
+explanation: 'Cross out what new facts rule out, and weigh the rest again. She works late and the slip began with the new software, so training is the likeliest help. Keep the other reasons in mind in case it does not work.'

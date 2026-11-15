@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'What do you bid?'
+options:
+  - 'Well under ₹2.5 lakh, say ₹2 lakh, as the winner is usually whoever guessed too high'
+  - '₹2.5 lakh: what the box is worth to you on your own guess'
+  - '₹2.6 lakh, a little over your guess, to be sure of winning'
+answer: 0
+feedback:
+  - ''
+  - 'Your guess may be too high or too low. If you win at your own guess, it is likely because yours was among the highest of seven, so you have probably paid too much.'
+  - 'Paying more than your own guess to be sure of winning makes sure of a loss if your guess is right, and a bigger one if it was high.'
+explanation: 'Decide what it is worth to you before you bid, here ₹3 lakh less ₹50,000 for repairs, then bid below it. When seven people guess the same unknown value, the winner is usually the one who guessed furthest too high.'

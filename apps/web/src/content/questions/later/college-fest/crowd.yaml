@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'The last three concerts drew 1,800, 2,100 and 2,400 people. How many do you plan for?'
+options:
+  - 'About 2,500: the past average of 2,100, plus some for the better-known band'
+  - "5,000, as the committee says: this year's band is far bigger"
+  - "About 3,500, halfway between the committee's guess and the past"
+answer: 0
+feedback:
+  - ''
+  - 'Hopes for your own event usually run high. The past concerts are the best guide, and the band is only one way this year differs.'
+  - "Halfway sounds fair, but it gives the committee's hope as much weight as three years of real numbers. Start from what similar concerts drew."
+explanation: 'Start from how similar cases turned out: the last three concerts averaged 2,100. Then adjust for what is really different, here a better-known band. People planning their own events often skip the first step.'

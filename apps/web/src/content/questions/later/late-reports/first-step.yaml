@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'You do not know why her work has slipped. What do you do first?'
+options:
+  - 'List what could explain it, and start with a step that helps in every case: a private talk'
+  - 'Start quietly looking for someone to replace her: reliable people who slip are usually leaving'
+  - 'Give her a formal warning, so the reports come in on time'
+answer: 0
+feedback:
+  - ''
+  - 'That stakes everything on one guess. If she is overloaded or has a problem at home, you lose your best person by acting as if she were leaving.'
+  - 'A warning fits only one guess, that she has stopped trying. If she is overloaded or unsure of something new, it makes things worse.'
+explanation: 'When you cannot see the reason, list what could explain it: too much work, a problem at home, a job search, or something new she is unsure of. Then start with what works across the list, such as a private talk.'
