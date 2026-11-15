@@ -14,7 +14,9 @@ const pages = readdirSync(DIST, { recursive: true })
 const read = (file: string) => readFileSync(join(DIST, file), 'utf8');
 /** The longest run of a text with no quotes, which pages and island props escape in different ways. */
 const plain = (text: string) => text.split(/["'&]/).sort((a, b) => b.length - a.length)[0]!;
-const shippedOn = (text: string) => pages.filter((f) => read(f).includes(plain(text)));
+/** Each page read once: the checks below search every page for every situation. */
+const texts = pages.map((f) => [f, read(f)] as const);
+const shippedOn = (text: string) => texts.filter(([, html]) => html.includes(plain(text))).map(([f]) => f);
 
 const FITS = new URL('../src/content/fits/', import.meta.url);
 const situations = readdirSync(FITS, { recursive: true })
