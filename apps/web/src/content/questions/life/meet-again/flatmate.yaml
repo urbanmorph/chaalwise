@@ -1,0 +1,13 @@
+kind: choice
+prompt: You share a flat in Bengaluru, and the lease has two more years to run. Your flatmate has skipped their turn to clean the kitchen twice this month. What tends to work best?
+options:
+  - Tell them plainly, and stop covering their turns until they do theirs
+  - Keep doing their turns as well, to avoid a fight
+  - Ask the landlord to find you a new flatmate
+answer: 0
+feedback:
+  - ''
+  - Covering for them teaches them that skipping costs nothing, and you will resent it within weeks.
+  - That ends two years of sharing over a problem that saying so plainly may fix. Answer first, and end it only if nothing changes.
+explanation: With two years together, what each of you does now shapes the rest. Say clearly what you expect, answer a skipped turn, and go back to normal as soon as they do theirs.
+measures: cooperate

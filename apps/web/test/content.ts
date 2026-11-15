@@ -40,6 +40,10 @@ export const lessonsIn = (folder: string) =>
     return { file, data: { ...data, steps } };
   });
 
+/** Whether a lesson shows a chessboard in any step. */
+export const showsChess = ({ data }: { data: { steps: Step[] } }) =>
+  data.steps.some((s) => 'position' in s && s.position);
+
 /** The reference entries in a folder, each with its try-it questions looked up. */
 export const entriesIn = (game: string) =>
   readdirSync(new URL(`reference/${game}/`, CONTENT)).map((file) => {

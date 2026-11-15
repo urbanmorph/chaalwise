@@ -1,0 +1,13 @@
+kind: choice
+prompt: You are hiring a caterer in Chennai for a single family function, and you will not use them again. They ask for the full ₹80,000 before the day. What do you do?
+options:
+  - Pay part now and the rest after the event, agreed in writing
+  - 'Pay it all now: trust will make them do their best'
+  - Refuse to pay anything until the event is over
+answer: 0
+feedback:
+  - ''
+  - With no later dealings, your trust buys nothing afterwards. Once paid in full, a caterer has little left to lose. Their reviews help, but the terms protect you.
+  - That puts all the risk on them, though they must buy the food first. A fair deal splits the risk in the terms, so neither side has to rely on trust.
+explanation: 'A one-off deal has no later to keep either side honest. So put the protection in the terms: an advance for the food, and the rest once the event is done, in writing.'
+measures: cooperate

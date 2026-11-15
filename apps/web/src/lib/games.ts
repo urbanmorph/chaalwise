@@ -64,6 +64,10 @@ export const asMet = (steps: readonly Step[], games: readonly string[], met: Rea
     return game && games.includes(game) && !met.has(game) ? workedExample(s) : s;
   });
 
+/** Where the case beside a comparison sits: away from the poker table, the lab or the chessboard its game moment is on. */
+export const awayFrom = (step: Extract<GradedStep, { kind: 'choice' }>): string =>
+  step.cards ? 'Away from the table' : step.lab ? 'Away from the lab' : 'Off the board';
+
 /**
  * A question shown as a worked example, for a learner who has not met its
  * game: the board or cards, the answer and why, to read rather than to guess
@@ -81,7 +85,7 @@ export function workedExample(step: GradedStep): Extract<Step, { kind: 'read' }>
     };
   }
   if (step.kind === 'choice') {
-    const beside = step.alongside ? `${step.cards ? 'Away from the table' : 'Off the board'}: ${step.alongside} ` : '';
+    const beside = step.alongside ? `${awayFrom(step)}: ${step.alongside} ` : '';
     return {
       ...board,
       text: `Worked example. ${beside}${step.prompt} The answer: “${step.options[step.answer]}”. ${step.explanation}`,

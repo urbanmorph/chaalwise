@@ -1,0 +1,13 @@
+kind: choice
+prompt: In the Rock-paper-scissors lab, rock beats scissors, scissors beats paper and paper beats rock. Five times so far, you have thrown rock then paper, and four of those times you threw scissors next. You have just thrown rock, then paper. What does the bot throw?
+options:
+  - Rock, which beats the scissors it expects
+  - Scissors, copying the throw you favour
+  - Any throw, at random, as it cannot be sure
+answer: 0
+feedback:
+  - ''
+  - The bot does not copy you. It plays what beats your likeliest next throw, and scissors loses to rock.
+  - It throws at random only when it has nothing to go on, or two throws are level. Four times in five is a clear guess.
+explanation: After rock then paper, you threw scissors four times in five. The bot expects scissors again and throws rock, which beats it. Any habit you keep gives it something to use.
+measures: unpredictable

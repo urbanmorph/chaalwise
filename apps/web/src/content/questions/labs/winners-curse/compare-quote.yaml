@@ -1,0 +1,15 @@
+kind: choice
+lab: sealed-bid-auction
+prompt: In the Sealed-bid auction lab, the bidder who wins a jar of coins is usually the one whose estimate was furthest too high. What does that share with the website job?
+alongside: Six web designers each quote for the same website, and the lowest quote wins. Nobody knows yet how many hours the job will really take, so each designer guesses.
+options:
+  - Winning hints that you guessed furthest from the truth
+  - Both reward whoever bids most boldly
+  - Both are won by whoever knows the value best
+answer: 0
+feedback:
+  - ''
+  - Boldness does win the jar or the job, but then the winner loses points, or works hours nobody pays for.
+  - 'The best guess does not win: the furthest one does. In the lab, the winner usually held the highest estimate. Among the designers, the winner usually guessed the fewest hours.'
+explanation: 'In both, everyone guesses the same unknown amount, and the most extreme guess wins: the highest estimate of the jar, the lowest guess of the hours. Winning is good news about the deal and bad news about your guess.'
+measures: value

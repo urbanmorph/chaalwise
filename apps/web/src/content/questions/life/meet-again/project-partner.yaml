@@ -1,0 +1,13 @@
+kind: choice
+prompt: At college, you have just been paired with a classmate you don't know for a project that runs all semester, with the work split each week. How much of the first week's work do you do?
+options:
+  - Your full share, then see if they match it
+  - As little as you can, until they prove themselves
+  - All of it, to set a good example
+answer: 0
+feedback:
+  - ''
+  - Holding back first invites them to hold back too, and a semester of that helps neither of you. Tit for tat, the rule that starts by cooperating and then copies the other's last move, never holds back first.
+  - Doing their share teaches them that holding back costs nothing. Cooperate first, but do not carry them.
+explanation: With a whole semester ahead, a good start is worth more than one week's work you might lose. Do your full share first. If they don't match it, say so plainly, and answer it.
+measures: cooperate

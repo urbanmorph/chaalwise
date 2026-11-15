@@ -7,6 +7,7 @@ import { CHESS_SKILLS, DRILL_SKILL, trackOf } from '../src/lib/profile-skills';
 import { corpus, lessonsIn } from './content';
 import { parseMoveText, toFen } from '../src/lib/chess';
 import { safetyVerdict } from '../src/lib/drills';
+import { LABS } from '../src/lib/labs/labs';
 
 /**
  * The build proves every move is legal. These tests prove what the lessons
@@ -23,10 +24,12 @@ const step = (file: string, id: string) =>
   ].find((s) => s.file === file && s.step.id === id)!.step;
 
 describe('lesson order', () => {
-  it('places every strategy lesson after a lesson that exists', () => {
+  it('places every strategy lesson after a lesson or a lab that exists', () => {
     const ids = new Set([
       ...lessons.map((l) => `chess/${l.file.replace('.md', '')}`),
+      ...lessonsIn('poker').map((l) => `poker/${l.file.replace('.md', '')}`),
       ...strategy.map((l) => `strategy/${l.file.replace('.md', '')}`),
+      ...LABS.map((l) => `labs/${l.slug}`),
     ]);
     for (const { file, data } of strategy) expect(ids.has(data.after!), `${file} comes after ${data.after}`).toBe(true);
   });

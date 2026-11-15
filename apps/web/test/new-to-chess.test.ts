@@ -1,9 +1,9 @@
 import { SKILL_IDS } from '@chaalwise/core/skills';
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { lessonsIn, showsChess } from './content';
 
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
-const names = (dir: string) => readdirSync(new URL(dir, import.meta.url)).map((f) => f.replace('.md', ''));
 const START = '/chess/coordinates/';
 const offersStart = (html: string) => new RegExp(`class="new-to-chess"[^>]*>[\\s\\S]*?href="${START}"`).test(html);
 
@@ -14,10 +14,16 @@ describe('pages that explain an idea through chess', () => {
     expect(first).toMatch(/^order: 1$/m);
   });
 
-  it("offer every strategy lesson's newcomer the first moves and chess from the beginning, in one note", () => {
-    for (const id of names('../src/content/lessons/strategy/')) {
+  it("offer every chess-based strategy lesson's newcomer the first moves and chess from the beginning, in one note", () => {
+    for (const lesson of lessonsIn('strategy')) {
+      const id = lesson.file.replace('.md', '');
       const html = dist(`skills/${id}/index.html`);
       const note = html.match(/<p class="meet" data-meet="chess"[\s\S]*?<\/p>/)?.[0] ?? '';
+      // A lesson after a lab shows no board: it sends newcomers to the lab instead.
+      if (!showsChess(lesson)) {
+        expect(note, id).toBe('');
+        continue;
+      }
       expect(note, id).toContain('href="/chess/first-moves/"');
       expect(note, id).toContain(`href="${START}"`);
       // One note, not two saying the same thing.

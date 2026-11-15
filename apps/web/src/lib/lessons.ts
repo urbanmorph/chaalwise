@@ -149,6 +149,13 @@ export async function safetyDrill(): Promise<SafetyItem[]> {
   });
 }
 
+/** Where a strategy lesson starts, as the strategy page labels it: the lab or poker lesson it follows, or its chess stage. */
+export function startsFrom({ data: { after, stage } }: LessonEntry): string {
+  const lab = LABS.find((l) => after === `labs/${l.slug}`);
+  if (lab) return `After the ${lab.title} lab`;
+  return after?.startsWith('poker/') ? 'After a poker lesson' : `Chess · stage ${stage}`;
+}
+
 /**
  * A track's strategy lessons: the planned ones in curriculum order, each built one with its lesson, then the built
  * ones the plan did not list (such as those after poker lessons and labs), in path order.

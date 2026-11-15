@@ -113,4 +113,13 @@ describe('meet the game first, in a strategy lesson', () => {
     expect(worked).toMatchObject({ kind: 'read', cards: { hole: ['As', 'Kd'] } });
     expect(worked.text).toContain('Away from the table: A shop offers a bulk deal.');
   });
+
+  it('sets the case of a lab comparison away from the lab', () => {
+    const worked = workedExample({
+      ...labQ,
+      lab: 'prisoners-dilemma',
+      alongside: 'A supplier for years.',
+    } as GradedStep);
+    expect(worked.text).toContain('Away from the lab: A supplier for years.');
+  });
 });

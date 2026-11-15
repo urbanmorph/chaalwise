@@ -178,6 +178,9 @@ export const LESSON_TRACKS: SkillId[] = [
   'size-risk',
   'composure',
   'weigh-odds',
+  'cooperate',
+  'value',
+  'unpredictable',
 ];
 
 /** The strategy tracks, in the home page's order. A track is measured once a chess skill, a lab or a strategy lesson gives evidence for it. */

@@ -1,6 +1,7 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
+import { lessonsIn, showsChess } from './content';
 
 /** Reads the built site (run `pnpm build` first) and the lesson files. */
 const dist = (file: string) => readFileSync(new URL(`../dist/${file}`, import.meta.url), 'utf8');
@@ -30,13 +31,16 @@ describe('a beginner who only wants chess or poker', () => {
     expect(ids.indexOf('pot-odds')).toBeLessThan(ids.indexOf('poker/outs-and-odds/pot-odds'));
   });
 
-  it('gets a key to chess notation on every strategy lesson, all of which show chess moves', () => {
-    const lessons = readdirSync(new URL('../src/content/lessons/strategy/', import.meta.url)).map((f) =>
-      f.replace(/\.md$/, ''),
-    );
-    expect(lessons.length).toBeGreaterThan(20);
-    for (const slug of lessons) {
+  it('gets a key to chess notation on every strategy lesson that shows chess moves, and none on those after a lab', () => {
+    const lessons = lessonsIn('strategy');
+    expect(lessons.filter(showsChess).length).toBeGreaterThan(20);
+    for (const lesson of lessons) {
+      const slug = lesson.file.replace(/\.md$/, '');
       const key = dist(`skills/${slug}/index.html`).match(/<p class="notation-key"[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? '';
+      if (!showsChess(lesson)) {
+        expect(key, slug).toBe('');
+        continue;
+      }
       expect(key, slug).toContain('href="/chess/notation/"');
       expect(key, slug).toMatch(/N[^a-z]*knight/);
     }

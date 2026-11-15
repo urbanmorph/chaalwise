@@ -1,0 +1,13 @@
+kind: choice
+prompt: In the Sealed-bid auction lab, five bidders each estimate a jar of coins that is worth the same to all of them. Each estimate is off by up to 30 points. Suppose all five bid 5 points under their own estimate. Over many jars, how does the winner do?
+options:
+  - 'It loses points: the top estimate is usually well too high'
+  - It gains about 5 points, the amount it bid under
+  - It breaks even, since the errors cancel out
+answer: 0
+feedback:
+  - ''
+  - The winner bid 5 under its own estimate, but with five bidders the highest estimate is about 20 points too high on average. So the winner pays about 15 more than the jar holds.
+  - The errors cancel out across all five bidders, but only the highest bid wins. The winner is picked for having guessed too high.
+explanation: With five bidders and errors of up to 30 points, the highest estimate is about 20 points too high on average. Bidding 5 under it still loses about 15 points a jar. Breaking even takes a bid about 20 under.
+measures: value

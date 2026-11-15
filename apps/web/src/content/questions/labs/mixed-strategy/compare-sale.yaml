@@ -1,0 +1,15 @@
+kind: choice
+lab: rock-paper-scissors
+prompt: In the Rock-paper-scissors lab, the bot wins by spotting a habit in your throws and playing what beats it. What does that share with the clothes shop?
+alongside: A clothes shop in Kochi holds its sale in the first week of every month. Its regular customers now wait for that week, and few of them pay full price.
+options:
+  - A pattern the other side can read is one they can use
+  - Both are won by trying harder each round
+  - Both are fixed by never doing the same thing twice
+answer: 0
+feedback:
+  - ''
+  - Trying harder does not help while your choices can still be read. The bot wins on your habit, and the customers wait because the sale week is known.
+  - Never repeating is itself a pattern. In the lab, if you never throw rock twice in a row, then after a rock the bot can throw scissors and never lose.
+explanation: 'In both, the other side gains by reading you: the bot by beating your next throw, the customers by waiting for the sale. Whatever they can predict, they can use.'
+measures: unpredictable

@@ -76,6 +76,11 @@ const choiceStep = z
     feedback: z.array(z.string()).optional(),
     /** A case off the board shown beside the board, to compare the two: what do they share? */
     alongside: z.string().min(1).optional(),
+    /** The lab whose round the prompt tells, by its slug: a comparison with a case needs no board or cards then. */
+    lab: z
+      .string()
+      .regex(/^[a-z0-9-]+$/, "a lab's slug, such as prisoners-dilemma")
+      .optional(),
     cards,
   })
   .refine((s) => s.answer < s.options.length, {
@@ -83,8 +88,8 @@ const choiceStep = z
     path: ['answer'],
   })
   .refine((s) => !(s.position && s.cards), boardOrCards)
-  .refine((s) => !s.alongside || s.position || s.cards, {
-    message: 'a step with a case alongside needs a board or cards to compare it with',
+  .refine((s) => !s.alongside || s.position || s.cards || s.lab, {
+    message: 'a step with a case alongside needs a board, cards or a round of a lab to compare it with',
     path: ['alongside'],
   })
   .refine(

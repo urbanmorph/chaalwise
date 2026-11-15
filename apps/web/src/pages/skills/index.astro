@@ -1,7 +1,7 @@
 ---
 import { SKILL_IDS, SKILLS } from '@chaalwise/core/skills';
 import Base from '../../layouts/Base.astro';
-import { lessonHref, lessonsFor, STAGES, trackLessons } from '../../lib/lessons';
+import { lessonHref, lessonsFor, STAGES, startsFrom, trackLessons } from '../../lib/lessons';
 import { labHref, LABS } from '../../lib/labs/labs';
 
 const tracks = await Promise.all(
@@ -38,7 +38,7 @@ const tracks = await Promise.all(
             {track.lessons.map(({ title, stage, lesson }) => (
               <li class:list={['card', { planned: !lesson }]}>
                 {lesson ? <a href={lessonHref(lesson)}>{title}</a> : <span class="title">{title}</span>}
-                <p class="label">{lesson ? `Chess · stage ${stage}` : `Coming in chess stage ${stage}: ${STAGES[stage]}`}</p>
+                <p class="label">{lesson ? startsFrom(lesson) : `Coming in chess stage ${stage}: ${STAGES[stage]}`}</p>
                 {lesson && <p>{lesson.data.summary}</p>}
               </li>
             ))}
