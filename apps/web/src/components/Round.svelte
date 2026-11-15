@@ -15,11 +15,13 @@
     onfinish: (outcomes: Record<string, Outcome>) => void;
     /** Where each question comes from, such as "In chess". */
     contexts?: (string | undefined)[];
+    /** "How sure are you?" must be answered first: a calibration round. */
+    requireConfidence?: boolean;
     /** The end-of-round card. */
     summary: Snippet<[Record<string, Outcome>]>;
   }
 
-  let { steps, onstep, onfinish, summary, contexts = [] }: Props = $props();
+  let { steps, onstep, onfinish, summary, contexts = [], requireConfidence = false }: Props = $props();
   let graded = $state<Record<string, Outcome>>();
   let again = $state<GradedStep[]>();
   const missed = $derived(graded ? steps.filter((s) => graded![s.id] === 'missed') : []);
@@ -37,7 +39,7 @@
     {/snippet}
   </LessonPlayer>
 {:else}
-  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep} {contexts} askConfidence>
+  <LessonPlayer lesson={{ steps }} onfinish={finish} {onstep} {contexts} askConfidence={requireConfidence ? 'required' : true}>
     {#snippet finished(outcomes)}
       {@render summary(outcomes)}
       {#if missed.length}

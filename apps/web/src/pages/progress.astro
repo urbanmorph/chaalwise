@@ -3,15 +3,21 @@ import ProgressPanel from '../components/ProgressPanel.svelte';
 import SkillProfile from '../components/SkillProfile.svelte';
 import Base from '../layouts/Base.astro';
 import { fitsBank } from '../lib/fits-bank';
+import { settingOf } from '../lib/games';
 import { reviewSteps } from '../lib/lessons';
 
-const cardIds = [...Object.keys(await reviewSteps()), ...Object.keys((await fitsBank()).items)];
+// Every review card and the setting it is in; the situations of "Which idea fits?" are all from life.
+const settings = {
+  ...Object.fromEntries(Object.entries(await reviewSteps()).map(([id, step]) => [id, settingOf(id, step)])),
+  ...Object.fromEntries(Object.keys((await fitsBank()).items).map((id) => [id, 'life' as const])),
+};
+const cardIds = Object.keys(settings);
 ---
 
 <Base title="Progress" description="Your skill profile and progress, kept on this device." noindex>
   <div class="wrap">
     <h1>Your progress</h1>
-    <SkillProfile client:load {cardIds} />
+    <SkillProfile client:load {settings} />
     <h2 class="device">Your progress on this device</h2>
     <ProgressPanel client:load {cardIds} />
   </div>
