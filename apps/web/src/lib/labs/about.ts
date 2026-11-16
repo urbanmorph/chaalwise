@@ -112,4 +112,9 @@ export const LAB_ABOUT: Record<Lab['slug'], LabAbout> = {
     plays:
       'Propose splits for a fest food stall and a shared cab; three bots each object if they would do better without the rest.',
   },
+  'wait-them-out': {
+    idea: 'When both sides pay for every round they hold out, set your stop point before you start. Weeks already paid are no reason to go on.',
+    plays:
+      'Four contests for a housing society’s secretary post, each week staying in or withdrawing, against neighbours who stay in for weeks you cannot see.',
+  },
 };

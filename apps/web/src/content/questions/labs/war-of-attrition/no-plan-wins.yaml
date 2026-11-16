@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'In the Wait them out? lab, you and a neighbour both want a housing society post worth 10 points, and whoever is left when the other withdraws takes it. Each week you both stay in costs each of you 1 point. Your neighbour withdraws in any week with a chance of 1 in 11, however long she has stayed in. You have stayed in for 8 weeks. Is it worth staying in one more week?'
+options:
+  - 'Yes: after 8 weeks paid, withdrawing now would throw all of them away'
+  - 'No: she has outlasted you for 8 weeks, so she is sure to outlast you again'
+  - 'Neither pays more on average: one more week gains as much as it costs'
+answer: 2
+feedback:
+  - 'The 8 weeks are paid whether you stay or withdraw. They do not make the post worth more to you or her any likelier to give up.'
+  - 'Her chance of giving up is the same 1 in 11 each week, however long she has stayed in. Her past weeks say nothing about the next one.'
+  - ''
+explanation: 'One more week wins 10 points 1 time in 11, about 0.9 on average. It costs 1 point the other 10 times, also about 0.9. Against her, every plan averages 0. The weeks already paid never change that sum: only the next week counts.'
+measures: composure

@@ -217,4 +217,14 @@ export const LAB_PLANS: Record<Lab['slug'], LabPlan> = {
     action:
       'I will work out what each person adds, check that no one and no pair would do better on their own, and propose that split',
   },
+  'wait-them-out': {
+    prompt: 'When will you set a stop point before a stand-off?',
+    situations: [
+      'two of us both want the same post, slot or job, and each waits for the other to give up',
+      'a dispute with a landlord, a firm or a neighbour drags on and costs us both each week',
+      'I hear myself say we have spent too long on this to give in now',
+    ],
+    action:
+      'I will write down before it starts how many weeks it is worth to me, and ask each week only whether the next one is worth it',
+  },
 };

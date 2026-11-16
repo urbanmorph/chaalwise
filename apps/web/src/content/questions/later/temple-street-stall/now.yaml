@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Six weeks into the contest for the pitch on Temple Street in Kochi, what do you do now?'
+options:
+  - 'Hold on: after ₹12,000 in rent, giving up would waste it'
+  - 'Give up the pitch, and ask the association for the next good one that falls free'
+  - 'Pay a year in advance too, to show you will never give up'
+answer: 1
+feedback:
+  - 'The ₹12,000 is gone whether you hold on or not. Paying a year in advance tells you the other seller means to stay, so more weeks are likely to cost you more than the pitch is worth.'
+  - ''
+  - 'Then you both have a year at stake and neither will give up, so the rent elsewhere goes on for you both. Matching her signal turns a contest you may lose into one you both lose.'
+explanation: 'What you have spent is no reason to go on. A signal that costs the sender, like a year paid in advance, is believable. Against someone who has shown they will stay, stepping back early and asking for something in return costs less than a long wait.'

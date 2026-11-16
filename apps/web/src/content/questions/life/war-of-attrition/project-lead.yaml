@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'You and a colleague in a Gurugram office both want to lead a new project. Your manager will give it to whoever is still asking when the other steps back. Each week of this costs you both time and goodwill. Your colleague has just turned down a good offer from another firm to stay for this project. What does that tell you?'
+options:
+  - 'Nothing much: anyone can say they want the project, so it changes nothing'
+  - 'That your colleague will likely hold out long: turning down the offer cost them'
+  - 'That your colleague is bluffing, and is likely to step back within a week or two'
+answer: 1
+feedback:
+  - 'Words cost nothing, but turning down a good offer does. It is a step that makes sense only to someone who means to stay.'
+  - ''
+  - 'A bluff is cheap. Giving up a good offer is not, so it is more likely real than a bluff.'
+explanation: 'In a stand-off, believe signals of staying power that cost the sender, not loud words. Against someone who has shown they will hold out, step back early and ask for the next project in return. That costs less than a long wait you are likely to lose.'
+measures: composure

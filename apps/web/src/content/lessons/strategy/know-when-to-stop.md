@@ -38,3 +38,5 @@ steps:
 ---
 
 Endgames make you count what is left on the board, not what it cost to get there. Off the board, setting a stopping point becomes a habit only if you practise it there, as this week's task asks. The reference entry [Sunk cost](/reference/strategy/sunk-cost/) has more questions on letting go of what is spent.
+
+To practise it against others who are holding out too, where every week costs both sides, play [the Wait them out? lab](/labs/wait-them-out/): set a stop point before each contest and see what keeping to it is worth.

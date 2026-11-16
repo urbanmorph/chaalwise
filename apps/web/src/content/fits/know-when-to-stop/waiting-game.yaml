@@ -1,0 +1,6 @@
+prompt: You and another trader in Lucknow both want the same shop on a busy corner. The owner says it goes to whoever is still asking when the other gives up. Each week you wait, you pay to keep a stall elsewhere. It has been six weeks, and you tell yourself you cannot give up after all that waiting.
+explanation: 'The six weeks are paid whether you go on or stop. Decide on what comes next, and set a point beyond which the corner is not worth more weeks.'
+feedback:
+  make-it-hard: Holding out is not a defence here. Every week costs you both, and the other trader may hold out longer.
+  how-long-does-this-deserve: This is not about how long to think over a choice. It is whether the weeks already spent should keep you waiting.
+  would-you-choose-it-today: Close, but nothing here is a default you slipped into. The pull is the weeks already paid.

@@ -50,7 +50,7 @@ export const TRACK_ALSO: Record<SkillId, string> = {
   calculate: 'Nim lab, Pallanguzhi',
   'plan-long': 'Go',
   'size-risk': 'Who backs down? lab, Backgammon',
-  composure: 'Gain or loss? lab',
+  composure: 'Gain or loss? and Wait them out? labs',
   'weigh-odds': "Which bag? lab, Backgammon, Liar's Dice",
   'read-hidden':
     "Rule finder, Ask the panel, First number wins?, Used scooters and Follow the queue? labs, Liar's Dice, Mastermind",
