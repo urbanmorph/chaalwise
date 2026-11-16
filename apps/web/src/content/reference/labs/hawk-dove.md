@@ -23,7 +23,7 @@ sources:
 
 Two animals want the same piece of food. Each can fight for it, like a hawk, or back off, like a dove. John Maynard Smith and George Price (1973) asked which habit wins out over many meetings. A hawk beats a dove and takes the prize. Two doves share it. But two hawks fight, and if a fight costs more than the prize is worth, both come off worse than if one had backed down.
 
-So no single habit wins. Among doves, a hawk does well; among hawks, a dove does better, since it never gets hurt. The crowd settles at a mix, where hawks and doves do equally well. With a prize of 10 points and a fight that costs the loser 30, it is one hawk in three. Maynard Smith called such a mix an evolutionarily stable strategy: once a crowd plays it, no other habit can do better and spread.
+So no single habit wins. Among doves, a hawk does well; among hawks, a dove does better, since it never gets hurt. The crowd settles at a mix, where hawks and doves do equally well. With a prize of 10 points and a fight that costs the loser 30, it is one hawk in three. Maynard Smith and Price called such a mix an evolutionarily stable strategy: once a crowd plays it, no other habit can do better and spread.
 
 Between people it is often called chicken, after a dare in which two drivers race towards each other and the first to swerve is the chicken. Two shops in a price war, two teams that want the same meeting room, two relatives who both want the family plot are all playing it. Each wants the other to give way, and if neither does, both lose.
 

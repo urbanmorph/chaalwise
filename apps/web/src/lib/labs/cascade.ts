@@ -2,7 +2,7 @@ import { seeded, type Random } from './seeded';
 
 /**
  * Follow the queue?: an information cascade (Bikhchandani, Hirshleifer and Welch 1992; Banerjee 1992), as in Anderson
- * and Holt's classroom version (1997). Two restaurants open side by side; one is better. Each person on the street has
+ * and Holt's laboratory version (1997). Two restaurants open side by side; one is better. Each person on the street has
  * a friend's tip, right 2 times in 3, and sees where the people before them went. Each counts the tips the earlier
  * choices show and adds their own: once one door leads by two tips, their own tip cannot outweigh the queue, so they
  * follow it, and their choice shows nothing more. From then on the queue is locked, right or wrong. The street and its

@@ -129,6 +129,11 @@ describe('what a lesson answer is evidence for', () => {
         ).toBe(true);
     }
   });
+
+  it('links the two lessons on how long a choice deserves to each other', () => {
+    expect(built('skills/how-long-does-this-deserve')).toContain('href="/skills/spend-effort-where-it-matters/"');
+    expect(built('skills/spend-effort-where-it-matters')).toContain('href="/skills/how-long-does-this-deserve/"');
+  });
 });
 
 describe('the skills a game lesson names', () => {

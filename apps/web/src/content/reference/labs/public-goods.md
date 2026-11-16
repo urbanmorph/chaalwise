@@ -16,7 +16,7 @@ aliases:
     'Costly punishment',
   ]
 summary: 'Each gains by holding back from a shared fund; all lose if all do. A record all can see and rules the group enforces keep it going.'
-why: 'Most people give if others do, but a little less. When nobody can see who holds back, one free rider pulls the average down and the rest follow, until the shared thing runs down.'
+why: 'Many people give if others do, but a little less. When nobody can see who holds back, one free rider pulls the average down and the rest follow, until the shared thing runs down.'
 inLife: 'In a group project, a shared bill or a common area, make what each person gives easy to see, and give first yourself. Before trouble starts, agree a simple rule with a small cost for breaking it.'
 related: ['labs/prisoners-dilemma', 'labs/fairness-and-trust', 'strategy/incentives']
 try:
@@ -38,8 +38,8 @@ A public good is something everyone can use, whoever paid for it: the lights on 
 
 Garrett Hardin (1968) told it as the tragedy of the commons. Herders share a field. Each gains by adding one more cow, while the cost of the worn-out grass falls on all, so the field is grazed bare. A fund that runs down and a field that is used up are two sides of one problem: what is good for each is bad for all.
 
-In the laboratory, people start by giving about half, and then give less round after round. Urs Fischbacher, Simon Gächter and Ernst Fehr (2001) found why. Most people are conditional cooperators: they give if others give, but a little less than the others. A few are free riders, who give nothing. Once a group cannot see who holds back, the giving unravels.
+In the laboratory, people start by giving about half, and then give less round after round. Urs Fischbacher, Simon Gächter and Ernst Fehr (2001) found why. About half the players were conditional cooperators: they give if others give, but a little less than the others. About a third were free riders, who give nothing. So once a few hold back, the rest give a little less each round, and the giving unravels.
 
-Ernst Fehr and Simon Gächter (2000) then let players see what each had given, and fine others at a cost to themselves. Many paid to fine those who gave little, though it earned them nothing, and giving rose instead of falling. Elinor Ostrom (1990) studied fisheries, forests and water channels that communities have run for centuries without a ruler or a market. Those that last share a few features. The users make the rules themselves, they can see who keeps them, and fines start small and grow for those who keep breaking them.
+Ernst Fehr and Simon Gächter (2000) then let players, once they had seen what each gave, fine others at a cost to themselves. Many paid to fine those who gave little, though it earned them nothing, and giving rose instead of falling. Elinor Ostrom (1990) studied fisheries, forests and water channels that communities have run for centuries without a ruler or a market. Those that last share a few features. The users make the rules themselves, they can see who keeps them, and fines start small and grow for those who keep breaking them.
 
 So when you share something, do not rely on goodwill alone. Make what each person gives easy to see, give first and answer what others give, and agree a simple rule with a small cost before trouble starts.

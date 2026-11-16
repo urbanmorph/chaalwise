@@ -297,7 +297,7 @@
         each takes too much from a shared field.
       </li>
       <li>
-        Most people give if others do, but a little less. When nobody can see who holds back, one free rider pulls the average down, the others follow, and what
+        Many people give if others do, but a little less. When nobody can see who holds back, one free rider pulls the average down, the others follow, and what
         goes in falls month by month.
       </li>
       <li>
