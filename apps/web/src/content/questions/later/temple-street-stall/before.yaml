@@ -1,0 +1,12 @@
+kind: choice
+prompt: 'Before the contest for the pitch on Temple Street in Kochi begins, what do you settle?'
+options:
+  - 'How many weeks of rent the gate pitch is worth to you, and that you will give up once you reach it'
+  - 'Nothing: you will hold on for as long as the other seller does'
+  - 'To give up at once, since contests like this are never worth it'
+answer: 0
+feedback:
+  - ''
+  - 'Then the other seller sets your limit for you, and every week you both hold on costs you both. You could win the pitch and still have paid more than it was worth.'
+  - 'Giving up at once is right only if the pitch is worth less than the wait is likely to cost. Against a seller who gives up soon, holding on a little pays.'
+explanation: 'When both sides pay for every week they hold on, set your limit before you start. Base it on what the prize is worth to you, while you are calm and nothing is spent yet.'

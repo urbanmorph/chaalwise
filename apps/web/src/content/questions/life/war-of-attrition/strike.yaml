@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Workers at a small textile mill in Coimbatore have been on strike for three weeks over a pay rise. Each week costs the workers their wages and the owner his orders. The owner says, "We have lost too much to give in now." What should he weigh before the fourth week?'
+options:
+  - 'The three weeks already lost, so that they were not for nothing'
+  - 'What one more week will cost him, and how likely the workers are to give up soon'
+  - 'Nothing: whoever holds out longer wins, so he should simply hold out'
+answer: 1
+feedback:
+  - 'The three weeks are lost whether he gives in or holds out. Letting them decide is how a stand-off runs on long after it stopped being worth it.'
+  - ''
+  - 'Holding out wins only if the workers give up first, and every week costs both sides. Against a side as ready to wait as he is, holding out can cost more than the pay rise.'
+explanation: 'In a stand-off where both sides pay each week, what is already spent is gone either way. Each week, compare what the next week costs with the chance it brings the other side round, and look for a way to settle that costs both less than waiting.'
+measures: composure

@@ -1,0 +1,13 @@
+kind: choice
+prompt: 'Two cafés near a college in Bengaluru both want the late-night crowd of students. Each stays open an hour later than the other, and each extra hour costs both of them more in staff and power than the few students bring in. You run one of them. What do you do before you go on?'
+options:
+  - 'Decide now the latest hour that still pays for you, and close at it whatever the other café does'
+  - 'Stay open one hour later than them every night until they give up'
+  - 'Keep going for now: you have already spent too much to stop'
+answer: 0
+feedback:
+  - ''
+  - 'They may be thinking the same, and every hour you both stay open costs you both. You could win the crowd and still have paid more than it was worth.'
+  - 'What you have spent is gone whether you stop or not. It says nothing about whether the next hour will pay.'
+explanation: 'When both sides pay for every round they hold out, set your stop point before you start, from what the prize is worth to you. Then keep to it, and do not let the cost already paid push you past it.'
+measures: composure

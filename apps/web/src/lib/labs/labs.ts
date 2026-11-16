@@ -171,6 +171,13 @@ export const LABS: Lab[] = [
     entry: 'labs/shapley-value',
     read: ['labs/fairness-and-trust', 'strategy/walk-away-point'],
   },
+  {
+    slug: 'wait-them-out',
+    title: 'Wait them out?',
+    track: 'composure',
+    entry: 'labs/war-of-attrition',
+    read: ['strategy/sunk-cost', 'strategy/costly-signals', 'labs/hawk-dove'],
+  },
 ];
 
 /** The labs a strategy or poker lesson offers at its end: the lab it follows first, then those that train its skills. */

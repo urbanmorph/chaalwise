@@ -1,0 +1,15 @@
+---
+import AttritionLab from '../../components/labs/AttritionLab.svelte';
+import LabPage from '../../components/labs/LabPage.astro';
+import { LABS } from '../../lib/labs/labs';
+
+const lab = LABS.find((l) => l.slug === 'wait-them-out')!;
+---
+
+<LabPage {lab}>
+  <p>
+    You and a neighbour both want the same post, and whoever is left when the other withdraws takes it. Every week you both stay in costs you both. Set a stop
+    point, face four neighbours, and find out when waiting them out pays and when it eats the whole prize.
+  </p>
+  <AttritionLab client:load />
+</LabPage>
