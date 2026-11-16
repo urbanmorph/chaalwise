@@ -5,7 +5,7 @@
  * you more, yet if all put in everything, all end with twice as much as if nobody does.
  *
  * Part 1 posts only the fund's total. The neighbours are conditional cooperators who match last month's average
- * (one of them a little short, as Fischbacher, Gächter and Fehr 2001 found most do), a free rider and a steady
+ * (one of them a little short, as Fischbacher, Gächter and Fehr 2001 found about half do), a free rider and a steady
  * giver, so what goes in falls month by month. Part 2 posts everyone's amount on the notice board, and anyone may
  * fine a neighbour, at a cost to themselves (Fehr and Gächter 2000); the society's rule is at least 5. What goes in
  * holds up. The numbers are this lab's design.

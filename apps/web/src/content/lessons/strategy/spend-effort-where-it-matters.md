@@ -30,4 +30,4 @@ steps:
     action: 'I will ask how hard it is to undo, and give it time to match'
 ---
 
-The clock makes this plain in chess, where every minute is counted. Off the board, sharing out your effort well becomes a habit only if you practise it there, as this week's task asks.
+The clock makes this plain in chess, where every minute is counted. Off the board, sharing out your effort well becomes a habit only if you practise it there, as this week's task asks. This lesson is about sharing your time across many choices; the lesson [How long does this deserve?](/skills/how-long-does-this-deserve/) is about sizing the thought for one choice before you start.

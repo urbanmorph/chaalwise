@@ -26,6 +26,6 @@ Abhijit Banerjee (1992) began with two restaurants side by side. Each diner has 
 
 Sushil Bikhchandani, David Hirshleifer and Ivo Welch (1992) called this an information cascade. Once people follow the crowd whatever their own clue says, their choices stop showing what they know. The queue grows, but no more information goes into it. So a cascade can start after only a few early choices, and lock onto the wrong option. It is also fragile: a little new public information, such as one trusted review, can tip it the other way.
 
-Lisa Anderson and Charles Holt (1997) ran this as a classroom experiment, with balls drawn from hidden urns. Cascades formed in most rounds where they could, and some locked onto the wrong urn.
+Lisa Anderson and Charles Holt (1997) ran this in the laboratory with students, using balls drawn from a hidden urn. Cascades formed in most rounds where the early choices made one possible, and some locked onto the wrong urn.
 
 Three habits help. Weigh your own evidence: a queue of ten that rests on two tips is worth two tips, not ten. Ask why people chose: "it was busy" adds nothing, while "I ate there last week" does. And prefer opinions given independently, before people saw what others chose, as in the lab [Ask the panel](/labs/ask-the-panel/).

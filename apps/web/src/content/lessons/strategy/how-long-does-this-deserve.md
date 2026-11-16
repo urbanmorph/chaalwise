@@ -20,7 +20,7 @@ steps:
   - ask: chess/how-long-does-this-deserve/compare
   - kind: read
     id: off-the-board
-    text: 'What both share has a name: how long does this deserve? Before you start weighing a choice, ask: will this matter in a year? Annie Duke calls it the happiness test. If the answer is no, decide fast: the options are close or easy to undo, so more time buys nothing. If it will matter, and is hard to undo, take your time. And when a choice has a real upside and no real downside, just take it.'
+    text: 'What both share has a name: how long does this deserve? Before you start weighing a choice, ask: will how it turns out matter to you in a year? Annie Duke calls it the happiness test. If the answer is no, decide fast: the options are close or easy to undo, so more time buys nothing. If it will matter, and is hard to undo, take your time. And when a choice has a real upside and no real downside, just take it.'
   - ask: life/how-long-does-this-deserve/thali
   - ask: life/how-long-does-this-deserve/internship-form
   - kind: plan
