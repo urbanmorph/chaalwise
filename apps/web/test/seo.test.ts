@@ -92,12 +92,12 @@ describe('what search engines are told', () => {
     expect(JSON.parse(read('manifest.webmanifest')).description).toContain(words);
   });
 
-  it('keeps a lab entry’s own search title short enough to show in full, with the detail in its description', () => {
+  it('keeps a reference entry’s own search title short enough to show in full, with the detail in its description', () => {
     const own = indexable
-      .filter((p) => p.startsWith('/reference/labs/'))
+      .filter((p) => p.startsWith('/reference/'))
       .map((p) => html(p).match(/<title>([^<]*)<\/title>/)![1]!)
       .filter((t) => !/ reference · Chaalwise$/.test(t));
-    expect(own.length).toBeGreaterThan(5);
+    expect(own.length).toBeGreaterThan(10);
     expect(own.filter((t) => t.length > 62)).toEqual([]);
   });
 

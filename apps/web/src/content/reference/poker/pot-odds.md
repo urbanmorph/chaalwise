@@ -1,6 +1,6 @@
 ---
 term: 'Pot odds'
-title: 'Pot odds in poker: how to work them out, and when to call'
+title: 'Pot odds in poker: how to work out when to call'
 game: 'poker'
 kind: 'odds'
 level: 'beginner'

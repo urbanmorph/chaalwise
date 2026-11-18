@@ -37,7 +37,7 @@ const html = `<!doctype html>
 <div>
   <div class="brand">${mark}<div>chaal<span>wise</span></div></div>
   <h1>Think a move ahead.</h1>
-  <p>Free, short lessons in strategy, shown in chess and poker, for work and study.</p>
+  <p>Free, short lessons in strategy, shown in chess, poker or a game-theory lab, for work and study.</p>
   <div class="url">chaalwise.com</div>
 </div>
 <div class="board">${diagram}</div>`;
