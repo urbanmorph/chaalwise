@@ -1,6 +1,6 @@
 ---
 term: 'War of attrition'
-title: 'The war of attrition: when both sides pay to hold out, set your stop point before you start'
+title: 'War of attrition: set your stop point first'
 game: 'labs'
 kind: 'concept'
 skill: 'composure'

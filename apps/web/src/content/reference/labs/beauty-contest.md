@@ -1,6 +1,6 @@
 ---
 term: 'Beauty contest and level-k thinking'
-title: 'The beauty contest: guess two-thirds of the average, and think one step further than the crowd'
+title: 'The beauty contest game (guess two-thirds)'
 game: 'labs'
 kind: 'concept'
 skill: 'think-ahead'

@@ -1,8 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import type { Card } from '@chaalwise/poker/cards';
+import { deck, type Card } from '@chaalwise/poker/cards';
 import { CATEGORIES, compare, evaluate } from '@chaalwise/poker/evaluate';
-import { exactChance, outs, ruleOf } from '@chaalwise/poker/odds';
+import { equity, exactChance, outs, ruleOf } from '@chaalwise/poker/odds';
+import { newHand, type Player } from '@chaalwise/poker/table';
 import { CANONICAL_ELSEWHERE } from '../src/lib/canonical';
 
 /**
@@ -50,6 +51,12 @@ describe('one page for each poker topic', () => {
     expect(CANONICAL_ELSEWHERE).toEqual({
       '/poker/hand-rankings/': '/reference/poker/hand-rankings/',
       '/poker/outs-and-odds/': '/reference/poker/outs/',
+      '/poker/position/': '/reference/poker/position/',
+      // The lesson teaches both; equity is what people search for, and its questions work out equity.
+      '/poker/ranges-and-equity/': '/reference/poker/equity/',
+      '/poker/expected-value/': '/reference/poker/expected-value/',
+      '/poker/implied-odds/': '/reference/poker/implied-odds/',
+      '/poker/tilt/': '/reference/poker/tilt/',
     });
     for (const [lesson, entry] of Object.entries(CANONICAL_ELSEWHERE)) {
       expect(canonical(lesson), lesson).toBe(`${SITE}${entry}`);
@@ -78,10 +85,15 @@ describe('titles in the words people search', () => {
     expect(title('/reference/poker/pot-odds/')).toBe(
       'Pot odds in poker: how to work them out, and when to call · Chaalwise',
     );
+    expect(title('/reference/poker/equity/')).toBe('Poker equity: what it is and how to work it out · Chaalwise');
+    expect(title('/reference/poker/position/')).toBe('Position in poker: why acting last is an advantage · Chaalwise');
+    expect(title('/reference/poker/expected-value/')).toBe(
+      'Expected value (EV) in poker: how to work it out · Chaalwise',
+    );
   });
 
   it('keeps the plain title for entries without one of their own', () => {
-    expect(title('/reference/poker/position/')).toBe('Position · Poker reference · Chaalwise');
+    expect(title('/reference/poker/range/')).toBe('Range · Poker reference · Chaalwise');
   });
 });
 
@@ -90,6 +102,9 @@ describe('questions answered on the page and as FAQPage data', () => {
     '/reference/poker/hand-rankings/': ['Does three of a kind beat a straight?', 'Does a flush beat a straight?'],
     '/reference/poker/outs/': ['What is an out in poker?', 'How do you count outs in poker?'],
     '/reference/poker/pot-odds/': ['What are pot odds in poker?', 'How do you work out pot odds?'],
+    '/reference/poker/equity/': ['What is equity in poker?', 'How do you work out your equity?'],
+    '/reference/poker/position/': ['What is position in poker?', 'Who acts first in poker?'],
+    '/reference/poker/expected-value/': ['What is expected value in poker?', 'How do you work out expected value?'],
   };
 
   it('shows every question and answer that the structured data gives, word for word', () => {
@@ -109,7 +124,7 @@ describe('questions answered on the page and as FAQPage data', () => {
   });
 
   it('gives FAQPage data only where a page shows questions', () => {
-    expect(jsonLd('/reference/poker/position/').some((d) => d['@type'] === 'FAQPage')).toBe(false);
+    expect(jsonLd('/reference/poker/range/').some((d) => d['@type'] === 'FAQPage')).toBe(false);
   });
 
   it('answers what beats what as the cards do', () => {
@@ -121,6 +136,49 @@ describe('questions answered on the page and as FAQPage data', () => {
     expect(beats('7♦ 5♦ 4♦ 3♦ 2♦', 'A♠ K♥ Q♦ J♣ 10♠')).toBeGreaterThan(0);
     expect(answer('Does a full house beat a flush?')).toMatch(/^Yes\./);
     expect(beats('3♠ 3♥ 3♦ 2♣ 2♠', 'A♦ K♦ Q♦ J♦ 9♦')).toBeGreaterThan(0);
+  });
+});
+
+describe('answers about equity, position and expected value, as the engine plays them', () => {
+  const answer = (page: string, q: string) => shownFaq(page).find((f) => f.q === q)!.a;
+
+  it('works out equity with one card to come, and against a range, as the engine counts it', () => {
+    const board = cards('K♥ 7♣ 2♦ 9♠');
+    const vsAces = equity(cards('K♦ Q♦'), board, { against: cards('A♥ A♣') });
+    const vsKingJack = equity(cards('K♦ Q♦'), board, { against: cards('K♠ J♣') });
+    expect(vsAces.exact && vsKingJack.exact).toBe(true);
+    expect(vsAces.share).toBeCloseTo((100 * 5) / 44);
+    const pct = (x: number) => `${Math.round(x)}%`;
+    const work = answer('/reference/poker/equity/', 'How do you work out your equity?');
+    expect(work).toContain('K♥ 7♣ 2♦ 9♠');
+    expect(work).toContain(`5 of the 44 unseen cards, about ${pct(vsAces.share)}`);
+    const range = answer('/reference/poker/equity/', 'How do you find your equity against a range?');
+    expect(range).toContain(`aces (${pct(vsAces.share)})`);
+    expect(range).toContain(`king and jack (${pct(vsKingJack.share)})`);
+    expect(range).toContain(`about ${pct((vsAces.share + vsKingJack.share) / 2)}`);
+  });
+
+  it('says who acts first the way the table deals', () => {
+    const players: Player[] = [0, 1, 2, 3].map((i) => ({ name: `P${i}`, points: 200, isBot: true }));
+    const hand = (n: number) => newHand(players.slice(0, n), 0, deck());
+    // Three or four seats: the seat after the big blind (dealer + 3) acts first before the flop.
+    expect(hand(4).toAct).toBe(3);
+    expect(hand(3).toAct).toBe(0);
+    // Two seats: the dealer posts the small blind and acts first.
+    expect(hand(2).toAct).toBe(0);
+    const a = answer('/reference/poker/position/', 'Who acts first in poker?');
+    expect(a).toMatch(/left of the big blind acts first/);
+    expect(a).toMatch(/the button acts last/);
+  });
+
+  it('works out expected value and its break-even point with the numbers it gives', () => {
+    const a = answer('/reference/poker/expected-value/', 'How do you work out expected value?');
+    expect(a).toContain('0.25 × 40 − 0.75 × 10 = 2.5');
+    expect(0.25 * 40 - 0.75 * 10).toBe(2.5);
+    // Calling 10 to win 40 breaks even at 10 / (40 + 10) = 20%, the pot odds.
+    const odds = answer('/reference/poker/expected-value/', 'How is expected value related to pot odds?');
+    expect(odds).toContain('20%');
+    expect(0.2 * 40 - 0.8 * 10).toBe(0);
   });
 });
 

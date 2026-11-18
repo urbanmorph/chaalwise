@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Chaalwise",
   "short_name": "Chaalwise",
-  "description": "Short lessons in strategy and decision-making, shown in chess and poker. Free to learn, offline, no account, no ads.",
+  "description": "Short lessons in strategy and decision-making, shown in chess, poker or a game-theory lab. Free to learn, offline, no account, no ads.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
@@ -41,14 +41,14 @@
       "sizes": "824x1830",
       "type": "image/webp",
       "form_factor": "narrow",
-      "label": "Chaalwise on a phone: short, free strategy lessons, shown in chess and poker"
+      "label": "Chaalwise on a phone: short, free strategy lessons, shown in chess, poker or a game-theory lab"
     },
     {
       "src": "/screenshots/home-wide.webp",
       "sizes": "1280x800",
       "type": "image/webp",
       "form_factor": "wide",
-      "label": "Chaalwise on a desktop: short, free strategy lessons, shown in chess and poker"
+      "label": "Chaalwise on a desktop: short, free strategy lessons, shown in chess, poker or a game-theory lab"
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 term: 'Public goods and the commons'
-title: 'Public goods and the tragedy of the commons: why shared funds run down, and what keeps them going'
+title: 'Public goods and the tragedy of the commons'
 game: 'labs'
 kind: 'concept'
 skill: 'cooperate'
