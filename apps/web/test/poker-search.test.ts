@@ -82,9 +82,7 @@ describe('titles in the words people search', () => {
       'Poker hand rankings: what beats what (with chart) · Chaalwise',
     );
     expect(title('/reference/poker/outs/')).toBe('Outs in poker: what they are and how to count them · Chaalwise');
-    expect(title('/reference/poker/pot-odds/')).toBe(
-      'Pot odds in poker: how to work them out, and when to call · Chaalwise',
-    );
+    expect(title('/reference/poker/pot-odds/')).toBe('Pot odds in poker: how to work out when to call · Chaalwise');
     expect(title('/reference/poker/equity/')).toBe('Poker equity: what it is and how to work it out · Chaalwise');
     expect(title('/reference/poker/position/')).toBe('Position in poker: why acting last is an advantage · Chaalwise');
     expect(title('/reference/poker/expected-value/')).toBe(
