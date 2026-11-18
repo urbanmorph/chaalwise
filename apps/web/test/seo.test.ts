@@ -83,6 +83,24 @@ describe('what search engines are told', () => {
     expect(h.match(/<meta name="description" content="([^"]*)"/)![1]).toMatch(/strategy/i);
   });
 
+  it('names all three ways an idea is shown, as the README does: chess, poker or a game-theory lab', () => {
+    const h = html('/');
+    const words = 'chess, poker or a game-theory lab';
+    expect(h.match(/<title>([^<]*)<\/title>/)![1]).toContain(words);
+    expect(h.match(/<meta name="description" content="([^"]*)"/)![1]).toContain(words);
+    expect(h.match(/<meta property="og:description" content="([^"]*)"/)![1]).toContain(words);
+    expect(JSON.parse(read('manifest.webmanifest')).description).toContain(words);
+  });
+
+  it('keeps a lab entry’s own search title short enough to show in full, with the detail in its description', () => {
+    const own = indexable
+      .filter((p) => p.startsWith('/reference/labs/'))
+      .map((p) => html(p).match(/<title>([^<]*)<\/title>/)![1]!)
+      .filter((t) => !/ reference · Chaalwise$/.test(t));
+    expect(own.length).toBeGreaterThan(5);
+    expect(own.filter((t) => t.length > 62)).toEqual([]);
+  });
+
   it('describes the site and its maker as structured data on the home page', () => {
     const types = jsonLd('/')
       .flatMap((d) => d['@graph'] ?? [d])

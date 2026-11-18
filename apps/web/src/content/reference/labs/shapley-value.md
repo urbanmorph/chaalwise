@@ -1,6 +1,6 @@
 ---
 term: 'Fair shares (the Shapley value)'
-title: 'The Shapley value and the core: how to split what a group makes by what each person adds'
+title: 'The Shapley value and the core: fair splits'
 game: 'labs'
 kind: 'concept'
 skill: 'value'

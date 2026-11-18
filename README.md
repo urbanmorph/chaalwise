@@ -18,7 +18,7 @@ apps/web/src/worker   the Worker for /api/count, the anonymous counts (D1, migra
 tools/puzzles   build-time tool: the Lichess puzzle database to small theme chunks, cached in R2
 ```
 
-Lessons are Markdown files in `apps/web/src/content/lessons/`: their reading and plan steps, and the questions they ask by id. Every question lives once in the corpus, `apps/web/src/content/questions/<game>/<idea>/<name>.yaml`, where `<game>` is `chess`, `poker`, `labs` or `life` (questions about life off the board). Lessons (`- ask: chess/fork/knight-takes-two`), reference entries (`try:`) and labs ask questions by id; review, course practice and mixed practice draw on the whole corpus by the skill each question `measures`. To add a question, add a file: it is checked at build time (every position and answer with chessops; a poker question's cards for a card dealt twice, and its hands, outs and odds by tests against the poker engine), and it is practised for its skill straight away. A question that existed before the corpus keeps its review card in `card`, so learners' progress carries over.
+Lessons are Markdown files in `apps/web/src/content/lessons/`: their reading and plan steps, and the questions they ask by id. Every question lives once in the corpus, `apps/web/src/content/questions/<game>/<idea>/<name>.yaml`, where `<game>` is `chess`, `poker`, `labs`, `life` (questions about life off the board), `cases` (the work cases) or `later` (the cases a week later). Lessons (`- ask: chess/fork/knight-takes-two`), reference entries (`try:`) and labs ask questions by id; review, course practice and mixed practice draw on the whole corpus by the skill each question `measures`. To add a question, add a file: it is checked at build time (every position and answer with chessops; a poker question's cards for a card dealt twice, and its hands, outs and odds by tests against the poker engine), and it is practised for its skill straight away. A question that existed before the corpus keeps its review card in `card`, so learners' progress carries over.
 
 A strategy lesson says what its game moment follows in `after:`: a chess or poker lesson (`poker/outs-and-odds`), another strategy lesson, or a lab (`labs/which-bag`). It sits on that game's path (those after labs are listed on the lab's page and the skill's course), and its chess, poker or lab questions are worked examples to read until the learner has met that game. Its compare question sets a case off the board (`alongside`) beside the game moment: a chessboard, poker cards, or, for a lesson after a lab, a round of the lab told in the prompt (`lab: <slug>`). Plans to use an idea this week end every strategy and poker lesson (a `kind: plan` step) and every lab (`apps/web/src/lib/labs/plans.ts`); review asks about them all the same way.
 
@@ -37,7 +37,7 @@ pnpm install
 pnpm dev          # local site
 pnpm build        # build to apps/web/dist
 pnpm test         # unit tests, plus tests that read the build (run pnpm build first)
-pnpm test:e2e     # Playwright: offline use, deploy A to B, tombstone, review
+pnpm test:e2e     # Playwright: every page and lab, offline use, deploy A to B, tombstone, review
 pnpm lint         # Prettier and ESLint
 pnpm lint:prose   # plain-language checks on lessons (front matter too), questions, tracks and the reference (needs Vale 3 on your PATH; rules in tools/vale)
 pnpm check        # type checks

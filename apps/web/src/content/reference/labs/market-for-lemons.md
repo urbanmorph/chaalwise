@@ -1,6 +1,6 @@
 ---
 term: 'Market for lemons'
-title: 'The market for lemons (adverse selection): why good sellers leave, and how screening and signals bring them back'
+title: 'Market for lemons: adverse selection and signals'
 game: 'labs'
 kind: 'concept'
 skill: 'read-hidden'

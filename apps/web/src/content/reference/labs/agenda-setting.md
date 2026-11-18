@@ -1,6 +1,6 @@
 ---
 term: 'Agenda setting'
-title: 'Agenda setting and voting cycles: why the order of the votes can decide the winner'
+title: 'Agenda setting and voting cycles'
 game: 'labs'
 kind: 'concept'
 skill: 'think-ahead'

@@ -1,6 +1,6 @@
 # Chaalwise
 
-A free, offline strategy-learning web app that teaches thinking skills through chess and poker, played against the computer only. No money, no multiplayer, no ratings.
+A free, offline strategy-learning web app that teaches thinking skills through chess, poker or a game-theory lab, played against the computer only. No money, no multiplayer, no ratings.
 
 ## Start here
 

@@ -1,6 +1,6 @@
 ---
 term: 'Hawk-dove and brinkmanship'
-title: 'Hawk-dove (chicken) and brinkmanship: when to stand firm, when to give way, and what a name for never backing down costs'
+title: 'Hawk-dove (chicken) and brinkmanship'
 game: 'labs'
 kind: 'concept'
 skill: 'size-risk'

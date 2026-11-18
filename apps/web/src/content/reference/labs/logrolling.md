@@ -1,6 +1,6 @@
 ---
 term: 'Trade across issues'
-title: 'Trading across issues (logrolling): how a deal with several parts can leave both sides better off'
+title: 'Logrolling: trading across issues in a deal'
 game: 'labs'
 kind: 'concept'
 skill: 'value'

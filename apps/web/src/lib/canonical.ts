@@ -8,4 +8,10 @@
 export const CANONICAL_ELSEWHERE: Record<string, string> = {
   '/poker/hand-rankings/': '/reference/poker/hand-rankings/',
   '/poker/outs-and-odds/': '/reference/poker/outs/',
+  '/poker/position/': '/reference/poker/position/',
+  // It teaches range and equity; equity is what people search for, and what its questions work out.
+  '/poker/ranges-and-equity/': '/reference/poker/equity/',
+  '/poker/expected-value/': '/reference/poker/expected-value/',
+  '/poker/implied-odds/': '/reference/poker/implied-odds/',
+  '/poker/tilt/': '/reference/poker/tilt/',
 };
