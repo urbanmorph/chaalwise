@@ -208,3 +208,12 @@ describe('the outs table', () => {
     }
   });
 });
+
+describe('the poker page', () => {
+  it('links straight to each poker reference entry, so a crawl of /poker/ reaches them', () => {
+    const page = html('/poker/');
+    for (const slug of ['hand-rankings', 'pot-odds', 'outs', 'expected-value', 'equity', 'position']) {
+      expect(page).toContain(`href="/reference/poker/${slug}/"`);
+    }
+  });
+});

@@ -2,8 +2,11 @@
 import LessonList from '../../components/LessonList.astro';
 import Base from '../../layouts/Base.astro';
 import { lessonPath, POKER_STAGES } from '../../lib/lessons';
+import { entryHref } from '../../lib/reference';
+import { referenceEntries } from '../../lib/reference-entries';
 
 const lessons = await lessonPath('poker');
+const entries = (await referenceEntries()).filter((e) => e.data.game === 'poker');
 ---
 
 <Base title="Poker" description="Poker lessons for weighing odds and deciding under uncertainty, against the computer, practice points only.">
@@ -26,6 +29,17 @@ const lessons = await lessonPath('poker');
       <p>
         <a href="/poker/drills/">Daily drills</a>: count the outs, call or fold, find the nuts, play or fold, and guess your chance. Ten hands at a time.
       </p>
+    </section>
+    <section class="practice">
+      <h2>Look it up</h2>
+      <p>Each poker idea on one page, with worked examples:</p>
+      <ul>
+        {entries.map((e) => (
+          <li>
+            <a href={entryHref(e.id)}>{e.data.term}</a>
+          </li>
+        ))}
+      </ul>
     </section>
   </div>
 </Base>
